@@ -1,0 +1,435 @@
+<%-- 
+    Document   : index
+    Created on : 4/03/2017, 09:01:09 PM
+    Author     : LEGADO
+--%>
+
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="FACADE.FacadeEvento" %>
+<%@page import="DTO.EventoDTO" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>D.S.A.S - UFPS</title>
+
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="Shortcut icon">
+        <!-- Web Fonts -->                
+        <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>                 
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">      
+        <!--<link type="text/css" rel="stylesheet" href="css/header-v6.min.css">-->           
+        <link type="text/css" rel="stylesheet" href="css/header-v8.min.css">         
+        <link type="text/css" rel="stylesheet" href="css/header.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/ie8.min.css">
+        <link type="text/css" rel="stylesheet" href="css/blocks.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/plugins.min.css">
+        <link type="text/css" rel="stylesheet" href="css/style.min.css">       
+        <link type="text/css" rel="stylesheet" href="css/app.min.css">
+        <link type="text/css" rel="stylesheet" href="css/shop.plugins.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/shop.blocks.min.css">      
+        <link type="text/css" rel="stylesheet" href="css/style-switcher.min.css">          
+        <link type="text/css" rel="stylesheet" href="css/shop.style.min.css">   
+        <link type="text/css" rel="stylesheet" href="css/footer-v1.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/animate.min.css">
+        <link type="text/css" rel="stylesheet" href="css/line-icons.min.css">
+        <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="css/owl.carousel.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/header-v8.min.css"> 
+        <link type="text/css" rel="stylesheet" href="css/header.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/footer-v1.min.css">
+        <link type="text/css" rel="stylesheet" href="css/animate.min.css">
+        <link type="text/css" rel="stylesheet" href="css/line-icons.min.css">
+        <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="css/owl.carousel.min.css">
+        <link type="text/css" rel="stylesheet" href="css/horizontal-parallax.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/layerslider.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/ured.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/sky-forms.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/custom-sky-forms.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/profile.min.css">       
+        <link type="text/css" rel="stylesheet" href="css/brand-buttons.min.css">
+        <link type="text/css" rel="stylesheet" href="css/brand-buttons-inversed.min.css">        
+        <link type="text/css" rel="stylesheet" href="css/hover.min.css">
+        <link type="text/css" rel="stylesheet" href="css/custom-hover-effects.min.css">
+        <link type="text/css" rel="stylesheet" href="css/custom.min.css">
+        <link type="text/css" rel="stylesheet" href="css/pgwslider.min.css">
+
+
+    </head>
+
+    <body class="header-fixed boxed-layout" style="position: relative; min-height: 100%; top: 0px;">
+        <div class="wrapper">
+            <!--=== Header v6 ===-->
+            <div id="menu-principal" class="header-v6 header-white-transparent header-sticky" style="position: relative;">
+                <div id="barra-superior" class="header-v8">
+                    <!-- Topbar blog -->
+                    <div class="blog-topbar">                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+
+                                    <div class="topbar-toggler" style="font-size: 20px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> Ingresar </div>
+                                    <form action="controlador/procesarInicioSesion.jsp" method="post" name="form">
+                                        <ul class="topbar-list topbar-menu">                                        
+                                            <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
+                                            <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
+                                            <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                            
+                                            <li> usuario <input type="text" id="usuario" name="usuario" required onKeyPress="return SoloNumeros(event);" > </li>
+                                            <li> contraseña <input type="password" id="pw" name="pw" required="">  </li>
+                                            <li> Perfil
+                                                <select id="rol" name="rol" required=""> 
+                                                    <option> </option>
+                                                    <option value="Vicerrector"> Vicerrector </option>
+                                                    <option value="Admin"> Admin</option>
+                                                    <option value="Medico"> Medico</option>
+                                                </select>
+                                            </li>
+                                            <li> <button type="submit" class="btn btn-danger">Ingresar</button> </li>                                            
+                                        </ul>
+                                        <script>
+
+                                        //Se utiliza para que el campo de texto de la identificacion solo acepte numeros
+                                            function SoloNumeros(evt                                            
+                                                ){
+                                                if (window.event) {//asignamos el valor de la tecla a keynum
+                                                    keynum = evt.keyCode; //IE
+                                                } else {
+                                                    keynum = evt.which; //FF
+                                                }
+                                                //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+                                                if ((keynum > 20 && keynum < 30) || keynum == 8 || keynum == 13 || keynum == 6) {
+                                                    return true;
+                                                } else {
+                                                    return false;
+                                                }
+                                            }
+                                        </script>
+                                    </form>
+                                </div>                                
+                            </div><!--/end row-->
+                        </div><!--/end container-->
+                    </div>                    
+                    <!-- End Topbar blog -->
+                </div>
+
+                <div class="modal fade" id="modalCorreo" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class=" modal-header ">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" style="text-align: center"> RECUPERAR CONTRASEÑA </h4>
+                            </div>
+                            <div class="modal-body row">
+
+                                <form class="row" id="email" action="CONTROLLER/procesarRecuperarContrasena.jsp" method="post"> 
+
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <label class="control-label">CODIGO:</label>
+                                                <input type="number" class="form-control" id="codigoClave" name="codigoClave" required="">
+                                            </div>
+
+
+                                            <div class="col-sm-12">
+                                                <button type="submit" class="btn btn-large btn-success pull-right">Enviar</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="jsp/recargoAdmin_ModificarDatos.jsp"></a>
+                </div>
+                <div class="header-v8 img-logo-superior" style="background-color: #aa1916;">
+                    <!--=== Parallax Quote ===-->
+                    <div class="parallax-quote parallaxBg" style="padding: 30px 30px;">
+                        <div class="parallax-quote-in" style="padding: 0px;">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-5">
+                                    <a href="#">
+                                        <img id="logo-header"
+                                             src="img/logo_ufps.png" alt="Logo UFPS">
+                                    </a>
+                                </div>
+                                <div class="col-md-2 col-ms-1 col-xs-2 pull-right">
+                                    <a href="http://www.colombia.co/"><img class="header-banner"   src="img/escudo_colombia.png"  alt="Escudo de Colombia"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--=== End Parallax Quote ===-->
+                </div><!--/end header-v8-->
+
+
+                <div class="menu-responsive">
+                    <!-- Logo -->
+                    <a class="logo logo-responsive" href="index.jsp">
+                        <img src="img/horizontal_logo_pequeno.png" alt="Logo">
+                    </a>  
+                    <!-- End Logo -->
+
+                    <!-- Toggle get grouped for better mobile display -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <!-- End Toggle -->
+                </div>
+
+                <!-- Navbar -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+                    <div class="container">
+                        <h1 align="center" style="color: white"> GESTION DE CITAS MEDICAS U.F.P.S</h1>
+                    </div>
+                </div><!--/navbar-collapse-->
+
+                <!-- End Navbar -->
+            </div>
+
+            <ul class="pgwSlider">
+
+                <li><a href=""><img src="img/28e89a8d6a0ec5d1905e596ca2a28898.png"><span style="font-family: inherit; font-weight: bold;"> Medicina General: </span></a>
+                </li>
+                <li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;">Odontología: </span></a>
+                </li>
+                <li><a href=""><img src="img/6d6fe00fd4cb104a238e5020b3317596.png"><span style="font-family: inherit; font-weight: bold;">Psicología: </span></a>
+                </li>
+                <li><a href=""><img src="img/2246d36031da923ba74a3ff8a6daef86.png"><span style="font-family: inherit; font-weight: bold;">Planificación familiar: </span></a>
+                </li>
+
+            </ul>
+
+            <!-- SERVICIOS -->
+            <div style="background-color: #e8e8e8; ">
+                <div class="container content-prin profile">
+                    <div class="row margin-top-10">
+                        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-10">
+                            <h1 style="font-size: 30px;"><b>EVENTOS</b></h1>
+                            <span class="bordered-icon"><i class="fa fa-eyedropper" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row equal-height-columns margin-bottom-10">
+
+                                <div class="container">
+                                    <ul class="row block-grid-v2">
+                                        <%                                            FacadeEvento fe = new FacadeEvento();
+
+                                            List<EventoDTO> ls = new ArrayList<EventoDTO>();
+
+                                            ls = fe.obtenerEventosMes();
+
+                                            for (EventoDTO e : ls) {
+                                        %>
+                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+
+                                            <div class="block-grid-v1 background-trasparent-black">
+                                                <h3 style="color: white">
+                                                    <%= e.getNombreEvento()%>
+                                                </h3>
+                                                <p class="text-left" style="font-size: 10px; color: white">
+                                                    <b>Dirigido por:</b>
+                                                    <%= e.getDirector()%>
+                                                </p>
+                                            </div>
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">                                                                                               
+
+                                                <p class="text-left" style="font-size: 12px;"> 
+                                                    <b>Lugar:</b>
+                                                    <%= e.getLugarEvento()%>
+                                                </p>
+                                                <p class="text-left" style="font-size: 10px;">
+                                                    <b>Fecha:</b>
+                                                    <%= e.getFechaEvento()%> &nbsp;
+                                                    <b>Hora:</b>
+                                                    <%= e.getHoraEvento()%> 
+                                                </p>
+                                                <p class="text-left" style="font-size: 10px;">
+                                                    <b>Descripción:</b>
+                                                    <%= e.getDescrEvento()%>
+                                                </p>
+
+                                                <a href="#insEvento" data-toggle="modal">Inscribirme </a>
+                                            </div>
+                                            <div class="modal fade" id="insEvento" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title" style="text-align: center">REGISTRARSE</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div class="col-md-12">
+                                                                    <label class="control-label">Nombre:</label>
+                                                                    <input  type="text" name="nombre" class="form-control" />
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <label class="control-label">Codigo:</label>
+                                                                    <input type="number" name="codigo" class="form-control" />
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <label class="control-label">Identificacion:</label>
+                                                                    <input type="number" name="identificacion" class="form-control"/>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <label class="control-label">Correo: </label>
+                                                                    <input type="text" name="correo" class="form-control" />
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <label class="col-md-12">Programa académico</label>
+                                                                    <input type="text" accept="programa" class="form-control" />
+                                                                </div
+                                                                <div>
+                                                                    <label><%=e.getIdEvento()%></label>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <%
+                                            }
+                                        %>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- FIN SERVICIOS -->                        
+            <!-- Modal inscripción -->
+
+
+
+        </div><!--/wrapper-->
+        <!--=== Footer Version 1 ===-->
+        <!-- organismos de control -->
+        <div class="footer-v1 off-container">
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <!-- About -->
+                        <div class="col-md-4 col-sm-4 md-margin-bottom-40">
+                            <div class="footer-main">
+                                <a href="index.jsp"><img id="logo-footer" class="img-responsive" src="img/logoufpsvertical.png" alt="Logo Pie de Página"></a>
+                            </div>
+                        </div><!--/col-md-3-->
+                        <!-- End About -->
+
+
+                        <!-- Link List -->
+                        <div class="col-md-4 col-sm-4  md-margin-bottom-40">                            
+                            <img src="img/logo_ingsistemas_vertical_invertido.png" alt="" width="150" height="180"/>
+                        </div><!--/col-md-3-->
+                        <!-- End Link List -->
+
+                        <!-- Address -->
+                        <div class="col-md-4 col-sm-4  map-img md-margin-bottom-40">
+                            <div class="headline" style="border-bottom: #272727;"><h2>Contactos</h2></div>
+                            <address class="md-margin-bottom-40">
+                                Avenida Gran Colombia No. 12E-96 Barrio Colsag, <br>
+                                San José de Cúcuta - Colombia <br>
+                                Teléfono (057)(7) 5776655 <br>
+                                Correo: <a href="mailto:oficinadeprensa@ufps.edu.co" class="">oficinadeprensa@ufps.edu.co</a>
+                            </address>
+                        </div><!--/col-md-3-->
+                        <!-- End Address -->
+                    </div>
+                </div>
+            </div><!--/footer-->
+
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>
+                                2016 © All Rights Reserved.
+                                Desarrollado por: <a href="#">VAVM - División de Sistemas</a>
+                            </p>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="col-md-4">  
+                            <ul class="list-inline dark-social pull-right space-bottom-0">
+                                <li>
+                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/UFPS-C%C3%BAcuta-553833261409690">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/UFPSCUCUTA">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Instagram" href="https://www.instagram.com/ufpscucuta/">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Youtube" href="#">
+                                        <i class="fa fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Correo" href="#">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Social Links -->
+                    </div>
+                </div>
+            </div><!--/copyright-->
+        </div>
+
+
+
+
+        <!--=== End Footer Version 1 ===-->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/pgwslider.min.js"></script>
+        <script type="text/javascript" src="js/back-to-top.min.js"></script>
+        <script type="text/javascript" src="js/smoothScroll.min.js"></script>
+        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="js/sequence.jquery-min.js"></script>
+        <script type="text/javascript" src="js/greensock.js"></script>
+        <script type="text/javascript" src="js/layerslider.transitions.js"></script>
+        <script type="text/javascript" src="js/layerslider.kreaturamedia.jquery.js"></script>
+        <script type="text/javascript" src="js/custom.min.js"></script>
+        <script type="text/javascript" src="js/app.min.js"></script>
+        <script type="text/javascript" src="js/owl-carousel.min.js"></script>
+        <script type="text/javascript" src="js/datepicker.min.js"></script>
+        <script type="text/javascript" src="js/validation.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="js/owl-recent-works.min.js"></script>
+          
+
+    </body>
+</html>
