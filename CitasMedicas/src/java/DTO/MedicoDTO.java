@@ -11,150 +11,142 @@ package DTO;
  */
 public class MedicoDTO {
     
-    private int identificacion_med;
-    private String tipodocumentoid_med;
-    private int codigo_med;
-    private String nombre_med;
-    private String correo_med;
-    private String fechanacimiento_med;
-    private String genero_med;
-    private int edad_med;
-    private String estadocivil_med;
-    private String direccion_med;
-    private String telefono_med;
-    private String contrasena_med;
-    private String servicio_med;
+    private int identificacion;
+    private String tipodocumentoid;
+    private int codigo;
+    private String nombre;
+    private String correo;
+    private String fechanacimiento;
+    private String genero;
+    private int edad;
+    private String estadocivil;
+    private String direccion;
+    private String telefono;
+    private String contrasena;
+    private String servicio;
 
     public MedicoDTO() {
     }
 
-    public MedicoDTO(int identificacion_med, String tipodocumentoid_med, int codigo_med, String nombre_med, String correo_med, String fechanacimiento_med, String genero_med, int edad_med, String estadocivil_med, String direccion_med, String telefono_med, String contrasena_med, String servicio_med) {
-        this.identificacion_med = identificacion_med;
-        this.tipodocumentoid_med = tipodocumentoid_med;
-        this.codigo_med = codigo_med;
-        this.nombre_med = nombre_med;
-        this.correo_med = correo_med;
-        this.fechanacimiento_med = fechanacimiento_med;
-        this.genero_med = genero_med;
-        this.edad_med = edad_med;
-        this.estadocivil_med = estadocivil_med;
-        this.direccion_med = direccion_med;
-        this.telefono_med = telefono_med;
-        this.contrasena_med = contrasena_med;
-        this.servicio_med = servicio_med;
+    public MedicoDTO(int identificacion, String tipodocumentoid, int codigo, String nombre, String correo, String fechanacimiento, String genero, int edad, String estadocivil, String direccion, String telefono, String contrasena, String servicio) {
+        this.identificacion = identificacion;
+        this.tipodocumentoid = tipodocumentoid;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.fechanacimiento = fechanacimiento;
+        this.genero = genero;
+        this.edad = edad;
+        this.estadocivil = estadocivil;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.contrasena = contrasena;
+        this.servicio = servicio;
+    }
+
+    public int getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public String getTipodocumentoid() {
+        return tipodocumentoid;
+    }
+
+    public void setTipodocumentoid(String tipodocumentoid) {
+        this.tipodocumentoid = tipodocumentoid;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getFechanacimiento() {
+        return fechanacimiento;
+    }
+
+    public void setFechanacimiento(String fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getEstadocivil() {
+        return estadocivil;
+    }
+
+    public void setEstadocivil(String estadocivil) {
+        this.estadocivil = estadocivil;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 
       
-
-    public int getIdentificacion_med() {
-        return identificacion_med;
-    }
-
-    public void setIdentificacion_med(int identificacion_med) {
-        this.identificacion_med = identificacion_med;
-    }
-
-    public int getCodigo_med() {
-        return codigo_med;
-    }
-
-    public void setCodigo_med(int codigo_med) {
-        this.codigo_med = codigo_med;
-    }
-
-    public String getNombre_med() {
-        return nombre_med;
-    }
-
-    public void setNombre_med(String nombre_med) {
-        this.nombre_med = nombre_med;
-    }
-
-    public String getCorreo_med() {
-        return correo_med;
-    }
-
-    public void setCorreo_med(String correo_med) {
-        this.correo_med = correo_med;
-    }
-
-    public String getTelefono_med() {
-        return telefono_med;
-    }
-
-    public void setTelefono_med(String telefono_med) {
-        this.telefono_med = telefono_med;
-    }
-
-    public String getServicio_med() {
-        return servicio_med;
-    }
-
-    public void setServicio_med(String servicio_med) {
-        this.servicio_med = servicio_med;
-    }
-
-    public String getContrasena_med() {
-        return contrasena_med;
-    }
-
-    public void setContrasena_med(String contrasena_med) {
-        this.contrasena_med = contrasena_med;
-    }
-
-    public String getTipodocumentoid_med() {
-        return tipodocumentoid_med;
-    }
-
-    public void setTipodocumentoid_med(String tipodocumentoid_med) {
-        this.tipodocumentoid_med = tipodocumentoid_med;
-    }
-
-    public String getFechanacimiento_med() {
-        return fechanacimiento_med;
-    }
-
-    public void setFechanacimiento_med(String fechanacimiento_med) {
-        this.fechanacimiento_med = fechanacimiento_med;
-    }
-
-    public String getGenero_med() {
-        return genero_med;
-    }
-
-    public void setGenero_med(String genero_med) {
-        this.genero_med = genero_med;
-    }
-
-    public int getEdad_med() {
-        return edad_med;
-    }
-
-    public void setEdad_med(int edad_med) {
-        this.edad_med = edad_med;
-    }
-
-    public String getEstadocivil_med() {
-        return estadocivil_med;
-    }
-
-    public void setEstadocivil_med(String estadocivil_med) {
-        this.estadocivil_med = estadocivil_med;
-    }
-
-    public String getDireccion_med() {
-        return direccion_med;
-    }
-
-    public void setDireccion_med(String direccion_med) {
-        this.direccion_med = direccion_med;
-    }
-    
-    
-@Override
-    public String toString() {
-        return "MedicoDTO{" + "identificacion_med=" + identificacion_med + ", codigo_med=" + codigo_med + ", nombre_med=" + nombre_med + ", correo_med=" + correo_med + ", telefono_med=" + telefono_med + ", servicio_med=" + servicio_med + '}';
-    }
-    
-    
 }

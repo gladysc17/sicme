@@ -29,23 +29,23 @@ public class DocenteDAO {
 
     public boolean registrarDocente(DocenteDTO doc) throws SQLException {
 
-        String sql = "INSERT INTO docente (identificacion_doc, tipodocumentoid_doc, codigo_doc, nombre_doc, correo_doc, "
-                + "fechanacimiento_doc, genero_doc, edad_doc, estadocivil_doc, direccion_doc, telefono_doc)"
+        String sql = "INSERT INTO docente (identificacion, tipodocumentoid, codigo, nombre, correo, "
+                + "fechanacimiento, genero, edad, estadocivil, direccion, telefono)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, doc.getIdentificacion_doc());
-        ps.setString(2, doc.getTipodocumentoid_doc());
-        ps.setInt(3, doc.getCodigo_doc());
-        ps.setString(4, doc.getNombre_doc());
-        ps.setString(5, doc.getCorreo_doc());
-        ps.setString(6, doc.getFechanacimiento_doc());
-        ps.setString(7, doc.getGenero_doc());
-        ps.setInt(8, doc.getEdad_doc());
-        ps.setString(9, doc.getEstadocivil_doc());
-        ps.setString(10, doc.getDireccion_doc());
-        ps.setString(11, doc.getTelefono_doc());
+        ps.setInt(1, doc.getIdentificacion());
+        ps.setString(2, doc.getTipodocumentoid());
+        ps.setInt(3, doc.getCodigo());
+        ps.setString(4, doc.getNombre());
+        ps.setString(5, doc.getCorreo());
+        ps.setString(6, doc.getFechanacimiento());
+        ps.setString(7, doc.getGenero());
+        ps.setInt(8, doc.getEdad());
+        ps.setString(9, doc.getEstadocivil());
+        ps.setString(10, doc.getDireccion());
+        ps.setString(11, doc.getTelefono());
         
 
         int resultado = ps.executeUpdate();               
@@ -56,7 +56,7 @@ public class DocenteDAO {
 
     public DocenteDTO consultarDocentePorId(int id) throws SQLException {
 
-        String sql = "SELECT * FROM docente WHERE identificacion_doc = ?";
+        String sql = "SELECT * FROM docente WHERE identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -68,17 +68,17 @@ public class DocenteDAO {
 
         if (rs.next()) {
             doc = new DocenteDTO();
-            doc.setIdentificacion_doc(rs.getInt("identificacion_doc"));
-            doc.setTipodocumentoid_doc(rs.getString("tipodocumentoid_doc"));
-            doc.setCodigo_doc(rs.getInt("codigo_doc"));
-            doc.setNombre_doc(rs.getString("nombre_doc"));
-            doc.setCorreo_doc(rs.getString("correo_doc"));
-            doc.setFechanacimiento_doc(rs.getString("fechanacimiento_doc"));      
-            doc.setGenero_doc(rs.getString("genero_doc"));
-            doc.setEdad_doc(rs.getInt("edad_doc"));
-            doc.setEstadocivil_doc(rs.getString("estadocivil_doc"));
-            doc.setDireccion_doc(rs.getString("direccion_doc"));
-            doc.setTelefono_doc(rs.getString("telefono_doc"));                        
+            doc.setIdentificacion(rs.getInt("identificacion"));
+            doc.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            doc.setCodigo(rs.getInt("codigo"));
+            doc.setNombre(rs.getString("nombre"));
+            doc.setCorreo(rs.getString("correo"));
+            doc.setFechanacimiento(rs.getString("fechanacimiento"));      
+            doc.setGenero(rs.getString("genero"));
+            doc.setEdad(rs.getInt("edad"));
+            doc.setEstadocivil(rs.getString("estadocivil"));
+            doc.setDireccion(rs.getString("direccion"));
+            doc.setTelefono(rs.getString("telefono"));                        
             
         }
         return doc;
@@ -88,7 +88,7 @@ public class DocenteDAO {
 
         List<DocenteDTO> listaDoc = new ArrayList<DocenteDTO>();
 
-        String sql = "SELECT * FROM docente ORDER BY nombre_doc";
+        String sql = "SELECT * FROM docente ORDER BY nombre";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -99,17 +99,17 @@ public class DocenteDAO {
         while (rs.next()) {
             doc = new DocenteDTO();
 
-           doc.setIdentificacion_doc(rs.getInt("identificacion_doc"));
-            doc.setTipodocumentoid_doc(rs.getString("tipodocumentoid_doc"));
-            doc.setCodigo_doc(rs.getInt("codigo_doc"));
-            doc.setNombre_doc(rs.getString("nombre_doc"));
-            doc.setCorreo_doc(rs.getString("correo_doc"));
-            doc.setFechanacimiento_doc(rs.getString("fechanacimiento_doc"));      
-            doc.setGenero_doc(rs.getString("genero_doc"));
-            doc.setEdad_doc(rs.getInt("edad_doc"));
-            doc.setEstadocivil_doc(rs.getString("estadocivil_doc"));
-            doc.setDireccion_doc(rs.getString("direccion_doc"));
-            doc.setTelefono_doc(rs.getString("telefono_doc"));
+           doc.setIdentificacion(rs.getInt("identificacion"));
+            doc.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            doc.setCodigo(rs.getInt("codigo"));
+            doc.setNombre(rs.getString("nombre"));
+            doc.setCorreo(rs.getString("correo"));
+            doc.setFechanacimiento(rs.getString("fechanacimiento"));      
+            doc.setGenero(rs.getString("genero"));
+            doc.setEdad(rs.getInt("edad"));
+            doc.setEstadocivil(rs.getString("estadocivil"));
+            doc.setDireccion(rs.getString("direccion"));
+            doc.setTelefono(rs.getString("telefono"));
 
             listaDoc.add(doc);
         }
@@ -119,7 +119,7 @@ public class DocenteDAO {
     }
     public DocenteDTO consultarDocentePorIdCodigo(int id, int codigo) throws SQLException {
 
-        String sql = "SELECT * FROM docente WHERE identificacion_doc = ? OR codigo_doc = ? ";
+        String sql = "SELECT * FROM docente WHERE identificacion = ? OR codigo = ? ";
 
         PreparedStatement ps = con.prepareStatement(sql);               
 
@@ -133,36 +133,36 @@ public class DocenteDAO {
         if (rs.next()) {
             doc = new DocenteDTO();
 
-            doc.setIdentificacion_doc(rs.getInt("identificacion_doc"));
-            doc.setTipodocumentoid_doc(rs.getString("tipodocumentoid_doc"));
-            doc.setCodigo_doc(rs.getInt("codigo_doc"));
-            doc.setNombre_doc(rs.getString("nombre_doc"));
-            doc.setCorreo_doc(rs.getString("correo_doc"));
-            doc.setFechanacimiento_doc(rs.getString("fechanacimiento_doc"));      
-            doc.setGenero_doc(rs.getString("genero_doc"));
-            doc.setEdad_doc(rs.getInt("edad_doc"));
-            doc.setEstadocivil_doc(rs.getString("estadocivil_doc"));
-            doc.setDireccion_doc(rs.getString("direccion_doc"));
-            doc.setTelefono_doc(rs.getString("telefono_doc"));                           
+            doc.setIdentificacion(rs.getInt("identificacion"));
+            doc.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            doc.setCodigo(rs.getInt("codigo"));
+            doc.setNombre(rs.getString("nombre"));
+            doc.setCorreo(rs.getString("correo"));
+            doc.setFechanacimiento(rs.getString("fechanacimiento"));      
+            doc.setGenero(rs.getString("genero"));
+            doc.setEdad(rs.getInt("edad"));
+            doc.setEstadocivil(rs.getString("estadocivil"));
+            doc.setDireccion(rs.getString("direccion"));
+            doc.setTelefono(rs.getString("telefono"));                           
         }
         
         return doc;
 
     }
-    public boolean modificarDocente(int identificacion_doc, String correo_doc, String fechanacimiento_doc, String genero_doc, String estadocivil_doc, String direccion_doc, String telefono_doc ) throws SQLException{
+    public boolean modificarDocente(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono ) throws SQLException{
           
-            String sql = "UPDATE docente SET correo_doc = ? , fechanacimiento_doc = ?, genero_doc = ?, estadocivil_doc = ? , direccion_doc =?, telefono_doc = ?  "
-                + "WHERE  identificacion_doc = ?";
+            String sql = "UPDATE docente SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?  "
+                + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
                 
-        ps.setString(1, correo_doc);
-        ps.setString(2, fechanacimiento_doc);        
-        ps.setString(3, genero_doc);
-        ps.setString(4, estadocivil_doc);  
-        ps.setString(5, direccion_doc);
-        ps.setString(6, telefono_doc);
-        ps.setInt(7, identificacion_doc);
+        ps.setString(1, correo);
+        ps.setString(2, fechanacimiento);        
+        ps.setString(3, genero);
+        ps.setString(4, estadocivil);  
+        ps.setString(5, direccion);
+        ps.setString(6, telefono);
+        ps.setInt(7, identificacion);
         
         int rta = ps.executeUpdate();
 

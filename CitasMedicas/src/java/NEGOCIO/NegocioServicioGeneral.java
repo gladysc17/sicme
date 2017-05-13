@@ -31,7 +31,7 @@ public class NegocioServicioGeneral {
         ServicioGeneralDAO serv = new ServicioGeneralDAO(co);
 
         try {
-            ServicioGeneralDTO servi = serv.consultarServicioGeneralPorIdCodigo(ser.getIdentificacion_sg(), ser.getCodigo_sg());
+            ServicioGeneralDTO servi = serv.consultarServicioGeneralPorIdCodigo(ser.getIdentificacion(), ser.getCodigo());
             if (servi == null) {
                 return resultado = serv.registrarServicioGeneral(ser);
             } else {
@@ -145,7 +145,7 @@ public class NegocioServicioGeneral {
         return (ser);
     }
      
-    public boolean modificarServicioGeneral(int identificacion_sg, String correo_sg, String fechanacimiento_sg, String genero_sg, String estadocivil_sg, String direccion_sg, String telefono_sg) throws SQLException{
+    public boolean modificarServicioGeneral(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -155,7 +155,7 @@ public class NegocioServicioGeneral {
 
         try {
             
-            rta = sg.modificarServicioGeneral(identificacion_sg, correo_sg, fechanacimiento_sg, genero_sg, estadocivil_sg, direccion_sg, telefono_sg);
+            rta = sg.modificarServicioGeneral(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);

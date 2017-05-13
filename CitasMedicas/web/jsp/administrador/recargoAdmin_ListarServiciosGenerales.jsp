@@ -43,9 +43,9 @@
                                     
                                     for (int i = 0; i < ser.size(); i++) {
 
-                                        String nombre = ser.get(i).getNombre_sg();
-                                        int identf = ser.get(i).getIdentificacion_sg();                                        
-                                        int codigo = ser.get(i).getCodigo_sg();
+                                        String nombre = ser.get(i).getNombre();
+                                        int identf = ser.get(i).getIdentificacion();                                        
+                                        int codigo = ser.get(i).getCodigo();
                                         
                                         int cantidad = i+1;
 

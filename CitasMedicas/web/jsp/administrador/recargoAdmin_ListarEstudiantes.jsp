@@ -45,12 +45,12 @@
                                     
                                     for (int i = 0; i < est.size(); i++) {
 
-                                        String nombre = est.get(i).getNombre_est();
-                                        int identf = est.get(i).getIdentificacion_est();
-                                        String carrera = est.get(i).getPrograma_est();
-                                        int codigo = est.get(i).getCodigo_est();
+                                        String nombre = est.get(i).getNombre();
+                                        int identf = est.get(i).getIdentificacion();
+                                        String carrera = est.get(i).getPrograma();
+                                        int codigo = est.get(i).getCodigo();
                                         int cantidad = i+1;
-                                        String tel = est.get(i).getTelefono_est();                                                
+                                        String tel = est.get(i).getTelefono();                                                
 
                                 %>
                             

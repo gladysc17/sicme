@@ -20,7 +20,7 @@
         <link href="../css/main.css" rel="stylesheet" type="text/css"/>
         <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'> 
         <link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">      
-        <link type="text/css" rel="stylesheet" href="../css/ie8.min.css">        
+        <!--<link type="text/css" rel="stylesheet" href="../css/ie8.min.css">  -->
         <link type="text/css" rel="stylesheet" href="../css/blocks.min.css">        
         <link type="text/css" rel="stylesheet" href="../css/plugins.min.css">
         <link type="text/css" rel="stylesheet" href="../css/style.min.css">       

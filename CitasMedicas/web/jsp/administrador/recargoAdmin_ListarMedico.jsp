@@ -44,10 +44,10 @@
                                     
                                     for (int i = 0; i < med.size(); i++) {
 
-                                        String nombre = med.get(i).getNombre_med();
-                                        int identf = med.get(i).getIdentificacion_med();
-                                        String servicio = med.get(i).getServicio_med();
-                                        int codigo = med.get(i).getCodigo_med();
+                                        String nombre = med.get(i).getNombre();
+                                        int identf = med.get(i).getIdentificacion();
+                                        String servicio = med.get(i).getServicio();
+                                        int codigo = med.get(i).getCodigo();
                                         int cantidad = i+1;
 
                                 %>

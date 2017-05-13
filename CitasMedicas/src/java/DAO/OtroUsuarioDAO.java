@@ -27,24 +27,24 @@ public class OtroUsuarioDAO {
     
      public boolean registrarOtroUsuario(OtroUsuarioDTO otro) throws SQLException {
 
-        String sql = "INSERT INTO otrousuario (identificacion_otro, tipodocumentoid_otro, codigo_otro, nombre_otro, correo_otro, "
-                + "fechanacimiento_otro, genero_otro, edad_otro, estadocivil_otro, direccion_otro, telefono_otro, rol_otro)"
+        String sql = "INSERT INTO otrousuario (identificacion, tipodocumentoid, codigo, nombre, correo, "
+                + "fechanacimiento, genero, edad, estadocivil, direccion, telefono, rol)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, otro.getIdentificacion_otro());
-        ps.setString(2, otro.getTipodocumentoid_otro());
-        ps.setInt(3, otro.getCodigo_otro());
-        ps.setString(4, otro.getNombre_otro());
-        ps.setString(5, otro.getCorreo_otro());
-        ps.setString(6, otro.getFechanacimiento_otro());
-        ps.setString(7, otro.getGenero_otro());
-        ps.setInt(8, otro.getEdad_otro());
-        ps.setString(9, otro.getEstadocivil_otro());
-        ps.setString(10, otro.getDireccion_otro());
-        ps.setString(11, otro.getTelefono_otro());
-        ps.setString(12, otro.getRol_otro());
+        ps.setInt(1, otro.getIdentificacion());
+        ps.setString(2, otro.getTipodocumentoid());
+        ps.setInt(3, otro.getCodigo());
+        ps.setString(4, otro.getNombre());
+        ps.setString(5, otro.getCorreo());
+        ps.setString(6, otro.getFechanacimiento());
+        ps.setString(7, otro.getGenero());
+        ps.setInt(8, otro.getEdad());
+        ps.setString(9, otro.getEstadocivil());
+        ps.setString(10, otro.getDireccion());
+        ps.setString(11, otro.getTelefono());
+        ps.setString(12, otro.getRol());
 
         int resultado = ps.executeUpdate();
 
@@ -54,7 +54,7 @@ public class OtroUsuarioDAO {
      
      public OtroUsuarioDTO consultarOtroUsuarioPorId(int id) throws SQLException {
 
-        String sql = "SELECT * FROM otrousuario WHERE identificacion_otro = ?";
+        String sql = "SELECT * FROM otrousuario WHERE identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -66,18 +66,18 @@ public class OtroUsuarioDAO {
 
         if (rs.next()) {
             otro = new OtroUsuarioDTO();
-            otro.setIdentificacion_otro(rs.getInt("identificacion_otro"));
-            otro.setTipodocumentoid_otro(rs.getString("tipodocumentoid_otro"));
-            otro.setCodigo_otro(rs.getInt("codigo_otro"));
-            otro.setNombre_otro(rs.getString("nombre_otro"));
-            otro.setCorreo_otro(rs.getString("correo_otro"));
-            otro.setFechanacimiento_otro(rs.getString("fechanacimiento_otro"));      
-            otro.setGenero_otro(rs.getString("genero_otro"));
-            otro.setEdad_otro(rs.getInt("edad_otro"));
-            otro.setEstadocivil_otro(rs.getString("estadocivil_otro"));
-            otro.setDireccion_otro(rs.getString("direccion_otro"));
-            otro.setTelefono_otro(rs.getString("telefono_otro")); 
-            otro.setRol_otro(rs.getString("rol_otro"));
+            otro.setIdentificacion(rs.getInt("identificacion"));
+            otro.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            otro.setCodigo(rs.getInt("codigo"));
+            otro.setNombre(rs.getString("nombre"));
+            otro.setCorreo(rs.getString("correo"));
+            otro.setFechanacimiento(rs.getString("fechanacimiento"));      
+            otro.setGenero(rs.getString("genero"));
+            otro.setEdad(rs.getInt("edad"));
+            otro.setEstadocivil(rs.getString("estadocivil"));
+            otro.setDireccion(rs.getString("direccion"));
+            otro.setTelefono(rs.getString("telefono")); 
+            otro.setRol(rs.getString("rol"));
             
         }
         return otro;
@@ -86,7 +86,7 @@ public class OtroUsuarioDAO {
 
         List<OtroUsuarioDTO> listaOtro = new ArrayList<OtroUsuarioDTO>();
 
-        String sql = "SELECT * FROM otrousuario ORDER BY nombre_otro";
+        String sql = "SELECT * FROM otrousuario ORDER BY nombre";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -97,18 +97,18 @@ public class OtroUsuarioDAO {
         while (rs.next()) {
             otro = new OtroUsuarioDTO();
 
-            otro.setIdentificacion_otro(rs.getInt("identificacion_otro"));
-            otro.setTipodocumentoid_otro(rs.getString("tipodocumentoid_otro"));
-            otro.setCodigo_otro(rs.getInt("codigo_otro"));
-            otro.setNombre_otro(rs.getString("nombre_otro"));
-            otro.setCorreo_otro(rs.getString("correo_otro"));
-            otro.setFechanacimiento_otro(rs.getString("fechanacimiento_otro"));      
-            otro.setGenero_otro(rs.getString("genero_otro"));
-            otro.setEdad_otro(rs.getInt("edad_otro"));
-            otro.setEstadocivil_otro(rs.getString("estadocivil_otro"));
-            otro.setDireccion_otro(rs.getString("direccion_otro"));
-            otro.setTelefono_otro(rs.getString("telefono_otro")); 
-            otro.setRol_otro(rs.getString("rol_otro"));
+            otro.setIdentificacion(rs.getInt("identificacion"));
+            otro.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            otro.setCodigo(rs.getInt("codigo"));
+            otro.setNombre(rs.getString("nombre"));
+            otro.setCorreo(rs.getString("correo"));
+            otro.setFechanacimiento(rs.getString("fechanacimiento"));      
+            otro.setGenero(rs.getString("genero"));
+            otro.setEdad(rs.getInt("edad"));
+            otro.setEstadocivil(rs.getString("estadocivil"));
+            otro.setDireccion(rs.getString("direccion"));
+            otro.setTelefono(rs.getString("telefono")); 
+            otro.setRol(rs.getString("rol"));
 
             listaOtro.add(otro);
         }
@@ -119,7 +119,7 @@ public class OtroUsuarioDAO {
      
      public OtroUsuarioDTO consultarOtroPorIdCodigo(int id, int codigo) throws SQLException {
 
-        String sql = "SELECT * FROM otrousuario WHERE identificacion_otro = ? OR codigo_otro = ? ";
+        String sql = "SELECT * FROM otrousuario WHERE identificacion = ? OR codigo = ? ";
 
         PreparedStatement ps = con.prepareStatement(sql);               
 
@@ -133,38 +133,38 @@ public class OtroUsuarioDAO {
         if (rs.next()) {
             otro = new OtroUsuarioDTO();
             
-            otro.setIdentificacion_otro(rs.getInt("identificacion_otro"));
-            otro.setTipodocumentoid_otro(rs.getString("tipodocumentoid_otro"));
-            otro.setCodigo_otro(rs.getInt("codigo_otro"));
-            otro.setNombre_otro(rs.getString("nombre_otro"));
-            otro.setCorreo_otro(rs.getString("correo_otro"));
-            otro.setFechanacimiento_otro(rs.getString("fechanacimiento_otro"));      
-            otro.setGenero_otro(rs.getString("genero_otro"));
-            otro.setEdad_otro(rs.getInt("edad_otro"));
-            otro.setEstadocivil_otro(rs.getString("estadocivil_otro"));
-            otro.setDireccion_otro(rs.getString("direccion_otro"));
-            otro.setTelefono_otro(rs.getString("telefono_otro")); 
-            otro.setRol_otro(rs.getString("rol_otro"));                             
+            otro.setIdentificacion(rs.getInt("identificacion"));
+            otro.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            otro.setCodigo(rs.getInt("codigo"));
+            otro.setNombre(rs.getString("nombre"));
+            otro.setCorreo(rs.getString("correo"));
+            otro.setFechanacimiento(rs.getString("fechanacimiento"));      
+            otro.setGenero(rs.getString("genero"));
+            otro.setEdad(rs.getInt("edad"));
+            otro.setEstadocivil(rs.getString("estadocivil"));
+            otro.setDireccion(rs.getString("direccion"));
+            otro.setTelefono(rs.getString("telefono")); 
+            otro.setRol(rs.getString("rol"));                             
         }
         
         return otro;
 
     }
     
-    public boolean modificarOtroUsuario(int identificacion_otro, String correo_otro, String fechanacimiento_otro, String genero_otro, String estadocivil_otro, String direccion_otro, String telefono_otro) throws SQLException{
+    public boolean modificarOtroUsuario(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
           
-            String sql = "UPDATE otrousuario SET correo_otro = ? , fechanacimiento_otro = ?, genero_otro = ?, estadocivil_otro = ? , direccion_otro =?, telefono_otro = ? "
-                + "WHERE  identificacion_otro = ?";
+            String sql = "UPDATE otrousuario SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ? "
+                + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
                 
-        ps.setString(1, correo_otro);
-        ps.setString(2, fechanacimiento_otro);        
-        ps.setString(3, genero_otro);
-        ps.setString(4, estadocivil_otro);  
-        ps.setString(5, direccion_otro);
-        ps.setString(6, telefono_otro);        
-        ps.setInt(7, identificacion_otro);
+        ps.setString(1, correo);
+        ps.setString(2, fechanacimiento);        
+        ps.setString(3, genero);
+        ps.setString(4, estadocivil);  
+        ps.setString(5, direccion);
+        ps.setString(6, telefono);        
+        ps.setInt(7, identificacion);
         
         int rta = ps.executeUpdate();
 

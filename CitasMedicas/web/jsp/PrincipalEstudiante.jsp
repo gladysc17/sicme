@@ -175,11 +175,11 @@
                                 <form>  
                                     <div class="media">                                                   
                                         <div class="media-body">
-                                            <h4 class="media-heading">Nombre: <%=est.getNombre_est()%> </h4>                                                        
-                                            <h5>Identificación: <%=est.getIdentificacion_est()%></h5>
+                                            <h4 class="media-heading">Nombre: <%=est.getNombre()%> </h4>                                                        
+                                            <h5>Identificación: <%=est.getIdentificacion()%></h5>
                                             <div id="cargar">
-                                                <h5>Correo: <%=est.getCorreo_est()%></h5>                                            
-                                                <h5>Telefono: <%=est.getTelefono_est()%></h5>
+                                                <h5>Correo: <%=est.getCorreo()%></h5>                                            
+                                                <h5>Telefono: <%=est.getTelefono()%></h5>
                                             </div>
 
 
@@ -218,7 +218,7 @@
 
                                             <%
 
-                                                ArrayList<CitaDTO> citas = fac.consultarCitasEst(est.getIdentificacion_est());
+                                                ArrayList<CitaDTO> citas = fac.consultarCitasEst(est.getIdentificacion());
 
                                                 for (int i = 0; i < citas.size(); i++) {
 

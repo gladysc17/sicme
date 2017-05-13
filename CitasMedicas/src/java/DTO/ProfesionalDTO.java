@@ -11,128 +11,125 @@ package DTO;
  */
 public class ProfesionalDTO {
   
-    private int identificacion_prof;
-    private String tipodocumentoid_prof;
-    private int codigo_prof;
-    private String nombre_prof;
-    private String correo_prof;
-    private String fechanacimiento_prof;
-    private String genero_prof;
-    private int edad_prof;
-    private String estadocivil_prof;
-    private String direccion_prof;
-    private String telefono_prof;
+    private int identificacion;
+    private String tipodocumentoid;
+    private int codigo;
+    private String nombre;
+    private String correo;
+    private String fechanacimiento;
+    private String genero;
+    private int edad;
+    private String estadocivil;
+    private String direccion;
+    private String telefono;
 
 
     public ProfesionalDTO() {
     }
 
-    public ProfesionalDTO(int identificacion_prof, String tipodocumentoid_prof, int codigo_prof, String nombre_prof, String correo_prof, String fechanacimiento_prof, String genero_prof, int edad_prof, String estadocivil_prof, String direccion_prof, String telefono_prof) {
-        this.identificacion_prof = identificacion_prof;
-        this.tipodocumentoid_prof = tipodocumentoid_prof;
-        this.codigo_prof = codigo_prof;
-        this.nombre_prof = nombre_prof;
-        this.correo_prof = correo_prof;
-        this.fechanacimiento_prof = fechanacimiento_prof;
-        this.genero_prof = genero_prof;
-        this.edad_prof = edad_prof;
-        this.estadocivil_prof = estadocivil_prof;
-        this.direccion_prof = direccion_prof;
-        this.telefono_prof = telefono_prof;
+    public ProfesionalDTO(int identificacion, String tipodocumentoid, int codigo, String nombre, String correo, String fechanacimiento, String genero, int edad, String estadocivil, String direccion, String telefono) {
+        this.identificacion = identificacion;
+        this.tipodocumentoid = tipodocumentoid;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.fechanacimiento = fechanacimiento;
+        this.genero = genero;
+        this.edad = edad;
+        this.estadocivil = estadocivil;
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
 
-    public int getIdentificacion_prof() {
-        return identificacion_prof;
+    public int getIdentificacion() {
+        return identificacion;
     }
 
-    public void setIdentificacion_prof(int identificacion_prof) {
-        this.identificacion_prof = identificacion_prof;
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
     }
 
-    public String getTipodocumentoid_prof() {
-        return tipodocumentoid_prof;
+    public String getTipodocumentoid() {
+        return tipodocumentoid;
     }
 
-    public void setTipodocumentoid_prof(String tipodocumentoid_prof) {
-        this.tipodocumentoid_prof = tipodocumentoid_prof;
+    public void setTipodocumentoid(String tipodocumentoid) {
+        this.tipodocumentoid = tipodocumentoid;
     }
 
-    public int getCodigo_prof() {
-        return codigo_prof;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodigo_prof(int codigo_prof) {
-        this.codigo_prof = codigo_prof;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNombre_prof() {
-        return nombre_prof;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_prof(String nombre_prof) {
-        this.nombre_prof = nombre_prof;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCorreo_prof() {
-        return correo_prof;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setCorreo_prof(String correo_prof) {
-        this.correo_prof = correo_prof;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public String getFechanacimiento_prof() {
-        return fechanacimiento_prof;
+    public String getFechanacimiento() {
+        return fechanacimiento;
     }
 
-    public void setFechanacimiento_prof(String fechanacimiento_prof) {
-        this.fechanacimiento_prof = fechanacimiento_prof;
+    public void setFechanacimiento(String fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 
-    public String getGenero_prof() {
-        return genero_prof;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setGenero_prof(String genero_prof) {
-        this.genero_prof = genero_prof;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public int getEdad_prof() {
-        return edad_prof;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setEdad_prof(int edad_prof) {
-        this.edad_prof = edad_prof;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public String getEstadocivil_prof() {
-        return estadocivil_prof;
+    public String getEstadocivil() {
+        return estadocivil;
     }
 
-    public void setEstadocivil_prof(String estadocivil_prof) {
-        this.estadocivil_prof = estadocivil_prof;
+    public void setEstadocivil(String estadocivil) {
+        this.estadocivil = estadocivil;
     }
 
-    public String getDireccion_prof() {
-        return direccion_prof;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDireccion_prof(String direccion_prof) {
-        this.direccion_prof = direccion_prof;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTelefono_prof() {
-        return telefono_prof;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTelefono_prof(String telefono_prof) {
-        this.telefono_prof = telefono_prof;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "ProfesionalDTO{" + "tipodocumentoid_prof=" + tipodocumentoid_prof + ", codigo_prof=" + codigo_prof + ", nombre_prof=" + nombre_prof + ", correo_prof=" + correo_prof + ", fechanacimiento_prof=" + fechanacimiento_prof + ", genero_prof=" + genero_prof + ", edad_prof=" + edad_prof + ", estadocivil_prof=" + estadocivil_prof + ", direccion_prof=" + direccion_prof + ", telefono_prof=" + telefono_prof + '}';
-    }
+   
 
     
     

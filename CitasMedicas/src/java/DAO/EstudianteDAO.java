@@ -33,24 +33,24 @@ public class EstudianteDAO {
      */
     public boolean registrarEstudiante(EstudianteDTO est) throws SQLException {
                        
-        String sql = "INSERT INTO estudiante (identificacion_est, tipodocumentoid_est, codigo_est, nombre_est, "
-                + "correo_est, fechanacimiento_est, genero_est, edad_est, estadocivil_est, direccion_est, telefono_est, programa_est )"
+        String sql = "INSERT INTO estudiante (identificacion, tipodocumentoid, codigo, nombre, "
+                + "correo, fechanacimiento, genero, edad, estadocivil, direccion, telefono, programa )"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setInt(1, est.getIdentificacion_est());
-        ps.setString(2, est.getTipodocumentoid_est());
-        ps.setInt(3, est.getCodigo_est());
-        ps.setString(4, est.getNombre_est());
-        ps.setString(5, est.getCorreo_est());
-        ps.setString(6, est.getFechanacimiento_est());
-        ps.setString(7, est.getGenero_est());
-        ps.setInt(8, est.getEdad_est());
-        ps.setString(9, est.getEstadocivil_est());
-        ps.setString(10, est.getDireccion_est());
-        ps.setString(11, est.getTelefono_est());                
-        ps.setString(12, est.getPrograma_est());               
+        ps.setInt(1, est.getIdentificacion());
+        ps.setString(2, est.getTipodocumentoid());
+        ps.setInt(3, est.getCodigo());
+        ps.setString(4, est.getNombre());
+        ps.setString(5, est.getCorreo());
+        ps.setString(6, est.getFechanacimiento());
+        ps.setString(7, est.getGenero());
+        ps.setInt(8, est.getEdad());
+        ps.setString(9, est.getEstadocivil());
+        ps.setString(10, est.getDireccion());
+        ps.setString(11, est.getTelefono());                
+        ps.setString(12, est.getPrograma());               
 
         int resultado = ps.executeUpdate();
 
@@ -66,7 +66,7 @@ public class EstudianteDAO {
      */
     public EstudianteDTO consultarEstudiantePorId(int id) throws SQLException {
 
-        String sql = "SELECT * FROM estudiante WHERE identificacion_est = ?";
+        String sql = "SELECT * FROM estudiante WHERE identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);               
 
@@ -79,18 +79,18 @@ public class EstudianteDAO {
         if (rs.next()) {
             est = new EstudianteDTO();
             
-            est.setIdentificacion_est(rs.getInt("identificacion_est"));
-            est.setTipodocumentoid_est(rs.getString("tipodocumentoid_est"));
-            est.setCodigo_est(rs.getInt("codigo_est"));
-            est.setNombre_est(rs.getString("nombre_est"));
-            est.setCorreo_est(rs.getString("correo_est"));
-            est.setFechanacimiento_est(rs.getString("fechanacimiento_est"));      
-            est.setGenero_est(rs.getString("genero_est"));
-            est.setEdad_est(rs.getInt("edad_est"));
-            est.setEstadocivil_est(rs.getString("estadocivil_est"));
-            est.setDireccion_est(rs.getString("direccion_est"));
-            est.setTelefono_est(rs.getString("telefono_est")); 
-            est.setPrograma_est(rs.getString("programa_est"));            
+            est.setIdentificacion(rs.getInt("identificacion"));
+            est.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            est.setCodigo(rs.getInt("codigo"));
+            est.setNombre(rs.getString("nombre"));
+            est.setCorreo(rs.getString("correo"));
+            est.setFechanacimiento(rs.getString("fechanacimiento"));      
+            est.setGenero(rs.getString("genero"));
+            est.setEdad(rs.getInt("edad"));
+            est.setEstadocivil(rs.getString("estadocivil"));
+            est.setDireccion(rs.getString("direccion"));
+            est.setTelefono(rs.getString("telefono")); 
+            est.setPrograma(rs.getString("programa"));            
         }
         
         return est;
@@ -99,7 +99,7 @@ public class EstudianteDAO {
     
     public EstudianteDTO consultarEstudiantePorIdCodigo(int id, int codigo) throws SQLException {
 
-        String sql = "SELECT * FROM estudiante WHERE identificacion_est = ? OR codigo_est = ? ";
+        String sql = "SELECT * FROM estudiante WHERE identificacion = ? OR codigo = ? ";
 
         PreparedStatement ps = con.prepareStatement(sql);               
 
@@ -113,18 +113,18 @@ public class EstudianteDAO {
         if (rs.next()) {
             est = new EstudianteDTO();
             
-            est.setIdentificacion_est(rs.getInt("identificacion_est"));
-            est.setTipodocumentoid_est(rs.getString("tipodocumentoid_est"));
-            est.setCodigo_est(rs.getInt("codigo_est"));
-            est.setNombre_est(rs.getString("nombre_est"));
-            est.setCorreo_est(rs.getString("correo_est"));
-            est.setFechanacimiento_est(rs.getString("fechanacimiento_est"));      
-            est.setGenero_est(rs.getString("genero_est"));
-            est.setEdad_est(rs.getInt("edad_est"));
-            est.setEstadocivil_est(rs.getString("estadocivil_est"));
-            est.setDireccion_est(rs.getString("direccion_est"));
-            est.setTelefono_est(rs.getString("telefono_est")); 
-            est.setPrograma_est(rs.getString("programa_est"));;                             
+            est.setIdentificacion(rs.getInt("identificacion"));
+            est.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            est.setCodigo(rs.getInt("codigo"));
+            est.setNombre(rs.getString("nombre"));
+            est.setCorreo(rs.getString("correo"));
+            est.setFechanacimiento(rs.getString("fechanacimiento"));      
+            est.setGenero(rs.getString("genero"));
+            est.setEdad(rs.getInt("edad"));
+            est.setEstadocivil(rs.getString("estadocivil"));
+            est.setDireccion(rs.getString("direccion"));
+            est.setTelefono(rs.getString("telefono")); 
+            est.setPrograma(rs.getString("programa"));;                             
         }
         
         return est;
@@ -135,7 +135,7 @@ public class EstudianteDAO {
 
         List<EstudianteDTO> listaEst = new ArrayList<EstudianteDTO>();
         
-        String sql = "SELECT * FROM estudiante ORDER BY programa_est, nombre_est";
+        String sql = "SELECT * FROM estudiante ORDER BY programa, nombre";
 
         PreparedStatement ps = con.prepareStatement(sql);                       
 
@@ -146,18 +146,18 @@ public class EstudianteDAO {
         while (rs.next()) {
             est = new EstudianteDTO();
             
-            est.setIdentificacion_est(rs.getInt("identificacion_est"));
-            est.setTipodocumentoid_est(rs.getString("tipodocumentoid_est"));
-            est.setCodigo_est(rs.getInt("codigo_est"));
-            est.setNombre_est(rs.getString("nombre_est"));
-            est.setCorreo_est(rs.getString("correo_est"));
-            est.setFechanacimiento_est(rs.getString("fechanacimiento_est"));      
-            est.setGenero_est(rs.getString("genero_est"));
-            est.setEdad_est(rs.getInt("edad_est"));
-            est.setEstadocivil_est(rs.getString("estadocivil_est"));
-            est.setDireccion_est(rs.getString("direccion_est"));
-            est.setTelefono_est(rs.getString("telefono_est")); 
-            est.setPrograma_est(rs.getString("programa_est"));      
+            est.setIdentificacion(rs.getInt("identificacion"));
+            est.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            est.setCodigo(rs.getInt("codigo"));
+            est.setNombre(rs.getString("nombre"));
+            est.setCorreo(rs.getString("correo"));
+            est.setFechanacimiento(rs.getString("fechanacimiento"));      
+            est.setGenero(rs.getString("genero"));
+            est.setEdad(rs.getInt("edad"));
+            est.setEstadocivil(rs.getString("estadocivil"));
+            est.setDireccion(rs.getString("direccion"));
+            est.setTelefono(rs.getString("telefono")); 
+            est.setPrograma(rs.getString("programa"));      
             
             listaEst.add(est);
         }
@@ -166,20 +166,20 @@ public class EstudianteDAO {
 
     }
     
-    public boolean modificarEstudiante(int identificacion_est, String correo_est, String fechanacimiento_est, String genero_est, String estadocivil_est, String direccion_est, String telefono_est ) throws SQLException{
+    public boolean modificarEstudiante(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono ) throws SQLException{
           
-            String sql = "UPDATE estudiante SET correo_est = ? , fechanacimiento_est = ?, genero_est = ?, estadocivil_est = ? , direccion_est =?, telefono_est = ?  "
-                + "WHERE  identificacion_est = ?";
+            String sql = "UPDATE estudiante SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?  "
+                + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
                 
-        ps.setString(1, correo_est);
-        ps.setString(2, fechanacimiento_est);        
-        ps.setString(3, genero_est);
-        ps.setString(4, estadocivil_est);  
-        ps.setString(5, direccion_est);
-        ps.setString(6, telefono_est);
-        ps.setInt(7, identificacion_est);
+        ps.setString(1, correo);
+        ps.setString(2, fechanacimiento);        
+        ps.setString(3, genero);
+        ps.setString(4, estadocivil);  
+        ps.setString(5, direccion);
+        ps.setString(6, telefono);
+        ps.setInt(7, identificacion);
         
         int rta = ps.executeUpdate();
 

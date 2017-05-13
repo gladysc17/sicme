@@ -35,7 +35,7 @@ public class NegocioMedico {
             if (medi == null) {
                 return false;
             } else {
-                if (medi.getContrasena_med().equals(clave)) {
+                if (medi.getContrasena().equals(clave)) {
                     return true;
                 }
                 
@@ -66,7 +66,7 @@ public class NegocioMedico {
         MedicoDAO medi = new MedicoDAO(co);
 
         try {
-            MedicoDTO medico = medi.consultarMedicoPorIdCodigo(med.getIdentificacion_med(), med.getCodigo_med());
+            MedicoDTO medico = medi.consultarMedicoPorIdCodigo(med.getIdentificacion(), med.getCodigo());
             if (medico == null) {
                 return resultado = medi.registrarMedico(med);
             } else {
@@ -210,7 +210,7 @@ public class NegocioMedico {
       
   }
       
-    public boolean modificarMedico(int identificacion_med, String correo_med, String fechanacimiento_med, String genero_med, String estadocivil_med, String direccion_med, String telefono_med, String contrasena_med) throws SQLException{
+    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -220,7 +220,7 @@ public class NegocioMedico {
 
         try {
             
-            rta = med.modificarMedico(identificacion_med, correo_med, fechanacimiento_med, genero_med, estadocivil_med, direccion_med, telefono_med, contrasena_med);
+            rta = med.modificarMedico(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, contrasena);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);

@@ -33,56 +33,56 @@
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Tipo Identificación: </label>
-                                <input class="form-control" id="tipoid" name="tipoid" value="<%=med.getTipodocumentoid_med()%>" readonly>
+                                <input class="form-control" id="tipoid" name="tipoid" value="<%=med.getTipodocumentoid()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Identificación</label>
-                                <input type="number" class="form-control" id="identificacion" name="identificacion" value="<%=med.getIdentificacion_med()%>" readonly>
+                                <input type="number" class="form-control" id="identificacion" name="identificacion" value="<%=med.getIdentificacion()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Código</label>
-                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=med.getCodigo_med()%>" readonly>
+                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=med.getCodigo()%>" readonly>
                             </div>                            
                         </div>
 
                         <div class="form-group">                              
                             <div class="col-sm-6">
                                 <label class="control-label">Nombres y Apellidos:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=med.getNombre_med()%>" readonly>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=med.getNombre()%>" readonly>
                             </div>
                             <div class="col-sm-6">
                                 <label class="control-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%=med.getCorreo_med()%>">
+                                <input type="email" class="form-control" id="correo" name="correo" value="<%=med.getCorreo()%>">
                             </div>
                         </div>
                         
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
-                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=med.getFechanacimiento_med()%>">
+                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=med.getFechanacimiento()%>">
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Edad: </label>
-                                <input type="number" class="form-control" id="edad" name="edad" value="<%=med.getEdad_med()%>" readonly> 
+                                <input type="number" class="form-control" id="edad" name="edad" value="<%=med.getEdad()%>" readonly> 
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Género: </label>
-                                <input type="text" class="form-control" id="genero" name="genero" value="<%=med.getGenero_med()%>">
+                                <input type="text" class="form-control" id="genero" name="genero" value="<%=med.getGenero()%>">
                             </div>                                                        
                         </div>
 
                         <div class="form-group">   
                             <div class="col-sm-4">
                                 <label class="control-label">Estado civil: </label>
-                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=med.getEstadocivil_med()%>" >
+                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=med.getEstadocivil()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Dirección: </label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=med.getDireccion_med()%>" >
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=med.getDireccion()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Teléfono: </label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=med.getTelefono_med() %>" >
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=med.getTelefono() %>" >
                             </div>                            
                         </div>
 

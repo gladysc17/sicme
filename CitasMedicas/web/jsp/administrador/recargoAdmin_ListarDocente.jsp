@@ -44,10 +44,10 @@
                                     
                                     for (int i = 0; i < doc.size(); i++) {
 
-                                        String nombre = doc.get(i).getNombre_doc();
-                                        int identf = doc.get(i).getIdentificacion_doc();                                        
-                                        int codigo = doc.get(i).getCodigo_doc();
-                                        String telefono = doc.get(i).getTelefono_doc();
+                                        String nombre = doc.get(i).getNombre();
+                                        int identf = doc.get(i).getIdentificacion();                                        
+                                        int codigo = doc.get(i).getCodigo();
+                                        String telefono = doc.get(i).getTelefono();
                                         
                                         int cantidad = i+1;
 

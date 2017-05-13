@@ -31,7 +31,7 @@ public class NegocioProfesional {
         ProfesionalDAO profesional = new ProfesionalDAO(co);
 
         try {
-            ProfesionalDTO profs = profesional.consultarProfesionalPorIdCodigo(prof.getIdentificacion_prof(), prof.getCodigo_prof());
+            ProfesionalDTO profs = profesional.consultarProfesionalPorIdCodigo(prof.getIdentificacion(), prof.getCodigo());
 
             if (profs == null) {
                 return res = profesional.registrarProfesional(prof);
@@ -151,7 +151,7 @@ public class NegocioProfesional {
         return null;
     }
   
-    public boolean modificarProfesional(int identificacion_prof, String correo_prof, String fechanacimiento_prof, String genero_prof, String estadocivil_prof, String direccion_prof, String telefono_prof) throws SQLException{
+    public boolean modificarProfesional(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -161,7 +161,7 @@ public class NegocioProfesional {
 
         try {
             
-            rta = prof.modificarProfesional(identificacion_prof, correo_prof, fechanacimiento_prof, genero_prof, estadocivil_prof, direccion_prof, telefono_prof);
+            rta = prof.modificarProfesional(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioProfesional.class.getName()).log(Level.SEVERE, null, ex);

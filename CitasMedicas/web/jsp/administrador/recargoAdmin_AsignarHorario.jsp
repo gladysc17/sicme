@@ -34,7 +34,7 @@
 
                                 MedicoDTO med = fm.consultarMedicoPorId(medico);
                             %>
-                            <label> <%=med.getNombre_med()%> </label>
+                            <label> <%=med.getNombre()%> </label>
                             <input type="hidden" value="<%=medico%>" name="idMedico" />
                         </div>
                         <div>

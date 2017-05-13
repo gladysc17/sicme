@@ -33,56 +33,56 @@
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Tipo Identificación: </label>
-                                <input class="form-control" id="tipoid" name="tipoid" value="<%=sg.getTipodocumentoid_sg()%>" readonly>
+                                <input class="form-control" id="tipoid" name="tipoid" value="<%=sg.getTipodocumentoid()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Identificación</label>
-                                <input type="number" class="form-control" id="identificacion" name="identificacion" value="<%=sg.getIdentificacion_sg()%>" readonly>
+                                <input type="number" class="form-control" id="identificacion" name="identificacion" value="<%=sg.getIdentificacion()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Código</label>
-                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=sg.getCodigo_sg()%>" readonly>
+                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=sg.getCodigo()%>" readonly>
                             </div>                            
                         </div>
 
                         <div class="form-group">                              
                             <div class="col-sm-6">
                                 <label class="control-label">Nombres y Apellidos:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=sg.getNombre_sg()%>" readonly>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=sg.getNombre()%>" readonly>
                             </div>
                             <div class="col-sm-6">
                                 <label class="control-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%=sg.getCorreo_sg()%>">
+                                <input type="email" class="form-control" id="correo" name="correo" value="<%=sg.getCorreo()%>">
                             </div>
                         </div>
                         
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
-                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=sg.getFechanacimiento_sg()%>">
+                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=sg.getFechanacimiento()%>">
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Edad: </label>
-                                <input type="number" class="form-control" id="edad" name="edad" value="<%=sg.getEdad_sg()%>" readonly> 
+                                <input type="number" class="form-control" id="edad" name="edad" value="<%=sg.getEdad()%>" readonly> 
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Género: </label>
-                                <input type="text" class="form-control" id="genero" name="genero" value="<%=sg.getGenero_sg()%>">
+                                <input type="text" class="form-control" id="genero" name="genero" value="<%=sg.getGenero()%>">
                             </div>                                                        
                         </div>
 
                         <div class="form-group">   
                             <div class="col-sm-4">
                                 <label class="control-label">Estado civil: </label>
-                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=sg.getEstadocivil_sg()%>" >
+                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=sg.getEstadocivil()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Dirección: </label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=sg.getDireccion_sg()%>" >
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=sg.getDireccion()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Teléfono: </label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=sg.getTelefono_sg() %>" >
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=sg.getTelefono() %>" >
                             </div>                            
                         </div>
 

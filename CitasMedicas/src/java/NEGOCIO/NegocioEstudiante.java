@@ -38,7 +38,7 @@ public class NegocioEstudiante {
         EstudianteDAO estudiante = new EstudianteDAO(co);
 
         try {
-            EstudianteDTO estud = estudiante.consultarEstudiantePorIdCodigo(est.getIdentificacion_est(), est.getCodigo_est());
+            EstudianteDTO estud = estudiante.consultarEstudiantePorIdCodigo(est.getIdentificacion(), est.getCodigo());
             if (estud == null) {
                 return resultado = estudiante.registrarEstudiante(est);
             } else {
@@ -152,7 +152,7 @@ public class NegocioEstudiante {
         return (prof);
     }
     
-    public boolean modificarEstudiante(int identificacion_est, String correo_est, String fechanac_est, String genero_est, String estadocivil_est, String direccion_est, String telefono_est) throws SQLException {
+    public boolean modificarEstudiante(int identificacion, String correo, String fechanac, String genero, String estadocivil, String direccion, String telefono) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -162,7 +162,7 @@ public class NegocioEstudiante {
 
         try {
             
-            rta = est.modificarEstudiante(identificacion_est, correo_est, fechanac_est, genero_est, estadocivil_est, direccion_est, telefono_est);
+            rta = est.modificarEstudiante(identificacion, correo, fechanac, genero, estadocivil, direccion, telefono);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);

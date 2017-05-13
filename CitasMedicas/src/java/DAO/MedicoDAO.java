@@ -27,25 +27,25 @@ public class MedicoDAO {
       
     public boolean registrarMedico(MedicoDTO med) throws SQLException {
 
-        String sql = "INSERT INTO medico (identificacion_med, tipodocumentoid_med, codigo_med, nombre_med, correo_med, "
-                + "fechanacimiento_med, genero_med, edad_med, estadocivil_med, direccion_med, telefono_med, contrasena_med, servicio_med)"
+        String sql = "INSERT INTO medico (identificacion, tipodocumentoid, codigo, nombre, correo, "
+                + "fechanacimiento, genero, edad, estadocivil, direccion, telefono, contrasena, servicio)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, med.getIdentificacion_med());        
-        ps.setString(2, med.getTipodocumentoid_med());
-        ps.setInt(3, med.getCodigo_med());
-        ps.setString(4, med.getNombre_med());
-        ps.setString(5, med.getCorreo_med());
-        ps.setString(6, med.getFechanacimiento_med());
-        ps.setString(7, med.getGenero_med());
-        ps.setInt(8, med.getEdad_med());
-        ps.setString(9, med.getEstadocivil_med());
-        ps.setString(10, med.getDireccion_med());
-        ps.setString(11, med.getTelefono_med());
-        ps.setString(12, med.getContrasena_med() );
-        ps.setString(13, med.getServicio_med());
+        ps.setInt(1, med.getIdentificacion());        
+        ps.setString(2, med.getTipodocumentoid());
+        ps.setInt(3, med.getCodigo());
+        ps.setString(4, med.getNombre());
+        ps.setString(5, med.getCorreo());
+        ps.setString(6, med.getFechanacimiento());
+        ps.setString(7, med.getGenero());
+        ps.setInt(8, med.getEdad());
+        ps.setString(9, med.getEstadocivil());
+        ps.setString(10, med.getDireccion());
+        ps.setString(11, med.getTelefono());
+        ps.setString(12, med.getContrasena() );
+        ps.setString(13, med.getServicio());
 
         int resultado = ps.executeUpdate();
 
@@ -55,7 +55,7 @@ public class MedicoDAO {
 
     public MedicoDTO consultarMedicoPorId(int id) throws SQLException {
 
-        String sql = "SELECT * FROM medico WHERE identificacion_med = ?";
+        String sql = "SELECT * FROM medico WHERE identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -67,19 +67,19 @@ public class MedicoDAO {
 
         if (rs.next()) {
             med = new MedicoDTO();
-            med.setIdentificacion_med(rs.getInt("identificacion_med"));
-            med.setTipodocumentoid_med(rs.getString("tipodocumentoid_med"));
-            med.setCodigo_med(rs.getInt("codigo_med"));
-            med.setNombre_med(rs.getString("nombre_med"));
-            med.setCorreo_med(rs.getString("correo_med"));
-            med.setFechanacimiento_med(rs.getString("fechanacimiento_med"));      
-            med.setGenero_med(rs.getString("genero_med"));
-            med.setEdad_med(rs.getInt("edad_med"));
-            med.setEstadocivil_med(rs.getString("estadocivil_med"));
-            med.setDireccion_med(rs.getString("direccion_med"));
-            med.setTelefono_med(rs.getString("telefono_med")); 
-            med.setContrasena_med(rs.getString("contrasena_med"));
-            med.setServicio_med(rs.getString("servicio_med"));
+            med.setIdentificacion(rs.getInt("identificacion"));
+            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            med.setCodigo(rs.getInt("codigo"));
+            med.setNombre(rs.getString("nombre"));
+            med.setCorreo(rs.getString("correo"));
+            med.setFechanacimiento(rs.getString("fechanacimiento"));      
+            med.setGenero(rs.getString("genero"));
+            med.setEdad(rs.getInt("edad"));
+            med.setEstadocivil(rs.getString("estadocivil"));
+            med.setDireccion(rs.getString("direccion"));
+            med.setTelefono(rs.getString("telefono")); 
+            med.setContrasena(rs.getString("contrasena"));
+            med.setServicio(rs.getString("servicio"));
         }
         return med;
     }
@@ -88,7 +88,7 @@ public class MedicoDAO {
 
         List<MedicoDTO> listaMed = new ArrayList<MedicoDTO>();
 
-        String sql = "SELECT * FROM medico ORDER BY nombre_med";
+        String sql = "SELECT * FROM medico ORDER BY nombre";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -99,19 +99,19 @@ public class MedicoDAO {
         while (rs.next()) {
             med = new MedicoDTO();
 
-           med.setIdentificacion_med(rs.getInt("identificacion_med"));
-            med.setTipodocumentoid_med(rs.getString("tipodocumentoid_med"));
-            med.setCodigo_med(rs.getInt("codigo_med"));
-            med.setNombre_med(rs.getString("nombre_med"));
-            med.setCorreo_med(rs.getString("correo_med"));
-            med.setFechanacimiento_med(rs.getString("fechanacimiento_med"));      
-            med.setGenero_med(rs.getString("genero_med"));
-            med.setEdad_med(rs.getInt("edad_med"));
-            med.setEstadocivil_med(rs.getString("estadocivil_med"));
-            med.setDireccion_med(rs.getString("direccion_med"));
-            med.setTelefono_med(rs.getString("telefono_med")); 
-            med.setContrasena_med(rs.getString("contrasena_med"));
-            med.setServicio_med(rs.getString("servicio_med"));
+           med.setIdentificacion(rs.getInt("identificacion"));
+            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            med.setCodigo(rs.getInt("codigo"));
+            med.setNombre(rs.getString("nombre"));
+            med.setCorreo(rs.getString("correo"));
+            med.setFechanacimiento(rs.getString("fechanacimiento"));      
+            med.setGenero(rs.getString("genero"));
+            med.setEdad(rs.getInt("edad"));
+            med.setEstadocivil(rs.getString("estadocivil"));
+            med.setDireccion(rs.getString("direccion"));
+            med.setTelefono(rs.getString("telefono")); 
+            med.setContrasena(rs.getString("contrasena"));
+            med.setServicio(rs.getString("servicio"));
 
             listaMed.add(med);
         }
@@ -122,7 +122,7 @@ public class MedicoDAO {
 
     public MedicoDTO consultarMedicoPorIdCodigo(int id, int codigo) throws SQLException {
 
-        String sql = "SELECT * FROM medico WHERE identificacion_med = ? OR codigo_med = ? ";
+        String sql = "SELECT * FROM medico WHERE identificacion = ? OR codigo = ? ";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -136,33 +136,33 @@ public class MedicoDAO {
         if (rs.next()) {
             med = new MedicoDTO();
 
-            med.setIdentificacion_med(rs.getInt("identificacion_med"));
-            med.setTipodocumentoid_med(rs.getString("tipodocumentoid_med"));
-            med.setCodigo_med(rs.getInt("codigo_med"));
-            med.setNombre_med(rs.getString("nombre_med"));
-            med.setCorreo_med(rs.getString("correo_med"));
-            med.setFechanacimiento_med(rs.getString("fechanacimiento_med"));      
-            med.setGenero_med(rs.getString("genero_med"));
-            med.setEdad_med(rs.getInt("edad_med"));
-            med.setEstadocivil_med(rs.getString("estadocivil_med"));
-            med.setDireccion_med(rs.getString("direccion_med"));
-            med.setTelefono_med(rs.getString("telefono_med")); 
-            med.setContrasena_med(rs.getString("contrasena_med"));
-            med.setServicio_med(rs.getString("servicio_med"));
+            med.setIdentificacion(rs.getInt("identificacion"));
+            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            med.setCodigo(rs.getInt("codigo"));
+            med.setNombre(rs.getString("nombre"));
+            med.setCorreo(rs.getString("correo"));
+            med.setFechanacimiento(rs.getString("fechanacimiento"));      
+            med.setGenero(rs.getString("genero"));
+            med.setEdad(rs.getInt("edad"));
+            med.setEstadocivil(rs.getString("estadocivil"));
+            med.setDireccion(rs.getString("direccion"));
+            med.setTelefono(rs.getString("telefono")); 
+            med.setContrasena(rs.getString("contrasena"));
+            med.setServicio(rs.getString("servicio"));
         }
 
         return med;
 
     }
 
-    public ArrayList<MedicoDTO> consultarMedicoPorServicio(String servicio_med) throws SQLException {
+    public ArrayList<MedicoDTO> consultarMedicoPorServicio(String servicio) throws SQLException {
 
         ArrayList<MedicoDTO> medicos = new ArrayList<MedicoDTO>();
 
-        String sql = "SELECT * FROM medico WHERE servicio_med = ?";
+        String sql = "SELECT * FROM medico WHERE servicio = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, servicio_med);
+        ps.setString(1, servicio);
 
         ResultSet rs = ps.executeQuery();
 
@@ -172,40 +172,40 @@ public class MedicoDAO {
 
             med = new MedicoDTO();
 
-            med.setIdentificacion_med(rs.getInt("identificacion_med"));
-            med.setTipodocumentoid_med(rs.getString("tipodocumentoid_med"));
-            med.setCodigo_med(rs.getInt("codigo_med"));
-            med.setNombre_med(rs.getString("nombre_med"));
-            med.setCorreo_med(rs.getString("correo_med"));
-            med.setFechanacimiento_med(rs.getString("fechanacimiento_med"));      
-            med.setGenero_med(rs.getString("genero_med"));
-            med.setEdad_med(rs.getInt("edad_med"));
-            med.setEstadocivil_med(rs.getString("estadocivil_med"));
-            med.setDireccion_med(rs.getString("direccion_med"));
-            med.setTelefono_med(rs.getString("telefono_med")); 
-            med.setContrasena_med(rs.getString("contrasena_med"));
-            med.setServicio_med(rs.getString("servicio_med"));
+            med.setIdentificacion(rs.getInt("identificacion"));
+            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            med.setCodigo(rs.getInt("codigo"));
+            med.setNombre(rs.getString("nombre"));
+            med.setCorreo(rs.getString("correo"));
+            med.setFechanacimiento(rs.getString("fechanacimiento"));      
+            med.setGenero(rs.getString("genero"));
+            med.setEdad(rs.getInt("edad"));
+            med.setEstadocivil(rs.getString("estadocivil"));
+            med.setDireccion(rs.getString("direccion"));
+            med.setTelefono(rs.getString("telefono")); 
+            med.setContrasena(rs.getString("contrasena"));
+            med.setServicio(rs.getString("servicio"));
 
             medicos.add(med);
         }
         return medicos;
     }
     
-    public boolean modificarMedico(int identificacion_med, String correo_med, String fechanacimiento_med, String genero_med, String estadocivil_med, String direccion_med, String telefono_med, String contrasena_med) throws SQLException{
+    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException{
           
-            String sql = "UPDATE medico SET correo_med = ? , fechanacimiento_med = ?, genero_med = ?, estadocivil_med = ? , direccion_med =?, telefono_med = ?, contrasena_med = ?"
-                + "WHERE  identificacion_med = ?";
+            String sql = "UPDATE medico SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?, contrasena = ?"
+                + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
                 
-        ps.setString(1, correo_med);
-        ps.setString(2, fechanacimiento_med);        
-        ps.setString(3, genero_med);
-        ps.setString(4, estadocivil_med);  
-        ps.setString(5, direccion_med);
-        ps.setString(6, telefono_med);
-        ps.setString(7, contrasena_med);
-        ps.setInt(8, identificacion_med);
+        ps.setString(1, correo);
+        ps.setString(2, fechanacimiento);        
+        ps.setString(3, genero);
+        ps.setString(4, estadocivil);  
+        ps.setString(5, direccion);
+        ps.setString(6, telefono);
+        ps.setString(7, contrasena);
+        ps.setInt(8, identificacion);
         
         int rta = ps.executeUpdate();
 

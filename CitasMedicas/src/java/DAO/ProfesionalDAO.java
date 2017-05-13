@@ -35,23 +35,23 @@ public class ProfesionalDAO {
     
     public boolean registrarProfesional(ProfesionalDTO prof) throws SQLException {
 
-        String sql = "INSERT INTO profesional (identificacion_prof, tipodocumentoid_prof, codigo_prof, nombre_prof, correo_prof, "
-                + "fechanacimiento_prof, genero_prof, edad_prof, estadocivil_prof, direccion_prof, telefono_prof)"
+        String sql = "INSERT INTO profesional (identificacion, tipodocumentoid, codigo, nombre, correo, "
+                + "fechanacimiento, genero, edad, estadocivil, direccion, telefono)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, prof.getIdentificacion_prof());
-        ps.setString(2, prof.getTipodocumentoid_prof());
-        ps.setInt(3, prof.getCodigo_prof());
-        ps.setString(4, prof.getNombre_prof());
-        ps.setString(5, prof.getCorreo_prof());
-        ps.setString(6, prof.getFechanacimiento_prof());
-        ps.setString(7, prof.getGenero_prof());
-        ps.setInt(8, prof.getEdad_prof());
-        ps.setString(9, prof.getEstadocivil_prof());
-        ps.setString(10, prof.getDireccion_prof());
-        ps.setString(11, prof.getTelefono_prof());                      
+        ps.setInt(1, prof.getIdentificacion());
+        ps.setString(2, prof.getTipodocumentoid());
+        ps.setInt(3, prof.getCodigo());
+        ps.setString(4, prof.getNombre());
+        ps.setString(5, prof.getCorreo());
+        ps.setString(6, prof.getFechanacimiento());
+        ps.setString(7, prof.getGenero());
+        ps.setInt(8, prof.getEdad());
+        ps.setString(9, prof.getEstadocivil());
+        ps.setString(10, prof.getDireccion());
+        ps.setString(11, prof.getTelefono());                      
 
         int rta = ps.executeUpdate();
 
@@ -68,7 +68,7 @@ public class ProfesionalDAO {
     
     public ProfesionalDTO consultarProfesionalPorId(int id) throws SQLException{
         
-        String sql = "SELECT * FROM profesional WHERE identificacion_prof = ?";
+        String sql = "SELECT * FROM profesional WHERE identificacion = ?";
         
         PreparedStatement ps = con.prepareStatement(sql);
         
@@ -82,17 +82,17 @@ public class ProfesionalDAO {
             
             prof = new ProfesionalDTO();
             
-            prof.setIdentificacion_prof(rs.getInt("identificacion_prof"));
-            prof.setTipodocumentoid_prof(rs.getString("tipodocumentoid_prof"));
-            prof.setCodigo_prof(rs.getInt("codigo_prof"));
-            prof.setNombre_prof(rs.getString("nombre_prof"));
-            prof.setCorreo_prof(rs.getString("correo_prof"));
-            prof.setFechanacimiento_prof(rs.getString("fechanacimiento_prof"));      
-            prof.setGenero_prof(rs.getString("genero_prof"));
-            prof.setEdad_prof(rs.getInt("edad_prof"));
-            prof.setEstadocivil_prof(rs.getString("estadocivil_prof"));
-            prof.setDireccion_prof(rs.getString("direccion_prof"));
-            prof.setTelefono_prof(rs.getString("telefono_prof"));            
+            prof.setIdentificacion(rs.getInt("identificacion"));
+            prof.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            prof.setCodigo(rs.getInt("codigo"));
+            prof.setNombre(rs.getString("nombre"));
+            prof.setCorreo(rs.getString("correo"));
+            prof.setFechanacimiento(rs.getString("fechanacimiento"));      
+            prof.setGenero(rs.getString("genero"));
+            prof.setEdad(rs.getInt("edad"));
+            prof.setEstadocivil(rs.getString("estadocivil"));
+            prof.setDireccion(rs.getString("direccion"));
+            prof.setTelefono(rs.getString("telefono"));            
                         
         }
         
@@ -117,17 +117,17 @@ public class ProfesionalDAO {
         while (rs.next()){
             
             prof = new ProfesionalDTO();
-            prof.setIdentificacion_prof(rs.getInt("identificacion_prof"));
-            prof.setTipodocumentoid_prof(rs.getString("tipodocumentoid_prof"));
-            prof.setCodigo_prof(rs.getInt("codigo_prof"));
-            prof.setNombre_prof(rs.getString("nombre_prof"));
-            prof.setCorreo_prof(rs.getString("correo_prof"));
-            prof.setFechanacimiento_prof(rs.getString("fechanacimiento_prof"));      
-            prof.setGenero_prof(rs.getString("genero_prof"));
-            prof.setEdad_prof(rs.getInt("edad_prof"));
-            prof.setEstadocivil_prof(rs.getString("estadocivil_prof"));
-            prof.setDireccion_prof(rs.getString("direccion_prof"));
-            prof.setTelefono_prof(rs.getString("telefono_prof"));             
+            prof.setIdentificacion(rs.getInt("identificacion"));
+            prof.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            prof.setCodigo(rs.getInt("codigo"));
+            prof.setNombre(rs.getString("nombre"));
+            prof.setCorreo(rs.getString("correo"));
+            prof.setFechanacimiento(rs.getString("fechanacimiento"));      
+            prof.setGenero(rs.getString("genero"));
+            prof.setEdad(rs.getInt("edad"));
+            prof.setEstadocivil(rs.getString("estadocivil"));
+            prof.setDireccion(rs.getString("direccion"));
+            prof.setTelefono(rs.getString("telefono"));             
             
             profe.add(prof);
         }
@@ -138,7 +138,7 @@ public class ProfesionalDAO {
     
      public ProfesionalDTO consultarProfesionalPorIdCodigo(int id, int codigo) throws SQLException {
 
-        String sql = "SELECT * FROM profesional WHERE identificacion_prof = ? OR codigo_prof = ? ";
+        String sql = "SELECT * FROM profesional WHERE identificacion = ? OR codigo = ? ";
 
         PreparedStatement ps = con.prepareStatement(sql);               
 
@@ -152,37 +152,37 @@ public class ProfesionalDAO {
         if (rs.next()) {
             prof = new ProfesionalDTO();
             
-            prof.setIdentificacion_prof(rs.getInt("identificacion_prof"));
-            prof.setTipodocumentoid_prof(rs.getString("tipodocumentoid_prof"));
-            prof.setCodigo_prof(rs.getInt("codigo_prof"));
-            prof.setNombre_prof(rs.getString("nombre_prof"));
-            prof.setCorreo_prof(rs.getString("correo_prof"));
-            prof.setFechanacimiento_prof(rs.getString("fechanacimiento_prof"));      
-            prof.setGenero_prof(rs.getString("genero_prof"));
-            prof.setEdad_prof(rs.getInt("edad_prof"));
-            prof.setEstadocivil_prof(rs.getString("estadocivil_prof"));
-            prof.setDireccion_prof(rs.getString("direccion_prof"));
-            prof.setTelefono_prof(rs.getString("telefono_prof"));                              
+            prof.setIdentificacion(rs.getInt("identificacion"));
+            prof.setTipodocumentoid(rs.getString("tipodocumentoid"));
+            prof.setCodigo(rs.getInt("codigo"));
+            prof.setNombre(rs.getString("nombre"));
+            prof.setCorreo(rs.getString("correo"));
+            prof.setFechanacimiento(rs.getString("fechanacimiento"));      
+            prof.setGenero(rs.getString("genero"));
+            prof.setEdad(rs.getInt("edad"));
+            prof.setEstadocivil(rs.getString("estadocivil"));
+            prof.setDireccion(rs.getString("direccion"));
+            prof.setTelefono(rs.getString("telefono"));                              
         }
         
         return prof;
 
     }              
      
-    public boolean modificarProfesional(int identificacion_prof, String correo_prof, String fechanacimiento_prof, String genero_prof, String estadocivil_prof, String direccion_prof, String telefono_prof) throws SQLException{
+    public boolean modificarProfesional(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
           
-            String sql = "UPDATE profesional SET correo_prof = ? , fechanacimiento_prof = ?, genero_prof = ?, estadocivil_prof = ? , direccion_prof =?, telefono_prof = ? "
-                + "WHERE  identificacion_prof = ?";
+            String sql = "UPDATE profesional SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ? "
+                + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
                 
-        ps.setString(1, correo_prof);
-        ps.setString(2, fechanacimiento_prof);        
-        ps.setString(3, genero_prof);
-        ps.setString(4, estadocivil_prof);  
-        ps.setString(5, direccion_prof);
-        ps.setString(6, telefono_prof);        
-        ps.setInt(7, identificacion_prof);
+        ps.setString(1, correo);
+        ps.setString(2, fechanacimiento);        
+        ps.setString(3, genero);
+        ps.setString(4, estadocivil);  
+        ps.setString(5, direccion);
+        ps.setString(6, telefono);        
+        ps.setInt(7, identificacion);
         
         int rta = ps.executeUpdate();
 

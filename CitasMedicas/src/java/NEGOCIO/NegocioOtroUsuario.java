@@ -31,7 +31,7 @@ public class NegocioOtroUsuario {
         OtroUsuarioDAO otr = new OtroUsuarioDAO(co);
 
         try {
-            OtroUsuarioDTO otroU = otr.consultarOtroPorIdCodigo(otro.getIdentificacion_otro(), otro.getCodigo_otro());
+            OtroUsuarioDTO otroU = otr.consultarOtroPorIdCodigo(otro.getIdentificacion(), otro.getCodigo());
             if (otroU == null) {
                 return resultado = otr.registrarOtroUsuario(otro);
             } else {
@@ -145,7 +145,7 @@ public class NegocioOtroUsuario {
         return (otros);
     }
     
-    public boolean modificarOtroUsuario(int identificacion_otro, String correo_otro, String fechanacimiento_otro, String genero_otro, String estadocivil_otro, String direccion_otro, String telefono_otro) throws SQLException{
+    public boolean modificarOtroUsuario(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -155,7 +155,7 @@ public class NegocioOtroUsuario {
 
         try {
             
-            rta = est.modificarOtroUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro);
+            rta = est.modificarOtroUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioOtroUsuario.class.getName()).log(Level.SEVERE, null, ex);

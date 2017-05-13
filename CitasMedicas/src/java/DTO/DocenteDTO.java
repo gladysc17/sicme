@@ -11,129 +11,124 @@ package DTO;
  */
 public class DocenteDTO {
 
-    private int identificacion_doc;
-    private String tipodocumentoid_doc;
-    private int codigo_doc;
-    private String nombre_doc;
-    private String correo_doc;
-    private String fechanacimiento_doc;
-    private String genero_doc;
-    private int edad_doc;
-    private String estadocivil_doc;
-    private String direccion_doc;
-    private String telefono_doc;
+    private int identificacion;
+    private String tipodocumentoid;
+    private int codigo;
+    private String nombre;
+    private String correo;
+    private String fechanacimiento;
+    private String genero;
+    private int edad;
+    private String estadocivil;
+    private String direccion;
+    private String telefono;
 
     
     public DocenteDTO() {
     }
 
-    public DocenteDTO(int identificacion_doc, String tipodocumentoid_doc, int codigo_doc, String nombre_doc, String correo_doc, String fechanacimiento_doc, String genero_doc, int edad_doc, String estadocivil_doc, String direccion_doc, String telefono_doc) {
-        this.identificacion_doc = identificacion_doc;
-        this.tipodocumentoid_doc = tipodocumentoid_doc;
-        this.codigo_doc = codigo_doc;
-        this.nombre_doc = nombre_doc;
-        this.correo_doc = correo_doc;
-        this.fechanacimiento_doc = fechanacimiento_doc;
-        this.genero_doc = genero_doc;
-        this.edad_doc = edad_doc;
-        this.estadocivil_doc = estadocivil_doc;
-        this.direccion_doc = direccion_doc;
-        this.telefono_doc = telefono_doc;
+    public DocenteDTO(int identificacion, String tipodocumentoid, int codigo, String nombre, String correo, String fechanacimiento, String genero, int edad, String estadocivil, String direccion, String telefono) {
+        this.identificacion = identificacion;
+        this.tipodocumentoid = tipodocumentoid;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.fechanacimiento = fechanacimiento;
+        this.genero = genero;
+        this.edad = edad;
+        this.estadocivil = estadocivil;
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
 
-    public int getIdentificacion_doc() {
-        return identificacion_doc;
+    public int getIdentificacion() {
+        return identificacion;
     }
 
-    public void setIdentificacion_doc(int identificacion_doc) {
-        this.identificacion_doc = identificacion_doc;
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
     }
 
-    public String getTipodocumentoid_doc() {
-        return tipodocumentoid_doc;
+    public String getTipodocumentoid() {
+        return tipodocumentoid;
     }
 
-    public void setTipodocumentoid_doc(String tipodocumentoid_doc) {
-        this.tipodocumentoid_doc = tipodocumentoid_doc;
+    public void setTipodocumentoid(String tipodocumentoid) {
+        this.tipodocumentoid = tipodocumentoid;
     }
 
-    public int getCodigo_doc() {
-        return codigo_doc;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodigo_doc(int codigo_doc) {
-        this.codigo_doc = codigo_doc;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNombre_doc() {
-        return nombre_doc;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_doc(String nombre_doc) {
-        this.nombre_doc = nombre_doc;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCorreo_doc() {
-        return correo_doc;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setCorreo_doc(String correo_doc) {
-        this.correo_doc = correo_doc;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public String getFechanacimiento_doc() {
-        return fechanacimiento_doc;
+    public String getFechanacimiento() {
+        return fechanacimiento;
     }
 
-    public void setFechanacimiento_doc(String fechanacimiento_doc) {
-        this.fechanacimiento_doc = fechanacimiento_doc;
+    public void setFechanacimiento(String fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 
-    public String getGenero_doc() {
-        return genero_doc;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setGenero_doc(String genero_doc) {
-        this.genero_doc = genero_doc;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public int getEdad_doc() {
-        return edad_doc;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setEdad_doc(int edad_doc) {
-        this.edad_doc = edad_doc;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public String getEstadocivil_doc() {
-        return estadocivil_doc;
+    public String getEstadocivil() {
+        return estadocivil;
     }
 
-    public void setEstadocivil_doc(String estadocivil_doc) {
-        this.estadocivil_doc = estadocivil_doc;
+    public void setEstadocivil(String estadocivil) {
+        this.estadocivil = estadocivil;
     }
 
-    public String getDireccion_doc() {
-        return direccion_doc;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDireccion_doc(String direccion_doc) {
-        this.direccion_doc = direccion_doc;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTelefono_doc() {
-        return telefono_doc;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTelefono_doc(String telefono_doc) {
-        this.telefono_doc = telefono_doc;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "DocenteDTO{" + "identificacion_doc=" + identificacion_doc + ", tipodocumentoid_doc=" + tipodocumentoid_doc + ", codigo_doc=" + codigo_doc + ", nombre_doc=" + nombre_doc + ", correo_doc=" + correo_doc + ", fechanacimiento_doc=" + fechanacimiento_doc + ", genero_doc=" + genero_doc + ", edad_doc=" + edad_doc + ", estadocivil_doc=" + estadocivil_doc + ", direccion_doc=" + direccion_doc + ", telefono_doc=" + telefono_doc + '}';
-    }
-
-   
+    
 
 }

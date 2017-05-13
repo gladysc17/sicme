@@ -43,7 +43,7 @@
                                 <%
                                     FacadeCita facCita = new FacadeCita();
                                     MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
-                                    int id_medico = med.getIdentificacion_med();
+                                    int idico = med.getIdentificacion();
 
                                     //Date hoy = new Date();
                                     //SimpleDateFormat fecha = new SimpleDateFormat("YYYY-MM-DD");
@@ -66,7 +66,7 @@
                                     System.out.println(" fecha: "+fecha2);
                                     
 
-                                    List<CitaDTO> doc = facCita.consultarCitasMedicoDia(id_medico, fecha2);
+                                    List<CitaDTO> doc = facCita.consultarCitasMedicoDia(idico, fecha2);
 
                                     for (int i = 0; i < doc.size(); i++) {
 

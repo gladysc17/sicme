@@ -78,16 +78,16 @@
                                                         FacadeEstudiante facEst = new FacadeEstudiante();
                                                         EstudianteDTO est = facEst.consultarEstudianteporId(idusuario_hcmed);
 
-                                                        String nombre = est.getNombre_est();
-                                                        int id = est.getIdentificacion_est();
-                                                        int codigo = est.getCodigo_est();
-                                                        String correo = est.getCorreo_est();
-                                                        String fechadeNac = est.getCorreo_est();
-                                                        int edad = est.getCodigo_est();
-                                                        String genero = est.getNombre_est();
-                                                        String estadoCivil = est.getCorreo_est();
-                                                        String direccion = est.getCorreo_est();
-                                                        String telefono = est.getTelefono_est();
+                                                        String nombre = est.getNombre();
+                                                        int id = est.getIdentificacion();
+                                                        int codigo = est.getCodigo();
+                                                        String correo = est.getCorreo();
+                                                        String fechadeNac = est.getCorreo();
+                                                        int edad = est.getCodigo();
+                                                        String genero = est.getNombre();
+                                                        String estadoCivil = est.getCorreo();
+                                                        String direccion = est.getCorreo();
+                                                        String telefono = est.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">
@@ -123,16 +123,16 @@
                                                     FacadeProfesional facpro = new FacadeProfesional();
                                                     ProfesionalDTO pro = facpro.consultarProfesionalPorId(idusuario_hcmed);
 
-                                                    String nombre = pro.getNombre_prof();
-                                                    int id = pro.getIdentificacion_prof();
-                                                    int codigo = pro.getCodigo_prof();
-                                                    String correo = pro.getCorreo_prof();
-                                                    String fechadeNac = pro.getCorreo_prof();
-                                                    int edad = pro.getCodigo_prof();
-                                                    String genero = pro.getNombre_prof();
-                                                    String estadoCivil = pro.getCorreo_prof();
-                                                    String direccion = pro.getCorreo_prof();
-                                                    String telefono = pro.getTelefono_prof();
+                                                    String nombre = pro.getNombre();
+                                                    int id = pro.getIdentificacion();
+                                                    int codigo = pro.getCodigo();
+                                                    String correo = pro.getCorreo();
+                                                    String fechadeNac = pro.getCorreo();
+                                                    int edad = pro.getCodigo();
+                                                    String genero = pro.getNombre();
+                                                    String estadoCivil = pro.getCorreo();
+                                                    String direccion = pro.getCorreo();
+                                                    String telefono = pro.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">
@@ -168,16 +168,16 @@
                                                     FacadeMedico facmed = new FacadeMedico();
                                                     MedicoDTO med = facmed.consultarMedicoPorId(idusuario_hcmed);
 
-                                                    String nombre = med.getNombre_med();
-                                                    int id = med.getIdentificacion_med();
-                                                    int codigo = med.getCodigo_med();
-                                                    String correo = med.getCorreo_med();
-                                                    String fechadeNac = med.getFechanacimiento_med();
-                                                    int edad = med.getEdad_med();
-                                                    String genero = med.getGenero_med();
-                                                    String estadoCivil = med.getEstadocivil_med();
-                                                    String direccion = med.getDireccion_med();
-                                                    String telefono = med.getTelefono_med();
+                                                    String nombre = med.getNombre();
+                                                    int id = med.getIdentificacion();
+                                                    int codigo = med.getCodigo();
+                                                    String correo = med.getCorreo();
+                                                    String fechadeNac = med.getFechanacimiento();
+                                                    int edad = med.getEdad();
+                                                    String genero = med.getGenero();
+                                                    String estadoCivil = med.getEstadocivil();
+                                                    String direccion = med.getDireccion();
+                                                    String telefono = med.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">
@@ -213,16 +213,16 @@
                                                     FacadeServicioGeneral facser = new FacadeServicioGeneral();
                                                     ServicioGeneralDTO ser = facser.consultarServicioGeneralPorId(idusuario_hcmed);
 
-                                                    String nombre = ser.getNombre_sg();
-                                                    int id = ser.getIdentificacion_sg();
-                                                    int codigo = ser.getCodigo_sg();
-                                                    String correo = ser.getCorreo_sg();
-                                                    String fechadeNac = ser.getFechanacimiento_sg();
-                                                    int edad = ser.getEdad_sg();
-                                                    String genero = ser.getGenero_sg();
-                                                    String estadoCivil = ser.getEstadocivil_sg();
-                                                    String direccion = ser.getDireccion_sg();
-                                                    String telefono = ser.getTelefono_sg();
+                                                    String nombre = ser.getNombre();
+                                                    int id = ser.getIdentificacion();
+                                                    int codigo = ser.getCodigo();
+                                                    String correo = ser.getCorreo();
+                                                    String fechadeNac = ser.getFechanacimiento();
+                                                    int edad = ser.getEdad();
+                                                    String genero = ser.getGenero();
+                                                    String estadoCivil = ser.getEstadocivil();
+                                                    String direccion = ser.getDireccion();
+                                                    String telefono = ser.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">
@@ -258,16 +258,16 @@
                                                     FacadeDocente facdoc = new FacadeDocente();
                                                     DocenteDTO doc = facdoc.consultarDocenteporId(idusuario_hcmed);
 
-                                                    String nombre = doc.getNombre_doc();
-                                                    int id = doc.getIdentificacion_doc();
-                                                    int codigo = doc.getCodigo_doc();
-                                                    String correo = doc.getCorreo_doc();
-                                                    String fechadeNac = doc.getFechanacimiento_doc();
-                                                    int edad = doc.getEdad_doc();
-                                                    String genero = doc.getGenero_doc();
-                                                    String estadoCivil = doc.getEstadocivil_doc();
-                                                    String direccion = doc.getDireccion_doc();
-                                                    String telefono = doc.getTelefono_doc();
+                                                    String nombre = doc.getNombre();
+                                                    int id = doc.getIdentificacion();
+                                                    int codigo = doc.getCodigo();
+                                                    String correo = doc.getCorreo();
+                                                    String fechadeNac = doc.getFechanacimiento();
+                                                    int edad = doc.getEdad();
+                                                    String genero = doc.getGenero();
+                                                    String estadoCivil = doc.getEstadocivil();
+                                                    String direccion = doc.getDireccion();
+                                                    String telefono = doc.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">
@@ -303,16 +303,16 @@
                                                     FacadeOtrosUsuarios facotro = new FacadeOtrosUsuarios();
                                                     OtroUsuarioDTO otro = facotro.consultarOtroUsuarioPorId(idusuario_hcmed);
 
-                                                    String nombre = otro.getNombre_otro();
-                                                    int id = otro.getIdentificacion_otro();
-                                                    int codigo = otro.getCodigo_otro();
-                                                    String correo = otro.getCorreo_otro();
-                                                    String fechadeNac = otro.getFechanacimiento_otro();
-                                                    int edad = otro.getEdad_otro();
-                                                    String genero = otro.getGenero_otro();
-                                                    String estadoCivil = otro.getEstadocivil_otro();
-                                                    String direccion = otro.getDireccion_otro();
-                                                    String telefono = otro.getTelefono_otro();
+                                                    String nombre = otro.getNombre();
+                                                    int id = otro.getIdentificacion();
+                                                    int codigo = otro.getCodigo();
+                                                    String correo = otro.getCorreo();
+                                                    String fechadeNac = otro.getFechanacimiento();
+                                                    int edad = otro.getEdad();
+                                                    String genero = otro.getGenero();
+                                                    String estadoCivil = otro.getEstadocivil();
+                                                    String direccion = otro.getDireccion();
+                                                    String telefono = otro.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">

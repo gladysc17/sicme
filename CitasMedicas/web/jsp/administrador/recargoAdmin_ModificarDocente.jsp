@@ -33,56 +33,56 @@
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Tipo Identificación: </label>
-                                <input class="form-control" id="tipoid" name="tipoid" value="<%=doc.getTipodocumentoid_doc()%>" readonly>
+                                <input class="form-control" id="tipoid" name="tipoid" value="<%=doc.getTipodocumentoid()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Identificación</label>
-                                <input type="number" class="form-control" id="identificacion" name="identificacion" value="<%=doc.getIdentificacion_doc()%>" readonly>
+                                <input type="number" class="form-control" id="identificacion" name="identificacion" value="<%=doc.getIdentificacion()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Código</label>
-                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=doc.getCodigo_doc()%>" readonly>
+                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=doc.getCodigo()%>" readonly>
                             </div>                            
                         </div>
 
                         <div class="form-group">                              
                             <div class="col-sm-6">
                                 <label class="control-label">Nombres y Apellidos:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=doc.getNombre_doc()%>" readonly>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=doc.getNombre()%>" readonly>
                             </div>
                             <div class="col-sm-6">
                                 <label class="control-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%=doc.getCorreo_doc()%>">
+                                <input type="email" class="form-control" id="correo" name="correo" value="<%=doc.getCorreo()%>">
                             </div>
                         </div>
                         
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
-                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=doc.getFechanacimiento_doc()%>">
+                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=doc.getFechanacimiento()%>">
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Edad: </label>
-                                <input type="number" class="form-control" id="edad" name="edad" value="<%=doc.getEdad_doc()%>" readonly> 
+                                <input type="number" class="form-control" id="edad" name="edad" value="<%=doc.getEdad()%>" readonly> 
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Género: </label>
-                                <input type="text" class="form-control" id="genero" name="genero" value="<%=doc.getGenero_doc()%>">
+                                <input type="text" class="form-control" id="genero" name="genero" value="<%=doc.getGenero()%>">
                             </div>                                                        
                         </div>
 
                         <div class="form-group">   
                             <div class="col-sm-4">
                                 <label class="control-label">Estado civil: </label>
-                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=doc.getEstadocivil_doc()%>" >
+                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=doc.getEstadocivil()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Dirección: </label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=doc.getDireccion_doc()%>" >
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=doc.getDireccion()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Teléfono: </label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=doc.getTelefono_doc() %>" >
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=doc.getTelefono() %>" >
                             </div>                            
                         </div>
 

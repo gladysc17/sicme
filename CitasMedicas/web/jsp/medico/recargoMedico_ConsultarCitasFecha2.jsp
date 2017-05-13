@@ -38,11 +38,11 @@
                                 <%
                                     FacadeCita facCita = new FacadeCita();
                                     MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
-                                    int id_medico = med.getIdentificacion_med();                                                                       
+                                    int id = med.getIdentificacion();                                                                       
                                     
                                     String fecha = request.getParameter("fecha");
 
-                                    List<CitaDTO> doc = facCita.consultarCitasMedicoDia(id_medico, fecha);
+                                    List<CitaDTO> doc = facCita.consultarCitasMedicoDia(id, fecha);
 
                                     for (int i = 0; i < doc.size(); i++) {
 

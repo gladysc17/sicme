@@ -122,7 +122,7 @@
                     response.sendRedirect("../index.jsp");
                     return;
                 }
-                int id = med.getIdentificacion_med();
+                int id = med.getIdentificacion();
             %>
             <div class="col-md-3">
                 <div class="sidebar" style="background-color: gray; position: relative">
@@ -130,8 +130,8 @@
                         <div class="user-panel">
                             <div class="pull-left image"><img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"></div>
                             <div class="pull-left info">
-                                <p style="color: white"><%=med.getNombre_med()%></p>
-                                <p style="color: white" class="designation"><%=med.getServicio_med()%></p>
+                                <p style="color: white"><%=med.getNombre()%></p>
+                                <p style="color: white" class="designation"><%=med.getServicio()%></p>
                             </div>                        
                         </div>                                                                                               
                         <div align="center">

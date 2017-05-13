@@ -11,127 +11,124 @@ package DTO;
  */
 public class ServicioGeneralDTO {
     
-    private int identificacion_sg;
-    private String tipodocumentoid_sg;
-    private int codigo_sg;
-    private String nombre_sg;
-    private String correo_sg;
-    private String fechanacimiento_sg;
-    private String genero_sg;
-    private int edad_sg;
-    private String estadocivil_sg;
-    private String direccion_sg;
-    private String telefono_sg;
+    private int identificacion;
+    private String tipodocumentoid;
+    private int codigo;
+    private String nombre;
+    private String correo;
+    private String fechanacimiento;
+    private String genero;
+    private int edad;
+    private String estadocivil;
+    private String direccion;
+    private String telefono;
 
     public ServicioGeneralDTO() {
     }
 
-    public ServicioGeneralDTO(int identificacion_sg, String tipodocumentoid_sg, int codigo_sg, String nombre_sg, String correo_sg, String fechanacimiento_sg, String genero_sg, int edad_sg, String estadocivil_sg, String direccion_sg, String telefono_sg) {
-        this.identificacion_sg = identificacion_sg;
-        this.tipodocumentoid_sg = tipodocumentoid_sg;
-        this.codigo_sg = codigo_sg;
-        this.nombre_sg = nombre_sg;
-        this.correo_sg = correo_sg;
-        this.fechanacimiento_sg = fechanacimiento_sg;
-        this.genero_sg = genero_sg;
-        this.edad_sg = edad_sg;
-        this.estadocivil_sg = estadocivil_sg;
-        this.direccion_sg = direccion_sg;
-        this.telefono_sg = telefono_sg;
+    public ServicioGeneralDTO(int identificacion, String tipodocumentoid, int codigo, String nombre, String correo, String fechanacimiento, String genero, int edad, String estadocivil, String direccion, String telefono) {
+        this.identificacion = identificacion;
+        this.tipodocumentoid = tipodocumentoid;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.fechanacimiento = fechanacimiento;
+        this.genero = genero;
+        this.edad = edad;
+        this.estadocivil = estadocivil;
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
 
-    public int getIdentificacion_sg() {
-        return identificacion_sg;
+    public int getIdentificacion() {
+        return identificacion;
     }
 
-    public void setIdentificacion_sg(int identificacion_sg) {
-        this.identificacion_sg = identificacion_sg;
+    public void setIdentificacion(int identificacion) {
+        this.identificacion = identificacion;
     }
 
-    public String getTipodocumentoid_sg() {
-        return tipodocumentoid_sg;
+    public String getTipodocumentoid() {
+        return tipodocumentoid;
     }
 
-    public void setTipodocumentoid_sg(String tipodocumentoid_sg) {
-        this.tipodocumentoid_sg = tipodocumentoid_sg;
+    public void setTipodocumentoid(String tipodocumentoid) {
+        this.tipodocumentoid = tipodocumentoid;
     }
 
-    public int getCodigo_sg() {
-        return codigo_sg;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodigo_sg(int codigo_sg) {
-        this.codigo_sg = codigo_sg;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
-    public String getNombre_sg() {
-        return nombre_sg;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_sg(String nombre_sg) {
-        this.nombre_sg = nombre_sg;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCorreo_sg() {
-        return correo_sg;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setCorreo_sg(String correo_sg) {
-        this.correo_sg = correo_sg;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public String getFechanacimiento_sg() {
-        return fechanacimiento_sg;
+    public String getFechanacimiento() {
+        return fechanacimiento;
     }
 
-    public void setFechanacimiento_sg(String fechanacimiento_sg) {
-        this.fechanacimiento_sg = fechanacimiento_sg;
+    public void setFechanacimiento(String fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 
-    public String getGenero_sg() {
-        return genero_sg;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setGenero_sg(String genero_sg) {
-        this.genero_sg = genero_sg;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public int getEdad_sg() {
-        return edad_sg;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setEdad_sg(int edad_sg) {
-        this.edad_sg = edad_sg;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public String getEstadocivil_sg() {
-        return estadocivil_sg;
+    public String getEstadocivil() {
+        return estadocivil;
     }
 
-    public void setEstadocivil_sg(String estadocivil_sg) {
-        this.estadocivil_sg = estadocivil_sg;
+    public void setEstadocivil(String estadocivil) {
+        this.estadocivil = estadocivil;
     }
 
-    public String getDireccion_sg() {
-        return direccion_sg;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDireccion_sg(String direccion_sg) {
-        this.direccion_sg = direccion_sg;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTelefono_sg() {
-        return telefono_sg;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTelefono_sg(String telefono_sg) {
-        this.telefono_sg = telefono_sg;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "ServicioGeneralDTO{" + "identificacion_sg=" + identificacion_sg + ", tipodocumentoid_sg=" + tipodocumentoid_sg + ", codigo_sg=" + codigo_sg + ", nombre_sg=" + nombre_sg + ", correo_sg=" + correo_sg + ", fechanacimiento_sg=" + fechanacimiento_sg + ", genero_sg=" + genero_sg + ", edad_sg=" + edad_sg + ", estadocivil_sg=" + estadocivil_sg + ", direccion_sg=" + direccion_sg + ", telefono_sg=" + telefono_sg + '}';
-    }
+    
 
     
     

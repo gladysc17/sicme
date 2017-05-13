@@ -44,10 +44,10 @@
                                     
                                     for (int i = 0; i < otro.size(); i++) {
 
-                                        String nombre = otro.get(i).getNombre_otro();
-                                        int identf = otro.get(i).getIdentificacion_otro();                                        
-                                        int codigo = otro.get(i).getCodigo_otro();
-                                        String rol = otro.get(i).getRol_otro();
+                                        String nombre = otro.get(i).getNombre();
+                                        int identf = otro.get(i).getIdentificacion();                                        
+                                        int codigo = otro.get(i).getCodigo();
+                                        String rol = otro.get(i).getRol();
                                         
                                         int cantidad = i+1;
 

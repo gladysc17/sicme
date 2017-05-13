@@ -44,9 +44,9 @@
                                     
                                     for (int i = 0; i < prof.size(); i++) {
 
-                                        String nombre = prof.get(i).getNombre_prof();
-                                        int identf = prof.get(i).getIdentificacion_prof();                                        
-                                        int codigo = prof.get(i).getCodigo_prof();
+                                        String nombre = prof.get(i).getNombre();
+                                        int identf = prof.get(i).getIdentificacion();                                        
+                                        int codigo = prof.get(i).getCodigo();
                                         
                                         int cantidad = i+1;
 

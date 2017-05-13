@@ -34,7 +34,7 @@
             
             FacadeMedico facMed = new FacadeMedico();
             MedicoDTO med = facMed.consultarMedicoPorId(id_med);
-            String nombre_medico = med.getNombre_med();
+            String nombre_medico = med.getNombre();
             String tipo = request.getParameter("tipo");
                                                           
             String estado = "pendiente";
