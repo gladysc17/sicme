@@ -2,13 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="641ed272-2ec8-4bff-b67b-c4aae196939f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="970"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
+	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT * FROM HC_MEDICINAGENERAL HC 
 INNER JOIN CITA C ON HC.IDCITA_HCMED = C.ID_CITA 
-INNER JOIN ESTUDIANTE E ON C.ID_USUARIO = E.IDENTIFICACION_EST
+INNER JOIN $P{usuario} U ON C.ID_USUARIO = U.IDENTIFICACION
 WHERE HC.idcita_hcmed = $P{idcita}]]>
 	</queryString>
 	<field name="id_hcmed" class="java.lang.Integer"/>
@@ -59,18 +60,17 @@ WHERE HC.idcita_hcmed = $P{idcita}]]>
 	<field name="nombre_usuario" class="java.lang.String"/>
 	<field name="nombre_medico" class="java.lang.String"/>
 	<field name="tipousuario_cita" class="java.lang.String"/>
-	<field name="identificacion_est" class="java.lang.Integer"/>
-	<field name="tipodocumentoid_est" class="java.lang.String"/>
-	<field name="codigo_est" class="java.lang.Integer"/>
-	<field name="nombre_est" class="java.lang.String"/>
-	<field name="correo_est" class="java.lang.String"/>
-	<field name="fechanacimiento_est" class="java.lang.String"/>
-	<field name="edad_est" class="java.lang.Integer"/>
-	<field name="genero_est" class="java.lang.String"/>
-	<field name="estadocivil_est" class="java.lang.String"/>
-	<field name="direccion_est" class="java.lang.String"/>
-	<field name="telefono_est" class="java.lang.String"/>
-	<field name="programa_est" class="java.lang.String"/>
+	<field name="identificacion" class="java.lang.Integer"/>
+	<field name="tipodocumentoid" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="fechanacimiento" class="java.lang.String"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="estadocivil" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -103,34 +103,18 @@ WHERE HC.idcita_hcmed = $P{idcita}]]>
 				<reportElement x="10" y="17" width="98" height="15" uuid="ffcf0f5c-ef5b-40be-bd4e-9241e1ba130a"/>
 				<text><![CDATA[Nombre y Apellidos:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="108" y="17" width="130" height="15" uuid="78de674b-318a-4a11-a1a5-e8927c0a3011"/>
-				<textFieldExpression><![CDATA[$F{nombre_est}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="10" y="43" width="43" height="15" uuid="3d406205-e10e-4155-a475-65c7619863b5"/>
 				<text><![CDATA[Codigo:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="53" y="43" width="75" height="15" uuid="1e6e06c3-a8c1-418b-978e-fb198919bf40"/>
-				<textFieldExpression><![CDATA[$F{codigo_est}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="255" y="17" width="56" height="15" uuid="0e729096-8146-4c9a-91bc-356a22410ff3"/>
 				<text><![CDATA[Tipo de doc: ]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="311" y="17" width="112" height="15" uuid="1459ae2a-b891-416b-802c-7f9525824ed9"/>
-				<textFieldExpression><![CDATA[$F{tipodocumentoid_est}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="371" y="17" width="45" height="15" uuid="5c1d46ed-bede-4b1b-b21c-7cdb7e30f5c7"/>
 				<text><![CDATA[Núm Doc:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="416" y="17" width="128" height="15" uuid="e8232c89-b841-41f6-a397-c38f68158a56"/>
-				<textFieldExpression><![CDATA[$F{identificacion_est}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="133" y="43" width="26" height="15" uuid="7a95bd57-dfec-49a8-958d-2ce2585422c7"/>
 				<text><![CDATA[F.N: ]]></text>
@@ -148,44 +132,16 @@ WHERE HC.idcita_hcmed = $P{idcita}]]>
 				<text><![CDATA[Estado civil:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="148" y="68" width="49" height="15" uuid="0ead463c-4cb8-437c-ba45-65837f658adc"/>
+				<reportElement x="228" y="68" width="49" height="15" uuid="0ead463c-4cb8-437c-ba45-65837f658adc"/>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="68" width="43" height="15" uuid="999b0de0-0aca-4e46-938c-a52e084a5069"/>
 				<text><![CDATA[Correo:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="297" y="68" width="55" height="15" uuid="73036226-9a77-4c14-a160-4177acb6a0bd"/>
-				<text><![CDATA[Programa:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="159" y="43" width="69" height="15" uuid="50d37d77-73f2-49cf-b532-7de3a8c9c1f2"/>
-				<textFieldExpression><![CDATA[$F{fechanacimiento_est}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="272" y="43" width="71" height="15" uuid="f18f420a-8bb3-4da1-9dd4-86d19e062596"/>
-				<textFieldExpression><![CDATA[$F{edad_est}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="382" y="43" width="75" height="15" uuid="0072fb3c-304d-4d19-8baa-2f88a75231ba"/>
-				<textFieldExpression><![CDATA[$F{genero_est}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="511" y="43" width="44" height="15" uuid="8502b84a-f9ac-4cb4-8b30-f41120644aec"/>
-				<textFieldExpression><![CDATA[$F{estadocivil_est}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="53" y="68" width="75" height="15" uuid="b2e75ff9-9060-421c-8d95-7ad434a66c38"/>
-				<textFieldExpression><![CDATA[$F{correo_est}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="197" y="68" width="100" height="15" uuid="939a8eaa-379b-45e1-8b78-61c9fff04d2e"/>
-				<textFieldExpression><![CDATA[$F{direccion_est}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="352" y="68" width="100" height="15" uuid="5f85b284-a6ce-490b-af95-1755b94cddce"/>
-				<textFieldExpression><![CDATA[$F{programa_est}]]></textFieldExpression>
+				<reportElement x="108" y="17" width="100" height="15" uuid="0c64dc59-0beb-4670-9365-d4f2b2c1445a"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

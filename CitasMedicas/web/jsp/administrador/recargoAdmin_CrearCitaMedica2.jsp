@@ -50,18 +50,18 @@
             if (tipo.equals("estudiante")) {
                 FacadeEstudiante facEst = new FacadeEstudiante();
                 EstudianteDTO est = facEst.consultarEstudianteporId(id);
-                ide = est.getIdentificacion_est();
-                nombre = est.getNombre_est();
-                codigo = est.getCodigo_est();
+                ide = est.getIdentificacion();
+                nombre = est.getNombre();
+                codigo = est.getCodigo();
        
             }
 
             if (tipo.equals("docente")) {
                 FacadeDocente facDoc = new FacadeDocente();
                 DocenteDTO doc = facDoc.consultarDocenteporId(id);
-                ide = doc.getIdentificacion_doc();
-                nombre = doc.getNombre_doc();
-                codigo = doc.getCodigo_doc();
+                ide = doc.getIdentificacion();
+                nombre = doc.getNombre();
+                codigo = doc.getCodigo();
         
             }
 
@@ -69,36 +69,36 @@
 
                 NegocioMedico negMed = new NegocioMedico();
                 MedicoDTO med = negMed.consultarMedicoPorId(id);
-                ide = med.getIdentificacion_med();
-                nombre = med.getNombre_med();
-                codigo = med.getCodigo_med();
+                ide = med.getIdentificacion();
+                nombre = med.getNombre();
+                codigo = med.getCodigo();
         
             }
             if (tipo.equals("profesional")) {
 
                 NegocioProfesional negPro = new NegocioProfesional();
                 ProfesionalDTO pro = negPro.consultarProefionalPorId(id);
-                ide = pro.getIdentificacion_prof();
-                nombre = pro.getNombre_prof();
-                codigo = pro.getCodigo_prof();
+                ide = pro.getIdentificacion();
+                nombre = pro.getNombre();
+                codigo = pro.getCodigo();
        
             }
             if (tipo.equals("serviciogeneral")) {
 
                 NegocioServicioGeneral negSer = new NegocioServicioGeneral();
                 ServicioGeneralDTO ser = negSer.consultarServicioGeneralId(id);
-                ide = ser.getIdentificacion_sg();
-                nombre = ser.getNombre_sg();
-                codigo = ser.getCodigo_sg();
+                ide = ser.getIdentificacion();
+                nombre = ser.getNombre();
+                codigo = ser.getCodigo();
         
             }
             if (tipo.equals("otro")) {
 
                 NegocioOtroUsuario negOtro = new NegocioOtroUsuario();
                 OtroUsuarioDTO otro = negOtro.consultarOtroUsuarioId(id);
-                ide = otro.getIdentificacion_otro();
-                nombre = otro.getNombre_otro();
-                codigo = otro.getCodigo_otro();
+                ide = otro.getIdentificacion();
+                nombre = otro.getNombre();
+                codigo = otro.getCodigo();
         
             }
         %>

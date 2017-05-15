@@ -8,6 +8,7 @@ package FACADE;
 import DTO.HcPsicologiaDTO;
 import NEGOCIO.NegocioHcPsicologia;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,10 @@ public class FacadeHcPsicologia {
     
     public boolean registrarHcPsicologia(HcPsicologiaDTO hcpsico) throws SQLException {
         return new NegocioHcPsicologia().registrarHcPsicologia(hcpsico);
+    }
+    
+    public List<HcPsicologiaDTO> consultarHCMedicinaGeneral(int id_usuario) throws SQLException {
+        return new NegocioHcPsicologia().consultarHCPsicologia(id_usuario);
     }
     
 }

@@ -49,59 +49,32 @@ public class pdf_hcmedicinageneral extends HttpServlet {
         String id = request.getParameter("identf");
         String usuario = request.getParameter("usuario");
         String idecita = request.getParameter("idcita");
+        String servicio = request.getParameter("servicio");
 
-        System.out.println(" id " + id + " tipo " + usuario + " idcita " + idecita);
+        System.out.println(" id " + id + " tipo " + usuario + " idcita " + idecita + " servicio" + servicio);
 
         try {
             Map m = new HashMap();
-                    int idcita = Integer.parseInt(idecita);
-                    System.out.println(" idcita " + idcita);
-                    m.put("idcita", idcita);
-            
-            switch (usuario) {
-                case "estudiante":
-                    
-                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina_est.jasper"));
+            int idcita = Integer.parseInt(idecita);
+            System.out.println(" idcita " + idcita);
+            m.put("idcita", idcita);
+            m.put("usuario", usuario);
+
+            switch (servicio) {
+                case "medicinageneral":
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                     JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     viewer.setTitle("Mi Reporte");
                     viewer.setVisible(true);
                     break;
-                case "docente":
-                    JasperReport reporte2 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina_doc.jasper"));
-                    JasperPrint jasperPrint2 = JasperFillManager.fillReport(reporte2, m, co);
-                    JasperViewer viewer2 = new JasperViewer(jasperPrint2);
-                    viewer2.setTitle("Mi Reporte");
-                    viewer2.setVisible(true);
+                case "psicologia":
+                    JasperReport reporte1 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
+                    JasperPrint jasperPrint1 = JasperFillManager.fillReport(reporte1, m, co);
+                    JasperViewer viewer1 = new JasperViewer(jasperPrint1, false);
+                    viewer1.setTitle("Mi Reporte");
+                    viewer1.setVisible(true);
                     break;
-                case "profesional":
-                    JasperReport reporte3 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina_prof.jasper"));
-                    JasperPrint jasperPrint3 = JasperFillManager.fillReport(reporte3, m, co);
-                    JasperViewer viewer3 = new JasperViewer(jasperPrint3);
-                    viewer3.setTitle("Mi Reporte");
-                    viewer3.setVisible(true);
-                    break;
-                case "otrousuario":
-                    JasperReport reporte4 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina_otro.jasper"));
-                    JasperPrint jasperPrint4 = JasperFillManager.fillReport(reporte4, m, co);
-                    JasperViewer viewer4 = new JasperViewer(jasperPrint4);
-                    viewer4.setTitle("Mi Reporte");
-                    viewer4.setVisible(true);
-                    break;
-                case "medico":
-                    JasperReport reporte5 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina_med.jasper"));
-                    JasperPrint jasperPrint5 = JasperFillManager.fillReport(reporte5, m, co);
-                    JasperViewer viewer5 = new JasperViewer(jasperPrint5);
-                    viewer5.setTitle("Mi Reporte");
-                    viewer5.setVisible(true);
-                    break;
-                case "serviciogeneral":
-                    JasperReport reporte6 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina_sg.jasper"));
-                    JasperPrint jasperPrint6 = JasperFillManager.fillReport(reporte6, m, co);
-                    JasperViewer viewer6 = new JasperViewer(jasperPrint6);
-                    viewer6.setTitle("Mi Reporte");
-                    viewer6.setVisible(true);
-                    break;                                                      
             }
 
         } catch (JRException ex) {

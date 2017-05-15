@@ -73,13 +73,41 @@
                                 <td><%=fecha%></td>
                                 <td><%=hora%></td>  
                                 <td> <input type="radio" name="idcita" id="idcita" value="<%=idcita%>" required> <button type="submit">Ver</button>  </td> 
-                                
+
                             </tr> 
                             <%
-                                    }
-                                } else if (servicio.equals("psicologia")) {
-
                                 }
+                            } else if (servicio.equals("psicologia")) {
+                                FacadeHcPsicologia fac = new FacadeHcPsicologia();                                        
+                                List<HcPsicologiaDTO> hc = fac.consultarHCMedicinaGeneral(id);
+
+                                for (int i = 0; i < hc.size(); i++) {
+
+                                    FacadeCita fc = new FacadeCita();
+                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    CitaDTO ci = fc.consultarCitasId(idcita);
+
+                                    String nombre = ci.getNombre_usuario();
+                                    String fecha = ci.getFecha_cita();
+                                    String hora = ci.getHora_cita();
+
+                                    System.out.println("idcitaderecargo: " + idcita);
+                            %>
+
+                            <input type="hidden" >    
+                            <tr  role="row" class="odd">                                     
+                                <td class="sorting_asc"><%=nombre%></td>
+                                <td><%=servicio%></td>
+                                <td><%=fecha%></td>
+                                <td><%=hora%></td>  
+                                <td> <input type="radio" name="idcita" id="idcita" value="<%=idcita%>" required> <button type="submit">Ver</button>  </td> 
+
+                            </tr> 
+                            <%
+                                }}
+                                
+                                else if (servicio.equals("odontologia")) {
+                            }
                             %>
 
                             </tbody>    

@@ -9,6 +9,8 @@ import DAO.HcPsicologiaDAO;
 import DTO.HcPsicologiaDTO;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ConexionPostgres;
@@ -45,6 +47,34 @@ public class NegocioHcPsicologia {
             }
         }
         return rta;
+    }
+    
+    public List<HcPsicologiaDTO> consultarHCPsicologia(int id_usuario) throws SQLException {
+        
+        List<HcPsicologiaDTO> listaHisC = new ArrayList<HcPsicologiaDTO>();
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        HcPsicologiaDAO psico = new HcPsicologiaDAO(co);        
+        
+        try {
+
+            listaHisC = psico.consultarHcPsicologia(id_usuario);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioHcMedicinaGeneral.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHcMedicinaGeneral.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return listaHisC;
     }
     
 }
