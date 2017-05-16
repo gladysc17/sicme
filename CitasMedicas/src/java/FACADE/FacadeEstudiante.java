@@ -27,15 +27,15 @@ public class FacadeEstudiante {
         return new NegocioEstudiante().registrarEstudiante(est);
     }
     
-    public EstudianteDTO consultarEstudianteporId(int id){
-        return new NegocioEstudiante().consultarEstudianteId(id);
-    }
-    
-    public List<EstudianteDTO> consultarEstudiantes() throws SQLException{
-        return new NegocioEstudiante().listarEstudiantes();
-    }
-    
-     public boolean modificarEstudiante(int  identificacion_est, String correo_est, String fechanac_est, String genero_est, String estadocivil_est, String direccion_est, String telefono_est) throws SQLException{
-        return new NegocioEstudiante().modificarEstudiante(identificacion_est, correo_est, fechanac_est, genero_est, estadocivil_est, direccion_est, telefono_est);
-    }
+//    public EstudianteDTO consultarEstudianteporId(int id){
+//        return new NegocioEstudiante().consultarEstudianteId(id);
+//    }
+//    
+//    public List<EstudianteDTO> consultarEstudiantes() throws SQLException{
+//        return new NegocioEstudiante().listarEstudiantes();
+//    }
+//    
+//     public boolean modificarEstudiante(int  identificacion_est, String correo_est, String fechanac_est, String genero_est, String estadocivil_est, String direccion_est, String telefono_est) throws SQLException{
+//        return new NegocioEstudiante().modificarEstudiante(identificacion_est, correo_est, fechanac_est, genero_est, estadocivil_est, direccion_est, telefono_est);
+//    }
 }

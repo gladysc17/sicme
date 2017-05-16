@@ -5,9 +5,10 @@
  */
 package NEGOCIO;
 
-import DAO.OtroUsuarioDAO;
-import DTO.OtroUsuarioDTO;
+import DAO.UsuarioDAO;
+import DTO.UsuarioDTO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,33 +20,33 @@ import util.ConexionPostgres;
  *
  * @author Gladys M
  */
-public class NegocioOtroUsuario {
+public class NegocioUsuario {
     
-    public boolean registrarOtroUsuario(OtroUsuarioDTO otro) {
+    public boolean registrarUsuario(UsuarioDTO usuario) {
 
         boolean resultado = false;
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
-        OtroUsuarioDAO otr = new OtroUsuarioDAO(co);
+        UsuarioDAO otr = new UsuarioDAO(co);
 
         try {
-            OtroUsuarioDTO otroU = otr.consultarOtroPorIdCodigo(otro.getIdentificacion(), otro.getCodigo());
+            UsuarioDTO otroU = otr.consultarUsuarioPorIdCodigo(usuario.getIdentificacion(), usuario.getCodigo());
             if (otroU == null) {
-                return resultado = otr.registrarOtroUsuario(otro);
+                return resultado = otr.registrarUsuario(usuario);
             } else {
                 return false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(NegocioOtroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(NegocioOtroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
 
                 }
             }
@@ -53,14 +54,14 @@ public class NegocioOtroUsuario {
         return resultado;
 
     }
-     public OtroUsuarioDTO consultarOtroUsuarioId(int id) {
+     public UsuarioDTO consultarUsuarioId(int id) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-         OtroUsuarioDAO ou = new OtroUsuarioDAO(co);
+         UsuarioDAO ou = new UsuarioDAO(co);
 
         try {
-             return ou.consultarOtroUsuarioPorId(id);
+             return ou.consultarUsuarioPorId(id);
         } catch (SQLException ex) {
             Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -81,10 +82,10 @@ public class NegocioOtroUsuario {
          boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-         OtroUsuarioDAO ou = new OtroUsuarioDAO(co);
+         UsuarioDAO ou = new UsuarioDAO(co);
 
         try {
-             OtroUsuarioDTO otro = ou.consultarOtroUsuarioPorId(id);
+             UsuarioDTO otro = ou.consultarUsuarioPorId(id);
              return otro != null;
              
         } catch (SQLException ex) {
@@ -102,14 +103,14 @@ public class NegocioOtroUsuario {
         return rta;
     }
      
-    public OtroUsuarioDTO consultarOtroUsuarioIdCodigo (int id, int codigo) {
+    public UsuarioDTO consultarUsuarioIdCodigo (String id, String codigo) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        OtroUsuarioDAO ou = new OtroUsuarioDAO(co);
+        UsuarioDAO ou = new UsuarioDAO(co);
 
         try {
-             return ou.consultarOtroPorIdCodigo(id, codigo);
+             return ou.consultarUsuarioPorIdCodigo(id, codigo);
         } catch (SQLException ex) {
             Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -126,17 +127,17 @@ public class NegocioOtroUsuario {
     }
     
      
-     public List<OtroUsuarioDTO> listarOtrosUsuarios() throws SQLException{
+     public List<UsuarioDTO> listarOtrosUsuarios() throws SQLException{
       
            
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         
-        List<OtroUsuarioDTO> otros = new ArrayList<OtroUsuarioDTO>();
-        OtroUsuarioDAO otro = new OtroUsuarioDAO(co);
+        List<UsuarioDTO> otros = new ArrayList<UsuarioDTO>();
+        UsuarioDAO otro = new UsuarioDAO(co);
         
         try{
-            otros = otro.consultarOtrosUsuarios();
+            otros = otro.consultarUsuarios();
         } catch(Exception e){
             e.printStackTrace();
         } finally {
@@ -145,20 +146,20 @@ public class NegocioOtroUsuario {
         return (otros);
     }
     
-    public boolean modificarOtroUsuario(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
+    public boolean modificarUsuario(String identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
-        OtroUsuarioDAO est = new OtroUsuarioDAO(co);
+        UsuarioDAO est = new UsuarioDAO(co);
 
         try {
             
-            rta = est.modificarOtroUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono);
+            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono);
 
         } catch (SQLException ex) {
-            Logger.getLogger(NegocioOtroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
 
@@ -166,11 +167,35 @@ public class NegocioOtroUsuario {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(NegocioOtroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
 
         return rta;
+    }
+    
+    public int calcularEdad (String fecha) {
+        
+        int edad = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        UsuarioDAO ou = new UsuarioDAO(co);
+
+        try {
+             edad = ou.calcularedad(fecha);
+        } catch (SQLException ex) {
+            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return edad;
     }
 }

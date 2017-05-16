@@ -44,20 +44,14 @@ public class MedicoDTO {
         this.servicio = servicio;
     }
 
+      
+
     public int getIdentificacion() {
         return identificacion;
     }
 
     public void setIdentificacion(int identificacion) {
         this.identificacion = identificacion;
-    }
-
-    public String getTipodocumentoid() {
-        return tipodocumentoid;
-    }
-
-    public void setTipodocumentoid(String tipodocumentoid) {
-        this.tipodocumentoid = tipodocumentoid;
     }
 
     public int getCodigo() {
@@ -82,6 +76,38 @@ public class MedicoDTO {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getTipodocumentoid() {
+        return tipodocumentoid;
+    }
+
+    public void setTipodocumentoid(String tipodocumentoid) {
+        this.tipodocumentoid = tipodocumentoid;
     }
 
     public String getFechanacimiento() {
@@ -123,30 +149,12 @@ public class MedicoDTO {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public String getTelefono() {
-        return telefono;
+    
+    
+@Override
+    public String toString() {
+        return "MedicoDTO{" + "identificacion=" + identificacion + ", codigo=" + codigo + ", nombre=" + nombre + ", correo=" + correo + ", telefono=" + telefono + ", servicio=" + servicio + '}';
     }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public String getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
-    }
-
-      
+    
+    
 }

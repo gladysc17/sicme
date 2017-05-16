@@ -66,12 +66,9 @@ public class NegocioMedico {
         MedicoDAO medi = new MedicoDAO(co);
 
         try {
-            MedicoDTO medico = medi.consultarMedicoPorIdCodigo(med.getIdentificacion(), med.getCodigo());
-            if (medico == null) {
+           
                 return resultado = medi.registrarMedico(med);
-            } else {
-                return false;
-            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
 

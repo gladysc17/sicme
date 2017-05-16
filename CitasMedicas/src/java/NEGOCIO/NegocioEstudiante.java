@@ -37,13 +37,9 @@ public class NegocioEstudiante {
 
         EstudianteDAO estudiante = new EstudianteDAO(co);
 
-        try {
-            EstudianteDTO estud = estudiante.consultarEstudiantePorIdCodigo(est.getIdentificacion(), est.getCodigo());
-            if (estud == null) {
-                return resultado = estudiante.registrarEstudiante(est);
-            } else {
-                return false;
-            }
+        try {                        
+            return resultado = estudiante.registrarEstudiante(est);
+           
         } catch (SQLException ex) {
             Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -59,126 +55,6 @@ public class NegocioEstudiante {
         }
         return resultado;
 
-    }
-
-    public EstudianteDTO consultarEstudianteId(int id) {
-
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-        EstudianteDAO est = new EstudianteDAO(co);
-
-        try {
-            return est.consultarEstudiantePorId(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return null;
-    }
-
-    public boolean consultarEstudianteIdBoolean(int id) {
-
-        boolean rta = false;
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-        EstudianteDAO est = new EstudianteDAO(co);
-
-        try {
-            EstudianteDTO estudiante = est.consultarEstudiantePorId(id);
-
-            return estudiante != null;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return rta;
-    }
-
-    public EstudianteDTO consultarEstudianteIdCodigo(int id, int codigo) {
-
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-        EstudianteDAO est = new EstudianteDAO(co);
-
-        try {
-            return est.consultarEstudiantePorIdCodigo(id, codigo);
-        } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return null;
-    }
-
-    public List<EstudianteDTO> listarEstudiantes() throws SQLException {
-
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-
-        List<EstudianteDTO> prof = new ArrayList<EstudianteDTO>();
-        EstudianteDAO p = new EstudianteDAO(co);
-
-        try {
-            prof = p.consultarEstudiantes();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            co.close();
-        }
-        return (prof);
-    }
-    
-    public boolean modificarEstudiante(int identificacion, String correo, String fechanac, String genero, String estadocivil, String direccion, String telefono) throws SQLException {
-
-        boolean rta = false;
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-
-        EstudianteDAO est = new EstudianteDAO(co);
-
-        try {
-            
-            rta = est.modificarEstudiante(identificacion, correo, fechanac, genero, estadocivil, direccion, telefono);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
-        return rta;
-    }
+    }   
 
 }
