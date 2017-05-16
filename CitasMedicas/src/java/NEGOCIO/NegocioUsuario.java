@@ -175,7 +175,7 @@ public class NegocioUsuario {
         return rta;
     }
     
-    public int calcularEdad (String fecha) {
+    public int calcularEdad (Date fecha) {
         
         int edad = 0;
         ConexionPostgres con = new ConexionPostgres();

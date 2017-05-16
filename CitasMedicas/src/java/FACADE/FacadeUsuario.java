@@ -35,7 +35,7 @@ public class FacadeUsuario {
         return new NegocioUsuario().modificarUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro);
         
     }
-     public int calcularEdad(String fecha){
+     public int calcularEdad(Date fecha){
         return new NegocioUsuario().calcularEdad(fecha);
     }
 }

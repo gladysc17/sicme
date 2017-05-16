@@ -176,15 +176,15 @@ public class UsuarioDAO {
 
     }
 
-    public int calcularedad(String fecha) throws SQLException {
+    public int calcularedad(Date fecha) throws SQLException {
         
         int edad =0;
 
-        String sql = "select (current_date - ? )/365";
+        String sql = "select (current_date - ? )/365 AS edad";
 
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setString(1, fecha);
+        ps.setDate(1, fecha);
         
         ResultSet rs = ps.executeQuery();
         

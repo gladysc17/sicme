@@ -34,8 +34,8 @@
             String fechanacimiento = request.getParameter("fechanacimiento");            
             String genero = request.getParameter("genero");
             
-           
-            int edad = fac.calcularEdad(fechanacimiento);
+           java.sql.Date fecha=java.sql.Date.valueOf(fechanacimiento);
+            int edad = fac.calcularEdad(fecha);
             System.out.println("edadprocesar "+edad);
             String estadocivil = request.getParameter("estadocivil");
             String direccion = request.getParameter("direccion");
