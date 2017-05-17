@@ -8,31 +8,30 @@
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="FACADE.FacadeHorarioMedico"%>
-<%@page import="FACADE.FacadeProfesional"%>
-<%@page import="DTO.ProfesionalDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FACADE.FacadeCita"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>      
-                <%
-                    String servicio = request.getParameter("servicio");
-                    String tipo = request.getParameter("tipo");
 
-                    FacadeMedico facMed = new FacadeMedico();
-                    
-                    ArrayList<MedicoDTO> listaMedicos = facMed.consultarMedicosPorServicio(servicio);
+        <%
+            String servicio = request.getParameter("servicio");            
 
-                    for (int i = 0; i < listaMedicos.size(); i++) {
+            FacadeMedico facMed = new FacadeMedico();
 
-                        String nombre = listaMedicos.get(i).getNombre();
-                        int id = listaMedicos.get(i).getIdentificacion();
+            ArrayList<MedicoDTO> listaMedicos = facMed.consultarMedicosPorServicio(servicio);
+
+            for (int i = 0; i < listaMedicos.size(); i++) {
+
+                String nombremed = listaMedicos.get(i).getNombre();
+                int idmed = listaMedicos.get(i).getIdentificacion();
 
 
-                %>    
+        %>    
 
-                <option value="<%=id%>"><%=nombre%> </option>                                  
+        <option value="<%=idmed%>"><%=nombremed%> </option>                                  
 
-                <%
-                    }
+        <%
+            }
 
-                %>           
+        %> 
+      

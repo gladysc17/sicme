@@ -53,13 +53,13 @@ public class UsuarioDAO {
 
     }
 
-    public UsuarioDTO consultarUsuarioPorId(int id) throws SQLException {
+    public UsuarioDTO consultarUsuarioPorId(String id) throws SQLException {
 
         String sql = "SELECT * FROM usuario WHERE identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, id);
+        ps.setString(1, id);
 
         ResultSet rs = ps.executeQuery();
 
@@ -155,7 +155,7 @@ public class UsuarioDAO {
 
     }
 
-    public boolean modificarUsuario(String identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException {
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException {
 
         String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ? "
                 + "WHERE  identificacion = ?";
@@ -163,7 +163,7 @@ public class UsuarioDAO {
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, correo);
-        ps.setString(2, fechanacimiento);
+        ps.setDate(2, fechanacimiento);
         ps.setString(3, genero);
         ps.setString(4, estadocivil);
         ps.setString(5, direccion);

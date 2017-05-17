@@ -54,7 +54,7 @@ public class NegocioUsuario {
         return resultado;
 
     }
-     public UsuarioDTO consultarUsuarioId(int id) {
+     public UsuarioDTO consultarUsuarioId(String id) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -77,7 +77,7 @@ public class NegocioUsuario {
         return null;
     }
      
-      public boolean consultarOtroUsuarioIdBoolean(int id) {
+      public boolean consultarOtroUsuarioIdBoolean(String id) {
 
          boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -146,7 +146,7 @@ public class NegocioUsuario {
         return (otros);
     }
     
-    public boolean modificarUsuario(String identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();

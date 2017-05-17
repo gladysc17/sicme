@@ -4,9 +4,9 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="java.util.List"%>
-<%@page import="DTO.OtroUsuarioDTO"%>
-<%@page import="FACADE.FacadeOtrosUsuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
         <div class="col-md-10 col-sm-12">                           
             <div class="panel panel-default">
                 <div class="panel-heading">                                        
-                    <h4 align="center"> LISTA DE OTROS USUARIOS REGISTRADOS EN EL SISTEMA</h4>
+                    <h4 align="center"> LISTA DE USUARIOS REGISTRADOS EN EL SISTEMA</h4>
                 </div>
 
                 <div class="panel-body">
@@ -38,16 +38,16 @@
                             </thead>
                             <tbody>
                                 <%
-                                    FacadeOtrosUsuarios facOtro = new FacadeOtrosUsuarios();
+                                    FacadeUsuario facOtro = new FacadeUsuario();
 
-                                    List<OtroUsuarioDTO> otro = facOtro.consultarOtros();
+                                    List<UsuarioDTO> otro = facOtro.consultarUsuarios();
                                     
                                     for (int i = 0; i < otro.size(); i++) {
 
                                         String nombre = otro.get(i).getNombre();
-                                        int identf = otro.get(i).getIdentificacion();                                        
-                                        int codigo = otro.get(i).getCodigo();
-                                        String rol = otro.get(i).getRol();
+                                        String identf = otro.get(i).getIdentificacion();                                        
+                                        String codigo = otro.get(i).getCodigo();
+                                        String tipo = otro.get(i).getTipo_usuario();
                                         
                                         int cantidad = i+1;
 
@@ -58,9 +58,9 @@
                                     <td class="sorting_asc" style="height: 5px"><%=nombre%></td>
                                     <td><%=identf%></td>
                                     <td><%=codigo%></td>
-                                    <td><%=rol%></td>
+                                    <td><%=tipo%></td>
                                     <td> Informe</td> 
-                                    <td><input type="submit" class="btn btn-default" value="Datos" onclick="cargarForm('administrador/recargoAdmin_ModificarOtroUsuario.jsp?ident=<%=identf%>')"> </td>
+                                    <td><input type="submit" class="btn btn-default" value="Datos" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident=<%=identf%>')"> </td>
                                 </tr> 
                                 <%
                                     }

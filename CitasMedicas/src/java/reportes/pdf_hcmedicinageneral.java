@@ -47,35 +47,21 @@ public class pdf_hcmedicinageneral extends HttpServlet {
         Connection co = con.getconexion();
 
         String id = request.getParameter("identf");
-        String usuario = request.getParameter("usuario");
-        String idecita = request.getParameter("idcita");
         String servicio = request.getParameter("servicio");
+        String idecita = request.getParameter("idcita");
 
-        System.out.println(" id " + id + " tipo " + usuario + " idcita " + idecita + " servicio" + servicio);
 
         try {
             Map m = new HashMap();
             int idcita = Integer.parseInt(idecita);
-            System.out.println(" idcita " + idcita);
+            System.out.println(" idcita pdf " + idcita);
             m.put("idcita", idcita);
-            m.put("usuario", usuario);
-
-            switch (servicio) {
-                case "medicinageneral":
+                    
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    JasperViewer viewer = new JasperViewer(jasperPrint);
                     viewer.setTitle("Mi Reporte");
-                    viewer.setVisible(true);
-                    break;
-                case "psicologia":
-                    JasperReport reporte1 = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
-                    JasperPrint jasperPrint1 = JasperFillManager.fillReport(reporte1, m, co);
-                    JasperViewer viewer1 = new JasperViewer(jasperPrint1, false);
-                    viewer1.setTitle("Mi Reporte");
-                    viewer1.setVisible(true);
-                    break;
-            }
+                    viewer.setVisible(true);                                                         
 
         } catch (JRException ex) {
             Logger.getLogger(pdf_hcmedicinageneral.class.getName()).log(Level.SEVERE, null, ex);

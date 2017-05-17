@@ -42,33 +42,23 @@ public class Negocio {
         
         boolean rta = false;
         NegocioEstudiante negEst = new NegocioEstudiante();
-        NegocioDocente negDoc = new NegocioDocente();
         NegocioUsuario negOtro = new NegocioUsuario();
         NegocioMedico negMed = new NegocioMedico();  
-        NegocioProfesional negPro = new NegocioProfesional();
-        NegocioServicioGeneral negSer = new NegocioServicioGeneral();
+
         
-//        if(tipo.equals("estudiante")){
-//            return negEst.consultarEstudianteIdBoolean(id);
+////        if(tipo.equals("estudiante")){
+////            return negEst.consultarEstudianteIdBoolean(id);
 //        }
-        if (tipo.equals("docente")){
-            return negDoc.consultarDocentePorIdBoolean(id);
-        }
-        if(tipo.equals("otro")){
-            return negOtro.consultarOtroUsuarioIdBoolean(id);
-        }
+//
+//        if(tipo.equals("otro")){
+//            return negOtro.consultarOtroUsuarioIdBoolean(id);
+//        }
 //        if(tipo.equals("medico")){
 //            return negMed.consultarMedicoPorIdBoolean(id);
 //            
 //        }
-        if(tipo.equals("profesional")){
-            return negPro.consultarProfesionalPorIdBoolean(id);
-        }
-        if(tipo.equals("serviciogeneral")){
-            return negSer.consultarServicioGeneralIdBoolean(id);
-        }
-        
-        
+//        
+//        
         return rta;
     }
 }

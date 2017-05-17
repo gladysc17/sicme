@@ -4,7 +4,7 @@
     Author     : Gladys M
 --%>
 
-<%@page import="FACADE.FacadeOtrosUsuarios"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,16 +14,17 @@
     </head>
     <body>
         <%
-            int identificacion_otro = Integer.parseInt(request.getParameter("identificacion"));             
+            String identificacion_otro = request.getParameter("identificacion");             
             String correo_otro = request.getParameter("correo");
-            String fechanacimiento_otro = request.getParameter("fechanacimiento");
+            String fechanacimiento = request.getParameter("fechanacimiento");
+            java.sql.Date fecha=java.sql.Date.valueOf(fechanacimiento);
             String genero_otro = request.getParameter("genero");
             String estadocivil_otro = request.getParameter("estadocivil");
             String direccion_otro = request.getParameter("direccion");
             String telefono_otro = request.getParameter("telefono");
             
-            FacadeOtrosUsuarios facOtro = new FacadeOtrosUsuarios();
-            boolean rta = facOtro.modificarOtroUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro);
+            FacadeUsuario facOtro = new FacadeUsuario();
+            boolean rta = facOtro.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro);
            
 
             if (rta == true) {

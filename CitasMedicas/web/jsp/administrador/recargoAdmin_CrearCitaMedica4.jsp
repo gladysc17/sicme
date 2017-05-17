@@ -27,10 +27,10 @@
             <div class="col-sm-6">
                 <select class="form-control" name="hora" id="hora" required="" >
                     <%
-                        int id = Integer.parseInt(request.getParameter("prof"));
+                        int id = Integer.parseInt(request.getParameter("idmed"));
                         String fecha = request.getParameter("fecha");
                         String servicio = request.getParameter("servicio");
-                        String tipo = request.getParameter("tipo");
+                        String tipou = request.getParameter("tipou");
                         
                         FacadeHorario fachm = new FacadeHorario();
 
@@ -61,7 +61,9 @@
             </div>
                 
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" onclick="procesar('../controlador/procesarCrearCita?idprof=' + id.value + '&fecha='+fecha.value + '&hora='+hora.value +'&servicio='+servicio.value + '&idHora='+idHora.value)">  CREAR CITA </button>
+                <button type="submit" class="btn btn-primary form-control" onclick="procesar('../controlador/procesarCrearCita?idprof=' + id.value + '&fecha='+fecha.value + '&hora='+hora.value +'&servicio='+servicio.value + '&idHora='+idHora.value + '&tipou='+ tipou.value)">  CREAR CITA </button>
             </div>
+            
+    </form>
     </body>
 </html>

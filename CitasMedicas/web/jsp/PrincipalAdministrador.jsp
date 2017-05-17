@@ -151,8 +151,8 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <h5 class="card-title"> Consultar Usuario </h5>
-                                    <img src="../img/even.jpg" alt="" width="50" height="50"/>                                   
-                                    <input type="button" class="btn btn-sm" value="Consulta" onclick="cargarForm('administrador/recargoAdmin_ConsultarEventos.jsp?ideadmin=' +<%=idadmin%>)"/>
+                                    <img src="../img/est.jpg" alt="" width="50" height="50"/>                                  
+                                    <input type="button" class="btn btn-sm" value="Consulta" onclick="cargarForm('administrador/recargoAdmin_ListarUsuarios.jsp')"/>
                                 </div>
                             </div>
                         </div>                                                                    

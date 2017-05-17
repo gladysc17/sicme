@@ -8,7 +8,6 @@
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.CitaDTO"%>
-<%@page import="DTO.ProfesionalDTO"%>
 <%@page import="DTO.EstudianteDTO"%>
 <%@page import="FACADE.FacadeCita"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,7 +34,7 @@
             FacadeMedico facMed = new FacadeMedico();
             MedicoDTO med = facMed.consultarMedicoPorId(id_med);
             String nombre_medico = med.getNombre();
-            String tipo = request.getParameter("tipo");
+            String tipou = request.getParameter("tipou");
                                                           
             String estado = "pendiente";
 
@@ -43,14 +42,15 @@
 
             FacadeCita fc = new FacadeCita();
 
-            CitaDTO cita = new CitaDTO(servicio, recibo, fecha, hora, id_usuario, id_med, estado, nombre_usuario, nombre_medico, tipo);
+            CitaDTO cita = new CitaDTO(servicio, recibo, fecha, hora, id_usuario, id_med, estado, nombre_usuario, nombre_medico, tipou);
 
             boolean rta = fc.registrarCita(cita);
 
             if (rta == true) {
                 FacadeHorario fac = new FacadeHorario();
                         boolean rt2 = fac.cambiarEstadoHora(id_med, fecha, idHora);
-                System.out.println("CREO LA CITA");
+                        
+                        System.out.println("CREO LA CITA");
         %>
         <script>
             alert("CREO LA CITA");
@@ -68,3 +68,4 @@
         %>
     </body>
 </html>
+

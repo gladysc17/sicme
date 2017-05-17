@@ -4,12 +4,11 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
-	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT * FROM HC_MEDICINAGENERAL HC 
 INNER JOIN CITA C ON HC.IDCITA_HCMED = C.ID_CITA 
-INNER JOIN $P{usuario} U ON C.ID_USUARIO = U.IDENTIFICACION
+INNER JOIN USUARIO U ON C.ID_USUARIO = U.IDENTIFICACION
 WHERE HC.idcita_hcmed = $P{idcita}]]>
 	</queryString>
 	<field name="id_hcmed" class="java.lang.Integer"/>
@@ -54,23 +53,24 @@ WHERE HC.idcita_hcmed = $P{idcita}]]>
 	<field name="num_recibo_cita" class="java.lang.String"/>
 	<field name="fecha_cita" class="java.sql.Date"/>
 	<field name="hora_cita" class="java.sql.Time"/>
-	<field name="id_usuario" class="java.lang.Integer"/>
 	<field name="id_medico" class="java.lang.Integer"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="nombre_usuario" class="java.lang.String"/>
 	<field name="nombre_medico" class="java.lang.String"/>
 	<field name="tipousuario_cita" class="java.lang.String"/>
-	<field name="identificacion" class="java.lang.Integer"/>
-	<field name="tipodocumentoid" class="java.lang.String"/>
-	<field name="codigo" class="java.lang.Integer"/>
+	<field name="id_usuario" class="java.lang.String"/>
+	<field name="identificacion" class="java.lang.String"/>
+	<field name="tipo_identificacion" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="correo" class="java.lang.String"/>
-	<field name="fechanacimiento" class="java.lang.String"/>
-	<field name="genero" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
 	<field name="edad" class="java.lang.Integer"/>
-	<field name="estadocivil" class="java.lang.String"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="estado_civil" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
+	<field name="tipo_usuario" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

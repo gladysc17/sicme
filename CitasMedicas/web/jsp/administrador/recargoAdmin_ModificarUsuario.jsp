@@ -4,8 +4,8 @@
     Author     : Gladys M
 --%>
 
-<%@page import="DTO.OtroUsuarioDTO"%>
-<%@page import="FACADE.FacadeOtrosUsuarios"%>
+<%@page import="FACADE.FacadeUsuario"%>
+<%@page import="DTO.UsuarioDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,16 +24,16 @@
                 <div class="panel-body">  
                      <form action="../controlador/procesarModificarOtroUsuario.jsp" method="post">
                         <%
-                            int id = Integer.parseInt(request.getParameter("ident"));
-                            System.out.println("ide otrousuario mod : "+id);
-                            FacadeOtrosUsuarios fotro = new FacadeOtrosUsuarios();
+                            String id = request.getParameter("ident");
+
+                            FacadeUsuario fotro = new FacadeUsuario();
                                     
-                            OtroUsuarioDTO otro = fotro.consultarOtroUsuarioPorId(id);
+                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);
                         %>
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Tipo Identificación: </label>
-                                <input class="form-control" id="tipoid" name="tipoid" value="<%=otro.getTipodocumentoid()%>" readonly>
+                                <input class="form-control" id="tipoid" name="tipoid" value="<%=otro.getTipo_identificacion()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Identificación</label>
@@ -51,31 +51,34 @@
                                 <input type="text" class="form-control" id="nombre" name="nombre" value="<%=otro.getNombre()%>" readonly>
                             </div>
                             <div class="col-sm-6">
-                                <label class="control-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%=otro.getCorreo()%>">
+                                <label class="control-label"> Tipo Usuario: </label>
+                                <input type="text" class="form-control" id="tipo" name="tipo" value="<%=otro.getTipo_usuario()%>" readonly>
                             </div>
+                            
                         </div>
                         
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
-                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=otro.getFechanacimiento()%>">
+                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=otro.getFecha_nacimiento()%>">
                             </div>
-                            <div class="col-sm-4">
-                                <label class="control-label">Edad: </label>
-                                <input type="number" class="form-control" id="edad" name="edad" value="<%=otro.getEdad()%>" readonly> 
-                            </div>
+                         
                             <div class="col-sm-4">
                                 <label class="control-label">Género: </label>
                                 <input type="text" class="form-control" id="genero" name="genero" value="<%=otro.getGenero()%>">
-                            </div>                                                        
-                        </div>
-
-                        <div class="form-group">   
+                            </div>   
                             <div class="col-sm-4">
                                 <label class="control-label">Estado civil: </label>
-                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=otro.getEstadocivil()%>" >
+                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=otro.getEstado_civil()%>" >
                             </div>
+                        </div>
+
+                        <div class="form-group">  
+                            <div class="col-sm-4">
+                                <label class="control-label">Correo Electrónico:</label>
+                                <input type="email" class="form-control" id="correo" name="correo" value="<%=otro.getCorreo()%>">
+                            </div>
+                            
                             <div class="col-sm-4">
                                 <label class="control-label">Dirección: </label>
                                 <input type="text" class="form-control" id="direccion" name="direccion" value="<%=otro.getDireccion()%>" >

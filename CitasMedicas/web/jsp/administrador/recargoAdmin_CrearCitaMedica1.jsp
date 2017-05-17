@@ -25,24 +25,16 @@
 
                         <div class="form-group">
                             <label for="" class="control-label"> Identificación: </label>
-                            <input type="number" id="identf" name="identf"> &nbsp;&nbsp;&nbsp;
-                            <label for="" class="control-label"> Tipo Usuario </label>
-                            <select id="tipo" name="tipo" required="">
-                                <option value="estudiante"> Estudiante </option>
-                                <option value="docente"> Docente </option>
-                                <option value="medico"> Medico </option>
-                                <option value="profesional"> Profesional </option>
-                                <option value="serviciogeneral"> Servicio General </option>
-                                <option value="otro"> Otro </option>
-                            </select>
+                            <input type="number" id="identf" name="identf"> &nbsp;&nbsp;&nbsp;                            
+                            
                             &nbsp;&nbsp;&nbsp;
-                            <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_CrearCitaMedica2.jsp?identf=' + identf.value + '&tipo=' + tipo.value)"/>
+                            <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_CrearCitaMedica2.jsp?identf=' + identf.value )"/>
                         </div>                                                    
                         <div class="panel-body" id="cargar">
                                         
                         </div>
                     </div>
-                </form>
+                
             </div>
         </div>                        
         <div class="col-md-1"></div>              

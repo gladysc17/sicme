@@ -9,8 +9,6 @@
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="DTO.VicerrectorDTO"%>
 <%@page import="FACADE.FacadeVice"%>
-<%@page import="DTO.ProfesionalDTO"%>
-<%@page import="FACADE.FacadeProfesional"%>
 <%@page import="DTO.AdministradorDTO"%>
 <%@page import="FACADE.FacadeAdministrador"%>
 <%@page import="FACADE.Facade"%>

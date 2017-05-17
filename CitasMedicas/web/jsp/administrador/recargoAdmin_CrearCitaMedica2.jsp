@@ -4,42 +4,33 @@
     Author     : Gladys M
 --%>
 
-<%@page import="DTO.OtroUsuarioDTO"%>
-<%@page import="DTO.ServicioGeneralDTO"%>
-<%@page import="DTO.ProfesionalDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="FACADE.FacadeMedico"%>
+<%@page import="java.sql.Time"%>
+<%@page import="DTO.HorarioDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="FACADE.FacadeHorario"%>
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.MedicoDTO"%>
-<%@page import="NEGOCIO.NegocioOtroUsuario"%>
-<%@page import="NEGOCIO.NegocioServicioGeneral"%>
-<%@page import="NEGOCIO.NegocioProfesional"%>
 <%@page import="NEGOCIO.NegocioMedico"%>
-<%@page import="DTO.DocenteDTO"%>
-<%@page import="FACADE.FacadeDocente"%>
 <%@page import="FACADE.Facade"%>
 <%@page import="DTO.EstudianteDTO"%>
 <%@page import="FACADE.FacadeEstudiante"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="../js/funciones.js" type="text/javascript"></script>
-        <title>JSP Page</title>
-    </head>
-    <body>
+
         <%
 
             int id = Integer.parseInt(request.getParameter("identf"));
-            String tipo = request.getParameter("tipo");
-            System.out.println("identif " + id + " tipo: " + tipo);
+            String ide = String.valueOf(id);
+            System.out.println("identif " + id);
 
-            Facade fac = new Facade();
+            FacadeUsuario fac = new FacadeUsuario();
 
-            boolean rta = fac.verificarUsuario(tipo, id);
-            int ide = 0;
-            int codigo = 0;
-            String nombre ="";
-            
-            if (!rta) {
+            UsuarioDTO usuario = fac.consultarUsuarioPorId(ide);
+
+            if (usuario == null) {
 
         %>
 
@@ -47,67 +38,20 @@
 
         <%        } else {
 
-            if (tipo.equals("estudiante")) {
-                FacadeEstudiante facEst = new FacadeEstudiante();
-                EstudianteDTO est = facEst.consultarEstudianteporId(id);
-                ide = est.getIdentificacion();
-                nombre = est.getNombre();
-                codigo = est.getCodigo();
-       
-            }
+            String iden = usuario.getIdentificacion();
+            String codigo = usuario.getCodigo();
+            String nombre = usuario.getNombre();
+            String tipou = usuario.getTipo_usuario();
 
-            if (tipo.equals("docente")) {
-                FacadeDocente facDoc = new FacadeDocente();
-                DocenteDTO doc = facDoc.consultarDocenteporId(id);
-                ide = doc.getIdentificacion();
-                nombre = doc.getNombre();
-                codigo = doc.getCodigo();
-        
-            }
-
-            if (tipo.equals("medico")) {
-
-                NegocioMedico negMed = new NegocioMedico();
-                MedicoDTO med = negMed.consultarMedicoPorId(id);
-                ide = med.getIdentificacion();
-                nombre = med.getNombre();
-                codigo = med.getCodigo();
-        
-            }
-            if (tipo.equals("profesional")) {
-
-                NegocioProfesional negPro = new NegocioProfesional();
-                ProfesionalDTO pro = negPro.consultarProefionalPorId(id);
-                ide = pro.getIdentificacion();
-                nombre = pro.getNombre();
-                codigo = pro.getCodigo();
-       
-            }
-            if (tipo.equals("serviciogeneral")) {
-
-                NegocioServicioGeneral negSer = new NegocioServicioGeneral();
-                ServicioGeneralDTO ser = negSer.consultarServicioGeneralId(id);
-                ide = ser.getIdentificacion();
-                nombre = ser.getNombre();
-                codigo = ser.getCodigo();
-        
-            }
-            if (tipo.equals("otro")) {
-
-                NegocioOtroUsuario negOtro = new NegocioOtroUsuario();
-                OtroUsuarioDTO otro = negOtro.consultarOtroUsuarioId(id);
-                ide = otro.getIdentificacion();
-                nombre = otro.getNombre();
-                codigo = otro.getCodigo();
-        
-            }
         %>
+
 
         <h2>Datos Para la cita Medica</h2>
         <div class="col-md-12">
-            <div class="control-label"> <label>Identificacion: </label> <%=ide%> </div>
+            <div class="control-label"> <label>Identificacion: </label> <%=iden%> </div>
             <div class="control-label"> <label>Nombre:   </label> <%=nombre%>
                 <input type="hidden" value="<%=nombre%>" id="nombre" name="nombre"> </div>
+                <input type="hidden" value="<%=tipou%>" id="tipou" name="tipou"> </div>
             <div class="control-label"> <label>Codigo:   </label> <%=codigo%></div>                                               
         </div>
         <div class="panel-body">            
@@ -115,7 +59,7 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-1 control-label">Servicio</label>
                 <div class="col-sm-4">
-                    <select class="form-control" name="servicio" id="servicio" required="">                        
+                    <select class="form-control" name="servicio" id="servicio" required="" onchange="recibo()">                        
                         <option value="medicinageneral"> Medicina General </option>
                         <option value="odontologia"> Odontología </option>
                         <option value="psicologia"> Psicología</option>
@@ -124,43 +68,41 @@
                 </div>                                                        
 
                 <div class="col-sm-2">                                                                              
-                    <input type="button" class="btn btn-primary" value="CONSULTAR PROFESIONAL" onclick="cargar('administrador/recargoAdmin_CrearCitaMedica3.jsp?servicio=' + servicio.value +'&nombre='+nombre.value+'&tipo=<%=tipo%>')"/>
+                    <input type="button" class="btn btn-primary" value="CONSULTAR PROFESIONAL" onclick="cargar('administrador/recargoAdmin_CrearCitaMedica3.jsp?servicio=' + servicio.value + '&nombre=' + nombre.value +'&tipou=' + tipou.value)"/>
                 </div>
             </div>                                                    
+<%
 
-        </div>
-
-        <%
             }
 
-        %> 
+        %>
+        </div>
 
-
-
-        <div class="panel-body">
+        <div class="panel-body"> 
             <p> 2. Seleccione el profesional y acontinuación se mostrará las horas disponibles </p>
 
 
-        <label for="inputEmail3" class="col-sm-1 control-label">Nombre</label>
-        <div class="col-sm-4 control-label">
-            <select class="form-control" name="prof" required="" id="recargar">
-                                                                  
-                <option> seleccione profesional </option>
-               
-            </select>
-        </div> 
+            <label for="inputEmail3" class="col-sm-1 control-label">Nombre</label>
+            <div class="col-sm-4 control-label">
+                <select class="form-control" name="prof" required="" id="recargar">
 
-        <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label>
-        <div class="col-sm-3 control-label">
-            <input type="date" name="fecha" id="fecha" class="form-control" required=""> 
-        </div>       
+                    <option></option>
 
-        <div class="col-sm-3">
-            <input type="button" class="btn btn-primary form-control" value="HORAS DISPONIBLES" onclick="cargar_fr('administrador/recargoAdmin_CrearCitaMedica4.jsp?prof=' + prof.value + '&fecha=' + fecha.value + '&servicio=' + servicio.value+'&tipo=<%=tipo%>')"/>
+                </select>
+            </div> 
+
+            <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label>
+            <div class="col-sm-3 control-label">
+                <input type="date" name="fecha" id="fecha" class="form-control" required=""> 
+            </div>       
+
+            <div class="col-sm-3">
+                <input type="button" class="btn btn-primary form-control" value="HORAS DISPONIBLES" onclick="cargar_fr('administrador/recargoAdmin_CrearCitaMedica4.jsp?idmed=' + prof.value + '&fecha=' + fecha.value +'&servicio=' +servicio.value )"/>
+            </div>
+
         </div>
-        <div class="panel-body" id="cargar_fr">
 
-        </div> 
-        </div>        
-    </body>
-</html>
+        <div class="panel-body" id="cargar_fr" >
+            
+        </div>
+        
