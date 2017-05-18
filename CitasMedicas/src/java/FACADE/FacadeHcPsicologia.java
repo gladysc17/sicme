@@ -20,7 +20,7 @@ public class FacadeHcPsicologia {
         return new NegocioHcPsicologia().registrarHcPsicologia(hcpsico);
     }
     
-    public List<HcPsicologiaDTO> consultarHCMedicinaGeneral(int id_usuario) throws SQLException {
+    public List<HcPsicologiaDTO> consultarHCPsicologia(int id_usuario) throws SQLException {
         return new NegocioHcPsicologia().consultarHCPsicologia(id_usuario);
     }
     

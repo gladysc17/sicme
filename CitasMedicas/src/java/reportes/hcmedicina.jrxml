@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="641ed272-2ec8-4bff-b67b-c4aae196939f">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="0.75"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="435"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT * FROM HC_MEDICINAGENERAL HC 
-INNER JOIN CITA C ON HC.IDCITA_HCMED = C.ID_CITA 
-INNER JOIN USUARIO U ON C.ID_USUARIO = U.IDENTIFICACION
-WHERE HC.idcita_hcmed = $P{idcita}]]>
+		<![CDATA[SELECT * FROM hc_medicinageneral HC INNER JOIN cita C ON HC.IDCITA_HCMED = C.ID_CITA
+INNER JOIN usuario U ON C.ID_USUARIO = U.IDENTIFICACION
+WHERE     HC.idcita_hcmed = $P{idcita}]]>
 	</queryString>
 	<field name="id_hcmed" class="java.lang.Integer"/>
 	<field name="idusuario_hcmed" class="java.lang.Integer"/>
@@ -71,9 +70,6 @@ WHERE HC.idcita_hcmed = $P{idcita}]]>
 	<field name="direccion" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
 	<field name="tipo_usuario" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
 	<title>
 		<band height="80" splitType="Stretch">
 			<staticText>
@@ -95,61 +91,109 @@ WHERE HC.idcita_hcmed = $P{idcita}]]>
 				<reportElement x="133" y="50" width="294" height="15" uuid="f6b78dd6-101b-4254-9ba7-eb3d14990205"/>
 				<text><![CDATA[DIVISION DE SERVICIOS ASISTENCIALES Y DE LA SALUD]]></text>
 			</staticText>
+			<image>
+				<reportElement x="21" y="15" width="50" height="50" uuid="3fd2a1ff-0ca8-4f54-b4e8-0fffc38120f0"/>
+				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\img\\ufps.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="466" y="15" width="100" height="20" uuid="1e6ccc83-e8e7-478d-9c67-b5fcf8757042"/>
+				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="42" width="100" height="20" uuid="5b091622-8538-4a26-8410-29a4487345e5"/>
+				<textFieldExpression><![CDATA[$F{hora_cita}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="95" splitType="Stretch">
+		<band height="73" splitType="Stretch">
 			<staticText>
-				<reportElement x="10" y="17" width="98" height="15" uuid="ffcf0f5c-ef5b-40be-bd4e-9241e1ba130a"/>
+				<reportElement x="5" y="15" width="98" height="15" uuid="ffcf0f5c-ef5b-40be-bd4e-9241e1ba130a"/>
 				<text><![CDATA[Nombre y Apellidos:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="43" width="43" height="15" uuid="3d406205-e10e-4155-a475-65c7619863b5"/>
+				<reportElement x="5" y="30" width="43" height="15" uuid="3d406205-e10e-4155-a475-65c7619863b5"/>
 				<text><![CDATA[Codigo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="255" y="17" width="56" height="15" uuid="0e729096-8146-4c9a-91bc-356a22410ff3"/>
+				<reportElement x="271" y="15" width="72" height="15" uuid="0e729096-8146-4c9a-91bc-356a22410ff3"/>
 				<text><![CDATA[Tipo de doc: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="371" y="17" width="45" height="15" uuid="5c1d46ed-bede-4b1b-b21c-7cdb7e30f5c7"/>
-				<text><![CDATA[Núm Doc:]]></text>
+				<reportElement x="383" y="15" width="89" height="15" uuid="5c1d46ed-bede-4b1b-b21c-7cdb7e30f5c7"/>
+				<text><![CDATA[Núm Documento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="133" y="43" width="26" height="15" uuid="7a95bd57-dfec-49a8-958d-2ce2585422c7"/>
+				<reportElement x="122" y="30" width="26" height="15" uuid="7a95bd57-dfec-49a8-958d-2ce2585422c7"/>
 				<text><![CDATA[F.N: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="238" y="43" width="34" height="15" uuid="2c8d6adc-88e0-4ff4-a1f7-9f86b45108ca"/>
+				<reportElement x="252" y="30" width="34" height="15" uuid="2c8d6adc-88e0-4ff4-a1f7-9f86b45108ca"/>
 				<text><![CDATA[Edad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="343" y="43" width="39" height="15" uuid="5154dfed-4e82-4bc5-b1f6-4988a6ded7f0"/>
+				<reportElement x="343" y="30" width="39" height="15" uuid="5154dfed-4e82-4bc5-b1f6-4988a6ded7f0"/>
 				<text><![CDATA[Género:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="457" y="43" width="54" height="15" uuid="60e179d4-975f-4799-a3ec-c9f80006a4d6"/>
+				<reportElement x="443" y="30" width="54" height="15" uuid="60e179d4-975f-4799-a3ec-c9f80006a4d6"/>
 				<text><![CDATA[Estado civil:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="68" width="49" height="15" uuid="0ead463c-4cb8-437c-ba45-65837f658adc"/>
+				<reportElement x="222" y="45" width="49" height="15" uuid="0ead463c-4cb8-437c-ba45-65837f658adc"/>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="68" width="43" height="15" uuid="999b0de0-0aca-4e46-938c-a52e084a5069"/>
+				<reportElement x="5" y="45" width="43" height="15" uuid="999b0de0-0aca-4e46-938c-a52e084a5069"/>
 				<text><![CDATA[Correo:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="108" y="17" width="100" height="15" uuid="0c64dc59-0beb-4670-9365-d4f2b2c1445a"/>
+				<reportElement x="99" y="15" width="172" height="15" uuid="0c64dc59-0beb-4670-9365-d4f2b2c1445a"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="15" width="40" height="15" uuid="007ef287-544d-47db-8dca-839fc3988e1d"/>
+				<textFieldExpression><![CDATA[$F{tipo_identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="15" width="100" height="15" uuid="350933c1-9ae9-4d52-9a71-300368469dee"/>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="30" width="57" height="15" uuid="187b9f7f-70d7-49b2-bec0-4a48d32c74cc"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="30" width="100" height="15" uuid="3d0d8223-a429-493a-88b0-9881a5fc4a73"/>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="30" width="42" height="15" uuid="9dd6d552-dedf-412b-b21e-403c367ce726"/>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="30" width="61" height="15" uuid="612eba42-286b-4d93-a7cc-9f85c7f57bda"/>
+				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="30" width="69" height="15" uuid="67a0dd93-ae77-41bc-9592-3b780532d925"/>
+				<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="45" width="149" height="15" uuid="14868ec2-f114-4628-a21c-5a2541536a20"/>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="272" y="45" width="194" height="15" uuid="12452714-85b1-4051-b53e-0fe3f35cdab6"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="3" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="463" splitType="Stretch">
+		<band height="547" splitType="Stretch">
 			<staticText>
 				<reportElement x="14" y="11" width="156" height="20" uuid="c091ab0e-7b8b-47e3-9abb-77b2359da515"/>
 				<textElement>
@@ -252,206 +296,200 @@ FAMILIARES:]]></text>
 				<reportElement x="108" y="393" width="414" height="56" uuid="83c0d78f-fa2a-4f4f-a054-d2957c2293c4"/>
 				<textFieldExpression><![CDATA[$F{antfamiliares_hcmed}]]></textFieldExpression>
 			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="6" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="8" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="752" splitType="Stretch">
 			<textField>
-				<reportElement x="8" y="65" width="63" height="20" uuid="c00d02e6-792f-476b-8270-38e471c218ba"/>
+				<reportElement x="17" y="514" width="63" height="20" uuid="c00d02e6-792f-476b-8270-38e471c218ba"/>
 				<textFieldExpression><![CDATA[$F{frecardiaca_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="94" y="65" width="76" height="20" uuid="574ec8a0-dd58-4918-b6fd-6f0f4b2ba965"/>
+				<reportElement x="103" y="514" width="76" height="20" uuid="574ec8a0-dd58-4918-b6fd-6f0f4b2ba965"/>
 				<textFieldExpression><![CDATA[$F{frerespiratoria_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="197" y="65" width="89" height="20" uuid="76afad87-f3c6-4391-b03a-f3d387643e2d"/>
+				<reportElement x="206" y="514" width="89" height="20" uuid="76afad87-f3c6-4391-b03a-f3d387643e2d"/>
 				<textFieldExpression><![CDATA[$F{tensionarterial_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="311" y="65" width="85" height="20" uuid="66b0780e-bbb0-4521-ac32-4197d68501eb"/>
+				<reportElement x="320" y="514" width="85" height="20" uuid="66b0780e-bbb0-4521-ac32-4197d68501eb"/>
 				<textFieldExpression><![CDATA[$F{temperatura_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="416" y="65" width="50" height="20" uuid="47eb4962-9f59-4db2-9439-904a8589e5b1"/>
+				<reportElement x="425" y="514" width="50" height="20" uuid="47eb4962-9f59-4db2-9439-904a8589e5b1"/>
 				<textFieldExpression><![CDATA[$F{peso_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="485" y="65" width="59" height="20" uuid="bda50aac-7bb2-4106-8607-4c8004cdca43"/>
+				<reportElement x="494" y="514" width="59" height="20" uuid="bda50aac-7bb2-4106-8607-4c8004cdca43"/>
 				<textFieldExpression><![CDATA[$F{talla_hcmed}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="256" y="12" width="100" height="20" uuid="4b2ef106-12a8-4c0b-b3d1-220b4dbccc67"/>
+				<reportElement x="265" y="461" width="100" height="20" uuid="4b2ef106-12a8-4c0b-b3d1-220b4dbccc67"/>
 				<text><![CDATA[EXAMEN FÍSICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="8" y="45" width="63" height="20" uuid="36efef5e-5fea-4e77-b820-f4191e6f8271"/>
+				<reportElement x="17" y="494" width="63" height="20" uuid="36efef5e-5fea-4e77-b820-f4191e6f8271"/>
 				<text><![CDATA[F. Cardiaca:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="94" y="45" width="76" height="20" uuid="5cd2c7e0-1eed-4950-bbab-40043ded9bf9"/>
+				<reportElement x="103" y="494" width="76" height="20" uuid="5cd2c7e0-1eed-4950-bbab-40043ded9bf9"/>
 				<text><![CDATA[F. Respiratoria:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="197" y="45" width="89" height="20" uuid="c90e28e9-a1cc-43e7-91c2-df341ef71ed7"/>
+				<reportElement x="206" y="494" width="89" height="20" uuid="c90e28e9-a1cc-43e7-91c2-df341ef71ed7"/>
 				<text><![CDATA[Tensión Arterial:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="311" y="45" width="85" height="20" uuid="d3e8ae49-285c-407b-856f-656971534724"/>
+				<reportElement x="320" y="494" width="85" height="20" uuid="d3e8ae49-285c-407b-856f-656971534724"/>
 				<text><![CDATA[Temperatura:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="45" width="50" height="20" uuid="224fa058-a3ef-44cd-b052-4cd42746d242"/>
+				<reportElement x="425" y="494" width="50" height="20" uuid="224fa058-a3ef-44cd-b052-4cd42746d242"/>
 				<text><![CDATA[Peso:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="485" y="45" width="59" height="20" uuid="458dc0d3-76e3-42d0-b195-383070941237"/>
+				<reportElement x="494" y="494" width="59" height="20" uuid="458dc0d3-76e3-42d0-b195-383070941237"/>
 				<text><![CDATA[Talla:]]></text>
 			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="752" splitType="Stretch">
 			<textField>
-				<reportElement x="97" y="111" width="431" height="20" uuid="842f30cd-69ac-4630-81a3-2951f163e1ad"/>
+				<reportElement x="108" y="15" width="431" height="20" uuid="842f30cd-69ac-4630-81a3-2951f163e1ad"/>
 				<textFieldExpression><![CDATA[$F{efestadogeneral_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="93" y="139" width="435" height="20" uuid="db920a82-aadb-4ea7-95e7-b69e8b01701d"/>
+				<reportElement x="104" y="43" width="435" height="20" uuid="db920a82-aadb-4ea7-95e7-b69e8b01701d"/>
 				<textFieldExpression><![CDATA[$F{efcabezacuello_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="103" y="167" width="425" height="20" uuid="56157fba-e7af-4d30-8815-9342ceba24c6"/>
+				<reportElement x="114" y="71" width="425" height="20" uuid="56157fba-e7af-4d30-8815-9342ceba24c6"/>
 				<textFieldExpression><![CDATA[$F{efcardiopulmonar_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="81" y="194" width="447" height="20" uuid="15d1c4e1-b24f-46a3-b4ac-90a19caa5322"/>
+				<reportElement x="92" y="98" width="447" height="20" uuid="15d1c4e1-b24f-46a3-b4ac-90a19caa5322"/>
 				<textFieldExpression><![CDATA[$F{efabdomen_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="93" y="224" width="435" height="20" uuid="4e3d1ed2-b242-43ca-8967-11916cf37a2f"/>
+				<reportElement x="104" y="128" width="435" height="20" uuid="4e3d1ed2-b242-43ca-8967-11916cf37a2f"/>
 				<textFieldExpression><![CDATA[$F{efgenitourinario_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="81" y="255" width="447" height="20" uuid="504bbbf8-b002-4be7-b4b0-266366cab9e4"/>
+				<reportElement x="92" y="159" width="447" height="20" uuid="504bbbf8-b002-4be7-b4b0-266366cab9e4"/>
 				<textFieldExpression><![CDATA[$F{efextremidades_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="83" y="285" width="445" height="20" uuid="0d99942d-e1db-40cc-b11f-5a157c7aec52"/>
+				<reportElement x="94" y="189" width="445" height="20" uuid="0d99942d-e1db-40cc-b11f-5a157c7aec52"/>
 				<textFieldExpression><![CDATA[$F{efpielfuneras_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="102" y="316" width="426" height="20" uuid="3cd17e77-5316-4433-a485-a1377200ec05"/>
+				<reportElement x="113" y="220" width="426" height="20" uuid="3cd17e77-5316-4433-a485-a1377200ec05"/>
 				<textFieldExpression><![CDATA[$F{efsistemanervioso_hcmed}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="111" width="84" height="20" uuid="a44bbe6c-59c0-4b68-a2cc-1810d589a06e"/>
+				<reportElement x="21" y="15" width="84" height="20" uuid="a44bbe6c-59c0-4b68-a2cc-1810d589a06e"/>
 				<text><![CDATA[Estado General:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="139" width="73" height="20" uuid="547bd619-19bd-4333-8ba1-8f4b4cde6ea2"/>
+				<reportElement x="21" y="43" width="73" height="20" uuid="547bd619-19bd-4333-8ba1-8f4b4cde6ea2"/>
 				<text><![CDATA[Cabeza/Cuello:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="167" width="86" height="20" uuid="dc0d8816-8ce8-4f05-893c-9a463cf9a687"/>
+				<reportElement x="21" y="71" width="86" height="20" uuid="dc0d8816-8ce8-4f05-893c-9a463cf9a687"/>
 				<text><![CDATA[Cardio/Pulmonar:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="194" width="61" height="20" uuid="caf3c4ba-885d-48a0-a41c-ae2c7ca24deb"/>
+				<reportElement x="21" y="98" width="61" height="20" uuid="caf3c4ba-885d-48a0-a41c-ae2c7ca24deb"/>
 				<text><![CDATA[Abdomen:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="224" width="83" height="20" uuid="482d459c-82e5-4b06-b1c6-b5b879546ec3"/>
+				<reportElement x="21" y="128" width="83" height="20" uuid="482d459c-82e5-4b06-b1c6-b5b879546ec3"/>
 				<text><![CDATA[Genitourinario:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="255" width="73" height="20" uuid="7eec306c-dc35-4e0e-bec2-47232cb6839a"/>
+				<reportElement x="21" y="159" width="73" height="20" uuid="7eec306c-dc35-4e0e-bec2-47232cb6839a"/>
 				<text><![CDATA[Extremidades:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="285" width="70" height="20" uuid="c60de552-f678-4ddb-9630-629f87e2fbc7"/>
+				<reportElement x="22" y="189" width="70" height="20" uuid="c60de552-f678-4ddb-9630-629f87e2fbc7"/>
 				<text><![CDATA[Piel/Faneras:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="316" width="95" height="20" uuid="fd8f309b-2a3d-44b8-a9da-85a9c5d393ce"/>
+				<reportElement x="21" y="220" width="95" height="20" uuid="fd8f309b-2a3d-44b8-a9da-85a9c5d393ce"/>
 				<text><![CDATA[Sistemas Nervioso:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="362" width="100" height="20" uuid="9f180833-b91d-49ed-a4fd-645133ff3a9a"/>
+				<reportElement x="24" y="266" width="100" height="20" uuid="9f180833-b91d-49ed-a4fd-645133ff3a9a"/>
 				<text><![CDATA[Diágnóstisco:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="362" width="100" height="20" uuid="16d0e225-24ba-4f1a-8e54-eea88eac42a6"/>
+				<reportElement x="297" y="266" width="100" height="20" uuid="16d0e225-24ba-4f1a-8e54-eea88eac42a6"/>
 				<text><![CDATA[Tipo de diagnóstico:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="14" y="397" width="15" height="20" uuid="ff5ec417-c678-447b-8e3f-e8f2f741f243"/>
+				<reportElement x="25" y="301" width="15" height="20" uuid="ff5ec417-c678-447b-8e3f-e8f2f741f243"/>
 				<text><![CDATA[1.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="29" y="397" width="243" height="20" uuid="95f8ab58-0c55-4c53-bc68-7b0308a1f9ec"/>
+				<reportElement x="40" y="301" width="243" height="20" uuid="95f8ab58-0c55-4c53-bc68-7b0308a1f9ec"/>
 				<textFieldExpression><![CDATA[$F{diagnostico1_hcmed}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="286" y="397" width="11" height="20" uuid="6f56387f-6093-46dd-9df3-37df8b6f18da"/>
+				<reportElement x="297" y="301" width="11" height="20" uuid="6f56387f-6093-46dd-9df3-37df8b6f18da"/>
 				<text><![CDATA[1.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="297" y="397" width="231" height="20" uuid="281757a9-87fe-4275-98ba-d6675d2d6951"/>
+				<reportElement x="308" y="301" width="231" height="20" uuid="281757a9-87fe-4275-98ba-d6675d2d6951"/>
 				<textFieldExpression><![CDATA[$F{tipodiagnostico1_hcmed}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="429" width="16" height="20" uuid="93aabdb9-8d87-483c-8ec0-8dd840dfb680"/>
+				<reportElement x="24" y="333" width="16" height="20" uuid="93aabdb9-8d87-483c-8ec0-8dd840dfb680"/>
 				<text><![CDATA[2.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="431" width="11" height="20" uuid="fd136636-f7f6-4e0e-8ecf-c9be266ec702"/>
+				<reportElement x="297" y="335" width="11" height="20" uuid="fd136636-f7f6-4e0e-8ecf-c9be266ec702"/>
 				<text><![CDATA[2.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="461" width="16" height="20" uuid="290ca3c4-2bdc-43c0-bb64-ce3f52f19b17"/>
+				<reportElement x="24" y="365" width="16" height="20" uuid="290ca3c4-2bdc-43c0-bb64-ce3f52f19b17"/>
 				<text><![CDATA[3.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="461" width="11" height="20" uuid="e5551c9f-5ed0-4007-817f-434b2759775a"/>
+				<reportElement x="297" y="365" width="11" height="20" uuid="e5551c9f-5ed0-4007-817f-434b2759775a"/>
 				<text><![CDATA[3.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="29" y="429" width="243" height="20" uuid="9bf50591-2522-4602-8fb5-bc7fcda4248b"/>
+				<reportElement x="40" y="333" width="243" height="20" uuid="9bf50591-2522-4602-8fb5-bc7fcda4248b"/>
 				<textFieldExpression><![CDATA[$F{diagnostico2_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="297" y="431" width="231" height="20" uuid="49c48147-88bb-4008-bfb7-a8f47554a144"/>
+				<reportElement x="308" y="335" width="231" height="20" uuid="49c48147-88bb-4008-bfb7-a8f47554a144"/>
 				<textFieldExpression><![CDATA[$F{tipodiagnostico2_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="29" y="461" width="243" height="20" uuid="c9782c2b-062f-4e00-bc4b-7c3480f900d6"/>
+				<reportElement x="40" y="365" width="243" height="20" uuid="c9782c2b-062f-4e00-bc4b-7c3480f900d6"/>
 				<textFieldExpression><![CDATA[$F{diagnostico3_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="297" y="461" width="231" height="20" uuid="4188a5be-7d4c-4802-94b6-fd1b7a62d398"/>
+				<reportElement x="308" y="365" width="231" height="20" uuid="4188a5be-7d4c-4802-94b6-fd1b7a62d398"/>
 				<textFieldExpression><![CDATA[$F{tipodiagnostico3_hcmed}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="238" y="491" width="127" height="20" uuid="07e9fa50-b3de-4049-bed5-faebd83452e5"/>
+				<reportElement x="249" y="395" width="127" height="20" uuid="07e9fa50-b3de-4049-bed5-faebd83452e5"/>
 				<text><![CDATA[PLAN DE TRATAMIENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="242" y="588" width="114" height="20" uuid="9027411b-f3bd-42da-afad-d7e234936c8c"/>
+				<reportElement x="253" y="492" width="114" height="20" uuid="9027411b-f3bd-42da-afad-d7e234936c8c"/>
 				<text><![CDATA[RECOMENDACIONES]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="19" y="521" width="536" height="56" uuid="811db719-2f2a-45a1-854c-ff69f6c75cf1"/>
+				<reportElement x="30" y="425" width="536" height="56" uuid="811db719-2f2a-45a1-854c-ff69f6c75cf1"/>
 				<textFieldExpression><![CDATA[$F{tratamiento_hcmed}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="19" y="621" width="536" height="62" uuid="41bf9c59-c526-4349-94f2-7af65304a87e"/>
+				<reportElement x="30" y="525" width="536" height="62" uuid="41bf9c59-c526-4349-94f2-7af65304a87e"/>
 				<textFieldExpression><![CDATA[$F{recomendaciones_hcmed}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="19" y="694" width="536" height="30" uuid="8c1bc43b-e405-49f0-b856-ed0395396ba8"/>
+				<reportElement x="30" y="598" width="536" height="30" uuid="8c1bc43b-e405-49f0-b856-ed0395396ba8"/>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\citasmedicasufps\\plantillaUFPS\\web\\img\\cita.jpg"]]></imageExpression>
 			</image>
 		</band>

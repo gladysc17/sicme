@@ -68,8 +68,8 @@
 
                                 for (int i = 0; i < listaMedicos.size(); i++) {
 
-                                    String nombre = listaMedicos.get(i).getNombre_med();
-                                    int idmed = listaMedicos.get(i).getIdentificacion_med();
+                                    String nombre = listaMedicos.get(i).getNombre();
+                                    int idmed = listaMedicos.get(i).getIdentificacion();
 
 
                             %>    

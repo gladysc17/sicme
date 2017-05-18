@@ -16,7 +16,7 @@ public class CitaDTO {
     private String num_recibo_cita;
     private String fecha_cita;
     private String hora_cita;
-    private int id_usuario;
+    private String id_usuario;
     private int id_medico;
     private String estado;
     private String nombre_usuario;
@@ -26,7 +26,7 @@ public class CitaDTO {
     public CitaDTO() {
     }
 
-    public CitaDTO(String servicio_cita, String num_recibo_cita, String fecha_cita, String hora_cita, int id_usuario, int id_medico, String estado, String nombre_usuario, String nombre_medico, String tipousuario_cita) {
+    public CitaDTO(String servicio_cita, String num_recibo_cita, String fecha_cita, String hora_cita, String id_usuario, int id_medico, String estado, String nombre_usuario, String nombre_medico, String tipousuario_cita) {
         this.servicio_cita = servicio_cita;
         this.num_recibo_cita = num_recibo_cita;
         this.fecha_cita = fecha_cita;
@@ -39,7 +39,7 @@ public class CitaDTO {
         this.tipousuario_cita = tipousuario_cita;
     }
 
-    public CitaDTO(int id_cita, String servicio_cita, String num_recibo_cita, String fecha_cita, String hora_cita, int id_usuario, int id_medico, String estado, String nombre_usuario, String nombre_medico, String tipousuario_cita) {
+    public CitaDTO(int id_cita, String servicio_cita, String num_recibo_cita, String fecha_cita, String hora_cita, String id_usuario, int id_medico, String estado, String nombre_usuario, String nombre_medico, String tipousuario_cita) {
         this.id_cita = id_cita;
         this.servicio_cita = servicio_cita;
         this.num_recibo_cita = num_recibo_cita;
@@ -93,11 +93,11 @@ public class CitaDTO {
         this.hora_cita = hora_cita;
     }
 
-    public int getId_usuario() {
+    public String getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(int id_usuario) {
+    public void setId_usuario(String id_usuario) {
         this.id_usuario = id_usuario;
     }
 

@@ -22,23 +22,12 @@
                 </div>
 
                 <div class="panel-body">
-                    <form  action="/plantillaUFPS/pdf_hcmedicinageneral" method="post" target="_blank">
+                    <form  action="/CitasMedicas/historia" method="post" target="_blank">
                         <div class="form-group">
                             <label for="" class="control-label"> Identificación: </label>
                             <input type="number" id="identf" name="identf" required>                                                
                         </div>
-                        <div class="form-group">
-                            <label for="" class="control-label"> Tipo Usuario </label>
-                            <select name="usuario" id="usuario" required>
-                                <option value="estudiante"> Estudiante </option>
-                                <option value="docente"> Docente </option>
-                                <option value="medico"> Medico </option>
-                                <option value="serviciogeneral"> Servicio General </option>
-                                <option value="profesional"> Profesional </option>
-                                <option value="otro"> Otro </option>                            
-                            </select>
-
-                        </div> 
+                         
                         <div class="form-group">
                             <label for="" class="control-label"> Tipo Historia </label>
                             <select name="servicio" id="servicio" required>
@@ -48,11 +37,11 @@
                                 <option value="planificacion"> Planificacion Familiar </option>                                                                                      
                             </select>
 
-                            <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identf.value + '&usuario=' + usuario.value + '&servicio=' + servicio.value)"/>
+                            <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identf.value + '&servicio=' + servicio.value)"/>
                         </div> 
                         <div class="panel-body" id="cargar">
 
-                        </div>
+                        </div>                      
                     </form>
                 </div>
 

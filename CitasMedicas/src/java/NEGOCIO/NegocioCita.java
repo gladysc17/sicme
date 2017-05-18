@@ -110,7 +110,7 @@ public class NegocioCita {
         return citas;
     }
 
-    public ArrayList<CitaDTO> consultarCitasUsuario(int id_usuario) {
+    public ArrayList<CitaDTO> consultarCitasUsuario(String id_usuario) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

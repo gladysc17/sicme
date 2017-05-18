@@ -28,7 +28,7 @@ public class FacadeCita {
       public ArrayList<CitaDTO> consultarCitasProfesional (int id_prof, String fecha){
          return new NegocioCita().consultarCitasProfesiona(id_prof, fecha);
      }
-       public ArrayList<CitaDTO> consultarCitasUsuario (int id_usuario){
+       public ArrayList<CitaDTO> consultarCitasUsuario (String id_usuario){
          return new NegocioCita().consultarCitasUsuario(id_usuario);
      }
         public ArrayList<CitaDTO> consultarCitasMedicoDia (int id_medico, String fecha){

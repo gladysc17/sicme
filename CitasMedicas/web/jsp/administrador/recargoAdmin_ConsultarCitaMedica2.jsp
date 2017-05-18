@@ -22,10 +22,10 @@
         <div class="panel panel-default">
 
             <%
-                int id = Integer.parseInt(request.getParameter("identf"));
+                String ide = request.getParameter("identf");
 
                 FacadeCita cita = new FacadeCita();
-                List<CitaDTO> lista = cita.consultarCitasUsuario(id);
+                List<CitaDTO> lista = cita.consultarCitasUsuario(ide);
                 
                 if(!lista.isEmpty()){
                                     
@@ -53,7 +53,7 @@
                             </thead>
                             <%                                    
                 for (int i = 0; i < lista.size(); i++) {
-                    int ide = lista.get(i).getId_usuario();
+                    String id = lista.get(i).getId_usuario();
                     String nombre = lista.get(i).getNombre_usuario();
                     String servicio = lista.get(i).getServicio_cita();
                     String fecha = lista.get(i).getFecha_cita();

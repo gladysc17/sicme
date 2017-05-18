@@ -62,7 +62,7 @@ public class NegocioHcPsicologia {
             listaHisC = psico.consultarHcPsicologia(id_usuario);
 
         } catch (SQLException ex) {
-            Logger.getLogger(NegocioHcMedicinaGeneral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
 

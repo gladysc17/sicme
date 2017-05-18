@@ -28,8 +28,8 @@ import util.ConexionPostgres;
  *
  * @author Gladys M
  */
-@WebServlet(name = "pdf_hcmedicinageneral", urlPatterns = {"/pdf_hcmedicinageneral"})
-public class pdf_hcmedicinageneral extends HttpServlet {
+@WebServlet(name = "historia", urlPatterns = {"/historia"})
+public class historia extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,21 +50,43 @@ public class pdf_hcmedicinageneral extends HttpServlet {
         String servicio = request.getParameter("servicio");
         String idecita = request.getParameter("idcita");
 
+        System.out.println(" id " + id + " servicio " + servicio + " idcita " + idecita);
 
         try {
+            
+            
+            if(servicio.equals("medicinageneral")){
             Map m = new HashMap();
             int idcita = Integer.parseInt(idecita);
-            System.out.println(" idcita pdf " + idcita);
+            System.out.println(" idcita " + idcita);
             m.put("idcita", idcita);
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint);
+                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     viewer.setTitle("Mi Reporte");
-                    viewer.setVisible(true);                                                         
+                    viewer.setVisible(true);
+                                                               
+            }
+            
+            else if(servicio.equals("psicologia")){
+            
+            Map m = new HashMap();
+            int idcita = Integer.parseInt(idecita);
+            System.out.println(" idcita " + idcita);
+                
+            m.put("idcita", idcita);
+                    
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
+                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    viewer.setTitle("Mi Reporte");
+                    viewer.setVisible(true);
+                                                               
+            }
 
         } catch (JRException ex) {
-            Logger.getLogger(pdf_hcmedicinageneral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(historia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
