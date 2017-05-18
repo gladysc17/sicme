@@ -18,7 +18,7 @@
         <div class="col-md-10 form-group">            
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 align="center">  Consultar Usuario(a) </h2>
+                    <h2 align="center">  Cita Medica </h2>
                 </div>
                 <form  method="post" action="../controlador/procesarCrearCita.jsp" name="forml">
                     <div class="panel-body">

@@ -43,5 +43,30 @@ public class NegocioHorarioMedico {
         return rta;
     }
      
+   public HorarioMedicoDTO consultarHorarioMedico(int id_horariomedico) throws SQLException{
+        
+        
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        HorarioMedicoDAO aux = new HorarioMedicoDAO(co);
+        HorarioMedicoDTO a = null;
+  
+        try{
+            a = aux.consultarHorarioMedico(id_horariomedico);
+        } catch(SQLException e){
+            Logger.getLogger(NegocioHorarioMedico.class.getName()).log(Level.SEVERE, null, e);
+        }finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHorarioMedico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return a;
+    }
     
 }

@@ -18,6 +18,9 @@ public class FacadeHorarioMedico {
     public boolean registrarHorarioMedico(HorarioMedicoDTO hm) throws Exception{
         return new NegocioHorarioMedico().registrarHorario(hm);
     }
+    public HorarioMedicoDTO consultarHorarioMedico(int id_horariomedico) throws Exception{
+        return new NegocioHorarioMedico().consultarHorarioMedico(id_horariomedico);
+    }
     
     
 }

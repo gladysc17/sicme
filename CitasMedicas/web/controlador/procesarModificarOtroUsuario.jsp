@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="java.sql.Date"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,8 +17,8 @@
         <%
             String identificacion_otro = request.getParameter("identificacion");             
             String correo_otro = request.getParameter("correo");
-            String fechanacimiento = request.getParameter("fechanacimiento");
-            java.sql.Date fecha=java.sql.Date.valueOf(fechanacimiento);
+            String fechanacimiento_otro = request.getParameter("fechanacimiento");
+            java.sql.Date fecha =java.sql.Date.valueOf(fechanacimiento_otro);
             String genero_otro = request.getParameter("genero");
             String estadocivil_otro = request.getParameter("estadocivil");
             String direccion_otro = request.getParameter("direccion");

@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.HorarioMedicoDTO"%>
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="FACADE.FacadeHorario"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="FACADE.FacadeMedico"%>
@@ -27,7 +29,7 @@
             String hora = request.getParameter("hora");            
             
             int id_med = Integer.parseInt(request.getParameter("prof"));
-            int id_usuario = Integer.parseInt(request.getParameter("identf"));
+            String id_usuario = request.getParameter("identf");
             String nombre_usuario = request.getParameter("nombre");             
             int idHora =  Integer.parseInt(request.getParameter("idHora"));
             
@@ -45,12 +47,17 @@
             CitaDTO cita = new CitaDTO(servicio, recibo, fecha, hora, id_usuario, id_med, estado, nombre_usuario, nombre_medico, tipou);
 
             boolean rta = fc.registrarCita(cita);
-
-            if (rta == true) {
-                FacadeHorario fac = new FacadeHorario();
-                        boolean rt2 = fac.cambiarEstadoHora(id_med, fecha, idHora);
+            
+            FacadeHorario fac = new FacadeHorario();
+            FacadeHorarioMedico fm = new FacadeHorarioMedico();
+            HorarioMedicoDTO hm = fm.consultarHorarioMedico(idHora);
+            
+            boolean rt2 = fac.cambiarEstadoHora(id_med, fecha, hm.getId_horario_horariomedico());
+            
+            if (rta == true && rt2 == true) {
+                
                         
-                        System.out.println("CREO LA CITA");
+                        System.out.println("CREO LA CITA y cambio horario");
         %>
         <script>
             alert("CREO LA CITA");
