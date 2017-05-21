@@ -43,11 +43,7 @@
                                 <%
                                     FacadeCita facCita = new FacadeCita();
                                     MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
-                                    int idico = med.getIdentificacion();
-
-                                    //Date hoy = new Date();
-                                    //SimpleDateFormat fecha = new SimpleDateFormat("YYYY-MM-DD");
-                                    //System.out.println(fecha + "");
+                                    int idico = med.getIdentificacion();                                  
 
                                     Date fecha = new Date();
                                     String sFecha = "";
@@ -71,7 +67,7 @@
                                     for (int i = 0; i < doc.size(); i++) {
 
                                         String nombre = doc.get(i).getNombre_usuario();
-                                        int identf = doc.get(i).getId_usuario();
+                                        String identf = doc.get(i).getId_usuario();
                                         String hora = doc.get(i).getHora_cita();
                                         String servicio = doc.get(i).getServicio_cita();
                                         System.out.println("servicioo: " + servicio);

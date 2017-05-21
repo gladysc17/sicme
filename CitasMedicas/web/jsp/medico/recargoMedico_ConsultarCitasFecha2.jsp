@@ -47,7 +47,7 @@
                                     for (int i = 0; i < doc.size(); i++) {
 
                                         String nombre = doc.get(i).getNombre_usuario();
-                                        int identf = doc.get(i).getId_usuario();
+                                        String identf = doc.get(i).getId_usuario();
                                         String hora = doc.get(i).getHora_cita();
 
                                         int cantidad = i + 1;

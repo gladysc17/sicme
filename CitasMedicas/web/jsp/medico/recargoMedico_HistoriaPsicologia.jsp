@@ -4,17 +4,11 @@
     Author     : Gladys M
 --%>
 
-<%@page import="DTO.OtroUsuarioDTO"%>
-<%@page import="FACADE.FacadeOtrosUsuarios"%>
-<%@page import="DTO.DocenteDTO"%>
-<%@page import="FACADE.FacadeDocente"%>
-<%@page import="DTO.ServicioGeneralDTO"%>
-<%@page import="FACADE.FacadeServicioGeneral"%>
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="FACADE.FacadeHorarioMedico"%>
-<%@page import="DTO.ProfesionalDTO"%>
-<%@page import="FACADE.FacadeProfesional"%>
 <%@page import="DTO.EstudianteDTO"%>
 <%@page import="FACADE.FacadeEstudiante"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -70,24 +64,22 @@
                                             <div class="panel-body">  
                                                 <%
 
-                                                    int idusuario_hcmed = Integer.parseInt(request.getParameter("id"));
+                                                    String id = request.getParameter("id");
                                                     int idcita = Integer.parseInt(request.getParameter("idcita"));
                                                     String tipo = request.getParameter("tipo");
 
-                                                    if (tipo.equals("estudiante")) {
-                                                        FacadeEstudiante facEst = new FacadeEstudiante();
-                                                        EstudianteDTO est = facEst.consultarEstudianteporId(idusuario_hcmed);
+                                                    FacadeUsuario facUsu = new FacadeUsuario();
+                                                    UsuarioDTO u = facUsu.consultarUsuarioPorId(id);
 
-                                                        String nombre = est.getNombre();
-                                                        int id = est.getIdentificacion();
-                                                        int codigo = est.getCodigo();
-                                                        String correo = est.getCorreo();
-                                                        String fechadeNac = est.getCorreo();
-                                                        int edad = est.getCodigo();
-                                                        String genero = est.getNombre();
-                                                        String estadoCivil = est.getCorreo();
-                                                        String direccion = est.getCorreo();
-                                                        String telefono = est.getTelefono();
+                                                    String nombre = u.getNombre();
+                                                    String codigo = u.getCodigo();
+                                                    String correo = u.getCorreo();
+                                                    String fechadeNac = u.getFecha_nacimiento();
+                                                    int edad = u.getEdad();
+                                                    String genero = u.getGenero();
+                                                    String estadoCivil = u.getEstado_civil();
+                                                    String direccion = u.getDireccion();
+                                                    String telefono = u.getTelefono();
 
                                                 %>
                                                 <input type="hidden" id="ide" name="ide" value="<%=id%>">
@@ -119,233 +111,7 @@
                                                     </tbody>
                                                 </table>
                                                 <%
-                                                } else if (tipo.equals("profesional")) {
-                                                    FacadeProfesional facpro = new FacadeProfesional();
-                                                    ProfesionalDTO pro = facpro.consultarProfesionalPorId(idusuario_hcmed);
-
-                                                    String nombre = pro.getNombre();
-                                                    int id = pro.getIdentificacion();
-                                                    int codigo = pro.getCodigo();
-                                                    String correo = pro.getCorreo();
-                                                    String fechadeNac = pro.getCorreo();
-                                                    int edad = pro.getCodigo();
-                                                    String genero = pro.getNombre();
-                                                    String estadoCivil = pro.getCorreo();
-                                                    String direccion = pro.getCorreo();
-                                                    String telefono = pro.getTelefono();
-
-                                                %>
-                                                <input type="hidden" id="ide" name="ide" value="<%=id%>">
-                                                <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
-                                                <table class="table table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Identificación: <%=id%></td> 
-                                                            <td>Codigo: <%=codigo%> </td>
-                                                            <td>Correo: <%=correo%></td> 
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Fecha de Nacimiento: <%=fechadeNac%></td>
-                                                            <td>Edad: <%=edad%> </td>
-                                                            <td>Género: <%=genero%></td>
-
-                                                        </tr>
-                                                        <tr>                                                
-                                                            <td>Estado Civil: <%=estadoCivil%></td>
-                                                            <td>Direccion: <%=direccion%></td>
-                                                            <td>Telefono: <%=telefono%></td>                                                                                                
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                                <%
-                                                } else if (tipo.equals("medico")) {
-                                                    FacadeMedico facmed = new FacadeMedico();
-                                                    MedicoDTO med = facmed.consultarMedicoPorId(idusuario_hcmed);
-
-                                                    String nombre = med.getNombre();
-                                                    int id = med.getIdentificacion();
-                                                    int codigo = med.getCodigo();
-                                                    String correo = med.getCorreo();
-                                                    String fechadeNac = med.getFechanacimiento();
-                                                    int edad = med.getEdad();
-                                                    String genero = med.getGenero();
-                                                    String estadoCivil = med.getEstadocivil();
-                                                    String direccion = med.getDireccion();
-                                                    String telefono = med.getTelefono();
-
-                                                %>
-                                                <input type="hidden" id="ide" name="ide" value="<%=id%>">
-                                                <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
-                                                <table class="table table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Identificación: <%=id%></td> 
-                                                            <td>Codigo: <%=codigo%> </td>
-                                                            <td>Correo: <%=correo%></td> 
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Fecha de Nacimiento: <%=fechadeNac%></td>
-                                                            <td>Edad: <%=edad%> </td>
-                                                            <td>Género: <%=genero%></td>
-
-                                                        </tr>
-                                                        <tr>                                                
-                                                            <td>Estado Civil: <%=estadoCivil%></td>
-                                                            <td>Direccion: <%=direccion%></td>
-                                                            <td>Telefono: <%=telefono%></td>                                                                                                
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                                <%
-                                                } else if (tipo.equals("serviciogeneral")) {
-                                                    FacadeServicioGeneral facser = new FacadeServicioGeneral();
-                                                    ServicioGeneralDTO ser = facser.consultarServicioGeneralPorId(idusuario_hcmed);
-
-                                                    String nombre = ser.getNombre();
-                                                    int id = ser.getIdentificacion();
-                                                    int codigo = ser.getCodigo();
-                                                    String correo = ser.getCorreo();
-                                                    String fechadeNac = ser.getFechanacimiento();
-                                                    int edad = ser.getEdad();
-                                                    String genero = ser.getGenero();
-                                                    String estadoCivil = ser.getEstadocivil();
-                                                    String direccion = ser.getDireccion();
-                                                    String telefono = ser.getTelefono();
-
-                                                %>
-                                                <input type="hidden" id="ide" name="ide" value="<%=id%>">
-                                                <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
-                                                <table class="table table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Identificación: <%=id%></td> 
-                                                            <td>Codigo: <%=codigo%> </td>
-                                                            <td>Correo: <%=correo%></td> 
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Fecha de Nacimiento: <%=fechadeNac%></td>
-                                                            <td>Edad: <%=edad%> </td>
-                                                            <td>Género: <%=genero%></td>
-
-                                                        </tr>
-                                                        <tr>                                                
-                                                            <td>Estado Civil: <%=estadoCivil%></td>
-                                                            <td>Direccion: <%=direccion%></td>
-                                                            <td>Telefono: <%=telefono%></td>                                                                                                
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                                <%
-                                                } else if (tipo.equals("docente")) {
-                                                    FacadeDocente facdoc = new FacadeDocente();
-                                                    DocenteDTO doc = facdoc.consultarDocenteporId(idusuario_hcmed);
-
-                                                    String nombre = doc.getNombre();
-                                                    int id = doc.getIdentificacion();
-                                                    int codigo = doc.getCodigo();
-                                                    String correo = doc.getCorreo();
-                                                    String fechadeNac = doc.getFechanacimiento();
-                                                    int edad = doc.getEdad();
-                                                    String genero = doc.getGenero();
-                                                    String estadoCivil = doc.getEstadocivil();
-                                                    String direccion = doc.getDireccion();
-                                                    String telefono = doc.getTelefono();
-
-                                                %>
-                                                <input type="hidden" id="ide" name="ide" value="<%=id%>">
-                                                <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
-                                                <table class="table table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Identificación: <%=id%></td> 
-                                                            <td>Codigo: <%=codigo%> </td>
-                                                            <td>Correo: <%=correo%></td> 
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Fecha de Nacimiento: <%=fechadeNac%></td>
-                                                            <td>Edad: <%=edad%> </td>
-                                                            <td>Género: <%=genero%></td>
-
-                                                        </tr>
-                                                        <tr>                                                
-                                                            <td>Estado Civil: <%=estadoCivil%></td>
-                                                            <td>Direccion: <%=direccion%></td>
-                                                            <td>Telefono: <%=telefono%></td>                                                                                                
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                                <%
-                                                } else if (tipo.equals("otrousuario")) {
-                                                    FacadeOtrosUsuarios facotro = new FacadeOtrosUsuarios();
-                                                    OtroUsuarioDTO otro = facotro.consultarOtroUsuarioPorId(idusuario_hcmed);
-
-                                                    String nombre = otro.getNombre();
-                                                    int id = otro.getIdentificacion();
-                                                    int codigo = otro.getCodigo();
-                                                    String correo = otro.getCorreo();
-                                                    String fechadeNac = otro.getFechanacimiento();
-                                                    int edad = otro.getEdad();
-                                                    String genero = otro.getGenero();
-                                                    String estadoCivil = otro.getEstadocivil();
-                                                    String direccion = otro.getDireccion();
-                                                    String telefono = otro.getTelefono();
-
-                                                %>
-                                                <input type="hidden" id="ide" name="ide" value="<%=id%>">
-                                                <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
-                                                <table class="table table-responsive">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Identificación: <%=id%></td> 
-                                                            <td>Codigo: <%=codigo%> </td>
-                                                            <td>Correo: <%=correo%></td> 
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Fecha de Nacimiento: <%=fechadeNac%></td>
-                                                            <td>Edad: <%=edad%> </td>
-                                                            <td>Género: <%=genero%></td>
-
-                                                        </tr>
-                                                        <tr>                                                
-                                                            <td>Estado Civil: <%=estadoCivil%></td>
-                                                            <td>Direccion: <%=direccion%></td>
-                                                            <td>Telefono: <%=telefono%></td>                                                                                                
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
-                                                <%
-                                                    }
-
+                                                } 
 
                                                 %>
 
