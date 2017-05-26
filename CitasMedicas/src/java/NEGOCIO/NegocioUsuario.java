@@ -255,4 +255,33 @@ public class NegocioUsuario {
         return enviar;
         
     }
+     
+      public ArrayList<UsuarioDTO> consultarMedicoPorServicio(String tipo_usuario, String servicio) throws SQLException{
+      
+      ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        UsuarioDAO med = new UsuarioDAO(co);
+        ArrayList<UsuarioDTO> medicos = new ArrayList<UsuarioDTO>();
+        
+        try {
+            medicos = med.consultarMedicosPorServicio(tipo_usuario, servicio);
+                    
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return medicos;
+      
+  }
 }

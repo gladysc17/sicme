@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="java.util.List"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="FACADE.FacadeMedico"%>
@@ -16,14 +18,14 @@
         <%
             String servicio = request.getParameter("servicio");            
 
-            FacadeMedico facMed = new FacadeMedico();
+            FacadeUsuario facUs = new FacadeUsuario();
 
-            ArrayList<MedicoDTO> listaMedicos = facMed.consultarMedicosPorServicio(servicio);
+            ArrayList<UsuarioDTO> listaMedicos = facUs.consultarMedicosPorServicio("medico", servicio);
 
             for (int i = 0; i < listaMedicos.size(); i++) {
 
                 String nombremed = listaMedicos.get(i).getNombre();
-                int idmed = listaMedicos.get(i).getIdentificacion();
+                String idmed = listaMedicos.get(i).getIdentificacion();
 
 
         %>    

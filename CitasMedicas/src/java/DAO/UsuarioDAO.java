@@ -195,5 +195,41 @@ public class UsuarioDAO {
         return edad;
        
     }
+    
+    public ArrayList<UsuarioDTO> consultarMedicosPorServicio(String tipo_usuario, String servicio) throws SQLException {
+
+        ArrayList<UsuarioDTO> medicos = new ArrayList<UsuarioDTO>();
+
+        String sql = "SELECT * FROM usuario u INNER JOIN medico m ON u.identificacion = m.identificacion WHERE tipo_usuario = ? AND m.servicio = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, tipo_usuario);
+        ps.setString(2, servicio);
+
+        ResultSet rs = ps.executeQuery();
+
+        UsuarioDTO med = null;
+
+        while (rs.next()) {
+
+            med = new UsuarioDTO();
+
+            med.setIdentificacion(rs.getString("identificacion"));
+            med.setTipo_identificacion(rs.getString("tipo_identificacion"));
+            med.setCodigo(rs.getString("codigo"));
+            med.setNombre(rs.getString("nombre"));
+            med.setCorreo(rs.getString("correo"));
+            med.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+            med.setGenero(rs.getString("genero"));
+            med.setEdad(rs.getInt("edad"));
+            med.setEstado_civil(rs.getString("estado_civil"));
+            med.setDireccion(rs.getString("direccion"));
+            med.setTelefono(rs.getString("telefono"));
+            med.setTipo_usuario(rs.getString("tipo_usuario"));
+
+            medicos.add(med);
+        }
+        return medicos;
+    }
 
 }
