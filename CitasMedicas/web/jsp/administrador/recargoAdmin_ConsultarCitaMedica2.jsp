@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeUsuario"%>
+<%@page import="DTO.UsuarioDTO"%>
 <%@page import="jdk.nashorn.internal.runtime.ListAdapter"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,6 +25,11 @@
 
             <%
                 String ide = request.getParameter("identf");
+                
+                FacadeUsuario fac = new FacadeUsuario();
+                UsuarioDTO u  = fac.consultarUsuarioPorId(ide);
+                
+                if(u!=null){
 
                 FacadeCita cita = new FacadeCita();
                 List<CitaDTO> lista = cita.consultarCitasUsuario(ide);
@@ -99,7 +106,12 @@
                 %>
                 <h3> No cuenta con citas programadas</h3>
                         <%
-                }
+                }}else{
+%>
+                <h3> El Usuario No se encuentra en registrado.  <input type="button" class="btn btn-sm btn-success" value="REGISTRAR" onclick="cargarForm('administrador/recargoAdmin_RegistrarUsuario.jsp')"/></h3>
+                        <%
+
+}
                         %>     
             </div> 
         </div> 

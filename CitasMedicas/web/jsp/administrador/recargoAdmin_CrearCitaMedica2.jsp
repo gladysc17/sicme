@@ -14,7 +14,6 @@
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="NEGOCIO.NegocioMedico"%>
-<%@page import="FACADE.Facade"%>
 <%@page import="DTO.EstudianteDTO"%>
 <%@page import="FACADE.FacadeEstudiante"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

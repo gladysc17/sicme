@@ -5,13 +5,14 @@
 --%>
 
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="DTO.VicerrectorDTO"%>
 <%@page import="FACADE.FacadeVice"%>
 <%@page import="DTO.AdministradorDTO"%>
 <%@page import="FACADE.FacadeAdministrador"%>
-<%@page import="FACADE.Facade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,50 +24,56 @@
     </head>
     <body>
         <%
-            Facade fac = new Facade();
-            FacadeVice facVic = new  FacadeVice();
-            FacadeAdministrador facAdm = new FacadeAdministrador();
-            FacadeMedico facMed = new FacadeMedico();
-            
-            String rol = request.getParameter("rol");
-            int identificacion = Integer.parseInt(request.getParameter("usuario"));
+            FacadeUsuario fac = new FacadeUsuario();
+            String id = request.getParameter("usuario");
             String contrasena = request.getParameter("pw");
-            
-            boolean rta = fac.validarSesion(rol, identificacion, contrasena);
-            
-            if (!rta) {
 
+            UsuarioDTO us = fac.consultarUsuarioPorId(id);
+
+            if (us != null) {
+
+                String tipo = us.getTipo_usuario();
+                System.out.println("TIPO " + tipo);
+                System.out.println("id " + id);
+                if (tipo.equals("administrador")) {
+
+                    FacadeAdministrador facAd = new FacadeAdministrador();
+                    boolean rta = facAd.verificarAdmin(id, contrasena);
+
+                    System.out.println("RTA " + rta);
+
+                    if (rta == true) {
+                        AdministradorDTO admin = facAd.consultarAdminId(id);
+                        session.setAttribute("administrador", admin);
+                        response.sendRedirect("../jsp/PrincipalAdministrador.jsp");
+                    } else {
         %>
         <script type="text/javascript">
-            swal({title: "Error!",
-                text: "Datos incorectos!",
-                type: "error",
-                confirmButtonText: "Inicio",
-                timer: 5000
-            });            
+            alert("DATOS INCORRRECTOS");
             location.href = '../index.jsp';
         </script>
-        <%            } else {
-                
-                if (rol.equals("Vicerrector")) {                    
-                    VicerrectorDTO vice = facVic.consultarViceporId(identificacion);
-                    session.setAttribute("vicerrector", vice);
-                    response.sendRedirect("../jsp/PrincipalVicerrector.jsp");
-                    
+        <%
+            }
+
+        } else if (tipo.equals("vicerrector")) {
+            FacadeVice facVc = new FacadeVice();
+            boolean rta = facVc.verificarVice(id, contrasena);
+
+            if (rta == true) {
+                VicerrectorDTO vice = facVc.consultarViceId(id);
+                session.setAttribute("vicerrector", vice);
+                response.sendRedirect("../jsp/PrincipalVicerrector.jsp");
+            } else {
+        %>
+        <script type="text/javascript">
+            alert("DATOS INCORRRECTOS");
+            location.href = '../index.jsp';
+        </script>
+        <%
+                    }
+
                 }
-                
-                if (rol.equals("Admin")) {
-                    AdministradorDTO admin = facAdm.consultarAdminporId(identificacion);
-                    session.setAttribute("administrador", admin);
-                    response.sendRedirect("../jsp/PrincipalAdministrador.jsp");
-                }
-                
-                if (rol.equals("Medico")) {
-                    MedicoDTO med = facMed.consultarMedicoPorId(identificacion);
-                    session.setAttribute("medico", med);
-                    response.sendRedirect("../jsp/PrincipalMedico.jsp");
-                }
-                
+
             }
         %>
     </body>

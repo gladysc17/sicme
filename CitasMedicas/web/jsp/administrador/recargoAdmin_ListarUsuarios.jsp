@@ -24,7 +24,7 @@
 
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <table class="table table-responsive table-hover table-bordered dataTable" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
                             <thead>
                                 <tr>
                                     <th>#</th>

@@ -17,10 +17,13 @@
 
                 <style>
                     #estudiante{
-                        display: none
+                        display: none;
                     }
                     #medico{
-                        display: none
+                        display: none;
+                    }
+                    #admin_vice{
+                        display: none;
                     }
                 </style>
                 <div class="form-group">  
@@ -105,7 +108,10 @@
                                 <option value="medico"> Medico </option>
                                 <option value="profesional"> Profesional </option>                                
                                 <option value="Servicios Generales"> Servicios Generales </option>                                
-                                <option value="Otro Usuario"> Otro Usuario </option>                                
+                                <option value="Otro Usuario"> Otro Usuario </option> 
+                                <option value="administrador"> Administrador </option>
+                                <option value="vicerrector"> Vicerrector </option>
+                                
                             </select>
                         </div>
                     </div>
@@ -117,19 +123,25 @@
 
                             var selec = tipo.options[tipo.selectedIndex].value;
 
-                            alert(selec);
-
                             if (selec == "estudiante") {
                                 document.getElementById("estudiante").style.display = 'inline';
                                 document.getElementById("medico").style.display = 'none'
+                                document.getElementById("admin_vice").style.display = 'none';
                             }
                             else if (selec == "medico") {
                                 document.getElementById("medico").style.display = 'inline';
                                 document.getElementById("estudiante").style.display = 'none'
+                                document.getElementById("admin_vice").style.display = 'none';
+                            }
+                            else if (selec == "administrador" || selec == "vicerrector") {
+                                document.getElementById("admin_vice").style.display = 'inline';
+                                document.getElementById("estudiante").style.display = 'none'
+                                document.getElementById("medico").style.display = 'none'
                             }
                             else{
                                 document.getElementById("estudiante").style.display = 'none'
                                 document.getElementById("medico").style.display = 'none'
+                                document.getElementById("admin_vice").style.display = 'none';
                                 
                             }
 
@@ -178,7 +190,13 @@
                             </div>        
                         </div>
                     </div>
-
+                    
+                    <div class="form-group" id="admin_vice">
+                        <div class="col-sm-6">                            
+                            <label class="control-label">Contraseña: </label>
+                            <input type="text" class="form-control" id="contrasena" name="contrasena">
+                        </div>
+                    </div>
                     <div class="form-group" id="medico">
                         <div class="col-sm-6">
                             <label class="control-label">Servicio: </label>

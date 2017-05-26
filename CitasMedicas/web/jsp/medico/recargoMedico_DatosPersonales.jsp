@@ -20,7 +20,7 @@
                     <h3>Datos Personales </h3>                                                                                  
                 </div>                    
                 <div class="panel-body">  
-                    <form action="../controlador/procesarModificarMedicoMed.jsp" method="post">
+                    <form action="../controlador/procesarModificarUsuario.jsp" method="post">
                         <%
                             MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
                             if (med == null) {
