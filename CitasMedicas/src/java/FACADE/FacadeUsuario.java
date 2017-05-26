@@ -38,4 +38,8 @@ public class FacadeUsuario {
      public int calcularEdad(Date fecha){
         return new NegocioUsuario().calcularEdad(fecha);
     }
+     
+     public boolean recueperarContrasena(String id) throws SQLException{
+        return new NegocioUsuario().recuperarContrasena(id);
+    }
 }

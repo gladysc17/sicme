@@ -7,6 +7,7 @@ package FACADE;
 
 import DTO.AdministradorDTO;
 import NEGOCIO.NegocioAdministrador;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,15 +15,17 @@ import NEGOCIO.NegocioAdministrador;
  */
 public class FacadeAdministrador {
     
-    
-    public AdministradorDTO consultarAdminporId(int id){
+    public boolean verificarAdmin(String id, String clave) throws SQLException {
+        return new NegocioAdministrador().verificarAdmin(id, clave);
+
+    }
+   public boolean registrarAdministrador(AdministradorDTO ad) throws SQLException {
+        return new NegocioAdministrador().registrarAdministrador(ad);
+    }
+   
+   public AdministradorDTO consultarAdminId(String id) throws SQLException {
         return new NegocioAdministrador().consultarAdminPorId(id);
+
     }
-    
-    public boolean modificarAdmin(int identificacion_administrador, String correo_administrador, String telefono_administrador, String contrasena_administrador, String direccion_administrador,
-                                  String fechanacimiento_administrador, String genero_administrador, String estadocivil_administrador){
-        return new NegocioAdministrador().modificarAdmin(identificacion_administrador, correo_administrador, telefono_administrador, contrasena_administrador, direccion_administrador, fechanacimiento_administrador, genero_administrador, estadocivil_administrador);
-    }
-    
     
 }

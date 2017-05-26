@@ -5,8 +5,15 @@
  */
 package NEGOCIO;
 
+import DAO.AdministradorDAO;
 import DAO.UsuarioDAO;
+import DTO.AdministradorDTO;
+import DTO.MedicoDTO;
 import DTO.UsuarioDTO;
+import DTO.VicerrectorDTO;
+import FACADE.FacadeAdministrador;
+import FACADE.FacadeMedico;
+import FACADE.FacadeVice;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -15,6 +22,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ConexionPostgres;
+import util.ServicioEmail;
 
 /**
  *
@@ -63,14 +71,14 @@ public class NegocioUsuario {
         try {
              return ou.consultarUsuarioPorId(id);
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -89,14 +97,14 @@ public class NegocioUsuario {
              return otro != null;
              
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -112,14 +120,14 @@ public class NegocioUsuario {
         try {
              return ou.consultarUsuarioPorIdCodigo(id, codigo);
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -185,17 +193,66 @@ public class NegocioUsuario {
         try {
              edad = ou.calcularedad(fecha);
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return edad;
+    }
+
+     public boolean recuperarContrasena(String id) throws SQLException {
+        
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        UsuarioDAO u = new UsuarioDAO(co);
+        UsuarioDTO usuario = u.consultarUsuarioPorId(id);
+        String tipo = usuario.getTipo_usuario();
+        String contraseña = "";
+        switch (tipo) {
+            case "administrador":
+                {
+                    FacadeAdministrador fac = new FacadeAdministrador();
+                    AdministradorDTO ad = fac.consultarAdminId(id);
+                    contraseña  = ad.getContrasena();
+                    break;
+                }
+            case "vicerrector":
+                {
+                    FacadeVice fac = new FacadeVice();
+                    VicerrectorDTO vc = fac.consultarViceId(id);
+                    contraseña  = vc.getContrasena();
+                    break;
+                }
+            case "medico":
+                {
+                    FacadeMedico fac = new FacadeMedico();
+                    MedicoDTO md = fac.consultarMedicoPorId(0);
+                    contraseña  = md.getContrasena();
+                    break;
+                }
+            default:
+                break;
+        }
+        
+        ServicioEmail servicioEmail = new ServicioEmail("sicgme@gmail.com", "oovnjylswrgytpty");
+        
+        String correo = usuario.getCorreo();
+        String asunto = "SIGME - RECUPERAR CONTRASEÑA";
+        String clave = "SU CONTRASEÑA PARA ACCEDER AL SISTEMA ES: "+contraseña;
+        
+        System.out.println("correo-->" +correo);
+        
+        boolean enviar = servicioEmail.enviarEmail(correo, asunto, clave);
+        
+        
+        return enviar;
+        
     }
 }

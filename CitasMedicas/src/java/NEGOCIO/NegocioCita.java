@@ -67,7 +67,7 @@ public class NegocioCita {
             citas = cita.consultarCitasEst(id_est);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
 
@@ -75,7 +75,7 @@ public class NegocioCita {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -95,7 +95,7 @@ public class NegocioCita {
             citas = cita.consultarCitasProfesional(id_prof, fecha);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
 
@@ -103,7 +103,7 @@ public class NegocioCita {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

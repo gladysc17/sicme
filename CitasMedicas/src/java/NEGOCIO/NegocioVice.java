@@ -19,87 +19,77 @@ import util.ConexionPostgres;
  */
 public class NegocioVice {
     
-    public VicerrectorDTO consultarAdminPorId(int id){
-        
+    public boolean registrarAdministrador(VicerrectorDTO vc) {
+
+        boolean resultado = false;
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        VicerrectorDAO vic = new VicerrectorDAO(co);
 
-        try {
-            
-            return vic.consultarViceporId(id);
-             
+        VicerrectorDAO admin = new VicerrectorDAO(co);
+
+        try {                        
+            return resultado = admin.registrarAdministrador(vc);
+           
         } catch (SQLException ex) {
-            Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+            Logger.getLogger(NegocioVice.class.getName()).log(Level.SEVERE, null, ex);
 
+        } finally {
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioVice.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
         }
-        return null;        
-    }
-    
-    public boolean validarSesionVice(int id, String clave){
-        
-          boolean resultado = false;
-         
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-        VicerrectorDAO adm = new VicerrectorDAO(co);
-        try {
-            VicerrectorDTO vice = adm.consultarViceporId(id);
-
-            if (vice == null) {
-                return false; 
-                
-            } else {
-                if (vice.getContrasena_vice().equals(clave)) {
-                    return true; 
-                }
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
         return resultado;
-    }
-    public boolean modificarVicerrector( int identificacion_vice, String correo_vice, String telefono_vice, String contrasena_vice){
-        
+
+    }   
+
+    public boolean verificarVice(String id, String clave) throws SQLException {
+       boolean rta = false;
+
+            ConexionPostgres con = new ConexionPostgres();
+            Connection co = con.getconexion();
+
+            VicerrectorDAO vice = new VicerrectorDAO(co);
+            
+            VicerrectorDTO vc = vice.consultarViceId(id);
+            
+            if (vc == null) {
+                return false;
+            } else {
+                if (vc.getContrasena().equals(clave)) {
+                    return true;
+                }
+                
+            }
+
+            return rta;
+        }   
+
+    public VicerrectorDTO consultarViceId(String id) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        VicerrectorDAO vic = new VicerrectorDAO(co);
+        VicerrectorDAO med = new VicerrectorDAO(co);
 
         try {
-            
-            return vic.modificarVicerrector(identificacion_vice, correo_vice, telefono_vice, contrasena_vice);
-             
+             return med.consultarViceId(id);
         } catch (SQLException ex) {
-            Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioVice.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioVice.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
-        return false;       
+        return null;
     }
+ 
 }

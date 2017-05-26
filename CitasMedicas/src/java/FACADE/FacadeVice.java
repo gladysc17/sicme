@@ -7,6 +7,7 @@ package FACADE;
 
 import DTO.VicerrectorDTO;
 import NEGOCIO.NegocioVice;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,11 +15,17 @@ import NEGOCIO.NegocioVice;
  */
 public class FacadeVice {
     
-     public  VicerrectorDTO consultarViceporId(int id){
-        return new NegocioVice().consultarAdminPorId(id);
+     public boolean verificarVice(String id, String clave) throws SQLException {
+        return new NegocioVice().verificarVice(id, clave);
+
     }
-     public boolean modificarVice(int id_vice, String correo_vice, String telefono_vice, String contrasena_vice){
-        return new NegocioVice().modificarVicerrector(id_vice, correo_vice, telefono_vice, contrasena_vice);
+    
+    public boolean registrarVice(VicerrectorDTO vc) throws SQLException {
+        return new NegocioVice().registrarAdministrador(vc);
+    }
+     public VicerrectorDTO consultarViceId(String id) throws SQLException {
+        return new NegocioVice().consultarViceId(id);
+
     }
     
 }

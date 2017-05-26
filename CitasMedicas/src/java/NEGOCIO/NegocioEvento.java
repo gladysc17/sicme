@@ -33,7 +33,7 @@ public class NegocioEvento {
         try{
             rta = eve.registrarEvento(evento);
         } catch(SQLException e){
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, e);
         }finally {
 
             if (co != null) {

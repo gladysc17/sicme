@@ -95,14 +95,14 @@ public class NegocioMedico {
         try {
              return med.consultarMedicoPorId(id);
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -122,14 +122,14 @@ public class NegocioMedico {
              
                return medico != null;
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -145,14 +145,14 @@ public class NegocioMedico {
         try {
              return doc.consultarMedicoPorIdCodigo(id, codigo);
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -191,7 +191,7 @@ public class NegocioMedico {
             medicos = med.consultarMedicoPorServicio(servicio);
 
         } catch (SQLException ex) {
-            Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
 
@@ -199,7 +199,7 @@ public class NegocioMedico {
                 try {
                     co.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Negocio.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

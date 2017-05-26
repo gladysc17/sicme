@@ -24,72 +24,42 @@ public class AdministradorDAO {
         this.con = con;
     }
     
-   /**
-    * Metodo que consulta un Administrador en la Base de Datos según su Identificación
-    * @param id
-    * @return Objeto de tipp AdministradorDTO
-    * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
-    */
-    public AdministradorDTO consultarAdminporId(int id) throws SQLException{               
-        
-        String sql = "SELECT * FROM administrador WHERE identificacion_administrador = ? ";
-        
+    public boolean registrarAdministrador(AdministradorDTO adm) throws SQLException {
+                       
+        String sql = "INSERT INTO administrador (identificacion_usuario, contrasena )"
+                + " VALUES (?, ?)";
+
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setInt(1, id);
-        
-        ResultSet rs = ps.executeQuery();
-        
-        AdministradorDTO admin = null;
-        
-        if(rs.next()){
-            
-            admin = new AdministradorDTO();
-            
-            admin.setIdentificacion_administrador(rs.getInt("identificacion_administrador"));
-            admin.setNombre_administrador(rs.getString("nombre_administrador"));
-            admin.setCorreo_administrador(rs.getString("correo_administrador"));
-            admin.setTelefono_administrador(rs.getString("telefono_administrador"));
-            admin.setCodigo_administrador(rs.getInt("codigo_administrador"));
-            admin.setFechanacimiento_administrador(rs.getString("fechanacimiento_administrador"));
-            admin.setGenero_administrador(rs.getString("genero_administrador"));
-            admin.setEstadocivil_administrador(rs.getString("estadocivil_administrador"));
-            admin.setDireccion_administrador(rs.getString("direccion_administrador"));    
-            admin.setContrasena_administrador(rs.getString("contrasena_administrador"));                        
-            
-        }
-        
-        
-        return admin;
-        
+        ps.setString(1, adm.getIdentificacion_usuario());                
+        ps.setString(2, adm.getContrasena());               
+
+        int resultado = ps.executeUpdate();
+
+        return resultado == 1;
+
     }
     
-    public boolean modificarAdmin(int identificacion_administrador, String correo_administrador, String telefono_administrador, String contrasena_administrador, String direccion_administrador,
-                                  String fechanacimiento_administrador, String genero_administrador, String estadocivil_administrador  ) throws SQLException{
+     public AdministradorDTO consultarAdminId(String id) throws SQLException {
+
+        String sql = "SELECT * FROM administrador WHERE identificacion_usuario = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, id);
+
+        ResultSet rs = ps.executeQuery();
         
-        String sql = "UPDATE administrador SET correo_administrador = ?, telefono_administrador = ?, contrasena_administrador = ?, direccion_administrador = ?, "
-                + " fechanacimiento_administrador = ?, genero_administrador = ?, estadocivil_administrador = ?"
-                + "WHERE identificacion_administrador = ? ";
-        
-        PreparedStatement ps = con.prepareStatement(sql);                
-         
-        ps.setString(1, correo_administrador);
-        ps.setString(2, telefono_administrador);
-        ps.setString(3, contrasena_administrador);
-        ps.setString(4, direccion_administrador);
-        ps.setString(5, fechanacimiento_administrador);
-        ps.setString(6, genero_administrador);
-        ps.setString(7, estadocivil_administrador);
-        ps.setInt(8, identificacion_administrador);                
-        
-        int rta = ps.executeUpdate();
-        
-        if(rta > 0){
-            return true;
-            
+        System.out.println("sql "+rs.toString());      
+
+        AdministradorDTO ad = null;
+
+        if (rs.next()) {
+            ad = new AdministradorDTO();
+            ad.setIdentificacion_usuario(rs.getString("identificacion_usuario"));            
+            ad.setContrasena(rs.getString("contrasena"));
+
         }
-        else
-            return false;
-        
+        return ad;
     }
 }
