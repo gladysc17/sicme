@@ -99,35 +99,34 @@
                                 <input type="text" class="form-control" id="contrasena" name="contrasena">
                             </div>
                         </div>
-
-                        <br> <br>
-                        <div class="clearfix">
+                            
+                            <div class="clearfix">
                             <div class="col-sm-8">
-                                <label class="control-label"> </label>
-                                <input class="btn btn-success btn-block" type="submit" value="MODIFICAR" onclick="mostrarDatos()">
-
-                            </div>
-                            <br><br>
-
+                                <label class="control-label"> </label>                               
+                                <input class="btn btn-success btn-block" type="submit" value="MODIRIFCAR">
+                            </div>                                                     
 
                         </div>
+
+                        <br> <br>                        
+                        
+                       
                     </form>
                     <script>
-                        function mostrarDatos() {
-
+                       
                             var tipo = document.form.tipo.value;
                             alert(tipo);
 
-                            if (selec == "administrador") {
-                                document.getElementById("admin").style.display = 'inline'
+                            if (tipo == "administrador") {
+                                document.getElementById("admin").style.display = 'inline'                               
 
                             }
                             else{
-                                
+                                document.getElementById("admin").style.display = 'none'
                             }
-                        }
-
+                        
                     </script>
+                    
 
                 </div>                                    
             </div>

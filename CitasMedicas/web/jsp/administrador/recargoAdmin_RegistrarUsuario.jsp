@@ -33,7 +33,7 @@
                             <select id="tipoid" name="tipoid">
                                 <option value="T.I"> Tarjeta de Identidad </option>
                                 <option value="C.C"> C. de Ciudadania </option>
-                                <option value="C.E"> C. de Extranjería </option>
+                                <option value="C.E"> C. de Extranjeria </option>
                                 <option value="P.P"> Pasaporte </option>                                
                             </select>
                         </div>
@@ -158,33 +158,33 @@
                                     <option value="Arquitectura">Arquitectura</option>
                                     <option value="Comercio Internacional">Comercio Internacional</option>
                                     <option value="Comunicaion Social">Comunicación Social</option>
-                                    <option value="Contaduria ">Contaduría Pública</option>
+                                    <option value="Contaduria ">Contaduria Pública</option>
                                     <option>Derecho</option>
-                                    <option>Enfermería</option>
-                                    <option>Ingeniería Agroindustrial</option>
-                                    <option>Ingeniería Agronómica</option>
-                                    <option>Ingeniería Ambiental</option>
-                                    <option>Ingeniería Biotecnológica</option>
-                                    <option>Ingeniería Civil</option>
-                                    <option>Ingeniería de Minas</option>
-                                    <option>Ingeniería de Sistemas</option>
-                                    <option>Ingeniería Electromecánica</option>
-                                    <option>Ingeniería Electrónica</option>
-                                    <option>Ingeniería Industrial</option>
-                                    <option>Ingeniería Mecánica</option>
-                                    <option>Ingeniería Pecuaria</option>
+                                    <option>Enfermeria</option>
+                                    <option>Ingenieria Agroindustrial</option>
+                                    <option>Ingenieria Agronómica</option>
+                                    <option>Ingenieria Ambiental</option>
+                                    <option>Ingenieria Biotecnológica</option>
+                                    <option>Ingenieria Civil</option>
+                                    <option>Ingenieria de Minas</option>
+                                    <option>Ingenieria de Sistemas</option>
+                                    <option>Ingenieria Electromecánica</option>
+                                    <option>Ingenieria Electrónica</option>
+                                    <option>Ingenieria Industrial</option>
+                                    <option>Ingenieria Mecánica</option>
+                                    <option>Ingenieria Pecuaria</option>
                                     <option>Licenciatura en Matemáticas</option>
-                                    <option>Química Industrial</option>
+                                    <option>Quimica Industrial</option>
                                     <option>Seguridad y Salud en el Trabajo</option>
                                     <option>Trabajo Social</option>                                        
-                                    <option>Tecnología Agroindustrial</option>
-                                    <option>Tecnología en Gestión de Procesos de Manufactura</option>
-                                    <option>Tecnología en Gestión y Desarrollo de Productos Cerámicos</option>
-                                    <option>Tecnología en Obras Civiles</option>
-                                    <option>Tecnología en Procesos Industriales</option>                                        
+                                    <option>Tecnologia Agroindustrial</option>
+                                    <option>Tecnologia en Gestión de Procesos de Manufactura</option>
+                                    <option>Tecnologia en Gestión y Desarrollo de Productos Cerámicos</option>
+                                    <option>Tecnologia en Obras Civiles</option>
+                                    <option>Tecnologia en Procesos Industriales</option>                                        
                                     <option>Técnico Profesional en Fabricación Industrial de Productos Cerámicos</option>
                                     <option>Técnico Profesional en Procesamiento de Alimentos</option>
-                                    <option>Técnico Profesional en Procesos de Manufactura de Calzado y Marroquinería</option>
+                                    <option>Técnico Profesional en Procesos de Manufactura de Calzado y Marroquineria</option>
                                     <option>Técnico Profesional en Producción de Cerámica Artesanal</option>
                                 </select>
                             </div>        

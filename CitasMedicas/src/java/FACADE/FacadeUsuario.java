@@ -35,6 +35,17 @@ public class FacadeUsuario {
         return new NegocioUsuario().modificarUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro);
 
     }
+     public boolean modificarAdmin(String identificacion, String contrasena ) throws SQLException {
+        return new NegocioUsuario().modificarAdmin(identificacion, contrasena);
+    }
+      public boolean modificarVice(String identificacion, String contrasena ) throws SQLException {
+        return new NegocioUsuario().modificarVice(identificacion, contrasena);
+    }
+       public boolean modificarMedico(String identificacion, String contrasena ) throws SQLException {
+        return new NegocioUsuario().modificarMedico(identificacion, contrasena);
+    }
+       
+      
 
     public int calcularEdad(Date fecha) {
         return new NegocioUsuario().calcularEdad(fecha);

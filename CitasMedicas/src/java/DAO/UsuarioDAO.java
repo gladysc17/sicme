@@ -175,6 +175,52 @@ public class UsuarioDAO {
         return rta > 0;
 
     }
+    
+    public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException {
+
+        String sql = "UPDATE administrador SET contrasena = ? "
+                + "WHERE  identificacion_usuario = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, contrasena);
+        ps.setString(2, identificacion);
+
+        int rta = ps.executeUpdate();
+
+        return rta > 0;
+
+    }
+    public boolean modificarVice(String identificacion, String contrasena) throws SQLException {
+
+        String sql = "UPDATE vicerrector SET contrasena = ? "
+                + "WHERE  identificacion_usuario = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, contrasena);
+        ps.setString(2, identificacion);
+
+        int rta = ps.executeUpdate();
+
+        return rta > 0;
+
+    }
+    public boolean modificarMedico(String identificacion, String contrasena) throws SQLException {
+
+        String sql = "UPDATE medico SET contrasena = ? "
+                + "WHERE  identificacion = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, contrasena);
+        ps.setString(2, identificacion);
+
+        int rta = ps.executeUpdate();
+
+        return rta > 0;
+
+    }
 
     public int calcularedad(Date fecha) throws SQLException {
         

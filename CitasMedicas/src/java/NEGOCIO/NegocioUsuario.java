@@ -183,6 +183,92 @@ public class NegocioUsuario {
         return rta;
     }
     
+     public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException{
+
+        boolean rta = false;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        UsuarioDAO est = new UsuarioDAO(co);
+
+        try {
+            
+            rta = est.modificarAdmin(identificacion, contrasena);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return rta;
+    }
+     
+      public boolean modificarVice(String identificacion, String contrasena) throws SQLException{
+
+        boolean rta = false;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        UsuarioDAO est = new UsuarioDAO(co);
+
+        try {
+            
+            rta = est.modificarVice(identificacion, contrasena);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return rta;
+    }
+      public boolean modificarMedico(String identificacion, String contrasena) throws SQLException{
+
+        boolean rta = false;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        UsuarioDAO est = new UsuarioDAO(co);
+
+        try {
+            
+            rta = est.modificarMedico(identificacion, contrasena);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return rta;
+    }
+    
     public int calcularEdad (Date fecha) {
         
         int edad = 0;
