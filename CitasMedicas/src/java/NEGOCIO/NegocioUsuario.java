@@ -233,7 +233,7 @@ public class NegocioUsuario {
             case "medico":
                 {
                     FacadeMedico fac = new FacadeMedico();
-                    MedicoDTO md = fac.consultarMedicoPorId(0);
+                    MedicoDTO md = fac.consultarMedicoPorId(id);
                     contraseña  = md.getContrasena();
                     break;
                 }

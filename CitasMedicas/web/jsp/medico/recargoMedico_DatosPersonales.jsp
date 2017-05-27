@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,13 +29,18 @@
 
                                 response.sendRedirect("../../index.jsp");
                                 return;
-                            }                            
+                            }            
+                            
+                            String id = med.getIdentificacion();
+                            FacadeUsuario facmed = new FacadeUsuario();
+                            UsuarioDTO md = facmed.consultarUsuarioPorId(id);
+                            
 
                         %>
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Tipo Identificación: </label>
-                                <input class="form-control" id="tipoid" name="tipoid" value="<%=med.getTipodocumentoid()%>" readonly>
+                                <input class="form-control" id="tipoid" name="tipoid" value="<%=md.getTipo_identificacion()%>" readonly>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Identificación</label>
@@ -41,49 +48,49 @@
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Código</label>
-                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=med.getCodigo()%>" readonly>
+                                <input type="number" class="form-control" id="codigo" name="codigo" value="<%=md.getCodigo()%>" readonly>
                             </div>                            
                         </div>
 
                         <div class="form-group">                              
                             <div class="col-sm-6">
                                 <label class="control-label">Nombres y Apellidos:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=med.getNombre()%>" readonly>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="<%=md.getNombre()%>" readonly>
                             </div>
                             <div class="col-sm-6">
                                 <label class="control-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%=med.getCorreo()%>">
+                                <input type="email" class="form-control" id="correo" name="correo" value="<%=md.getCorreo()%>">
                             </div>
                         </div>
                         
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
-                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=med.getFechanacimiento()%>">
+                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=md.getFecha_nacimiento()%>">
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Edad: </label>
-                                <input type="number" class="form-control" id="edad" name="edad" value="<%=med.getEdad()%>" readonly> 
+                                <input type="number" class="form-control" id="edad" name="edad" value="<%=md.getEdad()%>" readonly> 
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Género: </label>
-                                <input type="text" class="form-control" id="genero" name="genero" value="<%=med.getGenero()%>">
+                                <input type="text" class="form-control" id="genero" name="genero" value="<%=md.getGenero()%>">
                             </div>                                                        
                         </div>
 
                         <div class="form-group">   
                             <div class="col-sm-4">
                                 <label class="control-label">Estado civil: </label>
-                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=med.getEstadocivil()%>" >
+                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=md.getEstado_civil()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Dirección: </label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=med.getDireccion()%>" >
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=md.getDireccion()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Teléfono: </label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=med.getTelefono() %>" >
-                            </div>                            
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=md.getTelefono() %>" >
+                            </div>                           
                         </div>
                             <div class="form-group">   
                             <div class="col-sm-4">

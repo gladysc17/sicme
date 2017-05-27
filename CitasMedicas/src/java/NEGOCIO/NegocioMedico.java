@@ -22,7 +22,7 @@ import util.ConexionPostgres;
 public class NegocioMedico {
     
     
-    public boolean validarSesionMedico(int id, String clave) {
+    public boolean validarSesionMedico(String id, String clave) {
          
         boolean resultado = false;
          
@@ -86,7 +86,7 @@ public class NegocioMedico {
 
     }
     
-     public MedicoDTO consultarMedicoPorId(int id) {
+     public MedicoDTO consultarMedicoPorId(String id) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -109,7 +109,7 @@ public class NegocioMedico {
         return null;
     }
      
-       public boolean consultarMedicoPorIdBoolean(int id) {
+       public boolean consultarMedicoPorIdBoolean(String id) {
            
            boolean rta = false;
 
@@ -231,6 +231,29 @@ public class NegocioMedico {
                     Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }
+
+        return rta;
+    }
+
+    public boolean verificarMedico(String id, String clave) throws SQLException {
+      
+        boolean rta = false;
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        MedicoDAO medico = new MedicoDAO(co);
+
+        MedicoDTO md = medico.consultarMedicoPorId(id);
+
+        if (md == null) {
+            return false;
+        } else {
+            if (md.getContrasena().equals(clave)) {
+                return true;
+            }
+
         }
 
         return rta;

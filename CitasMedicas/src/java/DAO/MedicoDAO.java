@@ -27,25 +27,14 @@ public class MedicoDAO {
       
     public boolean registrarMedico(MedicoDTO med) throws SQLException {
 
-        String sql = "INSERT INTO medico (identificacion, tipodocumentoid, codigo, nombre, correo, "
-                + "fechanacimiento, genero, edad, estadocivil, direccion, telefono, contrasena, servicio)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO medico (identificacion, servicio, contrasena)"
+                + " VALUES (?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, med.getIdentificacion());        
-        ps.setString(2, med.getTipodocumentoid());
-        ps.setInt(3, med.getCodigo());
-        ps.setString(4, med.getNombre());
-        ps.setString(5, med.getCorreo());
-        ps.setString(6, med.getFechanacimiento());
-        ps.setString(7, med.getGenero());
-        ps.setInt(8, med.getEdad());
-        ps.setString(9, med.getEstadocivil());
-        ps.setString(10, med.getDireccion());
-        ps.setString(11, med.getTelefono());
-        ps.setString(12, med.getContrasena() );
-        ps.setString(13, med.getServicio());
+        ps.setString(1, med.getIdentificacion());        
+        ps.setString(2, med.getContrasena());
+        ps.setString(3, med.getServicio());
 
         int resultado = ps.executeUpdate();
 
@@ -53,13 +42,13 @@ public class MedicoDAO {
 
     }
 
-    public MedicoDTO consultarMedicoPorId(int id) throws SQLException {
+    public MedicoDTO consultarMedicoPorId(String id) throws SQLException {
 
         String sql = "SELECT * FROM medico WHERE identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, id);
+        ps.setString(1, id);
 
         ResultSet rs = ps.executeQuery();
 
@@ -67,19 +56,10 @@ public class MedicoDAO {
 
         if (rs.next()) {
             med = new MedicoDTO();
-            med.setIdentificacion(rs.getInt("identificacion"));
-            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
-            med.setCodigo(rs.getInt("codigo"));
-            med.setNombre(rs.getString("nombre"));
-            med.setCorreo(rs.getString("correo"));
-            med.setFechanacimiento(rs.getString("fechanacimiento"));      
-            med.setGenero(rs.getString("genero"));
-            med.setEdad(rs.getInt("edad"));
-            med.setEstadocivil(rs.getString("estadocivil"));
-            med.setDireccion(rs.getString("direccion"));
-            med.setTelefono(rs.getString("telefono")); 
-            med.setContrasena(rs.getString("contrasena"));
+            med.setIdentificacion(rs.getString("identificacion")); 
             med.setServicio(rs.getString("servicio"));
+            med.setContrasena(rs.getString("contrasena"));
+            
         }
         return med;
     }
@@ -99,19 +79,9 @@ public class MedicoDAO {
         while (rs.next()) {
             med = new MedicoDTO();
 
-           med.setIdentificacion(rs.getInt("identificacion"));
-            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
-            med.setCodigo(rs.getInt("codigo"));
-            med.setNombre(rs.getString("nombre"));
-            med.setCorreo(rs.getString("correo"));
-            med.setFechanacimiento(rs.getString("fechanacimiento"));      
-            med.setGenero(rs.getString("genero"));
-            med.setEdad(rs.getInt("edad"));
-            med.setEstadocivil(rs.getString("estadocivil"));
-            med.setDireccion(rs.getString("direccion"));
-            med.setTelefono(rs.getString("telefono")); 
-            med.setContrasena(rs.getString("contrasena"));
+           med.setIdentificacion(rs.getString("identificacion")); 
             med.setServicio(rs.getString("servicio"));
+            med.setContrasena(rs.getString("contrasena"));
 
             listaMed.add(med);
         }
@@ -136,19 +106,9 @@ public class MedicoDAO {
         if (rs.next()) {
             med = new MedicoDTO();
 
-            med.setIdentificacion(rs.getInt("identificacion"));
-            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
-            med.setCodigo(rs.getInt("codigo"));
-            med.setNombre(rs.getString("nombre"));
-            med.setCorreo(rs.getString("correo"));
-            med.setFechanacimiento(rs.getString("fechanacimiento"));      
-            med.setGenero(rs.getString("genero"));
-            med.setEdad(rs.getInt("edad"));
-            med.setEstadocivil(rs.getString("estadocivil"));
-            med.setDireccion(rs.getString("direccion"));
-            med.setTelefono(rs.getString("telefono")); 
-            med.setContrasena(rs.getString("contrasena"));
+            med.setIdentificacion(rs.getString("identificacion")); 
             med.setServicio(rs.getString("servicio"));
+            med.setContrasena(rs.getString("contrasena"));
         }
 
         return med;
@@ -172,19 +132,9 @@ public class MedicoDAO {
 
             med = new MedicoDTO();
 
-            med.setIdentificacion(rs.getInt("identificacion"));
-            med.setTipodocumentoid(rs.getString("tipodocumentoid"));
-            med.setCodigo(rs.getInt("codigo"));
-            med.setNombre(rs.getString("nombre"));
-            med.setCorreo(rs.getString("correo"));
-            med.setFechanacimiento(rs.getString("fechanacimiento"));      
-            med.setGenero(rs.getString("genero"));
-            med.setEdad(rs.getInt("edad"));
-            med.setEstadocivil(rs.getString("estadocivil"));
-            med.setDireccion(rs.getString("direccion"));
-            med.setTelefono(rs.getString("telefono")); 
-            med.setContrasena(rs.getString("contrasena"));
+           med.setIdentificacion(rs.getString("identificacion")); 
             med.setServicio(rs.getString("servicio"));
+            med.setContrasena(rs.getString("contrasena"));
 
             medicos.add(med);
         }

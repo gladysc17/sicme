@@ -1,3 +1,5 @@
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.MedicoDTO"%>
 <!DOCTYPE html>
 <html>
@@ -24,16 +26,19 @@
 
     <body>
         <%
-                MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
-                
-                if (med == null) {
+            MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
 
-                    response.sendRedirect("../index.jsp");
-                    return;
-                }
-                int id = med.getIdentificacion();
-                String nombre = med.getNombre();
-            %>
+            if (med == null) {
+
+                response.sendRedirect("../index.jsp");
+                return;
+            }
+            String id = med.getIdentificacion();
+            FacadeUsuario fac = new FacadeUsuario();
+            UsuarioDTO usuario = fac.consultarUsuarioPorId(id);
+            String nombre = usuario.getNombre();
+
+        %>
         <div id="menu-principal" class="header-v6 header-white-transparent header-sticky" style="position: relative;">            
 
             <div class="header-v8 img-logo-superior" style="background-color: #aa1916;">                
@@ -68,36 +73,36 @@
                 <div class="container" >
                     <h1 align="center" style="color: white"> GESTION DE CITAS MEDICAS </h1>
                 </div>                
-                
+
             </div>
-            
+
         </div>
         <nav class="navbar-default navbar-static-side hidden-xs" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="nav-header">
-                            <div class="dropdown profile-element"> <span>
-                                    <div align="center"><img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"></div>
-                                </span>
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=nombre%></strong>
-                                        </span> <span class="text-muted text-xs block">Medico <b class="caret"></b></span> </span> </a>
-                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                    <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('medico/recargoMedico_DatosPersonales.jsp')"/></li>                                    
-                                    <li class="divider"></li>
-                                    <li><a href="../controlador/procesarCierreSesion.jsp"><h3>Cerrar Sesion</h3></a></li>
-                                    <li><a href="../index.jsp"><h3>Inicio</h3></a></li>
-                                </ul>
-                            </div>                           
-                        </li>
-                    </ul>
-                    <hr>                   
-                </div>
-            </nav>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                                <div align="center"><img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"></div>
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=nombre%></strong>
+                                    </span> <span class="text-muted text-xs block">Medico <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('medico/recargoMedico_DatosPersonales.jsp')"/></li>                                    
+                                <li class="divider"></li>
+                                <li><a href="../controlador/procesarCierreSesion.jsp"><h3>Cerrar Sesion</h3></a></li>
+                                <li><a href="../index.jsp"><h3>Inicio</h3></a></li>
+                            </ul>
+                        </div>                           
+                    </li>
+                </ul>
+                <hr>                   
+            </div>
+        </nav>
 
         <div id="wrapper">
 
-            
+
 
 
             <div id="page-wrapper" class="gray-bg">
@@ -176,7 +181,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-md-4">
                             <div class="ibox float-e-margins">

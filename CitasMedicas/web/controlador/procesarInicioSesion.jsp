@@ -49,7 +49,7 @@
                     } else {
         %>
         <script type="text/javascript">
-            alert("DATOS INCORRRECTOS");
+            alert("CONTRASEÑA INCORRRECTA");
             location.href = '../index.jsp';
         </script>
         <%
@@ -66,7 +66,7 @@
             } else {
         %>
         <script type="text/javascript">
-            alert("DATOS INCORRRECTOS");
+            alert("CONTRASEÑA INCORRRECTA");
             location.href = '../index.jsp';
         </script>
         <%
@@ -74,7 +74,35 @@
 
                 }
 
-            }
+         else if (tipo.equals("medico")) {
+            FacadeMedico facMd = new FacadeMedico();
+            boolean rta = facMd.verificarMedico(id, contrasena);
+
+            if (rta == true) {
+                MedicoDTO vice = facMd.consultarMedicoPorId(id);
+                session.setAttribute("medico", vice);
+                response.sendRedirect("../jsp/PrincipalMedico.jsp");
+            } else {
         %>
+        <script type="text/javascript">
+            alert("CONTRASEÑA INCORRRECTA");
+            location.href = '../index.jsp';
+        </script>
+        <%
+                    }
+
+                }
+
+}else{
+%>
+        <script type="text/javascript">
+            alert("USUARIO NO EXISTE");
+            location.href = '../index.jsp';
+        </script>
+        <%
+
+}
+        %>
+
     </body>
 </html>

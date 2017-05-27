@@ -20,29 +20,26 @@ import util.ConexionPostgres;
 public class NegocioAdministrador {
 
     public boolean verificarAdmin(String id, String clave) throws SQLException {
-        {
 
-            boolean rta = false;
+        boolean rta = false;
 
-            ConexionPostgres con = new ConexionPostgres();
-            Connection co = con.getconexion();
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
 
-            AdministradorDAO admin = new AdministradorDAO(co);
-            
-            AdministradorDTO ad = admin.consultarAdminId(id);
-            
-            if (ad == null) {
-                return false;
-            } else {
-                if (ad.getContrasena().equals(clave)) {
-                    return true;
-                }
-                
+        AdministradorDAO admin = new AdministradorDAO(co);
+
+        AdministradorDTO ad = admin.consultarAdminId(id);
+
+        if (ad == null) {
+            return false;
+        } else {
+            if (ad.getContrasena().equals(clave)) {
+                return true;
             }
 
-            return rta;
         }
 
+        return rta;
     }
 
     public boolean registrarAdministrador(AdministradorDTO ad) {
@@ -73,15 +70,15 @@ public class NegocioAdministrador {
         return resultado;
 
     }
-    
-     public AdministradorDTO consultarAdminPorId(String id) {
+
+    public AdministradorDTO consultarAdminPorId(String id) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         AdministradorDAO med = new AdministradorDAO(co);
 
         try {
-             return med.consultarAdminId(id);
+            return med.consultarAdminId(id);
         } catch (SQLException ex) {
             Logger.getLogger(NegocioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
