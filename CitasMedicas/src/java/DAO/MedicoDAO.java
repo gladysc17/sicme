@@ -162,4 +162,24 @@ public class MedicoDAO {
         return rta > 0;
           
       }
+    
+    public ArrayList<String[]>listadoMedico() throws SQLException{
+        
+        String sql = "select u.nombre, u.identificacion, u.codigo, m.servicio from usuario u inner join medico m ON u.identificacion = m.identificacion";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        ArrayList<String[]> lista = new ArrayList<>();
+        
+        
+        while (rs.next()){
+            String [] lis = new String[4];
+            lis[0]=rs.getString("nombre");
+            lis[1]=rs.getString("identificacion");
+            lis[2]=rs.getString("codigo");
+            lis[3]=rs.getString("servicio");
+            lista.add(lis);
+        }
+        return lista;
+    }
 }

@@ -39,6 +39,9 @@ public class FacadeMedico {
     
      public boolean verificarMedico(String id, String clave) throws SQLException {
         return new NegocioMedico().verificarMedico(id, clave);
-
     }
+     
+     public ArrayList<String[]> listadoMedico() throws SQLException{
+         return new NegocioMedico().listadoMedico();
+     }
 }

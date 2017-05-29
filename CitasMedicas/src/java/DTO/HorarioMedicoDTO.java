@@ -14,20 +14,20 @@ public class HorarioMedicoDTO {
   int id_horariomedico;
   String fecha;
   int id_horario_horariomedico;
-  int id_medico_horariomedico;
+  String id_medico_horariomedico;
   String estado_horariomedico;
 
     public HorarioMedicoDTO() {
     }
 
-    public HorarioMedicoDTO(String fecha, int id_horario_horariomedico, int id_medico_horariomedico, String estado_horariomedico) {
+    public HorarioMedicoDTO(String fecha, int id_horario_horariomedico, String id_medico_horariomedico, String estado_horariomedico) {
         this.fecha = fecha;
         this.id_horario_horariomedico = id_horario_horariomedico;
         this.id_medico_horariomedico = id_medico_horariomedico;
         this.estado_horariomedico = estado_horariomedico;
     }
     
-    public HorarioMedicoDTO(int id_horariomedico, String fecha, int id_horario_horariomedico, int id_medico_horariomedico, String estado_horariomedico) {
+    public HorarioMedicoDTO(int id_horariomedico, String fecha, int id_horario_horariomedico, String id_medico_horariomedico, String estado_horariomedico) {
         this.id_horariomedico = id_horariomedico;
         this.fecha = fecha;
         this.id_horario_horariomedico = id_horario_horariomedico;
@@ -59,11 +59,11 @@ public class HorarioMedicoDTO {
         this.id_horario_horariomedico = id_horario_horariomedico;
     }
 
-    public int getId_medico_horariomedico() {
+    public String getId_medico_horariomedico() {
         return id_medico_horariomedico;
     }
 
-    public void setId_medico_horariomedico(int id_medico_horariomedico) {
+    public void setId_medico_horariomedico(String id_medico_horariomedico) {
         this.id_medico_horariomedico = id_medico_horariomedico;
     }
 

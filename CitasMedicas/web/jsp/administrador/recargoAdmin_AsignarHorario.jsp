@@ -4,9 +4,10 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeUsuario"%>
+<%@page import="DTO.UsuarioDTO"%>
 <%@page import="DTO.HorarioDTO"%>
 <%@page import="FACADE.FacadeHorario"%>
-<%@page import="DTO.MedicoDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,14 +29,14 @@
                         </div>
                         <div>
                             <%
-                                int medico = Integer.parseInt(request.getParameter("medico").toString());
-                                System.out.println(medico);
-                                FacadeMedico fm = new FacadeMedico();
+                                String id = request.getParameter("ident");
+                            System.out.println("id ad " + id);
+                                FacadeUsuario fm = new FacadeUsuario();
 
-                                MedicoDTO med = fm.consultarMedicoPorId(medico);
+                                UsuarioDTO usu = fm.consultarUsuarioPorId(id);
                             %>
-                            <label> <%=med.getNombre()%> </label>
-                            <input type="hidden" value="<%=medico%>" name="idMedico" />
+                            <label> <%=usu.getNombre()%> </label>
+                            <input type="hidden" value="<%=id%>" name="idMedico" />
                         </div>
                         <div>
                             <label> Fecha: </label>

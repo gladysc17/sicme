@@ -56,7 +56,7 @@ public class HorarioDAO {
 
         List<HorarioDTO> ls = new ArrayList<HorarioDTO>();
 
-        String sql = "select * from horario order by id_horario";
+        String sql = "select * from horario order by id";
 
         PreparedStatement ps = con.prepareStatement(sql);
 

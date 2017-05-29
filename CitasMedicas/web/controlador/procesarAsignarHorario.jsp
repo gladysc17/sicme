@@ -15,26 +15,33 @@
     </head>
     <body>
         <%
-            int idMedico = Integer.parseInt(request.getParameter("idMedico"));
+            String idMedico = request.getParameter("idMedico");
             String fecha = request.getParameter("fecha");
-            String [] hora = request.getParameterValues("hora");
+            String[] hora = request.getParameterValues("hora");
             String estado = "disponible";
             FacadeHorarioMedico fhm = new FacadeHorarioMedico();
-            int cont1=hora.length; 
+            int cont1 = hora.length;
             int cont2 = 0;
-            for(int i=0; i<hora.length; i++){
+            for (int i = 0; i < hora.length; i++) {
                 int idHorario = Integer.parseInt(hora[i]);
-                
+
                 HorarioMedicoDTO hm = new HorarioMedicoDTO(fecha, idHorario, idMedico, estado);
                 boolean rta = fhm.registrarHorarioMedico(hm);
-                
-                if(rta)
+
+                if (rta) {
                     cont2++;
-                
+                }
+
             }
-            
-            if(cont1==cont2){
-                response.sendRedirect("../jsp/PrincipalAdministrador.jsp");
+
+            if (cont1 == cont2) {
+        %>
+        <script type="text/javascript">
+            alert("Registro exitoso");
+            location.href = '../jsp/PrincipalAdministrador.jsp';
+        </script>
+
+        <%
             }
         %>
     </body>

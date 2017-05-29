@@ -204,7 +204,7 @@
                                                     <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="LISTA USUARIOS" onclick="cargarForm('administrador/recargoAdmin_ListarUsuarios.jsp')"/>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-warning" value="ASIGNAR HORARIO" onclick="cargarForm('administrador/recargoAdmin_ListarUsuarios.jsp')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-warning" value="ASIGNAR HORARIO" onclick="cargarForm('administrador/recargoAdmin_ListarMedicos.jsp')"/>
                                                 </div>                                                
                                             </div>
                                         </div>
