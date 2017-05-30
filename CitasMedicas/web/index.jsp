@@ -171,11 +171,51 @@
                             <div class="row equal-height-columns margin-bottom-10">
 
                                 <div class="container">
-                                    <br>
-                                    <br>
+                                    <ul class="row block-grid-v1">
+                                        <%
+                                            FacadeEvento fe = new FacadeEvento();
 
+                                            List<EventoDTO> ls = new ArrayList<EventoDTO>();
 
+                                            ls = fe.obtenerEventosMes();
 
+                                            for (EventoDTO e : ls) {
+                                        %>
+                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+
+                                            <div class="block-grid-v1 background-trasparent-black">
+                                                <h3 style="color: white">
+                                                    <%= e.getNombreEvento()%>
+                                                </h3>
+                                                <p class="text-left" style="font-size: 10px; color: white">
+                                                    <b>Dirigido por:</b>
+                                                    <%= e.getDirector()%>
+                                                </p>
+                                            </div>
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">                                                                                               
+
+                                                <p class="text-left" style="font-size: 12px;"> 
+                                                    <b>Lugar:</b>
+                                                    <%= e.getLugarEvento()%>
+                                                </p>
+                                                <p class="text-left" style="font-size: 10px;">
+                                                    <b>Fecha:</b>
+                                                    <%= e.getFechaEvento()%> &nbsp;
+                                                    <b>Hora:</b>
+                                                    <%= e.getHoraEvento()%> 
+                                                </p>
+                                                <p class="text-left" style="font-size: 10px;">
+                                                    <b>Descripción:</b>
+                                                    <%= e.getDescrEvento()%>
+                                                </p>
+
+                                                <button> <a href="inscripcionEvento.html" ></a> Inscribirme</button> 
+                                            </div>
+                                        </li>
+                                        <%
+                                            }
+                                        %>
+                                    </ul>
                                 </div>
 
                             </div>

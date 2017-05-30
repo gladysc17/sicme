@@ -97,6 +97,10 @@
                                         %>
                                     <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaPlanificacion.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')"> </td>
                                         <%
+                                            } else if(servicio.equals("odontologia")) {
+                                        %>
+                                    <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaOdontologia.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" /></td>
+                                        <%
                                             }
                                         %>
 

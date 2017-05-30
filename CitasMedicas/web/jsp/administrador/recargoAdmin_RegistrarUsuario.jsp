@@ -211,7 +211,7 @@
                         </div>
                         <div class="col-sm-6">
                             <label class="control-label">Contraseña: </label>
-                            <input type="text" class="form-control" id="contrasena" name="contrasena">
+                            <input type="text" class="form-control" id="passw" name="passw">
                         </div>
                     </div>
                 </div>

@@ -30,7 +30,8 @@
         <%
             FacadeUsuario fac = new FacadeUsuario();
             boolean registro = false;
-
+            boolean registro2 = false;
+            
             String identificacion = request.getParameter("identificacion");
             String tipo_identificacion = request.getParameter("tipoid");
             String codigo = request.getParameter("codigo");
@@ -50,7 +51,7 @@
             String programa = request.getParameter("programa");
 
             String servicio = request.getParameter("servicio");
-            String contrasena = request.getParameter("contrasena");
+            String contrasena = request.getParameter("passw");
 
             UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario);
             registro = fac.registrarUsuarios(usuario);
@@ -64,22 +65,28 @@
                 FacadeMedico facMed = new FacadeMedico();
                 int id = Integer.parseInt(identificacion);
                 int cod = Integer.parseInt(codigo);
-                MedicoDTO med = new MedicoDTO(id, tipo_identificacion, cod, nombre, correo, fechanacimiento, genero, edad, estadocivil, direccion, telefono, contrasena, servicio);
+                UsuarioDTO us = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario);
+                MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena);
+                registro2 = fac.registrarUsuarios(us);
                 registro = facMed.registrarMedico(med);
             }
             
             else if (tipousuario.equals("vicerrector")) {
                 FacadeVice facVice = new FacadeVice();
+                UsuarioDTO us = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario);
                 VicerrectorDTO vc = new VicerrectorDTO(identificacion, contrasena);
                 registro = facVice.registrarVice(vc);
+                registro2 = fac.registrarUsuarios(us);
             }
             else if (tipousuario.equals("administrador")) {
                 FacadeAdministrador facAd = new FacadeAdministrador();
+                UsuarioDTO us = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario);
                 AdministradorDTO ad = new AdministradorDTO(identificacion, contrasena);
                 registro = facAd.registrarAdministrador(ad);
+                registro2 = fac.registrarUsuarios(us);
             }
 
-            if (registro == true) {
+            if (registro || registro2) {
 
         %>
         <script  type = "text/javascript">

@@ -33,8 +33,8 @@ public class MedicoDAO {
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, med.getIdentificacion());        
-        ps.setString(2, med.getContrasena());
-        ps.setString(3, med.getServicio());
+        ps.setString(2, med.getServicio());
+        ps.setString(3, med.getContrasena());
 
         int resultado = ps.executeUpdate();
 
