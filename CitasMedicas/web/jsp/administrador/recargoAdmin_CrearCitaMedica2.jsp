@@ -67,7 +67,7 @@
         </div>                                                        
 
         <div class="col-sm-2">                                                                              
-            <input type="button" class="btn btn-primary" value="CONSULTAR" onclick="cargar('administrador/recargoAdmin_CrearCitaMedica3.jsp?servicio=' + servicio.value + '&nombre=' + nombre.value + '&tipou=' + tipou.value)"/>
+            <input type="button" class="btn btn-primary" value="CONSULTAR" onclick="cargar('administrador/recargoAdmin_CrearCitaMedica3.jsp?servicio=' + servicio.value + '&tipou=' + tipou.value)"/>
         </div>
 
 

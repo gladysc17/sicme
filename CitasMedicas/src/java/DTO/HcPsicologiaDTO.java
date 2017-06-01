@@ -20,12 +20,13 @@ public class HcPsicologiaDTO {
   private String diagnostico_hcpsico;
   private String procesopsicoterapeutico_hcpsico;
   private String seguimiento_hcpsico;
+  private String sesion_hcpsico;
   private int idcita_hcpsico;
 
     public HcPsicologiaDTO() {
     }
 
-    public HcPsicologiaDTO(int idusuario_hcpsico, String motivoconsulta_hcpsico, String genograma_hcpsico, String historiafamiliar_hcpsico, String problematicaactual_hcpsico, String diagnostico_hcpsico, String procesopsicoterapeutico_hcpsico, String seguimiento_hcpsico, int idcita_hcpsico) {
+    public HcPsicologiaDTO( int idusuario_hcpsico, String motivoconsulta_hcpsico, String genograma_hcpsico, String historiafamiliar_hcpsico, String problematicaactual_hcpsico, String diagnostico_hcpsico, String procesopsicoterapeutico_hcpsico, String seguimiento_hcpsico, String sesion_hcpsico, int idcita_hcpsico) {
         this.idusuario_hcpsico = idusuario_hcpsico;
         this.motivoconsulta_hcpsico = motivoconsulta_hcpsico;
         this.genograma_hcpsico = genograma_hcpsico;
@@ -34,8 +35,11 @@ public class HcPsicologiaDTO {
         this.diagnostico_hcpsico = diagnostico_hcpsico;
         this.procesopsicoterapeutico_hcpsico = procesopsicoterapeutico_hcpsico;
         this.seguimiento_hcpsico = seguimiento_hcpsico;
+        this.sesion_hcpsico = sesion_hcpsico;
         this.idcita_hcpsico = idcita_hcpsico;
     }
+
+   
 
     
     
@@ -118,6 +122,14 @@ public class HcPsicologiaDTO {
 
     public void setIdcita_hcpsico(int idcita_hcpsico) {
         this.idcita_hcpsico = idcita_hcpsico;
+    }
+
+    public String getSesion_hcpsico() {
+        return sesion_hcpsico;
+    }
+
+    public void setSesion_hcpsico(String sesion_hcpsico) {
+        this.sesion_hcpsico = sesion_hcpsico;
     }
     
     

@@ -29,8 +29,8 @@ public class HcPsicologiaDAO {
 
         String sql = "INSERT INTO hc_psicologia (idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, "
                 + "historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, "
-                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, idcita_hcpsico) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion_hcpsico, idcita_hcpsico) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -42,7 +42,8 @@ public class HcPsicologiaDAO {
         ps.setString(6, hcpsico.getDiagnostico_hcpsico());
         ps.setString(7, hcpsico.getProcesopsicoterapeutico_hcpsico());
         ps.setString(8, hcpsico.getSeguimiento_hcpsico());
-        ps.setInt(9, hcpsico.getIdcita_hcpsico());
+        ps.setString(9, hcpsico.getSesion_hcpsico());
+        ps.setInt(10, hcpsico.getIdcita_hcpsico());
 
         int resultado = ps.executeUpdate();
 
@@ -80,6 +81,7 @@ public class HcPsicologiaDAO {
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
         hcps.setProcesopsicoterapeutico_hcpsico(rs.getString("procesopsicoterapeutico_hcpsico"));
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
+        hcps.setSesion_hcpsico(rs.getString("sesion_hcpsico"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
                
         listaHisC.add(hcps);
@@ -112,6 +114,7 @@ public class HcPsicologiaDAO {
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
         hcps.setProcesopsicoterapeutico_hcpsico(rs.getString("procesopsicoterapeutico_hcpsico"));
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
+        hcps.setSesion_hcpsico(rs.getString("sesion_hcpsico"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
                        
         }

@@ -21,7 +21,7 @@ import util.ConexionPostgres;
  */
 public class NegocioHorario {
     
-    public List<HorarioDTO> consultarHorasDisponibles(int id_medico, String fecha) throws Exception{
+    public List<HorarioDTO> consultarHorasDisponibles(String id_medico, String fecha) throws Exception{
         
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -65,7 +65,7 @@ public class NegocioHorario {
         return ho;
     }
     
-    public boolean cambiarEstadoHora(int id_medico_horariomedico, String fecha, int id_horario_horariomedico) {
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico) {
         
       boolean rta = false;
         

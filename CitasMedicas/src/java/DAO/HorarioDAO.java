@@ -27,16 +27,16 @@ public class HorarioDAO {
         this.con = con;
     }
 
-    public List<HorarioDTO> consultarHorasDisponibles(int id_medico, String fecha) throws SQLException {
+    public List<HorarioDTO> consultarHorasDisponibles(String id_medico, String fecha) throws SQLException {
 
         List<HorarioDTO> lista = new ArrayList<HorarioDTO>();
 
-        String cons = "SELECT id_horariomedico, hora_inicio FROM horariomedico, horario WHERE id_horario_horariomedico = id_horario "
-                + "AND id_medico_horariomedico = ? AND fecha = ? AND estado_horariomedico = 'disponible' ORDER BY hora_inicio";
+        String cons = "SELECT id_horario, hora_inicio FROM horariomedico, horario WHERE id_horario = id_horario "
+                + "AND id_medico = ? AND fecha = ? AND estado = 'disponible' ORDER BY hora_inicio";
 
         PreparedStatement ps = con.prepareStatement(cons);
 
-        ps.setInt(1, id_medico);
+        ps.setString(1, id_medico);
         ps.setDate(2, Date.valueOf(fecha));
 
         ResultSet rs = ps.executeQuery();
@@ -44,7 +44,7 @@ public class HorarioDAO {
         HorarioDTO ho = null;
         while (rs.next()) {
             ho = new HorarioDTO();
-            ho.setId_horario(rs.getInt("id_horariomedico"));
+            ho.setId_horario(rs.getInt("id_horario"));
             ho.setHora_inicio(rs.getTime("hora_inicio"));
 
             lista.add(ho);
@@ -77,14 +77,14 @@ public class HorarioDAO {
         return ls;
     }
 
-    public boolean cambiarEstadoHora(int id_medico_horariomedico, String fecha, int id_horario_horariomedico ) throws SQLException {
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico ) throws SQLException {
 
-        String sql = "UPDATE horariomedico SET estado_horariomedico = 'ocupado' "
-                + "WHERE id_medico_horariomedico = ? AND fecha = ? AND id_horario_horariomedico = ?";
+        String sql = "UPDATE horariomedico SET estado = 'ocupado' "
+                + "WHERE id_medico = ? AND fecha = ? AND id_horario = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setInt(1, id_medico_horariomedico);
+        ps.setString(1, id_medico_horariomedico);
         ps.setDate(2, Date.valueOf(fecha));
         ps.setInt(3, id_horario_horariomedico);
 

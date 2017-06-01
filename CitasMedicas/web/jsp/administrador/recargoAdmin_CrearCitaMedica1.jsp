@@ -20,7 +20,7 @@
                 <div class="panel-heading">
                     <h2 align="center">  Cita Medica </h2>
                 </div>
-                <form  method="post" action="../controlador/procesarCrearCita.jsp" name="forml">
+                <form  method="post" action="../controlador/procesarCrearCita.jsp" name="forml" novalidate>
                     <div class="panel-body">
 
                         <div class="form-group">

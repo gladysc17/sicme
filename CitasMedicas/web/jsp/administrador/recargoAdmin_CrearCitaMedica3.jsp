@@ -26,8 +26,6 @@
 
                 String nombremed = listaMedicos.get(i).getNombre();
                 String idmed = listaMedicos.get(i).getIdentificacion();
-
-
         %>    
 
         <option value="<%=idmed%>"><%=nombremed%> </option>                                  

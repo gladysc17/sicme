@@ -21,11 +21,9 @@
             <div class="col-sm-3">
                 <select class="form-control" name="hora" id="hora" required="" >
                     <%
-                        int id = Integer.parseInt(request.getParameter("idmed"));
-                        String fecha = request.getParameter("fecha");
-                        
-                        String tipou = request.getParameter("tipou");                      
-                        
+                        String idmed = request.getParameter("idmed");
+                        String fecha = request.getParameter("fecha");                     
+                        String tipou = request.getParameter("tipou");                                              
                         String servicio = request.getParameter("servicio");                                             
                         
                         String x = "";
@@ -40,16 +38,14 @@
                         
                         FacadeHorario fachm = new FacadeHorario();
 
-                        List<HorarioDTO> horas = fachm.consultarHorasDisponibles(id, fecha);                                                                   
+                        List<HorarioDTO> horas = fachm.consultarHorasDisponibles(idmed, fecha);                                                                   
                         
                         int idHora = 0;
                         for (int i = 0; i < horas.size(); i++) {
 
                             idHora = horas.get(i).getId_horario();
                             
-                            Time hora = horas.get(i).getHora_inicio();
-                          
-                            System.out.println("idhora "+ idHora);
+                            Time hora = horas.get(i).getHora_inicio();                                                   
 
                     %>                    
                     <option value="<%=hora%>"><%=hora%> </option>                                                                                                                                             
@@ -68,7 +64,7 @@
                         display: none;
                     }
                 </style>                              
-                
+                <input type="hidden" name="idmed" id="idmed" value="<%=idmed%>">
             <div id="<%=x%>">
                 <label for="inputEmail3" class="col-sm-2 control-label"> Recibo </label>
                 <div class="col-sm-2">
@@ -79,7 +75,7 @@
             <input type="hidden" class="form-control" name="idHora" id="idHora" value="<%=idHora%>">
             
             <div class="col-sm-3">
-                <button type="submit" class="btn btn-primary form-control" onclick="procesar('../controlador/procesarCrearCita?idprof=' + id.value + '&fecha='+fecha.value + '&hora='+hora.value +'&servicio='+servicio.value + '&idHora='+idHora.value + '&tipou='+ tipou.value)">  CREAR CITA </button>
+                <button type="submit" class="btn btn-primary form-control" onclick="procesar('../controlador/procesarCrearCita?idmed='+idmed.value+'fecha='+fecha.value + '&hora='+hora.value +'&servicio='+servicio.value + '&idHora='+idHora.value + '&tipou='+ tipou.value)">  CREAR CITA </button>
             </div>
             
     </form>

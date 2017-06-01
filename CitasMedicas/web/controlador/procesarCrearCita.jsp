@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.HorarioMedicoDTO"%>
 <%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="FACADE.FacadeHorario"%>
@@ -22,42 +24,43 @@
     <body>
 
         <%
+
+            String servicio = request.getParameter("servicio");
             
-            String servicio = request.getParameter("servicio"); 
-            String recibo = request.getParameter("recibo");
             String fecha = request.getParameter("fecha");
-            String hora = request.getParameter("hora");            
-            
-            int id_med = Integer.parseInt(request.getParameter("prof"));
+            String hora = request.getParameter("hora");
+
+            String id_med = request.getParameter("idmed");
+            System.out.println("idmedico " + id_med);
+
             String id_usuario = request.getParameter("identf");
-            String nombre_usuario = request.getParameter("nombre");             
-            int idHora =  Integer.parseInt(request.getParameter("idHora"));
-            
-            FacadeMedico facMed = new FacadeMedico();
-            MedicoDTO med = facMed.consultarMedicoPorId(id_med);
+            String nombre_usuario = request.getParameter("nombre");
+            int idHora = Integer.parseInt(request.getParameter("idHora"));
+
+            FacadeUsuario facUsu = new FacadeUsuario();
+            UsuarioDTO med = facUsu.consultarUsuarioPorId(id_med);
             String nombre_medico = med.getNombre();
             String tipou = request.getParameter("tipou");
-                                                          
-            String estado = "pendiente";
 
-            System.out.println("idhora "+ idHora);
+            String estado = "pendiente";
+            
+            String recibo ="";          
 
             FacadeCita fc = new FacadeCita();
 
             CitaDTO cita = new CitaDTO(servicio, recibo, fecha, hora, id_usuario, id_med, estado, nombre_usuario, nombre_medico, tipou);
 
             boolean rta = fc.registrarCita(cita);
-            
+
             FacadeHorario fac = new FacadeHorario();
             FacadeHorarioMedico fm = new FacadeHorarioMedico();
             HorarioMedicoDTO hm = fm.consultarHorarioMedico(idHora);
-            
+
             boolean rt2 = fac.cambiarEstadoHora(id_med, fecha, hm.getId_horario_horariomedico());
-            
+
             if (rta == true && rt2 == true) {
-                
-                        
-                        System.out.println("CREO LA CITA y cambio horario");
+
+                System.out.println("CREO LA CITA y cambio horario");
         %>
         <script>
             alert("CREO LA CITA");

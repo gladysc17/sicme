@@ -138,7 +138,7 @@ public class NegocioCita {
         return citas;
     }
 
-    public ArrayList<CitaDTO> consultarCitasMedicoDia(int id_medico, String fecha_cita) {
+    public ArrayList<CitaDTO> consultarCitasMedicoDia(String id_medico, String fecha_cita) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

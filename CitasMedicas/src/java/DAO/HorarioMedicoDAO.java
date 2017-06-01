@@ -50,7 +50,7 @@ public class HorarioMedicoDAO {
     
     public HorarioMedicoDTO consultarHorarioMedico(int id_horariomedico) throws SQLException{
         
-        String sql ="SELECT * FROM horariomedico WHERE id_horariomedico = ?";
+        String sql ="SELECT * FROM horariomedico WHERE id_horario = ?";
         
         PreparedStatement ps = con.prepareStatement(sql);          
         
@@ -64,10 +64,10 @@ public class HorarioMedicoDAO {
             
             horam = new HorarioMedicoDTO();
             
-            horam.setId_horariomedico(rs.getInt("id_horariomedico"));
-            horam.setId_horario_horariomedico(rs.getInt("id_horario_horariomedico"));
-            horam.setId_medico_horariomedico(rs.getString("id_medico_horariomedico"));
-            horam.setEstado_horariomedico(rs.getString("estado_horariomedico"));
+            horam.setId_horariomedico(rs.getInt("id_horario"));
+            horam.setId_horario_horariomedico(rs.getInt("id_horario"));
+            horam.setId_medico_horariomedico(rs.getString("id_medico"));
+            horam.setEstado_horariomedico(rs.getString("estado"));
             horam.setFecha(rs.getString("fecha"));
         }
 

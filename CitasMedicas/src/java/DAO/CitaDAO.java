@@ -45,7 +45,7 @@ public class CitaDAO {
         ps.setDate(3, Date.valueOf(cita.getFecha_cita()));        
         ps.setTime(4, Time.valueOf(cita.getHora_cita()));
         ps.setString(5, cita.getId_usuario());
-        ps.setInt(6, cita.getId_medico());
+        ps.setString(6, cita.getId_medico());
         ps.setString(7, cita.getEstado());
         ps.setString(8, cita.getNombre_usuario());
         ps.setString(9, cita.getNombre_medico());
@@ -92,7 +92,7 @@ public class CitaDAO {
             cita.setFecha_cita(rs.getString("fecha_cita"));
             cita.setHora_cita(rs.getString("hora_cita"));
             cita.setId_usuario(rs.getString("id_usuario"));
-            cita.setId_medico(rs.getInt("id_medico"));
+            cita.setId_medico(rs.getString("id_medico"));
             cita.setEstado(rs.getString("estado"));
             cita.setNombre_usuario(rs.getString("nombre_usuario"));
             cita.setNombre_medico(rs.getString("nombre_medico"));
@@ -136,7 +136,7 @@ public class CitaDAO {
             cita.setFecha_cita(rs.getString("fecha_cita"));
             cita.setHora_cita(rs.getString("hora_cita"));
             cita.setId_usuario(rs.getString("id_usuario"));
-            cita.setId_medico(rs.getInt("id_medico"));
+            cita.setId_medico(rs.getString("id_medico"));
             cita.setEstado(rs.getString("estado"));
             cita.setNombre_usuario(rs.getString("nombre_usuario"));
             cita.setNombre_medico(rs.getString("nombre_medico"));
@@ -180,7 +180,7 @@ public class CitaDAO {
             cita.setFecha_cita(rs.getString("fecha_cita"));
             cita.setHora_cita(rs.getString("hora_cita"));
             cita.setId_usuario(rs.getString("id_usuario"));
-            cita.setId_medico(rs.getInt("id_medico"));
+            cita.setId_medico(rs.getString("id_medico"));
             cita.setEstado(rs.getString("estado"));
             cita.setNombre_usuario(rs.getString("nombre_usuario"));
             cita.setNombre_medico(rs.getString("nombre_medico"));
@@ -193,7 +193,7 @@ public class CitaDAO {
         
     }
     
-      public ArrayList<CitaDTO> consultarCitasMedicoDia(int id_medico, String fecha_cita) throws SQLException{
+      public ArrayList<CitaDTO> consultarCitasMedicoDia(String id_medico, String fecha_cita) throws SQLException{
         
         ArrayList<CitaDTO> citas = new ArrayList<CitaDTO>();
         
@@ -202,7 +202,7 @@ public class CitaDAO {
         PreparedStatement ps = con.prepareStatement(sql);
           
         
-        ps.setInt(1, id_medico);
+        ps.setString(1, id_medico);
         ps.setDate(2, Date.valueOf(fecha_cita));
                       
         ResultSet rs = ps.executeQuery();        
@@ -219,7 +219,7 @@ public class CitaDAO {
             cita.setFecha_cita(rs.getString("fecha_cita"));
             cita.setHora_cita(rs.getString("hora_cita"));
             cita.setId_usuario(rs.getString("id_usuario"));
-            cita.setId_medico(rs.getInt("id_medico"));
+            cita.setId_medico(rs.getString("id_medico"));
             cita.setEstado(rs.getString("estado"));
             cita.setNombre_usuario(rs.getString("nombre_usuario"));
             cita.setNombre_medico(rs.getString("nombre_medico"));
@@ -275,7 +275,7 @@ public class CitaDAO {
             cita.setFecha_cita(rs.getString("fecha_cita"));
             cita.setHora_cita(rs.getString("hora_cita"));
             cita.setId_usuario(rs.getString("id_usuario"));
-            cita.setId_medico(rs.getInt("id_medico"));
+            cita.setId_medico(rs.getString("id_medico"));
             cita.setEstado(rs.getString("estado"));
             cita.setNombre_usuario(rs.getString("nombre_usuario"));
             cita.setNombre_medico(rs.getString("nombre_medico"));

@@ -25,6 +25,7 @@
             String diagnostico_hcpsico = request.getParameter("diagnostico");
             String procesopsicoterapeutico_hcpsico = request.getParameter("proceso");
             String seguimiento_hcpsico = request.getParameter("seguimiento");
+            String sesion_hcpsico = request.getParameter("sesion");
             int id_cita = Integer.parseInt(request.getParameter("idecita"));
                                    
             
@@ -34,7 +35,7 @@
                 motivoconsulta_hcpsico = motivoconsulta_hcpsico + motivos[i] + ", ";                                    
             }            
                     
-        HcPsicologiaDTO psico = new HcPsicologiaDTO(idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, id_cita);
+        HcPsicologiaDTO psico = new HcPsicologiaDTO(idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion_hcpsico, id_cita);
             
             FacadeHcPsicologia facPsico= new FacadeHcPsicologia();
             
