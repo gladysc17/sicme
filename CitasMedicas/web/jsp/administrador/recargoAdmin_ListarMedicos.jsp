@@ -43,8 +43,8 @@
                                     for (int i = 0; i < lis.size(); i++) {
                                         String [] aux = lis.get(i);
                                         String nombre = aux[0];
-                                        String codigo = aux[1];
-                                        String identf = aux[2];
+                                        String identf = aux[1];
+                                        String codigo = aux[2];
                                         String servicio = aux[3];
                                         int cantidad = i+1;
 

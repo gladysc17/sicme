@@ -228,4 +228,32 @@ public class NegocioCita {
         }
         return citas;
     }
+    
+    public ArrayList<CitaDTO> consultarCitasRango(String id_medico, String fecha, String fechaF) {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        CitaDAO cita = new CitaDAO(co);
+
+        ArrayList<CitaDTO> citas = new ArrayList<CitaDTO>();
+        try {
+
+            citas = cita.consultarCitasPorRango(id_medico, fecha, fechaF);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return citas;
+    }
 }

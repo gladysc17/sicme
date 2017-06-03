@@ -42,4 +42,8 @@ public class FacadeCita {
       public CitaDTO consultarCitasId (int id_cita){
          return new NegocioCita().consultarCitasId(id_cita);
      }
+      
+      public ArrayList<CitaDTO> consultarCitasRango (String id_medico, String fecha, String fechaF){
+         return new NegocioCita().consultarCitasRango(id_medico, fecha, fechaF);
+     }
 }

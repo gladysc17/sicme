@@ -4,6 +4,8 @@
     Author     : LEGADO
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,9 +44,12 @@
                             </ul>
                             <form action="../../controlador/procesarRegistroPlanificacionFamiliar.jsp" method="post">
                                 <%
-                                    int idusuario_hcmed = Integer.parseInt(request.getParameter("id"));
+                                    String idusuario_hcmed = request.getParameter("id");
                                     int idcita = Integer.parseInt(request.getParameter("idcita"));
                                     String tipo = request.getParameter("tipo");
+                                    
+                                    FacadeUsuario fu = new FacadeUsuario();
+                                    UsuarioDTO usu = fu.consultarUsuarioPorId(idusuario_hcmed);
                                 %>
                                 <input type="hidden" value="<%=idusuario_hcmed %>" name="ide"/>
                                 <input type="hidden" value="<%=idcita %>" name="idecita" />
@@ -55,14 +60,14 @@
                                             <table class="table table-responsive">
                                                 <tbody>
                                                     <tr>
-                                                        <td>Nombre: <input type="text" class="form-control" disabled /></td>
-                                                        <td>N° de Identificacion: <input type="text" class="form-control" disabled /> </td>
-                                                        <td>Estado civil: <input type="text" class="form-control" disabled /> </td>
+                                                        <td>Nombre: <input type="text" class="form-control" value="<%=usu.getNombre() %>" disabled /></td>
+                                                        <td>N° de Identificacion: <input type="text" class="form-control" value="<%=usu.getIdentificacion() %>" disabled /> </td>
+                                                        <td>Estado civil: <input type="text" class="form-control" value="<%=usu.getEstado_civil() %>" disabled /> </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Fecha de nacimiento:<input type="text" class="form-control" disabled /></td>
-                                                        <td>Sexo<input type="text" class="form-control" disabled /> </td>
-                                                        <td>Edad<input type="text" class="form-control" disabled /> </td>
+                                                        <td>Fecha de nacimiento:<input type="text" class="form-control" value="<%=usu.getFecha_nacimiento() %>" disabled /></td>
+                                                        <td>Sexo<input type="text" class="form-control" disabled value="<%=usu.getGenero() %>" /> </td>
+                                                        <td>Edad<input type="text" class="form-control" disabled value="<%=usu.getEdad() %>" /> </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Ocupación<input type="text" class="form-control" value="<%=tipo %>" disabled /></td>
@@ -70,13 +75,13 @@
                                                         <td>Aseguradora<input type="text" class="form-control" name="aseguradora" required /></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Direccion de residencia<input type="text" class="form-control" disabled /></td>
+                                                        <td>Direccion de residencia<input type="text" class="form-control" value="<%=usu.getDireccion() %>" disabled /></td>
                                                         <td>Barrio<input type="text" class="form-control" disabled /></td>
-                                                        <td>Telefono<input type="text" class="form-control" disabled /></td>
+                                                        <td>Telefono<input type="text" class="form-control" disabled value="<%=usu.getTelefono() %>" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Correo electronico:</td>
-                                                        <td colpsan="2"><input type="text" class="form-control" disabled /></td>
+                                                        <td colpsan="2"><input type="text" class="form-control" disabled value="<%=usu.getCorreo() %>" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Nombre responsable<input type="text" class="form-control" name="nombre_resp" /></td>
