@@ -46,4 +46,8 @@ public class FacadeCita {
       public ArrayList<CitaDTO> consultarCitasRango (String id_medico, String fecha, String fechaF){
          return new NegocioCita().consultarCitasRango(id_medico, fecha, fechaF);
      }
+      
+      public boolean actualizarEstadoAtendida(int id_cita) throws SQLException {
+        return new NegocioCita().actualizarEstadoAtendida(id_cita);
+    }
 }

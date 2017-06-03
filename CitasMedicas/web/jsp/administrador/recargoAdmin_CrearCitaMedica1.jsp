@@ -91,7 +91,7 @@
                         </div>       
 
                         <div class="col-sm-3">
-                            <input type="button" class="btn btn-primary" value="HORAS DISP." onclick="cargarFormulario('administrador/RecargoAdmin_CrearCitaMedica4.jsp?idmed=' + prof.value + '&fecha=' + fecha.value + '&servicio=' + servicio.value)"/>
+                            <input type="button" class="btn btn-primary" value="HORAS DISP." onclick="cargarFormulario('administrador/recargoAdmin_CrearCitaMedica4.jsp?idmed=' + prof.value + '&fecha=' + fecha.value)"/>
                         </div>
 
                     </div>

@@ -106,7 +106,7 @@
                                             }
                                         %>
 
-                                    <td>No asistio</td>
+                                    <td><a href="../controlador/procesarActualizarCita.jsp?idcita=<%=idcita%>" class="btn btn-primary" >No asistió</a></td>
                                 </tr> 
                                 <%
                                     }

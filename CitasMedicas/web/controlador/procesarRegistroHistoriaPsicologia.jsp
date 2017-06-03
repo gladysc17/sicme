@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeCita"%>
+<%@page import="FACADE.FacadeCita"%>
 <%@page import="FACADE.FacadeHcPsicologia"%>
 <%@page import="DTO.HcPsicologiaDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,10 +42,13 @@
             FacadeHcPsicologia facPsico= new FacadeHcPsicologia();
             
             boolean registro = facPsico.registrarHcPsicologia(psico);
+            FacadeCita facCita = new FacadeCita();            
+            boolean actualizar = facCita.actualizarEstadoAtendida(id_cita);
             
-            if (registro == true) {
-                
-                System.out.println("REGISTRO HC MED");
+
+            if (registro == true && actualizar == true) {
+
+                System.out.println("REGISTRO HC MED y ACTUALIZO ESTADO");
         %>
         <script>
             alert("REGISTRO EXITOSO");

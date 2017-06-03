@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeCita"%>
 <%@page import="DTO.HcMedicinaGeneralDTO"%>
 <%@page import="FACADE.FacadeHcMedicinaGeneral"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,8 +17,7 @@
     <body>
         <%
 
-            int idusuario_hcmed = Integer.parseInt(request.getParameter("ide"));
-            System.out.println("idUsuario  " + idusuario_hcmed);
+            int idusuario_hcmed = Integer.parseInt(request.getParameter("ide"));            
             String motivoconsulta_hcmed = request.getParameter("motivo");
             String enfermedadgeneral_hcmed = request.getParameter("enfermedad");
             String revisionporsistemas_hcmed = request.getParameter("revision");
@@ -68,11 +68,14 @@
             FacadeHcMedicinaGeneral facMedGen = new FacadeHcMedicinaGeneral();
 
             boolean registro = facMedGen.registrarHCMedicinaGeneral(med);
+            
+            FacadeCita facCita = new FacadeCita();            
+            boolean actualizar = facCita.actualizarEstadoAtendida(idcita_hcmed);
+            
 
-            if (registro
-                    == true) {
+            if (registro == true && actualizar == true) {
 
-                System.out.println("REGISTRO HC MED");
+                System.out.println("REGISTRO HC MED y ACTUALIZO ESTADO");
         %>
         <script>
             alert("REGISTRO EXITOSO");
