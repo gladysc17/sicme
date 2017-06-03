@@ -5,17 +5,12 @@
 --%>
 
 <%@page import="DTO.UsuarioDTO"%>
-<%@page import="FACADE.FacadeUsuario"%>
-<%@page import="java.util.List"%>
-<%@page import="DTO.MedicoDTO"%>
-<%@page import="FACADE.FacadeMedico"%>
-<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="FACADE.FacadeCita"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>      
-
-        <%
+<!DOCTYPE html>
+    <option> --- seleccione --- </option>
+<%
             String servicio = request.getParameter("servicio");            
 
             FacadeUsuario facUs = new FacadeUsuario();
@@ -27,11 +22,10 @@
                 String nombremed = listaMedicos.get(i).getNombre();
                 String idmed = listaMedicos.get(i).getIdentificacion();
         %>    
-
+        
         <option value="<%=idmed%>"><%=nombremed%> </option>                                  
 
         <%
             }
 
         %> 
-      

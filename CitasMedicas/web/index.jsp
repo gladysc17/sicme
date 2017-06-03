@@ -77,7 +77,7 @@
                             </div>
                             <div class="modal-body row">
 
-                                <form class="row" id="email" action="CONTROLLER/procesarRecuperarContrasena.jsp" method="post"> 
+                                <form class="row" id="email" action="controlador/procesarRecuperarContrasena.jsp" method="post"> 
 
                                     <div class="col-md-12">
 

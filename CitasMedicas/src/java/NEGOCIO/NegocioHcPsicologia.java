@@ -20,7 +20,7 @@ import util.ConexionPostgres;
  * @author Gladys M
  */
 public class NegocioHcPsicologia {
-    
+
     public boolean registrarHcPsicologia(HcPsicologiaDTO hcpsico) throws SQLException {
         boolean rta = false;
 
@@ -48,15 +48,15 @@ public class NegocioHcPsicologia {
         }
         return rta;
     }
-    
-    public List<HcPsicologiaDTO> consultarHCPsicologia(int id_usuario) throws SQLException {
-        
+
+    public List<HcPsicologiaDTO> consultarHCPsicologia(String id_usuario) throws SQLException {
+
         List<HcPsicologiaDTO> listaHisC = new ArrayList<HcPsicologiaDTO>();
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
-        HcPsicologiaDAO psico = new HcPsicologiaDAO(co);        
-        
+        HcPsicologiaDAO psico = new HcPsicologiaDAO(co);
+
         try {
 
             listaHisC = psico.consultarHcPsicologia(id_usuario);
@@ -76,5 +76,27 @@ public class NegocioHcPsicologia {
         }
         return listaHisC;
     }
-    
+
+    public HcPsicologiaDTO consultarHcPsicologia(String id_usuario, int id_cita) throws SQLException {
+        
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        HcPsicologiaDAO med = new HcPsicologiaDAO(co);
+
+        try {
+            return med.consultarHcPsicologia(id_usuario, id_cita);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
 }

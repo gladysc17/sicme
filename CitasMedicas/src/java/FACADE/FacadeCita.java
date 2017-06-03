@@ -35,7 +35,7 @@ public class FacadeCita {
          return new NegocioCita().consultarCitasMedicoDia(id_medico, fecha);
      }
 
-     public boolean modificarCita(int id_cita, String fecha, int hora_cita, int id_medico) throws SQLException {
+     public boolean modificarCita(int id_cita, String fecha, int hora_cita, String id_medico) throws SQLException {
         return new NegocioCita().modificarCita(id_cita, fecha, hora_cita, id_medico);
     }
      

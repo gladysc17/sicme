@@ -166,7 +166,7 @@ public class NegocioCita {
         return citas;
     }
 
-    public boolean modificarCita(int id_cita, String fecha, int hora_cita, int id_medico) throws SQLException {
+    public boolean modificarCita(int id_cita, String fecha, int hora_cita, String id_medico) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();

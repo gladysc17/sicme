@@ -17,14 +17,16 @@
     <body>
         <%
             int id_cita = Integer.parseInt(request.getParameter("idcita"));
-            int id_medico = Integer.parseInt(request.getParameter("idprof"));                        
+            String id_medico = request.getParameter("prof");                        
             String fecha = request.getParameter("fecha");
+            
+            System.out.println("id_cita "+id_cita +" cid_medico "+id_medico+ "fecha "+fecha);
+            
             int horaMedico = Integer.parseInt(request.getParameter("horaMedico"));                                                                 
             
             FacadeCita facCita = new FacadeCita();
             boolean rta = facCita.modificarCita(id_cita, fecha, horaMedico, id_medico);
            
-
             if (rta == true) {
                 FacadeHorario fac = new FacadeHorario();
                 boolean rt2 = fac.cambiarEstadoHora(id_medico, fecha, horaMedico);               

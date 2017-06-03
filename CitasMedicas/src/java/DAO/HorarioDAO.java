@@ -31,7 +31,7 @@ public class HorarioDAO {
 
         List<HorarioDTO> lista = new ArrayList<HorarioDTO>();
 
-        String cons = "SELECT id_horario, hora_inicio FROM horariomedico, horario WHERE id_horario = id_horario "
+        String cons = "SELECT id_horario, hora_inicio FROM horariomedico hm, horario h WHERE hm.id_horario = h.id "
                 + "AND id_medico = ? AND fecha = ? AND estado = 'disponible' ORDER BY hora_inicio";
 
         PreparedStatement ps = con.prepareStatement(cons);
@@ -126,7 +126,7 @@ public class HorarioDAO {
     
      public HorarioDTO consultarHorarioId(int id_horario) throws SQLException{
         
-        String sql ="SELECT * FROM horario WHERE id_horario = ?";
+        String sql ="SELECT * FROM horario WHERE id = ?";
         
         PreparedStatement ps = con.prepareStatement(sql);          
         
@@ -140,7 +140,7 @@ public class HorarioDAO {
             
             horario = new HorarioDTO();
             
-            horario.setId_horario(rs.getInt("id_horario"));
+            horario.setId_horario(rs.getInt("id"));
             horario.setHora_inicio(rs.getTime("hora_inicio"));            
             
         }

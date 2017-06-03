@@ -231,7 +231,7 @@ public class CitaDAO {
         return citas;
         
     }
-      public boolean modificarCita(int id_cita, String fecha, Time hora_cita, int id_medico ) throws SQLException{
+      public boolean modificarCita(int id_cita, String fecha, Time hora_cita, String id_medico ) throws SQLException{
           
             String sql = "UPDATE cita SET fecha_cita = ? , hora_cita = ?, id_medico = ? "
                 + "WHERE  id_cita = ?";
@@ -240,7 +240,7 @@ public class CitaDAO {
                 
         ps.setDate(1, Date.valueOf(fecha));
         ps.setTime(2, hora_cita);        
-        ps.setInt(3, id_medico);
+        ps.setString(3, id_medico);
         ps.setInt(4, id_cita);        
 
         int rta = ps.executeUpdate();

@@ -24,29 +24,38 @@
     <body>
 
         <%
-
-            String servicio = request.getParameter("servicio");
-            
+            String servicio = request.getParameter("servicio");;
             String fecha = request.getParameter("fecha");
-            String hora = request.getParameter("hora");
-
-            String id_med = request.getParameter("idmed");
-            System.out.println("idmedico " + id_med);
-
+            String hora_rec = request.getParameter("hora");
             String id_usuario = request.getParameter("identf");
-            String nombre_usuario = request.getParameter("nombre");
-            int idHora = Integer.parseInt(request.getParameter("idHora"));
-
-            FacadeUsuario facUsu = new FacadeUsuario();
-            UsuarioDTO med = facUsu.consultarUsuarioPorId(id_med);
-            String nombre_medico = med.getNombre();
-            String tipou = request.getParameter("tipou");
-
+            String id_med = request.getParameter("prof");
             String estado = "pendiente";
             
-            String recibo ="";          
+            String[] parts = hora_rec.split("-");
+            String hora = parts[0];
+            String idHora_spl = parts[1]; 
+            int idHora =  Integer.parseInt(idHora_spl);  
+                        
+            FacadeUsuario facUsu = new FacadeUsuario();
 
+            UsuarioDTO med = facUsu.consultarUsuarioPorId(id_med);
+            String nombre_medico = med.getNombre();
+            
+            UsuarioDTO us = facUsu.consultarUsuarioPorId(id_usuario);
+            String nombre_usuario = us.getNombre();
+            String tipou = us.getTipo_usuario();
+
+            
             FacadeCita fc = new FacadeCita();
+            
+            String recibo = "";
+            
+            if(servicio.equals("medicinageneral") || servicio.equals("odontologia")){
+                recibo = request.getParameter("recibo");
+            }
+            else{
+                recibo ="no aplica";
+            }
 
             CitaDTO cita = new CitaDTO(servicio, recibo, fecha, hora, id_usuario, id_med, estado, nombre_usuario, nombre_medico, tipou);
 

@@ -55,7 +55,7 @@ public class HcPsicologiaDAO {
 
     }
     
-    public List<HcPsicologiaDTO> consultarHcPsicologia(int id_usuario) throws SQLException {
+    public List<HcPsicologiaDTO> consultarHcPsicologia(String id_usuario) throws SQLException {
 
         List<HcPsicologiaDTO> listaHisC = new ArrayList<HcPsicologiaDTO>();
         
@@ -63,7 +63,7 @@ public class HcPsicologiaDAO {
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, id_usuario);
+        ps.setString(1, id_usuario);
 
         ResultSet rs = ps.executeQuery();
                 
@@ -89,13 +89,13 @@ public class HcPsicologiaDAO {
         return listaHisC;
     }
     
-     public HcPsicologiaDTO consultarHcPsicologia(int id_usuario, int id_cita ) throws SQLException {        
+     public HcPsicologiaDTO consultarHcPsicologia(String id_usuario, int id_cita ) throws SQLException {        
         
         String sql = "SELECT * FROM hc_psicologia WHERE idusuario_hcmed = ? AND idcita_hcmed = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setInt(1, id_usuario);
+        ps.setString(1, id_usuario);
         ps.setInt(2, id_cita);
 
         ResultSet rs = ps.executeQuery();
