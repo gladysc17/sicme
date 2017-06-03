@@ -48,11 +48,12 @@ public class HcMedicinaGeneralDTO {
     private String tipodiagnostico3_hcmed;
     private String tratamiento_hcmed;
     private String recomendaciones_hcmed;
+    private String formulamedica_hcmed;
     
     public HcMedicinaGeneralDTO() {
     }
 
-    public HcMedicinaGeneralDTO(int idusuario_hcmed, int idcita_hcmed, String motivoconsulta_hcmed, String enfermedadgeneral_hcmed, String revisionporsistemas_hcmed, String antPatologicos_hcmed, String antquirurgicos_hcmed, String anttraumaticos_hcmed, String anttoxicoAlergicos_hcmed, String antfarmacologicos_hcmed, String antvenereos_hcmed, String antfamiliares_hcmed, String antginecologicos_hcmed, String antotros_hcmed, int frecardiaca_hcmed, int frerespiratoria_hcmed, int tensionarterial_hcmed, int temperatura_hcmed, int peso_hcmed, int talla_hcmed, String efestadogeneral_hcmed, String efcabezacuello_hcmed, String efcardiopulmonar_hcmed, String efabdomen_hcmed, String efgenitourinario_hcmed, String efextremidades_hcmed, String efpielfuneras_hcmed, String efsistemanervioso_hcmed, String diagnostico1_hcmed, String tipodiagnostico1_hcmed, String diagnostico2_hcmed, String tipodiagnostico2_hcmed, String diagnostico3_hcmed, String tipodiagnostico3_hcmed, String tratamiento_hcmed, String recomendaciones_hcmed) {
+    public HcMedicinaGeneralDTO(int idusuario_hcmed, int idcita_hcmed, String motivoconsulta_hcmed, String enfermedadgeneral_hcmed, String revisionporsistemas_hcmed, String antPatologicos_hcmed, String antquirurgicos_hcmed, String anttraumaticos_hcmed, String anttoxicoAlergicos_hcmed, String antfarmacologicos_hcmed, String antvenereos_hcmed, String antfamiliares_hcmed, String antginecologicos_hcmed, String antotros_hcmed, int frecardiaca_hcmed, int frerespiratoria_hcmed, int tensionarterial_hcmed, int temperatura_hcmed, int peso_hcmed, int talla_hcmed, String efestadogeneral_hcmed, String efcabezacuello_hcmed, String efcardiopulmonar_hcmed, String efabdomen_hcmed, String efgenitourinario_hcmed, String efextremidades_hcmed, String efpielfuneras_hcmed, String efsistemanervioso_hcmed, String diagnostico1_hcmed, String tipodiagnostico1_hcmed, String diagnostico2_hcmed, String tipodiagnostico2_hcmed, String diagnostico3_hcmed, String tipodiagnostico3_hcmed, String tratamiento_hcmed, String recomendaciones_hcmed, String formulamedica_hcmed) {
         this.idusuario_hcmed = idusuario_hcmed;
         this.idcita_hcmed = idcita_hcmed;
         this.motivoconsulta_hcmed = motivoconsulta_hcmed;
@@ -89,6 +90,7 @@ public class HcMedicinaGeneralDTO {
         this.tipodiagnostico3_hcmed = tipodiagnostico3_hcmed;
         this.tratamiento_hcmed = tratamiento_hcmed;
         this.recomendaciones_hcmed = recomendaciones_hcmed;
+        this.formulamedica_hcmed = formulamedica_hcmed;
     }
 
     public int getId_hcmed() {
@@ -387,6 +389,15 @@ public class HcMedicinaGeneralDTO {
         this.recomendaciones_hcmed = recomendaciones_hcmed;
     }
 
+    public String getFormulamedica_hcmed() {
+        return formulamedica_hcmed;
+    }
+
+    public void setFormulamedica_hcmed(String formulamedica_hcmed) {
+        this.formulamedica_hcmed = formulamedica_hcmed;
+    }
+    
+    
     
       
 }

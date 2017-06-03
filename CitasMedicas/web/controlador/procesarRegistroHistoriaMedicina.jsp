@@ -53,6 +53,7 @@
             String tratamiento_hcmed = request.getParameter("tratamiento");
             String recomendaciones_hcmed = request.getParameter("recomendaciones");
             int idcita_hcmed = Integer.parseInt(request.getParameter("idecita"));
+            String formulamedica_hcmed = request.getParameter("formula");
 
             HcMedicinaGeneralDTO med = new HcMedicinaGeneralDTO(idusuario_hcmed, idcita_hcmed, motivoconsulta_hcmed,
                     enfermedadgeneral_hcmed, revisionporsistemas_hcmed, antpatologicos_hcmed, antquirurgicos_hcmed,
@@ -62,7 +63,7 @@
                     efcabezacuello_hcmed, efcardiopulmonar_hcmed, efabdomen_hcmed, efgenitourinario_hcmed, 
                     efextremidades_hcmed, efpielfuneras_hcmed, efsistemanervioso_hcmed, diagnostico1_hcmed, 
                     tipodiagnostico1_hcmed, diagnostico2_hcmed, tipodiagnostico2_hcmed, diagnostico3_hcmed, 
-                    tipodiagnostico3_hcmed, tratamiento_hcmed, recomendaciones_hcmed);
+                    tipodiagnostico3_hcmed, tratamiento_hcmed, recomendaciones_hcmed, formulamedica_hcmed);
 
             FacadeHcMedicinaGeneral facMedGen = new FacadeHcMedicinaGeneral();
 

@@ -42,8 +42,8 @@ public class HcMedicinaGeneralDAO {
                 + " antpatologicos_hcmed, antquirurgicos_hcmed, anttraumaticos_hcmed, anttoxicoalergicos_hcmed, antfarmacologicos_hcmed, antvenereos_hcmed, antfamiliares_hcmed, antginecologicos_hcmed, antotros_hcmed,"
                 + " frecardiaca_hcmed, frerespiratoria_hcmed, tensionarterial_hcmed, temperatura_hcmed, peso_hcmed, talla_hcmed,"
                 + " efestadogeneral_hcmed, efcabezacuello_hcmed, efcardiopulmonar_hcmed, efabdomen_hcmed, efgenitourinario_hcmed, efextremidades_hcmed, efpielfuneras_hcmed, efsistemanervioso_hcmed, "
-                + " diagnostico1_hcmed, tipodiagnostico1_hcmed, diagnostico2_hcmed, tipodiagnostico2_hcmed, diagnostico3_hcmed, tipodiagnostico3_hcmed, tratamiento_hcmed, recomendaciones_hcmed )"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " diagnostico1_hcmed, tipodiagnostico1_hcmed, diagnostico2_hcmed, tipodiagnostico2_hcmed, diagnostico3_hcmed, tipodiagnostico3_hcmed, tratamiento_hcmed, recomendaciones_hcmed, formulamedica_hcmed )"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -83,6 +83,7 @@ public class HcMedicinaGeneralDAO {
         ps.setString(34, hcmed.getTipodiagnostico3_hcmed());
         ps.setString(35, hcmed.getTratamiento_hcmed());
         ps.setString(36, hcmed.getRecomendaciones_hcmed());
+        ps.setString(37, hcmed.getFormulamedica_hcmed());
 
         int resultado = ps.executeUpdate();
 
@@ -142,6 +143,7 @@ public class HcMedicinaGeneralDAO {
             hcmed.setTipodiagnostico3_hcmed(rs.getString("tipodiagnostico3_hcmed"));
             hcmed.setTratamiento_hcmed(rs.getString("tratamiento_hcmed"));
             hcmed.setRecomendaciones_hcmed(rs.getString("recomendaciones_hcmed"));                                                                                                                
+            hcmed.setFormulamedica_hcmed(rs.getString("formulamedica_hcmed"));   
             
             listaHisC.add(hcmed);
         }
@@ -200,7 +202,8 @@ public class HcMedicinaGeneralDAO {
             hcmed.setDiagnostico3_hcmed(rs.getString("diagnostico3_hcmed"));
             hcmed.setTipodiagnostico3_hcmed(rs.getString("tipodiagnostico3_hcmed"));
             hcmed.setTratamiento_hcmed(rs.getString("tratamiento_hcmed"));
-            hcmed.setRecomendaciones_hcmed(rs.getString("recomendaciones_hcmed"));                                                                                                                
+            hcmed.setRecomendaciones_hcmed(rs.getString("recomendaciones_hcmed"));
+            hcmed.setFormulamedica_hcmed(rs.getString("formulamedica_hcmed"));  
                         
         }
 

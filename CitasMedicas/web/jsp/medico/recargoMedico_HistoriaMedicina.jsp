@@ -46,7 +46,7 @@
                         <div class="panel panel-default">
 
                             <div>	
-                                <ul  class="nav nav-pills panel panel-heading">
+                                <ul  class="nav nav-pills">
                                     <li><a  href="#1a" data-toggle="tab"> <h3> Datos Basicos| </h3></a>
                                     </li>
                                     <li><a href="#2a" data-toggle="tab"> <h3>Anamnesis|</h3></a>
@@ -66,9 +66,9 @@
                                                 <%
 
                                                     String id = request.getParameter("id");
-                                                    int idcita = Integer.parseInt(request.getParameter("idcita"));
-                                                    String tipo = request.getParameter("tipo");
-
+                                                    int idcita = Integer.parseInt(request.getParameter("idcita"));                                                    
+                                                    System.out.println("id "+id +"idcita "+idcita);
+                                                    
                                                     FacadeUsuario facUsu = new FacadeUsuario();
                                                     UsuarioDTO u = facUsu.consultarUsuarioPorId(id);
 
@@ -111,12 +111,7 @@
                                                         </tr>
 
                                                     </tbody>
-                                                </table>
-                                                <%
-                                                    }
-
-
-                                                %>
+                                                </table>                                              
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="2a">

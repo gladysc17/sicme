@@ -167,8 +167,8 @@ body.body-small .navbar-top-links li:last-child {
   transition: all 0.5s;
 }
 .nav > li.active {
-  border-left: 4px solid #19aa8d;
-  background: #293846;
+  border-left: 4px solid #ffffff;
+  background: #ffffff;
 }
 .nav.nav-second-level > li.active {
   border: none;
