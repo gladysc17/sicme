@@ -360,4 +360,54 @@ public class CitaDAO {
 
     }
 
+    public int cantidadCitas(String fechaI, String fechaF) throws SQLException{
+        int cant = 0;
+        String sql = "select count(*) from cita where fecha_cita between ? and ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, fechaI);
+        ps.setString(2, fechaF);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        
+        return cant;
+    }
+    
+    public int cantidadCitasAsistidas(String fechaI, String fechaF)throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita where estado = 'asistio' and fecha_cita between ? and '2017-05-31'";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, fechaI);
+        ps.setString(2, fechaF);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        
+        return cant;
+    }
+    
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF)throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita where estado = 'pendiente' and fecha_cita between ? and '2017-05-31'";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, fechaI);
+        ps.setString(2, fechaF);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        
+        return cant;
+    }
 }
