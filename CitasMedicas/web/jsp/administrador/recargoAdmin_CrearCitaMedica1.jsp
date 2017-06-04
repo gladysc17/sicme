@@ -43,7 +43,7 @@
 
                         <label for="" class="control-label"> Identificación: </label>
                         <input type="number" id="identf" name="identf" required> &nbsp;&nbsp;&nbsp;                            
-                        <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_CrearCitaMedica2.jsp?identf=' + identf.value)"/>                       
+                        <a href="#consultar" type="button" class="btn btn-danger" onclick="cargar_form('administrador/recargoAdmin_CrearCitaMedica2.jsp?identf=' + identf.value)"> CONSULTAR  </a>                    
 
                         <div   id="cargar"> 
 

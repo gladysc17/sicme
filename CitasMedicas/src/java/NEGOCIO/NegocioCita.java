@@ -286,4 +286,34 @@ public class NegocioCita {
 
         return rta;
     }
+    
+    public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
+
+        boolean rta = false;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        CitaDAO cita = new CitaDAO(co);
+
+        try {          
+                     
+            
+            rta = cita.actualizarEstadoNoAsistida(id_cita);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return rta;
+    }
 }

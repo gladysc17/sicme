@@ -50,4 +50,8 @@ public class FacadeCita {
       public boolean actualizarEstadoAtendida(int id_cita) throws SQLException {
         return new NegocioCita().actualizarEstadoAtendida(id_cita);
     }
+      
+      public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
+        return new NegocioCita().actualizarEstadoNoAsistida(id_cita);
+    }
 }
