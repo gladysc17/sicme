@@ -300,27 +300,27 @@ public class NegocioUsuario {
         UsuarioDAO u = new UsuarioDAO(co);
         UsuarioDTO usuario = u.consultarUsuarioPorId(id);
         String tipo = usuario.getTipo_usuario();
-        String contraseña = "";
+        String contrasena = "";
         switch (tipo) {
             case "administrador":
                 {
                     FacadeAdministrador fac = new FacadeAdministrador();
                     AdministradorDTO ad = fac.consultarAdminId(id);
-                    contraseña  = ad.getContrasena();
+                    contrasena  = ad.getContrasena();
                     break;
                 }
             case "vicerrector":
                 {
                     FacadeVice fac = new FacadeVice();
                     VicerrectorDTO vc = fac.consultarViceId(id);
-                    contraseña  = vc.getContrasena();
+                    contrasena  = vc.getContrasena();
                     break;
                 }
             case "medico":
                 {
                     FacadeMedico fac = new FacadeMedico();
                     MedicoDTO md = fac.consultarMedicoPorId(id);
-                    contraseña  = md.getContrasena();
+                    contrasena  = md.getContrasena();
                     break;
                 }
             default:
@@ -331,8 +331,10 @@ public class NegocioUsuario {
         
         String correo = usuario.getCorreo();
         String asunto = "SIGME - RECUPERAR CONTRASEÑA";
-        String clave = "SU CONTRASEÑA PARA ACCEDER AL SISTEMA ES: "+contraseña;
+        String clave = "SU CONTRASEÑA PARA ACCEDER AL SISTEMA ES: "+contrasena;
         
+        String cont = servicioEmail.getClaveEmailUsuarioEmisor();
+        System.out.println("contraseña-->" +cont);
         System.out.println("correo-->" +correo);
         
         boolean enviar = servicioEmail.enviarEmail(correo, asunto, clave);

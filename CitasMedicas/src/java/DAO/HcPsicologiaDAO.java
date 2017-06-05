@@ -29,7 +29,7 @@ public class HcPsicologiaDAO {
 
         String sql = "INSERT INTO hc_psicologia (idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, "
                 + "historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, "
-                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion_hcpsico, idcita_hcpsico) "
+                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesio, idcita_hcpsico) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class HcPsicologiaDAO {
 
     }
     
-    public List<HcPsicologiaDTO> consultarHcPsicologia(String id_usuario) throws SQLException {
+    public List<HcPsicologiaDTO> consultarHcPsicologia(int id_usuario) throws SQLException {
 
         List<HcPsicologiaDTO> listaHisC = new ArrayList<HcPsicologiaDTO>();
         
@@ -63,7 +63,7 @@ public class HcPsicologiaDAO {
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setString(1, id_usuario);
+        ps.setInt(1, id_usuario);
 
         ResultSet rs = ps.executeQuery();
                 
@@ -81,7 +81,7 @@ public class HcPsicologiaDAO {
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
         hcps.setProcesopsicoterapeutico_hcpsico(rs.getString("procesopsicoterapeutico_hcpsico"));
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
-        hcps.setSesion_hcpsico(rs.getString("sesion_hcpsico"));
+        hcps.setSesion_hcpsico(rs.getString("sesion"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
                
         listaHisC.add(hcps);
@@ -114,7 +114,7 @@ public class HcPsicologiaDAO {
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
         hcps.setProcesopsicoterapeutico_hcpsico(rs.getString("procesopsicoterapeutico_hcpsico"));
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
-        hcps.setSesion_hcpsico(rs.getString("sesion_hcpsico"));
+        hcps.setSesion_hcpsico(rs.getString("sesio"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
                        
         }

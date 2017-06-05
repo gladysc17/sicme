@@ -87,7 +87,7 @@
                                         if (servicio.equals("medicinageneral")) {
 
                                     %>
-                                    <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaMedicina.jsp?id=<%=identf%>&idcita=<%=idcita%>')"> </td>
+                                    <td><input type="submit" class="btn btn-success" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaMedicina.jsp?id=<%=identf%>&idcita=<%=idcita%>')"> </td>
                                         <%
                                         } else if (servicio.equals("psicologia")) {
                                         //consultar hc_psicologia y preguntar sesion

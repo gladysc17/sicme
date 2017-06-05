@@ -37,7 +37,7 @@
 
                     <tbody>      
                         <%
-                            int id = Integer.parseInt(request.getParameter("identf"));
+                            int id = Integer.parseInt(request.getParameter("identf"));                            
                             String servicio = request.getParameter("servicio");
 
                             if (servicio.equals("medicinageneral")) {

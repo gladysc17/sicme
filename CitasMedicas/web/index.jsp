@@ -32,7 +32,7 @@
         <link href="css/ured.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>                 
-        
+
     </head>
 
     <body class="header-fixed boxed-layout" style="position: relative; min-height: 100%; top: 0px;">
@@ -47,18 +47,50 @@
                                 <div class="col-sm-12 col-xs-12">
 
                                     <div class="topbar-toggler" style="font-size: 20px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> Ingresar </div>
-                                    <form action="controlador/procesarInicioSesion.jsp" method="post" name="form">
+                                    <form method="post" name="form">
                                         <ul class="topbar-list topbar-menu">                                        
                                             <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
                                             <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
                                             <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                            
                                             <li> usuario <input type="text" id="usuario" name="usuario" required> </li>
                                             <li> contraseña <input type="password" id="pw" name="pw" required>  </li>                                            
-                                            <li> <button type="submit" class="btn btn-link">Ingresar</button> </li>
-                                            <li> <a href="controlador/procesarRecuperarContrasena.jsp?usuario="usuario> Recuperar Contraseña</a> </li>
-                                        </ul>
-                                       
+
+                                            <input type="button" class="btn btn-white" Value="INGRESAR" onclick="ingresar()"> 
+                                            <input type="button" class="btn btn-white" Value="RECUPERAR CONTRASEÑA" onClick="contrase()"> 
+                                        </ul>                                        
+
                                     </form>
+                                    <script type="text/javascript">
+                                        function ingresar() {
+                                            if (document.form.usuario.value.length == 0) {
+                                                alert("INGRESE SU IDENTIFICACION");
+                                                document.form.usuario.focus();
+                                                return 0;
+                                            } 
+                                            else if (document.form.pw.value.length == 0) {
+                                                alert("INGRESE SU CONTRASEÑA");
+                                                document.form.pw.focus();
+                                                return 0;
+                                            }
+                                            else {
+                                                document.form.action = 'controlador/procesarInicioSesion.jsp';
+                                                document.form.submit()
+                                            }
+                                        }
+                                        
+                                        function contrase() {
+                                            if (document.form.usuario.value.length == 0) {
+                                                alert("INGRESE SU IDENTIFICACION");
+                                                document.form.usuario.focus();
+                                                return 0;
+                                            } 
+                                            
+                                            else {
+                                                document.form.action = 'controlador/procesarRecuperarContrasena.jsp'; 
+                                                document.form.submit();
+                                            }
+                                        }
+                                    </script>
                                 </div>                                
                             </div><!--/end row-->
                         </div><!--/end container-->
@@ -66,39 +98,6 @@
                     <!-- End Topbar blog -->
                 </div>
 
-                  <div class="modal fade" id="modalCorreo" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class=" modal-header ">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title" style="text-align: center"> RECUPERAR CONTRASEÑA </h4>
-                            </div>
-                            <div class="modal-body row">
-
-                                <form class="row" id="email" action="controlador/procesarRecuperarContrasena.jsp" method="post"> 
-
-                                    <div class="col-md-12">
-
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <label class="control-label">IDENTIFICACION: </label>
-                                                <input type="number" class="form-control" id="codigoClave" name="codigoClave" required="">
-                                            </div>
-
-                                            
-                                            <div class="col-sm-12">
-                                                <button type="submit" class="btn btn-large btn-success pull-right">Enviar</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="header-v8 img-logo-superior" style="background-color: #aa1916;">
                     <!--=== Parallax Quote ===-->
                     <div class="parallax-quote parallaxBg" style="padding: 30px 30px;">

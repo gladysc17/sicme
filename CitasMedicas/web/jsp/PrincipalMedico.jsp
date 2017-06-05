@@ -14,8 +14,7 @@
         <link href="../css/app.min.css" rel="stylesheet" type="text/css"/>        
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
-        <link href="../css/header-v6.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/header-v8.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/header-v6.min.css" rel="stylesheet" type="text/css"/>        
         <link href="../css/custom.min.css" rel="stylesheet" type="text/css"/>
         <link href="../css/footer-v1.min.css" rel="stylesheet" type="text/css"/>
         <link href="../css/pgwslider.min.css" rel="stylesheet" type="text/css"/>
@@ -101,9 +100,6 @@
         </nav>
 
         <div id="wrapper">
-
-
-
 
             <div id="page-wrapper" class="gray-bg">
                 <div class="row wrapper border-bottom white-bg page-heading" id="rows">
@@ -303,9 +299,9 @@
         <script src="../js/essential-plugins.js" type="text/javascript"></script>       
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../js/main.js" type="text/javascript"></script>
-        <script src="../js/pace.min.js" type="text/javascript"></script>
-        <script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="../js/pace.min.js" type="text/javascript"></script>        
         <script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script type="text/javascript">$('#sampleTable').DataTable();</script>
     </body>    
 </html>

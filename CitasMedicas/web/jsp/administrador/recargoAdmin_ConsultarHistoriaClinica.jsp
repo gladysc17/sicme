@@ -26,9 +26,7 @@
                         <div class="form-group">
                             <label for="" class="control-label"> Identificación: </label>
                             <input type="number" id="identf" name="identf" required>                                                
-                        </div>
-                         
-                        <div class="form-group">
+                       
                             <label for="" class="control-label"> Tipo Historia </label>
                             <select name="servicio" id="servicio" required>
                                 <option value="medicinageneral"> Medicina General </option>
@@ -40,7 +38,7 @@
                             <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identf.value + '&servicio=' + servicio.value)"/>
                         </div> 
                         <div class="panel-body" id="cargar">
-
+                            
                         </div>                      
                     </form>
                 </div>

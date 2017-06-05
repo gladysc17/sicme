@@ -49,7 +49,7 @@ public class NegocioHcPsicologia {
         return rta;
     }
 
-    public List<HcPsicologiaDTO> consultarHCPsicologia(String id_usuario) throws SQLException {
+    public List<HcPsicologiaDTO> consultarHCPsicologia(int id_usuario) throws SQLException {
 
         List<HcPsicologiaDTO> listaHisC = new ArrayList<HcPsicologiaDTO>();
         ConexionPostgres con = new ConexionPostgres();

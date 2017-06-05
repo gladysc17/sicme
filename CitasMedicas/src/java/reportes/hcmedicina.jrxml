@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="641ed272-2ec8-4bff-b67b-c4aae196939f">
-	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="435"/>
+	<property name="ireport.y" value="1008"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT * FROM hc_medicinageneral HC INNER JOIN cita C ON HC.IDCITA_HCMED = C.ID_CITA
 INNER JOIN usuario U ON C.ID_USUARIO = U.IDENTIFICACION
-WHERE     HC.idcita_hcmed = $P{idcita}]]>
+WHERE     HC.idcita_hcmed = $P{idcita}
+]]>
 	</queryString>
 	<field name="id_hcmed" class="java.lang.Integer"/>
 	<field name="idusuario_hcmed" class="java.lang.Integer"/>
@@ -47,17 +48,18 @@ WHERE     HC.idcita_hcmed = $P{idcita}]]>
 	<field name="tipodiagnostico3_hcmed" class="java.lang.String"/>
 	<field name="tratamiento_hcmed" class="java.lang.String"/>
 	<field name="recomendaciones_hcmed" class="java.lang.String"/>
+	<field name="formulamedica_hcmed" class="java.lang.String"/>
 	<field name="id_cita" class="java.lang.Integer"/>
 	<field name="servicio_cita" class="java.lang.String"/>
 	<field name="num_recibo_cita" class="java.lang.String"/>
 	<field name="fecha_cita" class="java.sql.Date"/>
 	<field name="hora_cita" class="java.sql.Time"/>
-	<field name="id_medico" class="java.lang.Integer"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="nombre_usuario" class="java.lang.String"/>
 	<field name="nombre_medico" class="java.lang.String"/>
 	<field name="tipousuario_cita" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.String"/>
+	<field name="id_medico" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
 	<field name="tipo_identificacion" class="java.lang.String"/>
 	<field name="codigo" class="java.lang.String"/>
@@ -489,9 +491,17 @@ FAMILIARES:]]></text>
 				<textFieldExpression><![CDATA[$F{recomendaciones_hcmed}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="30" y="598" width="536" height="30" uuid="8c1bc43b-e405-49f0-b856-ed0395396ba8"/>
+				<reportElement x="30" y="688" width="536" height="30" uuid="8c1bc43b-e405-49f0-b856-ed0395396ba8"/>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\citasmedicasufps\\plantillaUFPS\\web\\img\\cita.jpg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="253" y="597" width="100" height="20" uuid="8d45931d-ee4b-496a-8464-203b878ad61d"/>
+				<text><![CDATA[FORMULA MEDICA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="627" width="507" height="51" uuid="a80b1a9e-34f8-4102-8e2f-4a80a08a8df6"/>
+				<textFieldExpression><![CDATA[$F{formulamedica_hcmed}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
