@@ -13,15 +13,30 @@ package DTO;
  */
 public class EstudianteDTO {
 
+    private int id;
     private String identificacion_usuario;
     private String programa_academico;
 
     public EstudianteDTO() {
     }
 
-    public EstudianteDTO(String identificacion_usuario, String programa_academico) {
+    public EstudianteDTO(int id, String identificacion_usuario, String programa_academico) {
+        this.id = id;
         this.identificacion_usuario = identificacion_usuario;
         this.programa_academico = programa_academico;
+    }
+    
+    public EstudianteDTO(String identificacion_usuario, String programa_academico){
+        this.identificacion_usuario = identificacion_usuario;
+        this.programa_academico = programa_academico;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIdentificacion_usuario() {

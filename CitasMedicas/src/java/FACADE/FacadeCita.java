@@ -54,4 +54,19 @@ public class FacadeCita {
       public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
         return new NegocioCita().actualizarEstadoNoAsistida(id_cita);
     }
+      public int cantidadCitas(String fechaI, String fechaF) throws SQLException {
+          return new NegocioCita().cantidadCitas(fechaI, fechaF);
+      }
+      
+      public int cantidadCitasAsistidas(String fechaI, String fechaF) throws SQLException {
+          return new NegocioCita().cantidadCitasAsistidas(fechaI, fechaF);
+      }
+      
+      public int cantidadCitasNoAsistidas(String fechaI, String fechaF) throws SQLException {
+          return new NegocioCita().cantidadCitasNoAsistidas(fechaI, fechaF);
+      }
+      
+      public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF) throws SQLException {
+          return new NegocioCita().cantidadCitasEstudiante(id_usuario, fechaI, fechaF);
+      }
 }

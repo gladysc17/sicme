@@ -55,6 +55,53 @@ public class NegocioEstudiante {
         }
         return resultado;
 
-    }   
+    }
+    
+    public List<String> consultarProgramaAcademico() {
+        List<String> list = new ArrayList<>();
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO est = new EstudianteDAO(co);
+        
+        try {
+            list = est.consultarProgramaAcademico();
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
 
+        } finally {
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        }
+        return list;
+    }
+
+    public List<EstudianteDTO> consultarEstudiantePrograma(String programa){
+        List<EstudianteDTO> list = new ArrayList<>();
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO est = new EstudianteDAO(co);
+        
+        try {
+            list = est.consultarEstudiantePrograma(programa);
+        }catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        }
+        return list;
+    }
 }

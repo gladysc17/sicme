@@ -409,4 +409,21 @@ public class CitaDAO {
         
         return cant;
     }
+    
+    public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF) throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita where id_usuario = ? and fecha_cita between ? and ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, id_usuario);
+        ps.setDate(2, Date.valueOf(fechaI));
+        ps.setDate(3, Date.valueOf(fechaF));
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        return cant;
+    }
 }

@@ -38,4 +38,12 @@ public class FacadeEstudiante {
 //     public boolean modificarEstudiante(int  identificacion_est, String correo_est, String fechanac_est, String genero_est, String estadocivil_est, String direccion_est, String telefono_est) throws SQLException{
 //        return new NegocioEstudiante().modificarEstudiante(identificacion_est, correo_est, fechanac_est, genero_est, estadocivil_est, direccion_est, telefono_est);
 //    }
+    
+    public List<String> consultarProgramaAcademico() throws SQLException {
+        return new NegocioEstudiante().consultarProgramaAcademico();
+    }
+    
+    public List<EstudianteDTO> consultarEstudiantePrograma(String programa) throws SQLException {
+        return new NegocioEstudiante().consultarEstudiantePrograma(programa);
+    }
 }

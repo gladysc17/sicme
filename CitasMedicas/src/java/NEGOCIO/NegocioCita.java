@@ -316,4 +316,101 @@ public class NegocioCita {
 
         return rta;
     }
+    
+    public int cantidadCitas(String fechaI, String fechaF) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        CitaDAO cit = new CitaDAO(co);
+        
+        try {
+            cant = cit.cantidadCitas(fechaI, fechaF);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        return cant;
+    }
+    
+    public int cantidadCitasAsistidas(String fechaI, String fechaF) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        CitaDAO cit = new CitaDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasAsistidas(fechaI, fechaF);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        CitaDAO cit = new CitaDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasNoAsistidas(fechaI, fechaF);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF){
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        CitaDAO cit = new CitaDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasEstudiante(id_usuario, fechaI, fechaF);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
 }
