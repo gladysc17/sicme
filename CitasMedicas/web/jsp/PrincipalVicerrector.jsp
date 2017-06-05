@@ -155,12 +155,8 @@
                                         <div class="user-button">
                                             <div class="row">
                                                 <div class="col-md-6" align="center">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="CITAS DIARIAS" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica1.jsp')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeCitas.jsp')"/>
                                                 </div>
-                                                <div class="col-md-6" align="center">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-success" value="CONSULTAR CITA" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitaMedica.jsp')"/>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -182,11 +178,8 @@
                                         <div class="user-button">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="NUEVO EVENTO" onclick="cargarForm('administrador/recargoAdmin_CrearEvento.jsp')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeUsuarios.jsp')"/>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-danger" value="LISTA DE EVENTOS" onclick="cargarForm('administrador/recargoAdmin_ConsultarEventos.jsp')"/>
-                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -194,6 +187,29 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> EVENTOS</h3>
+                                </div>
+                                <div>
+                                    <div class="ibox-content no-padding border-left-right">
+                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
+                                    </div>
+                                    <div class="ibox-content profile-content">
+
+                                        <div class="user-button">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeEvento.jsp')"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>                
 

@@ -15,60 +15,33 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1 align="center"> Citas </h1>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 align="center"> Citas </h1>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="" class="control-label">Tipo de Consulta</label>
+                        <select name="consulta" id="consulta">
+                            <option></option>
+                            <option value="realizadas">Citas realizadas</option>
+                            <option value="programa">Citas por programa</option>
+                            <option value="usuarios">Citas por usuarios</option>
+                        </select>
+                        <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
+                        <label>&nbsp;&nbsp; hasta &nbsp;&nbsp;</label>
+                        <input type="date" id="fechaIC2" name="fechaIC2"/> &nbsp;&nbsp;&nbsp;
+                        <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('vicerrector/recargoVice_InformeCitas2.jsp?consulta='+consulta.value+'&fechaIC='+fechaIC.value+'&fechaIC2='+fechaIC2.value)"/>
 
-        <p align="center"> Mostrar Citas por :
-            <select> 
-                <option>  </option>
-                <option> Servicio </option>
-                <option> Patologia </option>
-                <option> Profesional</option>
-                <option> Programa Academico </option>
-                <option> Inasistidas </option>
-            </select> <br><br>
-        </p>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">                      
-                        <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
-                            <thead>
-                                <tr>
-                                    <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 158px;">Fecha</th>                                    
-                                    <th>Servicio</th>
-                                    <th>Medico</th>
-                                    <th>Estudiante</th>
-                                    <th>Informe</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                <tr role="row" class="odd">
-                                    <td class="sorting_asc"></td>
-                                    <td>ghfgh</td>
-                                    <td>fhfgh</td>
-                                    <td>fhggfh</td>
-                                    <td> Informe</td>
+                        <div class="panel-body" id="cargar">
 
-                                </tr> 
-                                                             
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-        <!-- Javascripts-->
-        <script src="js/jquery-2.1.4.min.js"></script>
-        <script src="js/essential-plugins.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/plugins/pace.min.js"></script>
-        <script src="js/main.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
+        <div class="col-md-1"></div>
     </body>
 </html>
