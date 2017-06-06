@@ -141,7 +141,7 @@
 
                 <div class="wrapper wrapper-content" id="recargo">
                     <div class="row animated fadeInRight">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins" style="background-image: url(../imagenes/2246d36031da923ba74a3ff8a6daef86.png)">
                                 <div class="ibox-title" >
                                     <h3 align="center"> CITAS MEDICAS</h3>
@@ -164,7 +164,7 @@
                             </div>
                         </div>                                                
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> USUARIOS</h3>
@@ -187,7 +187,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> EVENTOS</h3>

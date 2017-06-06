@@ -372,4 +372,23 @@ public class NegocioUsuario {
         return medicos;
       
   }
+      
+       public List<UsuarioDTO> listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException{
+      
+           
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        List<UsuarioDTO> otros = new ArrayList<UsuarioDTO>();
+        UsuarioDAO otro = new UsuarioDAO(co);
+        
+        try{
+            otros = otro.consultarUsuarioPorTipo(tipo,fecha1, fecha2);
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            co.close();
+        }        
+        return (otros);
+    }
 }

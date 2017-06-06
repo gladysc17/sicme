@@ -29,8 +29,8 @@ public class UsuarioDAO {
     public boolean registrarUsuario(UsuarioDTO otro) throws SQLException {
 
         String sql = "INSERT INTO usuario (identificacion, tipo_identificacion, codigo, nombre, correo, "
-                + "fecha_nacimiento, genero, edad, estado_civil, direccion, telefono, tipo_usuario)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "fecha_nacimiento, genero, edad, estado_civil, direccion, telefono, tipo_usuario, fecharegistro)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -46,6 +46,7 @@ public class UsuarioDAO {
         ps.setString(10, otro.getDireccion());
         ps.setString(11, otro.getTelefono());
         ps.setString(12, otro.getTipo_usuario());
+        ps.setDate(13, Date.valueOf(otro.getFecharegistro()));
 
         int resultado = ps.executeUpdate();
 
@@ -79,6 +80,7 @@ public class UsuarioDAO {
             otro.setDireccion(rs.getString("direccion"));
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
+            otro.setFecharegistro(rs.getString("fecharegistro"));
 
         }
         return otro;
@@ -112,6 +114,7 @@ public class UsuarioDAO {
             otro.setDireccion(rs.getString("direccion"));
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
+            otro.setFecharegistro(rs.getString("fecharegistro"));
 
             listaOtro.add(otro);
         }
@@ -149,6 +152,7 @@ public class UsuarioDAO {
             otro.setDireccion(rs.getString("direccion"));
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
+            otro.setFecharegistro(rs.getString("fecharegistro"));
         }
 
         return otro;
@@ -272,10 +276,53 @@ public class UsuarioDAO {
             med.setDireccion(rs.getString("direccion"));
             med.setTelefono(rs.getString("telefono"));
             med.setTipo_usuario(rs.getString("tipo_usuario"));
+            med.setFecharegistro(rs.getString("fecharegistro"));
 
             medicos.add(med);
         }
         return medicos;
+    }
+    
+    public List<UsuarioDTO> consultarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
+
+        List<UsuarioDTO> listaOtro = new ArrayList<UsuarioDTO>();
+
+        String sql = "SELECT * FROM usuario WHERE   tipo_usuario = ? "
+                + "AND fecharegistro between ? and  ? ORDER BY identificacion";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, tipo);
+        ps.setDate(2, Date.valueOf(fecha1));
+        ps.setDate(3, Date.valueOf(fecha2));
+
+        ResultSet rs = ps.executeQuery();
+
+        UsuarioDTO otro = null;
+
+        while (rs.next()) {
+            otro = new UsuarioDTO();
+
+            otro = new UsuarioDTO();
+            otro.setIdentificacion(rs.getString("identificacion"));
+            otro.setTipo_identificacion(rs.getString("tipo_identificacion"));
+            otro.setCodigo(rs.getString("codigo"));
+            otro.setNombre(rs.getString("nombre"));
+            otro.setCorreo(rs.getString("correo"));
+            otro.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+            otro.setGenero(rs.getString("genero"));
+            otro.setEdad(rs.getInt("edad"));
+            otro.setEstado_civil(rs.getString("estado_civil"));
+            otro.setDireccion(rs.getString("direccion"));
+            otro.setTelefono(rs.getString("telefono"));
+            otro.setTipo_usuario(rs.getString("tipo_usuario"));
+            otro.setFecharegistro(rs.getString("fecharegistro"));
+
+            listaOtro.add(otro);
+        }
+
+        return listaOtro;
+
     }
 
 }

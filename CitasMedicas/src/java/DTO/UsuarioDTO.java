@@ -23,11 +23,12 @@ public class UsuarioDTO {
     private String direccion;
     private String telefono;     
     private String tipo_usuario;
+    private String fecharegistro;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String identificacion, String tipo_identificacion, String codigo, String nombre, String correo, String fecha_nacimiento, int edad, String genero, String estado_civil, String direccion, String telefono, String tipo_usuario) {
+    public UsuarioDTO(String identificacion, String tipo_identificacion, String codigo, String nombre, String correo, String fecha_nacimiento, int edad, String genero, String estado_civil, String direccion, String telefono, String tipo_usuario, String fecharegistro) {
         this.identificacion = identificacion;
         this.tipo_identificacion = tipo_identificacion;
         this.codigo = codigo;
@@ -40,6 +41,7 @@ public class UsuarioDTO {
         this.direccion = direccion;
         this.telefono = telefono;
         this.tipo_usuario = tipo_usuario;
+        this.fecharegistro= fecharegistro;
     }
 
     public String getIdentificacion() {
@@ -136,6 +138,14 @@ public class UsuarioDTO {
 
     public void setTipo_usuario(String tipo_usuario) {
         this.tipo_usuario = tipo_usuario;
+    }
+
+    public String getFecharegistro() {
+        return fecharegistro;
+    }
+
+    public void setFecharegistro(String fecharegistro) {
+        this.fecharegistro = fecharegistro;
     }
 
     

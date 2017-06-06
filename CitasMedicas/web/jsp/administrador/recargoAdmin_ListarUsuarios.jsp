@@ -72,12 +72,7 @@
             </div>
         </div>
         <div class="col-md-1"></div>
-        <script src="../js/jquery-2.1.4.min.js"></script>
-        <script src="../js/essential-plugins.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/pace.min.js"></script>
-        <script src="../js/main.js"></script>
-        <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+         <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">$('#sampleTable').DataTable();</script>
     </body>

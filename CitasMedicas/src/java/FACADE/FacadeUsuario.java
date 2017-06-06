@@ -59,4 +59,8 @@ public class FacadeUsuario {
         return new NegocioUsuario().consultarMedicoPorServicio(tipo_usuario, servicio);
 
     }
+    
+    public List<UsuarioDTO> listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
+        return new NegocioUsuario().listarUsuarioPorTipo(tipo, fecha1, fecha2);
+    }
 }
