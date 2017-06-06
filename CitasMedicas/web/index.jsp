@@ -24,8 +24,7 @@
         <link href="css/app.min.css" rel="stylesheet" type="text/css"/>        
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <link href="css/header-v6.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/header-v8.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/header-v6.min.css" rel="stylesheet" type="text/css"/>        
         <link href="css/custom.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/footer-v1.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/pgwslider.min.css" rel="stylesheet" type="text/css"/>
@@ -42,57 +41,49 @@
                 <div id="barra-superior" class="header-v8">
                     <!-- Topbar blog -->
                     <div class="blog-topbar">                        
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
+                        <div class="container">                           
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="topbar-toggler" style="font-size: 12px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> Ingresar </div>
+                                <form method="post" name="form">
+                                    <ul class="topbar-list topbar-menu">                                        
+                                        <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
+                                        <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
+                                        <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                            
+                                        <li> usuario <input type="text" id="usuario" name="usuario" required> </li>
+                                        <li> contraseña <input type="password" id="pw" name="pw" required>  </li> 
+                                        <li><input type="button" class="btn-link" Value="INGRESAR" onclick="ingresar()"> </li>
+                                        <li>  <input type="button" class="btn-link" Value="RECUPERAR CONTRASEÑA" onClick="contrase()"> </li>
+                                    </ul>                                        
 
-                                    <div class="topbar-toggler" style="font-size: 20px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> Ingresar </div>
-                                    <form method="post" name="form">
-                                        <ul class="topbar-list topbar-menu">                                        
-                                            <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
-                                            <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
-                                            <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                            
-                                            <li> usuario <input type="text" id="usuario" name="usuario" required> </li>
-                                            <li> contraseña <input type="password" id="pw" name="pw" required>  </li>                                            
-
-                                            <input type="button" class="btn btn-white" Value="INGRESAR" onclick="ingresar()"> 
-                                            <input type="button" class="btn btn-white" Value="RECUPERAR CONTRASEÑA" onClick="contrase()"> 
-                                        </ul>                                        
-
-                                    </form>
-                                    <script type="text/javascript">
-                                        function ingresar() {
-                                            if (document.form.usuario.value.length == 0) {
-                                                alert("INGRESE SU IDENTIFICACION");
-                                                document.form.usuario.focus();
-                                                return 0;
-                                            } 
-                                            else if (document.form.pw.value.length == 0) {
-                                                alert("INGRESE SU CONTRASEÑA");
-                                                document.form.pw.focus();
-                                                return 0;
-                                            }
-                                            else {
-                                                document.form.action = 'controlador/procesarInicioSesion.jsp';
-                                                document.form.submit()
-                                            }
+                                </form>
+                                <script type="text/javascript">
+                                    function ingresar() {
+                                        if (document.form.usuario.value.length == 0) {
+                                            alert("INGRESE SU IDENTIFICACION");
+                                            document.form.usuario.focus();
+                                            return 0;
+                                        } else if (document.form.pw.value.length == 0) {
+                                            alert("INGRESE SU CONTRASEÑA");
+                                            document.form.pw.focus();
+                                            return 0;
+                                        } else {
+                                            document.form.action = 'controlador/procesarInicioSesion.jsp';
+                                            document.form.submit()
                                         }
-                                        
-                                        function contrase() {
-                                            if (document.form.usuario.value.length == 0) {
-                                                alert("INGRESE SU IDENTIFICACION");
-                                                document.form.usuario.focus();
-                                                return 0;
-                                            } 
-                                            
-                                            else {
-                                                document.form.action = 'controlador/procesarRecuperarContrasena.jsp'; 
-                                                document.form.submit();
-                                            }
+                                    }
+
+                                    function contrase() {
+                                        if (document.form.usuario.value.length == 0) {
+                                            alert("INGRESE SU IDENTIFICACION");
+                                            document.form.usuario.focus();
+                                            return 0;
+                                        } else {
+                                            document.form.action = 'controlador/procesarRecuperarContrasena.jsp';
+                                            document.form.submit();
                                         }
-                                    </script>
-                                </div>                                
-                            </div><!--/end row-->
+                                    }
+                                </script>
+                            </div>                                                          
                         </div><!--/end container-->
                     </div>                    
                     <!-- End Topbar blog -->
@@ -122,7 +113,7 @@
                 <div class="menu-responsive">
                     <!-- Logo -->
                     <a class="logo logo-responsive" href="index.jsp">
-                        <img src="imgagenes/horizontal_logo_pequeno.png" alt="Logo">
+                        <img src="imagenes/horizontal_logo_pequeno.png" alt="Logo">
                     </a>  
                     <!-- End Logo -->
 
@@ -317,12 +308,8 @@
             </div>
 
         </div>
-        <script src="js/app.min.js" type="text/javascript"></script>
-        <script src="js/jquery-2.1.1.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/inspinia.js"></script>
-        <script src="js/jquery-ui-1.10.4.min.js" type="text/javascript"></script>
-        <script src="js/custom.min.js" type="text/javascript"></script>
+                
+
 
     </body>
 </html>
