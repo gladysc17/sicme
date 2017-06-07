@@ -324,5 +324,45 @@ public class UsuarioDAO {
         return listaOtro;
 
     }
+    
+     public List<UsuarioDTO> consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
+
+        List<UsuarioDTO> listaOtro = new ArrayList<UsuarioDTO>();
+
+        String sql = "SELECT * FROM usuario WHERE  fecharegistro between ? and  ? ORDER BY nombre";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setDate(1, Date.valueOf(fecha1));
+        ps.setDate(2, Date.valueOf(fecha2));
+
+        ResultSet rs = ps.executeQuery();
+
+        UsuarioDTO otro = null;
+
+        while (rs.next()) {
+            otro = new UsuarioDTO();
+
+            otro = new UsuarioDTO();
+            otro.setIdentificacion(rs.getString("identificacion"));
+            otro.setTipo_identificacion(rs.getString("tipo_identificacion"));
+            otro.setCodigo(rs.getString("codigo"));
+            otro.setNombre(rs.getString("nombre"));
+            otro.setCorreo(rs.getString("correo"));
+            otro.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+            otro.setGenero(rs.getString("genero"));
+            otro.setEdad(rs.getInt("edad"));
+            otro.setEstado_civil(rs.getString("estado_civil"));
+            otro.setDireccion(rs.getString("direccion"));
+            otro.setTelefono(rs.getString("telefono"));
+            otro.setTipo_usuario(rs.getString("tipo_usuario"));
+            otro.setFecharegistro(rs.getString("fecharegistro"));
+
+            listaOtro.add(otro);
+        }
+
+        return listaOtro;
+
+    }
 
 }

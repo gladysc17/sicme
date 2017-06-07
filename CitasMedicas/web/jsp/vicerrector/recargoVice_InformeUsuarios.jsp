@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeCita"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -17,23 +18,26 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
-                <label for="" class="control-label">Tipo de Usuario:</label>
-                <select name="consulta" id="consulta">
-                    <option></option>
-                    <option value="estudiante">Estudiantes</option>
-                    <option value="docente">Docentes</option>
-                    <option value="profesional">Profesionales</option>
-                    <option value="medico">Medicos</option>
-                    <option value="serviciosgenerales">Servicios Generales</option>
-                    <option value="otros">Otros</option>
+                <form name="form" method="post">
+                    <label for="" class="control-label">Tipo de Usuario:</label>
+                    <select name="consulta" id="consulta" required>
+                        <option></option>
+                        <option value="todos">Todos</option>
+                        <option value="estudiante">Estudiantes</option>
+                        <option value="docente">Docentes</option>
+                        <option value="profesional">Profesionales</option>
+                        <option value="medico">Medicos</option>
+                        <option value="serviciosgenerales">Servicios Generales</option>
+                        <option value="otros">Otros</option>
 
-                </select> &nbsp;&nbsp;&nbsp;
-                <label> desde </label>
-                <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
-                <label> hasta</label>
-                <input type="date" id="fechaIC2" name="fechaIC2"/> &nbsp;&nbsp;&nbsp;
+                    </select> &nbsp;&nbsp;&nbsp;
+                    <label> desde </label>
+                    <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
+                    <label> hasta</label>
+                    <input type="date" id="fechaIC2" name="fechaIC2" required> &nbsp;&nbsp;&nbsp;
 
-                <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('vicerrector/recargoVice_InformeUsuarios2.jsp?consulta=' + consulta.value + '&fechaIC=' + fechaIC.value + '&fechaIC2=' + fechaIC2.value)"/>
+                    <input type="button" class="btn btn-danger" value="CONSULTAR" onchange="validar()" onclick="cargar_form('vicerrector/recargoVice_InformeUsuarios2.jsp?consulta=' + consulta.value + '&fechaIC=' + fechaIC.value + '&fechaIC2=' + fechaIC2.value)"/>
+                </form>                               
 
                 <div class="panel-body" id="cargar">
                     <div class="panel-body">
@@ -46,7 +50,7 @@
                                         <th>Identificación</th>
                                         <th>Codigo</th>
                                         <th>Rol</th>
-                                        <th>Datos</th>                    
+                                        <th>citas</th>                    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,6 +68,10 @@
 
                                             int cantidad = i + 1;
 
+                                            FacadeCita fc = new FacadeCita();
+                                            int canCitas = fc.cantidadCitasUsuario(identf);
+
+
                                     %>
 
                                     <tr role="row" class="odd">
@@ -72,15 +80,10 @@
                                         <td><%=identf%></td>
                                         <td><%=codigo%></td>
                                         <td><%=tipo2%></td>
-                                        <td> Informe</td>                    
+                                        <td> <%=canCitas%></td>                    
                                     </tr> 
                                     <%
                                         }
-                                        String tipo = request.getParameter("consulta");
-                                        String fechaIC = request.getParameter("fechaIC");
-                                        String fechaIC2 = request.getParameter("fechaIC2");
-
-                                        System.out.println("tipo " + tipo + "fecha1 " + fechaIC + fechaIC2);
                                     %>
                                 </tbody>                               
                             </table>
