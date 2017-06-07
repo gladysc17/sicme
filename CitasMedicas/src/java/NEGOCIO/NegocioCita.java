@@ -413,4 +413,52 @@ public class NegocioCita {
         }
         return cant;
     }
+    
+    public int cantidadCitasPendientes(String fechaI, String fechaF) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        CitaDAO cit = new CitaDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasPendientes(fechaI, fechaF);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasUsuario(String id_usuario){
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        CitaDAO cit = new CitaDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasUsuario(id_usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
 }

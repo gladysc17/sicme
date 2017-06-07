@@ -69,4 +69,12 @@ public class FacadeCita {
       public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF) throws SQLException {
           return new NegocioCita().cantidadCitasEstudiante(id_usuario, fechaI, fechaF);
       }
+      
+       public int cantidadCitasPendientes(String fechaI, String fechaF) throws SQLException {
+          return new NegocioCita().cantidadCitasPendientes(fechaI, fechaF);
+      }
+       
+       public int cantidadCitasUsuario(String id_usuario) throws SQLException {
+          return new NegocioCita().cantidadCitasUsuario(id_usuario);
+      }
 }
