@@ -57,7 +57,7 @@
                     <div class="parallax-quote-in" style="padding: 0px;">
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-5">
-                                <a href="#">
+                                <a href="../index.jsp">
                                     <img id="logo-header" src="../imagenes/logo_ufps.png" alt="Logo UFPS">
                                 </a>
                             </div>

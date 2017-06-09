@@ -28,7 +28,7 @@
 
     <body>
         <%
-            
+
             AdministradorDTO admin = (AdministradorDTO) session.getAttribute("administrador");
             if (admin == null) {
 
@@ -76,36 +76,36 @@
                 <div class="container" >
                     <h1 align="center" style="color: white; font: bold;"> GESTION DE CITAS MEDICAS </h1>
                 </div>                
-                
+
             </div>
-            
+
         </div>
         <nav class="navbar-default navbar-static-side hidden-xs" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="nav-header">
-                            <div class="dropdown profile-element"> <span>
-                                    <div align="center"><img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"></div>
-                                </span>
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=nombre%></strong>
-                                        </span> <span class="text-muted text-xs block">Administrador <b class="caret"></b></span> </span> </a>
-                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                    <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident='+ <%=id%>)"/></li>                                    
-                                    <li class="divider"></li>
-                                    <li><a href="../controlador/procesarCierreSesion.jsp"><h3>Cerrar Sesion</h3></a></li>
-                                    <li><a href="../index.jsp"><h3>Inicio</h3></a></li>
-                                </ul>
-                            </div>                           
-                        </li>
-                    </ul>
-                    <hr>                   
-                </div>
-            </nav>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                                <div align="center"><img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"></div>
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=nombre%></strong>
+                                    </span> <span class="text-muted text-xs block">Administrador <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident=' + <%=id%>)"/></li>                                    
+                                <li class="divider"></li>
+                                <li><a href="../controlador/procesarCierreSesion.jsp"><h3>Cerrar Sesion</h3></a></li>
+                                <li><a href="../index.jsp"><h3>Inicio</h3></a></li>
+                            </ul>
+                        </div>                           
+                    </li>
+                </ul>
+                <hr>                   
+            </div>
+        </nav>
 
         <div id="wrapper">
 
-            
+
 
 
             <div id="page-wrapper" class="gray-bg">
@@ -140,17 +140,17 @@
                                     <h3 align="center"> CITAS MEDICAS</h3>
                                 </div>
                                 <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
+                                    <div class="ibox-content">
+                                        <img alt="image" class="img-responsive" src="../imagenes/citamedica.jpg" width="100" height="100">                                        
                                     </div>
                                     <div class="ibox-content profile-content">
 
                                         <div class="user-button">
                                             <div class="row">
-                                                <div class="col-md-6" align="center">
+                                                <div class="col-md-6">
                                                     <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-primary" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica1.jsp')"/>
                                                 </div>
-                                                <div class="col-md-6" align="center">
+                                                <div class="col-md-6">
                                                     <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-success" value="CONSULTAR CITA" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitaMedica.jsp')"/>
                                                 </div>
 
@@ -160,7 +160,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-5">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
@@ -212,7 +211,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
@@ -232,6 +230,76 @@
                                                 <div class="col-md-6">
                                                     <input style="font-size:18px; text-align:center" type="button" class="btn btn-sm btn-danger" value="CONSULTAR EVENTO" onclick="cargarForm('administrador/recargoAdmin_ConsultarEventos.jsp?ideadmin=' +<%=id%>)"/>
                                                 </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h1 align="center">INFORMES</h1>                                                
+                        <div class="col-md-4">
+                            <div class="ibox float-e-margins" style="background-image: url(../imagenes/2246d36031da923ba74a3ff8a6daef86.png)">
+                                <div class="ibox-title" >
+                                    <h3 align="center"> CITAS MEDICAS</h3>
+                                </div>
+                                <div>
+                                    <div class="ibox-content no-padding border-left-right">
+                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
+                                    </div>
+                                    <div class="ibox-content profile-content">
+
+                                        <div class="user-button">
+                                            <div class="row">
+                                                <div class="col-md-6" align="center">
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeCitas.jsp')"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                
+
+                        <div class="col-md-4">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> USUARIOS</h3>
+                                </div>
+                                <div>
+                                    <div class="ibox-content no-padding border-left-right">
+                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
+                                    </div>
+                                    <div class="ibox-content profile-content">
+
+                                        <div class="user-button">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeUsuarios.jsp')"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> EVENTOS</h3>
+                                </div>
+                                <div>
+                                    <div class="ibox-content no-padding border-left-right">
+                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
+                                    </div>
+                                    <div class="ibox-content profile-content">
+
+                                        <div class="user-button">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeEvento.jsp')"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
