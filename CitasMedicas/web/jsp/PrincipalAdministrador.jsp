@@ -104,10 +104,6 @@
         </nav>
 
         <div id="wrapper">
-
-
-
-
             <div id="page-wrapper" class="gray-bg">
                 <div class="row wrapper border-bottom white-bg page-heading" id="rows">
                     <div class="col-lg-10">
@@ -135,25 +131,27 @@
                 <div class="wrapper wrapper-content" id="recargo">
                     <div class="row animated fadeInRight">
                         <div class="col-md-7">
-                            <div class="ibox float-e-margins" style="background-image: url(../imagenes/2246d36031da923ba74a3ff8a6daef86.png)">
-                                <div class="ibox-title" >
-                                    <h3 align="center"> CITAS MEDICAS</h3>
+                            <div class="ibox float-e-margins bg-warning">
+                                <div class="ibox-title">
+                                    <h3 align="center"> USUARIOS</h3>
                                 </div>
-                                <div>
+                                <div>                                    
                                     <div class="ibox-content">
-                                        <img alt="image" class="img-responsive" src="../imagenes/citamedica.jpg" width="100" height="100">                                        
-                                    </div>
-                                    <div class="ibox-content profile-content">
 
-                                        <div class="user-button">
+                                        <div class="user-button" align="center">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-primary" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica1.jsp')"/>
+                                                <div class="col-md-4">
+                                                    <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('administrador/recargoAdmin_RegistrarUsuario.jsp')"/>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-success" value="CONSULTAR CITA" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitaMedica.jsp')"/>
+                                                <div class="col-md-4">
+                                                    <i class="fa fa-list-alt fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CONSULTAR" onclick="cargarForm('administrador/recargoAdmin_ListarUsuarios.jsp')"/>
                                                 </div>
-
+                                                <div class="col-md-4">
+                                                    <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="HORARIO MEDICO" onclick="cargarForm('administrador/recargoAdmin_ListarMedicos.jsp')"/>
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -165,70 +163,63 @@
                                 <div class="ibox-title">
                                     <h3 align="center"> HISTORIA CLINICA</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
 
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-12" align="center">
-                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-warning" value="HISTORIA CLINICA" onclick="cargarForm('administrador/recargoAdmin_ConsultarHistoriaClinica.jsp')"/>
-                                                </div>
+                                <div class="ibox-content">
 
+                                    <div class="user-button">
+                                        <div class="row">
+                                            <div class="col-md-12" align="center">
+                                                <i class="fa fa-file-pdf-o   fa-5x" aria-hidden="true"></i> <br><br>
+                                                <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CONSULTAR" onclick="cargarForm('administrador/recargoAdmin_ConsultarHistoriaClinica.jsp')"/>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="ibox float-e-margins bg-warning">
-                                <div class="ibox-title">
-                                    <h3 align="center"> USUARIOS</h3>
+                            <div class="ibox float-e-margins" >
+                                <div class="ibox-title" >
+                                    <h3 align="center"> CITAS MEDICAS</h3>
                                 </div>
                                 <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
-
-                                        <div class="user-button" align="center">
+                                    <div class="ibox-content" align="center">                                        
+                                        <div class="user-button">
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-success" value="NUEVO USUARIO" onclick="cargarForm('administrador/recargoAdmin_RegistrarUsuario.jsp')"/>
+                                                <div class="col-md-6">
+                                                    <i class="fa fa-address-book-o fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica1.jsp')"/>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="LISTA USUARIOS" onclick="cargarForm('administrador/recargoAdmin_ListarUsuarios.jsp')"/>
+                                                <div class="col-md-6">
+                                                    <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CONSULTAR CITA" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitaMedica.jsp')"/>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-warning" value="ASIGNAR HORARIO" onclick="cargarForm('administrador/recargoAdmin_ListarMedicos.jsp')"/>
-                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> EVENTOS</h3>
                                 </div>
                                 <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
+                                    <div class="ibox-content">
 
-                                        <div class="user-button">
+                                        <div class="user-button" align="center">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input style="font-size:18px; text-align:center" type="button" class="btn btn-sm btn-primary" value="NUEVO EVENTO" onclick="cargarForm('administrador/recargoAdmin_CrearEvento.jsp?idenadmin=' +<%=id%>)"/>
+                                                    <i class="fa fa-calendar-plus-o fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:18px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVO EVENTO" onclick="cargarForm('administrador/recargoAdmin_CrearEvento.jsp?idenadmin=' +<%=id%>)"/>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input style="font-size:18px; text-align:center" type="button" class="btn btn-sm btn-danger" value="CONSULTAR EVENTO" onclick="cargarForm('administrador/recargoAdmin_ConsultarEventos.jsp?ideadmin=' +<%=id%>)"/>
+                                                    <i class="fa fa-calendar fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:18px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CONSULTAR EVENTO" onclick="cargarForm('administrador/recargoAdmin_ConsultarEventos.jsp?ideadmin=' +<%=id%>)"/>
                                                 </div>                                                
                                             </div>
                                         </div>
@@ -237,23 +228,18 @@
                             </div>
                         </div>
 
-                        <h1 align="center">INFORMES</h1>                                                
+                        <h1>INFORMES</h1>                                                
                         <div class="col-md-4">
-                            <div class="ibox float-e-margins" style="background-image: url(../imagenes/2246d36031da923ba74a3ff8a6daef86.png)">
+                            <div class="ibox float-e-margins">
                                 <div class="ibox-title" >
                                     <h3 align="center"> CITAS MEDICAS</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
-
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-6" align="center">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeCitas.jsp')"/>
-                                                </div>
+                                <div>                                    
+                                    <div class="ibox-content">
+                                        <div class="user-button" align="center">
+                                            <div class="row">                                                
+                                                <i class="fa fa-file-text fa-5x" aria-hidden="true"></i> <br><br>
+                                                <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeCitas.jsp')"/>
                                             </div>
                                         </div>
                                     </div>
@@ -266,17 +252,13 @@
                                 <div class="ibox-title">
                                     <h3 align="center"> USUARIOS</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
+                                <div>                                    
+                                    <div class="ibox-content">
 
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeUsuarios.jsp')"/>
-                                                </div>
+                                        <div class="user-button" align="center">
+                                            <div class="row">                                                
+                                                <i class="fa fa-users fa-5x" aria-hidden="true"></i> <br><br>
+                                                <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeUsuarios.jsp')"/>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -289,121 +271,118 @@
                                 <div class="ibox-title">
                                     <h3 align="center"> EVENTOS</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
 
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeEvento.jsp')"/>
-                                                </div>
-                                            </div>
+                                <div class="ibox-content">
+
+                                    <div class="user-button" align="center">
+                                        <div class="row">                                            
+                                            <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i> <br><br>
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeEvento.jsp')"/>                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </div>                
+                </div>
 
             </div>
-        </div>
+        </div>                
+
+    </div>
+</div>
 
 
 
-        <div class="footer-v1 off-container">
-            <div class="footer">
-                <div class="container">
-                    <div class="row">
-                        <!-- About -->
-                        <div class="col-md-4 col-sm-4 md-margin-bottom-40">
-                            <div class="footer-main">
-                                <a href="index.jsp"><img id="logo-footer" class="img-responsive" src="../imagenes/logoufpsvertical.png" alt="Logo Pie de Página"></a>
-                            </div>
-                        </div><!--/col-md-3-->
-                        <!-- End About -->
-
-
-                        <!-- Link List -->
-                        <div class="col-md-4 col-sm-4  md-margin-bottom-40">                            
-                            <img src="../imagenes/logo_ingsistemas_vertical_invertido.png" alt="" width="150" height="180"/>
-                        </div><!--/col-md-3-->
-                        <!-- End Link List -->
-
-                        <!-- Address -->
-                        <div class="col-md-4 col-sm-4  map-img md-margin-bottom-40">
-                            <div class="headline" style="border-bottom: #272727;"><h2>Contactos</h2></div>
-                            <address class="md-margin-bottom-40">
-                                Avenida Gran Colombia No. 12E-96 Barrio Colsag, <br>
-                                San José de Cúcuta - Colombia <br>
-                                Teléfono (057)(7) 5776655 <br>
-                                Correo: <a href="mailto:oficinadeprensa@ufps.edu.co" class="">oficinadeprensa@ufps.edu.co</a>
-                            </address>
-                        </div><!--/col-md-3-->
-                        <!-- End Address -->
+<div class="footer-v1 off-container">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- About -->
+                <div class="col-md-4 col-sm-4 md-margin-bottom-40">
+                    <div class="footer-main">
+                        <a href="index.jsp"><img id="logo-footer" class="img-responsive" src="../imagenes/logoufpsvertical.png" alt="Logo Pie de Página"></a>
                     </div>
-                </div>
-            </div><!--/footer-->
+                </div><!--/col-md-3-->
+                <!-- End About -->
 
-            <div class="copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p>
-                                2016 © All Rights Reserved.
-                                Desarrollado por: <a href="#">VAVM - División de Sistemas</a>
-                            </p>
-                        </div>
 
-                        <!-- Social Links -->
-                        <div class="col-md-4">  
-                            <ul class="list-inline dark-social pull-right space-bottom-0">
-                                <li>
-                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/UFPS-C%C3%BAcuta-553833261409690">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/UFPSCUCUTA">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Instagram" href="https://www.instagram.com/ufpscucuta/">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Youtube" href="#">
-                                        <i class="fa fa-youtube"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Correo" href="#">
-                                        <i class="fa fa-envelope-o"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- End Social Links -->
-                    </div>
-                </div>
-            </div><!--/copyright-->
+                <!-- Link List -->
+                <div class="col-md-4 col-sm-4  md-margin-bottom-40">                            
+                    <img src="../imagenes/logo_ingsistemas_vertical_invertido.png" alt="" width="150" height="180"/>
+                </div><!--/col-md-3-->
+                <!-- End Link List -->
+
+                <!-- Address -->
+                <div class="col-md-4 col-sm-4  map-img md-margin-bottom-40">
+                    <div class="headline" style="border-bottom: #272727;"><h2>Contactos</h2></div>
+                    <address class="md-margin-bottom-40">
+                        Avenida Gran Colombia No. 12E-96 Barrio Colsag, <br>
+                        San José de Cúcuta - Colombia <br>
+                        Teléfono (057)(7) 5776655 <br>
+                        Correo: <a href="mailto:oficinadeprensa@ufps.edu.co" class="">oficinadeprensa@ufps.edu.co</a>
+                    </address>
+                </div><!--/col-md-3-->
+                <!-- End Address -->
+            </div>
         </div>
+    </div><!--/footer-->
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+                        2016 © All Rights Reserved.
+                        Desarrollado por: <a href="#">VAVM - División de Sistemas</a>
+                    </p>
+                </div>
+
+                <!-- Social Links -->
+                <div class="col-md-4">  
+                    <ul class="list-inline dark-social pull-right space-bottom-0">
+                        <li>
+                            <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="https://www.facebook.com/UFPS-C%C3%BAcuta-553833261409690">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="https://twitter.com/UFPSCUCUTA">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Instagram" href="https://www.instagram.com/ufpscucuta/">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Youtube" href="#">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Correo" href="#">
+                                <i class="fa fa-envelope-o"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Social Links -->
+            </div>
+        </div>
+    </div><!--/copyright-->
+</div>
 
 
-        <!-- Mainly scripts -->
-        <script src="../js/jquery-2.1.4.min.js" type="text/javascript"></script>        
-        <script src="../js/essential-plugins.js" type="text/javascript"></script>       
-        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../js/main.js" type="text/javascript"></script>
-        <script src="../js/pace.min.js" type="text/javascript"></script>
-        <script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
-    </body>    
+<!-- Mainly scripts -->
+<script src="../js/jquery-2.1.4.min.js" type="text/javascript"></script>        
+<script src="../js/essential-plugins.js" type="text/javascript"></script>       
+<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/main.js" type="text/javascript"></script>
+<script src="../js/pace.min.js" type="text/javascript"></script>
+<script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>
+</body>    
 </html>

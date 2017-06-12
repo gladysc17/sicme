@@ -35,7 +35,7 @@
                                 <option value="planificacion"> Planificacion Familiar </option>                                                                                      
                             </select>
 
-                            <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identf.value + '&servicio=' + servicio.value)"/>
+                            <input type="button" class="btn btn-danger" value="CONSULTAR HISTORIA CLINICA" onclick="cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identf.value + '&servicio=' + servicio.value)"/>
                         </div> 
                         <div class="panel-body" id="cargar">
                             

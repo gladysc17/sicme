@@ -141,22 +141,17 @@
 
                 <div class="wrapper wrapper-content" id="recargo">
                     <div class="row animated fadeInRight">
-                        <div class="col-md-4">
-                            <div class="ibox float-e-margins" style="background-image: url(../imagenes/2246d36031da923ba74a3ff8a6daef86.png)">
+                                                <div class="col-md-4">
+                            <div class="ibox float-e-margins">
                                 <div class="ibox-title" >
                                     <h3 align="center"> CITAS MEDICAS</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
-
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-6" align="center">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeCitas.jsp')"/>
-                                                </div>
+                                <div>                                    
+                                    <div class="ibox-content">
+                                        <div class="user-button" align="center">
+                                            <div class="row">                                                
+                                                <i class="fa fa-file-text fa-5x" aria-hidden="true"></i> <br><br>
+                                                <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeCitas.jsp')"/>
                                             </div>
                                         </div>
                                     </div>
@@ -169,17 +164,13 @@
                                 <div class="ibox-title">
                                     <h3 align="center"> USUARIOS</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
+                                <div>                                    
+                                    <div class="ibox-content">
 
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeUsuarios.jsp')"/>
-                                                </div>
+                                        <div class="user-button" align="center">
+                                            <div class="row">                                                
+                                                <i class="fa fa-users fa-5x" aria-hidden="true"></i> <br><br>
+                                                <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeUsuarios.jsp')"/>                                                
                                             </div>
                                         </div>
                                     </div>
@@ -192,23 +183,19 @@
                                 <div class="ibox-title">
                                     <h3 align="center"> EVENTOS</h3>
                                 </div>
-                                <div>
-                                    <div class="ibox-content no-padding border-left-right">
-                                        <img alt="image" class="img-responsive img-center" src="../imagenes/cita.jpg" width="80" height="80" align="center">
-                                    </div>
-                                    <div class="ibox-content profile-content">
 
-                                        <div class="user-button">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-primary" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeEvento.jsp')"/>
-                                                </div>
-                                            </div>
+                                <div class="ibox-content">
+
+                                    <div class="user-button" align="center">
+                                        <div class="row">                                            
+                                            <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i> <br><br>
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Consultar" onclick="cargarForm('vicerrector/recargoVice_InformeEvento.jsp')"/>                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
                     </div>
                 </div>                
