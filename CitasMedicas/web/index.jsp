@@ -198,8 +198,9 @@
                                                     <b>Descripción:</b>
                                                     <%= e.getDescrEvento()%>
                                                 </p>
-
-                                                <button> <a href="inscripcionEvento.html" ></a> Inscribirme</button> 
+                                                <p>
+                                                    <button><a href="InscripcionEvento.jsp?dsas=<%=e.getIdEvento() %>">Inscribirme</a> </button>
+                                                </p>
                                             </div>
                                         </li>
                                         <%

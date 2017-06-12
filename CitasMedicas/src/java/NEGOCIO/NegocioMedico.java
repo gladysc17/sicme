@@ -283,4 +283,27 @@ public class NegocioMedico {
         
         return lis;
     }
+    
+    public List<String> consultaServicios() {
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        List<String> ls = new ArrayList<>();
+        
+        try{
+            MedicoDAO med = new MedicoDAO(co);
+            ls = med.consultaServicios();
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return ls;
+    }
 }

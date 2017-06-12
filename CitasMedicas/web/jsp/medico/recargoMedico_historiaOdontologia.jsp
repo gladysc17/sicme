@@ -281,7 +281,7 @@
             }
 
         </style>
-        <title>JSP Page</title>
+        <title></title>
     </head>
     <body>
 
@@ -1124,32 +1124,19 @@
                                                                                                                                                 }
                                                                                                                                             }
                                                                                                                                         }
-
                                                                                                                                     }
-
                                                                                                                                 }
-
-
                                                                                                                             }
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
-
                                                                                                             }
-
                                                                                                         }
-
                                                                                                     }
-
                                                                                                 }
-
                                                                                             }
-
                                                                                         }
-
                                                                                     }
-
                                                                                 }
                                                                             }
                                                                             break;
@@ -1158,10 +1145,95 @@
                                                                                 $(this).removeClass('click-red');
                                                                                 $(this).addClass('click-blue');
                                                                             } else {
-                                                                                if ($(this).hasClass("click-blue")) {
-                                                                                    $(this).removeClass('click-blue');
+                                                                                if ($(this).hasClass("click-gray")) {
+                                                                                    $(this).removeClass("click-gray");
+                                                                                    $(this).addClass("click-blue");
                                                                                 } else {
-                                                                                    $(this).addClass('click-blue');
+                                                                                    if ($(this).hasClass("click-erupcionar")) {
+                                                                                        $(this).removeClass("click-erupcionar");
+                                                                                        $(this).addClass("click-blue");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-endo")) {
+                                                                                            $(this).removeClass("click-endo");
+                                                                                            $(this).addClass("click-blue");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                $(this).addClass("click-blue");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                    $(this).addClass("click-blue");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                        $(this).addClass("click-blue");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-proce")) {
+                                                                                                            $(this).removeClass("click-proce");
+                                                                                                            $(this).addClass("click-blue");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-corobuen")) {
+                                                                                                                $(this).removeClass("click-corobuen");
+                                                                                                                $(this).addClass("click-blue");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-coromal")) {
+                                                                                                                    $(this).removeClass("click-coromal");
+                                                                                                                    $(this).addClass("click-blue");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-probuen")) {
+                                                                                                                        $(this).removeClass("click-probuen");
+                                                                                                                        $(this).addClass("click-blue");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-promal")) {
+                                                                                                                            $(this).removeClass("click-promal");
+                                                                                                                            $(this).addClass("click-blue");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                $(this).removeClass("click-nuclebuen");
+                                                                                                                                $(this).addClass("click-blue");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                                                                    $(this).addClass("click-blue");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                                        $(this).addClass("click-blue");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                                            $(this).addClass("click-blue");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-implante")) {
+                                                                                                                                                $(this).removeClass("click-implante");
+                                                                                                                                                $(this).addClass("click-blue");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-green")) {
+                                                                                                                                                    $(this).removeClass("click-green");
+                                                                                                                                                    $(this).addClass("click-blue");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                                                                                        $(this).removeClass('click-blue');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-blue');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
                                                                                 }
                                                                             }
                                                                             break;
@@ -1229,27 +1301,296 @@
                                                                             });
                                                                             break;
                                                                         case "sellantepresente":
-
-                                                                            if ($(this).hasClass("click-sellantep")) {
-                                                                                $(this).removeClass('click-sellantep');
-                                                                            } else {
+                                                                            if ($(this).hasClass("click-red")) {
+                                                                                $(this).removeClass('click-red');
                                                                                 $(this).addClass('click-sellantep');
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-gray")) {
+                                                                                    $(this).removeClass("click-gray");
+                                                                                    $(this).addClass("click-sellantep");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-erupcionar")) {
+                                                                                        $(this).removeClass("click-erupcionar");
+                                                                                        $(this).addClass("click-sellantep");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-endo")) {
+                                                                                            $(this).removeClass("click-endo");
+                                                                                            $(this).addClass("click-sellantep");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-blue")) {
+                                                                                                $(this).removeClass("click-blue");
+                                                                                                $(this).addClass("click-sellantep");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                    $(this).addClass("click-sellantep");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                        $(this).addClass("click-sellantep");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-proce")) {
+                                                                                                            $(this).removeClass("click-proce");
+                                                                                                            $(this).addClass("click-sellantep");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-corobuen")) {
+                                                                                                                $(this).removeClass("click-corobuen");
+                                                                                                                $(this).addClass("click-sellantep");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-coromal")) {
+                                                                                                                    $(this).removeClass("click-coromal");
+                                                                                                                    $(this).addClass("click-sellantep");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-probuen")) {
+                                                                                                                        $(this).removeClass("click-probuen");
+                                                                                                                        $(this).addClass("click-sellantep");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-promal")) {
+                                                                                                                            $(this).removeClass("click-promal");
+                                                                                                                            $(this).addClass("click-sellantep");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                $(this).removeClass("click-nuclebuen");
+                                                                                                                                $(this).addClass("click-sellantep");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                                                                    $(this).addClass("click-sellantep");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                                        $(this).addClass("click-sellantep");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                                            $(this).addClass("click-sellantep");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-implante")) {
+                                                                                                                                                $(this).removeClass("click-implante");
+                                                                                                                                                $(this).addClass("click-sellantep");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-green")) {
+                                                                                                                                                    $(this).removeClass("click-green");
+                                                                                                                                                    $(this).addClass("click-sellantep");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                                        $(this).removeClass('click-sellantep');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-sellantep');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
+
 
                                                                             break;
                                                                         case "sellanteindicado":
-                                                                            if ($(this).hasClass("click-sellantei")) {
-                                                                                $(this).removeClass('click-sellantei');
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass("click-green");
+                                                                                $(this).addClass("click-sellantei");
                                                                             } else {
-                                                                                $(this).addClass('click-sellantei');
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass('click-red');
+                                                                                    $(this).addClass('click-sellantei');
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                        $(this).removeClass('click-blue');
+                                                                                        $(this).addClass('click-sellantei');
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass('click-gray');
+                                                                                            $(this).addClass('click-sellantei');
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass('click-erupcionar');
+                                                                                                $(this).addClass('click-sellantei');
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass('click-endo');
+                                                                                                    $(this).addClass('click-sellantei');
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-sellantep")) {
+                                                                                                        $(this).removeClass('click-sellantep');
+                                                                                                        $(this).addClass('click-sellantei');
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-erosion")) {
+                                                                                                            $(this).removeClass('click-erosion');
+                                                                                                            $(this).addClass('click-sellantei');
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-proce")) {
+                                                                                                                $(this).removeClass('click-proce');
+                                                                                                                $(this).addClass('click-sellantei');
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-corobuen")) {
+                                                                                                                    $(this).removeClass('click-corobuen');
+                                                                                                                    $(this).addClass('click-sellantei');
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-coromal")) {
+                                                                                                                        $(this).removeClass('click-coromal');
+                                                                                                                        $(this).addClass('click-sellantei');
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                                            $(this).removeClass('click-probuen');
+                                                                                                                            $(this).addClass('click-sellantei');
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                                $(this).removeClass('click-promal');
+                                                                                                                                $(this).addClass('click-sellantei');
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                    $(this).removeClass('click-nuclebuen');
+                                                                                                                                    $(this).addClass('click-sellantei');
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                        $(this).removeClass('click-nuclemal');
+                                                                                                                                        $(this).addClass('click-sellantei');
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-remobuen")) {
+                                                                                                                                            $(this).removeClass('click-remobuen');
+                                                                                                                                            $(this).addClass('click-sellantei');
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-remomal")) {
+                                                                                                                                                $(this).removeClass('click-remomal');
+                                                                                                                                                $(this).addClass('click-sellantei');
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                                                    $(this).removeClass('click-implante');
+                                                                                                                                                    $(this).addClass('click-sellantei');
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                                        $(this).removeClass('click-sellantei');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-sellantei');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                             break;
-
                                                                         case "erosion":
-                                                                            if ($(this).hasClass("click-erosion")) {
-                                                                                $(this).removeClass('click-erosion');
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass("click-green");
+                                                                                $(this).addClass("click-erosion");
                                                                             } else {
-                                                                                $(this).addClass('click-erosion');
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass("click-red");
+                                                                                    $(this).addClass("click-erosion");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                        $(this).removeClass("click-blue");
+                                                                                        $(this).addClass("click-erosion");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass("click-gray");
+                                                                                            $(this).addClass("click-erosion");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass("click-erupcionar");
+                                                                                                $(this).addClass("click-erosion");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass("click-endo");
+                                                                                                    $(this).addClass("click-erosion");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-proce")) {
+                                                                                                        $(this).removeClass("click-proce");
+                                                                                                        $(this).addClass("click-erosion");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                            $(this).removeClass("click-probuen");
+                                                                                                            $(this).addClass("click-erosion");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                $(this).removeClass("click-promal");
+                                                                                                                $(this).addClass("click-erosion");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                    $(this).removeClass("click-implante");
+                                                                                                                    $(this).addClass("click-erosion");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                        $(this).addClass("click-erosion");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                            $(this).addClass("click-erosion");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                                                $(this).addClass("click-erosion");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                                                    $(this).addClass("click-erosion");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-corobuen")) {
+                                                                                                                                        $(this).removeClass("click-corobuen");
+                                                                                                                                        $(this).addClass("click-erosion");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-coromal")) {
+                                                                                                                                            $(this).removeClass("click-coromal");
+                                                                                                                                            $(this).addClass("click-erosion");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                                $(this).removeClass("click-nuclebuen");
+                                                                                                                                                $(this).addClass("click-erosion");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                                                                                    $(this).addClass("click-erosion");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                                                                        $(this).removeClass('click-erosion');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-erosion');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                             break;
 
@@ -1264,18 +1605,198 @@
                                                                             });
                                                                             break;
                                                                         case "coronabuenestado":
-                                                                            if ($(this).hasClass("click-corobuen")) {
-                                                                                $(this).removeClass('click-corobuen');
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass("click-green");
+                                                                                $(this).addClass("click-corobuen");
                                                                             } else {
-                                                                                $(this).addClass('click-corobuen');
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass("click-red");
+                                                                                    $(this).addClass("click-corobuen");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                        $(this).removeClass("click-blue");
+                                                                                        $(this).addClass("click-corobuen");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass("click-gray");
+                                                                                            $(this).addClass("click-corobuen");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass("click-erupcionar");
+                                                                                                $(this).addClass("click-corobuen");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass("click-endo");
+                                                                                                    $(this).addClass("click-corobuen");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-proce")) {
+                                                                                                        $(this).removeClass("click-proce");
+                                                                                                        $(this).addClass("click-corobuen");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                            $(this).removeClass("click-probuen");
+                                                                                                            $(this).addClass("click-corobuen");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                $(this).removeClass("click-promal");
+                                                                                                                $(this).addClass("click-corobuen");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                    $(this).removeClass("click-implante");
+                                                                                                                    $(this).addClass("click-corobuen");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                        $(this).addClass("click-corobuen");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                            $(this).addClass("click-corobuen");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                                                $(this).addClass("click-corobuen");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                                                    $(this).addClass("click-corobuen");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                                                        $(this).addClass("click-corobuen");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-coromal")) {
+                                                                                                                                            $(this).removeClass("click-coromal");
+                                                                                                                                            $(this).addClass("click-corobuen");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                                $(this).removeClass("click-nuclebuen");
+                                                                                                                                                $(this).addClass("click-corobuen");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                                                                                    $(this).addClass("click-corobuen");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-corobuen")) {
+                                                                                                                                                        $(this).removeClass('click-corobuen');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-corobuen');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                             break;
 
                                                                         case "coronamalestado":
-                                                                            if ($(this).hasClass("click-coromal")) {
-                                                                                $(this).removeClass('click-coromal');
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass("click-green");
+                                                                                $(this).addClass("click-coromal");
                                                                             } else {
-                                                                                $(this).addClass('click-coromal');
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass("click-red");
+                                                                                    $(this).addClass("click-coromal");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                        $(this).removeClass("click-blue");
+                                                                                        $(this).addClass("click-coromal");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass("click-gray");
+                                                                                            $(this).addClass("click-coromal");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass("click-erupcionar");
+                                                                                                $(this).addClass("click-coromal");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass("click-endo");
+                                                                                                    $(this).addClass("click-coromal");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-proce")) {
+                                                                                                        $(this).removeClass("click-proce");
+                                                                                                        $(this).addClass("click-coromal");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                            $(this).removeClass("click-probuen");
+                                                                                                            $(this).addClass("click-coromal");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                $(this).removeClass("click-promal");
+                                                                                                                $(this).addClass("click-coromal");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                    $(this).removeClass("click-implante");
+                                                                                                                    $(this).addClass("click-coromal");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                        $(this).addClass("click-coromal");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                            $(this).addClass("click-coromal");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                                                $(this).addClass("click-coromal");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                                                    $(this).addClass("click-coromal");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                                                        $(this).addClass("click-coromal");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-corobuen")) {
+                                                                                                                                            $(this).removeClass("click-corobuen");
+                                                                                                                                            $(this).addClass("click-coromal");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                                $(this).removeClass("click-nuclebuen");
+                                                                                                                                                $(this).addClass("click-coromal");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                                                                                    $(this).addClass("click-coromal");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-coromal")) {
+                                                                                                                                                        $(this).removeClass('click-coromal');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-coromal');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                             break;
 
@@ -1300,18 +1821,198 @@
                                                                             });
                                                                             break;
                                                                         case "nucleobuenestado":
-                                                                            if ($(this).hasClass("click-nuclebuen")) {
-                                                                                $(this).removeClass('click-nuclebuen');
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass("click-green");
+                                                                                $(this).addClass("click-nuclebuen");
                                                                             } else {
-                                                                                $(this).addClass('click-nuclebuen');
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass("click-red");
+                                                                                    $(this).addClass("click-nuclebuen");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                        $(this).removeClass("click-blue");
+                                                                                        $(this).addClass("click-nuclebuen");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass("click-gray");
+                                                                                            $(this).addClass("click-nuclebuen");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass("click-erupcionar");
+                                                                                                $(this).addClass("click-nuclebuen");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass("click-endo");
+                                                                                                    $(this).addClass("click-nuclebuen");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-proce")) {
+                                                                                                        $(this).removeClass("click-proce");
+                                                                                                        $(this).addClass("click-nuclebuen");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                            $(this).removeClass("click-probuen");
+                                                                                                            $(this).addClass("click-nuclebuen");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                $(this).removeClass("click-promal");
+                                                                                                                $(this).addClass("click-nuclebuen");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                    $(this).removeClass("click-implante");
+                                                                                                                    $(this).addClass("click-nuclebuen");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                        $(this).addClass("click-nuclebuen");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                            $(this).addClass("click-nuclebuen");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                                                $(this).addClass("click-nuclebuen");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                                                    $(this).addClass("click-nuclebuen");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                                                        $(this).addClass("click-nuclebuen");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-corobuen")) {
+                                                                                                                                            $(this).removeClass("click-corobuen");
+                                                                                                                                            $(this).addClass("click-nuclebuen");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-coromal")) {
+                                                                                                                                                $(this).removeClass("click-coromal");
+                                                                                                                                                $(this).addClass("click-nuclebuen");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                                                                                    $(this).addClass("click-nuclebuen");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                                        $(this).removeClass('click-nuclebuen');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-nuclebuen');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                             break;
 
                                                                         case "nucleomalestado":
-                                                                            if ($(this).hasClass("click-nuclemal")) {
-                                                                                $(this).removeClass('click-nuclemal');
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass("click-green");
+                                                                                $(this).addClass("click-nuclemal");
                                                                             } else {
-                                                                                $(this).addClass('click-nuclemal');
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass("click-red");
+                                                                                    $(this).addClass("click-nuclemal");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-blue")) {
+                                                                                        $(this).removeClass("click-blue");
+                                                                                        $(this).addClass("click-nuclemal");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass("click-gray");
+                                                                                            $(this).addClass("click-nuclemal");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass("click-erupcionar");
+                                                                                                $(this).addClass("click-nuclemal");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass("click-endo");
+                                                                                                    $(this).addClass("click-nuclemal");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-proce")) {
+                                                                                                        $(this).removeClass("click-proce");
+                                                                                                        $(this).addClass("click-nuclemal");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                            $(this).removeClass("click-probuen");
+                                                                                                            $(this).addClass("click-nuclemal");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                $(this).removeClass("click-promal");
+                                                                                                                $(this).addClass("click-nuclemal");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                    $(this).removeClass("click-implante");
+                                                                                                                    $(this).addClass("click-nuclemal");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                        $(this).addClass("click-nuclemal");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                            $(this).addClass("click-nuclemal");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                                                $(this).addClass("click-nuclemal");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                                                    $(this).addClass("click-nuclemal");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                                                        $(this).addClass("click-nuclemal");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-corobuen")) {
+                                                                                                                                            $(this).removeClass("click-corobuen");
+                                                                                                                                            $(this).addClass("click-nuclemal");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-coromal")) {
+                                                                                                                                                $(this).removeClass("click-coromal");
+                                                                                                                                                $(this).addClass("click-nuclemal");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                                    $(this).removeClass("click-nuclebuen");
+                                                                                                                                                    $(this).addClass("click-nuclemal");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                                        $(this).removeClass('click-nuclemal');
+                                                                                                                                                    } else {
+                                                                                                                                                        $(this).addClass('click-nuclemal');
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                             break;
 

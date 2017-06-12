@@ -24,22 +24,36 @@ public class RegistroeventoDAO {
     
     public boolean inscripcionEvento(RegistroeventoDTO re) throws SQLException {
         
-        String sql = "inser into registroevento(codigo, nombre, identificacion, correo, programa, id_evento)"
+        String sql = "insert into registroevento(nombre, correo, programa, id_evento, codigo, identificacion)"
                 + "values (?, ?, ?, ?, ?, ?)";
         
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setInt(1, re.getCodigo());
-        ps.setString(2, re.getNombre());
-        ps.setInt(3, re.getIdentificacion());
-        ps.setString(4, re.getCorreo());
-        ps.setString(5, re.getPrograma());
-        ps.setInt(6, re.getIdEvento());
+        ps.setString(1, re.getNombre());
+        ps.setString(2, re.getCorreo());
+        ps.setString(3, re.getPrograma());
+        ps.setInt(4, re.getIdEvento());
+        ps.setString(5, re.getCodigo());
+        ps.setString(6, re.getIdentificacion());
         
         int res = ps.executeUpdate();
         if(res==1)
             return true;
         
         return false;
+    }
+    
+    public int cantidadPorEvento(int idEvento) throws SQLException {
+        String sql = "select count(*) from registroevento where id_evento = ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idEvento);
+        
+        ResultSet rs = ps.executeQuery();
+        int cant = 0;
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        return cant;
     }
 }

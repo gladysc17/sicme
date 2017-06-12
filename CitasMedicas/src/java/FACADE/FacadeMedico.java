@@ -44,4 +44,8 @@ public class FacadeMedico {
      public ArrayList<String[]> listadoMedico() throws SQLException{
          return new NegocioMedico().listadoMedico();
      }
+     
+     public List<String> consultaServicios() throws SQLException {
+         return new NegocioMedico().consultaServicios();
+     }
 }

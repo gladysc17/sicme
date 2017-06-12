@@ -182,4 +182,19 @@ public class MedicoDAO {
         }
         return lista;
     }
+    
+    public List<String> consultaServicios() throws SQLException {
+        List<String> ls = new ArrayList<>();
+        String sql = "select distinct(servicio) from medico";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        
+        String dato = "";
+        while(rs.next()){
+            dato = rs.getString(1);
+            ls.add(dato);
+        }
+         return ls;
+    }
 }

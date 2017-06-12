@@ -4,6 +4,7 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.EstudianteDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -32,6 +33,7 @@
                         String fechaIC2 = request.getParameter("fechaIC2");
                         FacadeCita fc = new FacadeCita();
                         FacadeEstudiante fe = new FacadeEstudiante();
+                        FacadeMedico  fm = new FacadeMedico();
 
                         if (consulta.isEmpty() || fechaIC.isEmpty() || fechaIC2.isEmpty() || consulta == null || fechaIC == null || fechaIC2 == null) {
                     %>
@@ -99,21 +101,21 @@
                                     List<String> lis1 = new ArrayList<>();
                                     int cantPrograma = 0;
                                     lis1 = fe.consultarProgramaAcademico();
-                                   for(int i=0; i<lis1.size(); i++){
+                                    for (int i = 0; i < lis1.size(); i++) {
                                         String prog = lis1.get(i);
                                         List<EstudianteDTO> les = new ArrayList<>();
                                         les = fe.consultarEstudiantePrograma(prog);
-                                        for(EstudianteDTO e: les){
+                                        for (EstudianteDTO e : les) {
                                             int cantCitas = fc.cantidadCitasEstudiante(e.getIdentificacion_usuario(), fechaIC, fechaIC2);
-                                            if(cantCitas>0){
+                                            if (cantCitas > 0) {
                                                 cantPrograma++;
                                             }
                                         }
                                 %>
                                 <tr>
-                                    <td><%=i+1 %></td>
-                                    <td><%=prog %></td>
-                                    <td><%=cantPrograma %></td>
+                                    <td><%=i + 1%></td>
+                                    <td><%=prog%></td>
+                                    <td><%=cantPrograma%></td>
                                 </tr>
                                 <%
                                         cantPrograma = 0;
@@ -123,7 +125,40 @@
                         </table>
                     </div>
 
-                    <%                                    }
+                    <%              } else {
+                                        if (consulta.equalsIgnoreCase("servicio")){
+                    %>
+                    <div class="table-responsive">
+                        <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Servicio</th>
+                                    <th>Cantidad Citas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                            List<String> ls = new ArrayList<>();
+                                            ls = fm.consultaServicios();
+                                            for(int i=0; i<ls.size(); i++){
+                                                String dat = ls.get(i);
+                                                int cant = fc.cantidadCitasServicio(dat,fechaIC, fechaIC2);
+                                %>
+                                <tr>
+                                    <td><%=i+1 %></td>
+                                    <td><%=dat %></td>
+                                    <td><%=cant %></td>
+                                </tr>
+                                <%
+                                            }
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <%
+                                        }
+                                    }
                                 }
                             }
                         }

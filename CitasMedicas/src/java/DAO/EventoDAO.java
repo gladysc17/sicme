@@ -184,4 +184,55 @@ public class EventoDAO {
         return false;
     }
     
+    public EventoDTO consultaPorId(int id) throws SQLException {
+        String sql = "select * from evento where id_evento = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        
+        ResultSet rs = ps.executeQuery();
+        EventoDTO eve = new EventoDTO();
+        if(rs.next()){
+            eve.setIdEvento(rs.getInt(1));
+            eve.setNombreEvento(rs.getString(2));
+            eve.setFechaEvento(String.valueOf(rs.getDate(3)));
+            eve.setHoraEvento(String.valueOf(rs.getTime(4)));
+            eve.setLugarEvento(rs.getString(5));
+            eve.setDescrEvento(rs.getString(6));
+            eve.setDirector(rs.getString(7));
+            eve.setCreado(rs.getInt(8));
+            eve.setEstado(rs.getString(9));
+        }
+        
+        return eve;        
+    }
+    
+    public List<EventoDTO> listarEventos(String fechaI, String fechaF) throws SQLException {
+        List<EventoDTO> ls = new ArrayList<EventoDTO>();
+        String sql = "select * from evento where fecha between ? and ? ";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf(fechaI));
+        ps.setDate(2, Date.valueOf(fechaF));   
+        
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            EventoDTO eve = new EventoDTO();
+            eve.setIdEvento(rs.getInt(1));
+            eve.setNombreEvento(rs.getString(2));
+            eve.setFechaEvento(String.valueOf(rs.getDate(3)));
+            eve.setHoraEvento(String.valueOf(rs.getTime(4)));
+            eve.setLugarEvento(rs.getString(5));
+            eve.setDescrEvento(rs.getString(6));
+            eve.setDirector(rs.getString(7));
+            eve.setCreado(rs.getInt(8));
+            eve.setEstado(rs.getString(9));
+            ls.add(eve);
+        }
+        rs.close();
+        ps.close();
+        rs = null; ps = null;
+        
+        return ls;
+    }
 }

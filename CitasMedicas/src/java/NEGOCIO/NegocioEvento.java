@@ -6,7 +6,9 @@
 package NEGOCIO;
 
 import DAO.EventoDAO;
+import DAO.RegistroeventoDAO;
 import DTO.EventoDTO;
+import DTO.RegistroeventoDTO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -131,5 +133,94 @@ public class NegocioEvento {
             }
         }
         return rta;
+    }
+    
+    public EventoDTO consultaPorId(String id){
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EventoDAO eve = new EventoDAO(co);
+        EventoDTO ls = new EventoDTO();
+        try{
+            ls = eve.consultaPorId(Integer.parseInt(id));
+        }catch(SQLException ev){
+            Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ev);
+        }finally {
+            if(co != null){
+                try {
+                    co.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return ls;
+    }
+    
+    public boolean registroEvento(RegistroeventoDTO re) {
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        RegistroeventoDAO reg = new RegistroeventoDAO(co);
+        
+        boolean rta = false;
+        
+        try{
+            rta = reg.inscripcionEvento(re);
+        }catch(SQLException ev){
+            Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ev);
+        }finally {
+            if(co != null){
+                try {
+                    co.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return rta;
+    }
+    
+    public List<EventoDTO> listarEventos(String fechaI, String fechaF) {
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        List<EventoDTO> ls = new ArrayList<EventoDTO>();
+        EventoDAO e = new EventoDAO(co);
+        
+        try {
+            ls = e.listarEventos(fechaI, fechaF);
+        } catch(SQLException ex){ 
+            Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            if(co != null){
+                try {
+                    co.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        return ls;
+    }
+    
+    public int cantidadPorEvento(int idEvent){
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        int cant = 0;
+        RegistroeventoDAO reg = new RegistroeventoDAO(co);
+        try{
+            cant = reg.cantidadPorEvento(idEvent);
+        }catch(SQLException ev){
+            Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ev);
+        }finally {
+            if(co != null){
+                try {
+                    co.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
     }
 }

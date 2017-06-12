@@ -12,9 +12,9 @@ package DTO;
 public class RegistroeventoDTO {
     
     private int id_registroEvento;
-    private int codigo;
+    private String codigo;
     private String nombre;
-    private int identificacion;
+    private String identificacion;
     private String correo;
     private String programa;
     private int idEvento;
@@ -22,7 +22,7 @@ public class RegistroeventoDTO {
     public RegistroeventoDTO() {
     }
 
-    public RegistroeventoDTO(int id_registroEvento, int codigo, String nombre, int identificacion, String correo, String programa, int idEvento) {
+    public RegistroeventoDTO(int id_registroEvento, String codigo, String nombre, String identificacion, String correo, String programa, int idEvento) {
         this.id_registroEvento = id_registroEvento;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -32,7 +32,7 @@ public class RegistroeventoDTO {
         this.idEvento = idEvento;
     }
 
-    public RegistroeventoDTO(int codigo, String nombre, int identificacion, String correo, String programa, int idEvento) {
+    public RegistroeventoDTO(String codigo, String nombre, String identificacion, String correo, String programa, int idEvento) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.identificacion = identificacion;
@@ -49,11 +49,11 @@ public class RegistroeventoDTO {
         this.id_registroEvento = id_registroEvento;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -65,11 +65,11 @@ public class RegistroeventoDTO {
         this.nombre = nombre;
     }
 
-    public int getIdentificacion() {
+    public String getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
 
@@ -96,7 +96,6 @@ public class RegistroeventoDTO {
     public void setIdEvento(int idEvento) {
         this.idEvento = idEvento;
     }
-    
-    
+
     
 }

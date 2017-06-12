@@ -77,4 +77,8 @@ public class FacadeCita {
        public int cantidadCitasUsuario(String id_usuario) throws SQLException {
           return new NegocioCita().cantidadCitasUsuario(id_usuario);
       }
+       
+       public int cantidadCitasServicio(String servicio, String fechaI, String fechaF) throws SQLException {
+           return new NegocioCita().cantidadCitasServicio(servicio, fechaI, fechaF);
+       }
 }

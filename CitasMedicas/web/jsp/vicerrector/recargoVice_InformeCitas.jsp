@@ -28,7 +28,7 @@
                             <option></option>
                             <option value="realizadas">Citas realizadas</option>
                             <option value="programa">Citas por programa</option>
-                            <option value="usuarios">Citas por usuarios</option>
+                            <option value="servicio">Citas por servicio</option>
                         </select>
                         <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
                         <label>&nbsp;&nbsp; hasta &nbsp;&nbsp;</label>
