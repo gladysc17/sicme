@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <script src="js/funciones.js" type="text/javascript"></script>
+
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="Shortcut icon">
 
@@ -85,34 +85,24 @@
     </head>
 
     <body class="header-fixed boxed-layout" style="position: relative; min-height: 100%; top: 0px;">
-         <div class="wrapper">
+        <div class="wrapper">
             <!--=== Header v6 ===-->
             <div id="menu-principal" class="header-v6 header-white-transparent header-sticky" style="position: relative;">
                 <div id="barra-superior" class="header-v8">
                     <!-- Topbar blog -->
-                    <div class="blog-topbar">
-                        <div class="topbar-search-block">
-                            <div class="container">
-                                <form action="">
-                                    <input type="text" class="form-control" placeholder="Buscar...">
-                                    <div class="search-close"><i class="icon-close"></i></div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-
-                                    <div class="topbar-toggler" style="font-size: 12px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> PERFILES</div>
-                                    <form method="post" name="form">
+                    <div class="blog-topbar">                        
+                        <div class="container">                           
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="topbar-toggler" style="font-size: 12px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> Ingresar </div>
+                                <form method="post" name="form">
                                     <ul class="topbar-list topbar-menu">                                        
                                         <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
                                         <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
                                         <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                            
                                         <li> usuario <input type="text" id="usuario" name="usuario" required> </li>
                                         <li> contraseña <input type="password" id="pw" name="pw" required>  </li> 
-                                        <li><input type="button" class="btn btn-default" Value="INGRESAR" onclick="ingresar()"> </li>
-                                        <li>  <input type="button" class="btn btn-default" Value="RECUPERAR CONTRASEÑA" onClick="contrase()"> </li>
+                                        <li><input type="button" class="btn-link" Value="INGRESAR" onclick="ingresar()"> </li>
+                                        <li>  <input type="button" class="btn-link" Value="RECUPERAR CONTRASEÑA" onClick="contrase()"> </li>
                                     </ul>                                        
 
                                 </form>
@@ -143,51 +133,39 @@
                                         }
                                     }
                                 </script>
-                                </div>
-                                
-                            </div><!--/end row-->
+                            </div>                                                          
                         </div><!--/end container-->
-                    </div>
+                    </div>                    
                     <!-- End Topbar blog -->
-
                 </div>
 
-
                 <div class="header-v8 img-logo-superior" style="background-color: #aa1916;">
-
                     <!--=== Parallax Quote ===-->
                     <div class="parallax-quote parallaxBg" style="padding: 30px 30px;">
-
                         <div class="parallax-quote-in" style="padding: 0px;">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-5">
                                     <a href="#">
                                         <img id="logo-header"
-                                             src="img/logo_ufps.png" alt="Logo UFPS">
+                                             src="imagenes/logo_ufps.png" alt="Logo UFPS">
                                     </a>
                                 </div>
                                 <div class="col-md-2 col-ms-1 col-xs-2 pull-right">
-                                    <a href="http://www.colombia.co/"><img class="header-banner"
-                                                                           src="img/escudo_colombia.png"
-                                                                           alt="Escudo de Colombia"></a>
+                                    <a href="http://www.colombia.co/"><img class="header-banner"   src="imagenes/escudo_colombia.png"  alt="Escudo de Colombia"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--=== End Parallax Quote ===-->
-
-
                 </div><!--/end header-v8-->
 
 
                 <div class="menu-responsive">
                     <!-- Logo -->
                     <a class="logo logo-responsive" href="index.jsp">
-                        <img src="img/horizontal_logo_pequeno.png" alt="Logo">
+                        <img src="imagenes/horizontal_logo_pequeno.png" alt="Logo">
                     </a>  
                     <!-- End Logo -->
-
-
 
                     <!-- Toggle get grouped for better mobile display -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -199,49 +177,41 @@
 
                 <!-- Navbar -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                
-                <div class="row" style="background-color: #aa1916">
-                    <h1 style="color: white" align="center">GESTIÓN DE CITAS MEDICAS </h1>
+                <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+                    <div class="container">
+                        <h1 align="center" style="color: white"> GESTION DE CITAS MEDICAS U.F.P.S</h1>
                     </div>
-                <!--/navbar-collapse-->
+                </div><!--/navbar-collapse-->
 
                 <!-- End Navbar -->
             </div>
 
             <ul class="pgwSlider">
 
-                <li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
+                <li><a href=""><img src="imagenes/28e89a8d6a0ec5d1905e596ca2a28898.png"><span style="font-family: inherit; font-weight: bold;"> Medicina General: </span></a>
                 </li>
-                <li><a href=""><img src="imagenes/10.png"><span style="font-family: inherit; font-weight: bold;"><h1>ODONTOLOGIA</h1></span></a>
+                <li><a href=""><img src="imagenes/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;">Odontología: </span></a>
                 </li>
-                <li><a href=""><img src="imagenes/11.png"><span style="font-family: inherit; font-weight: bold;"><h1>PSICOLOGIA</h1></span></a>
+                <li><a href=""><img src="imagenes/6d6fe00fd4cb104a238e5020b3317596.png"><span style="font-family: inherit; font-weight: bold;">Psicología: </span></a>
                 </li>
-                <li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
+                <li><a href=""><img src="imagenes/2246d36031da923ba74a3ff8a6daef86.png"><span style="font-family: inherit; font-weight: bold;">Planificación familiar: </span></a>
                 </li>
-
-
-
-
 
             </ul>
 
-
-
-
-            <!-- EVENTOS ---------------------->
+            <!-- SERVICIOS -->
             <div style="background-color: #e8e8e8; ">
-                <div class="container content-prin profile" style="background-color: #e8e8e8;" >
-                    <div class="row margin-top-10" >
+                <div class="container content-prin profile">
+                    <div class="row margin-top-10">
                         <div class="headline-center-v2 headline-center-v2-dark margin-bottom-10">
-                            <h1 style="font-size: 30px;"><b>Eventos</b></h1>
-                            <span class="bordered-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+                            <h1 style="font-size: 30px;"><b>EVENTOS</b></h1>
+                            <span class="bordered-icon"><i class="fa fa-eyedropper" aria-hidden="true"></i></span>
                         </div>
-                        <div class="col-md-12" id="recargo">
-                            
+                        <div class="col-md-12">
                             <div class="row equal-height-columns margin-bottom-10">
 
                                 <div class="container">
-                                    <ul class="row block-grid-v2">
+                                    <ul class="row block-grid-v1">
                                         <%
                                             FacadeEvento fe = new FacadeEvento();
 
@@ -253,43 +223,55 @@
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
-                                            <div class="easy-block-v1">
-                                                <img src="img/11.jpg" alt="">
-                                                <div class="easy-block-v1-badge rgba-red">
-                                                    <%=e.getFechaEvento()%>                                    </div>
+                                            <div class="block-grid-v1 background-trasparent-black">
+                                                <h3 style="color: white">
+                                                    <%= e.getNombreEvento()%>
+                                                </h3>
+                                                <p class="text-left" style="font-size: 10px; color: white">
+                                                    <b>Dirigido por:</b>
+                                                    <%= e.getDirector()%>
+                                                </p>
                                             </div>
-                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
-                                                <h5>
-                                                    <b><a href="/ueventos/serologias-estudiantes-antiguos-para-el-primer-semestre-de-2016"><%=e.getNombreEvento()%></a></b>
-                                                </h5>
-                                                <p style="font-size: 14px;">
-                                                    <b>Lugar: </b><%= e.getLugarEvento()%>                                       
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">                                                                                               
+
+                                                <p class="text-left" style="font-size: 12px;"> 
+                                                    <b>Lugar:</b>
+                                                    <%= e.getLugarEvento()%>
+                                                </p>
+                                                <p class="text-left" style="font-size: 10px;">
+                                                    <b>Fecha:</b>
+                                                    <%= e.getFechaEvento()%> &nbsp;
+                                                    <b>Hora:</b>
+                                                    <%= e.getHoraEvento()%> 
+                                                </p>
+                                                <p class="text-left" style="font-size: 10px;">
+                                                    <b>Descripción:</b>
+                                                    <%= e.getDescrEvento()%>
                                                 </p>
                                                 <p>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')"/>
+                                                    <button><a href="InscripcionEvento.jsp?dsas=<%=e.getIdEvento()%>">Inscribirme</a> </button>
                                                 </p>
                                             </div>
-                                            
                                         </li>
                                         <%
                                             }
                                         %>
                                     </ul>
-                                    <a href="index.jsp" class="btn-u btn-u-sm pull-right tooltips" data-toggle="tooltip" data-placement="left" data-original-title="Ingresar a Calendario de Eventos">Ver
-                                        más <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
                                 </div>
 
                             </div>
 
                         </div>
+
                     </div>
 
                 </div>
             </div>
-                        
-            <!-- FIN ICONOS REDES SOCIALES -->
+            <!-- FIN SERVICIOS -->                        
+            <!-- Modal inscripción -->
 
-            <!-- End Content Part -->
+
+
         </div>
 
 

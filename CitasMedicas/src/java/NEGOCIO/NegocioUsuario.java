@@ -154,7 +154,7 @@ public class NegocioUsuario {
         return (otros);
     }
     
-    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException{
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException{
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -164,7 +164,7 @@ public class NegocioUsuario {
 
         try {
             
-            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono);
+            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, edad);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);

@@ -133,66 +133,7 @@
                 <!-- End Navbar -->
             </div>
             <div class="col-md-12" style="background-color: #e8e8e8; ">
-                <div class="boxed-layout">
-                    <%
-                        String id = request.getParameter("dsas");
-                        FacadeEvento fe = new FacadeEvento();
-                        EventoDTO ls = fe.consultarPorId(id);
-                    %>
-                    <table>
-                        <tr>
-                            <td>
-                                <h3><%=ls.getNombreEvento() %></h3>
-                                <p>
-                                    <b>Descripción</b><br>
-                                    <%=ls.getDescrEvento() %>
-                                </p>
-                                <p>
-                                    <b>Lugar:</b><br>
-                                    <%=ls.getLugarEvento() %>
-                                </p>
-                                <p>
-                                    <b>Feha y hora:</b><br>
-                                    <%=ls.getFechaEvento()%> - <%=ls.getHoraEvento() %>
-                                </p>
-                                <p>
-                                    <b>Dirigido por:</b> <br>
-                                    <%=ls.getDirector() %>
-                                </p>
-                            </td>
-                            <td>
-                                <form action="controlador/procesarRegistroEvento.jsp">
-                                    <div class="col-md-12">
-                                        <label class="control-label">Nombre:</label>
-                                        <input  type="text" name="nombre" class="form-control" required/>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="control-label">Codigo:</label>
-                                        <input type="number" name="codigo" class="form-control" />
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="control-label">Identificacion:</label>
-                                        <input type="number" name="identificacion" class="form-control" required />
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="control-label">Correo: </label>
-                                        <input type="email" name="correo" class="form-control" required />
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="col-md-12">Programa académico</label>
-                                        <input type="text" name="programa" class="form-control"  />
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="idEvento" value="<%=ls.getIdEvento() %>" />
-                                        <input type="submit" class="btn btn-success" value="Registrarme" />
-                                    </div>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                    </table>
-
-                </div>
+                
 
                 </body>
                 </html>

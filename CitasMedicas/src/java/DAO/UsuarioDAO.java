@@ -159,9 +159,9 @@ public class UsuarioDAO {
 
     }
 
-    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono) throws SQLException {
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException {
 
-        String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ? "
+        String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ? "
                 + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -172,7 +172,8 @@ public class UsuarioDAO {
         ps.setString(4, estadocivil);
         ps.setString(5, direccion);
         ps.setString(6, telefono);
-        ps.setString(7, identificacion);
+        ps.setInt(7, edad);
+        ps.setString(8, identificacion);
 
         int rta = ps.executeUpdate();
 

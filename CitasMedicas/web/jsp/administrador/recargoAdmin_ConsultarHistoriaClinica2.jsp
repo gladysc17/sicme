@@ -15,7 +15,7 @@
 <%@page import="FACADE.FacadeHcMedicinaGeneral"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="col-md-12 form-group">            
+<div class="ibox float-e-margins">            
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 align="center">  Lista de Historia Clinica </h2>

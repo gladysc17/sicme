@@ -95,15 +95,15 @@
                             <div class="form-group">   
                             <div class="col-sm-4">
                                 <label class="control-label">Contraseña Actual: </label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena" value="<%=med.getContrasena()%>" >
+                                <input type="password" class="form-control" id="contra" name="contra" value="<%=med.getContrasena()%>" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Nueva contraseña: </label>
-                                <input type="text" class="form-control" id="contrasena" name="contrasena" >
+                                <input type="password" class="form-control" id="contrasena" name="contrasena1" >
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Repetir Contraseña: </label>
-                                <input type="text" class="form-control" id="contrasena" name="contrasena" >
+                                <input type="password" class="form-control" id="contrasena" name="contrasena2" >
                             </div>                            
                         </div>
 

@@ -9,17 +9,11 @@
 <%@page import="FACADE.FacadeEvento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+<div class="ibox float-e-margins">
         <%
             int idadmin = Integer.parseInt(request.getParameter("ideadmin"));
         %>
-        <div class="col-md-1"></div> 
-        <div class="col-md-10">
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 align="center">Listado de Eventos</h4>
@@ -67,14 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-1"></div>
-        <script src="../js/jquery-2.1.4.min.js"></script>
-        <script src="../js/essential-plugins.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/pace.min.js"></script>
-        <script src="../js/main.js"></script>
-        <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
-    </body>
-</html>
+
+       <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>

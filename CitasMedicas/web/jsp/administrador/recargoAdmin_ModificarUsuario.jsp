@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.AdministradorDTO"%>
+<%@page import="FACADE.FacadeAdministrador"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,6 +32,8 @@
                             System.out.println("id ad " + id);
 
                             FacadeUsuario fotro = new FacadeUsuario();
+                            FacadeAdministrador fac = new FacadeAdministrador();
+                            AdministradorDTO ad = fac.consultarAdminId(id);
 
                             UsuarioDTO otro = fotro.consultarUsuarioPorId(id);
                             String tipo = otro.getTipo_usuario();
@@ -94,13 +98,21 @@
                         </div>
 
                         <div class="form-group" id="admin">
-                            <div class="col-sm-6">                            
-                                <label class="control-label">Contraseña: </label>
-                                <input type="text" class="form-control" id="contrasena" name="contrasena">
+                            <div class="col-sm-4">                            
+                                <label class="control-label">Contraseña Actual: </label>
+                                <input type="password" class="form-control" id="contra" name="contra"  value="<%=ad.getContrasena()%>">
+                            </div>
+                            <div class="col-sm-4"> 
+                                <label class="control-label">Nueva Contraseña: </label>
+                                <input type="password" class="form-control" id="contrasena1" name="contrasena1">
+                            </div>
+                            <div class="col-sm-4">     
+                                <label class="control-label">Repetir Contraseña: </label>
+                                <input type="password" class="form-control" id="contrasena2" name="contrasena2">
                             </div>
                         </div>
-                            
-                            <div class="clearfix">
+
+                        <div class="clearfix">
                             <div class="col-sm-8">
                                 <label class="control-label"> </label>                               
                                 <input class="btn btn-success btn-block" type="submit" value="MODIRIFCAR">
@@ -109,24 +121,23 @@
                         </div>
 
                         <br> <br>                        
-                        
-                       
+
+
                     </form>
                     <script>
-                       
-                            var tipo = document.form.tipo.value;
-                            alert(tipo);
 
-                            if (tipo == "administrador") {
-                                document.getElementById("admin").style.display = 'inline'                               
+                        var tipo = document.form.tipo.value;
 
-                            }
-                            else{
-                                document.getElementById("admin").style.display = 'none'
-                            }
-                        
+
+                        if (tipo == "administrador") {
+                            document.getElementById("admin").style.display = 'inline'
+
+                        } else {
+                            document.getElementById("admin").style.display = 'none'
+                        }
+
                     </script>
-                    
+
 
                 </div>                                    
             </div>

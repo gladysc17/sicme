@@ -25,23 +25,37 @@
             String telefono_otro = request.getParameter("telefono");
 
             FacadeUsuario fac = new FacadeUsuario();
-            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro);
+            int edad = fac.calcularEdad(fecha);
+            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);
 
             String tipo = request.getParameter("tipo");
-            
+
             boolean rta1 = false;
+
+            String contra = request.getParameter("contra");
+            String contrasena1 = request.getParameter("contrasena1");
+            String contrasena2 = request.getParameter("contrasena2");
             
-            if (tipo.equals("administrador")) {
-                String contrasena = request.getParameter("contrasena");
-                rta1 = fac.modificarAdmin(identificacion_otro, contrasena);
+            if(contra.equals(contrasena1) )
+            
+            
+            if (contrasena1.isEmpty() || contrasena1 == null || contrasena2.isEmpty() || contrasena2 == null) {
+                
+                 System.out.println("la contraseña no se va cambiar");
+            }else{
+                if (tipo.equals("administrador")) {
+                    
+                    rta1 = fac.modificarAdmin(identificacion_otro, contrasena2);
 
-            } else if (tipo.equals("medico")) {
-                String contrasena = request.getParameter("contrasena");
-                rta1 = fac.modificarMedico(identificacion_otro, contrasena);
+                } else if (tipo.equals("medico")) {
 
-            } else if (tipo.equals("vicerrector")) {
-                String contrasena = request.getParameter("contrasena");
-                rta1 = fac.modificarVice(identificacion_otro, contrasena);
+                    rta1 = fac.modificarMedico(identificacion_otro, contrasena2);
+
+                } else if (tipo.equals("vicerrector")) {
+
+                    rta1 = fac.modificarVice(identificacion_otro, contrasena2);
+                }
+                
             }
 
             if (rta == true) {
