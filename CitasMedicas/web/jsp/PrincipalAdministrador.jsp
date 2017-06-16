@@ -381,8 +381,8 @@
 <script src="../js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../js/main.js" type="text/javascript"></script>
 <script src="../js/pace.min.js" type="text/javascript"></script>
-<script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
 </body>    
 </html>

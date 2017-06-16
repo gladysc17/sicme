@@ -25,8 +25,7 @@
                             <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 158px;">Nombre</th>
                             <th>Identificación</th>
                             <th>Codigo</th>
-                            <th>Rol</th>
-                            <th>Datos</th>
+                            <th>Rol</th>                            
                             <th>Modificar</th>
                         </tr>
                     </thead>
@@ -52,9 +51,8 @@
                             <td class="sorting_asc" style="height: 5px"><%=nombre%></td>
                             <td><%=identf%></td>
                             <td><%=codigo%></td>
-                            <td><%=tipo%></td>
-                            <td> Informe</td> 
-                            <td><input type="submit" class="btn btn-default" value="Datos" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident=<%=identf%>')"> </td>
+                            <td><%=tipo%></td>                            
+                            <td><input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident=<%=identf%>')"> </td>
                         </tr> 
                         <%
                             }
