@@ -104,17 +104,18 @@
                             <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()">
                                 <option> </option>
                                 <option value="estudiante"> Estudiante </option>
-                                <option value="docente"> Docente </option>                                                          
-                                <option value="medico"> Medico </option>
-                                <option value="profesional"> Profesional </option>                                
-                                <option value="Servicios Generales"> Servicios Generales </option>                                
-                                <option value="Otro Usuario"> Otro Usuario </option> 
+                                <option value="docente"> Docente </option>     
+                                <option value="administrativo"> Docente </option>       
+                                <option value="Servicios Generales"> Servicios Generales </option>                                  
+                                <option value="medico"> Medico </option>      
                                 <option value="administrador"> Administrador </option>
                                 <option value="vicerrector"> Vicerrector </option>
                                 
                             </select>
                         </div>
                     </div>
+                    
+                    
 
                     <script>
                         function mostrarDatos() {
@@ -125,23 +126,15 @@
 
                             if (selec == "estudiante") {
                                 document.getElementById("estudiante").style.display = 'inline';
-                                document.getElementById("medico").style.display = 'none'
-                                document.getElementById("admin_vice").style.display = 'none';
+                                document.getElementById("medico").style.display = 'none'                                
                             }
                             else if (selec == "medico") {
                                 document.getElementById("medico").style.display = 'inline';
-                                document.getElementById("estudiante").style.display = 'none'
-                                document.getElementById("admin_vice").style.display = 'none';
-                            }
-                            else if (selec == "administrador" || selec == "vicerrector") {
-                                document.getElementById("admin_vice").style.display = 'inline';
-                                document.getElementById("estudiante").style.display = 'none'
-                                document.getElementById("medico").style.display = 'none'
-                            }
+                                document.getElementById("estudiante").style.display = 'none'                                
+                            }                           
                             else{
                                 document.getElementById("estudiante").style.display = 'none'
-                                document.getElementById("medico").style.display = 'none'
-                                document.getElementById("admin_vice").style.display = 'none';
+                                document.getElementById("medico").style.display = 'none'                                
                                 
                             }
 
@@ -189,16 +182,9 @@
                                 </select>
                             </div>        
                         </div>
-                    </div>
-                    
-                    <div class="form-group" id="admin_vice">
-                        <div class="col-sm-6">                            
-                            <label class="control-label">Contraseña: </label>
-                            <input type="text" class="form-control" id="contrasena" name="contrasena">
-                        </div>
-                    </div>
+                    </div>                                       
                     <div class="form-group" id="medico">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <label class="control-label">Servicio: </label>
                             <div class="form-control"style="border-box: box-sizing;">
                                 <select id="servicio" name="servicio">
@@ -208,11 +194,18 @@
                                     <option value="planificacionfamiliar"> Planificacion Familiar </option>                                
                                 </select>
                             </div>
-                        </div>
+                        </div>                        
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-6">
                             <label class="control-label">Contraseña: </label>
-                            <input type="text" class="form-control" id="passw" name="passw">
+                            <input type="text" class="form-control" id="contrasena" name="contrasena">
                         </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Repetir Contraseña: </label>
+                            <input type="text" class="form-control" id="contrasena" name="contrasena">
+                        </div>
+                        
                     </div>
                 </div>
 

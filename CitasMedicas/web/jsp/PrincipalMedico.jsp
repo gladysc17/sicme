@@ -25,7 +25,7 @@
 
     <body>
         <%
-            MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
+            UsuarioDTO med = (UsuarioDTO) session.getAttribute("medico");
 
             if (med == null) {
 

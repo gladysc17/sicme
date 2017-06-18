@@ -24,11 +24,12 @@ public class UsuarioDTO {
     private String telefono;     
     private String tipo_usuario;
     private String fecharegistro;
+    private String contrasena;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String identificacion, String tipo_identificacion, String codigo, String nombre, String correo, String fecha_nacimiento, int edad, String genero, String estado_civil, String direccion, String telefono, String tipo_usuario, String fecharegistro) {
+    public UsuarioDTO(String identificacion, String tipo_identificacion, String codigo, String nombre, String correo, String fecha_nacimiento, int edad, String genero, String estado_civil, String direccion, String telefono, String tipo_usuario, String fecharegistro, String contrasena) {
         this.identificacion = identificacion;
         this.tipo_identificacion = tipo_identificacion;
         this.codigo = codigo;
@@ -42,6 +43,7 @@ public class UsuarioDTO {
         this.telefono = telefono;
         this.tipo_usuario = tipo_usuario;
         this.fecharegistro= fecharegistro;
+        this.contrasena = contrasena;
     }
 
     public String getIdentificacion() {
@@ -146,6 +148,14 @@ public class UsuarioDTO {
 
     public void setFecharegistro(String fecharegistro) {
         this.fecharegistro = fecharegistro;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     

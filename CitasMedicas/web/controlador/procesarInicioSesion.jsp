@@ -5,14 +5,11 @@
 --%>
 
 
+<%@page import="javafx.scene.control.Alert"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.MedicoDTO"%>
-<%@page import="DTO.VicerrectorDTO"%>
-<%@page import="FACADE.FacadeVice"%>
-<%@page import="DTO.AdministradorDTO"%>
-<%@page import="FACADE.FacadeAdministrador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,78 +28,63 @@
             UsuarioDTO us = fac.consultarUsuarioPorId(id);
 
             if (us != null) {
-
-                String tipo = us.getTipo_usuario();
-                System.out.println("TIPO " + tipo);
-                System.out.println("id " + id);
-                if (tipo.equals("administrador")) {
-
-                    FacadeAdministrador facAd = new FacadeAdministrador();
-                    boolean rta = facAd.verificarAdmin(id, contrasena);
-
-                    System.out.println("RTA " + rta);
-
-                    if (rta == true) {
-                        AdministradorDTO admin = facAd.consultarAdminId(id);
-                        session.setAttribute("administrador", admin);
+                
+                String clave = us.getContrasena();
+                
+                if (clave.equals(contrasena)){
+                    
+                    String tipo = us.getTipo_usuario();
+                    
+                    if(tipo.equals("administrador")){
+                        UsuarioDTO u = fac.consultarUsuarioPorId(id);
+                        session.setAttribute("administrador", u);
                         response.sendRedirect("../jsp/PrincipalAdministrador.jsp");
-                    } else {
-        %>
-        <script type="text/javascript">
-            alert("CONTRASEÑA INCORRRECTA");
-            location.href = '../index.jsp';
+                    }
+                    else if(tipo.equals("medico")){
+                        UsuarioDTO u = fac.consultarUsuarioPorId(id);
+                        session.setAttribute("medico", u);
+                        response.sendRedirect("../jsp/PrincipalMedico.jsp");
+                    }
+                    else if(tipo.equals("vicerrector")){
+                        UsuarioDTO u = fac.consultarUsuarioPorId(id);
+                        session.setAttribute("vicerrector", u);
+                        response.sendRedirect("../jsp/PrincipalVicerrector.jsp");
+                    }
+                    else if(tipo.equals("estudiante")){
+                        UsuarioDTO u = fac.consultarUsuarioPorId(id);
+                        session.setAttribute("usuario", u);
+                        response.sendRedirect("../jsp/PrincipalUsuario.jsp");
+                    }
+                    else{
+                       %>
+        <script>
+            alert("DATOS INCORRECTOS");
+            location.href = "../index.jsp";
+        </script>
+        <%
+                    }
+                    
+                    
+                }
+                else{
+                   %>
+        <script>
+            alert("USUARIO Y CONTRASEÑA NO COINCIDEN");
+            location.href = "../index.jsp";
+        </script>
+        <%
+                }
+            } 
+            else {
+                %>
+        <script>
+            alert("USUARIO NO EXISTE");
+            location.href = "../index.jsp";
         </script>
         <%
             }
 
-        } else if (tipo.equals("vicerrector")) {
-            FacadeVice facVc = new FacadeVice();
-            boolean rta = facVc.verificarVice(id, contrasena);
 
-            if (rta == true) {
-                VicerrectorDTO vice = facVc.consultarViceId(id);
-                session.setAttribute("vicerrector", vice);
-                response.sendRedirect("../jsp/PrincipalVicerrector.jsp");
-            } else {
-        %>
-        <script type="text/javascript">
-            alert("CONTRASEÑA INCORRRECTA");
-            location.href = '../index.jsp';
-        </script>
-        <%
-                    }
-
-                }
-
-         else if (tipo.equals("medico")) {
-            FacadeMedico facMd = new FacadeMedico();
-            boolean rta = facMd.verificarMedico(id, contrasena);
-
-            if (rta == true) {
-                MedicoDTO vice = facMd.consultarMedicoPorId(id);
-                session.setAttribute("medico", vice);
-                response.sendRedirect("../jsp/PrincipalMedico.jsp");
-            } else {
-        %>
-        <script type="text/javascript">
-            alert("CONTRASEÑA INCORRRECTA");
-            location.href = '../index.jsp';
-        </script>
-        <%
-                    }
-
-                }
-
-}else{
-%>
-        <script type="text/javascript">
-            alert("USUARIO NO EXISTE");
-            location.href = '../index.jsp';
-        </script>
-        <%
-
-}
         %>
 
     </body>
-</html>

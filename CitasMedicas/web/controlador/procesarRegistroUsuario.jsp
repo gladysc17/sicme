@@ -43,8 +43,8 @@
             String fechanacimiento = request.getParameter("fechanacimiento");
             String genero = request.getParameter("genero");
 
-            java.sql.Date fecha = java.sql.Date.valueOf(fechanacimiento);
-            int edad = fac.calcularEdad(fecha);
+            java.sql.Date fechaNac = java.sql.Date.valueOf(fechanacimiento);
+            int edad = fac.calcularEdad(fechaNac);
   
             String estadocivil = request.getParameter("estadocivil");
             String direccion = request.getParameter("direccion");
@@ -54,18 +54,16 @@
             String programa = request.getParameter("programa");
 
             String servicio = request.getParameter("servicio");
-            String contrasena1 = request.getParameter("contrasena");
-            String contrasena2 = request.getParameter("passw");
+            String contrasena = request.getParameter("contrasena");           
             
-            Calendar fecha2 = new GregorianCalendar();
-            int año = fecha2.get(Calendar.YEAR);
-            int mes = fecha2.get(Calendar.MONTH);
-            int dia = fecha2.get(Calendar.DAY_OF_MONTH);
+            Calendar fechaGeneral = new GregorianCalendar();
+            int año = fechaGeneral.get(Calendar.YEAR);
+            int mes = fechaGeneral.get(Calendar.MONTH);
+            int dia = fechaGeneral.get(Calendar.DAY_OF_MONTH);
             
-            String fecha3 =(año+"-"+mes+"-"+dia);
-            System.out.println("fecha 3:" + fecha3);
+            String fecha =(año+"-"+mes+"-"+dia);            
 
-            UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha3);
+            UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha, contrasena);
             registro = fac.registrarUsuarios(usuario);
 
             if (tipousuario.equals("estudiante")) {
@@ -75,17 +73,17 @@
 
             } else if (tipousuario.equals("medico")) {
                 FacadeMedico facMed = new FacadeMedico();              
-                MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena2);                
+                MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena);                
                 registro = facMed.registrarMedico(med);
                 
             } else if (tipousuario.equals("vicerrector")) {
                 FacadeVice facVice = new FacadeVice();              
-                VicerrectorDTO vc = new VicerrectorDTO(identificacion, contrasena1);
+                VicerrectorDTO vc = new VicerrectorDTO(identificacion, contrasena);
                 registro = facVice.registrarVice(vc);
                 
             } else if (tipousuario.equals("administrador")) {
                 FacadeAdministrador facAd = new FacadeAdministrador();               
-                AdministradorDTO ad = new AdministradorDTO(identificacion, contrasena1);
+                AdministradorDTO ad = new AdministradorDTO(identificacion, contrasena);
                 registro = facAd.registrarAdministrador(ad);
                 
             }

@@ -5,15 +5,10 @@
  */
 package NEGOCIO;
 
-import DAO.AdministradorDAO;
 import DAO.UsuarioDAO;
-import DTO.AdministradorDTO;
 import DTO.MedicoDTO;
 import DTO.UsuarioDTO;
-import DTO.VicerrectorDTO;
-import FACADE.FacadeAdministrador;
 import FACADE.FacadeMedico;
-import FACADE.FacadeVice;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -29,7 +24,45 @@ import util.ServicioEmail;
  * @author Gladys M
  */
 public class NegocioUsuario {
-    
+
+    public boolean verficarUsuario(String identificacion, String clave) {
+        boolean rta = false;
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        UsuarioDAO u = new UsuarioDAO(co);
+
+        try {
+            UsuarioDTO usu = u.consultarUsuarioPorId(identificacion); 
+            
+            if(usu ==null){
+                return false;
+            }
+            else{
+            
+            return usu.getContrasena().equals(clave);
+            
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+        }finally {
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }            
+        }
+
+            return rta;
+        
+    }
+
     public boolean registrarUsuario(UsuarioDTO usuario) {
 
         boolean resultado = false;
@@ -62,63 +95,15 @@ public class NegocioUsuario {
         return resultado;
 
     }
-     public UsuarioDTO consultarUsuarioId(String id) {
 
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-         UsuarioDAO ou = new UsuarioDAO(co);
-
-        try {
-             return ou.consultarUsuarioPorId(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return null;
-    }
-     
-      public boolean consultarOtroUsuarioIdBoolean(String id) {
-
-         boolean rta = false;
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-         UsuarioDAO ou = new UsuarioDAO(co);
-
-        try {
-             UsuarioDTO otro = ou.consultarUsuarioPorId(id);
-             return otro != null;
-             
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return rta;
-    }
-     
-    public UsuarioDTO consultarUsuarioIdCodigo (String id, String codigo) {
+    public UsuarioDTO consultarUsuarioId(String id) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         UsuarioDAO ou = new UsuarioDAO(co);
 
         try {
-             return ou.consultarUsuarioPorIdCodigo(id, codigo);
+            return ou.consultarUsuarioPorId(id);
         } catch (SQLException ex) {
             Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -133,28 +118,75 @@ public class NegocioUsuario {
         }
         return null;
     }
-    
-     
-     public List<UsuarioDTO> listarOtrosUsuarios() throws SQLException{
-      
-           
+
+    public boolean consultarOtroUsuarioIdBoolean(String id) {
+
+        boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        
+        UsuarioDAO ou = new UsuarioDAO(co);
+
+        try {
+            UsuarioDTO otro = ou.consultarUsuarioPorId(id);
+            return otro != null;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return rta;
+    }
+
+    public UsuarioDTO consultarUsuarioIdCodigo(String id, String codigo) {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        UsuarioDAO ou = new UsuarioDAO(co);
+
+        try {
+            return ou.consultarUsuarioPorIdCodigo(id, codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<UsuarioDTO> listarOtrosUsuarios() throws SQLException {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
         List<UsuarioDTO> otros = new ArrayList<UsuarioDTO>();
         UsuarioDAO otro = new UsuarioDAO(co);
-        
-        try{
+
+        try {
             otros = otro.consultarUsuarios();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             co.close();
-        }        
+        }
         return (otros);
     }
-    
-    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException{
+
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad, String contrasena) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -163,8 +195,8 @@ public class NegocioUsuario {
         UsuarioDAO est = new UsuarioDAO(co);
 
         try {
-            
-            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, edad);
+
+            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, edad, contrasena);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,8 +214,8 @@ public class NegocioUsuario {
 
         return rta;
     }
-    
-     public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException{
+
+    public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -192,7 +224,7 @@ public class NegocioUsuario {
         UsuarioDAO est = new UsuarioDAO(co);
 
         try {
-            
+
             rta = est.modificarAdmin(identificacion, contrasena);
 
         } catch (SQLException ex) {
@@ -211,8 +243,8 @@ public class NegocioUsuario {
 
         return rta;
     }
-     
-      public boolean modificarVice(String identificacion, String contrasena) throws SQLException{
+
+    public boolean modificarVice(String identificacion, String contrasena) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -221,7 +253,7 @@ public class NegocioUsuario {
         UsuarioDAO est = new UsuarioDAO(co);
 
         try {
-            
+
             rta = est.modificarVice(identificacion, contrasena);
 
         } catch (SQLException ex) {
@@ -240,7 +272,8 @@ public class NegocioUsuario {
 
         return rta;
     }
-      public boolean modificarMedico(String identificacion, String contrasena) throws SQLException{
+
+    public boolean modificarMedico(String identificacion, String contrasena) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -249,7 +282,7 @@ public class NegocioUsuario {
         UsuarioDAO est = new UsuarioDAO(co);
 
         try {
-            
+
             rta = est.modificarMedico(identificacion, contrasena);
 
         } catch (SQLException ex) {
@@ -268,16 +301,16 @@ public class NegocioUsuario {
 
         return rta;
     }
-    
-    public int calcularEdad (Date fecha) {
-        
+
+    public int calcularEdad(Date fecha) {
+
         int edad = 0;
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         UsuarioDAO ou = new UsuarioDAO(co);
 
         try {
-             edad = ou.calcularedad(fecha);
+            edad = ou.calcularedad(fecha);
         } catch (SQLException ex) {
             Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -293,68 +326,40 @@ public class NegocioUsuario {
         return edad;
     }
 
-     public boolean recuperarContrasena(String id) throws SQLException {
-        
+    public boolean recuperarContrasena(String id) throws SQLException {
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         UsuarioDAO u = new UsuarioDAO(co);
         UsuarioDTO usuario = u.consultarUsuarioPorId(id);
-        String tipo = usuario.getTipo_usuario();
-        String contrasena = "";
-        switch (tipo) {
-            case "administrador":
-                {
-                    FacadeAdministrador fac = new FacadeAdministrador();
-                    AdministradorDTO ad = fac.consultarAdminId(id);
-                    contrasena  = ad.getContrasena();
-                    break;
-                }
-            case "vicerrector":
-                {
-                    FacadeVice fac = new FacadeVice();
-                    VicerrectorDTO vc = fac.consultarViceId(id);
-                    contrasena  = vc.getContrasena();
-                    break;
-                }
-            case "medico":
-                {
-                    FacadeMedico fac = new FacadeMedico();
-                    MedicoDTO md = fac.consultarMedicoPorId(id);
-                    contrasena  = md.getContrasena();
-                    break;
-                }
-            default:
-                break;
-        }
-        
+        String contrasena = usuario.getContrasena();
+
         ServicioEmail servicioEmail = new ServicioEmail("sicgme@gmail.com", "oovnjylswrgytpty");
-        
+
         String correo = usuario.getCorreo();
         String asunto = "SIGME - RECUPERAR CONTRASEÑA";
-        String clave = "SU CONTRASEÑA PARA ACCEDER AL SISTEMA ES: "+contrasena;
-        
+        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + contrasena + "RECUERDE CAMBIARLA UNA VEZ INGRESE AL SISTEMA";
+
         String cont = servicioEmail.getClaveEmailUsuarioEmisor();
-        System.out.println("contraseña-->" +cont);
-        System.out.println("correo-->" +correo);
-        
+        System.out.println("contraseña-->" + cont);
+        System.out.println("correo-->" + correo);
+
         boolean enviar = servicioEmail.enviarEmail(correo, asunto, clave);
-        
-        
+
         return enviar;
-        
+
     }
-     
-      public ArrayList<UsuarioDTO> consultarMedicoPorServicio(String tipo_usuario, String servicio) throws SQLException{
-      
-      ConexionPostgres con = new ConexionPostgres();
+
+    public ArrayList<UsuarioDTO> consultarMedicoPorServicio(String tipo_usuario, String servicio) throws SQLException {
+
+        ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
         UsuarioDAO med = new UsuarioDAO(co);
         ArrayList<UsuarioDTO> medicos = new ArrayList<UsuarioDTO>();
-        
+
         try {
             medicos = med.consultarMedicosPorServicio(tipo_usuario, servicio);
-                    
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -370,44 +375,42 @@ public class NegocioUsuario {
             }
         }
         return medicos;
-      
-  }
-      
-       public List<UsuarioDTO> listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException{
-      
-           
+
+    }
+
+    public List<UsuarioDTO> listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        
+
         List<UsuarioDTO> otros = new ArrayList<UsuarioDTO>();
         UsuarioDAO otro = new UsuarioDAO(co);
-        
-        try{
-            otros = otro.consultarUsuarioPorTipo(tipo,fecha1, fecha2);
-        } catch(Exception e){
+
+        try {
+            otros = otro.consultarUsuarioPorTipo(tipo, fecha1, fecha2);
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             co.close();
-        }        
+        }
         return (otros);
     }
-       
-       public List<UsuarioDTO> consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
-      
-           
+
+    public List<UsuarioDTO> consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        
+
         List<UsuarioDTO> otros = new ArrayList<UsuarioDTO>();
         UsuarioDAO otro = new UsuarioDAO(co);
-        
-        try{
+
+        try {
             otros = otro.consultarUsuariosPorFecha(fecha1, fecha2);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             co.close();
-        }        
+        }
         return (otros);
     }
 }

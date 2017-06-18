@@ -23,40 +23,12 @@
             String estadocivil_otro = request.getParameter("estadocivil");
             String direccion_otro = request.getParameter("direccion");
             String telefono_otro = request.getParameter("telefono");
+            String contra = request.getParameter("contra");
 
             FacadeUsuario fac = new FacadeUsuario();
-            int edad = fac.calcularEdad(fecha);
-            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);
-
-            String tipo = request.getParameter("tipo");
-
-            boolean rta1 = false;
-
-            String contra = request.getParameter("contra");
-            String contrasena1 = request.getParameter("contrasena1");
-            String contrasena2 = request.getParameter("contrasena2");
+            int edad = fac.calcularEdad(fecha);            
             
-            if(contra.equals(contrasena1) )
-            
-            
-            if (contrasena1.isEmpty() || contrasena1 == null || contrasena2.isEmpty() || contrasena2 == null) {
-                
-                 System.out.println("la contraseña no se va cambiar");
-            }else{
-                if (tipo.equals("administrador")) {
-                    
-                    rta1 = fac.modificarAdmin(identificacion_otro, contrasena2);
-
-                } else if (tipo.equals("medico")) {
-
-                    rta1 = fac.modificarMedico(identificacion_otro, contrasena2);
-
-                } else if (tipo.equals("vicerrector")) {
-
-                    rta1 = fac.modificarVice(identificacion_otro, contrasena2);
-                }
-                
-            }
+            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad, contra);                                                    
 
             if (rta == true) {
 

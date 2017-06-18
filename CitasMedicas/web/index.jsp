@@ -26,57 +26,33 @@
 
         <!-- Web Fonts -->
         <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'> 
-
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/ie8.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/blocks.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/plugins.min.css">
         <link type="text/css" rel="stylesheet" href="css/style.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/app.min.css">
         <link type="text/css" rel="stylesheet" href="css/shop.plugins.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/shop.blocks.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/style-switcher.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/shop.style.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/header-v6.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/header-v8.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/header.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/footer-v1.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/animate.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/line-icons.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css">
         <link type="text/css" rel="stylesheet" href="css/owl.carousel.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/horizontal-parallax.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/layerslider.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/ured.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/sky-forms.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/custom-sky-forms.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/profile.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/brand-buttons.min.css">
         <link type="text/css" rel="stylesheet" href="css/brand-buttons-inversed.min.css">
-
         <link type="text/css" rel="stylesheet" href="css/hover.min.css">
         <link type="text/css" rel="stylesheet" href="css/custom-hover-effects.min.css">
         <link type="text/css" rel="stylesheet" href="css/custom.min.css">
@@ -85,7 +61,7 @@
     </head>
 
     <body class="header-fixed boxed-layout" style="position: relative; min-height: 100%; top: 0px;">
-         <div class="wrapper">
+        <div class="wrapper">
             <!--=== Header v6 ===-->
             <div id="menu-principal" class="header-v6 header-white-transparent header-sticky" style="position: relative;">
                 <div id="barra-superior" class="header-v8">
@@ -104,47 +80,22 @@
                                 <div class="col-sm-12 col-xs-12">
 
                                     <div class="topbar-toggler" style="font-size: 12px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> PERFILES</div>
-                                    <form method="post" name="form">
+
                                     <ul class="topbar-list topbar-menu">                                        
                                         <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
                                         <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
-                                        <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                            
-                                        <li> usuario <input type="text" id="usuario" name="usuario" required> </li>
-                                        <li> contraseña <input type="password" id="pw" name="pw" required>  </li> 
-                                        <li><input type="button" class="btn btn-default" Value="INGRESAR" onclick="ingresar()"> </li>
-                                        <li>  <input type="button" class="btn btn-default" Value="RECUPERAR CONTRASEÑA" onClick="contrase()"> </li>
+                                        <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                                                                  
+                                        <li><a href="jsp/PrincipalUsuario.jsp"><i class="fa fa-briefcase"></i> Usuario</a></li> 
+                                        <div class="pull-right">
+                                            <button type="button" class="btn-default" data-toggle="modal" data-target="#myModalIngresar">Ingresar</button>
+                                            <button type="button" class="btn-default" data-toggle="modal" data-target="#myModalRegistro">Registrarse</button>
+                                        </div>
                                     </ul>                                        
 
-                                </form>
-                                <script type="text/javascript">
-                                    function ingresar() {
-                                        if (document.form.usuario.value.length == 0) {
-                                            alert("INGRESE SU IDENTIFICACION");
-                                            document.form.usuario.focus();
-                                            return 0;
-                                        } else if (document.form.pw.value.length == 0) {
-                                            alert("INGRESE SU CONTRASEÑA");
-                                            document.form.pw.focus();
-                                            return 0;
-                                        } else {
-                                            document.form.action = 'controlador/procesarInicioSesion.jsp';
-                                            document.form.submit()
-                                        }
-                                    }
 
-                                    function contrase() {
-                                        if (document.form.usuario.value.length == 0) {
-                                            alert("INGRESE SU IDENTIFICACION");
-                                            document.form.usuario.focus();
-                                            return 0;
-                                        } else {
-                                            document.form.action = 'controlador/procesarRecuperarContrasena.jsp';
-                                            document.form.submit();
-                                        }
-                                    }
-                                </script>
+
                                 </div>
-                                
+
                             </div><!--/end row-->
                         </div><!--/end container-->
                     </div>
@@ -199,15 +150,243 @@
 
                 <!-- Navbar -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                
+
                 <div class="row" style="background-color: #aa1916">
                     <h1 style="color: white" align="center">GESTIÓN DE CITAS MEDICAS </h1>
-                    </div>
+                </div>
                 <!--/navbar-collapse-->
 
                 <!-- End Navbar -->
             </div>
 
+            <div class="modal inmodal" id="myModalIngresar" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeIn">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>                            
+                            <h1 class="modal-title" align="center">Iniciar Sesion</h1>                            
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" action="controlador/procesarInicioSesion.jsp">
+                                <div class="form-group"><label>Identificación </label> <input type="text" placeholder="Ingrese su identificación" class="form-control" id="usuario" name="usuario"></div>
+                                <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Ingrese su contraseña" class="form-control" id="pw" name="pw"></div>
+                                    <div>
+                                        <button class="btn btn-sm btn-success m-t-n-xs" type="submit"><strong>Ingresar</strong></button> &nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-sm btn-link m-t-n-xs" type="submit"><strong>Recuperar Contraseña</strong></button>
+                                    </div>
+                                </form>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            
+             <div class="modal inmodal" id="myModalRegistro" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeIn">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>                            
+                            <h1 class="modal-title" align="center">REGISTRO DE USUARIO</h1>                            
+                        </div>
+                        <div class="modal-body">
+                             
+        
+        <div class="panel-body">  
+            <form action="controlador/procesarRegistroUsuario.jsp" method="post" name="form">
+
+                <style>
+                    #estudiante{
+                        display: none;
+                    }                    
+                </style>
+                <div class="form-group">  
+                    <div class="col-sm-5">
+                        <label class="control-label">Tipo Identificación: </label>
+                        <div class="">
+                            <select id="tipoid" name="tipoid" required>
+                                <option> </option>
+                                <option value="T.I"> Tarjeta de Identidad </option>
+                                <option value="C.C"> Cedula de Ciudadania </option>
+                                <option value="C.E"> Cedula de Extranjeria </option>
+                                <option value="P.P"> Pasaporte </option>                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <label class="control-label">Número de documento:</label>
+                        <input type="number" class="form-control" id="identificacion" name="identificacion" required="">
+                    </div>
+                                                
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        <label class="control-label">Tipo de Usuario:</label>
+                        <div class="">
+                            <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()" required>
+                                <option> </option>
+                                <option value="estudiante"> Estudiante </option>
+                                <option value="docente"> Docente </option>                                                                                          
+                                <option value="administrativo"> Administrativo </option>                                
+                                <option value="servicios generales"> Servicios Generales </option>                                                                                              
+                            </select>
+                        </div>
+                    </div>
+                     <div class="col-sm-7">
+                        <label class="control-label">Código: </label>
+                        <input type="number" class="form-control" id="codigo" name="codigo" required="">
+                    </div>
+                    
+                </div>
+                <script>
+                        function mostrarDatos() {
+
+                            var tipo = document.form.tipousuario;
+
+                            var selec = tipo.options[tipo.selectedIndex].value;
+
+                            if (selec == "estudiante") {
+                                document.getElementById("estudiante").style.display = 'inline';                                
+                            }                            
+                            else{
+                                document.getElementById("estudiante").style.display = 'none'
+                            }
+
+                        }
+
+                    </script>
+                    
+                    <div class="form-group" id="estudiante">
+                        <div class="col-sm-12">
+                            <label class="control-label">Programa: </label>
+                            <div class="">
+                                <select id="programa" name="programa">                                        
+                                    <option></option>
+                                    <option value="Administracion de Empresas">Administración de Empresas </option>
+                                    <option value="Arquitectura">Arquitectura</option>
+                                    <option value="Comercio Internacional">Comercio Internacional</option>
+                                    <option value="Comunicaion Social">Comunicación Social</option>
+                                    <option value="Contaduria ">Contaduria Pública</option>
+                                    <option>Derecho</option>
+                                    <option>Enfermeria</option>
+                                    <option>Ingenieria Agroindustrial</option>
+                                    <option>Ingenieria Agronómica</option>
+                                    <option>Ingenieria Ambiental</option>
+                                    <option>Ingenieria Biotecnológica</option>
+                                    <option>Ingenieria Civil</option>
+                                    <option>Ingenieria de Minas</option>
+                                    <option>Ingenieria de Sistemas</option>
+                                    <option>Ingenieria Electromecánica</option>
+                                    <option>Ingenieria Electrónica</option>
+                                    <option>Ingenieria Industrial</option>
+                                    <option>Ingenieria Mecánica</option>
+                                    <option>Ingenieria Pecuaria</option>
+                                    <option>Licenciatura en Matemáticas</option>
+                                    <option>Quimica Industrial</option>
+                                    <option>Seguridad y Salud en el Trabajo</option>
+                                    <option>Trabajo Social</option>                                        
+                                    <option>Tecnologia Agroindustrial</option>
+                                    <option>Tecnologia en Gestión de Procesos de Manufactura</option>
+                                    <option>Tecnologia en Gestión y Desarrollo de Productos Cerámicos</option>
+                                    <option>Tecnologia en Obras Civiles</option>
+                                    <option>Tecnologia en Procesos Industriales</option>                                        
+                                    <option>Técnico Prof. en Fabricación Industrial de Productos Cerámicos</option>
+                                    <option>Técnico Prof. en Procesamiento de Alimentos</option>
+                                    <option>Técnico Prof. en Procesos de Manufactura de Calzado y Marroquineria</option>
+                                    <option>Técnico Prof. en Producción de Cerámica Artesanal</option>
+                                </select>
+                            </div>        
+                        </div>
+                    </div>
+
+                <div class="form-group">                              
+                    <div class="col-sm-6">
+                        <label class="control-label">Nombres y Apellidos:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required="">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="correo" name="correo" required="">
+                    </div>
+
+                </div>
+
+                <div class="form-group">  
+                    <div class="col-sm-5">
+                        <label class="control-label">Fecha de Nacimiento: </label>
+                        <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required="">
+                    </div>                    
+                    <div class="col-sm-3">
+                        <label class="control-label">Género: </label>
+                        <div class="form-control" style="border: transparent">
+                            <select id="genero" name="genero">
+                                <option></option>
+                                <option value="F"> Femenino </option>
+                                <option value="M"> Masculino </option>
+                                <option value="O"> Otro </option>                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="control-label">Estado civil: </label>
+                        <div class="form-control" style="border: transparent">
+                            <select name="estadocivil" id="estadocivil">
+                                <option></option>
+                                <option value="Soltero(a)"> Soltero(a) </option>
+                                <option value="Casado(a)"> Casado(a) </option>
+                                <option value="Union Libre"> Union Libre </option>                                
+                                <option value="Viudo(a)"> Viudo(a) </option>                                
+                            </select>
+                        </div>
+                    </div>                                                        
+                </div>
+
+                <div class="form-group">   
+
+                    <div class="col-sm-6">
+                        <label class="control-label">Dirección: </label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" required="">
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="control-label">Teléfono: </label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" required="">
+                    </div>  
+                   
+                <div class="form-group">   
+
+                    <div class="col-sm-6">
+                        <label class="control-label">Contraseña: </label>
+                        <input type="text" class="form-control" id="contrasena" name="contrasena" required="">
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <label class="control-label">Repetir Contraseña: </label>
+                        <input type="text" class="form-control" id="contrasena2" name="contrasena1" required="">
+                    </div>
+                </div>
+
+                    
+                                        
+                    
+                </div>
+
+                <br> <br>
+                <div class="clearfix">
+                    <div class="col-sm-12">
+                        <label class="control-label"> </label>
+                        <input class="btn btn-success btn-block" type="submit" value="REGISTRAR">
+
+                    </div>
+                    <br><br>
+
+
+                </div>
+            </form>
+        </div>                
+    
+                        </div>                        
+                    </div>
+                </div>
+            </div>
             <ul class="pgwSlider">
 
                 <li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
@@ -237,7 +416,7 @@
                             <span class="bordered-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
                         </div>
                         <div class="col-md-12" id="recargo">
-                            
+
                             <div class="row equal-height-columns margin-bottom-10">
 
                                 <div class="container">
@@ -269,7 +448,7 @@
                                                     <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')"/>
                                                 </p>
                                             </div>
-                                            
+
                                         </li>
                                         <%
                                             }
@@ -286,7 +465,7 @@
 
                 </div>
             </div>
-                        
+
             <!-- FIN ICONOS REDES SOCIALES -->
 
             <!-- End Content Part -->

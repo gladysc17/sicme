@@ -32,8 +32,7 @@ public class ConexionPostgres {
         try {
             
             DriverManager.registerDriver(new org.postgresql.Driver() );
-            conexion = DriverManager.getConnection(url, login, password);
-            System.out.println("Conexión a la BD ---> OK");
+            conexion = DriverManager.getConnection(url, login, password);            
         } catch (SQLException ex) {
             Logger.getLogger(ConexionPostgres.class.getName()).log(Level.SEVERE, null, ex);
         }

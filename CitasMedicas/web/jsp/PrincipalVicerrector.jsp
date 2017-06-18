@@ -1,6 +1,5 @@
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
-<%@page import="DTO.VicerrectorDTO"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +27,7 @@
 
     <body>
         <%
-            VicerrectorDTO vice = (VicerrectorDTO) session.getAttribute("vicerrector");
+            UsuarioDTO vice = (UsuarioDTO) session.getAttribute("vicerrector");
             if (vice == null) {
         %>
         <script type="text/javascript">
@@ -44,7 +43,7 @@
                 response.sendRedirect("../index.jsp");
                 return;
             }
-            String id = vice.getIdentificacion_usuario();
+            String id = vice.getIdentificacion();
             FacadeUsuario fac = new FacadeUsuario();
             UsuarioDTO usuario = fac.consultarUsuarioPorId(id);
             String nombre = usuario.getNombre();
@@ -70,7 +69,7 @@
             </div>
 
             <div class="menu-responsive">                
-                <a class="logo logo-responsive" href="../../index.html">
+                <a class="logo logo-responsive" href="../index.html">
                     <img src="../imagenes/horizontal_logo_pequeno.png" alt="Logo">
                 </a>                  
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">

@@ -29,8 +29,8 @@ public class UsuarioDAO {
     public boolean registrarUsuario(UsuarioDTO otro) throws SQLException {
 
         String sql = "INSERT INTO usuario (identificacion, tipo_identificacion, codigo, nombre, correo, "
-                + "fecha_nacimiento, genero, edad, estado_civil, direccion, telefono, tipo_usuario, fecharegistro)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "fecha_nacimiento, genero, edad, estado_civil, direccion, telefono, tipo_usuario, fecharegistro, contrasena)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -47,6 +47,7 @@ public class UsuarioDAO {
         ps.setString(11, otro.getTelefono());
         ps.setString(12, otro.getTipo_usuario());
         ps.setDate(13, Date.valueOf(otro.getFecharegistro()));
+        ps.setString(14, otro.getContrasena());
 
         int resultado = ps.executeUpdate();
 
@@ -81,6 +82,7 @@ public class UsuarioDAO {
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
             otro.setFecharegistro(rs.getString("fecharegistro"));
+            otro.setContrasena(rs.getString("contrasena"));
 
         }
         return otro;
@@ -115,6 +117,7 @@ public class UsuarioDAO {
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
             otro.setFecharegistro(rs.getString("fecharegistro"));
+            otro.setContrasena(rs.getString("contrasena"));
 
             listaOtro.add(otro);
         }
@@ -153,15 +156,16 @@ public class UsuarioDAO {
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
             otro.setFecharegistro(rs.getString("fecharegistro"));
+            otro.setContrasena(rs.getString("contrasena"));
         }
 
         return otro;
 
     }
 
-    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException {
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad, String contrasena) throws SQLException {
 
-        String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ? "
+        String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ?, contrasena = ? "
                 + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -173,7 +177,9 @@ public class UsuarioDAO {
         ps.setString(5, direccion);
         ps.setString(6, telefono);
         ps.setInt(7, edad);
-        ps.setString(8, identificacion);
+        ps.setString(8, contrasena);
+        ps.setString(9, identificacion);
+        
 
         int rta = ps.executeUpdate();
 
@@ -278,6 +284,7 @@ public class UsuarioDAO {
             med.setTelefono(rs.getString("telefono"));
             med.setTipo_usuario(rs.getString("tipo_usuario"));
             med.setFecharegistro(rs.getString("fecharegistro"));
+            med.setContrasena(rs.getString("contrasena"));
 
             medicos.add(med);
         }
@@ -318,6 +325,7 @@ public class UsuarioDAO {
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
             otro.setFecharegistro(rs.getString("fecharegistro"));
+            otro.setContrasena(rs.getString("contrasena"));
 
             listaOtro.add(otro);
         }
@@ -358,6 +366,7 @@ public class UsuarioDAO {
             otro.setTelefono(rs.getString("telefono"));
             otro.setTipo_usuario(rs.getString("tipo_usuario"));
             otro.setFecharegistro(rs.getString("fecharegistro"));
+            otro.setContrasena(rs.getString("contrasena"));
 
             listaOtro.add(otro);
         }

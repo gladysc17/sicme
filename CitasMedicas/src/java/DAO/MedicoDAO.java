@@ -24,15 +24,15 @@ public class MedicoDAO {
     public MedicoDAO(Connection con) {
         this.con = con;
     }
-      
+
     public boolean registrarMedico(MedicoDTO med) throws SQLException {
 
-        String sql = "INSERT INTO medico (identificacion, servicio, contrasena)"
+        String sql = "INSERT INTO medico (identificacion, servicio)"
                 + " VALUES (?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setString(1, med.getIdentificacion());        
+        ps.setString(1, med.getIdentificacion());
         ps.setString(2, med.getServicio());
         ps.setString(3, med.getContrasena());
 
@@ -56,10 +56,9 @@ public class MedicoDAO {
 
         if (rs.next()) {
             med = new MedicoDTO();
-            med.setIdentificacion(rs.getString("identificacion")); 
+            med.setIdentificacion(rs.getString("identificacion"));
             med.setServicio(rs.getString("servicio"));
-            med.setContrasena(rs.getString("contrasena"));
-            
+
         }
         return med;
     }
@@ -79,9 +78,8 @@ public class MedicoDAO {
         while (rs.next()) {
             med = new MedicoDTO();
 
-           med.setIdentificacion(rs.getString("identificacion")); 
+            med.setIdentificacion(rs.getString("identificacion"));
             med.setServicio(rs.getString("servicio"));
-            med.setContrasena(rs.getString("contrasena"));
 
             listaMed.add(med);
         }
@@ -106,9 +104,8 @@ public class MedicoDAO {
         if (rs.next()) {
             med = new MedicoDTO();
 
-            med.setIdentificacion(rs.getString("identificacion")); 
+            med.setIdentificacion(rs.getString("identificacion"));
             med.setServicio(rs.getString("servicio"));
-            med.setContrasena(rs.getString("contrasena"));
         }
 
         return med;
@@ -132,69 +129,67 @@ public class MedicoDAO {
 
             med = new MedicoDTO();
 
-           med.setIdentificacion(rs.getString("identificacion")); 
+            med.setIdentificacion(rs.getString("identificacion"));
             med.setServicio(rs.getString("servicio"));
-            med.setContrasena(rs.getString("contrasena"));
 
             medicos.add(med);
         }
         return medicos;
     }
-    
-    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException{
-          
-            String sql = "UPDATE medico SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?, contrasena = ?"
+
+    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException {
+
+        String sql = "UPDATE medico SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?, contrasena = ?"
                 + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
-                
+
         ps.setString(1, correo);
-        ps.setString(2, fechanacimiento);        
+        ps.setString(2, fechanacimiento);
         ps.setString(3, genero);
-        ps.setString(4, estadocivil);  
+        ps.setString(4, estadocivil);
         ps.setString(5, direccion);
         ps.setString(6, telefono);
         ps.setString(7, contrasena);
         ps.setInt(8, identificacion);
-        
+
         int rta = ps.executeUpdate();
 
         return rta > 0;
-          
-      }
-    
-    public ArrayList<String[]>listadoMedico() throws SQLException{
-        
+
+    }
+
+    public ArrayList<String[]> listadoMedico() throws SQLException {
+
         String sql = "select u.nombre, u.identificacion, u.codigo, m.servicio from usuario u inner join medico m ON u.identificacion = m.identificacion";
-        
+
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         ArrayList<String[]> lista = new ArrayList<>();
-        
-        
-        while (rs.next()){
-            String [] lis = new String[4];
-            lis[0]=rs.getString("nombre");
-            lis[1]=rs.getString("identificacion");
-            lis[2]=rs.getString("codigo");
-            lis[3]=rs.getString("servicio");
+
+        while (rs.next()) {
+            String[] lis = new String[4];
+            lis[0] = rs.getString("nombre");
+            lis[1] = rs.getString("identificacion");
+            lis[2] = rs.getString("codigo");
+            lis[3] = rs.getString("servicio");
             lista.add(lis);
         }
         return lista;
     }
-    
+
     public List<String> consultaServicios() throws SQLException {
         List<String> ls = new ArrayList<>();
         String sql = "select distinct(servicio) from medico";
-        
+
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        
+
         String dato = "";
-        while(rs.next()){
+        while (rs.next()) {
             dato = rs.getString(1);
             ls.add(dato);
         }
-         return ls;
+        return ls;
     }
 }

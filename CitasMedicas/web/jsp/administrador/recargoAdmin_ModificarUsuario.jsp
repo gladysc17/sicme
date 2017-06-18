@@ -10,10 +10,8 @@
 <%@page import="DTO.UsuarioDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <body>
-        <div class="col-md-2"></div>
-        <div class="col-md-8 col-sm-8">            
+
+        <div class="ibox float-e-margins">          
 
             <style>
                 #admin{
@@ -32,11 +30,8 @@
                             System.out.println("id ad " + id);
 
                             FacadeUsuario fotro = new FacadeUsuario();
-                            FacadeAdministrador fac = new FacadeAdministrador();
-                            AdministradorDTO ad = fac.consultarAdminId(id);
 
-                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);
-                            String tipo = otro.getTipo_usuario();
+                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);                            
                         %>
                         <div class="form-group">  
                             <div class="col-sm-4">
@@ -97,18 +92,18 @@
                             </div>                            
                         </div>
 
-                        <div class="form-group" id="admin">
+                        <div class="form-group">
                             <div class="col-sm-4">                            
                                 <label class="control-label">Contraseña Actual: </label>
-                                <input type="password" class="form-control" id="contra" name="contra"  value="<%=ad.getContrasena()%>">
+                                <input type="password" class="form-control" id="contra" name="contra"  value="<%=otro.getContrasena()%>">
                             </div>
                             <div class="col-sm-4"> 
                                 <label class="control-label">Nueva Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena1" name="contrasena1">
+                                <input type="password" class="form-control" id="contrasena1" name="contrasena">
                             </div>
                             <div class="col-sm-4">     
                                 <label class="control-label">Repetir Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena2" name="contrasena2">
+                                <input type="password" class="form-control" id="contrasena2" name="contrasena">
                             </div>
                         </div>
 
@@ -123,25 +118,9 @@
                         <br> <br>                        
 
 
-                    </form>
-                    <script>
-
-                        var tipo = document.form.tipo.value;
-
-
-                        if (tipo == "administrador") {
-                            document.getElementById("admin").style.display = 'inline'
-
-                        } else {
-                            document.getElementById("admin").style.display = 'none'
-                        }
-
-                    </script>
-
+                    </form>                   
 
                 </div>                                    
             </div>
         </div>
-        <div class="col-md-2"></div>
-    </body>
-</html>
+      
