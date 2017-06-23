@@ -4,8 +4,6 @@
     Author     : Gladys M
 --%>
 
-<%@page import="DTO.AdministradorDTO"%>
-<%@page import="FACADE.FacadeAdministrador"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

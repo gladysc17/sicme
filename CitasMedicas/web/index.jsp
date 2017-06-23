@@ -61,11 +61,9 @@
     </head>
 
     <body class="header-fixed boxed-layout" style="position: relative; min-height: 100%; top: 0px;">
-        <div class="wrapper">
-            <!--=== Header v6 ===-->
+        <div class="wrapper">            
             <div id="menu-principal" class="header-v6 header-white-transparent header-sticky" style="position: relative;">
-                <div id="barra-superior" class="header-v8">
-                    <!-- Topbar blog -->
+                <div id="barra-superior" class="header-v8">            
                     <div class="blog-topbar">
                         <div class="topbar-search-block">
                             <div class="container">
@@ -78,85 +76,47 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-
                                     <div class="topbar-toggler" style="font-size: 12px; color: #eee; letter-spacing: 1px; text-transform: uppercase;"><span class="fa fa-angle-down"></span> PERFILES</div>
-
                                     <ul class="topbar-list topbar-menu">                                        
                                         <li><a href="jsp/PrincipalVicerrector.jsp"><i class="fa fa-user"></i> Vicerrector</a></li>                                                                                
                                         <li><a href="jsp/PrincipalMedico.jsp"><i class="fa fa-user-secret"></i> Medico </a></li>
                                         <li><a href="jsp/PrincipalAdministrador.jsp"><i class="fa fa-briefcase"></i> Admin</a></li>                                                                                  
-                                        <li><a href="jsp/PrincipalUsuario.jsp"><i class="fa fa-briefcase"></i> Usuario</a></li> 
-                                        <div class="pull-right">
-                                            <button type="button" class="btn-default" data-toggle="modal" data-target="#myModalIngresar">Ingresar</button>
-                                            <button type="button" class="btn-default" data-toggle="modal" data-target="#myModalRegistro">Registrarse</button>
-                                        </div>
-                                    </ul>                                        
-
-
-
-                                </div>
-
-                            </div><!--/end row-->
-                        </div><!--/end container-->
-                    </div>
-                    <!-- End Topbar blog -->
-
+                                        <li><a href="jsp/PrincipalUsuario.jsp"><i class="fa fa-briefcase"></i> Usuario</a></li>                                         
+                                        <button type="button" class="btn-default " data-toggle="modal" data-target="#myModalIngresar">Ingresar</button>
+                                        <button type="button" class="btn-default" data-toggle="modal" data-target="#myModalRegistro">Registrarse</button>
+                                    </ul>                                    
+                                </div>                                                                                                   
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
 
-
-                <div class="header-v8 img-logo-superior" style="background-color: #aa1916;">
-
-                    <!--=== Parallax Quote ===-->
+                <div class="header-v8 img-logo-superior" style="background-color: #aa1916;">                  
                     <div class="parallax-quote parallaxBg" style="padding: 30px 30px;">
-
                         <div class="parallax-quote-in" style="padding: 0px;">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-5">
-                                    <a href="#">
-                                        <img id="logo-header"
-                                             src="img/logo_ufps.png" alt="Logo UFPS">
-                                    </a>
+                                    <a href="#"> <img id="logo-header" src="img/logo_ufps.png" alt="Logo UFPS"> </a>
                                 </div>
                                 <div class="col-md-2 col-ms-1 col-xs-2 pull-right">
-                                    <a href="http://www.colombia.co/"><img class="header-banner"
-                                                                           src="img/escudo_colombia.png"
-                                                                           alt="Escudo de Colombia"></a>
+                                    <a href="http://www.colombia.co/"><img class="header-banner" src="img/escudo_colombia.png" alt="Escudo de Colombia"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--=== End Parallax Quote ===-->
+                </div>
 
-
-                </div><!--/end header-v8-->
-
-
-                <div class="menu-responsive">
-                    <!-- Logo -->
-                    <a class="logo logo-responsive" href="index.jsp">
-                        <img src="img/horizontal_logo_pequeno.png" alt="Logo">
-                    </a>  
-                    <!-- End Logo -->
-
-
-
-                    <!-- Toggle get grouped for better mobile display -->
+                <div class="menu-responsive">                   
+                    <a class="logo logo-responsive" href="index.jsp"> <img src="img/horizontal_logo_pequeno.png" alt="Logo"> </a>  
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="fa fa-bars"></span>
                     </button>
-                    <!-- End Toggle -->
                 </div>
-
-                <!-- Navbar -->
-                <!-- Collect the nav links, forms, and other content for toggling -->
 
                 <div class="row" style="background-color: #aa1916">
                     <h1 style="color: white" align="center">GESTIÓN DE CITAS MEDICAS </h1>
                 </div>
-                <!--/navbar-collapse-->
-
-                <!-- End Navbar -->
             </div>
 
             <div class="modal inmodal" id="myModalIngresar" tabindex="-1" role="dialog"  aria-hidden="true">
@@ -167,20 +127,55 @@
                             <h1 class="modal-title" align="center">Iniciar Sesion</h1>                            
                         </div>
                         <div class="modal-body">
-                            <form role="form" action="controlador/procesarInicioSesion.jsp">
+                            <form name="frml" role="form" action="controlador/procesarInicioSesion.jsp">
                                 <div class="form-group"><label>Identificación </label> <input type="text" placeholder="Ingrese su identificación" class="form-control" id="usuario" name="usuario"></div>
                                 <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Ingrese su contraseña" class="form-control" id="pw" name="pw"></div>
-                                    <div>
-                                        <button class="btn btn-sm btn-success m-t-n-xs" type="submit"><strong>Ingresar</strong></button> &nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-sm btn-link m-t-n-xs" type="submit"><strong>Recuperar Contraseña</strong></button>
-                                    </div>
-                                </form>
-                        </div>                        
+                                <div>
+                                    <input type="button" class="btn btn-sm btn-success m-t-n-xs" onclick="ingresar()" value="Ingresar">&nbsp;&nbsp;&nbsp;                                                                                                                       
+                                    <input type="button" class="btn btn-sm btn-link m-t-n-xs" onclick="contrasena()" value="Recuperar Contraseña">
+
+                                </div>
+                            </form>
+                        </div>
+                        <script type="text/javascript">
+                            function ingresar() {                                                                
+
+                                if (document.frml.usuario.value.length === 0) {
+                                    alert("Por favor ingrese su Nº de Identificación");
+                                    document.frml.usuario.focus();
+                                    return 0;
+                                }
+                                if (document.frml.pw.value.length === 0) {
+                                    alert("Por favor ingrese su contraseña");
+                                    document.frml.pw.focus();
+                                    return 0;
+                                }
+                                else{
+                                    document.frml.submit();
+                                }
+                               
+                            }    
+                            
+                            function contrasena() {                                                                
+
+                                if (document.frml.usuario.value.length === 0) {
+                                    alert("Por favor ingrese su Nº de Identificación");
+                                    document.frml.usuario.focus();
+                                    return 0;
+                                }
+                               
+                                else{
+                                     var id = document.getElementById("usuario").value;
+                                    location.href = "controlador/procesarRecuperarContrasena.jsp?id="+id;
+                                }
+                               
+                            }    
+                        </script>                        
                     </div>
                 </div>
-            </div>
-            
-             <div class="modal inmodal" id="myModalRegistro" tabindex="-1" role="dialog"  aria-hidden="true">
+            </div>           
+
+            <div class="modal inmodal" id="myModalRegistro" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
@@ -188,201 +183,200 @@
                             <h1 class="modal-title" align="center">REGISTRO DE USUARIO</h1>                            
                         </div>
                         <div class="modal-body">
-                             
-        
-        <div class="panel-body">  
-            <form action="controlador/procesarRegistroUsuario.jsp" method="post" name="form">
-
-                <style>
-                    #estudiante{
-                        display: none;
-                    }                    
-                </style>
-                <div class="form-group">  
-                    <div class="col-sm-5">
-                        <label class="control-label">Tipo Identificación: </label>
-                        <div class="">
-                            <select id="tipoid" name="tipoid" required>
-                                <option> </option>
-                                <option value="T.I"> Tarjeta de Identidad </option>
-                                <option value="C.C"> Cedula de Ciudadania </option>
-                                <option value="C.E"> Cedula de Extranjeria </option>
-                                <option value="P.P"> Pasaporte </option>                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <label class="control-label">Número de documento:</label>
-                        <input type="number" class="form-control" id="identificacion" name="identificacion" required="">
-                    </div>
-                                                
-                </div>
-                
-                <div class="form-group">
-                    <div class="col-sm-5">
-                        <label class="control-label">Tipo de Usuario:</label>
-                        <div class="">
-                            <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()" required>
-                                <option> </option>
-                                <option value="estudiante"> Estudiante </option>
-                                <option value="docente"> Docente </option>                                                                                          
-                                <option value="administrativo"> Administrativo </option>                                
-                                <option value="servicios generales"> Servicios Generales </option>                                                                                              
-                            </select>
-                        </div>
-                    </div>
-                     <div class="col-sm-7">
-                        <label class="control-label">Código: </label>
-                        <input type="number" class="form-control" id="codigo" name="codigo" required="">
-                    </div>
-                    
-                </div>
-                <script>
-                        function mostrarDatos() {
-
-                            var tipo = document.form.tipousuario;
-
-                            var selec = tipo.options[tipo.selectedIndex].value;
-
-                            if (selec == "estudiante") {
-                                document.getElementById("estudiante").style.display = 'inline';                                
-                            }                            
-                            else{
-                                document.getElementById("estudiante").style.display = 'none'
-                            }
-
-                        }
-
-                    </script>
-                    
-                    <div class="form-group" id="estudiante">
-                        <div class="col-sm-12">
-                            <label class="control-label">Programa: </label>
-                            <div class="">
-                                <select id="programa" name="programa">                                        
-                                    <option></option>
-                                    <option value="Administracion de Empresas">Administración de Empresas </option>
-                                    <option value="Arquitectura">Arquitectura</option>
-                                    <option value="Comercio Internacional">Comercio Internacional</option>
-                                    <option value="Comunicaion Social">Comunicación Social</option>
-                                    <option value="Contaduria ">Contaduria Pública</option>
-                                    <option>Derecho</option>
-                                    <option>Enfermeria</option>
-                                    <option>Ingenieria Agroindustrial</option>
-                                    <option>Ingenieria Agronómica</option>
-                                    <option>Ingenieria Ambiental</option>
-                                    <option>Ingenieria Biotecnológica</option>
-                                    <option>Ingenieria Civil</option>
-                                    <option>Ingenieria de Minas</option>
-                                    <option>Ingenieria de Sistemas</option>
-                                    <option>Ingenieria Electromecánica</option>
-                                    <option>Ingenieria Electrónica</option>
-                                    <option>Ingenieria Industrial</option>
-                                    <option>Ingenieria Mecánica</option>
-                                    <option>Ingenieria Pecuaria</option>
-                                    <option>Licenciatura en Matemáticas</option>
-                                    <option>Quimica Industrial</option>
-                                    <option>Seguridad y Salud en el Trabajo</option>
-                                    <option>Trabajo Social</option>                                        
-                                    <option>Tecnologia Agroindustrial</option>
-                                    <option>Tecnologia en Gestión de Procesos de Manufactura</option>
-                                    <option>Tecnologia en Gestión y Desarrollo de Productos Cerámicos</option>
-                                    <option>Tecnologia en Obras Civiles</option>
-                                    <option>Tecnologia en Procesos Industriales</option>                                        
-                                    <option>Técnico Prof. en Fabricación Industrial de Productos Cerámicos</option>
-                                    <option>Técnico Prof. en Procesamiento de Alimentos</option>
-                                    <option>Técnico Prof. en Procesos de Manufactura de Calzado y Marroquineria</option>
-                                    <option>Técnico Prof. en Producción de Cerámica Artesanal</option>
-                                </select>
-                            </div>        
-                        </div>
-                    </div>
-
-                <div class="form-group">                              
-                    <div class="col-sm-6">
-                        <label class="control-label">Nombres y Apellidos:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required="">
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="control-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" id="correo" name="correo" required="">
-                    </div>
-
-                </div>
-
-                <div class="form-group">  
-                    <div class="col-sm-5">
-                        <label class="control-label">Fecha de Nacimiento: </label>
-                        <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required="">
-                    </div>                    
-                    <div class="col-sm-3">
-                        <label class="control-label">Género: </label>
-                        <div class="form-control" style="border: transparent">
-                            <select id="genero" name="genero">
-                                <option></option>
-                                <option value="F"> Femenino </option>
-                                <option value="M"> Masculino </option>
-                                <option value="O"> Otro </option>                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="control-label">Estado civil: </label>
-                        <div class="form-control" style="border: transparent">
-                            <select name="estadocivil" id="estadocivil">
-                                <option></option>
-                                <option value="Soltero(a)"> Soltero(a) </option>
-                                <option value="Casado(a)"> Casado(a) </option>
-                                <option value="Union Libre"> Union Libre </option>                                
-                                <option value="Viudo(a)"> Viudo(a) </option>                                
-                            </select>
-                        </div>
-                    </div>                                                        
-                </div>
-
-                <div class="form-group">   
-
-                    <div class="col-sm-6">
-                        <label class="control-label">Dirección: </label>
-                        <input type="text" class="form-control" id="direccion" name="direccion" required="">
-                    </div>
-                    <div class="col-sm-6">
-                        <label class="control-label">Teléfono: </label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" required="">
-                    </div>  
-                   
-                <div class="form-group">   
-
-                    <div class="col-sm-6">
-                        <label class="control-label">Contraseña: </label>
-                        <input type="text" class="form-control" id="contrasena" name="contrasena" required="">
-                    </div>
-                    
-                    <div class="col-sm-6">
-                        <label class="control-label">Repetir Contraseña: </label>
-                        <input type="text" class="form-control" id="contrasena2" name="contrasena1" required="">
-                    </div>
-                </div>
-
-                    
-                                        
-                    
-                </div>
-
-                <br> <br>
-                <div class="clearfix">
-                    <div class="col-sm-12">
-                        <label class="control-label"> </label>
-                        <input class="btn btn-success btn-block" type="submit" value="REGISTRAR">
-
-                    </div>
-                    <br><br>
 
 
-                </div>
-            </form>
-        </div>                
-    
+                            <div class="panel-body">  
+                                <form action="controlador/procesarRegistroUsuario2.jsp" method="post" name="form">
+
+                                    <style>
+                                        #estudiante{
+                                            display: none;
+                                        }                    
+                                    </style>
+                                    <div class="form-group">  
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Tipo Identificación: </label>
+                                            <div class="">
+                                                <select id="tipoid" name="tipoid" required>
+                                                    <option> </option>
+                                                    <option value="T.I"> Tarjeta de Identidad </option>
+                                                    <option value="C.C"> Cedula de Ciudadania </option>
+                                                    <option value="C.E"> Cedula de Extranjeria </option>
+                                                    <option value="P.P"> Pasaporte </option>                                
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <label class="control-label">Número de documento:</label>
+                                            <input type="number" class="form-control" id="identificacion" name="identificacion" required="">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Tipo de Usuario:</label>
+                                            <div class="">
+                                                <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()" required>
+                                                    <option> </option>
+                                                    <option value="estudiante"> Estudiante </option>
+                                                    <option value="docente"> Docente </option>                                                                                          
+                                                    <option value="administrativo"> Administrativo </option>                                
+                                                    <option value="servicios generales"> Servicios Generales </option>                                                                                              
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <label class="control-label">Código: </label>
+                                            <input type="number" class="form-control" id="codigo" name="codigo" required="">
+                                        </div>
+
+                                    </div>
+                                    <script>
+                                            function mostrarDatos() {
+
+                                                var tipo = document.form.tipousuario;
+
+                                                var selec = tipo.options[tipo.selectedIndex].value;
+
+                                                if (selec == "estudiante") {
+                                                    document.getElementById("estudiante").style.display = 'inline';
+                                                } else {
+                                                    document.getElementById("estudiante").style.display = 'none'
+                                                }
+
+                                            }
+
+                                    </script>
+
+                                    <div class="form-group" id="estudiante">
+                                        <div class="col-sm-12">
+                                            <label class="control-label">Programa: </label>
+                                            <div class="">
+                                                <select id="programa" name="programa">                                        
+                                                    <option></option>
+                                                    <option value="Administracion de Empresas">Administración de Empresas </option>
+                                                    <option value="Arquitectura">Arquitectura</option>
+                                                    <option value="Comercio Internacional">Comercio Internacional</option>
+                                                    <option value="Comunicaion Social">Comunicación Social</option>
+                                                    <option value="Contaduria ">Contaduria Pública</option>
+                                                    <option value="Derecho">Derecho</option>
+                                                    <option value="Enfermeria">Enfermeria</option>
+                                                    <option value="ngenieria Agroindustrial">Ingeniería Agroindustrial</option>
+                                                    <option value="Ingenieria Agronomica">Ingeniería Agronómica</option>
+                                                    <option value="Ingenieria Ambiental">Ingeniería Ambiental</option>
+                                                    <option value="Ingenieria Biotecnológica">Ingeniería Biotecnológica</option>
+                                                    <option value="Ingenieria Civil">Ingeniería Civil</option>
+                                                    <option value="Ingenieria de Minas">Ingeniería de Minas</option>
+                                                    <option value="Ingenieria de Sistemas">Ingeniería de Sistemas</option>
+                                                    <option value="Ingenieria Electromecanica">Ingeniería Electromecánica</option>
+                                                    <option value="Ingenieria Electronica">Ingeniería Electrónica</option>
+                                                    <option value="Ingenieria Industrial">Ingeniería Industrial</option>
+                                                    <option value="Ingenieria Mecanica">Ingeniería Mecánica</option>
+                                                    <option value="Ingenieria Pecuaria">Ingeniería Pecuaria</option>
+                                                    <option value="Licenciatura en Matematicas">Licenciatura en Matemáticas</option>
+                                                    <option value="Quimica Industrial">Quimica Industrial</option>
+                                                    <option value="Seguridad y Salud en el Trabajo">Seguridad y Salud en el Trabajo</option>
+                                                    <option value="Trabajo Social">Trabajo Social</option>                                        
+                                                    <option value="Tecnologia Agroindustrial">Tecnología Agroindustrial</option>
+                                                    <option value="Tecnologia en Gestión de Procesos de Manufactura">Tecnología en Gestión de Procesos de Manufactura</option>
+                                                    <option value="Tecnologia en Gestión y Desarrollo de Productos Cerámicos">Tecnología en Gestión y Desarrollo de Productos Cerámicos</option>
+                                                    <option value="Tecnologia en Obras Civiles">Tecnología en Obras Civiles</option>
+                                                    <option value="Tecnologia en Procesos Industriales">Tecnología en Procesos Industriales</option>                                        
+                                                    <option value="Tecnico Prof. en Fabricacion Industrial de Productos Ceramicos">Técnico Prof. en Fabricación Industrial de Productos Cerámicos</option>
+                                                    <option value="Tecnico Prof. en Procesamiento de Alimentos">Técnico Prof. en Procesamiento de Alimentos</option>
+                                                    <option value="Tecnico Prof. en Procesos de Manufactura de Calzado y Marroquineria">Técnico Prof. en Procesos de Manufactura de Calzado y Marroquineria</option>
+                                                    <option value="Tecnico Prof. en Producción de Ceramica Artesanal">Técnico Prof. en Producción de Cerámica Artesanal</option>
+                                                </select>
+                                            </div>        
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">                              
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Nombres y Apellidos:</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required="">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Correo Electrónico:</label>
+                                            <input type="email" class="form-control" id="correo" name="correo" required="">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">  
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Fecha de Nacimiento: </label>
+                                            <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required="">
+                                        </div>                    
+                                        <div class="col-sm-3">
+                                            <label class="control-label">Género: </label>
+                                            <div class="form-control" style="border: transparent">
+                                                <select id="genero" name="genero">
+                                                    <option></option>
+                                                    <option value="F"> Femenino </option>
+                                                    <option value="M"> Masculino </option>
+                                                    <option value="O"> Otro </option>                                
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="control-label">Estado civil: </label>
+                                            <div class="form-control" style="border: transparent">
+                                                <select name="estadocivil" id="estadocivil">
+                                                    <option></option>
+                                                    <option value="Soltero(a)"> Soltero(a) </option>
+                                                    <option value="Casado(a)"> Casado(a) </option>
+                                                    <option value="Union Libre"> Union Libre </option>                                
+                                                    <option value="Viudo(a)"> Viudo(a) </option>                                
+                                                </select>
+                                            </div>
+                                        </div>                                                        
+                                    </div>
+
+                                    <div class="form-group">   
+
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Dirección: </label>
+                                            <input type="text" class="form-control" id="direccion" name="direccion" required="">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Teléfono: </label>
+                                            <input type="text" class="form-control" id="telefono" name="telefono" required="">
+                                        </div>  
+
+                                        <div class="form-group">   
+
+                                            <div class="col-sm-6">
+                                                <label class="control-label">Contraseña: </label>
+                                                <input type="password" class="form-control" id="contrasena" name="contrasena" required="">
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label class="control-label">Repetir Contraseña: </label>
+                                                <input type="password" class="form-control" id="contrasena2" name="contrasena1" required="">
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+                                    <br> <br>
+                                    <div class="clearfix">
+                                        <div class="col-sm-12">
+                                            <label class="control-label"> </label>
+                                            <input class="btn btn-success btn-block" type="submit" value="REGISTRAR">
+
+                                        </div>
+                                        <br><br>
+
+
+                                    </div>
+                                </form>
+                            </div>                
+
                         </div>                        
                     </div>
                 </div>

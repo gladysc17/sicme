@@ -71,22 +71,21 @@
                 FacadeMedico facMed = new FacadeMedico();              
                 MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena);                
                 registro2 = facMed.registrarMedico(med);
-                
-            } 
+            }
 
             if (registro || registro2) {
 
         %>
         <script  type = "text/javascript">
             alert("REGISTRO EXITOSO ");
-            location.href = "../jsp/PrincipalAdministrador.jsp";
+            location.href = "../jsp/PrincipalUsuario.jsp";
         </script>
         <%        } else {
 
         %>
         <script  type = "text/javascript">
             alert("DATOS INCORRECTOS");
-            location.href = "../jsp/PrincipalAdministrador.jsp";
+            location.href = "../index.jsp";
         </script>
         <%                        }
 
