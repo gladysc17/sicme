@@ -41,23 +41,23 @@
 
             java.sql.Date fechaNac = java.sql.Date.valueOf(fechanacimiento);
             int edad = fac.calcularEdad(fechaNac);
-  
+
             String estadocivil = request.getParameter("estadocivil");
             String direccion = request.getParameter("direccion");
             String telefono = request.getParameter("telefono");
             String tipousuario = request.getParameter("tipousuario");
 
-            String programa = request.getParameter("programa");
+            String programa = request.getParameter("programa").toString();
 
             String servicio = request.getParameter("servicio");
-            String contrasena = request.getParameter("contrasena");           
-            
+            String contrasena = request.getParameter("contrasena");
+
             Calendar fechaGeneral = new GregorianCalendar();
             int año = fechaGeneral.get(Calendar.YEAR);
             int mes = fechaGeneral.get(Calendar.MONTH);
             int dia = fechaGeneral.get(Calendar.DAY_OF_MONTH);
-            
-            String fecha =(año+"-"+mes+"-"+dia);            
+
+            String fecha = (año + "-" + mes + "-" + dia);
 
             UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha, contrasena);
             registro = fac.registrarUsuarios(usuario);
@@ -67,10 +67,6 @@
                 EstudianteDTO est = new EstudianteDTO(identificacion, programa);
                 registro2 = facEst.registrarEstudiante(est);
 
-            } else if (tipousuario.equals("medico")) {
-                FacadeMedico facMed = new FacadeMedico();              
-                MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena);                
-                registro2 = facMed.registrarMedico(med);
             }
 
             if (registro || registro2) {
@@ -78,9 +74,13 @@
         %>
         <script  type = "text/javascript">
             alert("REGISTRO EXITOSO ");
-            location.href = "../jsp/PrincipalUsuario.jsp";
         </script>
-        <%        } else {
+        <%  
+            UsuarioDTO u = fac.consultarUsuarioPorId(identificacion);
+            session.setAttribute("usuario", u);
+            response.sendRedirect("../jsp/PrincipalUsuario.jsp");
+
+        } else {
 
         %>
         <script  type = "text/javascript">
@@ -91,10 +91,6 @@
 
 
         %>
-
-
-
-
 
     </body>
 </html>

@@ -50,7 +50,7 @@
                         session.setAttribute("vicerrector", u);
                         response.sendRedirect("../jsp/PrincipalVicerrector.jsp");
                     }
-                    else if(tipo.equals("estudiante")){
+                    else if(tipo.equals("estudiante") || tipo.equals("docente") || tipo.equals("administrativo") || tipo.equals("servicios_generales")){
                         UsuarioDTO u = fac.consultarUsuarioPorId(id);
                         session.setAttribute("usuario", u);
                         response.sendRedirect("../jsp/PrincipalUsuario.jsp");

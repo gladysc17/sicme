@@ -90,7 +90,7 @@
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%=nombre%></strong>
                                     </span> <span class="text-muted text-xs block">Administrador <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident=' + <%=id%>)"/></li>                                    
+                                <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('administrador/recargoAdmin_ModificarUsuario.jsp?ident=' + <%=id%>)"/></li>
                                 <li class="divider"></li>
                                 <li><a href="../controlador/procesarCierreSesion.jsp"><h3>Cerrar Sesion</h3></a></li>
                                 <li><a href="../index.jsp"><h3>Inicio</h3></a></li>

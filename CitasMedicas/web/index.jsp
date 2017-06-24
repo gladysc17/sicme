@@ -127,7 +127,7 @@
                             <h1 class="modal-title" align="center">Iniciar Sesion</h1>                            
                         </div>
                         <div class="modal-body">
-                            <form name="frml" role="form" action="controlador/procesarInicioSesion.jsp">
+                            <form name="frml" method="post" action="controlador/procesarInicioSesion.jsp">
                                 <div class="form-group"><label>Identificación </label> <input type="text" placeholder="Ingrese su identificación" class="form-control" id="usuario" name="usuario"></div>
                                 <div class="form-group"><label>Contraseña</label> <input type="password" placeholder="Ingrese su contraseña" class="form-control" id="pw" name="pw"></div>
                                 <div>
@@ -222,7 +222,7 @@
                                                     <option value="estudiante"> Estudiante </option>
                                                     <option value="docente"> Docente </option>                                                                                          
                                                     <option value="administrativo"> Administrativo </option>                                
-                                                    <option value="servicios generales"> Servicios Generales </option>                                                                                              
+                                                    <option value="servicios_generales"> Servicios Generales </option>                                                                                              
                                                 </select>
                                             </div>
                                         </div>
@@ -246,6 +246,7 @@
                                                 }
 
                                             }
+                                            
 
                                     </script>
 
@@ -279,14 +280,14 @@
                                                     <option value="Seguridad y Salud en el Trabajo">Seguridad y Salud en el Trabajo</option>
                                                     <option value="Trabajo Social">Trabajo Social</option>                                        
                                                     <option value="Tecnologia Agroindustrial">Tecnología Agroindustrial</option>
-                                                    <option value="Tecnologia en Gestión de Procesos de Manufactura">Tecnología en Gestión de Procesos de Manufactura</option>
-                                                    <option value="Tecnologia en Gestión y Desarrollo de Productos Cerámicos">Tecnología en Gestión y Desarrollo de Productos Cerámicos</option>
+                                                    <option value="Tecnologia en Gestion de Procesos de Manufactura">Tecnología en Gestión de Procesos de Manufactura</option>
+                                                    <option value="Tecnologia en Gestion y Desarrollo de Productos Cerámicos">Tecnología en Gestión y Desarrollo de Productos Cerámicos</option>
                                                     <option value="Tecnologia en Obras Civiles">Tecnología en Obras Civiles</option>
                                                     <option value="Tecnologia en Procesos Industriales">Tecnología en Procesos Industriales</option>                                        
                                                     <option value="Tecnico Prof. en Fabricacion Industrial de Productos Ceramicos">Técnico Prof. en Fabricación Industrial de Productos Cerámicos</option>
                                                     <option value="Tecnico Prof. en Procesamiento de Alimentos">Técnico Prof. en Procesamiento de Alimentos</option>
                                                     <option value="Tecnico Prof. en Procesos de Manufactura de Calzado y Marroquineria">Técnico Prof. en Procesos de Manufactura de Calzado y Marroquineria</option>
-                                                    <option value="Tecnico Prof. en Producción de Ceramica Artesanal">Técnico Prof. en Producción de Cerámica Artesanal</option>
+                                                    <option value="Tecnico Prof. en Produccion de Ceramica Artesanal">Técnico Prof. en Producción de Cerámica Artesanal</option>
                                                 </select>
                                             </div>        
                                         </div>

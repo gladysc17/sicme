@@ -106,7 +106,7 @@
                                 <option value="estudiante"> Estudiante </option>
                                 <option value="docente"> Docente </option>     
                                 <option value="administrativo"> Docente </option>       
-                                <option value="Servicios Generales"> Servicios Generales </option>                                  
+                                <option value="servicios_generales"> Servicios Generales </option>                                  
                                 <option value="medico"> Medico </option>      
                                 <option value="administrador"> Administrador </option>
                                 <option value="vicerrector"> Vicerrector </option>
