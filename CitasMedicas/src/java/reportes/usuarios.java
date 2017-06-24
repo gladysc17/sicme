@@ -81,7 +81,7 @@ public class usuarios extends HttpServlet {
                                                                
             }
             
-            else if(tipou.equals("estudiante")){
+            else if(tipou.equals("estudiante") || tipou.equals("docente") || tipou.equals("administrativo") || tipou.equals("servicios_generales")){
             
             Map m = new HashMap();            
                 

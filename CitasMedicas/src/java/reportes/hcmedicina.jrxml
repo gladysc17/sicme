@@ -2,14 +2,13 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="641ed272-2ec8-4bff-b67b-c4aae196939f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1008"/>
+	<property name="ireport.y" value="1051"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT * FROM hc_medicinageneral HC INNER JOIN cita C ON HC.IDCITA_HCMED = C.ID_CITA
 INNER JOIN usuario U ON C.ID_USUARIO = U.IDENTIFICACION
-WHERE     HC.idcita_hcmed = $P{idcita}
-]]>
+WHERE     HC.idcita_hcmed = $P{idcita}]]>
 	</queryString>
 	<field name="id_hcmed" class="java.lang.Integer"/>
 	<field name="idusuario_hcmed" class="java.lang.Integer"/>
@@ -490,10 +489,6 @@ FAMILIARES:]]></text>
 				<reportElement x="30" y="525" width="536" height="62" uuid="41bf9c59-c526-4349-94f2-7af65304a87e"/>
 				<textFieldExpression><![CDATA[$F{recomendaciones_hcmed}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="30" y="688" width="536" height="30" uuid="8c1bc43b-e405-49f0-b856-ed0395396ba8"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\citasmedicasufps\\plantillaUFPS\\web\\img\\cita.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="253" y="597" width="100" height="20" uuid="8d45931d-ee4b-496a-8464-203b878ad61d"/>
 				<text><![CDATA[FORMULA MEDICA]]></text>

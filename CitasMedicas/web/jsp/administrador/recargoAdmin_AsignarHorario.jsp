@@ -12,100 +12,91 @@
 <%@page import="FACADE.FacadeMedico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
+<div class="ibox float-e-margins">
+    <div class="panel panel-default">
+        <div class="panel-heading">                                        
+            <h3 align="center"> ASIGNACIÓN DE HORARIO</h3>
+        </div>
+        <div class="panel-body">
+            <form action="../controlador/procesarAsignarHorario.jsp">
+                <div>
+                    <%
+                        String id = request.getParameter("ident");
+                        System.out.println("id ad " + id);
+                        FacadeUsuario fm = new FacadeUsuario();
 
-        <h1 align="center"> ASIGNACION DE HORARIO </h1>
-        <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form action="../controlador/procesarAsignarHorario.jsp">
+                        UsuarioDTO usu = fm.consultarUsuarioPorId(id);
+                    %>
+                    <label> Medico:  <%=usu.getNombre()%></label>                            
+                    <input type="hidden" value="<%=id%>" name="idMedico" />
+                    <div>
+                        <label> Fecha: <input type="date" class="inline-group" name="fecha" size="12" /></label>
+                    </div>
+                    <div>
                         <div>
-                            <label> Medico:  </label>
+                            <label> Hora(s): </label>
                         </div>
-                        <div>
+
+                        <div style="float: left" >
                             <%
-                                String id = request.getParameter("ident");
-                            System.out.println("id ad " + id);
-                                FacadeUsuario fm = new FacadeUsuario();
-
-                                UsuarioDTO usu = fm.consultarUsuarioPorId(id);
+                                FacadeHorario fh = new FacadeHorario();
+                                List<HorarioDTO> ho = fh.consultarHoras();
+                                int con = 0;
+                                for (int i = 0; i < 9; i++) {
+                                    HorarioDTO h = ho.get(i);
+                                    con++;
                             %>
-                            <label> <%=usu.getNombre()%> </label>
-                            <input type="hidden" value="<%=id%>" name="idMedico" />
+
+                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br> 
+                            <%
+                                }
+                            %>
                         </div>
-                        <div>
-                            <label> Fecha: </label>
+                        <div style="float: left">
+                            <%
+                                for (int i = con; i < 18; i++) {
+                                    HorarioDTO h = ho.get(i);
+                                    con++;
+                            %>
+
+                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
+                            <%
+                                }
+                            %>
                         </div>
-                        <div>
-                            <input type="date" class="inline-group" name="fecha" size="12" />
+                        <div style="float: left">
+                            <%
+                                for (int i = con; i < 27; i++) {
+                                    HorarioDTO h = ho.get(i);
+                                    con++;
+                            %>
+
+                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
+                            <%
+                                }
+                            %>
                         </div>
-                        <div>
-                            <div>
-                                <label> Hora </label>
-                            </div>
+                        <div style="float: left">
+                            <%
+                                for (int i = con; i < 36; i++) {
+                                    HorarioDTO h = ho.get(i);
+                                    con++;
+                            %>
 
-                            <div style="float: left" >
-                                <%
-                                    FacadeHorario fh = new FacadeHorario();
-                                    List<HorarioDTO> ho = fh.consultarHoras();
-                                    int con = 0;
-                                    for (int i = 0; i < 9; i++) {
-                                        HorarioDTO h = ho.get(i);
-                                        con++;
-                                %>
+                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
+                            <%
+                                }
+                            %>
+                        </div>
+                        <div class="col-sm-12">
+                            <br>
+                            <input type="submit" class="btn btn-success" value="Registrar Horario"/>
+                        </div>
+                        </form>
 
-                                <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br> 
-                                <%
-                                    }
-                                %>
-                            </div>
-                            <div style="float: left">
-                                <%
-                                    for (int i = con; i < 18; i++) {
-                                        HorarioDTO h = ho.get(i);
-                                        con++;
-                                %>
-
-                                <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
-                                <%
-                                    }
-                                %>
-                            </div>
-                            <div style="float: left">
-                                <%
-                                    for (int i = con; i < 27; i++) {
-                                        HorarioDTO h = ho.get(i);
-                                        con++;
-                                %>
-
-                                <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
-                                <%
-                                    }
-                                %>
-                            </div>
-                            <div style="float: left">
-                                <%
-                                    for (int i = con; i < 36; i++) {
-                                        HorarioDTO h = ho.get(i);
-                                        con++;
-                                %>
-
-                                <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
-                                <%
-                                    }
-                                %>
-                            </div>
-                            <div class="col-sm-12">
-                                <input type="submit" class="success" value="Registrar"/>
-                            </div>
-                    </form>
-
+                    </div>
                 </div>
-            </div>
-    </body>
-</html>
+        </div>
+    </div>
+</div>
+

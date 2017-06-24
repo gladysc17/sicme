@@ -58,7 +58,7 @@
                     else{
                        %>
         <script>
-            alert("DATOS INCORRECTOS");
+            alert("DATOS INCORRECTOS");            
             location.href = "../index.jsp";
         </script>
         <%

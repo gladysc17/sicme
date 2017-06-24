@@ -25,11 +25,9 @@
                         <option value="todos">Todos</option>
                         <option value="estudiante">Estudiantes</option>
                         <option value="docente">Docentes</option>
-                        <option value="profesional">Profesionales</option>
+                        <option value="administrativo">Administrativos</option>
                         <option value="medico">Medicos</option>
-                        <option value="serviciosgenerales">Servicios Generales</option>
-                        <option value="otros">Otros</option>
-
+                        <option value="servicios_generales">Servicios Generales</option>                        
                     </select> &nbsp;&nbsp;&nbsp;
                     <label> desde </label>
                     <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
