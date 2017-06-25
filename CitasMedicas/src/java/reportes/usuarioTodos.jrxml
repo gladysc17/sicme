@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e31feba6-3339-4cc7-9726-ffe7bd72ec6c">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="629"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -34,7 +34,7 @@
 	(select count(*)  
 	from usuario 
 	where fecharegistro between $P{fechaI} and  $P{fechaF}
-	), current_date 
+	)
 from usuario
 where fecharegistro between $P{fechaI} and  $P{fechaF}
 ORDER BY nombre]]>
@@ -53,36 +53,39 @@ ORDER BY nombre]]>
 	<field name="tipo_usuario" class="java.lang.String"/>
 	<field name="fecharegistro" class="java.sql.Date"/>
 	<field name="?column?" class="java.lang.Long"/>
-	<field name="date" class="java.sql.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="781" height="79" uuid="dc11b012-3839-4914-b91c-1332d9577aae"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="127" y="64" width="314" height="15" uuid="2a50bea5-4571-443f-bf46-4bad2bb4ea2b"/>
+				<reportElement x="251" y="64" width="314" height="15" uuid="2a50bea5-4571-443f-bf46-4bad2bb4ea2b"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Lista de Usuarios registrados en el sistema:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="20" width="273" height="20" uuid="f5650ed4-8f6b-46c6-8c1c-85e46f9e3f15"/>
-				<textElement>
+				<reportElement x="265" y="20" width="273" height="20" uuid="f5650ed4-8f6b-46c6-8c1c-85e46f9e3f15"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="0" width="255" height="20" uuid="0ab376b6-1687-4120-9868-dfc4ff3de54b"/>
-				<textElement>
+				<reportElement x="265" y="0" width="255" height="20" uuid="0ab376b6-1687-4120-9868-dfc4ff3de54b"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="80" height="59" uuid="01d359de-3984-4fce-8954-816a20aa2845"/>
+				<reportElement x="16" y="5" width="80" height="59" uuid="01d359de-3984-4fce-8954-816a20aa2845"/>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="441" y="-19" width="94" height="98" uuid="ea3af414-ca7c-4705-b3b6-514fa4bce3d6"/>
+				<reportElement x="686" y="5" width="53" height="59" uuid="ea3af414-ca7c-4705-b3b6-514fa4bce3d6"/>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -195,9 +198,9 @@ ORDER BY nombre]]>
 				</textElement>
 				<text><![CDATA[Fecha Consulta:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="80" y="20" width="100" height="20" uuid="8dded808-281d-44b2-b002-ba5e901ba70d"/>
-				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="80" y="20" width="100" height="20" uuid="8b53e7ac-9208-41e7-aba0-d097e738509c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>

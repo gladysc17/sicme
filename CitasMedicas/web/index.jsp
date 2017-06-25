@@ -138,7 +138,7 @@
                             </form>
                         </div>
                         <script type="text/javascript">
-                            function ingresar() {                                                                
+                            function ingresar() {
 
                                 if (document.frml.usuario.value.length === 0) {
                                     alert("Por favor ingrese su Nº de Identificación");
@@ -149,27 +149,24 @@
                                     alert("Por favor ingrese su contraseña");
                                     document.frml.pw.focus();
                                     return 0;
-                                }
-                                else{
+                                } else {
                                     document.frml.submit();
                                 }
-                               
-                            }    
-                            
-                            function contrasena() {                                                                
+
+                            }
+
+                            function contrasena() {
 
                                 if (document.frml.usuario.value.length === 0) {
                                     alert("Por favor ingrese su Nº de Identificación");
                                     document.frml.usuario.focus();
                                     return 0;
+                                } else {
+                                    var id = document.getElementById("usuario").value;
+                                    location.href = "controlador/procesarRecuperarContrasena.jsp?id=" + id;
                                 }
-                               
-                                else{
-                                     var id = document.getElementById("usuario").value;
-                                    location.href = "controlador/procesarRecuperarContrasena.jsp?id="+id;
-                                }
-                               
-                            }    
+
+                            }
                         </script>                        
                     </div>
                 </div>
@@ -233,20 +230,20 @@
 
                                     </div>
                                     <script>
-                                            function mostrarDatos() {
+                                        function mostrarDatos() {
 
-                                                var tipo = document.form.tipousuario;
+                                            var tipo = document.form.tipousuario;
 
-                                                var selec = tipo.options[tipo.selectedIndex].value;
+                                            var selec = tipo.options[tipo.selectedIndex].value;
 
-                                                if (selec == "estudiante") {
-                                                    document.getElementById("estudiante").style.display = 'inline';
-                                                } else {
-                                                    document.getElementById("estudiante").style.display = 'none'
-                                                }
-
+                                            if (selec == "estudiante") {
+                                                document.getElementById("estudiante").style.display = 'inline';
+                                            } else {
+                                                document.getElementById("estudiante").style.display = 'none'
                                             }
-                                            
+
+                                        }
+
 
                                     </script>
 

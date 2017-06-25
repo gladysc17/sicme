@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ee172c7-9e6d-4084-a728-1d8a83ef6175">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ee172c7-9e6d-4084-a728-1d8a83ef6175">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fechaI" class="java.util.Date"/>
-	<parameter name="fechaF" class="java.util.Date" isForPrompting="false"/>
+	<parameter name="fechaF" class="java.util.Date"/>
 	<queryString>
-		<![CDATA[select count(*) AS "total" , 
-
-	(select count(*) AS inasistido
-	 from cita where estado = 'inasistido' 
-	 and fecha_cita between '2017-01-01' and '2017-06-30') , 
-
-	(select count(*) AS atendido
-	 from cita where estado = 'atendido' 
-	 and fecha_cita between '2017-01-01' and '2017-06-30' ),
-
-	 (select count(*) AS pendiente
-	 from cita where estado = 'pendiente' 
-	 and fecha_cita between '2017-01-01' and '2017-06-30' )
-
-from cita where fecha_cita between '2017-01-01' and '2017-06-30' ]]>
+		<![CDATA[SELECT
+     count(*) total,
+     ( SELECT count(*) FROM cita WHERE estado = 'inasistido' and fecha_cita BETWEEN $P{fechaI} and  $P{fechaF} ) inasistido ,
+     ( SELECT count(*) FROM cita WHERE estado = 'atendido' and fecha_cita BETWEEN $P{fechaI} and $P{fechaF} ) atendido ,
+     ( SELECT count(*) FROM cita WHERE estado = 'pendiente' and fecha_cita BETWEEN $P{fechaI} and $P{fechaF} ) pendiente
+FROM
+     cita
+WHERE
+     fecha_cita BETWEEN $P{fechaI} and $P{fechaF}]]>
 	</queryString>
 	<field name="total" class="java.lang.Long"/>
-	<field name="?column?" class="java.lang.Long"/>
+	<field name="inasistido" class="java.lang.Long"/>
+	<field name="atendido" class="java.lang.Long"/>
+	<field name="pendiente" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="562" height="76" uuid="badb6e9b-c6ed-42de-bbfd-e5c0878d1f65"/>
+			</rectangle>
 			<image>
 				<reportElement x="10" y="10" width="80" height="59" uuid="7c11f5cc-8df9-4e3a-b0cb-52f805a732c9"/>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
@@ -52,50 +51,92 @@ from cita where fecha_cita between '2017-01-01' and '2017-06-30' ]]>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="172" y="56" width="150" height="20" uuid="bcab1c30-2efa-4d03-a789-4532c3eb4300"/>
+				<reportElement x="172" y="56" width="117" height="20" uuid="bcab1c30-2efa-4d03-a789-4532c3eb4300"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CANTIDAD DE CITAS]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="300" y="54" width="43" height="20" uuid="3ffd6aec-7316-4b64-aa0a-72820a0cb55d"/>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="54" width="40" height="20" uuid="d01779ec-cf74-4794-913d-da170a7bcd90"/>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="12" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="115" splitType="Stretch">
-			<textField>
-				<reportElement x="421" y="55" width="100" height="20" uuid="9a81da67-92cf-40ec-ab7f-3091af9e09ba"/>
-				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="132" y="55" width="100" height="20" uuid="cb09281b-55cc-4dba-b091-062487d7186a"/>
-				<textFieldExpression><![CDATA[$F{?column?}]]></textFieldExpression>
-			</textField>
+		<band height="146" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="11" width="562" height="116" uuid="aee8e86f-73d9-4d04-a509-9a0d5add96db"/>
+			</rectangle>
 			<staticText>
 				<reportElement x="10" y="15" width="100" height="20" uuid="bb870d0a-29f2-4135-808d-c5f4ee541fc2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[CITAS ATENDIDAS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="289" y="15" width="100" height="20" uuid="4d05f4f0-989d-4203-99a2-3812052c7586"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[CITAS PENDIENTES]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="132" y="15" width="127" height="20" uuid="139cb54f-d73e-4d72-b45b-e43d2a3783cf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[CITAS NO ASISTIDAS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="421" y="15" width="100" height="20" uuid="b1721837-ca1d-48f2-b27c-034d40e7c89d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[TOTAL CITAS]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="22" y="46" width="88" height="20" uuid="ba78fc2a-34c5-4c06-b17b-0b242ff588f5"/>
+				<textFieldExpression><![CDATA[$F{atendido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="46" width="127" height="20" uuid="7e0796bf-91d6-481b-88cd-a7ca3f58fe68"/>
+				<textFieldExpression><![CDATA[$F{inasistido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="46" width="100" height="20" uuid="a01554c4-799f-4e61-afc3-852651d10dc2"/>
+				<textFieldExpression><![CDATA[$F{pendiente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="46" width="100" height="20" uuid="273a0865-2b23-473c-8df1-aa517aace3d5"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="95" width="41" height="20" uuid="1340f443-36b0-416c-b3c9-9bec0adec04b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="51" y="95" width="100" height="20" uuid="4d8a4328-e153-4c1c-b5e2-bb90c9dd8963"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="9" splitType="Stretch"/>
+		<band height="12" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="10" splitType="Stretch"/>
+		<band height="39" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="12" splitType="Stretch"/>

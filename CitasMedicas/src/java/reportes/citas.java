@@ -65,8 +65,7 @@ public class citas extends HttpServlet {
 
             if (consulta.equals("realizadas")) {
                 Map m = new HashMap();
-
-                m.put("consulta", consulta);
+                
                 m.put("fechaI", fec);
                 m.put("fechaF", fec2);
 
@@ -79,12 +78,11 @@ public class citas extends HttpServlet {
             } else if (consulta.equals("programa")) {
 
                 Map m = new HashMap();
-
-                m.put("consulta", consulta);
+                
                 m.put("fechaI", fec);
                 m.put("fechaF", fec2);
 
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioTipo.jasper"));
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasPrograma.jasper"));
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                 JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 viewer.setTitle("Mi Reporte");
@@ -95,12 +93,11 @@ public class citas extends HttpServlet {
             else if (consulta.equals("servicio")) {
 
                 Map m = new HashMap();
-
-                m.put("consulta", consulta);
+                
                 m.put("fechaI", fec);
                 m.put("fechaF", fec2);
 
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioTipo.jasper"));
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasServicio.jasper"));
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                 JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 viewer.setTitle("Mi Reporte");

@@ -6,7 +6,7 @@
 	<parameter name="fechaI" class="java.util.Date"/>
 	<parameter name="fechaF" class="java.util.Date"/>
 	<queryString>
-		<![CDATA[SELECT *, current_date FROM evento WHERE fecha BETWEEN $P{fechaI} AND $P{fechaF} ORDER BY id_evento]]>
+		<![CDATA[SELECT * FROM evento WHERE fecha BETWEEN $P{fechaI} AND $P{fechaF} ORDER BY id_evento]]>
 	</queryString>
 	<field name="id_evento" class="java.lang.Integer"/>
 	<field name="nombre" class="java.lang.String"/>
@@ -17,12 +17,14 @@
 	<field name="director" class="java.lang.String"/>
 	<field name="creado" class="java.lang.Integer"/>
 	<field name="estado" class="java.lang.String"/>
-	<field name="date" class="java.sql.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="11" y="9" width="526" height="65" uuid="be2d11d4-94a7-4397-9cef-2d3068b49152"/>
+			</rectangle>
 			<image>
 				<reportElement x="16" y="10" width="80" height="59" uuid="92c2cc9c-fa80-4a53-b77e-438efa806853"/>
 				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
@@ -155,9 +157,9 @@
 				</textElement>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="47" y="34" width="49" height="20" uuid="8bfe95c9-97d4-4ccf-a8e5-8876c5f6f37c"/>
-				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="47" y="34" width="100" height="20" uuid="c7ad8f6e-7403-4e67-a106-c6bf191bf4c2"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
