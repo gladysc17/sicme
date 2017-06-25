@@ -121,11 +121,12 @@
 
 
         </div>    
-                <form action="/CitasMedicas/usuarios" target="_blank" method="post">
+        
+        <form action="/CitasMedicas/usuarios" target="_blank" method="post">
             <input type="hidden" value="<%=tipous%>" name="tipous" id="tipous">
             <input type="hidden" value="<%=fechaIC%>" name="fechaIC" id="fechaIC">
             <input type="hidden" value="<%=fechaIC2%>"  name="fechaIC2" id="fechaIC2">
-            <button type="submit">IMPRIMIR </button>                                               
+            <button type="submit" class="btn btn-success">IMPRIMIR </button>                                               
         </form>
 </div>
 <script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
