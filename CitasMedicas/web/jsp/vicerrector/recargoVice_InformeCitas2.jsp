@@ -13,18 +13,11 @@
 <%@page import="FACADE.FacadeEstudiante"%>
 <%@page import="FACADE.FacadeCita"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="panel panel-default-dark">
+<!DOCTYPE html>      
+        <div class="ibox float-e-margins">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 align="center">Informe</h4>
+                    <h3 align="center">INFORME</h3>
                 </div>
                 <div class="panel-body">
                     <%
@@ -163,17 +156,20 @@
                             }
                         }
                     %>
+                
+                    <form action="/CitasMedicas/citas" target="_blank" method="post">
+                        <input type="hidden" value="<%=consulta%>" name="tipous" id="tipous">
+                        <input type="hidden" value="<%=fechaIC%>" name="fechaIC" id="fechaIC">
+                        <input type="hidden" value="<%=fechaIC2%>"  name="fechaIC2" id="fechaIC2">
+                        <button type="submit" class="btn btn-success">IMPRIMIR </button>                                               
+                    </form>
+                
                 </div>
             </div>
+                
+                
         </div>
-        <div class="col-md-1"></div>
-        <script src="../js/jquery-2.1.4.min.js"></script>
-        <script src="../js/essential-plugins.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/pace.min.js"></script>
-        <script src="../js/main.js"></script>
-        <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
-    </body>
-</html>
+
+<script src="../js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>

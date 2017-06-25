@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ee172c7-9e6d-4084-a728-1d8a83ef6175">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.util.Date"/>
+	<parameter name="fechaF" class="java.util.Date" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select count(*) AS "total" , 
+
+	(select count(*) AS inasistido
+	 from cita where estado = 'inasistido' 
+	 and fecha_cita between '2017-01-01' and '2017-06-30') , 
+
+	(select count(*) AS atendido
+	 from cita where estado = 'atendido' 
+	 and fecha_cita between '2017-01-01' and '2017-06-30' ),
+
+	 (select count(*) AS pendiente
+	 from cita where estado = 'pendiente' 
+	 and fecha_cita between '2017-01-01' and '2017-06-30' )
+
+from cita where fecha_cita between '2017-01-01' and '2017-06-30' ]]>
+	</queryString>
+	<field name="total" class="java.lang.Long"/>
+	<field name="?column?" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="231" y="28" width="100" height="20" uuid="bf7f67e9-ec4d-4b6d-b021-4e1324d5612b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DSAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="32" y="15" width="100" height="20" uuid="9a81da67-92cf-40ec-ab7f-3091af9e09ba"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="15" width="100" height="20" uuid="cb09281b-55cc-4dba-b091-062487d7186a"/>
+				<textFieldExpression><![CDATA[$F{?column?}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
