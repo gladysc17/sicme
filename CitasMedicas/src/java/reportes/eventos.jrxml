@@ -1,29 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="59ecf301-b9ce-4e6a-bc2c-dacb16606327">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.util.Date"/>
+	<parameter name="fechaF" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT *, current_date FROM evento WHERE fecha BETWEEN $P{fechaI} AND $P{fechaF} ORDER BY id_evento]]>
+	</queryString>
+	<field name="id_evento" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="lugar" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="director" class="java.lang.String"/>
+	<field name="creado" class="java.lang.Integer"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="date" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="16" y="10" width="80" height="59" uuid="92c2cc9c-fa80-4a53-b77e-438efa806853"/>
+				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="137" y="30" width="273" height="20" uuid="87d561bd-c130-4de9-b0a5-8fdd98180078"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
+			</staticText>
+			<image>
+				<reportElement x="459" y="10" width="68" height="64" uuid="ff53111e-daaf-4ed9-99c0-5389005780b4"/>
+				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="151" y="10" width="255" height="20" uuid="33c540ae-6c88-41e1-9f8a-915cc7ae110b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="54" width="115" height="15" uuid="1dd94dcb-1421-4871-8cf9-3b6a6684c660"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lista de Eventos entre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="250" y="54" width="43" height="20" uuid="dab6aefc-a427-4cf6-967e-cb00eee4c45b"/>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="54" width="41" height="20" uuid="81caa648-3488-4b97-8f1c-0e0e575b6c36"/>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="293" y="54" width="12" height="20" uuid="e086c1b8-0322-40fc-b55b-2b98b0b2e360"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[y]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="2" width="22" height="20" uuid="8975a84a-2747-4d61-a6e5-2502ce1cb84f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="2" width="100" height="20" uuid="7834a7cf-8e6b-4aaa-a4fe-32cfd902d9f1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Evento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="2" width="100" height="20" uuid="02dfcad3-e482-4e94-a3e7-08876c89a4d3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="2" width="100" height="20" uuid="6b288bc1-7291-4424-bf4d-7e79d871c39a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="2" width="100" height="20" uuid="e8cc1682-0f81-4c59-baa7-79062864ea82"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="2" width="64" height="20" uuid="fd03ab2d-245a-4421-a5f9-38ffa8cf1117"/>
+				<text><![CDATA[Dirigido por:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="4" width="22" height="20" uuid="145fd428-b2fa-4364-8781-2a2061f1df1b"/>
+				<textFieldExpression><![CDATA[$F{id_evento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="4" width="100" height="20" uuid="9beb8c1c-30bd-4853-bce4-6b4b0892f8fe"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="4" width="100" height="20" uuid="754e7b2d-d9b5-4216-8ceb-e6ecc5c9d742"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="4" width="100" height="20" uuid="ff8f4a5c-1928-4d63-ac59-c718b5dd0408"/>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="4" width="100" height="20" uuid="bf4d83f8-a5a3-4589-a132-316f26633574"/>
+				<textFieldExpression><![CDATA[$F{lugar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="4" width="64" height="20" uuid="50dc32db-3ecf-448a-bc6d-c470d1798f5a"/>
+				<textFieldExpression><![CDATA[$F{director}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="34" width="32" height="20" uuid="200d9ab1-80a3-41a4-b700-252bad109952"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="47" y="34" width="49" height="20" uuid="8bfe95c9-97d4-4ccf-a8e5-8876c5f6f37c"/>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>
