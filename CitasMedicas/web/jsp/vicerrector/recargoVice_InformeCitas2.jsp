@@ -21,7 +21,8 @@
                 </div>
                 <div class="panel-body">
                     <%
-                        String consulta = request.getParameter("consulta");
+                        String consulta = request.getParameter("consulta").toString();
+                        System.out.println("consulta" +consulta);
                         String fechaIC = request.getParameter("fechaIC");
                         String fechaIC2 = request.getParameter("fechaIC2");
                         FacadeCita fc = new FacadeCita();
@@ -156,15 +157,14 @@
                             }
                         }
                     %>
-                
+                                                    
+                </div>
                     <form action="/CitasMedicas/citas" target="_blank" method="post">
-                        <input type="hidden" value="<%=consulta%>" name="tipous" id="tipous">
+                        <input type="hidden" value="<%=consulta%>" name="consulta" id="consulta">
                         <input type="hidden" value="<%=fechaIC%>" name="fechaIC" id="fechaIC">
                         <input type="hidden" value="<%=fechaIC2%>"  name="fechaIC2" id="fechaIC2">
                         <button type="submit" class="btn btn-success">IMPRIMIR </button>                                               
                     </form>
-                
-                </div>
             </div>
                 
                 
