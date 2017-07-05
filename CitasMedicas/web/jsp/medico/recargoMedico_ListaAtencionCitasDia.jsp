@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="DTO.MedicoDTO"%>
@@ -35,7 +36,7 @@
                     <tbody>
                         <%
                             FacadeCita facCita = new FacadeCita();
-                            MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
+                            UsuarioDTO med = (UsuarioDTO) session.getAttribute("medico");
                             String idico = med.getIdentificacion();
 
                             Date fecha = new Date();
