@@ -22,9 +22,6 @@
                     #medico{
                         display: none;
                     }
-                    #admin_vice{
-                        display: none;
-                    }
                 </style>
                 <div class="form-group">  
                     <div class="col-sm-4">
@@ -110,12 +107,12 @@
                                 <option value="medico"> Medico </option>      
                                 <option value="administrador"> Administrador </option>
                                 <option value="vicerrector"> Vicerrector </option>
-                                
+
                             </select>
                         </div>
                     </div>
-                    
-                    
+
+
 
                     <script>
                         function mostrarDatos() {
@@ -126,16 +123,14 @@
 
                             if (selec == "estudiante") {
                                 document.getElementById("estudiante").style.display = 'inline';
-                                document.getElementById("medico").style.display = 'none'                                
-                            }
-                            else if (selec == "medico") {
+                                document.getElementById("medico").style.display = 'none'
+                            } else if (selec == "medico") {
                                 document.getElementById("medico").style.display = 'inline';
-                                document.getElementById("estudiante").style.display = 'none'                                
-                            }                           
-                            else{
                                 document.getElementById("estudiante").style.display = 'none'
-                                document.getElementById("medico").style.display = 'none'                                
-                                
+                            } else {
+                                document.getElementById("estudiante").style.display = 'none'
+                                document.getElementById("medico").style.display = 'none'
+
                             }
 
                         }
@@ -147,38 +142,39 @@
                             <label class="control-label">Programa </label>
                             <div class="form-control"style="border-box: box-sizing;">
                                 <select id="programa" name="programa">                                        
+                                    <option></option>
                                     <option value="Administracion de Empresas">Administración de Empresas </option>
                                     <option value="Arquitectura">Arquitectura</option>
                                     <option value="Comercio Internacional">Comercio Internacional</option>
                                     <option value="Comunicaion Social">Comunicación Social</option>
                                     <option value="Contaduria ">Contaduria Pública</option>
-                                    <option>Derecho</option>
-                                    <option>Enfermeria</option>
-                                    <option>Ingenieria Agroindustrial</option>
-                                    <option>Ingenieria Agronómica</option>
-                                    <option>Ingenieria Ambiental</option>
-                                    <option>Ingenieria Biotecnológica</option>
-                                    <option>Ingenieria Civil</option>
-                                    <option>Ingenieria de Minas</option>
-                                    <option>Ingenieria de Sistemas</option>
-                                    <option>Ingenieria Electromecánica</option>
-                                    <option>Ingenieria Electrónica</option>
-                                    <option>Ingenieria Industrial</option>
-                                    <option>Ingenieria Mecánica</option>
-                                    <option>Ingenieria Pecuaria</option>
-                                    <option>Licenciatura en Matemáticas</option>
-                                    <option>Quimica Industrial</option>
-                                    <option>Seguridad y Salud en el Trabajo</option>
-                                    <option>Trabajo Social</option>                                        
-                                    <option>Tecnologia Agroindustrial</option>
-                                    <option>Tecnologia en Gestión de Procesos de Manufactura</option>
-                                    <option>Tecnologia en Gestión y Desarrollo de Productos Cerámicos</option>
-                                    <option>Tecnologia en Obras Civiles</option>
-                                    <option>Tecnologia en Procesos Industriales</option>                                        
-                                    <option>Técnico Profesional en Fabricación Industrial de Productos Cerámicos</option>
-                                    <option>Técnico Profesional en Procesamiento de Alimentos</option>
-                                    <option>Técnico Profesional en Procesos de Manufactura de Calzado y Marroquineria</option>
-                                    <option>Técnico Profesional en Producción de Cerámica Artesanal</option>
+                                    <option value="Derecho">Derecho</option>
+                                    <option value="Enfermeria">Enfermeria</option>
+                                    <option value="ngenieria Agroindustrial">Ingeniería Agroindustrial</option>
+                                    <option value="Ingenieria Agronomica">Ingeniería Agronómica</option>
+                                    <option value="Ingenieria Ambiental">Ingeniería Ambiental</option>
+                                    <option value="Ingenieria Biotecnológica">Ingeniería Biotecnológica</option>
+                                    <option value="Ingenieria Civil">Ingeniería Civil</option>
+                                    <option value="Ingenieria de Minas">Ingeniería de Minas</option>
+                                    <option value="Ingenieria de Sistemas">Ingeniería de Sistemas</option>
+                                    <option value="Ingenieria Electromecanica">Ingeniería Electromecánica</option>
+                                    <option value="Ingenieria Electronica">Ingeniería Electrónica</option>
+                                    <option value="Ingenieria Industrial">Ingeniería Industrial</option>
+                                    <option value="Ingenieria Mecanica">Ingeniería Mecánica</option>
+                                    <option value="Ingenieria Pecuaria">Ingeniería Pecuaria</option>
+                                    <option value="Licenciatura en Matematicas">Licenciatura en Matemáticas</option>
+                                    <option value="Quimica Industrial">Quimica Industrial</option>
+                                    <option value="Seguridad y Salud en el Trabajo">Seguridad y Salud en el Trabajo</option>
+                                    <option value="Trabajo Social">Trabajo Social</option>                                        
+                                    <option value="Tecnologia Agroindustrial">Tecnología Agroindustrial</option>
+                                    <option value="Tecnologia en Gestion de Procesos de Manufactura">Tecnología en Gestión de Procesos de Manufactura</option>
+                                    <option value="Tecnologia en Gestion y Desarrollo de Productos Cerámicos">Tecnología en Gestión y Desarrollo de Productos Cerámicos</option>
+                                    <option value="Tecnologia en Obras Civiles">Tecnología en Obras Civiles</option>
+                                    <option value="Tecnologia en Procesos Industriales">Tecnología en Procesos Industriales</option>                                        
+                                    <option value="Tecnico Prof. en Fabricacion Industrial de Productos Ceramicos">Técnico Prof. en Fabricación Industrial de Productos Cerámicos</option>
+                                    <option value="Tecnico Prof. en Procesamiento de Alimentos">Técnico Prof. en Procesamiento de Alimentos</option>
+                                    <option value="Tecnico Prof. en Procesos de Manufactura de Calzado y Marroquineria">Técnico Prof. en Procesos de Manufactura de Calzado y Marroquineria</option>
+                                    <option value="Tecnico Prof. en Produccion de Ceramica Artesanal">Técnico Prof. en Producción de Cerámica Artesanal</option>
                                 </select>
                             </div>        
                         </div>
@@ -205,7 +201,7 @@
                             <label class="control-label">Repetir Contraseña: </label>
                             <input type="text" class="form-control" id="contrasena" name="contrasena">
                         </div>
-                        
+
                     </div>
                 </div>
 

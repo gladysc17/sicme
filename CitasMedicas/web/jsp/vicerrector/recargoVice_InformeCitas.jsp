@@ -16,19 +16,20 @@
         </div>
         <div class="panel-body">
             <div class="form-group">
-                <label for="" class="control-label">Tipo de Consulta</label>
-                <select name="consulta" id="consulta">
-                    <option></option>
-                    <option value="realizadas">Citas realizadas</option>
-                    <option value="programa">Citas por programa</option>
-                    <option value="servicio">Citas por servicio</option>
-                </select>
-                <label>&nbsp;&nbsp; desde &nbsp;&nbsp;</label>
-                <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
-                <label>&nbsp;&nbsp; hasta &nbsp;&nbsp;</label>
-                <input type="date" id="fechaIC2" name="fechaIC2"/> &nbsp;&nbsp;&nbsp;
-                <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('vicerrector/recargoVice_InformeCitas2.jsp?consulta=' + consulta.value + '&fechaIC=' + fechaIC.value + '&fechaIC2=' + fechaIC2.value)"/>
-
+                <form action="/CitasMedicas/citas" target="_blank" method="post">
+                    <label for="" class="control-label">Tipo de Consulta</label>
+                    <select name="consulta" id="consulta">
+                        <option></option>
+                        <option value="realizadas">Citas realizadas</option>
+                        <option value="programa">Citas por programa</option>
+                        <option value="servicio">Citas por servicio</option>
+                    </select>
+                    <label>&nbsp;&nbsp; desde &nbsp;&nbsp;</label>
+                    <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;
+                    <label>&nbsp;&nbsp; hasta &nbsp;&nbsp;</label>
+                    <input type="date" id="fechaIC2" name="fechaIC2"/> &nbsp;&nbsp;&nbsp;
+                    <input type="button" class="btn btn-danger" value="CONSULTAR" onclick="cargar_form('vicerrector/recargoVice_InformeCitas2.jsp?consulta=' + consulta.value + '&fechaIC=' + fechaIC.value + '&fechaIC2=' + fechaIC2.value)"/>
+                </form>
                 <div class="panel-body" id="cargar">
 
                 </div>

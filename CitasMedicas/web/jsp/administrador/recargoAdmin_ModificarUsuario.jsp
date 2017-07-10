@@ -88,22 +88,7 @@
                                 <label class="control-label">Teléfono: </label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" value="<%=otro.getTelefono()%>" >
                             </div>                            
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-4">                            
-                                <label class="control-label">Contraseña Actual: </label>
-                                <input type="password" class="form-control" id="contra" name="contra"  value="<%=otro.getContrasena()%>">
-                            </div>
-                            <div class="col-sm-4"> 
-                                <label class="control-label">Nueva Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena1" name="contrasena">
-                            </div>
-                            <div class="col-sm-4">     
-                                <label class="control-label">Repetir Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena2" name="contrasena">
-                            </div>
-                        </div>
+                        </div>                        
 
                         <div class="clearfix">
                             <div class="col-sm-8">
