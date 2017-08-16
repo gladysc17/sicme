@@ -99,4 +99,27 @@ public class NegocioHcPsicologia {
         }
         return null;
     }
+    
+    public HcPsicologiaDTO consultarHcPsicologiaAbierta(String idUsuario) throws SQLException {
+        
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        HcPsicologiaDAO med = new HcPsicologiaDAO(co);
+
+        try {
+            return med.consultarHcPsicologiaAbierta(idUsuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
 }

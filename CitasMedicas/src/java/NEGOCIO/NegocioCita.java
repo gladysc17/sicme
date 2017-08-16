@@ -40,7 +40,7 @@ public class NegocioCita {
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);
-
+            return false;
         } finally {
 
             if (co != null) {

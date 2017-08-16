@@ -14,6 +14,9 @@
     <body>
         <%
         int idEvento = Integer.parseInt(request.getParameter("idEvento"));
+        String lugar = request.getParameter("lugar");
+        String fecha = request.getParameter("fecha");
+        String hora =  request.getParameter("hora");
         %>
         <div class="col-md-2"></div>
         
@@ -27,15 +30,15 @@
                         <input type="hidden" name="idEvento" value="<%=idEvento %>" />
                         <div>
                             <label>Fecha: &nbsp;</label>
-                            <input class="form-page" type="date" name="nueFechaEvento" size="12" required /> <br> <br>
+                            <input class="form-page" type="date" name="nueFechaEvento" size="12" required value="<%=fecha%>" /> <br> <br>
                         </div>
                         <div>
                             <label>Hora: &nbsp;&nbsp;</label>
-                            <input class="form-page" type="time" name="nueHoraEvento" min="06:00" max="20:00" required size="12" /> <br><br>
+                            <input class="form-page" type="time" name="nueHoraEvento" min="06:00" max="20:00" required size="12" value="<%=hora%>" /> <br><br>
                         </div>
                         <div>
                             <label>Lugar: &nbsp;</label>
-                            <input class="form-control" type="text" name="nuelugarEvento" required /> <br><br>
+                            <input class="form-control" type="text" name="nuelugarEvento" required value="<%=lugar%>" /> <br><br>
                         </div>
                         <div>
                             <center><input type="submit" class="btn btn-success" value="Modificar"/> </center>
@@ -46,6 +49,5 @@
         </div>
         
         <div class="col-md-2"></div>
-
     </body>
 </html>

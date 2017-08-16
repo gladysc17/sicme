@@ -39,7 +39,7 @@ public class CitaDAO {
 
         String sql = "INSERT INTO cita (servicio_cita, num_recibo_cita, fecha_cita, hora_cita, id_usuario, id_medico, estado, nombre_usuario, nombre_medico, tipousuario_cita)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+        try{
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, cita.getServicio_cita());
@@ -60,6 +60,11 @@ public class CitaDAO {
         } else {
             return false;
         }
+        
+        }catch(SQLException e){
+            return false;
+        }
+        //return false;
     }
 
     /**

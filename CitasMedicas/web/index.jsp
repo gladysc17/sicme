@@ -194,7 +194,7 @@
                                         <div class="col-sm-5">
                                             <label class="control-label">Tipo Identificación: </label>
                                             <div class="">
-                                                <select id="tipoid" name="tipoid" required>
+                                                <select id="tipoid" name="tipoid" required alt="Tipo de Identificación">
                                                     <option> </option>
                                                     <option value="T.I"> Tarjeta de Identidad </option>
                                                     <option value="C.C"> Cedula de Ciudadania </option>
@@ -205,7 +205,7 @@
                                         </div>
                                         <div class="col-sm-7">
                                             <label class="control-label">Número de documento:</label>
-                                            <input type="number" class="form-control" id="identificacion" name="identificacion" required="">
+                                            <input type="number" class="form-control" id="identificacion" name="identificacion" required="" alt="Número de documento">
                                         </div>
 
                                     </div>
@@ -214,7 +214,7 @@
                                         <div class="col-sm-5">
                                             <label class="control-label">Tipo de Usuario:</label>
                                             <div class="">
-                                                <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()" required>
+                                                <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()" required alt="Tipo de Usuario">
                                                     <option> </option>
                                                     <option value="estudiante"> Estudiante </option>
                                                     <option value="docente"> Docente </option>                                                                                          
@@ -225,7 +225,7 @@
                                         </div>
                                         <div class="col-sm-7">
                                             <label class="control-label">Código: </label>
-                                            <input type="number" class="form-control" id="codigo" name="codigo" required="">
+                                            <input type="number" class="form-control" id="codigo" name="codigo" required="" alt="Código">
                                         </div>
 
                                     </div>
@@ -251,7 +251,7 @@
                                         <div class="col-sm-12">
                                             <label class="control-label">Programa: </label>
                                             <div class="">
-                                                <select id="programa" name="programa">                                        
+                                                <select id="programa" name="programa" alt="Programa">                                        
                                                     <option></option>
                                                     <option value="Administracion de Empresas">Administración de Empresas </option>
                                                     <option value="Arquitectura">Arquitectura</option>
@@ -293,11 +293,11 @@
                                     <div class="form-group">                              
                                         <div class="col-sm-6">
                                             <label class="control-label">Nombres y Apellidos:</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre" required="">
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required="" alt="Nombres y Apellidos">
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="control-label">Correo Electrónico:</label>
-                                            <input type="email" class="form-control" id="correo" name="correo" required="">
+                                            <input type="email" class="form-control" id="correo" name="correo" required="" alt="Correo Electrónico">
                                         </div>
 
                                     </div>
@@ -305,12 +305,12 @@
                                     <div class="form-group">  
                                         <div class="col-sm-5">
                                             <label class="control-label">Fecha de Nacimiento: </label>
-                                            <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required="">
+                                            <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required="" alt="Fecha de Nacimiento">
                                         </div>                    
                                         <div class="col-sm-3">
                                             <label class="control-label">Género: </label>
                                             <div class="form-control" style="border: transparent">
-                                                <select id="genero" name="genero">
+                                                <select id="genero" name="genero" alt="Género">
                                                     <option></option>
                                                     <option value="F"> Femenino </option>
                                                     <option value="M"> Masculino </option>
@@ -319,9 +319,9 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label class="control-label">Estado civil: </label>
+                                            <label class="control-label">Estado Civil: </label>
                                             <div class="form-control" style="border: transparent">
-                                                <select name="estadocivil" id="estadocivil">
+                                                <select name="estadocivil" id="estadocivil" alt="Estado Civil">
                                                     <option></option>
                                                     <option value="Soltero(a)"> Soltero(a) </option>
                                                     <option value="Casado(a)"> Casado(a) </option>
@@ -336,23 +336,23 @@
 
                                         <div class="col-sm-6">
                                             <label class="control-label">Dirección: </label>
-                                            <input type="text" class="form-control" id="direccion" name="direccion" required="">
+                                            <input type="text" class="form-control" id="direccion" name="direccion" required="" alt="Dirección">
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="control-label">Teléfono: </label>
-                                            <input type="text" class="form-control" id="telefono" name="telefono" required="">
+                                            <input type="text" class="form-control" id="telefono" name="telefono" required="" alt="Teléfono">
                                         </div>  
 
                                         <div class="form-group">   
 
                                             <div class="col-sm-6">
                                                 <label class="control-label">Contraseña: </label>
-                                                <input type="password" class="form-control" id="contrasena" name="contrasena" required="">
+                                                <input type="password" class="form-control" id="contrasena" name="contrasena" required onkeyup="validatePassword();" alt="Contraseña">
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <label class="control-label">Repetir Contraseña: </label>
-                                                <input type="password" class="form-control" id="contrasena2" name="contrasena1" required="">
+                                                <input type="password" class="form-control" id="contrasena2" name="contrasena1" required onkeyup="validatePassword();" alt="Repetir Contraseña">
                                             </div>
                                         </div>
 
@@ -365,7 +365,7 @@
                                     <div class="clearfix">
                                         <div class="col-sm-12">
                                             <label class="control-label"> </label>
-                                            <input class="btn btn-success btn-block" type="submit" value="REGISTRAR">
+                                            <input class="btn btn-success btn-block" type="button" value="REGISTRAR" onclick="validate();">
 
                                         </div>
                                         <br><br>
@@ -378,6 +378,110 @@
                         </div>                        
                     </div>
                 </div>
+                
+                <script>
+                    function validate(){
+                        
+                        var tipoIdElm = document.getElementById("tipoid");
+                        var identificacionElm = document.getElementById("identificacion");
+                        var tipoUsuarioElm = document.getElementById("tipousuario");
+                        var codigoElm = document.getElementById("codigo");
+                        var programaElm = document.getElementById("programa"); // depende del tipo usuario
+                        var nombreElm = document.getElementById("nombre");
+                        var correoElm = document.getElementById("correo");
+                        var fechaNacimientoElm = document.getElementById("fechanacimiento");
+                        var generoElm = document.getElementById("genero");
+                        var estadoCivilElm = document.getElementById("estadocivil");
+                        var direccionElm = document.getElementById("direccion");
+                        var telefonoElm = document.getElementById("telefono");                      
+                        var password1 = document.getElementById("contrasena");
+                        var password2 = document.getElementById("contrasena2");
+                        
+                        if(!validateFieldNull(tipoIdElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(identificacionElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(tipoUsuarioElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(codigoElm)){
+                            return;
+                        }
+                        if(tipoUsuarioElm.options[tipoUsuarioElm.selectedIndex].value === "estudiante" ){
+                            if(!validateFieldNull(programaElm)){
+                                return;
+                            }
+                        }
+                        if(!validateFieldNull(nombreElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(correoElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(fechaNacimientoElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(generoElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(estadoCivilElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(direccionElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(telefonoElm)){
+                            return;
+                        }
+                        if(!validateFieldNull(password1)){
+                            return;
+                        }
+                        if(!validateFieldNull(password2)){
+                            return;
+                        }
+                        
+                        if(password1.value != password2.value){
+                            alert("No se ha validado correctamente la contraseña");
+                            return;
+                        }else{                            
+                            document.form.submit();
+                        }
+                    }
+                    
+                    //function validateFieldNull(elemento){ 
+                        
+                      //  if(elemento.value === ""){
+                        //    alert("El campo " + elemento.name + " debe tener valor");
+                          //  elemento.focus();
+                            //return false;
+                        //}
+                        //return true;
+                    //}
+                    
+                    function validatePassword(){
+                        
+                        var password1 = document.getElementById("contrasena");
+                        var password2 = document.getElementById("contrasena2");
+                        
+                        if(password1.value == "" && password2.value == ""){
+                            password1.style.background = 'white';
+                            password2.style.background = 'white';
+                        }
+                        
+                        if((password1.value != password2.value)){                            
+                            password1.style.background = '#FF4A4A';
+                            password2.style.background = '#FF4A4A';
+                        }
+                        
+                        if((password1.value == password2.value) && password1.value != ""){                         
+                            password1.style.background = '#13F926';
+                            password2.style.background = '#13F926';
+                        }
+                    }
+                </script>
+                
             </div>
             <ul class="pgwSlider">
 
@@ -411,7 +515,7 @@
 
                             <div class="row equal-height-columns margin-bottom-10">
 
-                                <div class="container">
+                               <div class="container">
                                     <ul class="row block-grid-v2">
                                         <%
                                             FacadeEvento fe = new FacadeEvento();
@@ -448,7 +552,7 @@
                                     </ul>
                                     <a href="index.jsp" class="btn-u btn-u-sm pull-right tooltips" data-toggle="tooltip" data-placement="left" data-original-title="Ingresar a Calendario de Eventos">Ver
                                         más <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-                                </div>
+                                </div> 
 
                             </div>
 

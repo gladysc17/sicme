@@ -91,11 +91,11 @@ public class HcPsicologiaDAO {
     
      public HcPsicologiaDTO consultarHcPsicologia(String id_usuario, int id_cita ) throws SQLException {        
         
-        String sql = "SELECT * FROM hc_psicologia WHERE idusuario_hcmed = ? AND idcita_hcmed = ?";
+        String sql = "SELECT * FROM hc_psicologia WHERE idusuario_hcpsico = ? AND idcita_hcpsico = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setString(1, id_usuario);
+        ps.setInt(1, Integer.parseInt(id_usuario));
         ps.setInt(2, id_cita);
 
         ResultSet rs = ps.executeQuery();
@@ -114,11 +114,44 @@ public class HcPsicologiaDAO {
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
         hcps.setProcesopsicoterapeutico_hcpsico(rs.getString("procesopsicoterapeutico_hcpsico"));
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
-        hcps.setSesion_hcpsico(rs.getString("sesio"));
+        hcps.setSesion_hcpsico(rs.getString("sesion"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
                        
         }
         return hcps;
     }
+     
+    public HcPsicologiaDTO consultarHcPsicologiaAbierta(String idUsuario) throws SQLException {        
+        
+        String sql = "SELECT * FROM hc_psicologia WHERE idusuario_hcpsico = ? AND sesion = 'si'";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, Integer.parseInt(idUsuario));
+        
+        ResultSet rs = ps.executeQuery();
+                
+        HcPsicologiaDTO hcps = null;
+
+        while (rs.next()) {
+        
+        hcps = new HcPsicologiaDTO();
+        
+        hcps.setId_hcpsicologia(rs.getInt("id_hcpsicologia"));
+        hcps.setIdusuario_hcpsico(rs.getInt("idusuario_hcpsico"));
+        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));
+        hcps.setGenograma_hcpsico(rs.getString("genograma_hcpsico"));
+        hcps.setHistoriafamiliar_hcpsico(rs.getString("historiafamiliar_hcpsico"));
+        hcps.setProblematicaactual_hcpsico(rs.getString("problematicaactual_hcpsico"));
+        hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
+        hcps.setProcesopsicoterapeutico_hcpsico(rs.getString("procesopsicoterapeutico_hcpsico"));
+        hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
+        hcps.setSesion_hcpsico(rs.getString("sesion"));
+        hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
+                       
+        }
+        return hcps;
+    } 
+     
     
 }

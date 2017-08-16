@@ -41,6 +41,16 @@ function nuevoAjax()
     return xmlhttp;
 }
 
+function validateFieldNull(elemento){ 
+
+    if(elemento.value === ""){
+        alert("El campo " + elemento.alt + " debe tener valor");
+        elemento.focus();
+        return false;
+    }
+    return true;
+}
+
 function cargar_form(url) {
 
     var url = url;

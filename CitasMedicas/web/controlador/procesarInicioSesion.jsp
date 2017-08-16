@@ -30,7 +30,7 @@
             if (us != null) {
                 
                 String clave = us.getContrasena();
-                
+                System.out.println("claveee -> "+clave);
                 if (clave.equals(contrasena)){
                     
                     String tipo = us.getTipo_usuario();

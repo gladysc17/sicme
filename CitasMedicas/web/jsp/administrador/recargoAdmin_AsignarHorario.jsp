@@ -18,7 +18,7 @@
             <h3 align="center"> ASIGNACIÓN DE HORARIO</h3>
         </div>
         <div class="panel-body">
-            <form action="../controlador/procesarAsignarHorario.jsp">
+            <form action="../controlador/procesarAsignarHorario.jsp" method="post" name="formAsignarHorarioMedico">
                 <div>
                     <%
                         String id = request.getParameter("ident");
@@ -30,7 +30,7 @@
                     <label> Medico:  <%=usu.getNombre()%></label>                            
                     <input type="hidden" value="<%=id%>" name="idMedico" />
                     <div>
-                        <label> Fecha: <input type="date" class="inline-group" name="fecha" size="12" /></label>
+                        <label> Fecha: <input type="date" class="inline-group" id="fechaHM" name="fecha" size="12" /></label>
                     </div>
                     <div>
                         <div>
@@ -90,12 +90,46 @@
                         </div>
                         <div class="col-sm-12">
                             <br>
-                            <input type="submit" class="btn btn-success" value="Registrar Horario"/>
+                            <input type="button" class="btn btn-success" value="Registrar Horario" onclick="validateForm();"/>
                         </div>
-                        </form>
+                        
 
                     </div>
                 </div>
+            </form>
+                        <script>
+                            function validateForm(){
+                               
+                                var fechaHM = document.getElementById("fechaHM");
+                                
+                                if(fechaHM.value == ""){
+                                    alert("Debe seleccionar la fecha para la asignación del horario");
+                                    return;
+                                }
+                                
+                                if(validarCheckHorario() === false){
+                                    return;
+                                }
+                            }
+                            
+                            function validarCheckHorario(){
+                                var checksHora = document.getElementsByName("hora");
+                                var cont = 0;
+                                
+                                for(var i=0; i < checksHora.length; i++){
+                                    if(checksHora[i].checked){
+                                        cont = cont + 1;
+                                    }            
+                                }
+                                
+                                if(cont === 0){
+                                    alert("No se han seleccionado horas para asignar");
+                                    return false;
+                                }else{
+                                    document.formAsignarHorarioMedico.submit();
+                                }
+                            }
+                        </script>
         </div>
     </div>
 </div>

@@ -33,8 +33,13 @@
             
             String motivoconsulta_hcpsico = "";
             
-            for (int i = 0; i < motivos.length; i++) {                
-                motivoconsulta_hcpsico = motivoconsulta_hcpsico + motivos[i] + ", ";                                    
+            for (int i = 0; i < motivos.length; i++) {
+                if(i != (motivos.length - 1)){
+                    motivoconsulta_hcpsico = motivoconsulta_hcpsico + motivos[i] + ", ";
+                }else{
+                    motivoconsulta_hcpsico = motivoconsulta_hcpsico + motivos[i];
+                }
+                
             }            
                     
         HcPsicologiaDTO psico = new HcPsicologiaDTO(idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion_hcpsico, id_cita);

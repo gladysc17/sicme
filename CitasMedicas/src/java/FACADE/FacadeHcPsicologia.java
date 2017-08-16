@@ -26,4 +26,8 @@ public class FacadeHcPsicologia {
     public HcPsicologiaDTO consultarHCPsicologia(String id_usuario, int id_cita) throws SQLException {
         return new NegocioHcPsicologia().consultarHcPsicologia(id_usuario, id_cita);
     }
+    
+    public HcPsicologiaDTO consultarHCPsicologiaAbierta(String idUsuario) throws SQLException{
+        return new NegocioHcPsicologia().consultarHcPsicologiaAbierta(idUsuario);
+    }
 }
