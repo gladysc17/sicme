@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.CitaDTO"%>
+<%@page import="FACADE.FacadeCita"%>
 <%@page import="java.util.List"%>
 <%@page import="FACADE.FacadeSesion"%>
 <%@page import="DTO.SesionDTO"%>
@@ -25,19 +27,24 @@
     <body>
         <%            
             FacadeHcPsicologia facadeHcPsicologia = new FacadeHcPsicologia();
+            FacadeCita facadeCita = new FacadeCita();
             FacadeSesion facadeSesion = new FacadeSesion();
            
             String id = request.getParameter("id");
             int idcita = Integer.parseInt(request.getParameter("idcita"));
+            
+            CitaDTO citaDTO = facadeCita.consultarCitasId(idcita);
                                         
             System.out.println("id -> "+id);
-            System.out.println("idCita -> "+idcita);
+            System.out.println("idCitaaaaa -> "+idcita);
 
             HcPsicologiaDTO hcPsicologia = facadeHcPsicologia.consultarHCPsicologiaAbierta(id);
             List<SesionDTO> sesiones = null;
             int numSesionActual = 1;
-            String motivos[] = null;          
+            String motivos[] = null;   
+            String urlAction = "../controlador/procesarRegistroHistoriaPsicologia.jsp";
             if(hcPsicologia != null){
+                urlAction = "../controlador/procesarRegistroSesionHCS.jsp";
                 sesiones = facadeSesion.consultarSesionesPorHcPsicologia(hcPsicologia.getId_hcpsicologia());
                 if(!sesiones.isEmpty()){
                     System.out.println("tamaño -> "+sesiones.size());
@@ -47,7 +54,7 @@
             }else{
                 System.out.println("es null!!!");
             }
-                                        
+                   System.out.println("URL ACTION --> "+urlAction);                     
             FacadeUsuario facUsu = new FacadeUsuario();
             UsuarioDTO u = facUsu.consultarUsuarioPorId(id);
 
@@ -111,7 +118,7 @@
                                 }
                             %>
                         </ul>
-                        <form  action="../controlador/procesarRegistroHistoriaPsicologia.jsp" method="post"> 
+                        <form  action=<%=urlAction%> method="post"> 
                             <div class="tab-content">
                                 <div class="tab-pane active" id="1a">
                                    
@@ -334,16 +341,26 @@
                                         <h4> SESIÓN N°: <%=numSesionActual%>  </h4><br>
                                         <h4> DIAGNÓSTICO  </h4>
                                         
-                                        <textarea rows="5" cols="100" id="proceso" name="proceso"></textarea>                                      
+                                        <textarea rows="5" cols="100" id="diagnosticoSesion" name="diagnosticoSesion"></textarea>                                      
 
                                         <%if(numSesionActual < 5){%>
                                             <h3>Sesión adicional : 
-                                                <select name="sesion" id="sesion" required>
+                                                <select name="sesionAdicionalSesion" id="sesionAdicionalSesion" required>
                                                     <option value="si"> SI </option>
                                                     <option value="no"> NO </option>
                                                 </select>
                                             </h3> 
+                                        <%}else{%>
+                                            <input type="hidden" name="sesionAdicionalSesion" value="no"/>
                                         <%}%>
+                                        
+                                        <input type="hidden" name="horaSesion" value="<%=citaDTO.getHora_cita()%>"/>
+                                        <input type="hidden" name="fechaSesion" value="<%=citaDTO.getFecha_cita()%>"/>
+                                        <input type="hidden" name="idCitaSesion" value="<%=citaDTO.getId_cita()%>"/>
+                                        <input type="hidden" name="idHcPsicologiaSesion" value="<%=hcPsicologia.getId_hcpsicologia()%>"/>
+                                        <input type="hidden" name="numSesion" value="<%=numSesionActual%>"/>                                      
+                                        <input type="hidden" name="idUsuarioSesion" value="<%=citaDTO.getId_usuario()%>"/>
+                                        
                                         <div class="clearfix">
                                             <div class="col-md-4">                                                
                                                 <input class="btn btn-success btn-block" type="submit" value="GUARDAR">

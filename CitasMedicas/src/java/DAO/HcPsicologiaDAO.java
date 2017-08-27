@@ -152,6 +152,23 @@ public class HcPsicologiaDAO {
         }
         return hcps;
     } 
-     
+    
+    public boolean actualizarEstadoSesionAdicional(int idHcPsicologia, String sesionAdicional) throws SQLException {
+
+        String sql = "UPDATE hc_psicologia SET sesion = ? WHERE id_hcpsicologia = ? ";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, sesionAdicional);
+        ps.setInt(2, idHcPsicologia);
+
+        int resultado = ps.executeUpdate();
+
+        if (resultado == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }   
     
 }

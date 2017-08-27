@@ -122,4 +122,32 @@ public class NegocioHcPsicologia {
         }
         return null;
     }
+    
+    public boolean actualizarEstadoSesionAdicional(int idHcPsicologia, String sesionAdicional) throws SQLException {
+        boolean rta = false;
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        HcPsicologiaDAO hcPsicologiaDAO = new HcPsicologiaDAO(co);
+
+        try {
+
+            rta = hcPsicologiaDAO.actualizarEstadoSesionAdicional(idHcPsicologia, sesionAdicional);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHcPsicologia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return rta;
+    }
 }

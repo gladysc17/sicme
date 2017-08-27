@@ -30,4 +30,8 @@ public class FacadeHcPsicologia {
     public HcPsicologiaDTO consultarHCPsicologiaAbierta(String idUsuario) throws SQLException{
         return new NegocioHcPsicologia().consultarHcPsicologiaAbierta(idUsuario);
     }
+    
+    public boolean actualizarEstadoSesionAdicional(int idHcPsicologia, String sesionAdicional) throws SQLException{
+        return new NegocioHcPsicologia().actualizarEstadoSesionAdicional(idHcPsicologia, sesionAdicional);
+    }
 }
