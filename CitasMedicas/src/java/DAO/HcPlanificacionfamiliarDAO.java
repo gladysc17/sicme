@@ -15,11 +15,11 @@ import DTO.Hc_planificacionfamiliarDTO;
  *
  * @author LEGADO
  */
-public class Hc_planificacionfamiliarDAO {
+public class HcPlanificacionfamiliarDAO {
     
     private Connection con;
 
-    public Hc_planificacionfamiliarDAO(Connection con) {
+    public HcPlanificacionfamiliarDAO(Connection con) {
         this.con = con;
     }
     

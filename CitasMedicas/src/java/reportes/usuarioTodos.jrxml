@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e31feba6-3339-4cc7-9726-ffe7bd72ec6c">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="629"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -81,12 +81,12 @@ ORDER BY nombre]]>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
 			<image>
-				<reportElement x="16" y="5" width="80" height="59" uuid="01d359de-3984-4fce-8954-816a20aa2845"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+				<reportElement x="665" y="14" width="50" height="50" uuid="374935c6-8c19-4e02-a745-ea4cef6f547b"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\build\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="686" y="5" width="53" height="59" uuid="ea3af414-ca7c-4705-b3b6-514fa4bce3d6"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+				<reportElement x="27" y="14" width="50" height="50" uuid="c0b324e6-086f-453a-91c5-b0df0a868eb2"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

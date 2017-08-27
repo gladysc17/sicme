@@ -87,7 +87,7 @@ public class NegocioEvento {
         return ls;        
     }
     
-    public List<EventoDTO> listarMedicoAdm(int ident) {
+    public List<EventoDTO> listarMedicoAdm(String ident) {
         
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

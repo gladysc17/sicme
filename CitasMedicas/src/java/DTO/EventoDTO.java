@@ -18,13 +18,13 @@ public class EventoDTO {
     private String lugarEvento;
     private String descrEvento;
     private String director;
-    private int creado;
+    private String creado;
     private String estado;
     
     public EventoDTO() {
     }
 
-    public EventoDTO(int idEvento, String nombreEvento, String fechaEvento, String horaEvento, String lugarEvento, String descrEvento, String director, int creado, String estado) {
+    public EventoDTO(int idEvento, String nombreEvento, String fechaEvento, String horaEvento, String lugarEvento, String descrEvento, String director, String creado, String estado) {
         this.idEvento = idEvento;
         this.nombreEvento = nombreEvento;
         this.fechaEvento = fechaEvento;
@@ -36,7 +36,7 @@ public class EventoDTO {
         this.estado = estado;
     }
 
-    public EventoDTO(String nombreEvento, String fechaEvento, String horaEvento, String lugarEvento, String descrEvento, String director, int creado, String estado) {
+    public EventoDTO(String nombreEvento, String fechaEvento, String horaEvento, String lugarEvento, String descrEvento, String director, String creado, String estado) {
         this.nombreEvento = nombreEvento;
         this.fechaEvento = fechaEvento;
         this.horaEvento = horaEvento;
@@ -49,11 +49,11 @@ public class EventoDTO {
     
     
 
-    public int getCreado() {
+    public String getCreado() {
         return creado;
     }
 
-    public void setCreado(int creado) {
+    public void setCreado(String creado) {
         this.creado = creado;
     }
 
@@ -119,6 +119,11 @@ public class EventoDTO {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    @Override
+    public String toString() {
+        return "EventoDTO{" + "idEvento=" + idEvento + ", nombreEvento=" + nombreEvento + ", fechaEvento=" + fechaEvento + ", horaEvento=" + horaEvento + ", lugarEvento=" + lugarEvento + ", descrEvento=" + descrEvento + ", director=" + director + ", creado=" + creado + ", estado=" + estado + '}';
     }
     
     

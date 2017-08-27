@@ -46,7 +46,7 @@
                     return;
                 }
                 
-                cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identificacionElm.value + '&servicio=' + servicioElm.value)
+                cargar_form('administrador/recargoAdmin_ConsultarHistoriaClinica2.jsp?identf=' + identificacionElm.value + '&servicio=' + servicioElm.value);
             }
         </script>
 

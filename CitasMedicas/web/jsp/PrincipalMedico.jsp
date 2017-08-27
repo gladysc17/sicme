@@ -46,7 +46,7 @@
                     <div class="parallax-quote-in" style="padding: 0px;">
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-5">
-                                <a href="#">
+                                <a href="../index.jsp">
                                     <img id="logo-header" src="../imagenes/logo_ufps.png" alt="Logo UFPS">
                                 </a>
                             </div>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="menu-responsive">                
-                <a class="logo logo-responsive" href="../../index.html">
+                <a class="logo logo-responsive" href="../index.jsp">
                     <img src="../imagenes/horizontal_logo_pequeno.png" alt="Logo">
                 </a>                  
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">

@@ -158,6 +158,11 @@ public class UsuarioDTO {
         this.contrasena = contrasena;
     }
 
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" + "identificacion=" + identificacion + ", tipo_identificacion=" + tipo_identificacion + ", codigo=" + codigo + ", nombre=" + nombre + ", correo=" + correo + ", fecha_nacimiento=" + fecha_nacimiento + ", edad=" + edad + ", genero=" + genero + ", estado_civil=" + estado_civil + ", direccion=" + direccion + ", telefono=" + telefono + ", tipo_usuario=" + tipo_usuario + ", fecharegistro=" + fecharegistro + ", contrasena=" + contrasena + '}';
+    }
+
     
     
     

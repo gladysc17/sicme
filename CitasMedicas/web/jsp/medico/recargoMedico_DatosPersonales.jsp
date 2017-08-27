@@ -24,7 +24,7 @@
                 <div class="panel-body">  
                     <form action="../controlador/procesarModificarUsuario.jsp" method="post">
                         <%
-                            MedicoDTO med = (MedicoDTO) session.getAttribute("medico");
+                            UsuarioDTO med = (UsuarioDTO) session.getAttribute("medico");
                             if (med == null) {
 
                                 response.sendRedirect("../../index.jsp");

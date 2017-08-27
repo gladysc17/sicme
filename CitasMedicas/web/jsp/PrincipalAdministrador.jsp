@@ -189,7 +189,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <i class="fa fa-address-book-o fa-5x" aria-hidden="true"></i> <br><br>
-                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica1.jsp')"/>
+                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica.jsp')"/>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i> <br><br>

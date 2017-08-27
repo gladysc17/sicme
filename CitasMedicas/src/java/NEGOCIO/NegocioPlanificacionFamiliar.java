@@ -6,7 +6,7 @@
 package NEGOCIO;
 
 import DTO.Hc_planificacionfamiliarDTO;
-import DAO.Hc_planificacionfamiliarDAO;
+import DAO.HcPlanificacionfamiliarDAO;
 import util.ConexionPostgres;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ public class NegocioPlanificacionFamiliar {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         
-        Hc_planificacionfamiliarDAO pf = new Hc_planificacionfamiliarDAO(co);
+        HcPlanificacionfamiliarDAO pf = new HcPlanificacionfamiliarDAO(co);
         
         try{
             rta = pf.registrarHCplanifamiliar(plan);

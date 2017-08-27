@@ -26,12 +26,8 @@ WHERE
 	<title>
 		<band height="79" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="562" height="76" uuid="badb6e9b-c6ed-42de-bbfd-e5c0878d1f65"/>
+				<reportElement x="0" y="0" width="50" height="50" uuid="badb6e9b-c6ed-42de-bbfd-e5c0878d1f65"/>
 			</rectangle>
-			<image>
-				<reportElement x="10" y="10" width="80" height="59" uuid="7c11f5cc-8df9-4e3a-b0cb-52f805a732c9"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="132" y="30" width="273" height="20" uuid="26c39bd6-4c75-404b-a779-bc642be7815b"/>
 				<textElement textAlignment="Center">
@@ -46,10 +42,6 @@ WHERE
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="453" y="10" width="68" height="64" uuid="c143723b-77f1-4eb8-baae-0a7725ccabe3"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="172" y="56" width="117" height="20" uuid="bcab1c30-2efa-4d03-a789-4532c3eb4300"/>
 				<textElement>
@@ -65,6 +57,14 @@ WHERE
 				<reportElement x="365" y="54" width="40" height="20" uuid="d01779ec-cf74-4794-913d-da170a7bcd90"/>
 				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="22" y="10" width="50" height="50" isPrintWhenDetailOverflows="true" uuid="aa68354e-6903-45be-ba54-0546e022bae2"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="482" y="10" width="50" height="50" uuid="d133fedf-9e9b-4bdf-a19f-094284d37c4d"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

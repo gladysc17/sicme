@@ -17,6 +17,7 @@
         String lugar = request.getParameter("lugar");
         String fecha = request.getParameter("fecha");
         String hora =  request.getParameter("hora");
+        String nombre =  request.getParameter("nombre");
         %>
         <div class="col-md-2"></div>
         
@@ -28,6 +29,11 @@
                 <div class="panel-body">
                     <form action="../controlador/procesarModificarEvento.jsp" method="post">
                         <input type="hidden" name="idEvento" value="<%=idEvento %>" />
+                        <div>
+                            <label>Nombre: "<%=nombre%>"</label>
+                            
+                        </div>
+                        
                         <div>
                             <label>Fecha: &nbsp;</label>
                             <input class="form-page" type="date" name="nueFechaEvento" size="12" required value="<%=fecha%>" /> <br> <br>

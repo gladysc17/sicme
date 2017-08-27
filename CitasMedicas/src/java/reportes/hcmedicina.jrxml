@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="641ed272-2ec8-4bff-b67b-c4aae196939f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1051"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
@@ -92,10 +92,6 @@ WHERE     HC.idcita_hcmed = $P{idcita}]]>
 				<reportElement x="133" y="50" width="294" height="15" uuid="f6b78dd6-101b-4254-9ba7-eb3d14990205"/>
 				<text><![CDATA[DIVISION DE SERVICIOS ASISTENCIALES Y DE LA SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="21" y="15" width="50" height="50" uuid="3fd2a1ff-0ca8-4f54-b4e8-0fffc38120f0"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\img\\ufps.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="466" y="15" width="100" height="20" uuid="1e6ccc83-e8e7-478d-9c67-b5fcf8757042"/>
 				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
@@ -104,6 +100,10 @@ WHERE     HC.idcita_hcmed = $P{idcita}]]>
 				<reportElement x="466" y="42" width="100" height="20" uuid="5b091622-8538-4a26-8410-29a4487345e5"/>
 				<textFieldExpression><![CDATA[$F{hora_cita}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="19" y="18" width="50" height="50" uuid="24b91c9a-ab02-49a7-8902-79a5926db52c"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

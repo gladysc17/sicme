@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <div class="ibox float-e-margins">    
     <%
-        int idMedico = Integer.parseInt(request.getParameter("iddMedico"));
+        String idMedico = request.getParameter("iddMedico");        
     %>
 
     <div class="panel panel-default">
@@ -38,7 +38,7 @@
                     <tbody>
                         <%
                             FacadeEvento fe = new FacadeEvento();
-                            List<EventoDTO> ls = fe.listadoEventosAdm(idMedico);
+                            List<EventoDTO> ls = fe.listadoEventosAdm("000"+idMedico);
                             int i = 1;
                             for (EventoDTO e : ls) {
                         %>
@@ -50,7 +50,7 @@
                             <td><%=e.getLugarEvento()%></td>
                             <td><%=e.getDescrEvento()%></td>
                             <td><%=e.getDirector()%></td>
-                            <td> <input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('medico/recargoMedico_ModificarEvento.jsp?idEvento=' +<%=e.getIdEvento()%>)" /> </td>
+                            <td> <input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('medico/recargoMedico_ModificarEvento.jsp?idEvento=<%=e.getIdEvento()%>&fecha=<%=e.getFechaEvento()%>&lugar=<%=e.getLugarEvento()%>&nombre=<%=e.getNombreEvento()%>&hora=<%=e.getHoraEvento()%>')" /> </td>
                         </tr>
                         <%
                                 i++;

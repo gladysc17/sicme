@@ -39,7 +39,7 @@ public class EventoDAO {
         ps.setString(4, evento.getLugarEvento());
         ps.setString(5, evento.getDescrEvento());
         ps.setString(6, evento.getDirector());  
-        ps.setInt(7, evento.getCreado());
+        ps.setString(7, evento.getCreado());
         ps.setString(8, evento.getEstado());
         
         int res = ps.executeUpdate();
@@ -123,7 +123,7 @@ public class EventoDAO {
             eve.setLugarEvento(rs.getString(5));
             eve.setDescrEvento(rs.getString(6));
             eve.setDirector(rs.getString(7));
-            eve.setCreado(rs.getInt(8));
+            eve.setCreado(rs.getString(8));
             eve.setEstado(rs.getString(9));
             
             ls.add(eve);
@@ -137,14 +137,14 @@ public class EventoDAO {
         return ls;
     }
     
-    public List<EventoDTO> listarEvento(int identificacion) throws SQLException{
+    public List<EventoDTO> listarEvento(String identificacion) throws SQLException{
         
         List<EventoDTO> ls = new ArrayList<EventoDTO>();
         String sql = "select * from evento where creado = ?";
         
         PreparedStatement ps = con.prepareStatement(sql);
         
-        ps.setInt(1, identificacion);
+        ps.setString(1, identificacion);
         
         ResultSet rs = ps.executeQuery();
         
@@ -157,7 +157,7 @@ public class EventoDAO {
             eve.setLugarEvento(rs.getString(5));
             eve.setDescrEvento(rs.getString(6));
             eve.setDirector(rs.getString(7));
-            eve.setCreado(rs.getInt(8));
+            eve.setCreado(rs.getString(8));
             eve.setEstado(rs.getString(9));
             ls.add(eve);
         }
@@ -190,7 +190,7 @@ public class EventoDAO {
         ps.setInt(1, id);
         
         ResultSet rs = ps.executeQuery();
-        EventoDTO eve = new EventoDTO();
+        EventoDTO eve = null;
         if(rs.next()){
             eve.setIdEvento(rs.getInt(1));
             eve.setNombreEvento(rs.getString(2));
@@ -199,7 +199,7 @@ public class EventoDAO {
             eve.setLugarEvento(rs.getString(5));
             eve.setDescrEvento(rs.getString(6));
             eve.setDirector(rs.getString(7));
-            eve.setCreado(rs.getInt(8));
+            eve.setCreado(rs.getString(8));
             eve.setEstado(rs.getString(9));
         }
         
@@ -225,7 +225,7 @@ public class EventoDAO {
             eve.setLugarEvento(rs.getString(5));
             eve.setDescrEvento(rs.getString(6));
             eve.setDirector(rs.getString(7));
-            eve.setCreado(rs.getInt(8));
+            eve.setCreado(rs.getString(8));
             eve.setEstado(rs.getString(9));
             ls.add(eve);
         }

@@ -128,7 +128,7 @@
                 <div class="wrapper wrapper-content" id="recargo">
                     <div class="row animated fadeInRight">
                         
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="ibox float-e-margins" >
                                 <div class="ibox-title" >
                                     <h3 align="center"> CITAS MEDICAS</h3>
@@ -137,13 +137,17 @@
                                     <div class="ibox-content" align="center">                                        
                                         <div class="user-button">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <i class="fa fa-address-book-o fa-5x" aria-hidden="true"></i> <br><br>
                                                     <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVA CITA" onclick="cargarForm('usuario/recargoUsuario_CrearCitaMedica1.jsp')"/>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i> <br><br>
                                                     <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CONSULTAR CITA" onclick="cargarForm('usuario/recargoUsuario_ConsultarCitaMedica.jsp')"/>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <i class="fa fa-file-o fa-5x" aria-hidden="true"></i> <br><br>
+                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CERTIFICADO ASISTENCIA" onclick="cargarForm('usuario/recargoUsuario_ConsultarCitaMedica.jsp')"/>
                                                 </div>
                                             </div>
                                         </div>

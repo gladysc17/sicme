@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <%
     String idmed = request.getParameter("idmed");
-    System.out.println("idmed de 4 "+idmed);
+    
     String fecha = request.getParameter("fecha");
 
     FacadeHorario fachm = new FacadeHorario();

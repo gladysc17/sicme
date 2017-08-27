@@ -348,7 +348,7 @@ public class CitaDAO {
     }
     public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
 
-        String sql = "UPDATE cita SET estado = 'no asistida' WHERE  id_cita = ?";
+        String sql = "UPDATE cita SET estado = 'inasistido' WHERE  id_cita = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
         

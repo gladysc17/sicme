@@ -24,7 +24,7 @@ public class FacadeEvento {
         return new NegocioEvento().obtenerEventoMes();
     }
     
-    public List<EventoDTO> listadoEventosAdm(int ident){
+    public List<EventoDTO> listadoEventosAdm(String ident){
         return new NegocioEvento().listarMedicoAdm(ident);
     }
     

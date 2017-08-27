@@ -6,8 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div class="col-md-1"></div>
-<div class="col-md-9 form-group">            
+<div class="ibox float-e-margins">            
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 align="center">  REGISTRO USUARIO </h2>
@@ -195,11 +194,12 @@
                     <div class="form-group">
                         <div class="col-sm-6">
                             <label class="control-label">Contraseña: </label>
-                            <input type="text" class="form-control" id="contrasena" name="contrasena">
+                            <input type="password" class="form-control" id="contrasena" name="contrasena" required onkeyup="validatePassword();" alt="Contraseña">
                         </div>
+
                         <div class="col-sm-6">
                             <label class="control-label">Repetir Contraseña: </label>
-                            <input type="text" class="form-control" id="contrasena" name="contrasena">
+                            <input type="password" class="form-control" id="contrasena2" name="contrasena1" required onkeyup="validatePassword();" alt="Repetir Contraseña">
                         </div>
 
                     </div>
@@ -209,7 +209,7 @@
                 <div class="clearfix">
                     <div class="col-sm-12">
                         <label class="control-label"> </label>
-                        <input class="btn btn-success btn-block" type="submit" value="REGISTRAR">
+                        <input class="btn btn-success btn-block" type="button" value="REGISTRAR" onclick="validate()">
 
                     </div>
                     <br><br>
@@ -219,6 +219,98 @@
             </form>
         </div>                
     </div>
+    <script>
+        function validate() {
+
+            var tipoIdElm = document.getElementById("tipoid");
+            var identificacionElm = document.getElementById("identificacion");
+            var tipoUsuarioElm = document.getElementById("tipousuario");
+            var codigoElm = document.getElementById("codigo");
+            var programaElm = document.getElementById("programa"); // depende del tipo usuario
+            var nombreElm = document.getElementById("nombre");
+            var correoElm = document.getElementById("correo");
+            var fechaNacimientoElm = document.getElementById("fechanacimiento");
+            var generoElm = document.getElementById("genero");
+            var estadoCivilElm = document.getElementById("estadocivil");
+            var direccionElm = document.getElementById("direccion");
+            var telefonoElm = document.getElementById("telefono");
+            var password1 = document.getElementById("contrasena");
+            var password2 = document.getElementById("contrasena2");
+
+            if (!validateFieldNull(tipoIdElm)) {
+                return;
+            }
+            if (!validateFieldNull(identificacionElm)) {
+                return;
+            }
+            if (!validateFieldNull(tipoUsuarioElm)) {
+                return;
+            }
+            if (!validateFieldNull(codigoElm)) {
+                return;
+            }
+            if (tipoUsuarioElm.options[tipoUsuarioElm.selectedIndex].value === "estudiante") {
+                if (!validateFieldNull(programaElm)) {
+                    return;
+                }
+            }
+            if (!validateFieldNull(nombreElm)) {
+                return;
+            }
+            if (!validateFieldNull(correoElm)) {
+                return;
+            }
+            if (!validateFieldNull(fechaNacimientoElm)) {
+                return;
+            }
+            if (!validateFieldNull(generoElm)) {
+                return;
+            }
+            if (!validateFieldNull(estadoCivilElm)) {
+                return;
+            }
+            if (!validateFieldNull(direccionElm)) {
+                return;
+            }
+            if (!validateFieldNull(telefonoElm)) {
+                return;
+            }
+            if (!validateFieldNull(password1)) {
+                return;
+            }
+            if (!validateFieldNull(password2)) {
+                return;
+            }
+
+            if (password1.value != password2.value) {
+                alert("No se ha validado correctamente la contraseña");
+                return;
+            } else {
+                document.form.submit();
+            }
+        }
+
+        function validatePassword() {
+
+            var password1 = document.getElementById("contrasena");
+            var password2 = document.getElementById("contrasena2");
+
+            if (password1.value == "" && password2.value == "") {
+                password1.style.background = 'white';
+                password2.style.background = 'white';
+            }
+
+            if ((password1.value != password2.value)) {
+                password1.style.background = '#FF4A4A';
+                password2.style.background = '#FF4A4A';
+            }
+
+            if ((password1.value == password2.value) && password1.value != "") {
+                password1.style.background = '#13F926';
+                password2.style.background = '#13F926';
+            }
+        }
+    </script>
 
 </div>
-<div class="col-md-2"></div>
+

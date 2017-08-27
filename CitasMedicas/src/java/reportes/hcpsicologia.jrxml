@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="297309a5-e6d3-4e41-9379-02bf00383023">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="0.75"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="417"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT * FROM HC_PSICOLOGIA HC 
@@ -61,8 +61,8 @@ WHERE HC.IDCITA_HCPSICO = $P{idcita}]]>
 				<text><![CDATA[DIVISION DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
 			<image>
-				<reportElement x="27" y="10" width="50" height="50" uuid="1f1bd8c8-23b2-4c10-8483-7d0983b0e0a4"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\img\\ufps.jpg"]]></imageExpression>
+				<reportElement x="36" y="3" width="77" height="57" uuid="eb5ff6b0-e424-4e64-a64b-75bca9e64a60"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\img\\ufps.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

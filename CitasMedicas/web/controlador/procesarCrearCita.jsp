@@ -30,6 +30,7 @@
             String id_usuario = request.getParameter("identf");
             String id_med = request.getParameter("prof");
             String estado = "pendiente";
+            System.out.println("identf pr: " + id_usuario);
             
             String[] parts = hora_rec.split("-");
             String hora = parts[0];

@@ -113,6 +113,7 @@ public class NegocioUsuario {
                     co.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
                 }
             }
         }
@@ -338,7 +339,8 @@ public class NegocioUsuario {
 
         String correo = usuario.getCorreo();
         String asunto = "SIGME - RECUPERAR CONTRASEÑA";
-        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + contrasena + "RECUERDE CAMBIARLA UNA VEZ INGRESE AL SISTEMA";
+        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + contrasena +  "\n" +
+                "RECUERDE CAMBIARLA UNA VEZ INGRESE AL SISTEMA";
 
         String cont = servicioEmail.getClaveEmailUsuarioEmisor();
         System.out.println("contraseña-->" + cont);

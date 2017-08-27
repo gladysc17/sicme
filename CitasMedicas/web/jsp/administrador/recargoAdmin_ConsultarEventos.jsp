@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <div class="ibox float-e-margins">
         <%
-            int idadmin = Integer.parseInt(request.getParameter("ideadmin"));
+            String idadmin = request.getParameter("ideadmin");
         %>
 
             <div class="panel panel-default">
@@ -49,7 +49,7 @@
                                     <td><%=e.getLugarEvento()%></td>
                                     <td><%=e.getDescrEvento()%></td>
                                     <td><%=e.getDirector()%></td>
-                                    <td> <input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarEvento.jsp?idEvento=<%=e.getIdEvento()%>&fecha=<%=e.getFechaEvento()%>&lugar=<%=e.getLugarEvento()%>&hora=<%=e.getHoraEvento()%>')" /> </td>
+                                    <td> <input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarEvento.jsp?idEvento=<%=e.getIdEvento()%>&fecha=<%=e.getFechaEvento()%>&lugar=<%=e.getLugarEvento()%>&nombre=<%=e.getNombreEvento()%>&hora=<%=e.getHoraEvento()%>')" /> </td>
                                 </tr>
                                 <%
                                         i++;

@@ -18,10 +18,13 @@
         String fecha = request.getParameter("nueFechaEvento");
         String horaE = request.getParameter("nueHoraEvento");
         String lugar = request.getParameter("nuelugarEvento");
-        String hora = horaE+":00";
+        System.out.println("hora "+horaE);
+        if(horaE.length() < 8){
+            horaE = horaE+":00";
+        }        
         FacadeEvento fe = new FacadeEvento();
         
-        boolean rta = fe.modificarEvento(idEvento, fecha, hora, lugar);
+        boolean rta = fe.modificarEvento(idEvento, fecha, horaE, lugar);
         if(rta){
         %>
         <script type="text/javascript">
@@ -35,3 +38,4 @@
         %>
     </body>
 </html>
+

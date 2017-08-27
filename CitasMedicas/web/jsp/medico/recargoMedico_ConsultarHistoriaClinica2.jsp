@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
+<%@page import="FACADE.FacadeUsuario"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.sun.javafx.scene.control.skin.VirtualFlow.ArrayLinkedList"%>
 <%@page import="DTO.HcPsicologiaDTO"%>
@@ -21,172 +23,240 @@
             <h2 align="center">  Lista de Historia Clinica </h2>
         </div>                        
         <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
-                    <thead>
-                        <tr>
+            <%
+                int id = Integer.parseInt(request.getParameter("identf"));
+                String ide = request.getParameter("identf");
+                String servicio = request.getParameter("servicio");
 
-                            <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
-                            <th>Servicio</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Ver Historia Clinca</th> 
+                FacadeUsuario faca = new FacadeUsuario();
 
-                        </tr>
-                    </thead> 
+                UsuarioDTO u = faca.consultarUsuarioPorId(ide);
 
-                    <tbody>      
-                        <%
-                            int id = Integer.parseInt(request.getParameter("identf"));
-                            String servicio = request.getParameter("servicio");
+                if (u == null) {
 
-                            if (servicio.equals("medicinageneral")) {
+            %>
 
-                                FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
-                                List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
-                                if (hc.isEmpty()) {
+            <h2>Usuario No encontrado </h2>
 
-                        %>
-                    <h1> No cuenta con Historia clinica para este servicio </h1>
-                    <%                                } else {
-                        for (int i = 0; i < hc.size(); i++) {
+            <form  action="/CitasMedicas/historia" method="post" target="_blank">
 
-                            FacadeCita fc = new FacadeCita();
-                            int idcita = hc.get(i).getIdcita_hcmed();
-                            CitaDTO ci = fc.consultarCitasId(idcita);
+                <%        } else if (servicio.equals("medicinageneral")) {
 
-                            String nombre = ci.getNombre_usuario();
-                            String fecha = ci.getFecha_cita();
-                            String hora = ci.getHora_cita();
+                    FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
+                    List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
+                    if (hc.isEmpty()) {
 
-                            System.out.println("idcitaderecargo: " + idcita);
-                    %>
+                %>
+                <h2> No cuenta con Historia clinica para este servicio </h2>
 
-                    <input type="hidden" >    
-                    <tr  role="row" class="odd">                                     
-                        <td class="sorting_asc"><%=nombre%></td>
-                        <td><%=servicio%></td>
-                        <td><%=fecha%></td>
-                        <td><%=hora%></td>  
-                        <td> <input type="radio" name="idcita" id="idcita" value="<%=idcita%>" required> <button type="submit">Ver</button>  </td> 
+                <%  } else { %>
 
-                    </tr> 
-                    <%
+                <div class="table-responsive">
+                    <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Ver Historia Clinca</th> 
+                            </tr>
+                        </thead> 
+
+                        <tbody>      
+                            <%
+                                for (int i = 0; i < hc.size(); i++) {
+
+                                    FacadeCita fc = new FacadeCita();
+                                    int idcita = hc.get(i).getIdcita_hcmed();
+                                    CitaDTO ci = fc.consultarCitasId(idcita);
+
+                                    String nombre = ci.getNombre_usuario();
+                                    String fecha = ci.getFecha_cita();
+                                    String hora = ci.getHora_cita();
+
+                                    System.out.println("idcitaderecargo: " + idcita);
+                            %>
+
+                            <tr  role="row" class="odd">                                     
+                                <td class="sorting_asc"><%=nombre%></td>
+                                <td><%=servicio%></td>
+                                <td><%=fecha%></td>
+                                <td><%=hora%></td>  
+                                <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
+                            </tr> 
+                            <%
+                                    }
                                 }
-                            }
-                        } else if (servicio.equals("psicologia")) {
 
-                                FacadeHcPsicologia fac = new FacadeHcPsicologia();
-                                List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
-                                if (hc.isEmpty()) {
+                            %>
 
-                        %>
-                    <h1> No cuenta con Historia clinica para este servicio </h1>
-                    <%                                } else {
-                        for (int i = 0; i < hc.size(); i++) {
+                        </tbody>    
+                    </table>                                                        
+                </div> 
+                <%        } else if (servicio.equals("psicologia")) {
 
-                            FacadeCita fc = new FacadeCita();
-                            int idcita = hc.get(i).getIdcita_hcpsico();
-                            CitaDTO ci = fc.consultarCitasId(idcita);
+                    FacadeHcPsicologia fac = new FacadeHcPsicologia();
+                    List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
+                    if (hc.isEmpty()) {
 
-                            String nombre = ci.getNombre_usuario();
-                            String fecha = ci.getFecha_cita();
-                            String hora = ci.getHora_cita();
+                %>
+                <h2> No cuenta con Historia clinica para este servicio </h2>
 
-                            System.out.println("idcitaderecargo: " + idcita);
-                    %>
+                <%  } else { %>
 
-                    <input type="hidden" >    
-                    <tr  role="row" class="odd">                                     
-                        <td class="sorting_asc"><%=nombre%></td>
-                        <td><%=servicio%></td>
-                        <td><%=fecha%></td>
-                        <td><%=hora%></td>  
-                        <td> <input type="radio" name="idcita" id="idcita" value="<%=idcita%>" required> <button type="submit">Ver</button>  </td> 
+                <div class="table-responsive">
+                    <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Ver Historia Clinca</th> 
+                            </tr>
+                        </thead> 
 
-                    </tr> 
-                    <%
+                        <tbody>      
+                            <%
+                                for (int i = 0; i < hc.size(); i++) {
+
+                                    FacadeCita fc = new FacadeCita();
+                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    CitaDTO ci = fc.consultarCitasId(idcita);
+
+                                    String nombre = ci.getNombre_usuario();
+                                    String fecha = ci.getFecha_cita();
+                                    String hora = ci.getHora_cita();
+
+                                    System.out.println("idcitaderecargo: " + idcita);
+                            %>
+
+                            <tr  role="row" class="odd">                                     
+                                <td class="sorting_asc"><%=nombre%></td>
+                                <td><%=servicio%></td>
+                                <td><%=fecha%></td>
+                                <td><%=hora%></td>  
+                                <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
+                            </tr> 
+                            <%
+                                        }
+                                    }
+                                
+                            %>
+
+                        </tbody>    
+                    </table>                                                        
+                </div> 
+                            <%        } else if (servicio.equals("odontologia")) {
+
+                    FacadeHcPsicologia fac = new FacadeHcPsicologia();
+                    List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
+                    if (hc.isEmpty()) {
+
+                %>
+                <h2> No cuenta con Historia clinica para este servicio </h2>
+
+                <%  } else { %>
+
+                <div class="table-responsive">
+                    <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Ver Historia Clinca</th> 
+                            </tr>
+                        </thead> 
+
+                        <tbody>      
+                            <%
+                                for (int i = 0; i < hc.size(); i++) {
+
+                                    FacadeCita fc = new FacadeCita();
+                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    CitaDTO ci = fc.consultarCitasId(idcita);
+
+                                    String nombre = ci.getNombre_usuario();
+                                    String fecha = ci.getFecha_cita();
+                                    String hora = ci.getHora_cita();
+
+                                    System.out.println("idcitaderecargo: " + idcita);
+                            %>
+
+                            <tr  role="row" class="odd">                                     
+                                <td class="sorting_asc"><%=nombre%></td>
+                                <td><%=servicio%></td>
+                                <td><%=fecha%></td>
+                                <td><%=hora%></td>  
+                                <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
+                            </tr> 
+                            <%
+                                        }
+                                    }
+                                
+                            %>
+
+                        </tbody>    
+                    </table>                                                        
+                </div> 
+                            <%        } else if (servicio.equals("planificacion")) {
+
+                    FacadeHcPsicologia fac = new FacadeHcPsicologia();
+                    List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
+                    if (hc.isEmpty()) {
+
+                %>
+                <h2> No cuenta con Historia clinica para este servicio </h2>
+
+                <%  } else { %>
+
+                <div class="table-responsive">
+                    <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                        <thead>
+                            <tr>
+                                <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Ver Historia Clinca</th> 
+                            </tr>
+                        </thead> 
+
+                        <tbody>      
+                            <%
+                                for (int i = 0; i < hc.size(); i++) {
+
+                                    FacadeCita fc = new FacadeCita();
+                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    CitaDTO ci = fc.consultarCitasId(idcita);
+
+                                    String nombre = ci.getNombre_usuario();
+                                    String fecha = ci.getFecha_cita();
+                                    String hora = ci.getHora_cita();
+
+                                    System.out.println("idcitaderecargo: " + idcita);
+                            %>
+
+                            <tr  role="row" class="odd">                                     
+                                <td class="sorting_asc"><%=nombre%></td>
+                                <td><%=servicio%></td>
+                                <td><%=fecha%></td>
+                                <td><%=hora%></td>  
+                                <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
+                            </tr> 
+                            <%
+                                        }
+                                    }
                                 }
-                            }
-                        } if (servicio.equals("odontologia")) {
+                            %>
 
-                                FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
-                                List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
-                                if (hc.isEmpty()) {
-
-                        %>
-                    <h1> No cuenta con Historia clinica para este servicio </h1>
-                    <%                                } else {
-                        for (int i = 0; i < hc.size(); i++) {
-
-                            FacadeCita fc = new FacadeCita();
-                            int idcita = hc.get(i).getIdcita_hcmed();
-                            CitaDTO ci = fc.consultarCitasId(idcita);
-
-                            String nombre = ci.getNombre_usuario();
-                            String fecha = ci.getFecha_cita();
-                            String hora = ci.getHora_cita();
-
-                            System.out.println("idcitaderecargo: " + idcita);
-                    %>
-
-                    <input type="hidden" >    
-                    <tr  role="row" class="odd">                                     
-                        <td class="sorting_asc"><%=nombre%></td>
-                        <td><%=servicio%></td>
-                        <td><%=fecha%></td>
-                        <td><%=hora%></td>  
-                        <td> <input type="radio" name="idcita" id="idcita" value="<%=idcita%>" required> <button type="submit">Ver</button>  </td> 
-
-                    </tr> 
-                    <%
-                                }
-                            }
-                        } else if(servicio.equals("planificacion")) {
-
-                                FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
-                                List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
-                                if (hc.isEmpty()) {
-
-                        %>
-                    <h1> No cuenta con Historia clinica para este servicio </h1>
-                    <%                                } else {
-                        for (int i = 0; i < hc.size(); i++) {
-
-                            FacadeCita fc = new FacadeCita();
-                            int idcita = hc.get(i).getIdcita_hcmed();
-                            CitaDTO ci = fc.consultarCitasId(idcita);
-
-                            String nombre = ci.getNombre_usuario();
-                            String fecha = ci.getFecha_cita();
-                            String hora = ci.getHora_cita();
-
-                            System.out.println("idcitaderecargo: " + idcita);
-                    %>
-
-                    <input type="hidden" >    
-                    <tr  role="row" class="odd">                                     
-                        <td class="sorting_asc"><%=nombre%></td>
-                        <td><%=servicio%></td>
-                        <td><%=fecha%></td>
-                        <td><%=hora%></td>  
-                        <td> <input type="radio" name="idcita" id="idcita" value="<%=idcita%>" required> <button type="submit">Ver</button>  </td> 
-
-                    </tr> 
-                    <%
-                                }
-                            }
-                        } 
-                    %>
-
-                    </tbody>    
-
-
-                </table>                                                        
-            </div> 
+                        </tbody>    
+                    </table>                                                        
+                </div> 
+            </form>
         </div> 
     </div>
 </div>
-<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
-<script type="text/javascript">$('#sampleTable').DataTable();</script>
