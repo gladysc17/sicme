@@ -54,10 +54,6 @@ from cita where fecha_cita between $P{fechaI} and $P{fechaF}]]>
 				</textElement>
 				<text><![CDATA[CANTIDAD DE CITAS POR SERVICIO]]></text>
 			</staticText>
-			<image>
-				<reportElement x="462" y="10" width="54" height="54" uuid="b4a64480-5046-4011-9d13-e5bc1b917ba5"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="132" y="30" width="288" height="20" uuid="70103a1b-c82a-45b8-9ac6-60643d55893f"/>
 				<textElement textAlignment="Center">
@@ -65,10 +61,6 @@ from cita where fecha_cita between $P{fechaI} and $P{fechaF}]]>
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="10" width="66" height="59" uuid="c72a1a85-3ab9-471d-93c8-cb4ca5e2ff45"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="294" y="59" width="57" height="20" uuid="440b470e-3d19-4ebf-aa18-d7e41075cb3a"/>
 				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>

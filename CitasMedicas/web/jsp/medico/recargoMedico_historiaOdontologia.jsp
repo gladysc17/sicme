@@ -6,8 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.css"/>
         <style>
@@ -280,12 +278,9 @@
                 cursor: pointer;
             }
 
-        </style>
-        <title></title>
-    </head>
-    <body>
+        </style>       
 
-        <div class="col-md-12">
+        <div class="ibox float-e-margins">  
             <div class="row">
                 <div clas="col-md-12">
                     <div class="card">
@@ -1393,5 +1388,3 @@
                                                             });
         </script>
 
-    </body>
-</html>

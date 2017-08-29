@@ -3,20 +3,15 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaF" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM CITA]]>
+		<![CDATA[]]>
 	</queryString>
-	<field name="id_cita" class="java.lang.Integer"/>
-	<field name="servicio_cita" class="java.lang.String"/>
-	<field name="num_recibo_cita" class="java.lang.String"/>
-	<field name="fecha_cita" class="java.sql.Date"/>
-	<field name="hora_cita" class="java.sql.Time"/>
-	<field name="estado" class="java.lang.String"/>
-	<field name="nombre_usuario" class="java.lang.String"/>
-	<field name="nombre_medico" class="java.lang.String"/>
-	<field name="tipousuario_cita" class="java.lang.String"/>
-	<field name="id_usuario" class="java.lang.String"/>
-	<field name="id_medico" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -29,10 +24,6 @@
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="454" y="0" width="68" height="64" uuid="31b76a32-8506-4ffe-8ac7-3f9c421e18c1"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="168" y="59" width="218" height="20" uuid="0c4f43e0-9541-4630-81c6-fc5b7308503b"/>
 				<textElement textAlignment="Center">
@@ -40,10 +31,6 @@
 				</textElement>
 				<text><![CDATA[CANTIDAD DE CITAS POR PROGRAMA ACADEMICO]]></text>
 			</staticText>
-			<image>
-				<reportElement x="20" y="20" width="80" height="59" uuid="d13d1130-84af-41cc-9778-0071f1bd5a05"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="133" y="40" width="273" height="20" uuid="2c0efa04-9bd5-4a62-a570-00b43bd9dfb3"/>
 				<textElement textAlignment="Center">
