@@ -484,5 +484,5 @@ public class NegocioCita {
             }
         }
         return cant;
-    }
+    }   
 }

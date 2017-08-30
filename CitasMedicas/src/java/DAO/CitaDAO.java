@@ -479,5 +479,5 @@ public class CitaDAO {
             cant = rs.getInt(1);
         }
         return cant;
-    }
+    }   
 }
