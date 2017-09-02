@@ -10,41 +10,53 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT count (*), programa_academico,
-     ( SELECT count(*) FROM cita WHERE estado = 'inasistido' and fecha_cita BETWEEN '01-01-2017' and  '27-08-2017' ) inasistido ,
-     ( SELECT count(*) FROM cita WHERE estado = 'atendido' and fecha_cita BETWEEN '01-01-2017' and '27-08-2017' ) atendido ,
-     ( SELECT count(*) FROM cita WHERE estado = 'pendiente' and fecha_cita BETWEEN '01-01-2017' and '27-08-2017' ) pendiente
+		<![CDATA[select distinct e.programa_academico,
+ 
+(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'psicologia' 
+and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Psicología",
 
-FROM estudiante e
-INNER JOIN cita c on c.id_usuario = e.identificacion_usuario
-GROUP BY e.programa_academico]]>
+(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'medicinageneral' 
+and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Medicina general",
+
+(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'odontologia' 
+and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Odontología",
+
+(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'planificacionfamiliar' 
+and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Planificación familiar",
+
+(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and e1.programa_academico = e.programa_academico
+and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Total"
+
+from estudiante e
+ORDER BY e.programa_academico]]>
 	</queryString>
-	<field name="count" class="java.lang.Long"/>
 	<field name="programa_academico" class="java.lang.String"/>
-	<field name="inasistido" class="java.lang.Long"/>
-	<field name="atendido" class="java.lang.Long"/>
-	<field name="pendiente" class="java.lang.Long"/>
+	<field name="Psicología" class="java.lang.Long"/>
+	<field name="Medicina general" class="java.lang.Long"/>
+	<field name="Odontología" class="java.lang.Long"/>
+	<field name="Planificación familiar" class="java.lang.Long"/>
+	<field name="Total" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="146" y="20" width="255" height="20" uuid="382a5932-61ff-4bb1-88bc-f9d82e82ffd8"/>
+				<reportElement x="162" y="-2" width="255" height="20" uuid="382a5932-61ff-4bb1-88bc-f9d82e82ffd8"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="168" y="59" width="218" height="20" uuid="0c4f43e0-9541-4630-81c6-fc5b7308503b"/>
+				<reportElement x="184" y="37" width="218" height="20" uuid="0c4f43e0-9541-4630-81c6-fc5b7308503b"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CANTIDAD DE CITAS POR PROGRAMA ACADEMICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="133" y="40" width="273" height="20" uuid="2c0efa04-9bd5-4a62-a570-00b43bd9dfb3"/>
+				<reportElement x="149" y="18" width="273" height="20" uuid="2c0efa04-9bd5-4a62-a570-00b43bd9dfb3"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
@@ -53,19 +65,107 @@ GROUP BY e.programa_academico]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="9" y="11" width="542" height="20" uuid="453fbec1-e33e-46bd-9b36-f591e6870ddd"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PS: Psicología --- MG: Medicina General --- OD: Odontología --- PL: Planificación]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch"/>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="9" y="2" width="137" height="20" uuid="c92dae02-e771-49ab-9c85-17a981d85598"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROGRAMA ACADEMICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="37" height="20" uuid="df0ca076-8286-49b8-9c39-682e7333cf91"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="2" width="43" height="20" uuid="fa72b1f2-a9e1-4174-8c0e-75a35f609a98"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="2" width="38" height="20" uuid="53defdac-a763-4fb0-b383-9059ae912520"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[OD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="2" width="49" height="20" uuid="430b667b-ac27-4f27-a978-8ea34b987266"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="524" y="2" width="27" height="20" uuid="1842b14b-9a06-4c9c-925f-4536b806132f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="0" width="279" height="20" uuid="d254379e-1b84-43a6-a334-21e2b66a6501"/>
+				<textFieldExpression><![CDATA[$F{programa_academico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="0" width="43" height="20" uuid="bc4e6a76-e068-4c89-be54-a69552a9b2a6"/>
+				<textFieldExpression><![CDATA[$F{Medicina general}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="38" height="20" uuid="7a59e942-94e7-4cb5-bc9c-88f09125029b"/>
+				<textFieldExpression><![CDATA[$F{Odontología}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="0" width="49" height="20" uuid="fefd9381-5135-4f31-b0ea-c016af7a15e3"/>
+				<textFieldExpression><![CDATA[$F{Planificación familiar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="524" y="0" width="27" height="20" uuid="560fd79d-2f8a-461d-9a06-e24305e74f2c"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="37" height="20" uuid="db8aa0f4-1023-4cd4-bff6-19ce5c3a27da"/>
+				<textFieldExpression><![CDATA[$F{Psicología}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="62" y="34" width="100" height="20" uuid="a9ce0090-5d8d-4e5b-a36f-d0ef256a495c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="34" width="45" height="20" uuid="740322bd-cf4f-45f6-8e76-fba3e57e20d4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Creado:]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
