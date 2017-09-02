@@ -10,8 +10,20 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[SELECT count (*), programa_academico,
+     ( SELECT count(*) FROM cita WHERE estado = 'inasistido' and fecha_cita BETWEEN '01-01-2017' and  '27-08-2017' ) inasistido ,
+     ( SELECT count(*) FROM cita WHERE estado = 'atendido' and fecha_cita BETWEEN '01-01-2017' and '27-08-2017' ) atendido ,
+     ( SELECT count(*) FROM cita WHERE estado = 'pendiente' and fecha_cita BETWEEN '01-01-2017' and '27-08-2017' ) pendiente
+
+FROM estudiante e
+INNER JOIN cita c on c.id_usuario = e.identificacion_usuario
+GROUP BY e.programa_academico]]>
 	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="programa_academico" class="java.lang.String"/>
+	<field name="inasistido" class="java.lang.Long"/>
+	<field name="atendido" class="java.lang.Long"/>
+	<field name="pendiente" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -44,7 +56,7 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="25" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch"/>

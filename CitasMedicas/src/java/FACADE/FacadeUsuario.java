@@ -39,8 +39,8 @@ public class FacadeUsuario {
         return new NegocioUsuario().consultarUsuariosPorFecha(fecha1, fecha2);
     }
     
-    public boolean modificarUsuario(String identificacion_otro, String correo_otro, Date fechanacimiento_otro, String genero_otro, String estadocivil_otro, String direccion_otro, String telefono_otro, int edad, String contrasena) throws SQLException {
-        return new NegocioUsuario().modificarUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad, contrasena);
+    public boolean modificarUsuario(String identificacion_otro, String correo_otro, Date fechanacimiento_otro, String genero_otro, String estadocivil_otro, String direccion_otro, String telefono_otro, int edad) throws SQLException {
+        return new NegocioUsuario().modificarUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);
 
     }
      public boolean modificarAdmin(String identificacion, String contrasena ) throws SQLException {
@@ -68,5 +68,10 @@ public class FacadeUsuario {
     
     public List<UsuarioDTO> listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
         return new NegocioUsuario().listarUsuarioPorTipo(tipo, fecha1, fecha2);
+    }
+    
+    public boolean modificarContrasena(String identificacion, String contrasena) throws SQLException {
+        return new NegocioUsuario().modificarContrasena(identificacion, contrasena);
+
     }
 }

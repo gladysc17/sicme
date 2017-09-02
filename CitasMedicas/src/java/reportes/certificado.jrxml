@@ -5,8 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select * from cita where id_cita = $P{idcita}
-]]>
+		<![CDATA[select * from cita c, usuario e where id_cita = $P{idcita} AND e.identificacion = c.id_usuario]]>
 	</queryString>
 	<field name="id_cita" class="java.lang.Integer"/>
 	<field name="servicio_cita" class="java.lang.String"/>
@@ -19,34 +18,75 @@
 	<field name="tipousuario_cita" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.String"/>
 	<field name="id_medico" class="java.lang.String"/>
+	<field name="identificacion" class="java.lang.String"/>
+	<field name="tipo_identificacion" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="estado_civil" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="tipo_usuario" class="java.lang.String"/>
+	<field name="fecharegistro" class="java.sql.Date"/>
+	<field name="contrasena" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="236" y="21" width="100" height="20" uuid="f08baef4-973d-4497-a3d9-6c1a70839357"/>
-				<text><![CDATA[Static text]]></text>
+				<reportElement x="149" y="0" width="281" height="16" uuid="f08baef4-973d-4497-a3d9-6c1a70839357"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[VICERRECTORIA DE BIENESTAR UNIVERSITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="16" width="281" height="20" uuid="daa0d216-e890-4ff3-9013-4130fcb12bd6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DIVISION DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
+			</staticText>
+			<image>
+				<reportElement x="39" y="0" width="50" height="50" uuid="7fcf11a5-da0f-4293-951f-2615236e9d6c"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\img\\ufps.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="149" y="36" width="281" height="20" uuid="1b97e7a9-c192-4e12-8354-b3d0c0aa097b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CERTIFICADO DE ASISTENCIA]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="76" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="14" width="100" height="20" uuid="75288edd-e538-405c-b5fc-34368bec6285"/>
-				<text><![CDATA[ASISTIO A LA CITA DE]]></text>
+				<reportElement x="19" y="14" width="523" height="20" uuid="75288edd-e538-405c-b5fc-34368bec6285"/>
+				<text><![CDATA[La División de Servicios Asistenciales y de Salud certifique que el (la) estudiante:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="114" y="14" width="100" height="20" uuid="fa3c4ae9-d06c-464b-9424-8f49e2a2abb8"/>
-				<textFieldExpression><![CDATA[$F{servicio_cita}]]></textFieldExpression>
+				<reportElement x="415" y="14" width="100" height="20" uuid="6048272a-d99b-4764-bdc1-91197ecca7b9"/>
+				<textFieldExpression><![CDATA[$F{nombre_usuario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="236" y="14" width="100" height="20" uuid="583ac06a-bb27-4430-8180-fdfe6cd623bb"/>
-				<text><![CDATA[EL DIA]]></text>
+				<reportElement x="19" y="34" width="523" height="20" uuid="63925383-ff83-4447-889c-6948ec78f363"/>
+				<text><![CDATA[Identificado con:                              asistió a el día                                       a recibir los servicios de]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="358" y="14" width="100" height="20" uuid="a064d289-e4ab-448d-84d9-2c32de7ef8b3"/>
+				<reportElement x="128" y="34" width="77" height="20" uuid="2bd50e7d-c640-4339-8bd7-2d96b2504814"/>
+				<textFieldExpression><![CDATA[$F{id_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="34" width="116" height="20" uuid="a064d289-e4ab-448d-84d9-2c32de7ef8b3"/>
 				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="56" width="100" height="20" uuid="fa3c4ae9-d06c-464b-9424-8f49e2a2abb8"/>
+				<textFieldExpression><![CDATA[$F{servicio_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="34" width="23" height="20" uuid="5fcd8c27-beef-4d4d-a354-01c277e15328"/>
+				<textFieldExpression><![CDATA[$F{tipo_identificacion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

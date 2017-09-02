@@ -6,7 +6,6 @@
 
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.UsuarioDTO"%>
-<%@page import="DTO.VicerrectorDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,16 +25,17 @@
                 <div class="panel-body">  
                     <form action="../controlador/procesarModificarVicerrector.jsp" method="post">
                         <%
-                            VicerrectorDTO vice = (VicerrectorDTO) session.getAttribute("vicerrector");
+                            UsuarioDTO vice = (UsuarioDTO) session.getAttribute("vicerrector");
                             if (vice == null) {
 
                                 response.sendRedirect("../../index.jsp");
                                 return;
                             }
 
-                            String id = vice.getIdentificacion_usuario();
+                            String id = vice.getIdentificacion();
                             FacadeUsuario fac = new FacadeUsuario();
                             UsuarioDTO u = fac.consultarUsuarioPorId(id);
+                            String tipo = u.getTipo_usuario();
 
 
                         %>
@@ -97,26 +97,16 @@
                                 <input type="text" class="form-control" id="telefono" name="telefono" value="<%=u.getTelefono()%>" >
                             </div>                            
                         </div>
-                                      
-
-                        <div class="form-group">                              
-                            <div class="col-sm-6">
-                                <label class="control-label">NUEVA CONTRASEÑA </label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena1" required="">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="control-label">REPETIR CONTRASEÑA </label>
-                                <input type="password" class="form-control" id="servicio" name="contrasena2" required="">
-                            </div>
-                        </div>
-
-                        <br> <br>
+                                     
                         <div class="clearfix">
-                            <div class="col-sm-12">
-                                <label class="control-label"> </label>
-                                <button class="btn btn-success btn-block" type="submit" > MODIFICAR DATOS </button>
+                            <div class="col-sm-6">
+                                <label class="control-label"> </label>                               
+                                <input class="btn btn-success btn-block" type="submit" value="MODIRIFCAR">
+                            </div> 
+                             <div class="col-sm-6">
+                                <label class="control-label"> </label>                                
+                                <input type="button" class="btn btn-block btn-link" onclick="cargarForm('usuario/recargoUsuario_ModificarContrasena.jsp?id=<%=id%>&tipo=<%=tipo%>')" value="Modificar Contraseña">
                             </div>
-                            <br><br>
                         </div>
                     </form>
                 </div>                                    

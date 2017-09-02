@@ -187,7 +187,7 @@ public class NegocioUsuario {
         return (otros);
     }
 
-    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad, String contrasena) throws SQLException {
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException {
 
         boolean rta = false;
         ConexionPostgres con = new ConexionPostgres();
@@ -197,7 +197,7 @@ public class NegocioUsuario {
 
         try {
 
-            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, edad, contrasena);
+            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, edad);
 
         } catch (SQLException ex) {
             Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -414,5 +414,34 @@ public class NegocioUsuario {
             co.close();
         }
         return (otros);
+    }
+    
+    public boolean modificarContrasena(String identificacion, String contrasena) throws SQLException {
+
+        boolean rta = false;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        UsuarioDAO est = new UsuarioDAO(co);
+
+        try {
+
+            rta = est.modificarContrasena(identificacion, contrasena);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return rta;
     }
 }

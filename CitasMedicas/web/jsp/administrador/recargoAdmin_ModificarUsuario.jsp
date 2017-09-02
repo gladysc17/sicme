@@ -29,7 +29,8 @@
 
                             FacadeUsuario fotro = new FacadeUsuario();
 
-                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);                            
+                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);   
+                            String tipo = otro.getTipo_usuario();
                         %>
                         <div class="form-group">  
                             <div class="col-sm-4">
@@ -91,16 +92,15 @@
                         </div>                        
 
                         <div class="clearfix">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <label class="control-label"> </label>                               
                                 <input class="btn btn-success btn-block" type="submit" value="MODIRIFCAR">
-                            </div>                                                     
-
-                        </div>
-
-                        <br> <br>                        
-
-
+                            </div>  
+                            <div class="col-sm-6">
+                                <label class="control-label"> </label>                                
+                                <input type="button" class="btn btn-block btn-link" onclick="cargarForm('usuario/recargoUsuario_ModificarContrasena.jsp?id=<%=id%>&tipo=<%=tipo%>')" value="Modificar Contraseña">
+                            </div>
+                        </div>                                               
                     </form>                   
 
                 </div>                                    

@@ -29,7 +29,8 @@
 
                             FacadeUsuario fotro = new FacadeUsuario();
 
-                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);                            
+                            UsuarioDTO otro = fotro.consultarUsuarioPorId(id);  
+                            String tipo = otro.getTipo_usuario();
                         %>
                         <div class="form-group">  
                             <div class="col-sm-4">
@@ -88,66 +89,21 @@
                                 <label class="control-label">Teléfono: </label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" value="<%=otro.getTelefono()%>" >
                             </div>                            
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-4">                            
-                                <label class="control-label">Contraseña Actual: </label>                                
-                                <input type="hidden" id="actual" name="actual"  value="<%=otro.getContrasena()%>">
-                                <input type="password" class="form-control" id="contra" name="contra">
-                            </div>
-                            <div class="col-sm-4"> 
-                                <label class="control-label">Nueva Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena1" name="contrasena">
-                            </div>
-                            <div class="col-sm-4">     
-                                <label class="control-label">Repetir Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena2" name="contrasena">
-                            </div>
-                        </div>
+                        </div>                 
 
                         <div class="clearfix">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <label class="control-label"> </label>                               
-                                 <input type="button" class="btn btn-success btn-block" onclick="validarContrasena()" value="MODIFICAR">
-                            </div>                                                     
+                                <input class="btn btn-success btn-block" type="submit" value="MODIRIFCAR">
+                            </div> 
+                             <div class="col-sm-6">
+                                <label class="control-label"> </label>                                
+                                <input type="button" class="btn btn-block btn-link" onclick="cargarForm('usuario/recargoUsuario_ModificarContrasena.jsp?id=<%=id%>&tipo=<%=tipo%>')" value="Modificar Contraseña">
+                            </div>
 
                         </div>
 
-                        <br> <br>                  
-                        <script type="text/javascript">
-                            function validarContrasena(){
-                                var actual = document.getElementById("actual").value;
-                                
-                                if (document.form.contra.value.length === 0) {
-                                    alert("Por favor ingrese su Contraseña Actual");
-                                    document.form.contra.focus();
-                                    return 0;
-                                }   
-                                
-                                 var contrasena1 = document.getElementById("contrasena1").value;
-                                 var contrasena2 = document.getElementById("contrasena2").value;
-                                 
-                                 if(contrasena1.length > 0 ){
-                                     
-                                     if(contrasena1==contrasena2){
-                                          alert("contrssenas iguales")
-                                     }
-                                     else{
-                                          alert("No va cambiar contraseña")
-                                     }
-                                    
-                                 }
-                                 else{
-                                     alert("contrssenas NO iguales")
-                                 }
-                                     
-                                
-                            }
-                            
-                        </script>
-
-
+                     
                     </form>                   
 
                 </div>                                    

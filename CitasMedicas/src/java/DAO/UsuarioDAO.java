@@ -163,9 +163,9 @@ public class UsuarioDAO {
 
     }
 
-    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad, String contrasena) throws SQLException {
+    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException {
 
-        String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ?, contrasena = ? "
+        String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ? "
                 + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
@@ -176,9 +176,8 @@ public class UsuarioDAO {
         ps.setString(4, estadocivil);
         ps.setString(5, direccion);
         ps.setString(6, telefono);
-        ps.setInt(7, edad);
-        ps.setString(8, contrasena);
-        ps.setString(9, identificacion);
+        ps.setInt(7, edad);        
+        ps.setString(8, identificacion);
         
 
         int rta = ps.executeUpdate();
@@ -372,6 +371,23 @@ public class UsuarioDAO {
         }
 
         return listaOtro;
+
+    }
+     
+     public boolean modificarContrasena(String identificacion, String contrasena) throws SQLException {
+
+        String sql = "UPDATE usuario SET contrasena = ? "
+                + "WHERE  identificacion = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, contrasena);      
+        ps.setString(2, identificacion);
+        
+
+        int rta = ps.executeUpdate();
+
+        return rta > 0;
 
     }
 

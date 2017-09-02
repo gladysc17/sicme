@@ -22,13 +22,12 @@
             String genero_otro = request.getParameter("genero");
             String estadocivil_otro = request.getParameter("estadocivil");
             String direccion_otro = request.getParameter("direccion");
-            String telefono_otro = request.getParameter("telefono");
-            String contra = request.getParameter("contra");
+            String telefono_otro = request.getParameter("telefono");            
 
             FacadeUsuario fac = new FacadeUsuario();
             int edad = fac.calcularEdad(fecha);            
             
-            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad, contra);                                                    
+            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);                                                    
 
             if (rta == true) {
 

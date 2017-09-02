@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-     <body>
+    <body>
         <div class="col-md-1"></div>
         <div class="col-md-10 col-sm-12">
             <div class="panel panel-default">
@@ -29,12 +29,13 @@
 
                                 response.sendRedirect("../../index.jsp");
                                 return;
-                            }            
-                            
+                            }
+
                             String id = med.getIdentificacion();
                             FacadeUsuario facmed = new FacadeUsuario();
                             UsuarioDTO md = facmed.consultarUsuarioPorId(id);
-                            
+                            String tipo = md.getTipo_usuario();
+
 
                         %>
                         <div class="form-group">  
@@ -62,7 +63,7 @@
                                 <input type="email" class="form-control" id="correo" name="correo" value="<%=md.getCorreo()%>">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
@@ -89,35 +90,25 @@
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Teléfono: </label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=md.getTelefono() %>" >
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=md.getTelefono()%>" >
                             </div>                           
-                        </div>
-                            <div class="form-group">   
-                            <div class="col-sm-4">
-                                <label class="control-label">Contraseña Actual: </label>
-                                <input type="password" class="form-control" id="contra" name="contra" value="<%=med.getContrasena()%>" >
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="control-label">Nueva contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena1" >
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="control-label">Repetir Contraseña: </label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena2" >
-                            </div>                            
-                        </div>
+                        </div>                                                    
 
-                        <br> <br>
                         <div class="clearfix">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                                 <label class="control-label"> </label>
-                                <input class="btn btn-success btn-block" type="submit" value="MODIFICAR">
+                                <input class="btn btn-success btn-block" type="submit" value="MODIFICAR DATOS">
 
+                            </div> 
+                            <div class="col-sm-6">
+                                <label class="control-label"> </label>                                
+                                <input type="button" class="btn btn-block btn-link" onclick="cargarForm('usuario/recargoUsuario_ModificarContrasena.jsp?id=<%=id%>&tipo=<%=tipo%>')" value="Modificar Contraseña">
                             </div>
-                            <br><br>
                         </div>
 
-                    </form>
+                    </form>                   
+                    
+                    
                 </div>                                    
             </div>
         </div>
