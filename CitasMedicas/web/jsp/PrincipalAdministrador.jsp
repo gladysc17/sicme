@@ -282,6 +282,39 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <h1>BANNER PAGINA PRINCIPAL</h1>
+                        <div class="col-md-6">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> AÑADIR IMAGENES </h3>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="usser-button" align="center">
+                                        <div class="row">
+                                            <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i> <br><br>
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Añadir" onclick="cargarForm('administrador/recargoAdmin_CargarImagen.jsp')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> ADMINISTRAR IMAGENES </h3>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="usser-button" align="center">
+                                        <div class="row">
+                                            <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i> <br><br>
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarImagen.jsp')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
