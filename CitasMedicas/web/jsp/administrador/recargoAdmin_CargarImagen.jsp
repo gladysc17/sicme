@@ -17,6 +17,11 @@
     <body>
         <div class="col-md-1"></div>
         <div class="col-md-10">
+            <h4>Nota:</h4>
+            <p>
+                Para una buena visibilidad de la imagen en la página principal, se recomienda subir la imagen
+                con una dimensión de 1900x550 pixeles.
+            </p>
             <div class="row">
                 <h2>Añadir nuevas imagen</h2>
                 <form action="../controlador/subir.jsp" enctype="MULTIPART/FORM-DATA" method="post">

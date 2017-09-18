@@ -85,4 +85,38 @@ public class ImagenDAO {
             return false;
         }
     }
+    
+    public boolean eliminarImagen(int id) throws SQLException {
+        
+        String sql = "DELETE FROM imagen where id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setInt(1, id);
+        
+        
+        int rta = ps.executeUpdate();
+        
+        if(rta>0)
+            return true;
+        return false;
+    }
+    
+    public List<ImagenDTO> obtenerImagenesActivas() throws SQLException {
+        
+        String sql = "select * from imagen where estado = 'Activo'";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        
+        List<ImagenDTO> lis = new ArrayList<ImagenDTO>();
+        
+        while(rs.next()){
+            ImagenDTO ima = new ImagenDTO();
+            ima.setId(rs.getInt(1));
+            ima.setNombre(rs.getString(2));
+            ima.setEstado(rs.getString(3));
+            lis.add(ima);
+        }
+        return lis;
+    }
 }

@@ -309,7 +309,7 @@
                                     <div class="usser-button" align="center">
                                         <div class="row">
                                             <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i> <br><br>
-                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarImagen.jsp')" />
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarImagenes.jsp')" />
                                         </div>
                                     </div>
                                 </div>

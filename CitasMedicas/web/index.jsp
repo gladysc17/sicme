@@ -4,6 +4,8 @@
     Author     : LEGADO
 --%>
 
+<%@page import="DTO.ImagenDTO"%>
+<%@page import="FACADE.FacadeImagen"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -484,15 +486,34 @@
                 
             </div>
             <ul class="pgwSlider">
-
-                <li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
+                
+                <%
+                FacadeImagen fi = new FacadeImagen();
+                List<ImagenDTO> lis = new ArrayList<ImagenDTO>();
+                
+                lis = fi.obtenerImagenes();
+                String [] ser = {"Medicina General","Odontologia","Psicologia", "Planificacion familiar"};
+                int n = 0;
+                for(ImagenDTO x: lis){
+                    if(n == 4)
+                        break;
+                %>
+                <li><a href=""><img src="imagenes/banner/<%=x.getNombre() %>"><span style="font-family: inherit; font-weight: bold;"><h1> <%=ser[n] %> </h1></span></a>
                 </li>
-                <li><a href=""><img src="imagenes/10.png"><span style="font-family: inherit; font-weight: bold;"><h1>ODONTOLOGIA</h1></span></a>
-                </li>
-                <li><a href=""><img src="imagenes/11.png"><span style="font-family: inherit; font-weight: bold;"><h1>PSICOLOGIA</h1></span></a>
-                </li>
-                <li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
-                </li>
+                <%    
+                  n++;
+                }
+                //<li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
+                //</li>
+                //<li><a href=""><img src="imagenes/10.png"><span style="font-family: inherit; font-weight: bold;"><h1>ODONTOLOGIA</h1></span></a>
+                //</li>
+                //<li><a href=""><img src="imagenes/11.png"><span style="font-family: inherit; font-weight: bold;"><h1>PSICOLOGIA</h1></span></a>
+                //</li>
+                //<li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
+                //</li>
+                %>
+                
+                
 
 
 

@@ -92,4 +92,50 @@ public class NegocioImagen {
         }
         return est;
     }
+    
+    public boolean eliminarImagen(int id){
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        ImagenDAO imag = new ImagenDAO(co);
+        boolean est = false;
+        try{
+            est = imag.eliminarImagen(id);
+        }catch(SQLException ex){
+            Logger.getLogger(NegocioImagen.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioImagen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return est;
+    }
+    
+    public List<ImagenDTO> obtenerImagenesActivas(){
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        ImagenDAO imag = new ImagenDAO(co);
+        List<ImagenDTO> ima = new ArrayList<ImagenDTO>();
+        try{
+            ima = imag.obtenerImagenesActivas();
+        }catch(SQLException ex){
+            Logger.getLogger(NegocioImagen.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioImagen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return ima;
+    }
 }

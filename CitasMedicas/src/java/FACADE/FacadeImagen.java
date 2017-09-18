@@ -27,4 +27,12 @@ public class FacadeImagen {
     public boolean actualizarEstadoBanner(String estado, int id) throws SQLException {
         return new NegocioImagen().actualizarEstadoBanner(estado, id);
     }
+    
+    public boolean eliminarImagen(int id) throws SQLException {
+        return new NegocioImagen().eliminarImagen(id);
+    }
+    
+    public List<ImagenDTO> obtenerImagenes() throws SQLException {
+        return new NegocioImagen().obtenerImagenesActivas();
+    }
 }
