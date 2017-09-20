@@ -495,13 +495,9 @@
                 String [] ser = {"Medicina General","Odontologia","Psicologia", "Planificacion familiar"};
                 int n = 0;
                 for(ImagenDTO x: lis){
-                    if(n == 4)
-                        break;
                 %>
-                <li><a href=""><img src="imagenes/banner/<%=x.getNombre() %>"><span style="font-family: inherit; font-weight: bold;"><h1> <%=ser[n] %> </h1></span></a>
-                </li>
+                <li><img src="imagenes/banner/<%=x.getNombre() %>"></li>
                 <%    
-                  n++;
                 }
                 //<li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
                 //</li>
@@ -512,15 +508,54 @@
                 //<li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
                 //</li>
                 %>
-                
-                
-
-
-
-
-
             </ul>
-
+            <!-- SERVICIOS -->
+            <div style="background-color: #e8e8e8; ">
+                <div class="container content-prin profile" style="background-color: #e8e8e8;">
+                    <div class="row margin-top-10">
+                        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-10">
+                            <h1 style="font-size: 30px;"><b>Servicios</b></h1>
+                            <span class="bordered-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row equal-height-columns margin-bottom-10">
+                                <div class="container">
+                                    <ul class="row block-grid-v2">
+                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+                                            <div class="easy-block-v1">
+                                                <div class="easy-block-v1-badge rgba-red">
+                                                    Medicina General
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+                                            <div class="easy-block-v1">
+                                                <div class="easy-block-v1-badge rgba-red">
+                                                    Planificación familiar
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+                                            <div class="easy-block-v1">
+                                                <div class="easy-block-v1-badge rgba-red">
+                                                    Psicologia
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+                                            <div class="easy-block-v1">
+                                                <div class="easy-block-v1-badge rgba-red">
+                                                    Odontologia
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -552,7 +587,8 @@
                                             <div class="easy-block-v1">
                                                 <img src="img/11.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    <%=e.getFechaEvento()%>                                    </div>
+                                                    <%=e.getFechaEvento()%>
+                                                </div>
                                             </div>
                                             <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
                                                 <h5>
