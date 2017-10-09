@@ -25,36 +25,36 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
     </head>
     <body>
-        <%            
+        <%
             FacadeHcPsicologia facadeHcPsicologia = new FacadeHcPsicologia();
             FacadeCita facadeCita = new FacadeCita();
             FacadeSesion facadeSesion = new FacadeSesion();
-           
+
             String id = request.getParameter("id");
             int idcita = Integer.parseInt(request.getParameter("idcita"));
-            
+
             CitaDTO citaDTO = facadeCita.consultarCitasId(idcita);
-                                        
-            System.out.println("id -> "+id);
-            System.out.println("idCitaaaaa -> "+idcita);
+
+            System.out.println("id -> " + id);
+            System.out.println("idCitaaaaa -> " + idcita);
 
             HcPsicologiaDTO hcPsicologia = facadeHcPsicologia.consultarHCPsicologiaAbierta(id);
             List<SesionDTO> sesiones = null;
             int numSesionActual = 1;
-            String motivos[] = null;   
+            String motivos[] = null;
             String urlAction = "../controlador/procesarRegistroHistoriaPsicologia.jsp";
-            if(hcPsicologia != null){
+            if (hcPsicologia != null) {
                 urlAction = "../controlador/procesarRegistroSesionHCS.jsp";
                 sesiones = facadeSesion.consultarSesionesPorHcPsicologia(hcPsicologia.getId_hcpsicologia());
-                if(!sesiones.isEmpty()){
-                    System.out.println("tamaño -> "+sesiones.size());
+                if (!sesiones.isEmpty()) {
+                    System.out.println("tamaño -> " + sesiones.size());
                     numSesionActual = sesiones.size() + 1;
                 }
                 motivos = hcPsicologia.getMotivoconsulta_hcpsico().split(",");
-            }else{
+            } else {
                 System.out.println("es null!!!");
             }
-                   System.out.println("URL ACTION --> "+urlAction);                     
+            System.out.println("URL ACTION --> " + urlAction);
             FacadeUsuario facUsu = new FacadeUsuario();
             UsuarioDTO u = facUsu.consultarUsuarioPorId(id);
 
@@ -69,317 +69,367 @@
             String telefono = u.getTelefono();
 
         %>
-        <div class="col-md-1"> </div>
-        <div class="col-md-10">            
-
-            <div class="row animated fadeInRight">
-                <div class="col-md-12">
-
-                    <table border="2px" width="100%">                                 
-                        <tr>                                    
-                            <td rowspan="2">
-                                <img src="../img/logo_ufps1.png" alt=""  width="100" height="100"/> <BR>
-                                UFPS
-                            </td>
-                            <td rowspan="2" align="center" height="100"><p>HISTORIA PSICOLOGICA</p>                                   
-                                <p>DIVISION DE SERVICIOS ASISTENCIALES Y DE SALUD</p>
-                                <p>UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD</p>
-                            </td>
-                            <td>Fecha: 04/04/2017</td>                                    
-                        </tr>
-                        <tr>
-                            <td>Hora: 22:00</td>                                                                         
-                        </tr>                                
-                    </table> 
-
-                    <div class="panel">
+        <div class="ibox float-e-margins">                               
+            <div class="panel panel-default">
 
 
-                        <ul  class="nav nav-pills panel-heading">
-                            <li><a  href="#1a" data-toggle="tab"> <h3> Datos Basicos| </h3></a>
-                            </li>
-                            <li><a href="#2a" data-toggle="tab"> <h3>Tipologia Familiar |</h3></a>
-                            </li>
-                            <li><a href="#3a" data-toggle="tab"> <h3>Anamnesis|</h3></a>
-                            </li>
-                            <li><a href="#4a" data-toggle="tab"><h3> Proceso/Seguimiento</h3></a>
-                            </li>
-                            <% if(hcPsicologia != null){ 
-                                    if(!sesiones.isEmpty()){                                                                                   
-                            %>
-                                    <li><a href="#5a" data-toggle="tab"><h3> | Sesiones Anteriores</h3></a>
-                                    </li>    
-                            <%          
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <table border="2px" width="100%">                                 
+                            <tr>                                    
+                                <td rowspan="2">
+                                    <img src="../img/logo_ufps1.png" alt=""  width="100" height="100"/> <BR>
+                                    UFPS
+                                </td>
+                                <td rowspan="2" align="center" height="100"><p>HISTORIA PSICOLOGICA</p>                                   
+                                    <p>DIVISION DE SERVICIOS ASISTENCIALES Y DE SALUD</p>
+                                    <p>UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD</p>
+                                </td>
+                                <td>Fecha: 04/04/2017</td>                                    
+                            </tr>
+                            <tr>
+                                <td>Hora: 22:00</td>                                                                         
+                            </tr>                                
+                        </table> 
+
+                        <div class="panel">
+
+
+                            <ul  class="nav nav-pills panel-heading">
+                                <li><a  href="#1a" data-toggle="tab"> <h3> Datos Basicos| </h3></a>
+                                </li>
+                                <li><a href="#2a" data-toggle="tab"> <h3>Tipologia Familiar |</h3></a>
+                                </li>
+                                <li><a href="#3a" data-toggle="tab"> <h3>Anamnesis|</h3></a>
+                                </li>
+                                <li><a href="#4a" data-toggle="tab"><h3> Proceso/Seguimiento</h3></a>
+                                </li>
+                                <% if (hcPsicologia != null) {
+                                        if (!sesiones.isEmpty()) {
+                                %>
+                                <li><a href="#5a" data-toggle="tab"><h3> | Sesiones Anteriores</h3></a>
+                                </li>    
+                                <%
                                     }%>
-                            
-                            <li><a href="#6a" data-toggle="tab"><h3> | Sesión Actual</h3></a>
-                            </li>
-                            <%      
-                                }
-                            %>
-                        </ul>
-                        <form  action=<%=urlAction%> method="post"> 
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="1a">
-                                   
-                                    <input type="hidden" id="ide" name="ide" value="<%=id%>">
-                                    <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
-                                    <table class="table table-responsive">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Identificación: <%=id%></td> 
-                                                <td>Codigo: <%=codigo%> </td>
-                                                <td>Correo: <%=correo%></td> 
-                                            </tr>
-                                            <tr>
-                                                <td>Fecha de Nacimiento: <%=fechadeNac%></td>
-                                                <td>Edad: <%=edad%> </td>
-                                                <td>Género: <%=genero%></td>
 
-                                            </tr>
-                                            <tr>                                                
-                                                <td>Estado Civil: <%=estadoCivil%></td>
-                                                <td>Direccion: <%=direccion%></td>
-                                                <td>Telefono: <%=telefono%></td>                                                                                                
-                                            </tr>
+                                <li><a href="#6a" data-toggle="tab"><h3> | Sesión Actual</h3></a>
+                                </li>
+                                <%
+                                    }
+                                %>
+                            </ul>
+                            <form  action=<%=urlAction%> method="post"> 
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="1a">
 
-                                        </tbody>
-                                    </table>
+                                        <input type="hidden" id="ide" name="ide" value="<%=id%>">
+                                        <input type="hidden" id="idecita" name="idecita" value="<%=idcita%>">
+                                        <table class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="3">Nombres y Apellidos: <%=nombre%></th>                                                
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Identificación: <%=id%></td> 
+                                                    <td>Codigo: <%=codigo%> </td>
+                                                    <td>Correo: <%=correo%></td> 
+                                                </tr>
+                                                <tr>
+                                                    <td>Fecha de Nacimiento: <%=fechadeNac%></td>
+                                                    <td>Edad: <%=edad%> </td>
+                                                    <td>Género: <%=genero%></td>
 
-                                    <div class="panel-body">
-                                        <h3> MOTIVO DE LA CONSULTA: </h3>                                                                                                      
-                                        <div class="table-responsive">  
-                                            <table class="table">
-                                                <tbody>
-                                            <%
-                                                if(hcPsicologia == null){
-                                            %>
-                                            
-                                                    <tr>
-                                                        <td><h3> Academico   <label><input type="checkbox" name="academico"></label> </h3></td>
-                                                        <td><h3>Emocional  <label><input type="checkbox" name="emocional"></label> </h3></td>
-                                                        <td><h3>Afectivo   <label><input type="checkbox" name="afectivo"></label></h3></td>
-                                                        <td><h3>Social  <label><input type="checkbox" name="social"></label></h3></td>
-                                                        <td><h3>Duelo  <label><input type="checkbox" value="duelo" name="motivo"></label></h3></td> 
+                                                </tr>
+                                                <tr>                                                
+                                                    <td>Estado Civil: <%=estadoCivil%></td>
+                                                    <td>Direccion: <%=direccion%></td>
+                                                    <td>Telefono: <%=telefono%></td>                                                                                                
+                                                </tr>
 
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td><h3>Depresión  <label><input type="checkbox" value="depresion" name="motivo"></label></h3></td>
-                                                        <td><h3>Ansiedad  <label><input type="checkbox" value="ansiedad" name="motivo"></label></h3></td>
-                                                        <td><h3>O. Vocacional  <label><input type="checkbox" value="o_vocacional" name="motivo"></label></h3></td>
-                                                        <td><h3>O. Sexual  <label><input type="checkbox"  value="o_sexual" name="motivo"></label></h3></td>
-                                                        <td><h3>Relaciones Interpersonales  <label><input type="checkbox" value="relaciones_inter" name="motivo"></label></h3></td>                                                                    
-                                                    </tr>
-                                                    <tr>                                                                    
-                                                        <td><h3>Relacion de Pareja  <label><input type="checkbox" value="relacion_pareja" name="motivo"></label></h3></td>
-                                                        <td><h3>Consumo de SPA  <label><input type="checkbox" value="consumo_spa" name="motivo"></label></h3></td>
-                                                        <td><h3>Problemas Aprendizaje  <label><input type="checkbox" value="problemas_aprendiaje" name="motivo"></label></h3></td>
-                                                        <td><h3>Otro  <label><input type="checkbox" value="otro" name="motivo"></label></h3></td> 
-                                                    </tr>                                                              
-
-                                                
-                                            <%
-                                                }else{
-                                                    for(int i=0; i < motivos.length; i++){
-                                            %>
-                                                    
-                                                        <li><%=motivos[i]%></li>
-                                                    
-                                            <%
-                                                    }
-                                                }
-                                            %>
                                             </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="2a">
-                                    <div class="panel-body">                                  
-                                        <h4> Tipologia Familiar </h4>
-                                        <%
-                                            if(hcPsicologia == null){
-                                        %>
-                                        <textarea rows="5" cols="100" id="genograma" name="genograma"></textarea>
-                                        <%
-                                            }else{
-                                        %>
-                                        <%=hcPsicologia.getHistoriafamiliar_hcpsico()%>
-                                        <%
-                                            }
-                                        %>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="3a">
-                                    <div class="panel-body">                                  
+                                        </table>
 
-                                        <h4> HISTORIA FAMILIAR </h4>
+                                        <div class="panel-body">
+                                            <h3> MOTIVO DE LA CONSULTA: </h3>                                                                                                      
+                                            <div class="table-responsive">  
+                                                <table class="table">
+                                                    <tbody>
+                                                        <%
+                                                            if (hcPsicologia == null) {
+                                                        %>
 
-                                        <%
-                                            if(hcPsicologia == null){
-                                        %>
-                                        <textarea rows="5" cols="100" id="historiaf" name="historiaf"></textarea>
-                                        <%
-                                            }else{
-                                        %>
-                                        <%=hcPsicologia.getHistoriafamiliar_hcpsico()%><br><br>
-                                        <%
-                                            }
-                                        %>
+                                                        <tr>
+                                                            <td><h3> Academico   <label><input type="checkbox" name="academico"></label> </h3></td>
+                                                            <td><h3>Emocional  <label><input type="checkbox" name="emocional"></label> </h3></td>
+                                                            <td><h3>Afectivo   <label><input type="checkbox" name="afectivo"></label></h3></td>
+                                                            <td><h3>Social  <label><input type="checkbox" name="social"></label></h3></td>
+                                                            <td><h3>Duelo  <label><input type="checkbox" value="duelo" name="motivo"></label></h3></td> 
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td><h3>Depresión  <label><input type="checkbox" value="depresion" name="motivo"></label></h3></td>
+                                                            <td><h3>Ansiedad  <label><input type="checkbox" value="ansiedad" name="motivo"></label></h3></td>
+                                                            <td><h3>O. Vocacional  <label><input type="checkbox" value="o_vocacional" name="motivo"></label></h3></td>
+                                                            <td><h3>O. Sexual  <label><input type="checkbox"  value="o_sexual" name="motivo"></label></h3></td>
+                                                            <td><h3>Relaciones Interpersonales  <label><input type="checkbox" value="relaciones_inter" name="motivo"></label></h3></td>                                                                    
+                                                        </tr>
+                                                        <tr>                                                                    
+                                                            <td><h3>Relacion de Pareja  <label><input type="checkbox" value="relacion_pareja" name="motivo"></label></h3></td>
+                                                            <td><h3>Consumo de SPA  <label><input type="checkbox" value="consumo_spa" name="motivo"></label></h3></td>
+                                                            <td><h3>Problemas Aprendizaje  <label><input type="checkbox" value="problemas_aprendiaje" name="motivo"></label></h3></td>
+                                                            <td><h3>Otro  <label><input type="checkbox" value="otro" name="motivo"></label></h3></td> 
+                                                        </tr>                                                              
 
 
-                                        <h4>PROBLEMÁTICA ACTUAL </h4>
+                                                        <%
+                                                        } else {
+                                                            for (int i = 0; i < motivos.length; i++) {
+                                                        %>
 
-                                        <%
-                                            if(hcPsicologia == null){
-                                        %>
-                                        <textarea rows="5" cols="100" id="problematica" name="problematica"></textarea>
-                                        <%
-                                            }else{
-                                        %>
-                                        <%=hcPsicologia.getProblematicaactual_hcpsico()%><br><br>
-                                        <%
-                                            }
-                                        %>
+                                                    <li><%=motivos[i]%></li>
 
-                                        <h4>DIAGNOSTICO </h4>
-
-                                        <%
-                                            if(hcPsicologia == null){
-                                        %>
-                                        <textarea rows="5" cols="100" id="diagnostico" name="diagnostico"></textarea>
-                                        <%
-                                            }else{
-                                        %>
-                                        <%=hcPsicologia.getDiagnostico_hcpsico()%><br><br>
-                                        <%
-                                            }
-                                        %>
-
-
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="4a">
-                                    <div class="panel-body">   
-                                        <h4> PROCESO PSICOTERAPEUTICO  </h4>
-
-                                        <%
-                                            if(hcPsicologia == null){
-                                        %>
-                                        <textarea rows="5" cols="100" id="proceso" name="proceso"></textarea>
-                                        <%
-                                            }else{
-                                        %>
-                                        <%=hcPsicologia.getProcesopsicoterapeutico_hcpsico()%><br><br>
-                                        <%
-                                            }
-                                        %>
-
-                                        <h4>SEGUIMIENTO </h4>
-
-                                        <%
-                                            if(hcPsicologia == null){
-                                        %>
-                                        <textarea rows="5" cols="100" id="seguimiento" name="seguimiento"></textarea>
-                                        <%
-                                            }else{
-                                        %>
-                                        <%=hcPsicologia.getSeguimiento_hcpsico()%><br><br>
-                                        <%
-                                            }
-                                        %>
-
-                                        <% if(hcPsicologia == null){ %>
-                                        <h3>Sesión adicional : 
-                                            <select name="sesion" id="sesion" required>
-                                                <option value="si"> SI </option>
-                                                <option value="no"> NO </option>
-                                            </select>
-                                        </h3> 
-                                        <div class="clearfix">
-                                            <div class="col-md-4">
-                                                <label class="control-label"> </label>
-                                                <input class="btn btn-success btn-block" type="submit" value="GUARDAR">
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                        <% } %>
+                                    </div>
+                                    <div class="tab-pane" id="2a">
+                                        <div class="panel-body">                                  
+
+                                            <%
+                                                if (hcPsicologia == null) {
+                                            %>
+
+                                            <div class="panel-body">
+
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr> 
+                                                            <td> Tipo de familia: <br>  <br> 
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Funcional </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Disfuncional </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Nuclear </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Extensa </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Compuesta </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Ampliada </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Simultanea </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Monoparental </label> <br>
+                                                            </td>
+                                                            <td>Miembros de la familia: <br>  <br> 
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Papá </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Mamá </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Abuela </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Abuelo </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Hermanos </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Hijos </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Esposo/a </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Unión libre </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Primos </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Sobrinos </label> <br>
+                                                            </td>
+                                                            <td>Relaciones en la familia: <br>  <br> 
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Muy estrecha </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Muy estrecha pero conflictiva </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Conflictiva </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Cercana </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Quiebre </label> <br>
+                                                                <label><input type="checkbox" value="depresion" name="motivo"> Distante </label> <br>                                                               
+                                                            </td>
+                                                            
+                                                            
+                                                        </tr>                                                       
+                                                    </tbody>                                                                                                       
+                                                </table>
+                                                <textarea rows="5" cols="100" id="genograma" name="genograma"></textarea>
+                                            </div>
+
+
+
+
+                                            <%
+                                            } else {
+                                            %>
+                                            <%=hcPsicologia.getHistoriafamiliar_hcpsico()%>
+                                            <%
+                                                }
+                                            %>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="3a">
+                                        <div class="panel-body">                                  
+
+                                            <h4> HISTORIA FAMILIAR </h4>
+
+                                            <%
+                                                if (hcPsicologia == null) {
+                                            %>
+                                            <textarea rows="5" cols="100" id="historiaf" name="historiaf"></textarea>
+                                            <%
+                                            } else {
+                                            %>
+                                            <%=hcPsicologia.getHistoriafamiliar_hcpsico()%><br><br>
+                                            <%
+                                                }
+                                            %>
+
+
+                                            <h4>PROBLEMÁTICA ACTUAL </h4>
+
+                                            <%
+                                                if (hcPsicologia == null) {
+                                            %>
+                                            <textarea rows="5" cols="100" id="problematica" name="problematica"></textarea>
+                                            <%
+                                            } else {
+                                            %>
+                                            <%=hcPsicologia.getProblematicaactual_hcpsico()%><br><br>
+                                            <%
+                                                }
+                                            %>
+
+                                            <h4>DIAGNOSTICO </h4>
+
+                                            <%
+                                                if (hcPsicologia == null) {
+                                            %>
+                                            <textarea rows="5" cols="100" id="diagnostico" name="diagnostico"></textarea>
+                                            <%
+                                            } else {
+                                            %>
+                                            <%=hcPsicologia.getDiagnostico_hcpsico()%><br><br>
+                                            <%
+                                                }
+                                            %>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="4a">
+                                        <div class="panel-body">   
+                                            <h4> PROCESO PSICOTERAPEUTICO  </h4>
+
+                                            <%
+                                                if (hcPsicologia == null) {
+                                            %>
+                                            <textarea rows="5" cols="100" id="proceso" name="proceso"></textarea>
+                                            <%
+                                            } else {
+                                            %>
+                                            <%=hcPsicologia.getProcesopsicoterapeutico_hcpsico()%><br><br>
+                                            <%
+                                                }
+                                            %>
+
+                                            <h4>SEGUIMIENTO </h4>
+
+                                            <%
+                                                if (hcPsicologia == null) {
+                                            %>
+                                            <textarea rows="5" cols="100" id="seguimiento" name="seguimiento"></textarea>
+                                            <%
+                                            } else {
+                                            %>
+                                            <%=hcPsicologia.getSeguimiento_hcpsico()%><br><br>
+                                            <%
+                                                }
+                                            %>
+
+                                            <% if (hcPsicologia == null) { %>
+                                            <h3>Sesión adicional : 
+                                                <select name="sesion" id="sesion" required>
+                                                    <option value="si"> SI </option>
+                                                    <option value="no"> NO </option>
+                                                </select>
+                                            </h3> 
+                                            <div class="clearfix">
+                                                <div class="col-md-4">
+                                                    <label class="control-label"> </label>
+                                                    <input class="btn btn-success btn-block" type="submit" value="GUARDAR">
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                        </div>
+
                                     </div>
 
-                                </div>
-                                    
-                            <% if(hcPsicologia != null){ 
-                                    if(!sesiones.isEmpty()){%>
+                                    <% if (hcPsicologia != null) {
+                                            if (!sesiones.isEmpty()) {%>
                                     <div class="tab-pane" id="5a">
                                         <div class="panel-body">
-                                <%
-                                        for(SesionDTO sesion : sesiones){                                           
-                            %>    
-                                    
-                                        <h4> SESIÓN N°: <%=sesion.getNumSesion()%>  </h4>
-                                        <h4> DIAGNÓSTICO  </h4>
-                                        
-                                        <%=sesion.getDiagnostico()%> <br><br>      
-                                        
-                            <%
-                                }%>
-                                </div>
+                                            <%
+                                                for (SesionDTO sesion : sesiones) {
+                                            %>    
 
-                                </div>
-                                <%}}
-                            
-                            %>            
+                                            <h4> SESIÓN N°: <%=sesion.getNumSesion()%>  </h4>
+                                            <h4> DIAGNÓSTICO  </h4>
 
-                                <div class="tab-pane" id="6a">
-                                    <div class="panel-body">   
-                                        <h4> SESIÓN N°: <%=numSesionActual%>  </h4><br>
-                                        <h4> DIAGNÓSTICO  </h4>
-                                        
-                                        <textarea rows="5" cols="100" id="diagnosticoSesion" name="diagnosticoSesion"></textarea>                                      
+                                            <%=sesion.getDiagnostico()%> <br><br>      
 
-                                        <%if(numSesionActual < 5){%>
+                                            <%
+                                                }%>
+                                        </div>
+
+                                    </div>
+                                    <%}
+                                        }
+
+                                    %>            
+
+                                    <div class="tab-pane" id="6a">
+                                        <div class="panel-body">   
+                                            <h4> SESIÓN N°: <%=numSesionActual%>  </h4><br>
+                                            <h4> DIAGNÓSTICO  </h4>
+
+                                            <textarea rows="5" cols="100" id="diagnosticoSesion" name="diagnosticoSesion"></textarea>                                      
+
+                                            <%if (numSesionActual < 5) {%>
                                             <h3>Sesión adicional : 
                                                 <select name="sesionAdicionalSesion" id="sesionAdicionalSesion" required>
                                                     <option value="si"> SI </option>
                                                     <option value="no"> NO </option>
                                                 </select>
                                             </h3> 
-                                        <%}else{%>
+                                            <%} else {%>
                                             <input type="hidden" name="sesionAdicionalSesion" value="no"/>
-                                        <%}%>
-                                        
-                                        <input type="hidden" name="horaSesion" value="<%=citaDTO.getHora_cita()%>"/>
-                                        <input type="hidden" name="fechaSesion" value="<%=citaDTO.getFecha_cita()%>"/>
-                                        <input type="hidden" name="idCitaSesion" value="<%=citaDTO.getId_cita()%>"/>
-                                        <input type="hidden" name="idHcPsicologiaSesion" value="<%=hcPsicologia.getId_hcpsicologia()%>"/>
-                                        <input type="hidden" name="numSesion" value="<%=numSesionActual%>"/>                                      
-                                        <input type="hidden" name="idUsuarioSesion" value="<%=citaDTO.getId_usuario()%>"/>
-                                        
-                                        <div class="clearfix">
-                                            <div class="col-md-4">                                                
-                                                <input class="btn btn-success btn-block" type="submit" value="GUARDAR">
-                                            </div>
-                                        </div> 
+                                            <%}%>
+
+                                            <input type="hidden" name="horaSesion" value="<%=citaDTO.getHora_cita()%>"/>
+                                            <input type="hidden" name="fechaSesion" value="<%=citaDTO.getFecha_cita()%>"/>
+                                            <input type="hidden" name="idCitaSesion" value="<%=citaDTO.getId_cita()%>"/>
+                                            <%if (hcPsicologia != null) {%>
+                                            <input type="hidden" name="idHcPsicologiaSesion" value="<%=hcPsicologia.getId_hcpsicologia()%>"/>
+                                            <%}%>
+                                            <input type="hidden" name="numSesion" value="<%=numSesionActual%>"/>                                      
+                                            <input type="hidden" name="idUsuarioSesion" value="<%=citaDTO.getId_usuario()%>"/>
+
+                                            <div class="clearfix">
+                                                <div class="col-md-4">                                                
+                                                    <input class="btn btn-success btn-block" type="submit" value="GUARDAR">
+                                                </div>
+                                            </div> 
+                                        </div>
+
                                     </div>
 
                                 </div>
-                                        
-                            </div>
-                        </form>
+                            </form>
 
 
-                    </div>
+                        </div>
 
-                </div>                    
+                    </div>                    
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-1"> </div>
+        </div>
     </body>
 </html>

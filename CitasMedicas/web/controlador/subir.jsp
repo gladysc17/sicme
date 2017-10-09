@@ -34,7 +34,7 @@
             /*item.isFormField() false=input file; true=text field*/
             if (! item.isFormField()){
                 /*cual sera la ruta al archivo en el servidor*/
-                File archivo_server = new File("C:/Users/LEGADO/Documents/TRABAJO DE GRADO/Nueva carpeta (2)/sicme/sicme/CitasMedicas/web/imagenes/banner/"+item.getName());
+                File archivo_server = new File("C:/Users/usuario/Documents/NetBeansProjects/sicme/CitasMedicas/web/imagenes/banner/"+item.getName());
                 /*y lo escribimos en el servido*/
                 item.write(archivo_server);
                 FacadeImagen fi = new FacadeImagen();

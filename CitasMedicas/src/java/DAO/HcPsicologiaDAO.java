@@ -29,7 +29,7 @@ public class HcPsicologiaDAO {
 
         String sql = "INSERT INTO hc_psicologia (idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, "
                 + "historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, "
-                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesio, idcita_hcpsico) "
+                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion, idcita_hcpsico) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);

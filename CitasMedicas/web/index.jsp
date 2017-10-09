@@ -380,10 +380,10 @@
                         </div>                        
                     </div>
                 </div>
-                
+
                 <script>
-                    function validate(){
-                        
+                    function validate() {
+
                         var tipoIdElm = document.getElementById("tipoid");
                         var identificacionElm = document.getElementById("identificacion");
                         var tipoUsuarioElm = document.getElementById("tipousuario");
@@ -395,119 +395,119 @@
                         var generoElm = document.getElementById("genero");
                         var estadoCivilElm = document.getElementById("estadocivil");
                         var direccionElm = document.getElementById("direccion");
-                        var telefonoElm = document.getElementById("telefono");                      
+                        var telefonoElm = document.getElementById("telefono");
                         var password1 = document.getElementById("contrasena");
                         var password2 = document.getElementById("contrasena2");
-                        
-                        if(!validateFieldNull(tipoIdElm)){
+
+                        if (!validateFieldNull(tipoIdElm)) {
                             return;
                         }
-                        if(!validateFieldNull(identificacionElm)){
+                        if (!validateFieldNull(identificacionElm)) {
                             return;
                         }
-                        if(!validateFieldNull(tipoUsuarioElm)){
+                        if (!validateFieldNull(tipoUsuarioElm)) {
                             return;
                         }
-                        if(!validateFieldNull(codigoElm)){
+                        if (!validateFieldNull(codigoElm)) {
                             return;
                         }
-                        if(tipoUsuarioElm.options[tipoUsuarioElm.selectedIndex].value === "estudiante" ){
-                            if(!validateFieldNull(programaElm)){
+                        if (tipoUsuarioElm.options[tipoUsuarioElm.selectedIndex].value === "estudiante") {
+                            if (!validateFieldNull(programaElm)) {
                                 return;
                             }
                         }
-                        if(!validateFieldNull(nombreElm)){
+                        if (!validateFieldNull(nombreElm)) {
                             return;
                         }
-                        if(!validateFieldNull(correoElm)){
+                        if (!validateFieldNull(correoElm)) {
                             return;
                         }
-                        if(!validateFieldNull(fechaNacimientoElm)){
+                        if (!validateFieldNull(fechaNacimientoElm)) {
                             return;
                         }
-                        if(!validateFieldNull(generoElm)){
+                        if (!validateFieldNull(generoElm)) {
                             return;
                         }
-                        if(!validateFieldNull(estadoCivilElm)){
+                        if (!validateFieldNull(estadoCivilElm)) {
                             return;
                         }
-                        if(!validateFieldNull(direccionElm)){
+                        if (!validateFieldNull(direccionElm)) {
                             return;
                         }
-                        if(!validateFieldNull(telefonoElm)){
+                        if (!validateFieldNull(telefonoElm)) {
                             return;
                         }
-                        if(!validateFieldNull(password1)){
+                        if (!validateFieldNull(password1)) {
                             return;
                         }
-                        if(!validateFieldNull(password2)){
+                        if (!validateFieldNull(password2)) {
                             return;
                         }
-                        
-                        if(password1.value != password2.value){
+
+                        if (password1.value != password2.value) {
                             alert("No se ha validado correctamente la contraseña");
                             return;
-                        }else{                            
+                        } else {
                             document.form.submit();
                         }
                     }
-                    
+
                     //function validateFieldNull(elemento){ 
-                        
-                      //  if(elemento.value === ""){
-                        //    alert("El campo " + elemento.name + " debe tener valor");
-                          //  elemento.focus();
-                            //return false;
-                        //}
-                        //return true;
+
+                    //  if(elemento.value === ""){
+                    //    alert("El campo " + elemento.name + " debe tener valor");
+                    //  elemento.focus();
+                    //return false;
                     //}
-                    
-                    function validatePassword(){
-                        
+                    //return true;
+                    //}
+
+                    function validatePassword() {
+
                         var password1 = document.getElementById("contrasena");
                         var password2 = document.getElementById("contrasena2");
-                        
-                        if(password1.value == "" && password2.value == ""){
+
+                        if (password1.value == "" && password2.value == "") {
                             password1.style.background = 'white';
                             password2.style.background = 'white';
                         }
-                        
-                        if((password1.value != password2.value)){                            
+
+                        if ((password1.value != password2.value)) {
                             password1.style.background = '#FF4A4A';
                             password2.style.background = '#FF4A4A';
                         }
-                        
-                        if((password1.value == password2.value) && password1.value != ""){                         
+
+                        if ((password1.value == password2.value) && password1.value != "") {
                             password1.style.background = '#13F926';
                             password2.style.background = '#13F926';
                         }
                     }
                 </script>
-                
+
             </div>
             <ul class="pgwSlider">
-                
+
                 <%
-                FacadeImagen fi = new FacadeImagen();
-                List<ImagenDTO> lis = new ArrayList<ImagenDTO>();
-                
-                lis = fi.obtenerImagenes();
-                String [] ser = {"Medicina General","Odontologia","Psicologia", "Planificacion familiar"};
-                int n = 0;
-                for(ImagenDTO x: lis){
+                    FacadeImagen fi = new FacadeImagen();
+                    List<ImagenDTO> lis = new ArrayList<ImagenDTO>();
+
+                    lis = fi.obtenerImagenes();
+                    String[] ser = {"Medicina General", "Odontologia", "Psicologia", "Planificacion familiar"};
+                    int n = 0;
+                    for (ImagenDTO x : lis) {
                 %>
-                <li><img src="imagenes/banner/<%=x.getNombre() %>"></li>
-                <%    
-                }
-                //<li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
-                //</li>
-                //<li><a href=""><img src="imagenes/10.png"><span style="font-family: inherit; font-weight: bold;"><h1>ODONTOLOGIA</h1></span></a>
-                //</li>
-                //<li><a href=""><img src="imagenes/11.png"><span style="font-family: inherit; font-weight: bold;"><h1>PSICOLOGIA</h1></span></a>
-                //</li>
-                //<li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
-                //</li>
-                %>
+                <li><img src="imagenes/banner/<%=x.getNombre()%>"></li>
+                    <%
+                        }
+                        //<li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
+                        //</li>
+                        //<li><a href=""><img src="imagenes/10.png"><span style="font-family: inherit; font-weight: bold;"><h1>ODONTOLOGIA</h1></span></a>
+                        //</li>
+                        //<li><a href=""><img src="imagenes/11.png"><span style="font-family: inherit; font-weight: bold;"><h1>PSICOLOGIA</h1></span></a>
+                        //</li>
+                        //<li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
+                        //</li>
+                    %>
             </ul>
             <!-- SERVICIOS -->
             <div style="background-color: #e8e8e8; ">
@@ -522,32 +522,80 @@
                                 <div class="container">
                                     <ul class="row block-grid-v2">
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+
                                             <div class="easy-block-v1">
+                                                <img src="img/11.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    Medicina General
+                                                    MEDICINA GENERAL
                                                 </div>
                                             </div>
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
+
+                                                <p style="font-size: 14px;">
+                                                    HORARIO: <br>
+                                                    LUGAR: <br>
+                                                    
+                                                </p>
+
+                                            </div>
+
                                         </li>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+
                                             <div class="easy-block-v1">
+                                                <img src="img/33.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    Planificación familiar
+                                                    ODONTOLOGIA
                                                 </div>
                                             </div>
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
+
+                                                <p style="font-size: 14px;">
+                                                    HORARIO: <br>
+                                                    LUGAR: <br>
+                                                    
+                                                </p>
+
+                                            </div>
+
                                         </li>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+
                                             <div class="easy-block-v1">
+                                                <img src="img/22.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    Psicologia
+                                                    PSICOLOGIA
                                                 </div>
                                             </div>
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
+
+                                                <p style="font-size: 14px;">
+                                                    HORARIO: <br>
+                                                    LUGAR: <br>
+                                                    
+                                                </p>
+
+                                            </div>
+
                                         </li>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+
                                             <div class="easy-block-v1">
+                                                <img src="img/44.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    Odontologia
+                                                    PLANIFICACIÓN FAMILIAR
                                                 </div>
                                             </div>
+                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
+
+                                                <p style="font-size: 14px;">
+                                                    HORARIO: <br>
+                                                    LUGAR: <br>
+                                                    
+                                                </p>
+
+                                            </div>
+
                                         </li>
                                     </ul>
                                 </div>
@@ -571,7 +619,7 @@
 
                             <div class="row equal-height-columns margin-bottom-10">
 
-                               <div class="container">
+                                <div class="container">
                                     <ul class="row block-grid-v2">
                                         <%
                                             FacadeEvento fe = new FacadeEvento();
