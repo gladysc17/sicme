@@ -28,15 +28,12 @@ public class MedicoDAO {
     public boolean registrarMedico(MedicoDTO med) throws SQLException {
 
         String sql = "INSERT INTO medico (identificacion, servicio)"
-                + " VALUES (?, ?, ?)";
+                + " VALUES (?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, med.getIdentificacion());
-        ps.setString(2, med.getServicio());
-        ps.setString(3, med.getContrasena());
-
-        
+        ps.setString(2, med.getServicio());       
         
         int resultado = ps.executeUpdate();
 
