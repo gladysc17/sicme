@@ -36,6 +36,8 @@ public class MedicoDAO {
         ps.setString(2, med.getServicio());
         ps.setString(3, med.getContrasena());
 
+        
+        
         int resultado = ps.executeUpdate();
 
         return resultado == 1;
