@@ -10,14 +10,12 @@
 <%@page import="FACADE.FacadeImagen"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+<div class="ibox float-e-margins">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1>Imagenes banner principal</h1>
+        </div>
+        <div class="panel-body">
             <h4>Nota:</h4>
             <p>
                 Recuerde que debe dejar activa 4 imagenes
@@ -42,16 +40,16 @@
                     %>
                     <tr>
                         <td>
-                            <img src="../imagenes/banner/<%=x.getNombre()%>" height="150" width="150" alt="<%=x.getNombre()%>" />
-                            
+                            <img src="../imagenes/banner/<%=x.getNombre()%>" height="100" width="180" alt="<%=x.getNombre()%>" />
+
                         </td>
                         <td>
                             <%=x.getEstado()%>
                         </td>
                         <td>
-                            <a href="../controlador/procesarModificarImagen.jsp?id_imagen=<%=id_cita+",1" %>" class="btn btn-primary" >Habilitar</a>
-                            <a href="../controlador/procesarModificarImagen.jsp?id_imagen=<%=id_cita+",2" %>" class="btn btn-primary" >Inhabilitar</a>
-                            <a href="../controlador/procesarModificarImagen.jsp?id_imagen=<%=id_cita+",3" %>" class="btn btn-primary" >Eliminar</a>
+                            <a href="../controlador/procesarModificarImagen.jsp?id_imagen=<%=id_cita + ",1"%>" class="btn btn-primary" >Habilitar</a>
+                            <a href="../controlador/procesarModificarImagen.jsp?id_imagen=<%=id_cita + ",2"%>" class="btn btn-primary" >Inhabilitar</a>
+                            <a href="../controlador/procesarModificarImagen.jsp?id_imagen=<%=id_cita + ",3"%>" class="btn btn-primary" >Eliminar</a>
                         </td>
                     </tr>
                     <%
@@ -60,27 +58,29 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-1"></div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+        <div class="panel-heading">
+            <h2>Añadir nueva imagen</h2>
+        </div>
+        <div class="panel-body">
+
+
             <h4>Nota:</h4>
             <p>
                 Para una buena visibilidad de la imagen en la página principal, se recomienda subir la imagen
                 con una dimensión de 1900x550 pixeles.
             </p>
-            <div class="row">
-                <h2>Añadir nuevas imagen</h2>
-                <form action="../controlador/subir.jsp" enctype="MULTIPART/FORM-DATA" method="post">
-                    <input type="file" name="file" /><br/>
-                    <input type="submit" value="Cargar" />
-                </form>
-            </div>
-            </div>
-            <div class="col-md-1"></div>
+
+
+            <form action="../controlador/subir.jsp" enctype="MULTIPART/FORM-DATA" method="post">
+                <input type="file" name="file" /><br/>
+                <input type="submit" value="Cargar" />
+            </form>
         </div>
-        <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
-    </body>
-</html>
+
+        <div class="col-md-1"></div>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>

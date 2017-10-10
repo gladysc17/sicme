@@ -56,7 +56,7 @@
                             String fecha2 = sFecha;
                             System.out.println(" fecha: " + fecha2);
 
-                            String fec = "2017-05-31";
+                            String fec = "2017-10-10";
                             List<CitaDTO> doc = facCita.consultarCitasMedicoDia(idico, fec);
 
                             for (int i = 0; i < doc.size(); i++) {

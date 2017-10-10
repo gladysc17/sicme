@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f03e333b-e68e-43ca-929d-2128e03cc841">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="38"/>
 	<parameter name="tipou" class="java.lang.String"/>
 	<parameter name="fechaI" class="java.util.Date"/>
 	<parameter name="fechaF" class="java.util.Date"/>
@@ -58,14 +58,6 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="15" y="6" width="80" height="59" uuid="7f18f5e2-6180-414a-a1a7-6c6f0306dd24"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="451" y="0" width="73" height="65" uuid="1cf2cd00-5eab-4771-a913-0ec341e2bce0"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="166" y="59" width="39" height="20" uuid="091754d6-fe97-4761-9075-ea83adcf0ad0"/>
 				<text><![CDATA[Lista de]]></text>
@@ -78,6 +70,14 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 				<reportElement x="259" y="59" width="152" height="20" uuid="240846d7-dbe2-411d-916a-a2ddee182d8f"/>
 				<text><![CDATA[(s/es)  registrados en el sistema:]]></text>
 			</staticText>
+			<image>
+				<reportElement x="39" y="20" width="50" height="50" uuid="ccb2245f-56ab-4532-a924-77a2529f573b"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="560" y="20" width="50" height="40" uuid="e67ba3dc-47bd-41bd-9e7d-033bb78feda0"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -164,10 +164,6 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 	</detail>
 	<columnFooter>
 		<band height="60" splitType="Stretch">
-			<textField>
-				<reportElement x="39" y="20" width="56" height="20" uuid="ce679b1d-b650-40b8-b580-8690820e9037"/>
-				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="0" y="20" width="39" height="20" uuid="d9f959d2-a9f3-4c06-8648-cc5b451d2d14"/>
 				<textElement>
@@ -175,6 +171,10 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 				</textElement>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="39" y="20" width="50" height="20" uuid="7f8bac81-46ce-455f-9bcf-8aa12a4462aa"/>
+				<textFieldExpression><![CDATA[$F{fechactual}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>

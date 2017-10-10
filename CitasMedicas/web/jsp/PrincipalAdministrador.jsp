@@ -228,7 +228,7 @@
                         </div>
 
                         <h1>INFORMES</h1>                                                
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title" >
                                     <h3 align="center"> CITAS MEDICAS</h3>
@@ -246,7 +246,7 @@
                             </div>
                         </div>                                                
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> USUARIOS</h3>
@@ -265,7 +265,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> EVENTOS</h3>
@@ -283,8 +283,8 @@
                             </div>
                         </div>
                         
-                        <h1>BANNER PAGINA PRINCIPAL</h1>
-                        <div class="col-md-12">
+                        
+                        <div class="col-md-3">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> ADMINISTRAR IMAGENES </h3>
@@ -292,7 +292,7 @@
                                 <div class="ibox-content">
                                     <div class="usser-button" align="center">
                                         <div class="row">
-                                            <i class="fa fa-clipboard fa-5x" aria-hidden="true"></i> <br><br>
+                                            <i class="fa fa-image fa-5x" aria-hidden="true"></i> <br><br>
                                             <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarImagenes.jsp')" />
                                         </div>
                                     </div>

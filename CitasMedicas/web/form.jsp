@@ -15,6 +15,7 @@
         </div>
         <%
             String id = request.getParameter("dsas");
+            System.out.println("idevento"+id);
             FacadeEvento fe = new FacadeEvento();
             EventoDTO ls = fe.consultarPorId(id);
         %>

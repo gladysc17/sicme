@@ -191,7 +191,8 @@ public class EventoDAO {
         
         ResultSet rs = ps.executeQuery();
         EventoDTO eve = null;
-        if(rs.next()){
+        while(rs.next()){
+            eve = new EventoDTO();
             eve.setIdEvento(rs.getInt(1));
             eve.setNombreEvento(rs.getString(2));
             eve.setFechaEvento(String.valueOf(rs.getDate(3)));
