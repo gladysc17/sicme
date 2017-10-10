@@ -524,7 +524,7 @@
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
                                             <div class="easy-block-v1">
-                                                <img src="img/11.jpg" alt="">
+                                                <img src="imagenes/medicina.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
                                                     MEDICINA GENERAL
                                                 </div>
@@ -543,7 +543,7 @@
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
                                             <div class="easy-block-v1">
-                                                <img src="img/33.jpg" alt="">
+                                                <img src="imagenes/odontologia.png" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
                                                     ODONTOLOGIA
                                                 </div>
@@ -581,7 +581,7 @@
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
                                             <div class="easy-block-v1">
-                                                <img src="img/44.jpg" alt="">
+                                                <img src="imagenes/plan.png" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
                                                     PLANIFICACIÓN FAMILIAR
                                                 </div>
@@ -633,14 +633,14 @@
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
                                             <div class="easy-block-v1">
-                                                <img src="img/11.jpg" alt="">
+                                                <img src="imagenes/vice.jpg" alt="" height="80" width="50">
                                                 <div class="easy-block-v1-badge rgba-red">
                                                     <%=e.getFechaEvento()%>
                                                 </div>
                                             </div>
                                             <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
                                                 <h5>
-                                                    <b><a href="/ueventos/serologias-estudiantes-antiguos-para-el-primer-semestre-de-2016"><%=e.getNombreEvento()%></a></b>
+                                                    <b><a href=""><%=e.getNombreEvento()%></a></b>
                                                 </h5>
                                                 <p style="font-size: 14px;">
                                                     <b>Lugar: </b><%= e.getLugarEvento()%>                                       
