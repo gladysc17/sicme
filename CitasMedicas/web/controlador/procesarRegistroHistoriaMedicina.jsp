@@ -79,6 +79,7 @@
         %>
         <script>
             alert("REGISTRO EXITOSO");
+            location.href = "../jsp/PrincipalMedico.jsp";
         </script>
         <%
         } else {

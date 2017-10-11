@@ -214,34 +214,34 @@
                                                     <tbody>
                                                         <tr> 
                                                             <td> Tipo de familia: <br>  <br> 
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Funcional </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Disfuncional </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Nuclear </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Extensa </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Compuesta </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Ampliada </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Simultanea </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Monoparental </label> <br>
+                                                                <label><input type="checkbox" value="funcional" name="tipofamilia"> Funcional </label> <br>
+                                                                <label><input type="checkbox" value="disfuncional" name="tipofamilia"> Disfuncional </label> <br>
+                                                                <label><input type="checkbox" value="nuclear" name="tipofamilia"> Nuclear </label> <br>
+                                                                <label><input type="checkbox" value="extensa" name="tipofamilia"> Extensa </label> <br>
+                                                                <label><input type="checkbox" value="compuesta" name="tipofamilia"> Compuesta </label> <br>
+                                                                <label><input type="checkbox" value="ampliada" name="tipofamilia"> Ampliada </label> <br>
+                                                                <label><input type="checkbox" value="simultanea" name="tipofamilia"> Simultanea </label> <br>
+                                                                <label><input type="checkbox" value="monoparental" name="tipofamilia"> Monoparental </label> <br>
                                                             </td>
                                                             <td>Miembros de la familia: <br>  <br> 
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Papá </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Mamá </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Abuela </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Abuelo </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Hermanos </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Hijos </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Esposo/a </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Unión libre </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Primos </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Sobrinos </label> <br>
+                                                                <label><input type="checkbox" value="papa" name="miembrosfamilia"> Papá </label> <br>
+                                                                <label><input type="checkbox" value="mama" name="miembrosfamilia"> Mamá </label> <br>
+                                                                <label><input type="checkbox" value="abuela" name="miembrosfamilia"> Abuela </label> <br>
+                                                                <label><input type="checkbox" value="abuelo" name="miembrosfamilia"> Abuelo </label> <br>
+                                                                <label><input type="checkbox" value="hermanos" name="miembrosfamilia"> Hermanos </label> <br>
+                                                                <label><input type="checkbox" value="hijos" name="miembrosfamilia"> Hijos </label> <br>
+                                                                <label><input type="checkbox" value="esposo-a" name="miembrosfamilia"> Esposo/a </label> <br>
+                                                                <label><input type="checkbox" value="union_libre" name="miembrosfamilia"> Unión libre </label> <br>
+                                                                <label><input type="checkbox" value="primos" name="miembrosfamilia"> Primos </label> <br>
+                                                                <label><input type="checkbox" value="sobrinos" name="miembrosfamilia"> Sobrinos </label> <br>
                                                             </td>
                                                             <td>Relaciones en la familia: <br>  <br> 
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Muy estrecha </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Muy estrecha pero conflictiva </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Conflictiva </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Cercana </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Quiebre </label> <br>
-                                                                <label><input type="checkbox" value="depresion" name="motivo"> Distante </label> <br>                                                               
+                                                                <label><input type="checkbox" value="muy_estrecha" name="relacionesfamilia"> Muy estrecha </label> <br>
+                                                                <label><input type="checkbox" value="muy_estrecha_conflictiva" name="relacionesfamilia"> Muy estrecha pero conflictiva </label> <br>
+                                                                <label><input type="checkbox" value="conflictiva" name="relacionesfamilia"> Conflictiva </label> <br>
+                                                                <label><input type="checkbox" value="cercana" name="relacionesfamilia"> Cercana </label> <br>
+                                                                <label><input type="checkbox" value="quiebre" name="relacionesfamilia"> Quiebre </label> <br>
+                                                                <label><input type="checkbox" value="distante" name="relacionesfamilia"> Distante </label> <br>                                                               
                                                             </td>
                                                             
                                                             
