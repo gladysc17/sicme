@@ -28,9 +28,9 @@
                         UsuarioDTO usu = fm.consultarUsuarioPorId(id);
                     %>
                     <label> Medico:  <%=usu.getNombre()%></label>                            
-                    <input type="hidden" value="<%=id%>" name="idMedico" />
+                    <input type="hidden" id="idMedico" value="<%=id%>" name="idMedico" />
                     <div>
-                        <label> Fecha: <input type="date" class="inline-group" id="fechaHM" name="fecha" size="12" /></label>
+                        <label> Fecha: <input type="date" class="inline-group" id="fechaHM" name="fecha" size="12" /></label> 
                     </div>
                     <div>
                         <div>
@@ -92,45 +92,49 @@
                             <br>
                             <input type="button" class="btn btn-success" value="Registrar Horario" onclick="validateForm();"/>
                         </div>
-                        
+
 
                     </div>
+
                 </div>
             </form>
-                        <script>
-                            function validateForm(){
-                               
-                                var fechaHM = document.getElementById("fechaHM");
-                                
-                                if(fechaHM.value == ""){
-                                    alert("Debe seleccionar la fecha para la asignación del horario");
-                                    return;
-                                }
-                                
-                                if(validarCheckHorario() === false){
-                                    return;
-                                }
-                            }
-                            
-                            function validarCheckHorario(){
-                                var checksHora = document.getElementsByName("hora");
-                                var cont = 0;
-                                
-                                for(var i=0; i < checksHora.length; i++){
-                                    if(checksHora[i].checked){
-                                        cont = cont + 1;
-                                    }            
-                                }
-                                
-                                if(cont === 0){
-                                    alert("No se han seleccionado horas para asignar");
-                                    return false;
-                                }else{
-                                    document.formAsignarHorarioMedico.submit();
-                                }
-                            }
-                        </script>
+            <script>
+                function validateForm() {
+
+                    var fechaHM = document.getElementById("fechaHM");
+
+                    if (fechaHM.value == "") {
+                        alert("Debe seleccionar la fecha para la asignación del horario");
+                        return;
+                    }
+
+                    if (validarCheckHorario() === false) {
+                        return;
+                    }
+                }
+
+                function validarCheckHorario() {
+                    var checksHora = document.getElementsByName("hora");
+                    var cont = 0;
+
+                    for (var i = 0; i < checksHora.length; i++) {
+                        if (checksHora[i].checked) {
+                            cont = cont + 1;
+                        }
+                    }
+
+                    if (cont === 0) {
+                        alert("No se han seleccionado horas para asignar");
+                        return false;
+                    } else {
+                        document.formAsignarHorarioMedico.submit();
+                    }
+                }
+            </script>
         </div>
     </div>
 </div>
+                        <div>
+                            
+                        </div>
 

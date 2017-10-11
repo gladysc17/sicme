@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -55,8 +56,9 @@
 
                             String fecha2 = sFecha;
                             System.out.println(" fecha: " + fecha2);
-
-                            String fec = "2017-10-10";
+                            
+                            FacadeHorarioMedico fhm = new FacadeHorarioMedico();
+                            String fec = fhm.fechaActual();
                             List<CitaDTO> doc = facCita.consultarCitasMedicoDia(idico, fec);
 
                             for (int i = 0; i < doc.size(); i++) {

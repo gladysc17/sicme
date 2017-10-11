@@ -22,5 +22,15 @@ public class FacadeHorarioMedico {
         return new NegocioHorarioMedico().consultarHorarioMedico(id_horariomedico);
     }
     
+    public List<HorarioMedicoDTO> listarHorasMedico(String idMedico) throws Exception {
+        return new NegocioHorarioMedico().listarHoraMedico(idMedico);
+    }
     
+    public boolean eliminarHora (int id) throws Exception {
+        return new NegocioHorarioMedico().eliminarHora(id);
+    }
+    
+    public String fechaActual() throws Exception {
+        return new NegocioHorarioMedico().fechaActual();
+    }
 }

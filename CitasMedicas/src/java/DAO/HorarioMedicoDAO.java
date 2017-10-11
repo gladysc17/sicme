@@ -73,5 +73,51 @@ public class HorarioMedicoDAO {
 
         return horam;
     }
+    
+    public List<HorarioMedicoDTO> listarHorasMedico(String idmedico) throws SQLException {
+        
+        String sql = "select * from horariomedico where id_medico = ? order by fecha";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, idmedico);
+        
+        ResultSet rs = ps.executeQuery();
+        List<HorarioMedicoDTO> lis = new ArrayList<HorarioMedicoDTO>();
+        
+        while(rs.next()){
+            HorarioMedicoDTO ho = new HorarioMedicoDTO();
+            ho.setId_horariomedico(rs.getInt(1));
+            ho.setFecha(rs.getString(2));
+            ho.setId_horario_horariomedico(rs.getInt(3));
+            ho.setId_medico_horariomedico(rs.getString(4));
+            ho.setEstado_horariomedico(rs.getString(5));
+            lis.add(ho);
+        }
+        
+        return lis;
+    }
+    
+    public boolean eliminarHora(int id) throws SQLException {
+        
+        String sql = "delete from horariomedico where id = ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setInt(1, id);
+        
+        int rta = ps.executeUpdate();
+        
+        return rta > 0;
+    }
+    
+    public String fechaActual() throws SQLException{
+        String sql = "select current_date";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        String fe="";
+        if(rs.next()){
+            fe=rs.getString(1);
+        }
+        return fe;
+    }
      
 }
