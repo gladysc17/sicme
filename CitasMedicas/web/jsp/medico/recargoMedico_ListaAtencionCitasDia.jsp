@@ -98,7 +98,7 @@
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaPsicologia.jsp?id=<%=identf%>&idcita=<%=idcita%>')" <%=disabled%>> </td>
                                 <%
-                                } else if (servicio.equals("planificacionfamiliar")) {
+                                } else if (servicio.equals("planificacion")) {
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaPlanificacion.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" <%=disabled%>> </td>
                                 <%
