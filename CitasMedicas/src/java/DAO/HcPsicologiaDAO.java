@@ -27,23 +27,27 @@ public class HcPsicologiaDAO {
 
     public boolean registrarHcPsicologia(HcPsicologiaDTO hcpsico) throws SQLException {
 
-        String sql = "INSERT INTO hc_psicologia (idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, "
+        String sql = "INSERT INTO hc_psicologia (idusuario_hcpsico, motivoconsulta_hcpsico, "
                 + "historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, "
-                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesio, idcita_hcpsico) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion, idcita_hcpsico,"
+                + "tipofamilia, miembrosfamilia, relacionesfamilia, genograma) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setInt(1, hcpsico.getIdusuario_hcpsico());
-        ps.setString(2, hcpsico.getMotivoconsulta_hcpsico());
-        ps.setString(3, hcpsico.getGenograma_hcpsico());
-        ps.setString(4, hcpsico.getHistoriafamiliar_hcpsico());
-        ps.setString(5, hcpsico.getProblematicaactual_hcpsico());
-        ps.setString(6, hcpsico.getDiagnostico_hcpsico());
-        ps.setString(7, hcpsico.getProcesopsicoterapeutico_hcpsico());
-        ps.setString(8, hcpsico.getSeguimiento_hcpsico());
-        ps.setString(9, hcpsico.getSesion_hcpsico());
-        ps.setInt(10, hcpsico.getIdcita_hcpsico());
+        ps.setString(2, hcpsico.getMotivoconsulta_hcpsico());        
+        ps.setString(3, hcpsico.getHistoriafamiliar_hcpsico());
+        ps.setString(4, hcpsico.getProblematicaactual_hcpsico());
+        ps.setString(5, hcpsico.getDiagnostico_hcpsico());
+        ps.setString(6, hcpsico.getProcesopsicoterapeutico_hcpsico());
+        ps.setString(7, hcpsico.getSeguimiento_hcpsico());
+        ps.setString(8, hcpsico.getSesion_hcpsico());
+        ps.setInt(9, hcpsico.getIdcita_hcpsico());
+        ps.setString(10, hcpsico.getTipofamilia());
+        ps.setString(11, hcpsico.getMiembrosfamilia());
+        ps.setString(12, hcpsico.getRelacionesfamilia());
+        ps.setString(13, hcpsico.getGenograma());
 
         int resultado = ps.executeUpdate();
 
@@ -74,8 +78,7 @@ public class HcPsicologiaDAO {
         hcps = new HcPsicologiaDTO();
         
         hcps.setIdusuario_hcpsico(rs.getInt("idusuario_hcpsico"));
-        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));
-        hcps.setGenograma_hcpsico(rs.getString("genograma_hcpsico"));
+        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));        
         hcps.setHistoriafamiliar_hcpsico(rs.getString("historiafamiliar_hcpsico"));
         hcps.setProblematicaactual_hcpsico(rs.getString("problematicaactual_hcpsico"));
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
@@ -83,6 +86,11 @@ public class HcPsicologiaDAO {
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
         hcps.setSesion_hcpsico(rs.getString("sesion"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
+        hcps.setTipofamilia(rs.getString("tipofamilia"));
+        hcps.setTipofamilia(rs.getString("miembrosfamilia"));
+        hcps.setTipofamilia(rs.getString("relacionesfamilia"));
+        hcps.setGenograma(rs.getString("genograma"));
+        
                
         listaHisC.add(hcps);
         }
@@ -107,8 +115,7 @@ public class HcPsicologiaDAO {
         hcps = new HcPsicologiaDTO();
         
         hcps.setIdusuario_hcpsico(rs.getInt("idusuario_hcpsico"));
-        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));
-        hcps.setGenograma_hcpsico(rs.getString("genograma_hcpsico"));
+        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));        
         hcps.setHistoriafamiliar_hcpsico(rs.getString("historiafamiliar_hcpsico"));
         hcps.setProblematicaactual_hcpsico(rs.getString("problematicaactual_hcpsico"));
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
@@ -116,6 +123,10 @@ public class HcPsicologiaDAO {
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
         hcps.setSesion_hcpsico(rs.getString("sesion"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
+        hcps.setTipofamilia(rs.getString("tipofamilia"));
+        hcps.setTipofamilia(rs.getString("miembrosfamilia"));
+        hcps.setTipofamilia(rs.getString("relacionesfamilia"));
+        hcps.setGenograma(rs.getString("genograma"));
                        
         }
         return hcps;
@@ -139,8 +150,7 @@ public class HcPsicologiaDAO {
         
         hcps.setId_hcpsicologia(rs.getInt("id_hcpsicologia"));
         hcps.setIdusuario_hcpsico(rs.getInt("idusuario_hcpsico"));
-        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));
-        hcps.setGenograma_hcpsico(rs.getString("genograma_hcpsico"));
+        hcps.setMotivoconsulta_hcpsico(rs.getString("motivoconsulta_hcpsico"));        
         hcps.setHistoriafamiliar_hcpsico(rs.getString("historiafamiliar_hcpsico"));
         hcps.setProblematicaactual_hcpsico(rs.getString("problematicaactual_hcpsico"));
         hcps.setDiagnostico_hcpsico(rs.getString("diagnostico_hcpsico"));
@@ -148,6 +158,10 @@ public class HcPsicologiaDAO {
         hcps.setSeguimiento_hcpsico(rs.getString("seguimiento_hcpsico"));
         hcps.setSesion_hcpsico(rs.getString("sesion"));
         hcps.setIdcita_hcpsico(rs.getInt("idcita_hcpsico"));
+        hcps.setTipofamilia(rs.getString("tipofamilia"));
+        hcps.setTipofamilia(rs.getString("miembrosfamilia"));
+        hcps.setTipofamilia(rs.getString("relacionesfamilia"));
+        hcps.setGenograma(rs.getString("genograma"));
                        
         }
         return hcps;

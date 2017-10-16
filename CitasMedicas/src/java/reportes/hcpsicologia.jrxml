@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="297309a5-e6d3-4e41-9379-02bf00383023">
-	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.zoom" value="1.3636363636363635"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="idcita" class="java.lang.Integer"/>
+	<parameter name="idcita" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT * FROM HC_PSICOLOGIA HC 
 INNER JOIN CITA C ON HC.IDCITA_HCPSICO = C.ID_CITA 
@@ -13,24 +15,28 @@ WHERE HC.IDCITA_HCPSICO = $P{idcita}]]>
 	<field name="id_hcpsicologia" class="java.lang.Integer"/>
 	<field name="idusuario_hcpsico" class="java.lang.Integer"/>
 	<field name="motivoconsulta_hcpsico" class="java.lang.String"/>
-	<field name="genograma_hcpsico" class="java.lang.String"/>
 	<field name="historiafamiliar_hcpsico" class="java.lang.String"/>
 	<field name="problematicaactual_hcpsico" class="java.lang.String"/>
 	<field name="diagnostico_hcpsico" class="java.lang.String"/>
 	<field name="procesopsicoterapeutico_hcpsico" class="java.lang.String"/>
 	<field name="seguimiento_hcpsico" class="java.lang.String"/>
 	<field name="idcita_hcpsico" class="java.lang.Integer"/>
+	<field name="sesion" class="java.lang.String"/>
+	<field name="tipofamilia" class="java.lang.String"/>
+	<field name="miembrosfamilia" class="java.lang.String"/>
+	<field name="relacionesfamilia" class="java.lang.String"/>
+	<field name="genograma" class="java.lang.String"/>
 	<field name="id_cita" class="java.lang.Integer"/>
 	<field name="servicio_cita" class="java.lang.String"/>
 	<field name="num_recibo_cita" class="java.lang.String"/>
 	<field name="fecha_cita" class="java.sql.Date"/>
 	<field name="hora_cita" class="java.sql.Time"/>
-	<field name="id_medico" class="java.lang.Integer"/>
 	<field name="estado" class="java.lang.String"/>
 	<field name="nombre_usuario" class="java.lang.String"/>
 	<field name="nombre_medico" class="java.lang.String"/>
 	<field name="tipousuario_cita" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.String"/>
+	<field name="id_medico" class="java.lang.String"/>
 	<field name="identificacion" class="java.lang.String"/>
 	<field name="tipo_identificacion" class="java.lang.String"/>
 	<field name="codigo" class="java.lang.String"/>
@@ -43,186 +49,217 @@ WHERE HC.IDCITA_HCPSICO = $P{idcita}]]>
 	<field name="direccion" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
 	<field name="tipo_usuario" class="java.lang.String"/>
+	<field name="fecharegistro" class="java.sql.Date"/>
+	<field name="contrasena" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="68" splitType="Stretch">
+		<band height="56" splitType="Stretch">
 			<staticText>
-				<reportElement x="226" y="0" width="135" height="20" uuid="eae6d143-3708-4cd7-bc4a-5aae15caa6b9"/>
+				<reportElement x="127" y="0" width="241" height="20" uuid="00ad446c-2b8a-4745-a6ab-f41b98ec5a27"/>
+				<text><![CDATA[GESTIÓN DE BIENESTAR UNIVERSITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="20" width="135" height="20" uuid="eae6d143-3708-4cd7-bc4a-5aae15caa6b9"/>
 				<text><![CDATA[HISTORIA PSICOLOGICA]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="159" y="20" width="261" height="20" uuid="50bc840e-15e8-459e-b240-41adf9fbf6d4"/>
-				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="149" y="40" width="289" height="20" uuid="2871fff1-2616-424f-be5c-71dac2dea8c2"/>
-				<text><![CDATA[DIVISION DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
-			</staticText>
 			<image>
-				<reportElement x="36" y="3" width="77" height="57" uuid="eb5ff6b0-e424-4e64-a64b-75bca9e64a60"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\img\\ufps.jpg"]]></imageExpression>
+				<reportElement x="446" y="0" width="60" height="50" uuid="905bcb0d-5416-40b6-96cf-6f61aacfbf06"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="16" y="6" width="50" height="44" uuid="e01319f5-0dcb-46f2-ab7b-d86480a938ce"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="115" splitType="Stretch">
-			<staticText>
-				<reportElement x="10" y="0" width="122" height="15" uuid="db1d4e02-36f1-4ac4-a286-59ad503b4a7e"/>
-				<text><![CDATA[FECHA DE CONSULTA:]]></text>
-			</staticText>
+		<band height="113" splitType="Stretch">
 			<textField>
-				<reportElement x="132" y="0" width="100" height="15" uuid="38ced3da-036e-47d8-b7de-85e0fb383358"/>
-				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="10" y="25" width="155" height="15" uuid="6ddec1a1-b219-4228-bf0a-6715c73e8fbc"/>
-				<text><![CDATA[DOCUMENTO DE IDENTIDAD:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="165" y="25" width="100" height="15" uuid="74cb4770-85b7-4845-a0b2-4abd9fa08962"/>
-				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="302" y="25" width="47" height="15" uuid="d0b0fcd2-f19f-445b-a1a8-8373d4ed1652"/>
-				<text><![CDATA[CODIGO:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="349" y="25" width="71" height="15" uuid="e195355f-4131-47ce-b5f5-91fb56c2eb70"/>
+				<reportElement x="232" y="4" width="100" height="20" uuid="4abd3c15-6708-4d8a-97ed-13a77554fa79"/>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="50" width="51" height="15" uuid="bf79d3ef-30b6-487d-b9e6-8a9a039ec43b"/>
-				<text><![CDATA[NOMBRE:]]></text>
+				<reportElement x="16" y="4" width="71" height="20" uuid="5cd14729-8291-44de-8b0d-4bd694e02057"/>
+				<text><![CDATA[Identificación:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="61" y="50" width="241" height="15" uuid="227974ca-206f-46e5-bde5-41fa3ff42326"/>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				<reportElement x="87" y="4" width="100" height="20" uuid="15ef0094-5217-49bb-8ab3-f17c409a7e11"/>
+				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="70" width="26" height="15" uuid="a4444a74-6abd-48b2-93d9-7c14c256234b"/>
-				<text><![CDATA[F.N:]]></text>
+				<reportElement x="187" y="4" width="45" height="20" uuid="7e10ce5d-1df2-4158-8a3d-7da18be9c647"/>
+				<text><![CDATA[Código:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="36" y="70" width="68" height="15" uuid="1996e170-d074-4cd7-89fb-ea48ea2c2ca4"/>
+				<reportElement x="87" y="24" width="245" height="20" uuid="b5e93ebd-8c23-47ee-93af-1247a879f6c0"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="44" width="100" height="20" uuid="892d8334-99b1-4847-b2d8-dd9d2709125a"/>
+				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="44" width="67" height="20" uuid="ac7542c8-77a9-448b-8229-b9f852871a16"/>
+				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="44" width="41" height="20" uuid="dfaa79d2-7a08-4e23-a5ed-222af0583416"/>
 				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="159" y="70" width="54" height="15" uuid="217e219f-2142-4143-8378-60b99c2e8bd6"/>
-				<textFieldExpression><![CDATA[$F{edad}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="125" y="70" width="34" height="15" uuid="e3e3b96b-188d-40f9-a313-7f5416351c99"/>
-				<text><![CDATA[EDAD:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="232" y="70" width="33" height="15" uuid="f2634308-33f3-4a64-bfe3-94024f169410"/>
-				<text><![CDATA[SEXO:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="265" y="70" width="53" height="15" uuid="228f9b79-8eea-4431-8714-0261fae82b8f"/>
-				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="328" y="70" width="78" height="15" uuid="59287acd-c8af-42ae-b7ee-ca11dcb2fa8c"/>
-				<text><![CDATA[ESTADO CIVIL:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="406" y="70" width="74" height="15" uuid="9fac15e0-79f3-4b5d-977e-1db5bc1f0e20"/>
+				<reportElement x="86" y="70" width="86" height="20" uuid="93a60423-592f-43b4-8790-bccd27472fcb"/>
 				<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="12" y="95" width="65" height="15" uuid="d85b3d55-d2e8-443b-a848-1648e328aa40"/>
-				<text><![CDATA[DIRECCIÓN:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="77" y="95" width="241" height="15" uuid="84fc996f-fada-473c-84f6-0c2e61478ca2"/>
+				<reportElement x="243" y="70" width="100" height="20" uuid="0eb189ae-5d1d-4e67-ba74-5f60718c1906"/>
 				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="318" y="50" width="60" height="15" uuid="1e363d6b-7c35-44cb-a026-9d89b2ddfabe"/>
-				<text><![CDATA[TELEFONO:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="378" y="50" width="65" height="15" uuid="e65210d3-1004-47a1-99ac-94d49bb4493c"/>
+				<reportElement x="380" y="24" width="100" height="20" uuid="937d577f-7348-4b67-896d-b88919570217"/>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="349" y="95" width="56" height="15" uuid="a1bf3e7f-3cca-4b64-a26a-9c276f8df41d"/>
-				<text><![CDATA[CORREO:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="405" y="95" width="123" height="15" uuid="b46cea39-555f-498d-9a2d-d275c091878f"/>
+				<reportElement x="380" y="4" width="100" height="20" uuid="1eb7d08d-2ad6-4973-9c04-ddc4715f0ad6"/>
 				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="16" y="24" width="70" height="20" uuid="d9faf5a4-fc5d-48a7-9fd9-48b870b9d5e5"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="44" width="71" height="20" uuid="eb2886b5-4bf8-4891-b36a-3c3087db11f5"/>
+				<text><![CDATA[Fecha de Nac:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="44" width="40" height="20" uuid="c88ab3ec-5022-4dfc-909c-220917d02fa5"/>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="44" width="43" height="20" uuid="1586d6b8-d4bb-49e4-a6ac-4c9971e26b94"/>
+				<text><![CDATA[Género:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="70" width="68" height="20" uuid="c9c1e953-9ff1-453d-a3ac-0b9707b0881b"/>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="70" width="54" height="20" uuid="ec97bc95-167d-4b76-b6d3-b660074b41e6"/>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="4" width="44" height="20" uuid="7ee28e7f-d478-46df-a831-780e3198b9b3"/>
+				<text><![CDATA[Correo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="27" width="33" height="20" uuid="ce64b71a-e1ce-4666-9149-ee8daefdca50"/>
+				<text><![CDATA[Tel:]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="477" splitType="Stretch">
+		<band height="403" splitType="Stretch">
 			<staticText>
-				<reportElement x="10" y="14" width="144" height="15" uuid="55169199-61b3-4a87-b0ca-778821482ad2"/>
-				<text><![CDATA[MOTIVO DE LA CONSULTA:]]></text>
+				<reportElement x="27" y="11" width="100" height="20" uuid="7dfc9275-f9ca-4339-974e-b65995a45f86"/>
+				<text><![CDATA[Motivo Consulta:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="159" y="14" width="369" height="20" uuid="5b0f80c6-a60a-4c91-a2fd-55b4ef75e6cd"/>
+				<reportElement x="132" y="11" width="403" height="20" uuid="d201f1fc-7e96-4e8e-b133-a0d531a9d051"/>
 				<textFieldExpression><![CDATA[$F{motivoconsulta_hcpsico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="136" width="100" height="20" uuid="4993123b-6900-43bd-9499-f3bf77b01b0a"/>
-				<text><![CDATA[HISTORIA FAMILIAR:]]></text>
+				<reportElement x="27" y="41" width="100" height="20" uuid="fb3cf9cf-cbb8-4be3-9623-9433101a7706"/>
+				<text><![CDATA[Tipo Familia:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="112" y="50" width="390" height="64" uuid="1cc5adc4-4c04-4378-9bbb-567b2a2bdf78"/>
-				<textFieldExpression><![CDATA[$F{genograma_hcpsico}]]></textFieldExpression>
+				<reportElement x="132" y="41" width="403" height="20" uuid="5474bf1a-6231-4fa7-b54d-6fcf178fef36"/>
+				<textFieldExpression><![CDATA[$F{tipofamilia}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="12" y="50" width="100" height="20" uuid="704a4f5e-8de3-4663-9ee3-89b7b9c66ef1"/>
-				<text><![CDATA[GENOGRAMA:]]></text>
+				<reportElement x="27" y="72" width="116" height="20" uuid="123c873e-2d79-4589-852a-1f66d2b29c89"/>
+				<text><![CDATA[Miembros de la Familia:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="136" width="392" height="67" uuid="c79050a5-1bfa-416f-a5b4-e39b05bee549"/>
+				<reportElement x="151" y="72" width="384" height="20" uuid="1b57cd90-f5ac-4825-ae56-0d543c8666d1"/>
+				<textFieldExpression><![CDATA[$F{miembrosfamilia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="99" width="116" height="20" uuid="071555af-040e-46d3-9c03-5e1143af92e1"/>
+				<text><![CDATA[Relaciones de la Familia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="151" y="99" width="384" height="20" uuid="3c0a677f-c894-431e-8010-c440abe027e6"/>
+				<textFieldExpression><![CDATA[$F{relacionesfamilia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="130" width="100" height="20" uuid="2c91727c-28fc-49f5-8e56-bcb1eecd7598"/>
+				<text><![CDATA[Genograma:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="130" width="403" height="38" uuid="b76dec69-f86e-43bb-a81d-e05499ce9f77"/>
+				<textFieldExpression><![CDATA[$F{genograma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="178" width="100" height="20" uuid="6b374352-3ae3-4dec-966c-068e2aa158b3"/>
+				<text><![CDATA[Historia Familiar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="132" y="178" width="403" height="31" uuid="5d3669aa-39d2-45fc-ad7f-293c88e8fbb7"/>
 				<textFieldExpression><![CDATA[$F{historiafamiliar_hcpsico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="12" y="216" width="133" height="20" uuid="13c774ef-a0d0-4d05-889b-58fbd6657f73"/>
-				<text><![CDATA[PROBLEMATICA ACTUAL:]]></text>
+				<reportElement x="27" y="219" width="100" height="20" uuid="614cd54f-1d75-463f-9942-fcc14e6cf93a"/>
+				<text><![CDATA[Problematica Actual:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="149" y="216" width="353" height="58" uuid="fa543656-166d-4ceb-9c7c-4954570a98ed"/>
+				<reportElement x="132" y="219" width="403" height="30" uuid="fc544999-cedf-4de4-a2dc-7546c8b80216"/>
 				<textFieldExpression><![CDATA[$F{problematicaactual_hcpsico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="12" y="290" width="100" height="20" uuid="9644a3b8-c9ff-4f28-8374-e52c8f50d9d0"/>
-				<text><![CDATA[DIAGNOSTICO:]]></text>
+				<reportElement x="27" y="259" width="100" height="20" uuid="a2a682d3-bc4c-46b4-bce3-c347d19358dd"/>
+				<text><![CDATA[Diágnostico:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="112" y="290" width="390" height="41" uuid="91505e48-e1f3-4094-b1d6-d41be4d01330"/>
+				<reportElement x="132" y="259" width="403" height="35" uuid="5d3ebc2b-ea46-4709-a56d-c3986ec9213f"/>
 				<textFieldExpression><![CDATA[$F{diagnostico_hcpsico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="12" y="343" width="170" height="20" uuid="a480249e-0450-4359-add3-45a4ac6ce740"/>
-				<text><![CDATA[PROCESO PSICOTERAPEUTICO:]]></text>
+				<reportElement x="27" y="304" width="120" height="20" uuid="f358a3b0-08f9-40df-a8d1-bd7b95c45955"/>
+				<text><![CDATA[Proceso Psicoterapeutico]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="182" y="343" width="320" height="52" uuid="e249b4bd-38af-44c8-8ea7-ed4f2a607635"/>
+				<reportElement x="151" y="304" width="384" height="37" uuid="4ad5f481-c528-4c55-8add-846ccb5034da"/>
 				<textFieldExpression><![CDATA[$F{procesopsicoterapeutico_hcpsico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="405" width="100" height="20" uuid="733e7b11-b74d-4b9f-9efe-c29d271dcb1b"/>
-				<text><![CDATA[SEGUIMIENTO:]]></text>
+				<reportElement x="27" y="349" width="100" height="20" uuid="b8c0d0cc-48a3-4878-b322-fe40e973f268"/>
+				<text><![CDATA[Seguimiento:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="113" y="405" width="389" height="62" uuid="869a2436-f957-4f0a-a3c1-1eafd7e576b3"/>
+				<reportElement x="132" y="349" width="403" height="34" uuid="fee1bd44-46fc-4307-a4e0-ec57a33e8e90"/>
 				<textFieldExpression><![CDATA[$F{seguimiento_hcpsico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="383" width="40" height="20" uuid="a7a1ba16-f1a6-445f-9cfc-2bd893a272ac"/>
+				<text><![CDATA[sesion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="72" y="383" width="75" height="20" uuid="21e4bd97-52f9-4096-b37e-be0106376c06"/>
+				<textFieldExpression><![CDATA[$F{sesion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="64" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="43" y="19" width="100" height="20" uuid="31b1980a-490f-4e08-97e6-52906b857202"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

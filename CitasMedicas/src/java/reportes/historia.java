@@ -75,6 +75,7 @@ public class historia extends HttpServlet {
             
             Map m = new HashMap();
             int idcita = Integer.parseInt(idecita);
+            System.out.println(" servicio jasper " + servicio);
             System.out.println(" idcita " + idcita);
                 
             m.put("idcita", idcita);
@@ -82,7 +83,7 @@ public class historia extends HttpServlet {
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                     JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Mi Reporte");
+                    viewer.setTitle("HC PSICOLOGIA");
                     viewer.setVisible(true);
                                                                
             }

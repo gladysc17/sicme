@@ -25,10 +25,6 @@
 			<rectangle>
 				<reportElement x="11" y="9" width="526" height="65" uuid="be2d11d4-94a7-4397-9cef-2d3068b49152"/>
 			</rectangle>
-			<image>
-				<reportElement x="16" y="10" width="80" height="59" uuid="92c2cc9c-fa80-4a53-b77e-438efa806853"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="137" y="30" width="273" height="20" uuid="87d561bd-c130-4de9-b0a5-8fdd98180078"/>
 				<textElement textAlignment="Center">
@@ -36,10 +32,6 @@
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="459" y="10" width="68" height="64" uuid="ff53111e-daaf-4ed9-99c0-5389005780b4"/>
-				<imageExpression><![CDATA["D:\\Gladys M\\Desktop\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="151" y="10" width="255" height="20" uuid="33c540ae-6c88-41e1-9f8a-915cc7ae110b"/>
 				<textElement textAlignment="Center">
@@ -69,6 +61,14 @@
 				</textElement>
 				<text><![CDATA[y]]></text>
 			</staticText>
+			<image>
+				<reportElement x="442" y="10" width="69" height="58" uuid="e0678cef-2359-4bae-82c7-c94fc4a119c2"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="33" y="18" width="50" height="50" uuid="b9ef6217-b574-4d1e-a1ca-8d241291d31d"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

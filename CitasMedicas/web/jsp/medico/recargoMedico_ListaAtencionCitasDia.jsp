@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -55,8 +56,9 @@
 
                             String fecha2 = sFecha;
                             System.out.println(" fecha: " + fecha2);
-
-                            String fec = "2017-05-31";
+                            
+                            FacadeHorarioMedico fhm = new FacadeHorarioMedico();
+                            String fec = fhm.fechaActual();
                             List<CitaDTO> doc = facCita.consultarCitasMedicoDia(idico, fec);
 
                             for (int i = 0; i < doc.size(); i++) {
@@ -96,7 +98,7 @@
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaPsicologia.jsp?id=<%=identf%>&idcita=<%=idcita%>')" <%=disabled%>> </td>
                                 <%
-                                } else if (servicio.equals("planificacionfamiliar")) {
+                                } else if (servicio.equals("planificacion")) {
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaPlanificacion.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" <%=disabled%>> </td>
                                 <%

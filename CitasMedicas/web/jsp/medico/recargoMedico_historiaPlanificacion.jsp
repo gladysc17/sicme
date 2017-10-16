@@ -8,14 +8,10 @@
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+
+        <div class="ibox float-e-margins">                               
+    <div class="panel panel-default">
+        
             <div class="row">
                 <div clas="col-md-12">
                     <div class="card">
@@ -227,6 +223,5 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-1"></div>
-    </body>
-</html>
+ 
+        </div>

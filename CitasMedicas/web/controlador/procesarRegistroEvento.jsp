@@ -29,19 +29,20 @@
             boolean rta = fe.registroEvento(re);
             
             if(rta){
+                System.out.println("SI REGISTRO");
         %>
         <script type="text/javascript">
-            alert('Registro exitoso');
+            alert("SE HA REGISTRADO PARA ASISTIR AL EVENTO");
+            location.href = "../index.jsp";
         </script>
-        <%       
-                response.sendRedirect("../index.jsp");
+        <%                       
             } else {
         %>
         <script type="text/javascript">
-            alert('Datos erroneos');
+            alert("NO SE HA REALIZADO EL REGISTRO");
+            location.href = "../index.jsp";
         </script>
-        <%                       
-                response.sendRedirect("../index.jsp");
+        <%                                      
             }
             
         %>

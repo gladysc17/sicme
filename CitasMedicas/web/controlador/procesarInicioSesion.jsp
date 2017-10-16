@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page import="javafx.scene.control.Alert"%>
+
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="FACADE.FacadeMedico"%>

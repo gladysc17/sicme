@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Mauricio U
+ * @author Gladys M
  */
 public class SesionDAO {
     

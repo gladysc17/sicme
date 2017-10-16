@@ -19,9 +19,9 @@
         <%
 
             int idusuario_hcpsico = Integer.parseInt(request.getParameter("ide"));
-            String[] motivos = request.getParameterValues("motivo");
+            String[] motivos = request.getParameterValues("motivo");            
             
-            String genograma_hcpsico = request.getParameter("genograma");
+            
             String historiafamiliar_hcpsico = request.getParameter("historiaf");
             String problematicaactual_hcpsico = request.getParameter("problematica");
             String diagnostico_hcpsico = request.getParameter("diagnostico");
@@ -29,6 +29,11 @@
             String seguimiento_hcpsico = request.getParameter("seguimiento");
             String sesion_hcpsico = request.getParameter("sesion");
             int id_cita = Integer.parseInt(request.getParameter("idecita"));
+            
+            String[] tipofamilia = request.getParameterValues("tipofamilia");
+            String[] miembrosfamilia = request.getParameterValues("miembrosfamilia");
+            String[] relacionesfamilia = request.getParameterValues("relacionesfamilia");
+            String genograma = request.getParameter("genograma");
                                    
             
             String motivoconsulta_hcpsico = "";
@@ -41,8 +46,41 @@
                 }
                 
             }            
+            
+            String tipo ="";
+            
+            for (int i = 0; i < tipofamilia.length; i++) {
+                if(i != (tipofamilia.length - 1)){
+                   tipo = tipo + tipofamilia[i] + ", ";
+                }else{
+                    tipo = tipo + tipofamilia[i];
+                }
+                
+            }
+            
+            String miembros ="";
+            
+            for (int i = 0; i < miembrosfamilia.length; i++) {
+                if(i != (miembrosfamilia.length - 1)){
+                   miembros = miembros + miembrosfamilia[i] + ", ";
+                }else{
+                    miembros = miembros + miembrosfamilia[i];
+                }
+                
+            }
+            
+            String relaciones ="";
+            
+            for (int i = 0; i < relacionesfamilia.length; i++) {
+                if(i != (relacionesfamilia.length - 1)){
+                   relaciones = relaciones + relacionesfamilia[i] + ", ";
+                }else{
+                    relaciones = relaciones + relacionesfamilia[i];
+                }
+                
+            }
                     
-        HcPsicologiaDTO psico = new HcPsicologiaDTO(idusuario_hcpsico, motivoconsulta_hcpsico, genograma_hcpsico, historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion_hcpsico, id_cita);
+            HcPsicologiaDTO psico = new HcPsicologiaDTO(idusuario_hcpsico, motivoconsulta_hcpsico, historiafamiliar_hcpsico, problematicaactual_hcpsico, diagnostico_hcpsico, procesopsicoterapeutico_hcpsico, seguimiento_hcpsico, sesion_hcpsico, id_cita, tipo, miembros, relaciones, genograma);
             
             FacadeHcPsicologia facPsico= new FacadeHcPsicologia();
             
