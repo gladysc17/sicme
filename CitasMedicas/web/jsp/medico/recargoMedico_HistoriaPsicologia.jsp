@@ -357,7 +357,9 @@
                                         <input type="hidden" name="horaSesion" value="<%=citaDTO.getHora_cita()%>"/>
                                         <input type="hidden" name="fechaSesion" value="<%=citaDTO.getFecha_cita()%>"/>
                                         <input type="hidden" name="idCitaSesion" value="<%=citaDTO.getId_cita()%>"/>
+                                        <%if(hcPsicologia != null){%>
                                         <input type="hidden" name="idHcPsicologiaSesion" value="<%=hcPsicologia.getId_hcpsicologia()%>"/>
+                                        <%}%>
                                         <input type="hidden" name="numSesion" value="<%=numSesionActual%>"/>                                      
                                         <input type="hidden" name="idUsuarioSesion" value="<%=citaDTO.getId_usuario()%>"/>
                                         
