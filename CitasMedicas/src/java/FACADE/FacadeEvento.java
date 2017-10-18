@@ -8,6 +8,7 @@ package FACADE;
 import DTO.EventoDTO;
 import DTO.RegistroeventoDTO;
 import NEGOCIO.NegocioEvento;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -46,5 +47,9 @@ public class FacadeEvento {
     
     public int cantidadEvento(int idevento){
         return new NegocioEvento().cantidadPorEvento(idevento);
+    }
+    
+    public List<RegistroeventoDTO> listarRegistrados(int id_evento) throws SQLException{
+        return new NegocioEvento().listarRegistrados(id_evento);
     }
 }

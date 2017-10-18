@@ -28,7 +28,7 @@ public class ServicioDAO {
 
     public boolean registrarServicio(ServicioDTO ser) throws SQLException {
 
-        String sql = "INSERT INTO sesion(nombre) VALUES (?)";
+        String sql = "INSERT INTO servicio (nombre) VALUES (?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 

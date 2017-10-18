@@ -223,4 +223,23 @@ public class NegocioEvento {
         }
         return cant;
     }
+    
+    public List<RegistroeventoDTO> listarRegistrados(int id_evento) throws SQLException{
+      
+           
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        List<RegistroeventoDTO> Reev = new ArrayList<RegistroeventoDTO>();
+        RegistroeventoDAO reg = new RegistroeventoDAO(co);
+        
+        try{
+            Reev = reg.listaRegistrados(id_evento);
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally {
+            co.close();
+        }        
+        return (Reev);
+    }
 }

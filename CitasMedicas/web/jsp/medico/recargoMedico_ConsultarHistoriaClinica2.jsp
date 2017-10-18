@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.MedicoDTO"%>
+<%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,10 +28,15 @@
             <%
                 int id = Integer.parseInt(request.getParameter("identf"));
                 String ide = request.getParameter("identf");
-                String servicio = request.getParameter("servicio");
+                
+                UsuarioDTO med = (UsuarioDTO) session.getAttribute("medico");
+                String idMed = med.getIdentificacion();
+                FacadeMedico facM = new FacadeMedico();
+                
+                MedicoDTO medic = facM.consultarMedicoPorId(idMed);
+                String servicio = medic.getServicio();                                
 
                 FacadeUsuario faca = new FacadeUsuario();
-
                 UsuarioDTO u = faca.consultarUsuarioPorId(ide);
 
                 if (u == null) {
@@ -39,8 +46,9 @@
             <h2>Usuario No encontrado </h2>
 
             <form  action="/CitasMedicas/historia" method="post" target="_blank">
+                
 
-                <%        } else if (servicio.equals("medicinageneral")) {
+                <%        } else if (servicio.equals("1")) {
 
                     FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
                     List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
@@ -94,7 +102,7 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                <%        } else if (servicio.equals("psicologia")) {
+                <%        } else if (servicio.equals("4")) {
 
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
@@ -148,7 +156,7 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("odontologia")) {
+                            <%        } else if (servicio.equals("2")) {
 
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
@@ -202,7 +210,7 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("planificacion")) {
+                            <%        } else if (servicio.equals("3")) {
 
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
@@ -256,6 +264,7 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
+                            <input type="hidden" value="<%=servicio%>" name="servicio" id="servicio">
             </form>
         </div> 
     </div>

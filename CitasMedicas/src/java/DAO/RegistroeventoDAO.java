@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author LEGADO
@@ -56,4 +58,28 @@ public class RegistroeventoDAO {
         }
         return cant;
     }
+    
+     public List<RegistroeventoDTO> listaRegistrados (int idEvento) throws SQLException {
+        
+        List<RegistroeventoDTO> lista = new ArrayList<RegistroeventoDTO>();
+        String sql = "select * from registroevento where id_evento = ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idEvento);
+        
+        ResultSet rs = ps.executeQuery();        
+        RegistroeventoDTO res = null;
+        while (rs.next()) {
+            res = new RegistroeventoDTO();
+            res.setCodigo(rs.getString("codigo"));
+            res.setNombre(rs.getString("nombre"));
+            res.setIdentificacion(rs.getString("identificacion"));
+            res.setCorreo(rs.getString("correo"));
+            res.setPrograma(rs.getString("programa"));            
+
+            lista.add(res);
+        }
+
+        return lista;
+    }
+    
 }

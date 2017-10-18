@@ -23,7 +23,7 @@
             String lugarEvento = request.getParameter("lugarEvento");
             String descrEvento = request.getParameter("descrEvento");
             String dirEvento = request.getParameter("dirEvento");
-            int identificacion = Integer.parseInt(request.getParameter("identificion"));
+            String identificacion = request.getParameter("identificion");
 
             String hora = horaEvento+":00";
             EventoDTO eve = new EventoDTO(nombreEvento, fechaEvento, hora, lugarEvento, descrEvento, dirEvento, identificacion, "activo");

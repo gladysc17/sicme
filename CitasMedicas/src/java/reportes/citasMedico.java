@@ -6,7 +6,9 @@
 package reportes;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -17,7 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -27,10 +28,10 @@ import util.ConexionPostgres;
 
 /**
  *
- * @author Gladys M
+ * @author usuario
  */
-@WebServlet(name = "historia", urlPatterns = {"/historia"})
-public class historia extends HttpServlet {
+@WebServlet(name = "citasMedico", urlPatterns = {"/citasMedico"})
+public class citasMedico extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,50 +44,46 @@ public class historia extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-
-        String id = request.getParameter("identf");
-        String servicio = request.getParameter("servicio");
-        String idecita = request.getParameter("idcita");
-
-        System.out.println(" id " + id + " servicio " + servicio + " idcita " + idecita);
-
-        try {
-            
-            
-            if(servicio.equals("1")){
-            Map m = new HashMap();
-            int idcita = Integer.parseInt(idecita);
-            System.out.println(" idcita " + idcita);
-            m.put("idcita", idcita);
-                    
-                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina.jasper"));
-                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Mi Reporte");
-                    viewer.setVisible(true);
-                    //JasperExportManager.exportReportToPdfFile( jasperPrint, "C:/repor/reporte"+id+".pdf");                   
-                                                               
-            }
-            
-            else if(servicio.equals("3")){
-            
-            Map m = new HashMap();
-            int idcita = Integer.parseInt(idecita);
-            System.out.println(" servicio jasper " + servicio);
-            System.out.println(" idcita " + idcita);
+        Connection co = con.getconexion();                     
+        
+        String fechaI = request.getParameter("fechaIC");
+        String fechaF = request.getParameter("fechaIC2");
+        String id = request.getParameter("id");
+        
+        Date fec = Date.valueOf(fechaI);               
+        
+        System.out.println(" fec " + fec + " fec2 " + fechaF + "id " +id);
                 
-            m.put("idcita", idcita);
-                    
-                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
-                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("HC PSICOLOGIA");
-                    viewer.setVisible(true);
-                                                               
+        try {
+
+            if (fechaI.isEmpty() || fechaF == "") {
+                Map m = new HashMap();                
+                m.put("id", id);
+                m.put("fec", fec);                                                
+                
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasDia.jasper"));
+                JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
+                JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                viewer.setTitle("Mi Reporte");
+                viewer.setVisible(true);
+
+            } else {
+                Date fec2 = Date.valueOf(fechaF);
+                Map m = new HashMap();                
+                m.put("id", id);
+                m.put("fec", fec);   
+                m.put("fec2",fec2);
+                
+
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasRango.jasper"));
+                JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
+                JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                viewer.setTitle("Mi Reporte");
+                viewer.setVisible(true);
+
             }
+                        
 
         } catch (JRException ex) {
             Logger.getLogger(historia.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,7 +91,7 @@ public class historia extends HttpServlet {
 
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -121,7 +118,6 @@ public class historia extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

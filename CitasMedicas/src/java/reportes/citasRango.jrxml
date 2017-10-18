@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f559bd3-761b-4997-89e8-7e5eb26f645d">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="221"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fec" class="java.util.Date"/>
+	<parameter name="fec2" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select * from cita
+where id_medico = $P{id}
+and fecha_cita between $P{fec} and $P{fec2}]]>
+	</queryString>
+	<field name="id_cita" class="java.lang.Integer"/>
+	<field name="servicio_cita" class="java.lang.String"/>
+	<field name="num_recibo_cita" class="java.lang.String"/>
+	<field name="fecha_cita" class="java.sql.Date"/>
+	<field name="hora_cita" class="java.sql.Time"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="nombre_medico" class="java.lang.String"/>
+	<field name="tipousuario_cita" class="java.lang.String"/>
+	<field name="id_usuario" class="java.lang.String"/>
+	<field name="id_medico" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="2" width="100" height="20" uuid="b929e638-58ba-4fa8-80a5-cd81e0564d24"/>
+				<text><![CDATA[id_usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="2" width="100" height="20" uuid="7fcd3b38-b800-414b-9a98-e413987e34e5"/>
+				<text><![CDATA[nombre_usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="2" width="100" height="20" uuid="70fa56fc-f929-45e6-93be-b78b6783192f"/>
+				<text><![CDATA[fecha_cita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="2" width="100" height="20" uuid="5ce1ae35-7092-4e9c-897b-ef6a39b6a751"/>
+				<text><![CDATA[hora_cita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="2" width="100" height="20" uuid="7bf03066-05f4-47a2-ae7f-82b84a9f9820"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="9" width="100" height="20" uuid="aa08769c-d496-406e-b77d-b3d136c5ff8a"/>
+				<textFieldExpression><![CDATA[$F{id_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="17" width="100" height="20" uuid="cd597a83-8ddc-4108-8d1e-55e1353308e8"/>
+				<textFieldExpression><![CDATA[$F{nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="25" width="100" height="20" uuid="0b1919cb-bbd9-4877-ad1d-3d7b95bbceb4"/>
+				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="27" width="100" height="20" uuid="91e760e6-3942-4eb9-ba04-472c20854ce1"/>
+				<textFieldExpression><![CDATA[$F{hora_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="31" width="100" height="20" uuid="ea6ffec4-c8b5-4eb3-8863-6bbe30730426"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
