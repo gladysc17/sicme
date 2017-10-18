@@ -28,11 +28,12 @@ public class ServicioDAO {
 
     public boolean registrarServicio(ServicioDTO ser) throws SQLException {
 
-        String sql = "INSERT INTO servicio (nombre) VALUES (?)";
+        String sql = "INSERT INTO servicio(nombre, informacion) VALUES (?,?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, ser.getNombre());
+        ps.setString(2, ser.getInformacion());
 
         int resultado = ps.executeUpdate();
 
@@ -58,6 +59,7 @@ public class ServicioDAO {
             
             ser.setId(rs.getInt("id"));
             ser.setNombre(rs.getString("nombre"));
+            ser.setInformacion(rs.getString("informacion"));
             
         }
         return ser;
@@ -82,6 +84,7 @@ public class ServicioDAO {
             
             ser.setId(rs.getInt("id"));
             ser.setNombre(rs.getString("nombre"));
+            ser.setInformacion(rs.getString("informacion"));
 
             listaServicios.add(ser);
         }
@@ -89,5 +92,34 @@ public class ServicioDAO {
         return listaServicios;
 
     }
+    
+    public boolean actualizarServicio(int id, String serv, String info) throws SQLException {
+        
+        String sql = "update servicio set nombre = ?, informacion = ? where id = ? ";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, serv);
+        ps.setString(2, info);
+        ps.setInt(3, id);
+        
+        int rta = ps.executeUpdate();
+        
+        return rta>0;
+    }
+    
+    public boolean eliminarServicio(int id) throws SQLException {
+        
+        String sql = "delete from servicio where id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setInt(1, id);
+        
+        int rta = ps.executeUpdate();
+        
+        if(rta>0)
+            return true;
+        return false;
+    }
+
     
 }

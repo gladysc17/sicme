@@ -31,4 +31,12 @@ public class FacadeServicio {
         return new NegocioServicio().consultarServicios();
     }
     
+    public boolean actualizarServicio(int id, String serv, String infor){
+        return new NegocioServicio().actualizarServicio(id, serv, infor);
+    }
+    
+    public boolean eliminarServicio(int id){
+        return new NegocioServicio().eliminarServicio(id);
+    }
+
 }

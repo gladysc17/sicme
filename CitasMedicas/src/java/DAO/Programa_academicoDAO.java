@@ -57,7 +57,8 @@ public class Programa_academicoDAO {
             pro = new Programa_academicoDTO();
             
             pro.setId(rs.getInt("id"));
-            pro.setNombre_programa(rs.getString("nombre_programa"));            
+            pro.setNombre_programa(rs.getString("nombre_programa"));
+            pro.setCodigo_programa(rs.getString("codigo_programa"));
             
         }
         return pro;
@@ -81,7 +82,8 @@ public class Programa_academicoDAO {
             pro = new Programa_academicoDTO();
             
             pro.setId(rs.getInt("id"));
-            pro.setNombre_programa(rs.getString("nombre_programa"));            
+            pro.setNombre_programa(rs.getString("nombre_programa"));
+            pro.setCodigo_programa(rs.getString("codigo_programa"));
 
             listaProgramas.add(pro);
         }
@@ -89,6 +91,7 @@ public class Programa_academicoDAO {
         return listaProgramas;
 
     }
+
     
     
 }
