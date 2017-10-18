@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.ServicioDTO"%>
+<%@page import="FACADE.FacadeServicio"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="java.sql.Time"%>
@@ -62,13 +64,22 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-1 control-label">Servicio</label>
                             <div class="col-sm-4">
-                                <select class="form-control" name="servicio" id="servicio" onchange="ver()">                        
-                                    <option>  </option>
-                                    <option value="medicinageneral"> Medicina General </option>
-                                    <option value="odontologia"> Odontología </option>
-                                    <option value="psicologia"> Psicología</option>
-                                    <option value="planificacion"> Planificacion Familiar</option>                  
-                                </select>
+                                <select class="form-control" name="servicio" id="servicio" alt="Servicio" onchange="ver()">                        
+                                    <option>--seleccione--</option>
+                            <%
+                                FacadeServicio facSer = new FacadeServicio();
+                                List<ServicioDTO> ser = facSer.consultarServicio();
+                                for (int i= 0; i<ser.size(); i++){
+                                    String  serv = ser.get(i).getNombre();
+                                    int ids = ser.get(i).getId();
+                                
+                            %>
+                            <option value="<%=ids%>"> <%=serv%> </option>
+                             
+                            <%
+                            }
+                            %>
+                        </select>
                             </div>                                                        
 
                             <div class="col-sm-2">                                                                              

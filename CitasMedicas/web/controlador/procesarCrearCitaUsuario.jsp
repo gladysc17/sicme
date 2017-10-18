@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeServicio"%>
+<%@page import="DTO.ServicioDTO"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.HorarioMedicoDTO"%>
@@ -24,6 +26,12 @@
     <body>
 
         <%
+            String servi = request.getParameter("servicio");
+            int se= Integer.parseInt(servi);
+            
+            FacadeServicio facSer = new FacadeServicio();
+            ServicioDTO ser = facSer.consultarServicioId(se);
+            String servicio = ser.getNombre();
             String servicio = request.getParameter("servicio");;
             String fecha = request.getParameter("fecha");
             String hora_rec = request.getParameter("hora");

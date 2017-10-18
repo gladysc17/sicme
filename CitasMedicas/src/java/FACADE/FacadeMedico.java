@@ -29,7 +29,7 @@ public class FacadeMedico {
         return new NegocioMedico().listarMedicos();
     }
     
-    public ArrayList<MedicoDTO> consultarMedicosPorServicio(String servicio) throws SQLException{
+    public ArrayList<MedicoDTO> consultarMedicosPorServicio(int servicio) throws SQLException{
         return new NegocioMedico().consultarMedicoPorServicio(servicio);
     }
     

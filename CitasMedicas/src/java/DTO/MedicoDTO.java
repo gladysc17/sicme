@@ -12,13 +12,13 @@ package DTO;
 public class MedicoDTO {
     
     private String identificacion;   
-    private String servicio;
+    private int servicio;
     private String contrasena;    
 
     public MedicoDTO() {
     }
 
-    public MedicoDTO(String identificacion, String servicio, String contrasena) {
+    public MedicoDTO(String identificacion, int servicio, String contrasena) {
         this.identificacion = identificacion;
         this.servicio = servicio;
         this.contrasena = contrasena;
@@ -32,11 +32,11 @@ public class MedicoDTO {
         this.identificacion = identificacion;
     }
 
-    public String getServicio() {
+    public int getServicio() {
         return servicio;
     }
 
-    public void setServicio(String servicio) {
+    public void setServicio(int servicio) {
         this.servicio = servicio;
     }
 

@@ -9,13 +9,14 @@
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-    <option> --- seleccione --- </option>
+<option>--seleccione--</option>
 <%
             String servicio = request.getParameter("servicio");            
-
+            
+            int s = Integer.parseInt(servicio);            
             FacadeUsuario facUs = new FacadeUsuario();
 
-            ArrayList<UsuarioDTO> listaMedicos = facUs.consultarMedicosPorServicio("medico", servicio);
+            ArrayList<UsuarioDTO> listaMedicos = facUs.consultarMedicosPorServicio("medico", s);
 
             for (int i = 0; i < listaMedicos.size(); i++) {
 

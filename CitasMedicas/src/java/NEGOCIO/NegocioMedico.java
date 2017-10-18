@@ -179,7 +179,7 @@ public class NegocioMedico {
         return (prof);
     }
      
-      public ArrayList<MedicoDTO> consultarMedicoPorServicio(String servicio) throws SQLException{
+      public ArrayList<MedicoDTO> consultarMedicoPorServicio(int servicio) throws SQLException{
       
       ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

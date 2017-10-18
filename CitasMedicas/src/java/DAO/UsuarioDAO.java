@@ -252,7 +252,7 @@ public class UsuarioDAO {
        
     }
     
-    public ArrayList<UsuarioDTO> consultarMedicosPorServicio(String tipo_usuario, String servicio) throws SQLException {
+    public ArrayList<UsuarioDTO> consultarMedicosPorServicio(String tipo_usuario, int servicio) throws SQLException {
 
         ArrayList<UsuarioDTO> medicos = new ArrayList<UsuarioDTO>();
 
@@ -260,7 +260,7 @@ public class UsuarioDAO {
 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, tipo_usuario);
-        ps.setString(2, servicio);
+        ps.setInt(2, servicio);
 
         ResultSet rs = ps.executeQuery();
 

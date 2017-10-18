@@ -25,7 +25,7 @@
                     <h3>Modificar información</h3>
                 </div>
                 <div class="panel-body">
-                    <form action="../controlador/procesarModificaServicio.jsp" method="post">
+                    <form action="../controlador/procesarModificarServicio.jsp" method="post">
                         <input type="hidden" name="id" value="<%=idServ %>" /> 
                         <label>Nombre del Servicio: </label>
                         <input type="text" class="form-inline" name="nuevo_nombre" value="<%=ser.getNombre() %>" required /> <br>

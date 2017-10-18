@@ -71,10 +71,10 @@
                                 <option> --seleccione --</option>
                                 <%
                                     String servicio = cita.getServicio_cita();
-
+                                    
                                     String x = "";
 
-                                    if (servicio.equals("odontologia") || servicio.equals("medicinageneral")) {
+                                    if (servicio.equals("odontologia") || servicio.equals("medicina_general")) {
                                         x = "mostrar";
                                     } else {
                                         x = "ocultar";
