@@ -468,138 +468,67 @@
                 </script>
 
             </div>
-            <ul class="pgwSlider">
+            
+          <div class="ibox float-e-margins">
+    <div class="panel panel-default" >
+        <div class="panel-heading">                                        
+            <h4 align="center"> LISTA DE EVENTOS </h4>
+        </div>
+        <div class="panel-body">
 
-                <%
-                    FacadeImagen fi = new FacadeImagen();
-                    List<ImagenDTO> lis = new ArrayList<ImagenDTO>();
+            <div class="table-responsive">
+                <table class="table table-responsive table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Lugar</th>                                                                                                            
+                            <th>Descripcion</th>
+                            <th>Director</th>       
+                            <th>Estado</th>       
+                            <th>Inscribirse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            FacadeEvento facEv = new FacadeEvento();
+                            List<EventoDTO> eventos = facEv.consultarEventos();
 
-                    lis = fi.obtenerImagenes();
-                    int n = 0;
-                    for (ImagenDTO x : lis) {
-                %>
-                <li><img src="imagenes/banner/<%=x.getNombre()%>"></li>
-                    <%
-                        }
-                        //<li><a href=""><img src="img/00734e46e47cd9dfcf70b99c4b91bc58.png"><span style="font-family: inherit; font-weight: bold;"><h1> MEDICINA GENERAL</h1></span></a>
-                        //</li>
-                        //<li><a href=""><img src="imagenes/10.png"><span style="font-family: inherit; font-weight: bold;"><h1>ODONTOLOGIA</h1></span></a>
-                        //</li>
-                        //<li><a href=""><img src="imagenes/11.png"><span style="font-family: inherit; font-weight: bold;"><h1>PSICOLOGIA</h1></span></a>
-                        //</li>
-                        //<li><a href=""><img src="imagenes/12.png"><span style="font-family: inherit; font-weight: bold;"><h1>PLANIFICACIONN FAMILIAR </h1></span></a>
-                        //</li>
-                    %>
-            </ul>
-            <!-- SERVICIOS -->
-            <div style="background-color: #e8e8e8; ">
-                <div class="container content-prin profile" style="background-color: #e8e8e8;">
-                    <div class="row margin-top-10">
-                        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-10">
-                            <h1 style="font-size: 30px;"><b>Servicios</b></h1>
-                            <span class="bordered-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row equal-height-columns margin-bottom-10">
-                                <div class="container">
-                                    <ul class="row block-grid-v2">
-                                        <%
-                                        FacadeServicio fs = new FacadeServicio();
-                                        List<ServicioDTO> ser = fs.consultarServicio();
-                                        
-                                        for(ServicioDTO x: ser){
-                                        %>
-                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
+                            for (int i = 0; i < eventos.size(); i++) {
 
-                                            <div class="easy-block-v1">
-                                                <img src="imagenes/medicina.jpg" alt="">
-                                                <div class="easy-block-v1-badge rgba-red">
-                                                    <%=x.getNombre() %>
-                                                </div>
-                                            </div>
-                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
+                                String nombre = eventos.get(i).getNombreEvento();
+                                String fecha = eventos.get(i).getFechaEvento();
+                                String hora = eventos.get(i).getHoraEvento();
+                                String lugar = eventos.get(i).getLugarEvento();
+                                String descripcion = eventos.get(i).getDescrEvento();
+                                String director = eventos.get(i).getDirector();
+                                String estado = eventos.get(i).getCreado();
 
-                                                <p style="font-size: 14px;">
-                                                    <%=x.getInformacion() %>
-                                                </p>
+                        %>
+                        <tr role="row" class="odd">
+                            <td><%=i%></td>  
+                            <td><%=nombre%></td>
+                            <td class="sorting_asc"><%=fecha%></td>
+                            <td><%=hora%></td>
+                            <td><%=lugar%></td>   
+                            <td><%=descripcion%></td>                                                                                                            
+                            <td><%=director%></td>  
+                            <td><%=estado%></td>  
+                            <th>Inscribirse</th>
+                            <%
+                                }
+                            %>
+                        </tr> 
 
-                                            </div>
-
-                                        </li>
-                                        <%
-                                        }
-                                        %>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+</div>
 
-
-
-            <!-- EVENTOS ---------------------->
-            <div style="background-color: #e8e8e8; ">
-                <div class="container content-prin profile" style="background-color: #e8e8e8;" >
-                    <div class="row margin-top-10" >
-                        <div class="headline-center-v2 headline-center-v2-dark margin-bottom-10">
-                            <h1 style="font-size: 30px;"><b>Eventos</b></h1>
-                            <span class="bordered-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-                        </div>
-                        <div class="col-md-12" id="recargo">
-
-                            <div class="row equal-height-columns margin-bottom-10">
-
-                                <div class="container">
-                                    <ul class="row block-grid-v2">
-                                        <%
-                                            FacadeEvento fe = new FacadeEvento();
-
-                                            List<EventoDTO> ls = new ArrayList<EventoDTO>();
-
-                                            ls = fe.obtenerEventosMes();
-
-                                            for (EventoDTO e : ls) {
-                                        %>
-                                        <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
-
-                                            <div class="easy-block-v1">
-                                                <img src="imagenes/vice.jpg" alt="" height="80" width="50">
-                                                <div class="easy-block-v1-badge rgba-red">
-                                                    <%=e.getFechaEvento()%>
-                                                </div>
-                                            </div>
-                                            <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
-                                                <h5>
-                                                    <b><a href=""><%=e.getNombreEvento()%></a></b>
-                                                </h5>
-                                                <p style="font-size: 14px;">
-                                                    <b>Lugar: </b><%= e.getLugarEvento()%>                                       
-                                                </p>
-                                                <p>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')"/>
-                                                </p>
-                                            </div>
-
-                                        </li>
-                                        <%
-                                            }
-                                        %>
-                                    </ul>
-                                    <a href="lista.jsp" class="btn-u btn-u-sm pull-right tooltips" data-toggle="tooltip" data-placement="left" data-original-title="Ingresar a Calendario de Eventos">Ver
-                                        más <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-                                </div> 
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- FIN ICONOS REDES SOCIALES -->
 
             <!-- End Content Part -->
         </div>
@@ -728,3 +657,4 @@
 
     </body>
 </html>
+

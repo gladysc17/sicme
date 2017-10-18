@@ -52,4 +52,8 @@ public class FacadeEvento {
     public List<RegistroeventoDTO> listarRegistrados(int id_evento) throws SQLException{
         return new NegocioEvento().listarRegistrados(id_evento);
     }
+    
+    public List<EventoDTO> consultarEventos() {
+        return new NegocioEvento().consultarEventos();
+    }
 }

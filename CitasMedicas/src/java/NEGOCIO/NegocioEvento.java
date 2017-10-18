@@ -242,4 +242,28 @@ public class NegocioEvento {
         }        
         return (Reev);
     }
+    
+     public List<EventoDTO> consultarEventos() {
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        List<EventoDTO> ls = new ArrayList<EventoDTO>();
+        EventoDAO e = new EventoDAO(co);
+        
+        try {
+            ls = e.consultarEventos();
+        } catch(SQLException ex){ 
+            Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            if(co != null){
+                try {
+                    co.close();
+                } catch (SQLException ex){
+                    Logger.getLogger(NegocioEvento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        return ls;
+    }
 }

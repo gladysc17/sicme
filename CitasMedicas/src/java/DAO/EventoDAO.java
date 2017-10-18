@@ -236,4 +236,32 @@ public class EventoDAO {
         
         return ls;
     }
+    
+    public List<EventoDTO> consultarEventos() throws SQLException {
+        List<EventoDTO> ls = new ArrayList<EventoDTO>();
+        String sql = "select * from evento" ;
+        
+        PreparedStatement ps = con.prepareStatement(sql);  
+        
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            EventoDTO eve = new EventoDTO();
+            eve.setIdEvento(rs.getInt(1));
+            eve.setNombreEvento(rs.getString(2));
+            eve.setFechaEvento(String.valueOf(rs.getDate(3)));
+            eve.setHoraEvento(String.valueOf(rs.getTime(4)));
+            eve.setLugarEvento(rs.getString(5));
+            eve.setDescrEvento(rs.getString(6));
+            eve.setDirector(rs.getString(7));
+            eve.setCreado(rs.getString(8));
+            eve.setEstado(rs.getString(9));
+            ls.add(eve);
+        }
+        rs.close();
+        ps.close();
+        rs = null; ps = null;
+        
+        return ls;
+    }
 }
