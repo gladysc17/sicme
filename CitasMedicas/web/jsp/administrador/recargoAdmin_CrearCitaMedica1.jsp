@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
+<%@page import="DAO.HorarioMedicoDAO"%>
 <%@page import="DTO.ServicioDTO"%>
 <%@page import="FACADE.FacadeServicio"%>
 <%@page import="java.util.ArrayList"%>
@@ -99,8 +101,12 @@
                 </div> 
 
                 <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label>
-                <div class="col-sm-3 control-label">
-                    <input type="date" name="fecha" id="fecha" class="form-control" alt="Fecha" required/> 
+                <div class="col-sm-3 control-label">                    
+                    <%
+                        FacadeHorarioMedico fc = new FacadeHorarioMedico();
+                        String fec = fc.fechaActual();
+                    %>
+                    <input type="date" id="fecha" name="fecha" class="form-control" alt="Fecha" required step="1" min="<%=fec%>">
                 </div>       
 
                 <div class="col-sm-3">
