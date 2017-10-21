@@ -643,11 +643,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8">
-                            <p>
-                                2016 © All Rights Reserved.
-                                Desarrollado por: <a href="#">VAVM - División de Sistemas</a>
+                            <p style="text-align: center">
+                                2017 © All Rights Reserved.
+                                Desarrollado por: Gladys Mercedes Carrillo Mora - Andres Silvestre Ariza Torrado.
                             </p>
-                        </div>
+                        </div>                    
 
                         <!-- Social Links -->
                         <div class="col-md-4">  

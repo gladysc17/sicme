@@ -4,6 +4,10 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.Hc_planificacionfamiliarDTO"%>
+<%@page import="FACADE.FacadeHcPlanificacionFamiliar"%>
+<%@page import="DTO.HcOdontologiaDTO"%>
+<%@page import="FACADE.FacadeHcOdontologia"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="java.util.ArrayList"%>
@@ -27,7 +31,6 @@
                 int id = Integer.parseInt(request.getParameter("identf"));
                 String ide = request.getParameter("identf");
                 String servicio = request.getParameter("servicio");
-
                 FacadeUsuario faca = new FacadeUsuario();
 
                 UsuarioDTO u = faca.consultarUsuarioPorId(ide);
@@ -40,7 +43,7 @@
 
             <form  action="/CitasMedicas/historia" method="post" target="_blank">
 
-                <%        } else if (servicio.equals("medicinageneral")) {
+                <%        } else if (servicio.equals("1")) {
 
                     FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
                     List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
@@ -74,8 +77,7 @@
                                     String nombre = ci.getNombre_usuario();
                                     String fecha = ci.getFecha_cita();
                                     String hora = ci.getHora_cita();
-
-                                    System.out.println("idcitaderecargo: " + idcita);
+                                    
                             %>
 
                             <tr  role="row" class="odd">                                     
@@ -94,10 +96,10 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                <%        } else if (servicio.equals("psicologia")) {
+                <%        } else if (servicio.equals("2")) {
 
-                    FacadeHcPsicologia fac = new FacadeHcPsicologia();
-                    List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
+                    FacadeHcOdontologia fac = new FacadeHcOdontologia();
+                    List<HcOdontologiaDTO> hc = fac.consultarHcOdontologia(id);
                     if (hc.isEmpty()) {
 
                 %>
@@ -122,7 +124,7 @@
                                 for (int i = 0; i < hc.size(); i++) {
 
                                     FacadeCita fc = new FacadeCita();
-                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    int idcita = hc.get(i).getId_cita();
                                     CitaDTO ci = fc.consultarCitasId(idcita);
 
                                     String nombre = ci.getNombre_usuario();
@@ -148,10 +150,10 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("odontologia")) {
+                            <%        } else if (servicio.equals("3")) {
 
-                    FacadeHcPsicologia fac = new FacadeHcPsicologia();
-                    List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
+                    FacadeHcPlanificacionFamiliar fac = new FacadeHcPlanificacionFamiliar();
+                    List<Hc_planificacionfamiliarDTO> hc = fac.consultarHcPlanificacion(id);
                     if (hc.isEmpty()) {
 
                 %>
@@ -176,14 +178,12 @@
                                 for (int i = 0; i < hc.size(); i++) {
 
                                     FacadeCita fc = new FacadeCita();
-                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    int idcita = hc.get(i).getId_cita();
                                     CitaDTO ci = fc.consultarCitasId(idcita);
 
                                     String nombre = ci.getNombre_usuario();
                                     String fecha = ci.getFecha_cita();
-                                    String hora = ci.getHora_cita();
-
-                                    System.out.println("idcitaderecargo: " + idcita);
+                                    String hora = ci.getHora_cita();                                    
                             %>
 
                             <tr  role="row" class="odd">                                     
@@ -202,7 +202,7 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("planificacion")) {
+                            <%        } else if (servicio.equals("4")) {
 
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);

@@ -60,30 +60,30 @@ public class HcMedicinaGeneralDAO {
         ps.setString(11, hcmed.getAntvenereos_hcmed());
         ps.setString(12, hcmed.getAntfamiliares_hcmed());
         ps.setString(13, hcmed.getAntginecologicos_hcmed());
-        ps.setString(14, hcmed.getAntotros_hcmed());
-        ps.setInt(15, hcmed.getFrecardiaca_hcmed());
-        ps.setInt(16, hcmed.getFrerespiratoria_hcmed());
-        ps.setInt(17, hcmed.getTensionarterial_hcmed());
-        ps.setInt(18, hcmed.getTemperatura_hcmed());
-        ps.setInt(19, hcmed.getPeso_hcmed());
-        ps.setInt(20, hcmed.getTalla_hcmed());
-        ps.setString(21, hcmed.getEfestadogeneral_hcmed());
-        ps.setString(22, hcmed.getEfcabezacuello_hcmed());
-        ps.setString(23, hcmed.getEfcardiopulmonar_hcmed());
-        ps.setString(24, hcmed.getEfabdomen_hcmed());
-        ps.setString(25, hcmed.getEfgenitourinario_hcmed());
-        ps.setString(26, hcmed.getEfextremidades_hcmed());
-        ps.setString(27, hcmed.getEfpielfuneras_hcmed());
-        ps.setString(28, hcmed.getEfsistemanervioso_hcmed());
-        ps.setString(29, hcmed.getDiagnostico1_hcmed());
-        ps.setString(30, hcmed.getTipodiagnostico1_hcmed());
-        ps.setString(31, hcmed.getDiagnostico2_hcmed());
-        ps.setString(32, hcmed.getTipodiagnostico2_hcmed());
-        ps.setString(33, hcmed.getDiagnostico3_hcmed());
-        ps.setString(34, hcmed.getTipodiagnostico3_hcmed());
-        ps.setString(35, hcmed.getTratamiento_hcmed());
-        ps.setString(36, hcmed.getRecomendaciones_hcmed());
-        ps.setString(37, hcmed.getFormulamedica_hcmed());
+        ps.setString(14, hcmed.getAntotros_hcmed());        
+        ps.setString(15, hcmed.getEfestadogeneral_hcmed());
+        ps.setString(16, hcmed.getEfcabezacuello_hcmed());
+        ps.setString(17, hcmed.getEfcardiopulmonar_hcmed());
+        ps.setString(18, hcmed.getEfabdomen_hcmed());
+        ps.setString(19, hcmed.getEfgenitourinario_hcmed());
+        ps.setString(20, hcmed.getEfextremidades_hcmed());
+        ps.setString(21, hcmed.getEfpielfuneras_hcmed());
+        ps.setString(22, hcmed.getEfsistemanervioso_hcmed());
+        ps.setString(23, hcmed.getDiagnostico1_hcmed());
+        ps.setString(24, hcmed.getTipodiagnostico1_hcmed());
+        ps.setString(25, hcmed.getDiagnostico2_hcmed());
+        ps.setString(26, hcmed.getTipodiagnostico2_hcmed());
+        ps.setString(27, hcmed.getDiagnostico3_hcmed());
+        ps.setString(28, hcmed.getTipodiagnostico3_hcmed());
+        ps.setString(29, hcmed.getTratamiento_hcmed());
+        ps.setString(30, hcmed.getRecomendaciones_hcmed());
+        ps.setString(31, hcmed.getFormulamedica_hcmed());
+        ps.setString(32, hcmed.getFrecardiaca_hcmed());
+        ps.setString(33, hcmed.getFrerespiratoria_hcmed());
+        ps.setString(34, hcmed.getTensionarterial_hcmed());
+        ps.setString(35, hcmed.getTemperatura_hcmed());
+        ps.setString(36, hcmed.getPeso_hcmed());
+        ps.setString(37, hcmed.getTalla_hcmed());
 
         int resultado = ps.executeUpdate();
 
@@ -120,13 +120,7 @@ public class HcMedicinaGeneralDAO {
             hcmed.setAntvenereos_hcmed(rs.getString("antvenereos_hcmed"));
             hcmed.setAntfamiliares_hcmed(rs.getString("antfamiliares_hcmed"));
             hcmed.setAntginecologicos_hcmed(rs.getString("antginecologicos_hcmed"));
-            hcmed.setAntotros_hcmed(rs.getString("antotros_hcmed"));            
-            hcmed.setFrecardiaca_hcmed(rs.getInt("frecardiaca_hcmed"));
-            hcmed.setFrerespiratoria_hcmed(rs.getInt("frerespiratoria_hcmed"));
-            hcmed.setTensionarterial_hcmed(rs.getInt("tensionarterial_hcmed"));
-            hcmed.setTemperatura_hcmed(rs.getInt("temperatura_hcmed"));
-            hcmed.setPeso_hcmed(rs.getInt("peso_hcmed"));
-            hcmed.setTalla_hcmed(rs.getInt("talla_hcmed"));            
+            hcmed.setAntotros_hcmed(rs.getString("antotros_hcmed"));                                    
             hcmed.setEfestadogeneral_hcmed(rs.getString("efestadogeneral_hcmed"));
             hcmed.setEfcabezacuello_hcmed(rs.getString("efcabezacuello_hcmed"));
             hcmed.setEfcardiopulmonar_hcmed(rs.getString("efcardiopulmonar_hcmed"));
@@ -143,7 +137,13 @@ public class HcMedicinaGeneralDAO {
             hcmed.setTipodiagnostico3_hcmed(rs.getString("tipodiagnostico3_hcmed"));
             hcmed.setTratamiento_hcmed(rs.getString("tratamiento_hcmed"));
             hcmed.setRecomendaciones_hcmed(rs.getString("recomendaciones_hcmed"));                                                                                                                
-            hcmed.setFormulamedica_hcmed(rs.getString("formulamedica_hcmed"));   
+            hcmed.setFormulamedica_hcmed(rs.getString("formulamedica_hcmed")); 
+            hcmed.setFrecardiaca_hcmed(rs.getString("frecardiaca_hcmed"));
+            hcmed.setFrerespiratoria_hcmed(rs.getString("frerespiratoria_hcmed"));
+            hcmed.setTensionarterial_hcmed(rs.getString("tensionarterial_hcmed"));
+            hcmed.setTemperatura_hcmed(rs.getString("temperatura_hcmed"));
+            hcmed.setPeso_hcmed(rs.getString("peso_hcmed"));
+            hcmed.setTalla_hcmed(rs.getString("talla_hcmed"));
             
             listaHisC.add(hcmed);
         }
@@ -180,13 +180,7 @@ public class HcMedicinaGeneralDAO {
             hcmed.setAntvenereos_hcmed(rs.getString("antvenereos_hcmed"));
             hcmed.setAntfamiliares_hcmed(rs.getString("antfamiliares_hcmed"));
             hcmed.setAntginecologicos_hcmed(rs.getString("antginecologicos_hcmed"));
-            hcmed.setAntotros_hcmed(rs.getString("antotros_hcmed"));            
-            hcmed.setFrecardiaca_hcmed(rs.getInt("frecardiaca_hcmed"));
-            hcmed.setFrerespiratoria_hcmed(rs.getInt("frerespiratoria_hcmed"));
-            hcmed.setTensionarterial_hcmed(rs.getInt("tensionarterial_hcmed"));
-            hcmed.setTemperatura_hcmed(rs.getInt("temperatura_hcmed"));
-            hcmed.setPeso_hcmed(rs.getInt("peso_hcmed"));
-            hcmed.setTalla_hcmed(rs.getInt("talla_hcmed"));            
+            hcmed.setAntotros_hcmed(rs.getString("antotros_hcmed"));                       
             hcmed.setEfestadogeneral_hcmed(rs.getString("efestadogeneral_hcmed"));
             hcmed.setEfcabezacuello_hcmed(rs.getString("efcabezacuello_hcmed"));
             hcmed.setEfcardiopulmonar_hcmed(rs.getString("efcardiopulmonar_hcmed"));
@@ -204,7 +198,12 @@ public class HcMedicinaGeneralDAO {
             hcmed.setTratamiento_hcmed(rs.getString("tratamiento_hcmed"));
             hcmed.setRecomendaciones_hcmed(rs.getString("recomendaciones_hcmed"));
             hcmed.setFormulamedica_hcmed(rs.getString("formulamedica_hcmed"));  
-                        
+            hcmed.setFrecardiaca_hcmed(rs.getString("frecardiaca_hcmed"));
+            hcmed.setFrerespiratoria_hcmed(rs.getString("frerespiratoria_hcmed"));
+            hcmed.setTensionarterial_hcmed(rs.getString("tensionarterial_hcmed"));
+            hcmed.setTemperatura_hcmed(rs.getString("temperatura_hcmed"));
+            hcmed.setPeso_hcmed(rs.getString("peso_hcmed"));
+            hcmed.setTalla_hcmed(rs.getString("talla_hcmed"));                        
         }
 
         return hcmed;

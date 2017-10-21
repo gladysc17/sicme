@@ -26,12 +26,12 @@ public class HcMedicinaGeneralDTO {
     private String antfamiliares_hcmed;
     private String antginecologicos_hcmed;        
     private String antotros_hcmed;        
-    private int frecardiaca_hcmed;
-    private int frerespiratoria_hcmed;
-    private int tensionarterial_hcmed;
-    private int temperatura_hcmed;
-    private int peso_hcmed;
-    private int talla_hcmed;
+    private String frecardiaca_hcmed;
+    private String frerespiratoria_hcmed;
+    private String tensionarterial_hcmed;
+    private String temperatura_hcmed;
+    private String peso_hcmed;
+    private String talla_hcmed;
     private String efestadogeneral_hcmed;
     private String efcabezacuello_hcmed;
     private String efcardiopulmonar_hcmed;
@@ -53,7 +53,7 @@ public class HcMedicinaGeneralDTO {
     public HcMedicinaGeneralDTO() {
     }
 
-    public HcMedicinaGeneralDTO(int idusuario_hcmed, int idcita_hcmed, String motivoconsulta_hcmed, String enfermedadgeneral_hcmed, String revisionporsistemas_hcmed, String antPatologicos_hcmed, String antquirurgicos_hcmed, String anttraumaticos_hcmed, String anttoxicoAlergicos_hcmed, String antfarmacologicos_hcmed, String antvenereos_hcmed, String antfamiliares_hcmed, String antginecologicos_hcmed, String antotros_hcmed, int frecardiaca_hcmed, int frerespiratoria_hcmed, int tensionarterial_hcmed, int temperatura_hcmed, int peso_hcmed, int talla_hcmed, String efestadogeneral_hcmed, String efcabezacuello_hcmed, String efcardiopulmonar_hcmed, String efabdomen_hcmed, String efgenitourinario_hcmed, String efextremidades_hcmed, String efpielfuneras_hcmed, String efsistemanervioso_hcmed, String diagnostico1_hcmed, String tipodiagnostico1_hcmed, String diagnostico2_hcmed, String tipodiagnostico2_hcmed, String diagnostico3_hcmed, String tipodiagnostico3_hcmed, String tratamiento_hcmed, String recomendaciones_hcmed, String formulamedica_hcmed) {
+    public HcMedicinaGeneralDTO(int idusuario_hcmed, int idcita_hcmed, String motivoconsulta_hcmed, String enfermedadgeneral_hcmed, String revisionporsistemas_hcmed, String antPatologicos_hcmed, String antquirurgicos_hcmed, String anttraumaticos_hcmed, String anttoxicoAlergicos_hcmed, String antfarmacologicos_hcmed, String antvenereos_hcmed, String antfamiliares_hcmed, String antginecologicos_hcmed, String antotros_hcmed, String frecardiaca_hcmed, String frerespiratoria_hcmed, String tensionarterial_hcmed, String temperatura_hcmed, String peso_hcmed, String talla_hcmed, String efestadogeneral_hcmed, String efcabezacuello_hcmed, String efcardiopulmonar_hcmed, String efabdomen_hcmed, String efgenitourinario_hcmed, String efextremidades_hcmed, String efpielfuneras_hcmed, String efsistemanervioso_hcmed, String diagnostico1_hcmed, String tipodiagnostico1_hcmed, String diagnostico2_hcmed, String tipodiagnostico2_hcmed, String diagnostico3_hcmed, String tipodiagnostico3_hcmed, String tratamiento_hcmed, String recomendaciones_hcmed, String formulamedica_hcmed) {
         this.idusuario_hcmed = idusuario_hcmed;
         this.idcita_hcmed = idcita_hcmed;
         this.motivoconsulta_hcmed = motivoconsulta_hcmed;
@@ -213,51 +213,51 @@ public class HcMedicinaGeneralDTO {
         this.antotros_hcmed = antotros_hcmed;
     }
 
-    public int getFrecardiaca_hcmed() {
+    public String getFrecardiaca_hcmed() {
         return frecardiaca_hcmed;
     }
 
-    public void setFrecardiaca_hcmed(int frecardiaca_hcmed) {
+    public void setFrecardiaca_hcmed(String frecardiaca_hcmed) {
         this.frecardiaca_hcmed = frecardiaca_hcmed;
     }
 
-    public int getFrerespiratoria_hcmed() {
+    public String getFrerespiratoria_hcmed() {
         return frerespiratoria_hcmed;
     }
 
-    public void setFrerespiratoria_hcmed(int frerespiratoria_hcmed) {
+    public void setFrerespiratoria_hcmed(String frerespiratoria_hcmed) {
         this.frerespiratoria_hcmed = frerespiratoria_hcmed;
     }
 
-    public int getTensionarterial_hcmed() {
+    public String getTensionarterial_hcmed() {
         return tensionarterial_hcmed;
     }
 
-    public void setTensionarterial_hcmed(int tensionarterial_hcmed) {
+    public void setTensionarterial_hcmed(String tensionarterial_hcmed) {
         this.tensionarterial_hcmed = tensionarterial_hcmed;
     }
 
-    public int getTemperatura_hcmed() {
+    public String getTemperatura_hcmed() {
         return temperatura_hcmed;
     }
 
-    public void setTemperatura_hcmed(int temperatura_hcmed) {
+    public void setTemperatura_hcmed(String temperatura_hcmed) {
         this.temperatura_hcmed = temperatura_hcmed;
     }
 
-    public int getPeso_hcmed() {
+    public String getPeso_hcmed() {
         return peso_hcmed;
     }
 
-    public void setPeso_hcmed(int peso_hcmed) {
+    public void setPeso_hcmed(String peso_hcmed) {
         this.peso_hcmed = peso_hcmed;
     }
 
-    public int getTalla_hcmed() {
+    public String getTalla_hcmed() {
         return talla_hcmed;
     }
 
-    public void setTalla_hcmed(int talla_hcmed) {
+    public void setTalla_hcmed(String talla_hcmed) {
         this.talla_hcmed = talla_hcmed;
     }
 

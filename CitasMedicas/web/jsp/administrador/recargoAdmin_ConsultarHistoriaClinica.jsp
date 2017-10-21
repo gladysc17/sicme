@@ -4,6 +4,9 @@
     Author     : Gladys M
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="DTO.ServicioDTO"%>
+<%@page import="FACADE.FacadeServicio"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div class="ibox float-e-margins">          
@@ -20,10 +23,20 @@
 
                     <label for="" class="control-label"> Tipo Historia </label>
                     <select name="servicio" id="servicio" required alt="Tipo de historia">
-                        <option value="medicinageneral"> Medicina General </option>
-                        <option value="odontologia"> Odontologia </option>
-                        <option value="psicologia"> Psicologia </option>
-                        <option value="planificacion"> Planificacion Familiar </option>                                                                                      
+                        <option>--seleccione--</option>
+                            <%
+                                FacadeServicio facSer = new FacadeServicio();
+                                List<ServicioDTO> ser = facSer.consultarServicio();
+                                for (int i= 0; i<ser.size(); i++){
+                                    String  serv = ser.get(i).getNombre();
+                                    int ids = ser.get(i).getId();
+                                
+                            %>
+                            <option value="<%=ids%>"> <%=serv%> </option>
+                             
+                            <%
+                            }
+                            %>                                                                                  
                     </select>
 
                     <input type="button" class="btn btn-danger" value="CONSULTAR HISTORIA CLINICA" onclick="validarForm()"/>
