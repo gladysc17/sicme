@@ -196,7 +196,7 @@
                         <div class="col-sm-6">
                             <label class="control-label">Contraseña: </label>
                             <input type="password" class="form-control" id="contrasena" name="contrasena" required onkeyup="validatePassword();" alt="Contraseña">
-                        </div>
+                        </div>                                                                      
 
                         <div class="col-sm-6">
                             <label class="control-label">Repetir Contraseña: </label>
@@ -311,6 +311,16 @@
                 password2.style.background = '#13F926';
             }
         }
+         function validatePass(campo) {
+                                var RegExPattern = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
+                                var errorMessage = 'Password Incorrecta.';
+                                if ((campo.value.match(RegExPattern)) && (campo.value != '')) {
+                                    alert('Password Correcta');
+                                } else {
+                                    alert(errorMessage);
+                                    campo.focus();
+                                }
+                            }
     </script>
 
 </div>
