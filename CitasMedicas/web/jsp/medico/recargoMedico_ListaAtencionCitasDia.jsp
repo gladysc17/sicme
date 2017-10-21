@@ -69,7 +69,7 @@
                             <td><%=identf%></td>
                             <td><%=hora%></td>                                                                        
                             <%
-                                if (servicio.equals("medicinageneral")) {
+                                if (servicio.equals("medicina_general")) {
 
                             %>
                             <td><input type="submit" class="btn btn-success" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaMedicina.jsp?id=<%=identf%>&idcita=<%=idcita%>')" <%=disabled%>> </td>
@@ -79,7 +79,7 @@
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaPsicologia.jsp?id=<%=identf%>&idcita=<%=idcita%>')" <%=disabled%>> </td>
                                 <%
-                                } else if (servicio.equals("planificacion")) {
+                                } else if (servicio.equals("planificacion_familiar")) {
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaPlanificacion.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" <%=disabled%>> </td>
                                 <%

@@ -65,9 +65,26 @@ public class historia extends HttpServlet {
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                     JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Mi Reporte");
+                    viewer.setTitle("Historia Medicina General");
                     viewer.setVisible(true);
                     //JasperExportManager.exportReportToPdfFile( jasperPrint, "C:/repor/reporte"+id+".pdf");                   
+                                                               
+            }
+            
+            else if(servicio.equals("2")){
+            
+            Map m = new HashMap();
+            int idcita = Integer.parseInt(idecita);
+            System.out.println(" servicio jasper " + servicio);
+            System.out.println(" idcita " + idcita);
+                
+            m.put("idcita", idcita);
+                    
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcodontologia.jasper"));
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
+                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    viewer.setTitle("Historia Odontologia");
+                    viewer.setVisible(true);
                                                                
             }
             
@@ -80,10 +97,27 @@ public class historia extends HttpServlet {
                 
             m.put("idcita", idcita);
                     
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcplanificacion.jasper"));
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
+                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    viewer.setTitle("Historia Planificación Familiar");
+                    viewer.setVisible(true);
+                                                               
+            }
+            
+            else if(servicio.equals("4")){
+            
+            Map m = new HashMap();
+            int idcita = Integer.parseInt(idecita);
+            System.out.println(" servicio jasper " + servicio);
+            System.out.println(" idcita " + idcita);
+                
+            m.put("idcita", idcita);
+                    
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                     JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("HC PSICOLOGIA");
+                    viewer.setTitle("Historia Psicologia");
                     viewer.setVisible(true);
                                                                
             }
