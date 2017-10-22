@@ -5,8 +5,11 @@
  */
 document.write("<script type='text/javascript' src='html2canvas'></script>");
 function registrar(){
+    alert("HOLA...");
     $("#registrar").on("submit", function(e){
+        alert("enviaré..");
         e.preventDefault();
+        alert("a enviar..");
         var motivo = new FormData(document.getElementById("motivo"));
         var alergia = new FormData(document.getElementById("alergia"));
         var hiv = new FormData(document.getElementById("hiv"));
@@ -60,7 +63,7 @@ function registrar(){
         var periodoncia = new FormData(document.getElementById("periodoncia"));
         var ciru_maxi_facial = new FormData(document.getElementById("ciru_maxi_facial"));
         var ortodoncia = new FormData(document.getElementById("ortodoncia"));
-        
+        alert("Ya casi..");
         html2canvas($("placa1"),{
             onrendered: function(canvas){
                 theCanvas = canvas;
@@ -76,7 +79,7 @@ function registrar(){
             }
         });
         
-        $ajax({
+        $.ajax({
             url:"../controlador/procesarRegistroHistoriaOdontologia.jsp",
             type: "POST",
             dataType: "html",
