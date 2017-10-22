@@ -152,15 +152,15 @@
                         <table class="table table-responsive">
                             <tbody>
                                 <tr>
-                                    <td>F. Cardiaca: <input id="frecCardiaca" name="frecCardiaca"> </td> 
-                                    <td>F. Respiratoria: <input id="frecResp" name="frecResp" type="number"> </td>
-                                    <td>Tensión Arterial: <input id="tension" name="tension"> </td> 
+                                    <td>F. Cardiaca: <input id="frecCardiaca" name="frecCardiaca" type="text"> </td> 
+                                    <td>F. Respiratoria: <input id="frecResp" name="frecResp" type="text"> </td>
+                                    <td>Tensión Arterial: <input id="tension" name="tension" type="text"> </td> 
 
                                 </tr>
                                 <tr>                                            
-                                    <td>Temp: <input id="temperatura" name="temperatura"> </td>
-                                    <td>Peso:  <input id="peso" name="peso"> </td> 
-                                    <td>Talla: <input id="talla" name="talla"> </td>
+                                    <td>Temp: <input id="temperatura" name="temperatura" type="text"> </td>
+                                    <td>Peso:  <input id="peso" name="peso" type="text"> </td> 
+                                    <td>Talla: <input id="talla" name="talla" type="text"> </td>
                                 </tr>                                        
                             </tbody>                                    
                         </table> <br>

@@ -25,6 +25,7 @@
                             <th>Identificacion</th>
                             <th>Servicio</th>
                             <th>Asignar</th>
+                            <th>Citas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,7 +50,8 @@
                             <td><%=codigo%></td>
                             <td><%=identf%></td>
                             <td><%=servicio%></td>
-                            <td><input type="submit" class="btn btn-default" value="Asignar Horario" onclick="cargarForm('administrador/recargoAdmin_AsignarHorario.jsp?ident=<%=identf%>')"> </td>
+                            <td><input type="submit" class="btn btn-success" value="Asignar Horario" onclick="cargarForm('administrador/recargoAdmin_AsignarHorario.jsp?ident=<%=identf%>')"> </td>
+                            <td><input type="submit" class="btn btn-primary" value="Consultar" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitasMedico.jsp?ident=<%=identf%>')"> </td>
                         </tr> 
                         <%
                             }

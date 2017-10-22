@@ -107,4 +107,53 @@ public class NegocioServicio {
         return servicios;
     }
     
+    public boolean actualizarServicio(int id, String ser, String info) {
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        ServicioDAO sr = new ServicioDAO(co);
+        boolean rta = false;
+        try{
+            rta = sr.actualizarServicio(id, ser, info);
+        }catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return rta;
+    }
+    
+    public boolean eliminarServicio(int id) {
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        ServicioDAO sr = new ServicioDAO(co);
+        boolean rta = false;
+        try{
+            rta = sr.eliminarServicio(id);
+        }catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return rta;
+    }
+
+    
 }

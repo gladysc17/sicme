@@ -26,7 +26,7 @@
             String lugarEvento = request.getParameter("lugarEvento");
             String descrEvento = request.getParameter("descrEvento");
             String dirEvento = request.getParameter("dirEvento");
-            int identificacion = Integer.parseInt(request.getParameter("identificion"));
+            String identificacion = request.getParameter("identificacion");
 
             String hora = horaEvento+":00";
             EventoDTO eve = new EventoDTO(nombreEvento, fechaEvento, hora, lugarEvento, descrEvento, dirEvento, identificacion, "activo");
@@ -35,15 +35,21 @@
 
             if (rta) {
         %>
-        <script type="text/javascript">
-            toastr.success("Registro exitoso");
+        <script>
+            alert(" REGISTRO EXITOSO");
+            location.href = "../jsp/PrincipalAdministrador.jsp";
         </script>
         <%
-            response.sendRedirect("../jsp/PrincipalAdministrador.jsp");
-        } 
-        %> 
            
-            
-            <script src="../js/toastr.js"></script>
+        } else {
+        %>
+        <script>
+            alert("ERROR, NO SE REGISTRÓ EL EVENTO");
+            location.href = "../jsp/PrincipalAdministrador.jsp";
+        </script>
+        <%
+            }
+        %>
+                                   
     </body>
 </html>

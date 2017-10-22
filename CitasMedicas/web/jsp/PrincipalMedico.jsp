@@ -189,7 +189,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <i class="fa fa-calendar fa-5x" aria-hidden="true"></i> <br><br>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-defaults" value="LISTA DE EVENTOS" onclick="cargarForm('medico/recargoMedico_ConsultarEvento.jsp?iddMedico=' +<%=id%>)"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-defaults" value="LISTA DE EVENTOS" onclick="cargarForm('medico/recargoMedico_ConsultarEvento.jsp?iddMedico=<%=id%>')"/>
                                                 </div>                                                
                                             </div>
                                         </div>

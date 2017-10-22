@@ -13,14 +13,16 @@ public class ServicioDTO {
     
     private int id;
     private String nombre;
+    private String informacion;
 
     public ServicioDTO() {
     }
     
     
     
-    public ServicioDTO(String nombre) {        
+    public ServicioDTO(String nombre, String informacion) {        
         this.nombre = nombre;
+        this.informacion = informacion;
     }
 
     public int getId() {
@@ -39,11 +41,18 @@ public class ServicioDTO {
         this.nombre = nombre;
     }
 
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
+    }
+
     @Override
     public String toString() {
-        return "ServicioDTO{" + "id=" + id + ", nombre=" + nombre + '}';
+        return "ServicioDTO{" + "id=" + id + ", nombre=" + nombre + ", informacion=" + informacion + '}';
     }
-    
-    
+
     
 }

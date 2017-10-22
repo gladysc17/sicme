@@ -35,7 +35,7 @@
                 return;
             }
 
-            String id = admin.getIdentificacion();                    
+            String id = admin.getIdentificacion();
             FacadeUsuario fac = new FacadeUsuario();
             UsuarioDTO usuario = fac.consultarUsuarioPorId(id);
             String nombre = usuario.getNombre();
@@ -149,7 +149,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <i class="fa fa-clock-o fa-5x" aria-hidden="true"></i> <br><br>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="HORARIO MEDICO" onclick="cargarForm('administrador/recargoAdmin_ListarMedicos.jsp')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="MEDICOS" onclick="cargarForm('administrador/recargoAdmin_ListarMedicos.jsp')"/>
                                                 </div>                                                
                                             </div>
                                         </div>
@@ -189,19 +189,19 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <i class="fa fa-address-book-o fa-5x" aria-hidden="true"></i> <br><br>
-                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica.jsp')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="NUEVA CITA" onclick="cargarForm('administrador/recargoAdmin_CrearCitaMedica.jsp')"/>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <i class="fa fa-id-card-o fa-5x" aria-hidden="true"></i> <br><br>
-                                                    <input style="font-size:20px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CONSULTAR CITA" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitaMedica.jsp')"/>
-                                                </div>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="CITAS USUARIO" onclick="cargarForm('administrador/recargoAdmin_ConsultarCitaMedica.jsp')"/>
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-6">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
@@ -227,8 +227,8 @@
                             </div>
                         </div>
 
-                        <h1>INFORMES</h1>                                                
-                        <div class="col-md-3">
+                        <h1 style="text-align: center">INFORMES</h1>                                                
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title" >
                                     <h3 align="center"> CITAS MEDICAS</h3>
@@ -246,7 +246,7 @@
                             </div>
                         </div>                                                
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> USUARIOS</h3>
@@ -265,7 +265,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> EVENTOS</h3>
@@ -282,9 +282,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        <div class="col-md-3">
+                        <h1 align="center">ADMINISTRAR</h1>
+                        <div class="col-md-4">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
                                     <h3 align="center"> ADMINISTRAR IMAGENES </h3>
@@ -294,6 +293,36 @@
                                         <div class="row">
                                             <i class="fa fa-image fa-5x" aria-hidden="true"></i> <br><br>
                                             <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarImagenes.jsp')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> ADMINISTRAR CARRERAS </h3>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="usser-button" align="center">
+                                        <div class="row">
+                                            <i class="fa fa-image fa-5x" aria-hidden="true"></i> <br><br>
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarProgramas.jsp')" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h3 align="center"> ADMINISTRAR SERVICIOS </h3>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="usser-button" align="center">
+                                        <div class="row">
+                                            <i class="fa fa-image fa-5x" aria-hidden="true"></i> <br><br>
+                                            <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="Administrar" onclick="cargarForm('administrador/recargoAdmin_AdministrarServicios.jsp')" />
                                         </div>
                                     </div>
                                 </div>

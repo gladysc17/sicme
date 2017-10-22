@@ -39,23 +39,7 @@
                         <%
                             FacadeCita facCita = new FacadeCita();
                             UsuarioDTO med = (UsuarioDTO) session.getAttribute("medico");
-                            String idico = med.getIdentificacion();
-
-                            Date fecha = new Date();
-                            String sFecha = "";
-
-                            int iEntero = fecha.getYear() + 1900;
-
-                            sFecha = String.valueOf(iEntero);
-                            iEntero = fecha.getMonth();
-
-                            sFecha = sFecha + "-0" + String.valueOf(iEntero);
-                            iEntero = fecha.getDate();
-
-                            sFecha = sFecha + "-" + String.valueOf(iEntero);
-
-                            String fecha2 = sFecha;
-                            System.out.println(" fecha: " + fecha2);
+                            String idico = med.getIdentificacion();                            
                             
                             FacadeHorarioMedico fhm = new FacadeHorarioMedico();
                             String fec = fhm.fechaActual();
@@ -72,10 +56,8 @@
                                 String disabled = "";
                                 if(!estado.equals("pendiente")){
                                     disabled = "disabled";
-                                }
-                                System.out.println("servicioo: " + servicio);
-                                int idcita = doc.get(i).getId_cita();
-                                //String fechac = doc.get(i).getFecha_cita();
+                                }                                
+                                int idcita = doc.get(i).getId_cita();                                
                                 String tipoUsuario = doc.get(i).getTipousuario_cita();
                                 int cantidad = i + 1;
 
@@ -87,18 +69,17 @@
                             <td><%=identf%></td>
                             <td><%=hora%></td>                                                                        
                             <%
-                                if (servicio.equals("medicinageneral")) {
+                                if (servicio.equals("medicina_general")) {
 
                             %>
                             <td><input type="submit" class="btn btn-success" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaMedicina.jsp?id=<%=identf%>&idcita=<%=idcita%>')" <%=disabled%>> </td>
                                 <%
-                                } else if (servicio.equals("psicologia")) {
-                                    //consultar hc_psicologia y preguntar sesion
+                                } else if (servicio.equals("psicologia")) {                                   
 
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_HistoriaPsicologia.jsp?id=<%=identf%>&idcita=<%=idcita%>')" <%=disabled%>> </td>
                                 <%
-                                } else if (servicio.equals("planificacion")) {
+                                } else if (servicio.equals("planificacion_familiar")) {
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaPlanificacion.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" <%=disabled%>> </td>
                                 <%
@@ -108,7 +89,6 @@
                                 <%
                                     }
                                 %>
-
                             <td><a href="../controlador/procesarActualizarCita.jsp?idcita=<%=idcita%>" class="btn btn-primary" <%=disabled%>>No asistió</a></td>
                             <td><%=estado%></td>
                         </tr> 

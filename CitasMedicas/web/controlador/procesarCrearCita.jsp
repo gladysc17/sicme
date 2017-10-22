@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.ServicioDTO"%>
+<%@page import="FACADE.FacadeServicio"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.HorarioMedicoDTO"%>
@@ -24,7 +26,13 @@
     <body>
 
         <%
-            String servicio = request.getParameter("servicio");;
+            String servi = request.getParameter("servicio");
+            int se= Integer.parseInt(servi);
+            
+            FacadeServicio facSer = new FacadeServicio();
+            ServicioDTO ser = facSer.consultarServicioId(se);
+            String servicio = ser.getNombre();
+            
             String fecha = request.getParameter("fecha");
             String hora_rec = request.getParameter("hora");
             String id_usuario = request.getParameter("identf");
@@ -51,7 +59,7 @@
             
             String recibo = "";
             
-            if(servicio.equals("medicinageneral") || servicio.equals("odontologia")){
+            if(servicio.equals("medicina_general") || servicio.equals("odontologia")){
                 recibo = request.getParameter("recibo");
             }
             else{

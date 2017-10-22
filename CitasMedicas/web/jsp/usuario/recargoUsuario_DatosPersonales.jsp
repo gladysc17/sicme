@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="panel-body">  
-                    <form name="form">
+                    <form action="../controlador/procesarModificarUsuario2.jsp" method="post" name="form">
                         <%
                             String id = request.getParameter("ident");
                             System.out.println("id ad " + id);
@@ -62,32 +62,32 @@
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Fecha de Nacimiento: </label>
-                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=otro.getFecha_nacimiento()%>">
+                                <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<%=otro.getFecha_nacimiento()%>" required>
                             </div>
 
                             <div class="col-sm-4">
                                 <label class="control-label">Género: </label>
-                                <input type="text" class="form-control" id="genero" name="genero" value="<%=otro.getGenero()%>">
+                                <input type="text" class="form-control" id="genero" name="genero" value="<%=otro.getGenero()%>" required>
                             </div>   
                             <div class="col-sm-4">
                                 <label class="control-label">Estado civil: </label>
-                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=otro.getEstado_civil()%>" >
+                                <input type="text" class="form-control" id="estadocivil" name="estadocivil" value="<%=otro.getEstado_civil()%>" required>
                             </div>
                         </div>
 
                         <div class="form-group">  
                             <div class="col-sm-4">
                                 <label class="control-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="correo" name="correo" value="<%=otro.getCorreo()%>">
+                                <input type="email" class="form-control" id="correo" name="correo" value="<%=otro.getCorreo()%>" required>
                             </div>
 
                             <div class="col-sm-4">
                                 <label class="control-label">Dirección: </label>
-                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=otro.getDireccion()%>" >
+                                <input type="text" class="form-control" id="direccion" name="direccion" value="<%=otro.getDireccion()%>" required>
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label">Teléfono: </label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=otro.getTelefono()%>" >
+                                <input type="text" class="form-control" id="telefono" name="telefono" value="<%=otro.getTelefono()%>" required>
                             </div>                            
                         </div>                 
 

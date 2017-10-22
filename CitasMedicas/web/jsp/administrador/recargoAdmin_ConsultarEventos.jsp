@@ -32,6 +32,7 @@
                                     <th>Descripción</th>
                                     <th>Dirigido por</th>
                                     <th>Modificar</th>
+                                    <th>Ver Lista</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +51,7 @@
                                     <td><%=e.getDescrEvento()%></td>
                                     <td><%=e.getDirector()%></td>
                                     <td> <input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarEvento.jsp?idEvento=<%=e.getIdEvento()%>&fecha=<%=e.getFechaEvento()%>&lugar=<%=e.getLugarEvento()%>&nombre=<%=e.getNombreEvento()%>&hora=<%=e.getHoraEvento()%>')" /> </td>
+                                    <td> <input type="submit" class="btn btn-default" value="Ver Lista" onclick="cargarForm('medico/recargoMedico_ListaRegistrosEvento.jsp?idEvento=<%=e.getIdEvento()%>')" /> </td>
                                 </tr>
                                 <%
                                         i++;

@@ -35,6 +35,10 @@ public class Hc_planificacionfamiliarDTO {
     private String antecedentes;
     private int idusuario_hcmed;
 
+    public Hc_planificacionfamiliarDTO() {
+    }
+    
+    
     public Hc_planificacionfamiliarDTO(String tipo_vinculacion, String aseguradora, String nombre_responsable, String parentesco, String direccion_responsable, String telefono_responsable, String motivo, String enfermedad_actual, String menarca, String ciclos, String menopausia, String estados, String fecha_ultima_menst, String fecha_ultimo_parto, String ccv, String resultado_ccv, String planificacion, String metodo, int id_cita, String revision_sistemas, String antecedentes, int idusuario_hcmed) {
         this.tipo_vinculacion = tipo_vinculacion;
         this.aseguradora = aseguradora;

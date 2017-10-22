@@ -28,7 +28,7 @@
             FacadeUsuario fac = new FacadeUsuario();
             int edad = fac.calcularEdad(fecha);            
             
-            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad, contra);                                                    
+            boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);                                                    
 
             if (rta == true) {
 

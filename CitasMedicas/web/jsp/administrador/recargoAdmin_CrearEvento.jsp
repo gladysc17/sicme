@@ -46,7 +46,7 @@
                             <input class="form-control" type="text" id="dirEvento" name="dirEvento" required /> <br>
                         </div>
                         <div>
-                            <input type="hidden" value="<%= idM%>" name="identificion" />
+                            <input type="hidden" value="<%= idM%>" name="identificacion" />
                             <center><button class="btn btn-success"  >Crear Evento</button></center>
                         </div>
                     </form>

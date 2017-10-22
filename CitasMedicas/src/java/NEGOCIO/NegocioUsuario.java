@@ -352,7 +352,7 @@ public class NegocioUsuario {
 
     }
 
-    public ArrayList<UsuarioDTO> consultarMedicoPorServicio(String tipo_usuario, String servicio) throws SQLException {
+    public ArrayList<UsuarioDTO> consultarMedicoPorServicio(String tipo_usuario, int servicio) throws SQLException {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

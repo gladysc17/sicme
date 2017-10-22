@@ -33,7 +33,7 @@ public class MedicoDAO {
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, med.getIdentificacion());
-        ps.setString(2, med.getServicio());       
+        ps.setInt(2, med.getServicio());       
         
         int resultado = ps.executeUpdate();
 
@@ -56,7 +56,7 @@ public class MedicoDAO {
         if (rs.next()) {
             med = new MedicoDTO();
             med.setIdentificacion(rs.getString("identificacion"));
-            med.setServicio(rs.getString("servicio"));
+            med.setServicio(rs.getInt("servicio"));
 
         }
         return med;
@@ -78,7 +78,7 @@ public class MedicoDAO {
             med = new MedicoDTO();
 
             med.setIdentificacion(rs.getString("identificacion"));
-            med.setServicio(rs.getString("servicio"));
+            med.setServicio(rs.getInt("servicio"));
 
             listaMed.add(med);
         }
@@ -104,21 +104,21 @@ public class MedicoDAO {
             med = new MedicoDTO();
 
             med.setIdentificacion(rs.getString("identificacion"));
-            med.setServicio(rs.getString("servicio"));
+            med.setServicio(rs.getInt("servicio"));
         }
 
         return med;
 
     }
 
-    public ArrayList<MedicoDTO> consultarMedicoPorServicio(String servicio) throws SQLException {
+    public ArrayList<MedicoDTO> consultarMedicoPorServicio(int servicio) throws SQLException {
 
         ArrayList<MedicoDTO> medicos = new ArrayList<MedicoDTO>();
 
         String sql = "SELECT * FROM medico WHERE servicio = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, servicio);
+        ps.setInt(1, servicio);
 
         ResultSet rs = ps.executeQuery();
 
@@ -129,7 +129,7 @@ public class MedicoDAO {
             med = new MedicoDTO();
 
             med.setIdentificacion(rs.getString("identificacion"));
-            med.setServicio(rs.getString("servicio"));
+            med.setServicio(rs.getInt("servicio"));
 
             medicos.add(med);
         }

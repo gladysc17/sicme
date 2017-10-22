@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="org.omg.Messaging.SYNC_WITH_TRANSPORT"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
@@ -63,7 +64,12 @@
 
                         <div class="form-group col-md-4">
                             <label class="control-label">Fecha: </label>
-                            <input class="form-control" type="date" id="fecha" name="fecha" required>                                           
+                            
+                            <%
+                        FacadeHorarioMedico fc = new FacadeHorarioMedico();
+                        String fec = fc.fechaActual();
+                    %>
+                    <input type="date" id="fecha" name="fecha" class="form-control" alt="Fecha" required step="1" min="<%=fec%>">
                         </div> 
                         <div class="form-group col-md-4">
                             <label class="control-label">Medico: </label>
@@ -71,10 +77,10 @@
                                 <option> --seleccione --</option>
                                 <%
                                     String servicio = cita.getServicio_cita();
-
+                                    
                                     String x = "";
 
-                                    if (servicio.equals("odontologia") || servicio.equals("medicinageneral")) {
+                                    if (servicio.equals("odontologia") || servicio.equals("medicina_general")) {
                                         x = "mostrar";
                                     } else {
                                         x = "ocultar";

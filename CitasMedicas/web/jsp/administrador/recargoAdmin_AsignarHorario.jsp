@@ -4,6 +4,7 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="DTO.HorarioDTO"%>
@@ -29,8 +30,12 @@
                     %>
                     <label> Medico:  <%=usu.getNombre()%></label>                            
                     <input type="hidden" id="idMedico" value="<%=id%>" name="idMedico" />
-                    <div>
-                        <label> Fecha: <input type="date" class="inline-group" id="fechaHM" name="fecha" size="12" /></label> 
+                    <div>                        
+                        <%
+                        FacadeHorarioMedico fc = new FacadeHorarioMedico();
+                        String fec = fc.fechaActual();
+                    %>
+                    Fecha: <input type="date" class="inline-group" id="fechaHM" name="fecha" size="12" alt="Fecha" required step="1" min="<%=fec%>">
                     </div>
                     <div>
                         <div>

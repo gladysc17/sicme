@@ -74,7 +74,7 @@
                             <%
                                 if (estado.equals("pendiente")) {
                             %>
-                            <td><input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarCita.jsp?id=' +<%=idcita%>)"> </td>
+                            <td><input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarCita.jsp?id=<%=idcita%>')"> </td>
                                 <%
                                 } else {
                                 %>

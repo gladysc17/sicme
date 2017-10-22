@@ -33,13 +33,14 @@
                             <th>Descripción</th>
                             <th>Dirigido por</th>
                             <th>Modificar</th>
+                            <th>Ver Lista</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%
-                            FacadeEvento fe = new FacadeEvento();
-                            List<EventoDTO> ls = fe.listadoEventosAdm("000"+idMedico);
-                            int i = 1;
+                            FacadeEvento fe = new FacadeEvento();                            
+                            List<EventoDTO> ls = fe.listadoEventosAdm(idMedico);
+                            int i = 0;
                             for (EventoDTO e : ls) {
                         %>
                         <tr role="row" class="odd">
@@ -51,6 +52,7 @@
                             <td><%=e.getDescrEvento()%></td>
                             <td><%=e.getDirector()%></td>
                             <td> <input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('medico/recargoMedico_ModificarEvento.jsp?idEvento=<%=e.getIdEvento()%>&fecha=<%=e.getFechaEvento()%>&lugar=<%=e.getLugarEvento()%>&nombre=<%=e.getNombreEvento()%>&hora=<%=e.getHoraEvento()%>')" /> </td>
+                            <td> <input type="submit" class="btn btn-default" value="Ver Lista" onclick="cargarForm('medico/recargoMedico_ListaRegistrosEvento.jsp?idEvento=<%=e.getIdEvento()%>')" /> </td>
                         </tr>
                         <%
                                 i++;

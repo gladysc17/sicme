@@ -29,6 +29,7 @@
                             <th>Identificación</th>
                             <th>Fecha</th>
                             <th>hora</th>                                                                                                            
+                            <th>Estado</th>                                                                                                            
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,7 @@
                                 String identf = doc.get(i).getId_usuario();
                                 String hora = doc.get(i).getHora_cita();
                                 String fecha3 = doc.get(i).getFecha_cita();
+                                String estado = doc.get(i).getEstado();
                                 int cantidad = i + 1;
                     %>
                     <tr role="row" class="odd">
@@ -64,6 +66,7 @@
                         <td><%=identf%></td>
                         <td><%=fecha3%></td>   
                         <td><%=hora%></td>                                                                                                            
+                        <td><%=estado%></td>  
                     </tr> 
                     <%
                         }
@@ -86,6 +89,7 @@
                             String identf = lis.get(i).getId_usuario();
                             String hora = lis.get(i).getHora_cita();
                             String fecha3 = lis.get(i).getFecha_cita();
+                            String estado = lis.get(i).getEstado();
                             int cantidad = i + 1;
 
 
@@ -95,7 +99,8 @@
                         <td class="sorting_asc"><%=nombre%></td>
                         <td><%=identf%></td>
                         <td><%=fecha3%></td>
-                        <td><%=hora%></td>                                                                                                            
+                        <td><%=hora%></td>
+                        <td><%=estado%></td>  
                     </tr> 
 
                     <%
@@ -109,6 +114,12 @@
                 </table>
             </div>                                                   
         </div>
+        <form action="/CitasMedicas/citasMedico" target="_blank" method="post">
+            <input type="hidden" value="<%=fecha%>" name="fechaIC" id="fechaIC">
+            <input type="hidden" value="<%=fecha2%>"  name="fechaIC2" id="fechaIC2">            
+            <input type="hidden" value="<%=id%>"  name="id" id="id">  
+            <button type="submit" class="btn btn-success">IMPRIMIR </button>                                               
+        </form>
     </div>
 </div>
 

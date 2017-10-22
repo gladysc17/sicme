@@ -4,6 +4,10 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
+<%@page import="DAO.HorarioMedicoDAO"%>
+<%@page import="DTO.ServicioDTO"%>
+<%@page import="FACADE.FacadeServicio"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="java.sql.Time"%>
@@ -61,11 +65,20 @@
                     <label for="inputEmail3" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-4">
                         <select class="form-control" name="servicio" id="servicio" alt="Servicio" onchange="ver()">                        
-                            <option>  </option>
-                            <option value="medicinageneral"> Medicina General </option>
-                            <option value="odontologia"> Odontología </option>
-                            <option value="psicologia"> Psicología</option>
-                            <option value="planificacion"> Planificacion Familiar</option>                  
+                            <option>--seleccione--</option>
+                            <%
+                                FacadeServicio facSer = new FacadeServicio();
+                                List<ServicioDTO> ser = facSer.consultarServicio();
+                                for (int i= 0; i<ser.size(); i++){
+                                    String  serv = ser.get(i).getNombre();
+                                    int ids = ser.get(i).getId();
+                                
+                            %>
+                            <option value="<%=ids%>"> <%=serv%> </option>
+                             
+                            <%
+                            }
+                            %>
                         </select>
                     </div>                                                        
 
@@ -88,8 +101,12 @@
                 </div> 
 
                 <label for="inputEmail3" class="col-sm-1 control-label">Fecha</label>
-                <div class="col-sm-3 control-label">
-                    <input type="date" name="fecha" id="fecha" class="form-control" alt="Fecha" required/> 
+                <div class="col-sm-3 control-label">                    
+                    <%
+                        FacadeHorarioMedico fc = new FacadeHorarioMedico();
+                        String fec = fc.fechaActual();
+                    %>
+                    <input type="date" id="fecha" name="fecha" class="form-control" alt="Fecha" required step="1" min="<%=fec%>">
                 </div>       
 
                 <div class="col-sm-3">
@@ -111,11 +128,12 @@
 
                     function ver() {
                         var x = document.getElementById("servicio").value;
+                        
 
-                        if (x == "odontologia") {
+                        if (x == "1") {
                             document.getElementById("verrecibo").style.display = 'inline';
 
-                        } else if (x == "medicinageneral") {
+                        } else if (x == "2") {
                             document.getElementById("verrecibo").style.display = 'inline';
                         } else {
                             document.getElementById("verrecibo").style.display = 'none';

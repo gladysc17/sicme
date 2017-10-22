@@ -61,7 +61,7 @@ public class FacadeUsuario {
         return new NegocioUsuario().recuperarContrasena(id);
     }
 
-    public ArrayList<UsuarioDTO> consultarMedicosPorServicio(String tipo_usuario, String servicio) throws SQLException {
+    public ArrayList<UsuarioDTO> consultarMedicosPorServicio(String tipo_usuario, int servicio) throws SQLException {
         return new NegocioUsuario().consultarMedicoPorServicio(tipo_usuario, servicio);
 
     }
