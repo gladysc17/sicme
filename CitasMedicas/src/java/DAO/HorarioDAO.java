@@ -77,16 +77,16 @@ public class HorarioDAO {
         return ls;
     }
 
-    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico ) throws SQLException {
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado ) throws SQLException {
 
-        String sql = "UPDATE horariomedico SET estado = 'ocupado' "
+        String sql = "UPDATE horariomedico SET estado = ? "
                 + "WHERE id_medico = ? AND fecha = ? AND id_horario = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
-        
-        ps.setString(1, id_medico_horariomedico);
-        ps.setDate(2, Date.valueOf(fecha));
-        ps.setInt(3, id_horario_horariomedico);
+        ps.setString(1,estado);
+        ps.setString(2, id_medico_horariomedico);
+        ps.setDate(3, Date.valueOf(fecha));
+        ps.setInt(4, id_horario_horariomedico);
 
         int rta = ps.executeUpdate();
 
@@ -136,13 +136,13 @@ public class HorarioDAO {
         
         HorarioDTO horario = null;
         
-        while(rs.next()){
+        if(rs.next()){
             
             horario = new HorarioDTO();
             
             horario.setId_horario(rs.getInt("id"));
             horario.setHora_inicio(rs.getTime("hora_inicio"));            
-            
+            horario.setHora_final(rs.getTime("hora_final"));
         }
 
         return horario;

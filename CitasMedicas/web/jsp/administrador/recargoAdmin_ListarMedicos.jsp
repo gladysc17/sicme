@@ -4,6 +4,11 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeHorario"%>
+<%@page import="DTO.HorarioDTO"%>
+<%@page import="DTO.HorarioMedicoDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -60,6 +65,49 @@
                 </table>
             </div>                                                   
         </div>
+    </div>
+    <div class="panel panel-default">
+        <%
+            FacadeHorarioMedico fhm = new FacadeHorarioMedico();
+            FacadeHorario fh = new FacadeHorario();
+            for (int i = 0; i < lis.size(); i++) {
+                String[] aux = lis.get(i);
+                String nombre = aux[0];
+                String identf = aux[1];
+                String codigo = aux[2];
+                String servicio = aux[3];
+        %>
+        <h4><%=nombre %></h4>
+        <div class="table-responsive">
+            <table class="table table-responsive table-hover table-bordered dataTable" id="sampleTable" role="grid" aria-describedby="sampleTable_info"">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                    List<HorarioMedicoDTO> li = fhm.listarHorasMedico(identf);
+                    for(HorarioMedicoDTO x: li){
+                        HorarioDTO ho = new HorarioDTO();
+                        ho = fh.listadoMedicosHora(x.getId_horario_horariomedico());
+                    %>
+                    <tr>
+                        <td><%=x.getFecha() %></td>
+                        <td><%=ho.getHora_inicio() %> - <%=ho.getHora_final() %></td>
+                        <td><%=x.getEstado_horariomedico() %></td>
+                    </tr>
+                    <%
+                    }
+                    %>
+                </tbody>
+            </table>
+        </div>
+        <%
+            }
+        %>
     </div>
 </div>
 

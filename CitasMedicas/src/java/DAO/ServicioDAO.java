@@ -121,5 +121,24 @@ public class ServicioDAO {
         return false;
     }
 
-    
+    public ServicioDTO consultarServicio(String nombre) throws SQLException {
+        String sql = "select * from servicio where nombre = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, nombre);
+        ResultSet rs = ps.executeQuery();
+
+        ServicioDTO ser = null;
+        
+        if (rs.next()) {
+            
+            ser = new ServicioDTO();
+            
+            ser.setId(rs.getInt("id"));
+            ser.setNombre(rs.getString("nombre"));
+            ser.setInformacion(rs.getString("informacion"));
+            
+        }
+        return ser;
+    }
 }

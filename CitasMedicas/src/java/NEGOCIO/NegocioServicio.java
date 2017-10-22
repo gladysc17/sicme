@@ -154,6 +154,34 @@ public class NegocioServicio {
         }
         return rta;
     }
+    
+    public ServicioDTO consultarServicio(String nombre) {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        ServicioDAO sr = new ServicioDAO(co);
+        ServicioDTO ser = new ServicioDTO();
+        
+        try {
+            
+            ser = sr.consultarServicio(nombre);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return ser;
+    }
 
     
 }

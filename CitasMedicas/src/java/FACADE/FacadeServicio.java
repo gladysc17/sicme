@@ -39,4 +39,7 @@ public class FacadeServicio {
         return new NegocioServicio().eliminarServicio(id);
     }
 
+    public ServicioDTO consultarServicio(String nombre){
+        return new NegocioServicio().consultarServicio(nombre);
+    }
 }
