@@ -427,7 +427,7 @@ public class CitaDAO {
         ResultSet rs = ps.executeQuery();
         
         if(rs.next()){
-            cant = rs.getInt(1);
+            cant = rs.getInt(1);            
         }
         return cant;
     }
@@ -480,4 +480,26 @@ public class CitaDAO {
         }
         return cant;
     }   
+    
+    public int cantidadCitasPro_Ser(String servicio, String fechaI, String fechaF, int programa) throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita c, estudiante e where servicio_cita = ? "
+                + "and fecha_cita between ? and ? "
+                + "and c.id_usuario = e.identificacion_usuario "
+                + "and e.programa_academico = ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, servicio);
+        ps.setDate(2, Date.valueOf(fechaI));
+        ps.setDate(3, Date.valueOf(fechaF));
+        ps.setInt(4, programa);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        return cant;
+    }  
+    
 }

@@ -15,18 +15,18 @@ public class EstudianteDTO {
 
     private int id;
     private String identificacion_usuario;
-    private String programa_academico;
+    private int programa_academico;
 
     public EstudianteDTO() {
     }
 
-    public EstudianteDTO(int id, String identificacion_usuario, String programa_academico) {
+    public EstudianteDTO(int id, String identificacion_usuario, int programa_academico) {
         this.id = id;
         this.identificacion_usuario = identificacion_usuario;
         this.programa_academico = programa_academico;
     }
     
-    public EstudianteDTO(String identificacion_usuario, String programa_academico){
+    public EstudianteDTO(String identificacion_usuario, int programa_academico){
         this.identificacion_usuario = identificacion_usuario;
         this.programa_academico = programa_academico;
     }
@@ -47,11 +47,11 @@ public class EstudianteDTO {
         this.identificacion_usuario = identificacion_usuario;
     }
 
-    public String getPrograma_academico() {
+    public int getPrograma_academico() {
         return programa_academico;
     }
 
-    public void setPrograma_academico(String programa_academico) {
+    public void setPrograma_academico(int programa_academico) {
         this.programa_academico = programa_academico;
     }
     

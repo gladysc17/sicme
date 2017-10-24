@@ -97,7 +97,6 @@
                     </table>                                                        
                 </div> 
                 <%        } else if (servicio.equals("2")) {
-
                     FacadeHcOdontologia fac = new FacadeHcOdontologia();
                     List<HcOdontologiaDTO> hc = fac.consultarHcOdontologia(id);
                     if (hc.isEmpty()) {

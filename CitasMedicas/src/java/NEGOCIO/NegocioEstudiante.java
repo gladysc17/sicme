@@ -81,7 +81,7 @@ public class NegocioEstudiante {
         return list;
     }
 
-    public List<EstudianteDTO> consultarEstudiantePrograma(String programa){
+    public List<EstudianteDTO> consultarEstudiantePrograma(int programa){
         List<EstudianteDTO> list = new ArrayList<>();
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -103,5 +103,76 @@ public class NegocioEstudiante {
             }
         }
         return list;
+    }
+        public int cantidadCitasAsistidas(String fechaI, String fechaF, String id_usuario) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO cit = new EstudianteDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasAsistidas(fechaI, fechaF, id_usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF, String id_usuario) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO cit = new EstudianteDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasNoAsistidas(fechaI, fechaF, id_usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasPendientes(String fechaI, String fechaF, String id_usuario) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO cit = new EstudianteDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasPendientes(fechaI, fechaF, id_usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
     }
 }

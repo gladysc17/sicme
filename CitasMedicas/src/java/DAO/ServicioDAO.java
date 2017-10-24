@@ -8,6 +8,7 @@ package DAO;
 import DTO.Programa_academicoDTO;
 import DTO.ServicioDTO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -119,6 +120,61 @@ public class ServicioDAO {
         if(rta>0)
             return true;
         return false;
+    }
+    
+    public int cantidadCitasAsistidas(String fechaI, String fechaF, String servicio_cita) throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita where estado = 'atendido' and fecha_cita between ? and ? and servicio_cita = ? ";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf(fechaI));
+        ps.setDate(2, Date.valueOf(fechaF));
+        ps.setString(3, servicio_cita);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            cant = rs.getInt(1);
+        }
+
+        return cant;
+    }
+
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF, String servicio_cita) throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita where estado = 'inasistido' and fecha_cita between ? and ? and servicio_cita = ? ";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf(fechaI));
+        ps.setDate(2, Date.valueOf(fechaF));
+        ps.setString(3, servicio_cita);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            cant = rs.getInt(1);
+        }
+        
+        return cant;
+
+    }
+
+    public int cantidadCitasPendientes(String fechaI, String fechaF, String servicio_cita) throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita where estado = 'pendiente' and fecha_cita between ? and ? and servicio_cita = ? ";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf(fechaI));
+        ps.setDate(2, Date.valueOf(fechaF));
+        ps.setString(3, servicio_cita);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            cant = rs.getInt(1);
+        }
+
+        return cant;
     }
 
     

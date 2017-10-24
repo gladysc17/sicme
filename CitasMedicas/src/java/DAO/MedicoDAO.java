@@ -179,7 +179,7 @@ public class MedicoDAO {
 
     public List<String> consultaServicios() throws SQLException {
         List<String> ls = new ArrayList<>();
-        String sql = "select distinct(servicio) from medico";
+        String sql = "select * from servicio";
 
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();

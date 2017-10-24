@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="afabcec6-f2af-4de4-8649-9640d94722c3">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.0263162364614133"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fechaI" class="java.util.Date">
@@ -10,143 +10,183 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select distinct e.programa_academico,
- 
-(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'psicologia' 
-and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Psicología",
+		<![CDATA[select distinct pr.nombre_programa,
 
-(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'medicinageneral' 
-and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Medicina general",
+(select count(c.estado) from cita c, estudiante e
+where c.id_usuario = e.identificacion_usuario
+and e.programa_academico = pr.id
+and c.estado = 'pendiente') "PENDIENTE",
 
-(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'odontologia' 
-and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Odontología",
+(select count(c.estado) from cita c, estudiante e
+where c.id_usuario = e.identificacion_usuario
+and e.programa_academico = pr.id
+and c.estado = 'inasistido') "INASISTIDO",
 
-(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and c.servicio_cita = 'planificacionfamiliar' 
-and e1.programa_academico = e.programa_academico and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Planificación familiar",
+(select count(c.estado) from cita c, estudiante e
+where c.id_usuario = e.identificacion_usuario
+and e.programa_academico = pr.id
+and c.estado = 'atendido') "ATENDIDO",
 
-(select count(c.servicio_cita) from cita c, estudiante e1 where c.id_usuario = e1.identificacion_usuario and e1.programa_academico = e.programa_academico
-and fecha_cita BETWEEN $P{fechaI} and $P{fechaF}) "Total"
+(select count(c.estado) from cita c, estudiante e
+where c.id_usuario = e.identificacion_usuario
+and e.programa_academico = pr.id
+) "TOTAL"
 
-from estudiante e
-ORDER BY e.programa_academico]]>
+from programa_academico pr, cita c
+where c.fecha_cita BETWEEN $P{fechaI} and $P{fechaF}
+ORDER BY nombre_programa]]>
 	</queryString>
-	<field name="programa_academico" class="java.lang.String"/>
-	<field name="Psicología" class="java.lang.Long"/>
-	<field name="Medicina general" class="java.lang.Long"/>
-	<field name="Odontología" class="java.lang.Long"/>
-	<field name="Planificación familiar" class="java.lang.Long"/>
-	<field name="Total" class="java.lang.Long"/>
+	<field name="nombre_programa" class="java.lang.String"/>
+	<field name="PENDIENTE" class="java.lang.Long"/>
+	<field name="INASISTIDO" class="java.lang.Long"/>
+	<field name="ATENDIDO" class="java.lang.Long"/>
+	<field name="TOTAL" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="61" splitType="Stretch">
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
 			<staticText>
-				<reportElement x="162" y="-2" width="255" height="20" uuid="382a5932-61ff-4bb1-88bc-f9d82e82ffd8"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="184" y="37" width="218" height="20" uuid="0c4f43e0-9541-4630-81c6-fc5b7308503b"/>
+				<reportElement x="182" y="18" width="218" height="20" uuid="0c4f43e0-9541-4630-81c6-fc5b7308503b"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[CANTIDAD DE CITAS POR PROGRAMA ACADEMICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="149" y="18" width="273" height="20" uuid="2c0efa04-9bd5-4a62-a570-00b43bd9dfb3"/>
+				<reportElement x="147" y="-1" width="273" height="20" uuid="2c0efa04-9bd5-4a62-a570-00b43bd9dfb3"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="44" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="204" y="59" width="63" height="15" uuid="118e530a-1b45-47f8-a655-dff83faefabf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="320" y="59" width="80" height="15" uuid="6984b439-83e3-4a21-86db-404f2426bebc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="9" y="11" width="542" height="20" uuid="453fbec1-e33e-46bd-9b36-f591e6870ddd"/>
+				<reportElement x="154" y="59" width="30" height="15" uuid="8da64c5a-586f-48ce-9e32-cd315600b656"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="59" width="17" height="15" uuid="f303e9f5-60cb-4c77-b826-2e543d828039"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[PS: Psicología --- MG: Medicina General --- OD: Odontología --- PL: Planificación]]></text>
+				<text><![CDATA[y]]></text>
+			</staticText>
+			<image>
+				<reportElement x="17" y="0" width="50" height="50" uuid="10baacf7-f889-43bf-bcdb-85e40c3c0418"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="462" y="-1" width="50" height="50" uuid="74edc71d-462c-43e4-911b-a94c709af3e4"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="162" y="39" width="255" height="20" uuid="382a5932-61ff-4bb1-88bc-f9d82e82ffd8"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement x="9" y="2" width="137" height="20" uuid="c92dae02-e771-49ab-9c85-17a981d85598"/>
-				<textElement>
+				<reportElement x="12" y="2" width="137" height="20" uuid="c92dae02-e771-49ab-9c85-17a981d85598"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[PROGRAMA ACADEMICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="0" width="37" height="20" uuid="df0ca076-8286-49b8-9c39-682e7333cf91"/>
+				<reportElement x="337" y="2" width="65" height="20" uuid="fa72b1f2-a9e1-4174-8c0e-75a35f609a98"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PS]]></text>
+				<text><![CDATA[INASISTIDAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="359" y="2" width="43" height="20" uuid="fa72b1f2-a9e1-4174-8c0e-75a35f609a98"/>
+				<reportElement x="417" y="2" width="58" height="20" uuid="53defdac-a763-4fb0-b383-9059ae912520"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MG]]></text>
+				<text><![CDATA[ASISTIDAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="417" y="2" width="38" height="20" uuid="53defdac-a763-4fb0-b383-9059ae912520"/>
+				<reportElement x="498" y="2" width="53" height="20" uuid="1842b14b-9a06-4c9c-925f-4536b806132f"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[OD]]></text>
+				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="465" y="2" width="49" height="20" uuid="430b667b-ac27-4f27-a978-8ea34b987266"/>
+				<reportElement x="247" y="2" width="73" height="20" uuid="df0ca076-8286-49b8-9c39-682e7333cf91"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="524" y="2" width="27" height="20" uuid="1842b14b-9a06-4c9c-925f-4536b806132f"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total]]></text>
+				<text><![CDATA[PENDIENTES]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<textField>
-				<reportElement x="9" y="0" width="279" height="20" uuid="d254379e-1b84-43a6-a334-21e2b66a6501"/>
-				<textFieldExpression><![CDATA[$F{programa_academico}]]></textFieldExpression>
+				<reportElement x="12" y="0" width="237" height="15" uuid="09c442b9-2821-4919-8500-c5e9610f7c0e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_programa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="359" y="0" width="43" height="20" uuid="bc4e6a76-e068-4c89-be54-a69552a9b2a6"/>
-				<textFieldExpression><![CDATA[$F{Medicina general}]]></textFieldExpression>
+				<reportElement x="249" y="0" width="73" height="15" uuid="5a3ed6cd-8bf8-466f-8668-be3f474b4bdc"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PENDIENTE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="417" y="0" width="38" height="20" uuid="7a59e942-94e7-4cb5-bc9c-88f09125029b"/>
-				<textFieldExpression><![CDATA[$F{Odontología}]]></textFieldExpression>
+				<reportElement x="337" y="0" width="65" height="15" uuid="38c8de8a-3e45-43d0-85d6-e027c6a65ea7"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{INASISTIDO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="465" y="0" width="49" height="20" uuid="fefd9381-5135-4f31-b0ea-c016af7a15e3"/>
-				<textFieldExpression><![CDATA[$F{Planificación familiar}]]></textFieldExpression>
+				<reportElement x="417" y="0" width="58" height="15" uuid="a741f825-6523-46c7-abd0-9634a42dbfda"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ATENDIDO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="524" y="0" width="27" height="20" uuid="560fd79d-2f8a-461d-9a06-e24305e74f2c"/>
-				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+				<reportElement x="498" y="0" width="53" height="15" uuid="8df253e9-fe8e-407d-86cc-ab9294117fe8"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="310" y="0" width="37" height="20" uuid="db8aa0f4-1023-4cd4-bff6-19ce5c3a27da"/>
-				<textFieldExpression><![CDATA[$F{Psicología}]]></textFieldExpression>
-			</textField>
+			<line>
+				<reportElement x="11" y="16" width="540" height="1" uuid="cc1d9426-694f-4503-889e-5981db051597"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -155,15 +195,15 @@ ORDER BY e.programa_academico]]>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="62" y="34" width="100" height="20" uuid="a9ce0090-5d8d-4e5b-a36f-d0ef256a495c"/>
+				<reportElement x="84" y="34" width="100" height="20" uuid="a9ce0090-5d8d-4e5b-a36f-d0ef256a495c"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="34" width="45" height="20" uuid="740322bd-cf4f-45f6-8e76-fba3e57e20d4"/>
+				<reportElement x="17" y="34" width="67" height="20" uuid="740322bd-cf4f-45f6-8e76-fba3e57e20d4"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Creado:]]></text>
+				<text><![CDATA[Consultado:]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

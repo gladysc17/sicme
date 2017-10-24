@@ -154,6 +154,78 @@ public class NegocioServicio {
         }
         return rta;
     }
+    
+    public int cantidadCitasAsistidas(String fechaI, String fechaF, String servicio) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        ServicioDAO cit = new ServicioDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasAsistidas(fechaI, fechaF, servicio);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF, String servicio) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        ServicioDAO cit = new ServicioDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasNoAsistidas(fechaI, fechaF, servicio);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+    
+    public int cantidadCitasPendientes(String fechaI, String fechaF, String servicio) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        ServicioDAO cit = new ServicioDAO(co);
+        
+        try {
+            cant = cit.cantidadCitasPendientes(fechaI, fechaF, servicio);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
 
     
 }

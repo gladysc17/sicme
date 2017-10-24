@@ -20,9 +20,9 @@
                     <label for="" class="control-label">Tipo de Consulta</label>
                     <select name="consulta" id="consulta">
                         <option></option>
-                        <option value="realizadas">Citas realizadas</option>
-                        <option value="programa">Citas por programa</option>
                         <option value="servicio">Citas por servicio</option>
+                        <option value="pro_ser">Citas Programa/Servicio</option>
+                        <option value="programa">Citas por programa</option>                        
                     </select>
                     <label>&nbsp;&nbsp; desde &nbsp;&nbsp;</label>
                     <input type="date" id="fechaIC" name="fechaIC" required > &nbsp;&nbsp;&nbsp;

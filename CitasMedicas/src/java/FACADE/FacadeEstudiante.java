@@ -43,7 +43,18 @@ public class FacadeEstudiante {
         return new NegocioEstudiante().consultarProgramaAcademico();
     }
     
-    public List<EstudianteDTO> consultarEstudiantePrograma(String programa) throws SQLException {
+    public List<EstudianteDTO> consultarEstudiantePrograma(int programa) throws SQLException {
         return new NegocioEstudiante().consultarEstudiantePrograma(programa);
+    }
+    
+    public int cantCitasAsistidas(String fechaI, String fechaF, String id_usuario) throws SQLException {
+        return new NegocioEstudiante().cantidadCitasAsistidas(fechaI, fechaF, id_usuario);
+    }
+
+    public int cantCitasNoAsistidas(String fechaI, String fechaF, String id_usuario) throws SQLException {
+        return new NegocioEstudiante().cantidadCitasNoAsistidas(fechaI, fechaF, id_usuario);
+    }
+    public int cantCitasPendientes(String fechaI, String fechaF, String id_usuario) throws SQLException {
+        return new NegocioEstudiante().cantidadCitasPendientes(fechaI, fechaF, id_usuario);
     }
 }
