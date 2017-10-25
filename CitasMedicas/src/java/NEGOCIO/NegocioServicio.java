@@ -202,7 +202,36 @@ public class NegocioServicio {
         }
         return cant;
     }
-    
+        
+    public ServicioDTO consultarServicio(String nombre) {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        ServicioDAO sr = new ServicioDAO(co);
+        ServicioDTO ser = new ServicioDTO();
+        
+        try {
+            
+            ser = sr.consultarServicio(nombre);
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return ser;
+
+    }
     public int cantidadCitasPendientes(String fechaI, String fechaF, String servicio) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -211,6 +240,7 @@ public class NegocioServicio {
         
         try {
             cant = cit.cantidadCitasPendientes(fechaI, fechaF, servicio);
+        
         } catch (SQLException ex) {
             Logger.getLogger(NegocioServicio.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -225,7 +255,7 @@ public class NegocioServicio {
             }
         }
         return cant;
-    }
 
     
+}
 }

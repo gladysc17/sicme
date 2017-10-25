@@ -69,7 +69,7 @@
 
             } else if (tipousuario.equals("medico")) {
                 FacadeMedico facMed = new FacadeMedico();              
-                MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena);                
+                MedicoDTO med = new MedicoDTO(identificacion, Integer.parseInt(servicio), contrasena);                
                 registro2 = facMed.registrarMedico(med);
                 
             } 

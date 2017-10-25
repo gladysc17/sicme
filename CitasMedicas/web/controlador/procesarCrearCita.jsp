@@ -74,7 +74,7 @@
             FacadeHorarioMedico fm = new FacadeHorarioMedico();
             HorarioMedicoDTO hm = fm.consultarHorarioMedico(idHora);
 
-            boolean rt2 = fac.cambiarEstadoHora(id_med, fecha, hm.getId_horario_horariomedico());
+            boolean rt2 = fac.cambiarEstadoHora(id_med, fecha, hm.getId_horario_horariomedico(),"ocupado");
 
             if (rta == true && rt2 == true) {
 

@@ -65,7 +65,7 @@ public class NegocioHorario {
         return ho;
     }
     
-    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico) {
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado) {
         
       boolean rta = false;
         
@@ -75,7 +75,7 @@ public class NegocioHorario {
         HorarioDAO h = new HorarioDAO(co);
         
         try { 
-            rta = h.cambiarEstadoHora(id_medico_horariomedico, fecha, id_horario_horariomedico);
+            rta = h.cambiarEstadoHora(id_medico_horariomedico, fecha, id_horario_horariomedico, estado);
             
         } catch(SQLException e){
             Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, e);
@@ -89,5 +89,30 @@ public class NegocioHorario {
             }
         }
   return rta;
+    }
+    
+    public HorarioDTO listadoHorasMedico(int id) {
+        
+        HorarioDTO ho = new HorarioDTO();
+        
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        
+        HorarioDAO h = new HorarioDAO(co);
+        
+        try { 
+            ho = h.consultarHorarioId(id);
+        } catch(SQLException e){
+            Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return ho;
     }
 }

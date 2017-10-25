@@ -22,8 +22,11 @@ public class FacadeHorario {
         return new NegocioHorario().listadoHoras();
     }
     
-     public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico) {
-        return new NegocioHorario().cambiarEstadoHora(id_medico_horariomedico, fecha, id_horario_horariomedico);
+     public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado) {
+        return new NegocioHorario().cambiarEstadoHora(id_medico_horariomedico, fecha, id_horario_horariomedico, estado);
     }
     
+     public HorarioDTO listadoMedicosHora(int id) throws Exception {
+         return new NegocioHorario().listadoHorasMedico(id);
+     }
 }

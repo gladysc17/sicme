@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.ServicioDTO"%>
+<%@page import="FACADE.FacadeServicio"%>
 <%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="org.omg.Messaging.SYNC_WITH_TRANSPORT"%>
 <%@page import="DTO.UsuarioDTO"%>
@@ -77,10 +79,13 @@
                                 <option> --seleccione --</option>
                                 <%
                                     String servicio = cita.getServicio_cita();
+                                    FacadeServicio fs = new FacadeServicio();
+                                    
+                                    ServicioDTO s = fs.consultarServicio(servicio);
                                     
                                     String x = "";
 
-                                    if (servicio.equals("odontologia") || servicio.equals("medicina_general")) {
+                                    if (servicio.equals("Odontologia") || servicio.equals("Medicina General")) {
                                         x = "mostrar";
                                     } else {
                                         x = "ocultar";
@@ -88,7 +93,7 @@
 
                                     FacadeMedico facMed = new FacadeMedico();
 
-                                    ArrayList<MedicoDTO> listaMedicos = facMed.consultarMedicosPorServicio(servicio);
+                                    ArrayList<MedicoDTO> listaMedicos = facMed.consultarMedicosPorServicio(s.getId());
 
                                     for (int i = 0; i < listaMedicos.size(); i++) {
 

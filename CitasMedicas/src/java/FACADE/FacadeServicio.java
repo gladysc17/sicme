@@ -51,4 +51,7 @@ public class FacadeServicio {
         return new NegocioServicio().cantidadCitasPendientes(fechaI, fechaF, servicio);
     }
 
+    public ServicioDTO consultarServicio(String nombre){
+        return new NegocioServicio().consultarServicio(nombre);
+    }
 }

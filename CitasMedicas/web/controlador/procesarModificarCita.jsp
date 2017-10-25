@@ -29,7 +29,7 @@
            
             if (rta == true) {
                 FacadeHorario fac = new FacadeHorario();
-                boolean rt2 = fac.cambiarEstadoHora(id_medico, fecha, horaMedico);               
+                boolean rt2 = fac.cambiarEstadoHora(id_medico, fecha, horaMedico,"ocupado");               
                 System.out.println("MODIFICO LA CITA "+rta +" cambio horario "+rt2);
         %>
         <script>
