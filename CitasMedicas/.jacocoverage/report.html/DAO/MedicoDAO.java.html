@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MedicoDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">MedicoDAO.java</span></div><h1>MedicoDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.MedicoDTO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class MedicoDAO {
+
+    private Connection con;
+
+<span class="nc" id="L24">    public MedicoDAO(Connection con) {</span>
+<span class="nc" id="L25">        this.con = con;</span>
+<span class="nc" id="L26">    }</span>
+
+    public boolean registrarMedico(MedicoDTO med) throws SQLException {
+
+<span class="nc" id="L30">        String sql = &quot;INSERT INTO medico (identificacion, servicio)&quot;</span>
+                + &quot; VALUES (?, ?, ?)&quot;;
+
+<span class="nc" id="L33">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L35">        ps.setString(1, med.getIdentificacion());</span>
+<span class="nc" id="L36">        ps.setString(2, med.getServicio());</span>
+<span class="nc" id="L37">        ps.setString(3, med.getContrasena());</span>
+
+<span class="nc" id="L39">        int resultado = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        return resultado == 1;</span>
+
+    }
+
+    public MedicoDTO consultarMedicoPorId(String id) throws SQLException {
+
+<span class="nc" id="L47">        String sql = &quot;SELECT * FROM medico WHERE identificacion = ?&quot;;</span>
+
+<span class="nc" id="L49">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L51">        ps.setString(1, id);</span>
+
+<span class="nc" id="L53">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L55">        MedicoDTO med = null;</span>
+
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (rs.next()) {</span>
+<span class="nc" id="L58">            med = new MedicoDTO();</span>
+<span class="nc" id="L59">            med.setIdentificacion(rs.getString(&quot;identificacion&quot;));</span>
+<span class="nc" id="L60">            med.setServicio(rs.getString(&quot;servicio&quot;));</span>
+
+        }
+<span class="nc" id="L63">        return med;</span>
+    }
+
+    public List&lt;MedicoDTO&gt; consultarMedico() throws SQLException {
+
+<span class="nc" id="L68">        List&lt;MedicoDTO&gt; listaMed = new ArrayList&lt;MedicoDTO&gt;();</span>
+
+<span class="nc" id="L70">        String sql = &quot;SELECT * FROM medico ORDER BY nombre&quot;;</span>
+
+<span class="nc" id="L72">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L74">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L76">        MedicoDTO med = null;</span>
+
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L79">            med = new MedicoDTO();</span>
+
+<span class="nc" id="L81">            med.setIdentificacion(rs.getString(&quot;identificacion&quot;));</span>
+<span class="nc" id="L82">            med.setServicio(rs.getString(&quot;servicio&quot;));</span>
+
+<span class="nc" id="L84">            listaMed.add(med);</span>
+        }
+
+<span class="nc" id="L87">        return listaMed;</span>
+
+    }
+
+    public MedicoDTO consultarMedicoPorIdCodigo(int id, int codigo) throws SQLException {
+
+<span class="nc" id="L93">        String sql = &quot;SELECT * FROM medico WHERE identificacion = ? OR codigo = ? &quot;;</span>
+
+<span class="nc" id="L95">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L97">        ps.setInt(1, id);</span>
+<span class="nc" id="L98">        ps.setInt(2, codigo);</span>
+
+<span class="nc" id="L100">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L102">        MedicoDTO med = null;</span>
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (rs.next()) {</span>
+<span class="nc" id="L105">            med = new MedicoDTO();</span>
+
+<span class="nc" id="L107">            med.setIdentificacion(rs.getString(&quot;identificacion&quot;));</span>
+<span class="nc" id="L108">            med.setServicio(rs.getString(&quot;servicio&quot;));</span>
+        }
+
+<span class="nc" id="L111">        return med;</span>
+
+    }
+
+    public ArrayList&lt;MedicoDTO&gt; consultarMedicoPorServicio(String servicio) throws SQLException {
+
+<span class="nc" id="L117">        ArrayList&lt;MedicoDTO&gt; medicos = new ArrayList&lt;MedicoDTO&gt;();</span>
+
+<span class="nc" id="L119">        String sql = &quot;SELECT * FROM medico WHERE servicio = ?&quot;;</span>
+
+<span class="nc" id="L121">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L122">        ps.setString(1, servicio);</span>
+
+<span class="nc" id="L124">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L126">        MedicoDTO med = null;</span>
+
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        while (rs.next()) {</span>
+
+<span class="nc" id="L130">            med = new MedicoDTO();</span>
+
+<span class="nc" id="L132">            med.setIdentificacion(rs.getString(&quot;identificacion&quot;));</span>
+<span class="nc" id="L133">            med.setServicio(rs.getString(&quot;servicio&quot;));</span>
+
+<span class="nc" id="L135">            medicos.add(med);</span>
+        }
+<span class="nc" id="L137">        return medicos;</span>
+    }
+
+    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException {
+
+<span class="nc" id="L142">        String sql = &quot;UPDATE medico SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?, contrasena = ?&quot;</span>
+                + &quot;WHERE  identificacion = ?&quot;;
+
+<span class="nc" id="L145">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L147">        ps.setString(1, correo);</span>
+<span class="nc" id="L148">        ps.setString(2, fechanacimiento);</span>
+<span class="nc" id="L149">        ps.setString(3, genero);</span>
+<span class="nc" id="L150">        ps.setString(4, estadocivil);</span>
+<span class="nc" id="L151">        ps.setString(5, direccion);</span>
+<span class="nc" id="L152">        ps.setString(6, telefono);</span>
+<span class="nc" id="L153">        ps.setString(7, contrasena);</span>
+<span class="nc" id="L154">        ps.setInt(8, identificacion);</span>
+
+<span class="nc" id="L156">        int rta = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        return rta &gt; 0;</span>
+
+    }
+
+    public ArrayList&lt;String[]&gt; listadoMedico() throws SQLException {
+
+<span class="nc" id="L164">        String sql = &quot;select u.nombre, u.identificacion, u.codigo, m.servicio from usuario u inner join medico m ON u.identificacion = m.identificacion&quot;;</span>
+
+<span class="nc" id="L166">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L167">        ResultSet rs = ps.executeQuery();</span>
+<span class="nc" id="L168">        ArrayList&lt;String[]&gt; lista = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L171">            String[] lis = new String[4];</span>
+<span class="nc" id="L172">            lis[0] = rs.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L173">            lis[1] = rs.getString(&quot;identificacion&quot;);</span>
+<span class="nc" id="L174">            lis[2] = rs.getString(&quot;codigo&quot;);</span>
+<span class="nc" id="L175">            lis[3] = rs.getString(&quot;servicio&quot;);</span>
+<span class="nc" id="L176">            lista.add(lis);</span>
+<span class="nc" id="L177">        }</span>
+<span class="nc" id="L178">        return lista;</span>
+    }
+
+    public List&lt;String&gt; consultaServicios() throws SQLException {
+<span class="nc" id="L182">        List&lt;String&gt; ls = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L183">        String sql = &quot;select distinct(servicio) from medico&quot;;</span>
+
+<span class="nc" id="L185">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L186">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L188">        String dato = &quot;&quot;;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L190">            dato = rs.getString(1);</span>
+<span class="nc" id="L191">            ls.add(dato);</span>
+        }
+<span class="nc" id="L193">        return ls;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

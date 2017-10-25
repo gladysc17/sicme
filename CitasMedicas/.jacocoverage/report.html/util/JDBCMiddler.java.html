@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JDBCMiddler.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">util</a> &gt; <span class="el_source">JDBCMiddler.java</span></div><h1>JDBCMiddler.java</h1><pre class="source lang-java linenums">package util;
+import java.sql.*;
+import java.util.Iterator;
+import javax.naming.*;
+import javax.sql.*;
+import java.util.ArrayList;
+
+/**
+ *&lt;P align='justify'&gt;
+ *Un &lt;I&gt;objeto&lt;/I&gt; &lt;B&gt;JDBCMiddler&lt;/B&gt; permite abstraer cualquier
+ *conexión JDBC.
+ *La conexión a una base de datos con JDBC requiere dos pasos
+ *fundamentales:&lt;BR&gt;
+ *1. Registrar el controlador&lt;BR&gt;
+ *2. Establecer la conexión&lt;BR&gt;
+ *Para esto es necesario tener los controladores,
+ *la URL de recurso de base de datos,
+ *el usuario y su clave.&lt;BR&gt;
+ *
+ *Esta clase permite encapsular todo el trabajo y la informacion
+ *de una Base de Datos, en un unico objeto dentro de una aplicacion.
+ *&lt;/P&gt;
+*/
+class JDBCMiddler{
+	
+	/**
+	 *Una cadena con la ubicacion del controlador JDBC, en la forma 
+	 *&lt;I&gt;paquete.subpaquetes.DriverClass&lt;/I&gt;
+	 *Por defecto toma el valor sun.jdbc.odbc.JdbcOdbcDriver.
+	*/
+<span class="nc" id="L31">	protected String controlador = &quot;sun.jdbc.odbc.JdbcOdbcDriver&quot;;</span>
+	
+	/**Una cadena con la ubicacion del recurso de base de datos en la forma
+	 *&lt;I&gt;protocolo:subprotocolo:nombrerecurso&lt;/I&gt;. El protocolo por lo general
+	 *es jdbc.fabricante, el subprotocolo depende del controlador e igualmente
+	 *nombrederecurso.
+	*/
+<span class="nc" id="L38">	protected String url = &quot;jdbc.odbc.default&quot;;</span>
+	
+	/**Una referencia al objeto Connection de la base de datos*/
+	protected Connection conexión;
+	
+	/**Una cadena con el nombre de usuario(Login)*/
+	protected String usuario;
+	
+	/**Una cadena con la clave (password)*/
+<span class="nc" id="L47">	protected String clave=new String();</span>
+	
+	/**Una cadena SQL*/
+	protected String SQL;
+	
+	/**
+	 *Crea un objeto JDBCMiddler vacio sin parametros
+	 *de conexión. Constructor por defecto.
+	*/
+<span class="nc" id="L56">	protected JDBCMiddler() {</span>
+<span class="nc" id="L57">	 System.out.println(&quot;new EJB[&quot;+this.hashCode()+&quot;]&quot;);</span>
+<span class="nc" id="L58">	}//Fin Constructor Default JDBCMiddler</span>
+	
+	/**
+	 *Crea un objeto JDBCMiddler, que encapsula toda la informacion
+	 *y Métodos de acceso a una base de datos dentro de una aplicacion
+	 *en el contexto JDBC.
+	 *@param	controlador		Una cadena con el controlador JDBC a emplear
+	 *@param	url				Una cadena de conexión JDBC a la Base de Datos	 
+	*/
+	
+        
+        protected boolean ejecutarActualizacionSQL(String comandoSQL,Iterator parametros) throws Exception{
+	 boolean ok;
+<span class="nc bnc" id="L71" title="All 2 branches missed.">     if(this.conectar()){</span>
+   	   //La consulta es preparada porque requiere de parametros
+   	   //por ejemplo:
+   	   //delete from producto where precio=?
+   	   //insert into producto values (?,?,?,?,?)
+   	   //los ? indican parametros ordenados por posicion
+<span class="nc" id="L77">   	   PreparedStatement sql= this.conexión.prepareStatement(comandoSQL);</span>
+   	   
+   	   //System.err.println(comandoSQL+&quot;--&gt;&quot;);
+<span class="nc bnc" id="L80" title="All 2 branches missed.">   	   for(int i=1;parametros.hasNext();i++){</span>
+<span class="nc" id="L81">   	   	String parametro= parametros.next().toString();</span>
+<span class="nc" id="L82">   	   	sql.setString(i,parametro);</span>
+   	   	//System.err.println(&quot;param[&quot;+i+&quot;]=&quot;+parametro);
+   	   }
+   	   
+<span class="nc bnc" id="L86" title="All 2 branches missed.">   	   ok = sql.executeUpdate()!=0;</span>
+   	   
+   	   //importante cerrar la conexión
+<span class="nc" id="L89">   	   sql.close();</span>
+<span class="nc" id="L90">   	   sql=null;</span>
+<span class="nc" id="L91">   	   this.desconectar();</span>
+   	   
+<span class="nc" id="L93">   	   return ok;</span>
+      }
+<span class="nc" id="L95">     else return false;</span>
+	}//Fin ejecutarSQL
+	
+        
+<span class="nc" id="L99">        protected JDBCMiddler(String controlador, String url) {</span>
+<span class="nc" id="L100">	  this.controlador = controlador;</span>
+<span class="nc" id="L101">	  this.url = url;</span>
+<span class="nc" id="L102">	}//Fin Constructor JDBCMiddler</span>
+	
+	/**
+	 *Crea un objeto JDBCMiddler, que encapsula toda la informacion
+	 *y Métodos de acceso a una base de datos dentro de una aplicacion
+	 *en el contexto JDBC.
+	 *@param	controlador		Una cadena con el controlador JDBC a emplear
+	 *@param	url				Una cadena de conexión JDBC a la Base de Datos	 
+	 *@param 	usuario			Una cadena con el login
+	 *@param	clave			Una cadena con la clave de acceso
+	*/
+	protected JDBCMiddler(String controlador, String url, String usuario,
+<span class="nc" id="L114">						String clave){</span>
+<span class="nc" id="L115">	 this.controlador = controlador;</span>
+<span class="nc" id="L116">	 this.url=url;</span>
+<span class="nc" id="L117">	 this.usuario=usuario;</span>
+<span class="nc" id="L118">	 this.clave=clave;</span>
+<span class="nc" id="L119">	}//Fin Constructor JDBCMiddler</span>
+	
+	/**
+	 *Averigua si la conexi�n con la Base de Datos est� disponible.
+	 *@return	Regresa verdadero (true) si la conexi�n est� disponible.
+	 *			La conexi�n est� disponible cuando conexi�n!=null y
+	 * !conexi�n.isClosed()
+	*/
+	protected boolean hayconexion(){
+<span class="nc bnc" id="L128" title="All 2 branches missed.">	 return this.conexión!=null;</span>
+	}//Fin hayConexi�n	
+	
+	/**
+	 *Establece una conexión con la base de datos.
+	 *Si existen parametros de conexión los usa
+	 *y se conecta de la manera tradicional.
+	 *@return	Regresa verdadero (true) si pudo establecer la conexión
+	 *			de lo contrario regresa falso (false).
+	 *@exception Lanza un error si algo extra�o sucede :)
+	*/
+	protected boolean conectar() throws Exception{
+		
+<span class="nc bnc" id="L141" title="All 2 branches missed.">	 if(!hayconexion())</span>
+<span class="nc" id="L142">	  return conectar(this.usuario, this.clave);</span>
+	 else
+<span class="nc" id="L144">	  return true;</span>
+	}//Fin conectar
+	
+	/**
+	 *Se conecta a un servicio JDBC usando java.naming.
+	 *Los parametros de configuracion se manejan para
+	 *el contexto de la aplicacion, permitiendo un 
+	 *pool de conexiónes persistentes disponibles
+	 *para toda la aplicacion. Tomcat proporciona este
+	 *servicio configurandolo en el archivo web.xml
+	 *o server.xml
+	 *@param	servicio	Una cadena como &quot;java:comp/env/servicio&quot;
+	 *
+	*/
+	protected boolean conectar(String servicio) throws Exception{
+		
+	 /*
+	   *Para conectarse con Tomcat
+	   *en el archivo de coniguracion se especifican
+	   *los parametros de conexión.
+	  */
+<span class="nc" id="L165">      long t = System.currentTimeMillis();</span>
+      //Context es un objeto que encapsula el contexto de la aplicacion
+<span class="nc" id="L167">      Context ctx = new InitialContext();</span>
+      //DataSource es el origen de datos, 
+      //un servicio JDBC proporcionado mediante java naming
+      //El nombre del servicio deberia ser recibido como
+      //argumento
+<span class="nc" id="L172">      DataSource ds = (DataSource)ctx.lookup(servicio);</span>
+
+      //Ahora si obtiene la conexión
+<span class="nc" id="L175">      this.conexión = ds.getConnection();</span>
+ 
+<span class="nc bnc" id="L177" title="All 2 branches missed.">      return this.conexión != null;</span>
+	}//Fin conectar
+
+	/**
+	 *Establece una conexión con la base de datos, usando el usuario
+	 *y clave especificados.
+	 *Si ya hay una conexi�n, esta es cerrada.
+	 *@param	usuario		Una cadena con el nombre de usuario
+	 *@param 	clave	Una cadena con la clave
+	 *@return	Regresa verdadero (true) si pudo establecer la conexión
+	 *			de lo contrario regresa falso (false).
+	*/
+	protected boolean conectar(String usuario, String clave) throws Exception{
+	 
+	 //Registra el controlador de manera implicita
+<span class="nc" id="L192">	 Class.forName(controlador).newInstance();</span>
+	 //Obtiene la conexión
+<span class="nc" id="L194">	 System.err.println(url+&quot;,&quot;+usuario+&quot;,&quot;+clave+&quot;:OK!!!&quot;);</span>
+<span class="nc" id="L195">	 this.conexión = DriverManager.getConnection(url,usuario,clave);</span>
+	 //Actualiza usuario y clave del middler
+<span class="nc" id="L197">	 this.usuario = usuario;</span>
+<span class="nc" id="L198">	 this.clave = clave;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">     return this.conexión != null;</span>
+	}//Fin conectar
+
+	/**Cierra la conexión con la base de datos*/
+	protected void desconectar() throws Exception{
+<span class="nc bnc" id="L204" title="All 2 branches missed.">     if(this.hayconexion()){</span>
+<span class="nc" id="L205">       this.conexión.close();</span>
+<span class="nc" id="L206">       this.conexión=null;</span>
+      }
+<span class="nc" id="L208">	}//Fin desconectar</span>
+	
+	/**
+	 *Ejecuta una sentencia SQL y regresa como resultado un objeto
+	 *ResultSet
+	 *@param	consultaSQL	Cadena que contiene una sentencia de 
+	 *                      consulta SQL:
+	 * 						SELECT listaCampos 
+	 *						FROM listaTablas 
+	 *						WHERE listaCondiciones
+	 *@return	Regresa un objeto ResulSet con el resultado de la consulta
+	*/
+	protected ResultSet ejecutarSQL(String consultaSQL) throws Exception{
+<span class="nc bnc" id="L221" title="All 2 branches missed.">     if(this.conectar()){</span>
+<span class="nc" id="L222">	   Statement sql= this.conexión.createStatement();</span>
+<span class="nc" id="L223">       return sql.executeQuery(consultaSQL);</span>
+     }
+<span class="nc" id="L225">     else return null;</span>
+	}//Fin ejecutarSQL
+    
+	/**
+	 *Ejecuta una sentencia SQL y regresa como resultado un objeto
+	 *ResultSet. La Consulta requiere de parametros en tiempo de ejecuci�n.
+	 *@param	consultaSQL	Cadena que contiene una sentencia de 
+	 *                      consulta SQL:
+	 * 						SELECT listaCampos FROM listaTablas 
+	 *						WHERE listaCondiciones
+	 *@param	parametros	Un Iterador de Parametros con los parametros 
+	 *						de la consulta.
+	 *@return	Regresa un objeto ResulSet con el resultado de la consulta
+	 
+	*/
+        
+	protected boolean ejecutarActualizacionSQL(String comandoSQL) throws Exception{
+	 boolean ok;
+<span class="nc bnc" id="L243" title="All 2 branches missed.">     if(this.conectar()){</span>
+   	   //La consulta es preparada porque requiere de parametros
+   	   //por ejemplo:
+   	   //delete from producto where precio=?
+   	   //insert into producto values (?,?,?,?,?)
+   	   //los ? indican parametros ordenados por posicion
+<span class="nc" id="L249">   	   PreparedStatement sql= this.conexión.prepareStatement(comandoSQL);</span>
+   	   
+   	   //System.err.println(comandoSQL+&quot;--&gt;&quot;);
+   	   /*for(int i=1;parametros.hasNext();i++){
+   	   	String parametro= parametros.next().toString();
+   	   	sql.setString(i,parametro);
+   	   	//System.err.println(&quot;param[&quot;+i+&quot;]=&quot;+parametro);
+   	   }*/
+   	   
+<span class="nc bnc" id="L258" title="All 2 branches missed.">   	   ok = sql.executeUpdate()!=0;</span>
+   	   
+   	   //importante cerrar la conexión
+<span class="nc" id="L261">   	   sql.close();</span>
+<span class="nc" id="L262">   	   sql=null;</span>
+   	   //this.desconectar();
+   	   
+<span class="nc" id="L265">   	   return ok;</span>
+      }
+<span class="nc" id="L267">     else return false;</span>
+	}//Fin ejecutarSQL
+	
+	protected ResultSet ejecutarSQL(String consultaSQL, Iterator parametros)
+					throws Exception{
+<span class="nc bnc" id="L272" title="All 2 branches missed.">     if(this.conectar()){</span>
+<span class="nc" id="L273">   	   PreparedStatement sql= this.conexión.prepareStatement(consultaSQL);</span>
+   	   
+   	   //System.err.println(consultaSQL+&quot;--&gt;&quot;);
+<span class="nc bnc" id="L276" title="All 2 branches missed.">   	   for(int i=1;parametros.hasNext();i++){</span>
+<span class="nc" id="L277">   	   	String parametro= parametros.next().toString();</span>
+<span class="nc" id="L278">   	   	sql.setString(i,parametro);</span>
+   	   	//System.err.println(&quot;param[&quot;+i+&quot;]=&quot;+parametro);
+   	   }
+   	   	   	   	
+<span class="nc" id="L282">   	   return  sql.executeQuery();</span>
+      }
+<span class="nc" id="L284">     else return null;</span>
+	}//Fin ejecutarSQL
+	
+	 protected ResultSet ejecutarSQL(String consultaSQL, Object[] param) throws Exception {
+<span class="nc bnc" id="L288" title="All 2 branches missed.">        if (this.conectar()) {</span>
+<span class="nc" id="L289">            PreparedStatement sql = this.conexión.prepareStatement(consultaSQL);</span>
+<span class="nc" id="L290">            cargarParametros(sql, param);</span>
+<span class="nc" id="L291">            return sql.executeQuery();</span>
+        } else {
+<span class="nc" id="L293">            return null;</span>
+        }
+    }
+	private void cargarParametros(PreparedStatement sql, Object[] parametros) throws Exception{
+
+        String clase;
+<span class="nc bnc" id="L299" title="All 2 branches missed.">        for (int i = 1; i &lt;= parametros.length; i++) {</span>
+<span class="nc" id="L300">            clase = parametros[i - 1].getClass().getName();   // nombre de la clase</span>
+            // System.err.println(clase);
+<span class="nc bnc" id="L302" title="All 22 branches missed.">            switch (clase) {</span>
+                case &quot;java.lang.String&quot;:
+<span class="nc" id="L304">                    sql.setString(i, (String) parametros[i - 1]);</span>
+<span class="nc" id="L305">                    break;</span>
+                case &quot;java.lang.Integer&quot;:
+<span class="nc" id="L307">                    sql.setInt(i, (Integer) parametros[i - 1]);</span>
+<span class="nc" id="L308">                    break;</span>
+                case &quot;java.lang.Float&quot;:
+<span class="nc" id="L310">                    sql.setFloat(i, (Float) parametros[i - 1]);</span>
+<span class="nc" id="L311">                    break;</span>
+                case &quot;java.lang.Double&quot;:
+<span class="nc" id="L313">                    sql.setDouble(i, (Double) parametros[i - 1]);</span>
+<span class="nc" id="L314">                    break;</span>
+                case &quot;java.lang.Long&quot;:
+<span class="nc" id="L316">                    sql.setLong(i, (Long) parametros[i - 1]);</span>
+                    break;
+            }
+        }
+<span class="nc" id="L320">    }</span>
+    
+	
+	
+	
+	
+	
+	
+	
+	/*-MétodoS DE ACCESO-*/	
+	
+	/**Método de acceso a la propiedad usuario*/
+	protected String getUsuario(){
+<span class="nc" id="L333">	 return this.usuario;</span>
+	}//fin getUsuario
+	
+	/**Método de acceso a la propiedad clave*/
+	protected String getClave(){
+<span class="nc" id="L338">	 return this.clave;</span>
+	}//fin getClave
+	
+	/**Método de acceso a la propiedad url*/
+	protected String getUrl(){
+<span class="nc" id="L343">	 return this.url;</span>
+	}//fin getUrl
+	
+	/**Método de acceso a la propiedad controlador*/
+	protected String getControlador(){
+<span class="nc" id="L348">	 return this.controlador;</span>
+	}//fin getControlador
+	
+	/*-MétodoS DE MODIFICACION-*/
+	
+	/**Método de modificacion a la propiedad usuario*/
+	protected void setUsuario(String usuario){
+<span class="nc" id="L355">	 this.usuario=usuario;</span>
+<span class="nc" id="L356">	}//fin setUsuario</span>
+	
+	/**Método de modificacion a la propiedad clave*/
+	protected void setClave(String clave){
+<span class="nc" id="L360">	 this.clave = clave;</span>
+<span class="nc" id="L361">	}//fin setClave</span>
+	
+	/**Método de modificacion a la propiedad url*/
+	protected void setUrl(String url){
+<span class="nc" id="L365">	 this.url=url;</span>
+<span class="nc" id="L366">	}//fin setUrl</span>
+	
+	/**Método de modificacion a la propiedad controlador*/
+	protected void setControlador(String controlador){
+<span class="nc" id="L370">	 this.controlador = controlador;</span>
+<span class="nc" id="L371">	}//fin setControlador</span>
+	
+	/**Método de modificacion a la propiedad consulta*/
+	protected void setSQL(String SQL){
+<span class="nc" id="L375">	 this.SQL = SQL;</span>
+<span class="nc" id="L376">	}//fin setSQL</span>
+	
+	/**EJECUTA UNA CONSULTA Y GENERA LA TABLA HTML*/
+    protected String getHTML(String SQL) throws Exception{
+<span class="nc" id="L380">     StringBuffer html = new StringBuffer();</span>
+<span class="nc" id="L381">     html.append(&quot;&lt;TABLE border='1'&gt;&quot;);</span>
+<span class="nc" id="L382">     html.append(&quot;&lt;TR&gt;&quot;);</span>
+     
+<span class="nc bnc" id="L384" title="All 2 branches missed.">	 if(conectar()){</span>
+<span class="nc" id="L385">	  ResultSet rs = ejecutarSQL(SQL);</span>
+<span class="nc" id="L386">      ResultSetMetaData rsm = rs.getMetaData();</span>
+<span class="nc" id="L387">      html.append(&quot;&lt;TR&gt;&quot;);</span>
+<span class="nc bnc" id="L388" title="All 2 branches missed.">   	  for(int i=1;i&lt;=rsm.getColumnCount();i++){</span>
+<span class="nc" id="L389">       html.append(&quot;&lt;TH&gt;&quot;+rsm.getColumnName(i)+&quot;&lt;/TH&gt;&quot;);</span>
+      }
+<span class="nc" id="L391">      html.append(&quot;&lt;/TR&gt;&quot;);</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">	  while(rs.next()){</span>
+<span class="nc" id="L393">       html.append(&quot;&lt;TR&gt;&quot;);</span>
+<span class="nc bnc" id="L394" title="All 2 branches missed.">	   for(int i=1;i&lt;=rsm.getColumnCount();i++){</span>
+<span class="nc" id="L395">	   	html.append(&quot;&lt;TD&gt;&quot;+rs.getString(i)+&quot;.&lt;/TD&gt;&quot;);</span>
+	   }
+<span class="nc" id="L397">       html.append(&quot;&lt;/TR&gt;&quot;);</span>
+	  }	 
+	  
+	 }
+     
+<span class="nc" id="L402">     html.append(&quot;&lt;/TR&gt;&quot;);</span>
+<span class="nc" id="L403">     html.append(&quot;&lt;/TABLE&gt;&quot;);</span>
+<span class="nc" id="L404">     return html.toString();</span>
+    }//Fin getHTML
+    
+    
+    
+    protected ArrayList&lt;String&gt; getSQL(String SQL) throws Exception{
+<span class="nc" id="L410">     StringBuffer html = new StringBuffer();</span>
+<span class="nc" id="L411">     ArrayList&lt;String&gt; v=new ArrayList&lt;String&gt;();</span>
+     
+     
+     
+<span class="nc bnc" id="L415" title="All 2 branches missed.">	 if(conectar()){</span>
+<span class="nc" id="L416">	  ResultSet rs = ejecutarSQL(SQL);</span>
+<span class="nc" id="L417">      ResultSetMetaData rsm = rs.getMetaData();</span>
+     
+  
+<span class="nc bnc" id="L420" title="All 2 branches missed.">    while(rs.next()){</span>
+<span class="nc" id="L421">  String r=&quot;&quot;;</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">            for(int i=1;i&lt;=rsm.getColumnCount();i++){</span>
+<span class="nc" id="L423">	   	r+=rs.getString(i)+&quot;&amp;&quot;;</span>
+	   }
+<span class="nc" id="L425">       v.add(r);</span>
+<span class="nc" id="L426">	  }	 </span>
+	  
+	 }
+     
+     
+<span class="nc" id="L431">     return v;</span>
+    }//Fin getHTML
+    
+    
+    
+    
+    
+    
+	/**EJECUTA UNA CONSULTA Y GENERA XML*/
+    protected String getXML() throws Exception{
+<span class="nc" id="L441">     StringBuffer xml = new StringBuffer();</span>
+<span class="nc" id="L442">     xml.append(&quot;&lt;registros&gt;&quot;);</span>
+     
+<span class="nc bnc" id="L444" title="All 2 branches missed.">	 if(conectar()){</span>
+<span class="nc" id="L445">	  ResultSet rs = ejecutarSQL(this.SQL);</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">	  while(rs.next()){</span>
+<span class="nc" id="L447">       ResultSetMetaData rsm = rs.getMetaData();</span>
+<span class="nc" id="L448">       xml.append(&quot;&lt;registro&gt;&quot;);</span>
+<span class="nc bnc" id="L449" title="All 2 branches missed.">   	   for(int i=1;i&lt;=rsm.getColumnCount();i++){</span>
+<span class="nc" id="L450">        xml.append(&quot;&lt;&quot;+rsm.getColumnName(i)+&quot;&gt;&quot;);</span>
+<span class="nc" id="L451">	   	xml.append(rs.getString(i));</span>
+<span class="nc" id="L452">	   	xml.append(&quot;&lt;/&quot;+rsm.getColumnName(i)+&quot;&gt;&quot;);</span>
+	   }
+<span class="nc" id="L454">       xml.append(&quot;&lt;/registro&gt;&quot;);</span>
+<span class="nc" id="L455">	  }	 </span>
+	  
+	 }
+     
+<span class="nc" id="L459">     xml.append(&quot;&lt;/registros&gt;&quot;);</span>
+<span class="nc" id="L460">     return xml.toString();</span>
+    }//Fin getXML
+	    
+	
+	/**
+	 *M�todo de prueba
+	 *Recibe como argumento el nombre del archivo de 
+	 *configuracion.
+	 *Para usarlo:
+	 *java JDBCMiddler archivo.conf
+	*/
+	protected static void main(String args[]) throws Exception{
+	 //Se recibe como argumento del main el archivo de 
+	 //configuracion que contiene el driver
+	 //la url, el login y la clave
+<span class="nc" id="L475">	 String parametros[] = leerParametros(args[0]);</span>
+<span class="nc" id="L476">	 int n = 1;</span>
+<span class="nc" id="L477">	 JDBCMiddler middler = new JDBCMiddler(parametros[0],</span>
+	 									   parametros[1],
+	 									   parametros[2],
+	 									   parametros[3]);
+<span class="nc bnc" id="L481" title="All 2 branches missed.">	 if(middler.conectar()){</span>
+<span class="nc" id="L482">	  System.out.println(parametros[4]);</span>
+<span class="nc" id="L483">	  ResultSet rs = middler.ejecutarSQL(parametros[4]);</span>
+<span class="nc bnc" id="L484" title="All 2 branches missed.">	  while(rs.next()){</span>
+<span class="nc" id="L485">	   ResultSetMetaData rsm = rs.getMetaData();</span>
+<span class="nc" id="L486">	   System.out.println(&quot;****************************&quot;);</span>
+<span class="nc" id="L487">	   System.out.println(&quot;Registro: &quot;+(n++));</span>
+<span class="nc bnc" id="L488" title="All 2 branches missed.">	   for(int i=1;i&lt;=rsm.getColumnCount();i++){</span>
+<span class="nc" id="L489">	   	System.out.print(rsm.getColumnName(i)+&quot;: &quot;);</span>
+<span class="nc" id="L490">	   	System.out.println(rs.getString(i));</span>
+	   }
+<span class="nc" id="L492">	  }	 </span>
+<span class="nc" id="L493">	  middler.desconectar();</span>
+<span class="nc" id="L494">	  System.out.println(&quot;todo bien&quot;);</span>
+	 }
+<span class="nc" id="L496">	}//fin main</span>
+	
+	/**
+	 *Servicio que permite Leer los parametros de entrada
+    */   
+    protected static String [] leerParametros (String rutaArchivo)
+    					throws Exception{
+<span class="nc" id="L503">  	 String [] parametros = new String[5];</span>
+<span class="nc" id="L504">  	 java.io.BufferedReader flujoE = new java.io.BufferedReader(</span>
+  	 								 new java.io.FileReader (rutaArchivo));
+<span class="nc" id="L506">  	 parametros[0] = flujoE.readLine();</span>
+<span class="nc" id="L507">  	 parametros[1] = flujoE.readLine();</span>
+<span class="nc" id="L508">  	 parametros[2] = flujoE.readLine();</span>
+<span class="nc" id="L509">  	 parametros[3] = flujoE.readLine();</span>
+<span class="nc" id="L510">  	 parametros[4] = flujoE.readLine();</span>
+<span class="nc" id="L511">  	 flujoE.close();</span>
+<span class="nc" id="L512">  	 return parametros;</span>
+    }//fin leerParametros
+
+  protected boolean ejecutarActualizacionSQL(String comandoSQL, Object[] parametros) throws Exception {
+        
+        boolean ok;
+<span class="nc bnc" id="L518" title="All 2 branches missed.">        if (this.conectar()) {</span>
+<span class="nc" id="L519">            try (PreparedStatement sql = this.conexión.prepareStatement(comandoSQL)) {</span>
+<span class="nc" id="L520">                cargarParametros(sql, parametros);</span>
+<span class="nc bnc" id="L521" title="All 2 branches missed.">                ok = sql.executeUpdate() != 0;</span>
+<span class="nc bnc" id="L522" title="All 8 branches missed.">            }</span>
+<span class="nc" id="L523">            this.desconectar();</span>
+
+<span class="nc" id="L525">            return ok;</span>
+        } else {
+<span class="nc" id="L527">            return false;</span>
+        }
+    }
+	
+    
+    
+    	
+}//Fin JDBCMiddler
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

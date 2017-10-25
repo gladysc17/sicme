@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NegocioUsuario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">NEGOCIO</a> &gt; <span class="el_source">NegocioUsuario.java</span></div><h1>NegocioUsuario.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package NEGOCIO;
+
+import DAO.UsuarioDAO;
+import DTO.MedicoDTO;
+import DTO.UsuarioDTO;
+import FACADE.FacadeMedico;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.ConexionPostgres;
+import util.ServicioEmail;
+
+/**
+ *
+ * @author Gladys M
+ */
+<span class="fc" id="L26">public class NegocioUsuario {</span>
+
+//    public boolean verficarUsuario(String identificacion, String clave) {
+//        boolean rta = false;
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO u = new UsuarioDAO(co);
+//
+//        try {
+//            UsuarioDTO usu = u.consultarUsuarioPorId(identificacion); 
+//            
+//            if(usu ==null){
+//                return false;
+//            }
+//            else{
+//            
+//            return usu.getContrasena().equals(clave);
+//            
+//            }
+//           
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        }finally {
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//                }
+//            }            
+//        }
+//
+//            return rta;
+//        
+//    }
+//
+//    public boolean registrarUsuario(UsuarioDTO usuario) {
+//
+//        boolean resultado = false;
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO otr = new UsuarioDAO(co);
+//
+//        try {
+//            UsuarioDTO otroU = otr.consultarUsuarioPorIdCodigo(usuario.getIdentificacion(), usuario.getCodigo());
+//            if (otroU == null) {
+//                return resultado = otr.registrarUsuario(usuario);
+//            } else {
+//                return false;
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//                }
+//            }
+//        }
+//        return resultado;
+//
+//    }
+
+    public UsuarioDTO consultarUsuarioId(String id) {
+
+<span class="fc" id="L101">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="fc" id="L102">        Connection co = con.getconexion();</span>
+<span class="fc" id="L103">        UsuarioDAO ou = new UsuarioDAO(co);</span>
+
+        try {
+<span class="fc" id="L106">            return ou.consultarUsuarioPorId(id);</span>
+<span class="nc" id="L107">        } catch (SQLException ex) {</span>
+<span class="nc" id="L108">            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);</span>
+        } finally {
+
+<span class="pc bpc" id="L111" title="5 of 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="pc" id="L113">                    co.close();</span>
+<span class="nc" id="L114">                } catch (SQLException ex) {</span>
+<span class="nc" id="L115">                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L116">                    return null;</span>
+<span class="pc" id="L117">                }</span>
+            }
+        }
+<span class="nc" id="L120">        return null;</span>
+    }
+
+//    public boolean consultarOtroUsuarioIdBoolean(String id) {
+//
+//        boolean rta = false;
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//        UsuarioDAO ou = new UsuarioDAO(co);
+//
+//        try {
+//            UsuarioDTO otro = ou.consultarUsuarioPorId(id);
+//            return otro != null;
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return rta;
+//    }
+//
+//    public UsuarioDTO consultarUsuarioIdCodigo(String id, String codigo) {
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//        UsuarioDAO ou = new UsuarioDAO(co);
+//
+//        try {
+//            return ou.consultarUsuarioPorIdCodigo(id, codigo);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public List&lt;UsuarioDTO&gt; listarOtrosUsuarios() throws SQLException {
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        List&lt;UsuarioDTO&gt; otros = new ArrayList&lt;UsuarioDTO&gt;();
+//        UsuarioDAO otro = new UsuarioDAO(co);
+//
+//        try {
+//            otros = otro.consultarUsuarios();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            co.close();
+//        }
+//        return (otros);
+//    }
+//
+//    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad, String contrasena) throws SQLException {
+//
+//        boolean rta = false;
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO est = new UsuarioDAO(co);
+//
+//        try {
+//
+//            rta = est.modificarUsuario(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, edad, contrasena);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//
+//        return rta;
+//    }
+//
+//    public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException {
+//
+//        boolean rta = false;
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO est = new UsuarioDAO(co);
+//
+//        try {
+//
+//            rta = est.modificarAdmin(identificacion, contrasena);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//
+//        return rta;
+//    }
+//
+//    public boolean modificarVice(String identificacion, String contrasena) throws SQLException {
+//
+//        boolean rta = false;
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO est = new UsuarioDAO(co);
+//
+//        try {
+//
+//            rta = est.modificarVice(identificacion, contrasena);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//
+//        return rta;
+//    }
+//
+//    public boolean modificarMedico(String identificacion, String contrasena) throws SQLException {
+//
+//        boolean rta = false;
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO est = new UsuarioDAO(co);
+//
+//        try {
+//
+//            rta = est.modificarMedico(identificacion, contrasena);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//
+//        return rta;
+//    }
+//
+//    public int calcularEdad(Date fecha) {
+//
+//        int edad = 0;
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//        UsuarioDAO ou = new UsuarioDAO(co);
+//
+//        try {
+//            edad = ou.calcularedad(fecha);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return edad;
+//    }
+//
+//    public boolean recuperarContrasena(String id) throws SQLException {
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//        UsuarioDAO u = new UsuarioDAO(co);
+//        UsuarioDTO usuario = u.consultarUsuarioPorId(id);
+//        String contrasena = usuario.getContrasena();
+//
+//        ServicioEmail servicioEmail = new ServicioEmail(&quot;sicgme@gmail.com&quot;, &quot;oovnjylswrgytpty&quot;);
+//
+//        String correo = usuario.getCorreo();
+//        String asunto = &quot;SIGME - RECUPERAR CONTRASEÑA&quot;;
+//        String clave = &quot;SU CONTRASEÑA PARA ACCEDER ES: &quot; + contrasena + &quot;RECUERDE CAMBIARLA UNA VEZ INGRESE AL SISTEMA&quot;;
+//
+//        String cont = servicioEmail.getClaveEmailUsuarioEmisor();
+//        System.out.println(&quot;contraseña--&gt;&quot; + cont);
+//        System.out.println(&quot;correo--&gt;&quot; + correo);
+//
+//        boolean enviar = servicioEmail.enviarEmail(correo, asunto, clave);
+//
+//        return enviar;
+//
+//    }
+//
+//    public ArrayList&lt;UsuarioDTO&gt; consultarMedicoPorServicio(String tipo_usuario, String servicio) throws SQLException {
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        UsuarioDAO med = new UsuarioDAO(co);
+//        ArrayList&lt;UsuarioDTO&gt; medicos = new ArrayList&lt;UsuarioDTO&gt;();
+//
+//        try {
+//            medicos = med.consultarMedicosPorServicio(tipo_usuario, servicio);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//
+//            if (co != null) {
+//                try {
+//                    co.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return medicos;
+//
+//    }
+//
+//    public List&lt;UsuarioDTO&gt; listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        List&lt;UsuarioDTO&gt; otros = new ArrayList&lt;UsuarioDTO&gt;();
+//        UsuarioDAO otro = new UsuarioDAO(co);
+//
+//        try {
+//            otros = otro.consultarUsuarioPorTipo(tipo, fecha1, fecha2);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            co.close();
+//        }
+//        return (otros);
+//    }
+//
+//    public List&lt;UsuarioDTO&gt; consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
+//
+//        ConexionPostgres con = new ConexionPostgres();
+//        Connection co = con.getconexion();
+//
+//        List&lt;UsuarioDTO&gt; otros = new ArrayList&lt;UsuarioDTO&gt;();
+//        UsuarioDAO otro = new UsuarioDAO(co);
+//
+//        try {
+//            otros = otro.consultarUsuariosPorFecha(fecha1, fecha2);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            co.close();
+//        }
+//        return (otros);
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

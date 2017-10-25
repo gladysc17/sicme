@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>UsuarioDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DTO</a> &gt; <span class="el_source">UsuarioDTO.java</span></div><h1>UsuarioDTO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DTO;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class UsuarioDTO {
+    
+    private String identificacion;
+    private String tipo_identificacion;
+    private String codigo;
+    private String nombre;
+    private String correo;
+    private String fecha_nacimiento;
+    private int edad;
+    private String genero;    
+    private String estado_civil;
+    private String direccion;
+    private String telefono;     
+    private String tipo_usuario;
+    private String fecharegistro;
+    private String contrasena;
+
+<span class="fc" id="L29">    public UsuarioDTO() {</span>
+<span class="fc" id="L30">    }</span>
+
+<span class="fc" id="L32">    public UsuarioDTO(String identificacion, String tipo_identificacion, String codigo, String nombre, String correo, String fecha_nacimiento, int edad, String genero, String estado_civil, String direccion, String telefono, String tipo_usuario, String fecharegistro, String contrasena) {</span>
+<span class="fc" id="L33">        this.identificacion = identificacion;</span>
+<span class="fc" id="L34">        this.tipo_identificacion = tipo_identificacion;</span>
+<span class="fc" id="L35">        this.codigo = codigo;</span>
+<span class="fc" id="L36">        this.nombre = nombre;</span>
+<span class="fc" id="L37">        this.correo = correo;</span>
+<span class="fc" id="L38">        this.fecha_nacimiento = fecha_nacimiento;</span>
+<span class="fc" id="L39">        this.edad = edad;</span>
+<span class="fc" id="L40">        this.genero = genero;</span>
+<span class="fc" id="L41">        this.estado_civil = estado_civil;</span>
+<span class="fc" id="L42">        this.direccion = direccion;</span>
+<span class="fc" id="L43">        this.telefono = telefono;</span>
+<span class="fc" id="L44">        this.tipo_usuario = tipo_usuario;</span>
+<span class="fc" id="L45">        this.fecharegistro= fecharegistro;</span>
+<span class="fc" id="L46">        this.contrasena = contrasena;</span>
+<span class="fc" id="L47">    }</span>
+
+    public String getIdentificacion() {
+<span class="nc" id="L50">        return identificacion;</span>
+    }
+
+    public void setIdentificacion(String identificacion) {
+<span class="fc" id="L54">        this.identificacion = identificacion;</span>
+<span class="fc" id="L55">    }</span>
+
+    public String getTipo_identificacion() {
+<span class="nc" id="L58">        return tipo_identificacion;</span>
+    }
+
+    public void setTipo_identificacion(String tipo_identificacion) {
+<span class="fc" id="L62">        this.tipo_identificacion = tipo_identificacion;</span>
+<span class="fc" id="L63">    }</span>
+
+    public String getCodigo() {
+<span class="nc" id="L66">        return codigo;</span>
+    }
+
+    public void setCodigo(String codigo) {
+<span class="fc" id="L70">        this.codigo = codigo;</span>
+<span class="fc" id="L71">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L74">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L78">        this.nombre = nombre;</span>
+<span class="fc" id="L79">    }</span>
+
+    public String getCorreo() {
+<span class="nc" id="L82">        return correo;</span>
+    }
+
+    public void setCorreo(String correo) {
+<span class="fc" id="L86">        this.correo = correo;</span>
+<span class="fc" id="L87">    }</span>
+
+    public String getFecha_nacimiento() {
+<span class="nc" id="L90">        return fecha_nacimiento;</span>
+    }
+
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+<span class="fc" id="L94">        this.fecha_nacimiento = fecha_nacimiento;</span>
+<span class="fc" id="L95">    }</span>
+
+    public int getEdad() {
+<span class="nc" id="L98">        return edad;</span>
+    }
+
+    public void setEdad(int edad) {
+<span class="fc" id="L102">        this.edad = edad;</span>
+<span class="fc" id="L103">    }</span>
+
+    public String getGenero() {
+<span class="nc" id="L106">        return genero;</span>
+    }
+
+    public void setGenero(String genero) {
+<span class="fc" id="L110">        this.genero = genero;</span>
+<span class="fc" id="L111">    }</span>
+
+    public String getEstado_civil() {
+<span class="nc" id="L114">        return estado_civil;</span>
+    }
+
+    public void setEstado_civil(String estado_civil) {
+<span class="fc" id="L118">        this.estado_civil = estado_civil;</span>
+<span class="fc" id="L119">    }</span>
+
+    public String getDireccion() {
+<span class="nc" id="L122">        return direccion;</span>
+    }
+
+    public void setDireccion(String direccion) {
+<span class="fc" id="L126">        this.direccion = direccion;</span>
+<span class="fc" id="L127">    }</span>
+
+    public String getTelefono() {
+<span class="nc" id="L130">        return telefono;</span>
+    }
+
+    public void setTelefono(String telefono) {
+<span class="fc" id="L134">        this.telefono = telefono;</span>
+<span class="fc" id="L135">    }</span>
+
+    public String getTipo_usuario() {
+<span class="nc" id="L138">        return tipo_usuario;</span>
+    }
+
+    public void setTipo_usuario(String tipo_usuario) {
+<span class="fc" id="L142">        this.tipo_usuario = tipo_usuario;</span>
+<span class="fc" id="L143">    }</span>
+
+    public String getFecharegistro() {
+<span class="nc" id="L146">        return fecharegistro;</span>
+    }
+
+    public void setFecharegistro(String fecharegistro) {
+<span class="fc" id="L150">        this.fecharegistro = fecharegistro;</span>
+<span class="fc" id="L151">    }</span>
+
+    public String getContrasena() {
+<span class="nc" id="L154">        return contrasena;</span>
+    }
+
+    public void setContrasena(String contrasena) {
+<span class="fc" id="L158">        this.contrasena = contrasena;</span>
+<span class="fc" id="L159">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L163">        return &quot;UsuarioDTO{&quot; + &quot;identificacion=&quot; + identificacion + &quot;, tipo_identificacion=&quot; + tipo_identificacion + &quot;, codigo=&quot; + codigo + &quot;, nombre=&quot; + nombre + &quot;, correo=&quot; + correo + &quot;, fecha_nacimiento=&quot; + fecha_nacimiento + &quot;, edad=&quot; + edad + &quot;, genero=&quot; + genero + &quot;, estado_civil=&quot; + estado_civil + &quot;, direccion=&quot; + direccion + &quot;, telefono=&quot; + telefono + &quot;, tipo_usuario=&quot; + tipo_usuario + &quot;, fecharegistro=&quot; + fecharegistro + &quot;, contrasena=&quot; + contrasena + '}';</span>
+    }
+
+    
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

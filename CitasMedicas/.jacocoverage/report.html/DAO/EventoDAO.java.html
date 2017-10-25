@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EventoDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">EventoDAO.java</span></div><h1>EventoDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.EventoDTO;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ *
+ * @author LEGADO
+ */
+public class EventoDAO {
+    
+    private Connection con;
+
+<span class="fc" id="L25">    public EventoDAO(Connection con) {</span>
+<span class="fc" id="L26">        this.con = con;</span>
+<span class="fc" id="L27">    }</span>
+    
+    public boolean registrarEvento(EventoDTO evento)throws SQLException{
+        
+<span class="nc" id="L31">        String sql=&quot;INSERT INTO evento(nombre, fecha, hora, lugar, descripcion, director, creado, estado)&quot;</span>
+                + &quot;VALUES (?, ?, ?, ?, ?, ?, ?, ?)&quot;;
+        
+<span class="nc" id="L34">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L36">        ps.setString(1, evento.getNombreEvento());</span>
+<span class="nc" id="L37">        ps.setDate(2, Date.valueOf(evento.getFechaEvento()));</span>
+<span class="nc" id="L38">        ps.setTime(3, Time.valueOf(evento.getHoraEvento()));</span>
+<span class="nc" id="L39">        ps.setString(4, evento.getLugarEvento());</span>
+<span class="nc" id="L40">        ps.setString(5, evento.getDescrEvento());</span>
+<span class="nc" id="L41">        ps.setString(6, evento.getDirector());  </span>
+<span class="nc" id="L42">        ps.setString(7, evento.getCreado());</span>
+<span class="nc" id="L43">        ps.setString(8, evento.getEstado());</span>
+        
+<span class="nc" id="L45">        int res = ps.executeUpdate();</span>
+        
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (res==1){</span>
+<span class="nc" id="L48">            return true;</span>
+        }else{
+<span class="nc" id="L50">            return false;</span>
+        }
+    }
+    
+    
+    public double[] diasMes() throws SQLException{
+        
+<span class="nc" id="L57">        String sql = &quot;select extract (day from (select date_trunc('month',current_date))), extract (day from (select date_trunc('month',current_date) +'1month' ::interval -'1sec' ::interval))&quot;;</span>
+        
+<span class="nc" id="L59">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L60">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc" id="L62">        double [] vec = new double[2];</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L64">            vec[0]= rs.getDouble(1);</span>
+<span class="nc" id="L65">            vec[1]= rs.getDouble(2);</span>
+        }
+        
+<span class="nc" id="L68">        return vec;</span>
+    } 
+    
+    public double obtenerMes() throws SQLException{
+        
+<span class="nc" id="L73">        String sql=&quot;select date_part('month',current_date)&quot;;</span>
+        
+<span class="nc" id="L75">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L76">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc" id="L78">        double mes=0;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L80">            mes = rs.getDouble(1);</span>
+        }
+        
+<span class="nc" id="L83">        return mes;</span>
+    }
+    
+    public double obtenerAño() throws SQLException{
+        
+<span class="nc" id="L88">        String sql=&quot;select date_part('year',current_date)&quot;;</span>
+        
+<span class="nc" id="L90">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L91">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc" id="L93">        double año=0;</span>
+        
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L96">            año = rs.getDouble(1);</span>
+        }
+        
+<span class="nc" id="L99">        return año;</span>
+    }
+    
+    public List&lt;EventoDTO&gt; eventoPorMes(String fechaInicio, String fechaFinal, String activo) throws SQLException{
+        
+<span class="nc" id="L104">        String sql = &quot;select * from evento where fecha between ? and ? and  estado = ? &quot;;</span>
+        
+<span class="nc" id="L106">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L108">        ps.setDate(1, Date.valueOf(fechaInicio));</span>
+<span class="nc" id="L109">        ps.setDate(2, Date.valueOf(fechaFinal));</span>
+<span class="nc" id="L110">        ps.setString(3, activo);</span>
+        
+<span class="nc" id="L112">        ResultSet rs = ps.executeQuery();</span>
+<span class="nc" id="L113">        List&lt;EventoDTO&gt; ls = new ArrayList&lt;EventoDTO&gt;();</span>
+        
+        
+        
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        while (rs.next()){</span>
+<span class="nc" id="L118">            EventoDTO eve = new EventoDTO();</span>
+<span class="nc" id="L119">            eve.setIdEvento(rs.getInt(1));</span>
+<span class="nc" id="L120">            eve.setNombreEvento(rs.getString(2));</span>
+<span class="nc" id="L121">            eve.setFechaEvento(rs.getString(3));</span>
+<span class="nc" id="L122">            eve.setHoraEvento(rs.getTime(4).toString());</span>
+<span class="nc" id="L123">            eve.setLugarEvento(rs.getString(5));</span>
+<span class="nc" id="L124">            eve.setDescrEvento(rs.getString(6));</span>
+<span class="nc" id="L125">            eve.setDirector(rs.getString(7));</span>
+<span class="nc" id="L126">            eve.setCreado(rs.getString(8));</span>
+<span class="nc" id="L127">            eve.setEstado(rs.getString(9));</span>
+            
+<span class="nc" id="L129">            ls.add(eve);</span>
+<span class="nc" id="L130">        }</span>
+        
+<span class="nc" id="L132">        rs.close();</span>
+<span class="nc" id="L133">        ps.close();</span>
+        
+<span class="nc" id="L135">        ps=null; rs = null;</span>
+        
+<span class="nc" id="L137">        return ls;</span>
+    }
+    
+    public List&lt;EventoDTO&gt; listarEvento(int identificacion) throws SQLException{
+        
+<span class="nc" id="L142">        List&lt;EventoDTO&gt; ls = new ArrayList&lt;EventoDTO&gt;();</span>
+<span class="nc" id="L143">        String sql = &quot;select * from evento where creado = ?&quot;;</span>
+        
+<span class="nc" id="L145">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L147">        ps.setInt(1, identificacion);</span>
+        
+<span class="nc" id="L149">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        while(rs.next()){</span>
+<span class="nc" id="L152">            EventoDTO eve = new EventoDTO();</span>
+<span class="nc" id="L153">            eve.setIdEvento(rs.getInt(1));</span>
+<span class="nc" id="L154">            eve.setNombreEvento(rs.getString(2));</span>
+<span class="nc" id="L155">            eve.setFechaEvento(String.valueOf(rs.getDate(3)));</span>
+<span class="nc" id="L156">            eve.setHoraEvento(String.valueOf(rs.getTime(4)));</span>
+<span class="nc" id="L157">            eve.setLugarEvento(rs.getString(5));</span>
+<span class="nc" id="L158">            eve.setDescrEvento(rs.getString(6));</span>
+<span class="nc" id="L159">            eve.setDirector(rs.getString(7));</span>
+<span class="nc" id="L160">            eve.setCreado(rs.getString(8));</span>
+<span class="nc" id="L161">            eve.setEstado(rs.getString(9));</span>
+<span class="nc" id="L162">            ls.add(eve);</span>
+<span class="nc" id="L163">        }</span>
+<span class="nc" id="L164">        rs.close();</span>
+<span class="nc" id="L165">        ps.close();</span>
+<span class="nc" id="L166">        rs = null; ps = null;</span>
+        
+<span class="nc" id="L168">        return ls;</span>
+    }
+    
+    public boolean modificarEvento(int idEvento, String fecha, String hora, String lugar) throws SQLException {
+       
+<span class="nc" id="L173">        String sql = &quot;UPDATE evento set fecha = ?, hora = ?, lugar = ? where id_evento = ?&quot;;</span>
+        
+<span class="nc" id="L175">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L176">        ps.setDate(1, Date.valueOf(fecha));</span>
+<span class="nc" id="L177">        ps.setTime(2, Time.valueOf(hora));</span>
+<span class="nc" id="L178">        ps.setString(3, lugar);</span>
+<span class="nc" id="L179">        ps.setInt(4, idEvento);</span>
+        
+<span class="nc" id="L181">        int res = ps.executeUpdate();</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">        if(res==1)</span>
+<span class="nc" id="L183">            return true;</span>
+<span class="nc" id="L184">        return false;</span>
+    }
+    
+    public EventoDTO consultaPorId(int id) throws SQLException {
+<span class="fc" id="L188">        String sql = &quot;select * from evento where id_evento = ?&quot;;</span>
+<span class="fc" id="L189">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="fc" id="L190">        ps.setInt(1, id);</span>
+        
+<span class="fc" id="L192">        ResultSet rs = ps.executeQuery();</span>
+<span class="fc" id="L193">        EventoDTO eve = null;</span>
+<span class="pc bpc" id="L194" title="1 of 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L195">            eve.setIdEvento(rs.getInt(1));</span>
+<span class="nc" id="L196">            eve.setNombreEvento(rs.getString(2));</span>
+<span class="nc" id="L197">            eve.setFechaEvento(String.valueOf(rs.getDate(3)));</span>
+<span class="nc" id="L198">            eve.setHoraEvento(String.valueOf(rs.getTime(4)));</span>
+<span class="nc" id="L199">            eve.setLugarEvento(rs.getString(5));</span>
+<span class="nc" id="L200">            eve.setDescrEvento(rs.getString(6));</span>
+<span class="nc" id="L201">            eve.setDirector(rs.getString(7));</span>
+<span class="nc" id="L202">            eve.setCreado(rs.getString(8));</span>
+<span class="nc" id="L203">            eve.setEstado(rs.getString(9));</span>
+        }
+        
+<span class="fc" id="L206">        return eve;        </span>
+    }
+    
+    public List&lt;EventoDTO&gt; listarEventos(String fechaI, String fechaF) throws SQLException {
+<span class="nc" id="L210">        List&lt;EventoDTO&gt; ls = new ArrayList&lt;EventoDTO&gt;();</span>
+<span class="nc" id="L211">        String sql = &quot;select * from evento where fecha between ? and ? &quot;;</span>
+        
+<span class="nc" id="L213">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L214">        ps.setDate(1, Date.valueOf(fechaI));</span>
+<span class="nc" id="L215">        ps.setDate(2, Date.valueOf(fechaF));   </span>
+        
+<span class="nc" id="L217">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        while(rs.next()){</span>
+<span class="nc" id="L220">            EventoDTO eve = new EventoDTO();</span>
+<span class="nc" id="L221">            eve.setIdEvento(rs.getInt(1));</span>
+<span class="nc" id="L222">            eve.setNombreEvento(rs.getString(2));</span>
+<span class="nc" id="L223">            eve.setFechaEvento(String.valueOf(rs.getDate(3)));</span>
+<span class="nc" id="L224">            eve.setHoraEvento(String.valueOf(rs.getTime(4)));</span>
+<span class="nc" id="L225">            eve.setLugarEvento(rs.getString(5));</span>
+<span class="nc" id="L226">            eve.setDescrEvento(rs.getString(6));</span>
+<span class="nc" id="L227">            eve.setDirector(rs.getString(7));</span>
+<span class="nc" id="L228">            eve.setCreado(rs.getString(8));</span>
+<span class="nc" id="L229">            eve.setEstado(rs.getString(9));</span>
+<span class="nc" id="L230">            ls.add(eve);</span>
+<span class="nc" id="L231">        }</span>
+<span class="nc" id="L232">        rs.close();</span>
+<span class="nc" id="L233">        ps.close();</span>
+<span class="nc" id="L234">        rs = null; ps = null;</span>
+        
+<span class="nc" id="L236">        return ls;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

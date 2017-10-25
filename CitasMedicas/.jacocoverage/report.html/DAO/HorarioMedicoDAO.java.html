@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HorarioMedicoDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">HorarioMedicoDAO.java</span></div><h1>HorarioMedicoDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.HorarioDTO;
+import DTO.HorarioMedicoDTO;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class HorarioMedicoDAO {
+    
+    private Connection con;
+
+<span class="nc" id="L26">    public HorarioMedicoDAO(Connection con) {</span>
+<span class="nc" id="L27">        this.con = con;</span>
+<span class="nc" id="L28">    }</span>
+    
+    public boolean registrarHorarioMedico(HorarioMedicoDTO hm) throws SQLException{
+        
+<span class="nc" id="L32">        String sql = &quot;insert into horariomedico(fecha, id_horario, id_medico, estado)&quot;</span>
+                + &quot;values(?,?,?,?)&quot;;
+        
+<span class="nc" id="L35">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L37">        ps.setDate(1, Date.valueOf(hm.getFecha()));</span>
+<span class="nc" id="L38">        ps.setInt(2, hm.getId_horario_horariomedico());</span>
+<span class="nc" id="L39">        ps.setString(3, hm.getId_medico_horariomedico());</span>
+<span class="nc" id="L40">        ps.setString(4, hm.getEstado_horariomedico());</span>
+        
+<span class="nc" id="L42">        int res = ps.executeUpdate();</span>
+        
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (res==1){</span>
+<span class="nc" id="L45">            return true;</span>
+        }else{
+<span class="nc" id="L47">            return false;</span>
+        }
+    }
+    
+    public HorarioMedicoDTO consultarHorarioMedico(int id_horariomedico) throws SQLException{
+        
+<span class="nc" id="L53">        String sql =&quot;SELECT * FROM horariomedico WHERE id_horario = ?&quot;;</span>
+        
+<span class="nc" id="L55">        PreparedStatement ps = con.prepareStatement(sql);          </span>
+        
+<span class="nc" id="L57">        ps.setInt(1, id_horariomedico);        </span>
+                      
+<span class="nc" id="L59">        ResultSet rs = ps.executeQuery();        </span>
+        
+<span class="nc" id="L61">        HorarioMedicoDTO horam = null;</span>
+        
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        while(rs.next()){</span>
+            
+<span class="nc" id="L65">            horam = new HorarioMedicoDTO();</span>
+            
+<span class="nc" id="L67">            horam.setId_horariomedico(rs.getInt(&quot;id_horario&quot;));</span>
+<span class="nc" id="L68">            horam.setId_horario_horariomedico(rs.getInt(&quot;id_horario&quot;));</span>
+<span class="nc" id="L69">            horam.setId_medico_horariomedico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L70">            horam.setEstado_horariomedico(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L71">            horam.setFecha(rs.getString(&quot;fecha&quot;));</span>
+        }
+
+<span class="nc" id="L74">        return horam;</span>
+    }
+     
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

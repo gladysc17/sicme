@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CitaDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">CitaDAO.java</span></div><h1>CitaDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.CitaDTO;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class CitaDAO {
+
+    private Connection con;
+
+<span class="fc" id="L25">    public CitaDAO(Connection con) {</span>
+<span class="fc" id="L26">        this.con = con;</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Metodo que registra una cita en la Base de Datos
+     *
+     * @param cita
+     * @return boolean con valor verdadero si hubo registro exitoso, falso si
+     * existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
+    public boolean registrarCita(CitaDTO cita) throws SQLException {
+
+<span class="nc" id="L40">        String sql = &quot;INSERT INTO cita (servicio_cita, num_recibo_cita, fecha_cita, hora_cita, id_usuario, id_medico, estado, nombre_usuario, nombre_medico, tipousuario_cita)&quot;</span>
+                + &quot; VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;
+
+<span class="nc" id="L43">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L45">        ps.setString(1, cita.getServicio_cita());</span>
+<span class="nc" id="L46">        ps.setString(2, cita.getNum_recibo_cita());</span>
+<span class="nc" id="L47">        ps.setDate(3, Date.valueOf(cita.getFecha_cita()));</span>
+<span class="nc" id="L48">        ps.setTime(4, Time.valueOf(cita.getHora_cita()));</span>
+<span class="nc" id="L49">        ps.setString(5, cita.getId_usuario());</span>
+<span class="nc" id="L50">        ps.setString(6, cita.getId_medico());</span>
+<span class="nc" id="L51">        ps.setString(7, cita.getEstado());</span>
+<span class="nc" id="L52">        ps.setString(8, cita.getNombre_usuario());</span>
+<span class="nc" id="L53">        ps.setString(9, cita.getNombre_medico());</span>
+<span class="nc" id="L54">        ps.setString(10, cita.getTipousuario_cita());</span>
+
+<span class="nc" id="L56">        int resultado = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (resultado == 1) {</span>
+<span class="nc" id="L59">            return true;</span>
+        } else {
+<span class="nc" id="L61">            return false;</span>
+        }
+    }
+
+    /**
+     * Metodo que se encarga de consultar en la base de datos las citas segun el
+     * id del estudiante
+     *
+     * @param id_est
+     * @return Listado de tipo CitaDTO con los datos de la cita que pertenece al
+     * id del estudiante
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
+    public ArrayList&lt;CitaDTO&gt; consultarCitasEst(int id_est) throws SQLException {
+
+<span class="nc" id="L77">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+
+<span class="nc" id="L79">        String sql = &quot;SELECT * FROM cita WHERE id_est = ? &quot;;</span>
+
+<span class="nc" id="L81">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L83">        ps.setInt(1, id_est);</span>
+
+<span class="nc" id="L85">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L87">        CitaDTO cita = null;</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (rs.next()) {</span>
+
+<span class="nc" id="L91">            cita = new CitaDTO();</span>
+
+<span class="nc" id="L93">            cita.setId_cita(rs.getInt(&quot;id_cita&quot;));</span>
+<span class="nc" id="L94">            cita.setServicio_cita(rs.getString(&quot;servicio_cita&quot;));</span>
+<span class="nc" id="L95">            cita.setNum_recibo_cita(rs.getString(&quot;num_recibo_cita&quot;));</span>
+<span class="nc" id="L96">            cita.setFecha_cita(rs.getString(&quot;fecha_cita&quot;));</span>
+<span class="nc" id="L97">            cita.setHora_cita(rs.getString(&quot;hora_cita&quot;));</span>
+<span class="nc" id="L98">            cita.setId_usuario(rs.getString(&quot;id_usuario&quot;));</span>
+<span class="nc" id="L99">            cita.setId_medico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L100">            cita.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L101">            cita.setNombre_usuario(rs.getString(&quot;nombre_usuario&quot;));</span>
+<span class="nc" id="L102">            cita.setNombre_medico(rs.getString(&quot;nombre_medico&quot;));</span>
+<span class="nc" id="L103">            cita.setTipousuario_cita(rs.getString(&quot;tipousuario_cita&quot;));</span>
+
+<span class="nc" id="L105">            citas.add(cita);</span>
+        }
+
+<span class="nc" id="L108">        rs.close();</span>
+<span class="nc" id="L109">        rs = null;</span>
+
+<span class="nc" id="L111">        ps.close();</span>
+<span class="nc" id="L112">        ps = null;</span>
+
+<span class="nc" id="L114">        return citas;</span>
+
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasProfesional(int id_prof, String fecha) throws SQLException {
+
+<span class="nc" id="L120">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+
+<span class="nc" id="L122">        String sql = &quot;SELECT * FROM cita WHERE id_medico = ? AND fecha_cita = ?&quot;;</span>
+
+<span class="nc" id="L124">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L126">        ps.setInt(1, id_prof);</span>
+<span class="nc" id="L127">        ps.setDate(2, Date.valueOf(fecha));</span>
+
+<span class="nc" id="L129">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L131">        CitaDTO cita = null;</span>
+
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (rs.next()) {</span>
+
+<span class="nc" id="L135">            cita = new CitaDTO();</span>
+
+<span class="nc" id="L137">            cita.setId_cita(rs.getInt(&quot;id_cita&quot;));</span>
+<span class="nc" id="L138">            cita.setServicio_cita(rs.getString(&quot;servicio_cita&quot;));</span>
+<span class="nc" id="L139">            cita.setNum_recibo_cita(rs.getString(&quot;num_recibo_cita&quot;));</span>
+<span class="nc" id="L140">            cita.setFecha_cita(rs.getString(&quot;fecha_cita&quot;));</span>
+<span class="nc" id="L141">            cita.setHora_cita(rs.getString(&quot;hora_cita&quot;));</span>
+<span class="nc" id="L142">            cita.setId_usuario(rs.getString(&quot;id_usuario&quot;));</span>
+<span class="nc" id="L143">            cita.setId_medico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L144">            cita.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L145">            cita.setNombre_usuario(rs.getString(&quot;nombre_usuario&quot;));</span>
+<span class="nc" id="L146">            cita.setNombre_medico(rs.getString(&quot;nombre_medico&quot;));</span>
+<span class="nc" id="L147">            cita.setTipousuario_cita(rs.getString(&quot;tipousuario_cita&quot;));</span>
+
+<span class="nc" id="L149">            citas.add(cita);</span>
+        }
+
+<span class="nc" id="L152">        rs.close();</span>
+<span class="nc" id="L153">        rs = null;</span>
+
+<span class="nc" id="L155">        ps.close();</span>
+<span class="nc" id="L156">        ps = null;</span>
+
+<span class="nc" id="L158">        return citas;</span>
+
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasUsuario(String id_usuario) throws SQLException {
+
+<span class="fc" id="L164">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+
+<span class="fc" id="L166">        String sql = &quot;SELECT * FROM cita WHERE id_usuario = ?&quot;;</span>
+
+<span class="fc" id="L168">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="fc" id="L170">        ps.setString(1, id_usuario);</span>
+
+<span class="fc" id="L172">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="fc" id="L174">        CitaDTO cita = null;</span>
+
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">        while (rs.next()) {</span>
+
+<span class="nc" id="L178">            cita = new CitaDTO();</span>
+
+<span class="nc" id="L180">            cita.setId_cita(rs.getInt(&quot;id_cita&quot;));</span>
+<span class="nc" id="L181">            cita.setServicio_cita(rs.getString(&quot;servicio_cita&quot;));</span>
+<span class="nc" id="L182">            cita.setNum_recibo_cita(rs.getString(&quot;num_recibo_cita&quot;));</span>
+<span class="nc" id="L183">            cita.setFecha_cita(rs.getString(&quot;fecha_cita&quot;));</span>
+<span class="nc" id="L184">            cita.setHora_cita(rs.getString(&quot;hora_cita&quot;));</span>
+<span class="nc" id="L185">            cita.setId_usuario(rs.getString(&quot;id_usuario&quot;));</span>
+<span class="nc" id="L186">            cita.setId_medico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L187">            cita.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L188">            cita.setNombre_usuario(rs.getString(&quot;nombre_usuario&quot;));</span>
+<span class="nc" id="L189">            cita.setNombre_medico(rs.getString(&quot;nombre_medico&quot;));</span>
+<span class="nc" id="L190">            cita.setTipousuario_cita(rs.getString(&quot;tipousuario_cita&quot;));</span>
+
+<span class="nc" id="L192">            citas.add(cita);</span>
+        }
+
+<span class="fc" id="L195">        return citas;</span>
+
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasMedicoDia(String id_medico, String fecha_cita) throws SQLException {
+
+<span class="nc" id="L201">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+
+<span class="nc" id="L203">        String sql = &quot;SELECT * FROM cita WHERE id_medico = ? AND fecha_cita = ? ORDER BY hora_cita&quot;;</span>
+
+<span class="nc" id="L205">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L207">        ps.setString(1, id_medico);</span>
+<span class="nc" id="L208">        ps.setDate(2, Date.valueOf(fecha_cita));</span>
+
+<span class="nc" id="L210">        ResultSet rs = ps.executeQuery();</span>
+<span class="nc" id="L211">        System.out.println(&quot;ps &quot; + ps.toString());</span>
+<span class="nc" id="L212">        CitaDTO cita = null;</span>
+
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        while (rs.next()) {</span>
+
+<span class="nc" id="L216">            cita = new CitaDTO();</span>
+
+<span class="nc" id="L218">            cita.setId_cita(rs.getInt(&quot;id_cita&quot;));</span>
+<span class="nc" id="L219">            cita.setServicio_cita(rs.getString(&quot;servicio_cita&quot;));</span>
+<span class="nc" id="L220">            cita.setNum_recibo_cita(rs.getString(&quot;num_recibo_cita&quot;));</span>
+<span class="nc" id="L221">            cita.setFecha_cita(rs.getString(&quot;fecha_cita&quot;));</span>
+<span class="nc" id="L222">            cita.setHora_cita(rs.getString(&quot;hora_cita&quot;));</span>
+<span class="nc" id="L223">            cita.setId_usuario(rs.getString(&quot;id_usuario&quot;));</span>
+<span class="nc" id="L224">            cita.setId_medico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L225">            cita.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L226">            cita.setNombre_usuario(rs.getString(&quot;nombre_usuario&quot;));</span>
+<span class="nc" id="L227">            cita.setNombre_medico(rs.getString(&quot;nombre_medico&quot;));</span>
+<span class="nc" id="L228">            cita.setTipousuario_cita(rs.getString(&quot;tipousuario_cita&quot;));</span>
+
+<span class="nc" id="L230">            citas.add(cita);</span>
+        }
+
+<span class="nc" id="L233">        return citas;</span>
+
+    }
+
+    public boolean modificarCita(int id_cita, String fecha, Time hora_cita, String id_medico) throws SQLException {
+
+<span class="nc" id="L239">        String sql = &quot;UPDATE cita SET fecha_cita = ? , hora_cita = ?, id_medico = ? &quot;</span>
+                + &quot;WHERE  id_cita = ?&quot;;
+
+<span class="nc" id="L242">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L244">        ps.setDate(1, Date.valueOf(fecha));</span>
+<span class="nc" id="L245">        ps.setTime(2, hora_cita);</span>
+<span class="nc" id="L246">        ps.setString(3, id_medico);</span>
+<span class="nc" id="L247">        ps.setInt(4, id_cita);</span>
+
+<span class="nc" id="L249">        int rta = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L251" title="All 2 branches missed.">        if (rta &gt; 0) {</span>
+<span class="nc" id="L252">            return true;</span>
+        } else {
+<span class="nc" id="L254">            return false;</span>
+        }
+
+    }
+
+    public CitaDTO consultarCitasId(int id_cita) throws SQLException {
+
+<span class="nc" id="L261">        String sql = &quot;SELECT * FROM cita WHERE id_cita = ?&quot;;</span>
+
+<span class="nc" id="L263">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L265">        ps.setInt(1, id_cita);</span>
+
+<span class="nc" id="L267">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L269">        CitaDTO cita = null;</span>
+
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        while (rs.next()) {</span>
+
+<span class="nc" id="L273">            cita = new CitaDTO();</span>
+
+<span class="nc" id="L275">            cita.setId_cita(rs.getInt(&quot;id_cita&quot;));</span>
+<span class="nc" id="L276">            cita.setServicio_cita(rs.getString(&quot;servicio_cita&quot;));</span>
+<span class="nc" id="L277">            cita.setNum_recibo_cita(rs.getString(&quot;num_recibo_cita&quot;));</span>
+<span class="nc" id="L278">            cita.setFecha_cita(rs.getString(&quot;fecha_cita&quot;));</span>
+<span class="nc" id="L279">            cita.setHora_cita(rs.getString(&quot;hora_cita&quot;));</span>
+<span class="nc" id="L280">            cita.setId_usuario(rs.getString(&quot;id_usuario&quot;));</span>
+<span class="nc" id="L281">            cita.setId_medico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L282">            cita.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L283">            cita.setNombre_usuario(rs.getString(&quot;nombre_usuario&quot;));</span>
+<span class="nc" id="L284">            cita.setNombre_medico(rs.getString(&quot;nombre_medico&quot;));</span>
+<span class="nc" id="L285">            cita.setTipousuario_cita(rs.getString(&quot;tipousuario_cita&quot;));</span>
+<span class="nc" id="L286">            System.out.println(&quot;nombre &quot; + cita.getNombre_usuario());</span>
+        }
+
+<span class="nc" id="L289">        return cita;</span>
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasPorRango(String id_medico, String fecha, String fechaF) throws SQLException {
+
+<span class="nc" id="L294">        ArrayList&lt;CitaDTO&gt; lis = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L296">        String sql = &quot;select * from cita where id_medico = ? and fecha_cita between ? and ? order by hora_cita&quot;;</span>
+
+<span class="nc" id="L298">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L299">        ps.setString(1, id_medico);</span>
+<span class="nc" id="L300">        ps.setDate(2, Date.valueOf(fecha));</span>
+<span class="nc" id="L301">        ps.setDate(3, Date.valueOf(fechaF));</span>
+
+<span class="nc" id="L303">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="nc" id="L305">        CitaDTO cita = null;</span>
+
+<span class="nc bnc" id="L307" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L308">            cita = new CitaDTO();</span>
+<span class="nc" id="L309">            cita.setId_cita(rs.getInt(&quot;id_cita&quot;));</span>
+<span class="nc" id="L310">            cita.setServicio_cita(rs.getString(&quot;servicio_cita&quot;));</span>
+<span class="nc" id="L311">            cita.setNum_recibo_cita(rs.getString(&quot;num_recibo_cita&quot;));</span>
+<span class="nc" id="L312">            cita.setFecha_cita(rs.getString(&quot;fecha_cita&quot;));</span>
+<span class="nc" id="L313">            cita.setHora_cita(rs.getString(&quot;hora_cita&quot;));</span>
+<span class="nc" id="L314">            cita.setId_usuario(rs.getString(&quot;id_usuario&quot;));</span>
+<span class="nc" id="L315">            cita.setId_medico(rs.getString(&quot;id_medico&quot;));</span>
+<span class="nc" id="L316">            cita.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L317">            cita.setNombre_usuario(rs.getString(&quot;nombre_usuario&quot;));</span>
+<span class="nc" id="L318">            cita.setNombre_medico(rs.getString(&quot;nombre_medico&quot;));</span>
+<span class="nc" id="L319">            cita.setTipousuario_cita(rs.getString(&quot;tipousuario_cita&quot;));</span>
+
+<span class="nc" id="L321">            lis.add(cita);</span>
+        }
+
+<span class="nc" id="L324">        return lis;</span>
+    }
+    
+    public boolean actualizarEstadoAtendida(int id_cita) throws SQLException {
+
+<span class="nc" id="L329">        String sql = &quot;UPDATE cita SET estado = 'atendido' WHERE  id_cita = ?&quot;;</span>
+
+<span class="nc" id="L331">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L333">        ps.setInt(1, id_cita);</span>
+
+<span class="nc" id="L335">        int rta = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L337" title="All 2 branches missed.">        if (rta &gt; 0) {</span>
+<span class="nc" id="L338">            return true;</span>
+        } else {
+<span class="nc" id="L340">            return false;</span>
+        }
+
+    }
+    public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
+
+<span class="nc" id="L346">        String sql = &quot;UPDATE cita SET estado = 'no asistida' WHERE  id_cita = ?&quot;;</span>
+
+<span class="nc" id="L348">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L350">        ps.setInt(1, id_cita);</span>
+
+<span class="nc" id="L352">        int rta = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L354" title="All 2 branches missed.">        if (rta &gt; 0) {</span>
+<span class="nc" id="L355">            return true;</span>
+        } else {
+<span class="nc" id="L357">            return false;</span>
+        }
+
+    }
+
+    public int cantidadCitas(String fechaI, String fechaF) throws SQLException{
+<span class="nc" id="L363">        int cant = 0;</span>
+<span class="nc" id="L364">        String sql = &quot;select count(*) from cita where fecha_cita between ? and ?&quot;;</span>
+        
+<span class="nc" id="L366">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L367">        ps.setDate(1, Date.valueOf(fechaI));</span>
+<span class="nc" id="L368">        ps.setDate(2, Date.valueOf(fechaF));</span>
+        
+<span class="nc" id="L370">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L372" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L373">            cant = rs.getInt(1);</span>
+        }
+        
+<span class="nc" id="L376">        return cant;</span>
+    }
+    
+    public int cantidadCitasAsistidas(String fechaI, String fechaF)throws SQLException {
+<span class="nc" id="L380">        int cant = 0;</span>
+<span class="nc" id="L381">        String sql = &quot;select count(*) from cita where estado = 'atendido' and fecha_cita between ? and ?&quot;;</span>
+        
+<span class="nc" id="L383">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L384">        ps.setDate(1, Date.valueOf(fechaI));</span>
+<span class="nc" id="L385">        ps.setDate(2, Date.valueOf(fechaF));</span>
+        
+<span class="nc" id="L387">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L389" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L390">            cant = rs.getInt(1);</span>
+        }
+        
+<span class="nc" id="L393">        return cant;</span>
+    }
+    
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF)throws SQLException {
+<span class="nc" id="L397">        int cant = 0;</span>
+<span class="nc" id="L398">        String sql = &quot;select count(*) from cita where estado = 'inasistido' and fecha_cita between ? and ?&quot;;</span>
+        
+<span class="nc" id="L400">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L401">        ps.setDate(1, Date.valueOf(fechaI));</span>
+<span class="nc" id="L402">        ps.setDate(2, Date.valueOf(fechaF));</span>
+        
+<span class="nc" id="L404">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L406" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L407">            cant = rs.getInt(1);</span>
+        }
+        
+<span class="nc" id="L410">        return cant;</span>
+    }
+    
+    public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF) throws SQLException {
+<span class="nc" id="L414">        int cant = 0;</span>
+<span class="nc" id="L415">        String sql = &quot;select count(*) from cita where id_usuario = ? and fecha_cita between ? and ?&quot;;</span>
+        
+<span class="nc" id="L417">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L418">        ps.setString(1, id_usuario);</span>
+<span class="nc" id="L419">        ps.setDate(2, Date.valueOf(fechaI));</span>
+<span class="nc" id="L420">        ps.setDate(3, Date.valueOf(fechaF));</span>
+        
+<span class="nc" id="L422">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L424" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L425">            cant = rs.getInt(1);</span>
+        }
+<span class="nc" id="L427">        return cant;</span>
+    }
+    
+    public int cantidadCitasPendientes(String fechaI, String fechaF) throws SQLException {
+<span class="nc" id="L431">        int cant = 0;</span>
+<span class="nc" id="L432">        String sql = &quot;select count(*) from cita where estado = 'pendiente' and fecha_cita between ? and ?&quot;;</span>
+        
+<span class="nc" id="L434">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L435">        ps.setDate(1, Date.valueOf(fechaI));</span>
+<span class="nc" id="L436">        ps.setDate(2, Date.valueOf(fechaF));</span>
+        
+<span class="nc" id="L438">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L440" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L441">            cant = rs.getInt(1);</span>
+        }
+        
+<span class="nc" id="L444">        return cant;</span>
+    }
+    
+    public int cantidadCitasUsuario(String id_usuario) throws SQLException {
+<span class="nc" id="L448">        int cant = 0;</span>
+<span class="nc" id="L449">        String sql = &quot;select count(*) from cita where id_usuario = ? &quot;;</span>
+        
+<span class="nc" id="L451">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L452">        ps.setString(1, id_usuario);</span>
+        
+<span class="nc" id="L454">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L456" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L457">            cant = rs.getInt(1);</span>
+        }
+<span class="nc" id="L459">        return cant;</span>
+    }
+    
+    public int cantidadCitasServicio(String servicio, String fechaI, String fechaF) throws SQLException {
+<span class="nc" id="L463">        int cant = 0;</span>
+<span class="nc" id="L464">        String sql = &quot;select count(*) from cita where servicio_cita = ? and fecha_cita between ? and ?&quot;;</span>
+        
+<span class="nc" id="L466">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L467">        ps.setString(1, servicio);</span>
+<span class="nc" id="L468">        ps.setDate(2, Date.valueOf(fechaI));</span>
+<span class="nc" id="L469">        ps.setDate(3, Date.valueOf(fechaF));</span>
+        
+<span class="nc" id="L471">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L473" title="All 2 branches missed.">        if(rs.next()){</span>
+<span class="nc" id="L474">            cant = rs.getInt(1);</span>
+        }
+<span class="nc" id="L476">        return cant;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

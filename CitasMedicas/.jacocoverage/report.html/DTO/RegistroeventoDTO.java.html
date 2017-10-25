@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>RegistroeventoDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DTO</a> &gt; <span class="el_source">RegistroeventoDTO.java</span></div><h1>RegistroeventoDTO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DTO;
+
+/**
+ *
+ * @author LEGADO
+ */
+public class RegistroeventoDTO {
+    
+    private int id_registroEvento;
+    private String codigo;
+    private String nombre;
+    private String identificacion;
+    private String correo;
+    private String programa;
+    private int idEvento;
+
+<span class="nc" id="L22">    public RegistroeventoDTO() {</span>
+<span class="nc" id="L23">    }</span>
+
+<span class="nc" id="L25">    public RegistroeventoDTO(int id_registroEvento, String codigo, String nombre, String identificacion, String correo, String programa, int idEvento) {</span>
+<span class="nc" id="L26">        this.id_registroEvento = id_registroEvento;</span>
+<span class="nc" id="L27">        this.codigo = codigo;</span>
+<span class="nc" id="L28">        this.nombre = nombre;</span>
+<span class="nc" id="L29">        this.identificacion = identificacion;</span>
+<span class="nc" id="L30">        this.correo = correo;</span>
+<span class="nc" id="L31">        this.programa = programa;</span>
+<span class="nc" id="L32">        this.idEvento = idEvento;</span>
+<span class="nc" id="L33">    }</span>
+
+<span class="nc" id="L35">    public RegistroeventoDTO(String codigo, String nombre, String identificacion, String correo, String programa, int idEvento) {</span>
+<span class="nc" id="L36">        this.codigo = codigo;</span>
+<span class="nc" id="L37">        this.nombre = nombre;</span>
+<span class="nc" id="L38">        this.identificacion = identificacion;</span>
+<span class="nc" id="L39">        this.correo = correo;</span>
+<span class="nc" id="L40">        this.programa = programa;</span>
+<span class="nc" id="L41">        this.idEvento = idEvento;</span>
+<span class="nc" id="L42">    }</span>
+
+    public int getId_registroEvento() {
+<span class="nc" id="L45">        return id_registroEvento;</span>
+    }
+
+    public void setId_registroEvento(int id_registroEvento) {
+<span class="nc" id="L49">        this.id_registroEvento = id_registroEvento;</span>
+<span class="nc" id="L50">    }</span>
+
+    public String getCodigo() {
+<span class="nc" id="L53">        return codigo;</span>
+    }
+
+    public void setCodigo(String codigo) {
+<span class="nc" id="L57">        this.codigo = codigo;</span>
+<span class="nc" id="L58">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L61">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L65">        this.nombre = nombre;</span>
+<span class="nc" id="L66">    }</span>
+
+    public String getIdentificacion() {
+<span class="nc" id="L69">        return identificacion;</span>
+    }
+
+    public void setIdentificacion(String identificacion) {
+<span class="nc" id="L73">        this.identificacion = identificacion;</span>
+<span class="nc" id="L74">    }</span>
+
+    public String getCorreo() {
+<span class="nc" id="L77">        return correo;</span>
+    }
+
+    public void setCorreo(String correo) {
+<span class="nc" id="L81">        this.correo = correo;</span>
+<span class="nc" id="L82">    }</span>
+
+    public String getPrograma() {
+<span class="nc" id="L85">        return programa;</span>
+    }
+
+    public void setPrograma(String programa) {
+<span class="nc" id="L89">        this.programa = programa;</span>
+<span class="nc" id="L90">    }</span>
+
+    public int getIdEvento() {
+<span class="nc" id="L93">        return idEvento;</span>
+    }
+
+    public void setIdEvento(int idEvento) {
+<span class="nc" id="L97">        this.idEvento = idEvento;</span>
+<span class="nc" id="L98">    }</span>
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

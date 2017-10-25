@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NegocioHorario.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">NEGOCIO</a> &gt; <span class="el_source">NegocioHorario.java</span></div><h1>NegocioHorario.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package NEGOCIO;
+
+import DAO.HorarioDAO;
+import DTO.HorarioDTO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.ConexionPostgres;
+
+/**
+ *
+ * @author Gladys M
+ */
+<span class="nc" id="L22">public class NegocioHorario {</span>
+    
+    public List&lt;HorarioDTO&gt; consultarHorasDisponibles(String id_medico, String fecha) throws Exception{
+        
+<span class="nc" id="L26">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L27">        Connection co = con.getconexion();</span>
+        
+<span class="nc" id="L29">        List&lt;HorarioDTO&gt; horasDisp = new ArrayList&lt;HorarioDTO&gt;();</span>
+<span class="nc" id="L30">        HorarioDAO h = new HorarioDAO(co);</span>
+        
+        try{
+<span class="nc" id="L33">            horasDisp = h.consultarHorasDisponibles(id_medico, fecha);</span>
+<span class="nc" id="L34">        } catch(Exception e){</span>
+<span class="nc" id="L35">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L37">            co.close();</span>
+<span class="nc" id="L38">        }</span>
+        
+<span class="nc" id="L40">        return (horasDisp);</span>
+    }
+    
+    public List&lt;HorarioDTO&gt; listadoHoras() {
+        
+<span class="nc" id="L45">        List&lt;HorarioDTO&gt; ho = new ArrayList&lt;HorarioDTO&gt;();</span>
+        
+<span class="nc" id="L47">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L48">        Connection co = con.getconexion();</span>
+        
+<span class="nc" id="L50">        HorarioDAO h = new HorarioDAO(co);</span>
+        
+        try { 
+<span class="nc" id="L53">            ho = h.listadoHoras();</span>
+<span class="nc" id="L54">        } catch(SQLException e){</span>
+<span class="nc" id="L55">            Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, e);</span>
+        } finally {
+<span class="nc bnc" id="L57" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L59">                    co.close();</span>
+<span class="nc" id="L60">                } catch (SQLException ex) {</span>
+<span class="nc" id="L61">                    Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L62">                }</span>
+            }
+        }
+<span class="nc" id="L65">        return ho;</span>
+    }
+    
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico) {
+        
+<span class="nc" id="L70">      boolean rta = false;</span>
+        
+<span class="nc" id="L72">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L73">        Connection co = con.getconexion();</span>
+        
+<span class="nc" id="L75">        HorarioDAO h = new HorarioDAO(co);</span>
+        
+        try { 
+<span class="nc" id="L78">            rta = h.cambiarEstadoHora(id_medico_horariomedico, fecha, id_horario_horariomedico);</span>
+            
+<span class="nc" id="L80">        } catch(SQLException e){</span>
+<span class="nc" id="L81">            Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, e);</span>
+        } finally {
+<span class="nc bnc" id="L83" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L85">                    co.close();</span>
+<span class="nc" id="L86">                } catch (SQLException ex) {</span>
+<span class="nc" id="L87">                    Logger.getLogger(NegocioHorario.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L88">                }</span>
+            }
+        }
+<span class="nc" id="L91">  return rta;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CitaDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DTO</a> &gt; <span class="el_source">CitaDTO.java</span></div><h1>CitaDTO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DTO;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class CitaDTO {
+
+    private int id_cita;
+    private String servicio_cita;
+    private String num_recibo_cita;
+    private String fecha_cita;
+    private String hora_cita;
+    private String id_usuario;
+    private String id_medico;
+    private String estado;
+    private String nombre_usuario;
+    private String nombre_medico;
+    private String tipousuario_cita;
+
+<span class="nc" id="L26">    public CitaDTO() {</span>
+<span class="nc" id="L27">    }</span>
+
+<span class="nc" id="L29">    public CitaDTO(String servicio_cita, String num_recibo_cita, String fecha_cita, String hora_cita, String id_usuario, String id_medico, String estado, String nombre_usuario, String nombre_medico, String tipousuario_cita) {</span>
+<span class="nc" id="L30">        this.servicio_cita = servicio_cita;</span>
+<span class="nc" id="L31">        this.num_recibo_cita = num_recibo_cita;</span>
+<span class="nc" id="L32">        this.fecha_cita = fecha_cita;</span>
+<span class="nc" id="L33">        this.hora_cita = hora_cita;</span>
+<span class="nc" id="L34">        this.id_usuario = id_usuario;</span>
+<span class="nc" id="L35">        this.id_medico = id_medico;</span>
+<span class="nc" id="L36">        this.estado = estado;</span>
+<span class="nc" id="L37">        this.nombre_usuario = nombre_usuario;</span>
+<span class="nc" id="L38">        this.nombre_medico = nombre_medico;</span>
+<span class="nc" id="L39">        this.tipousuario_cita = tipousuario_cita;</span>
+<span class="nc" id="L40">    }</span>
+
+<span class="nc" id="L42">    public CitaDTO(int id_cita, String servicio_cita, String num_recibo_cita, String fecha_cita, String hora_cita, String id_usuario, String id_medico, String estado, String nombre_usuario, String nombre_medico, String tipousuario_cita) {</span>
+<span class="nc" id="L43">        this.id_cita = id_cita;</span>
+<span class="nc" id="L44">        this.servicio_cita = servicio_cita;</span>
+<span class="nc" id="L45">        this.num_recibo_cita = num_recibo_cita;</span>
+<span class="nc" id="L46">        this.fecha_cita = fecha_cita;</span>
+<span class="nc" id="L47">        this.hora_cita = hora_cita;</span>
+<span class="nc" id="L48">        this.id_usuario = id_usuario;</span>
+<span class="nc" id="L49">        this.id_medico = id_medico;</span>
+<span class="nc" id="L50">        this.estado = estado;</span>
+<span class="nc" id="L51">        this.nombre_usuario = nombre_usuario;</span>
+<span class="nc" id="L52">        this.nombre_medico = nombre_medico;</span>
+<span class="nc" id="L53">        this.tipousuario_cita = tipousuario_cita;</span>
+<span class="nc" id="L54">    }</span>
+        
+    public int getId_cita() {
+<span class="nc" id="L57">        return id_cita;</span>
+    }
+
+    public void setId_cita(int id_cita) {
+<span class="nc" id="L61">        this.id_cita = id_cita;</span>
+<span class="nc" id="L62">    }</span>
+
+    public String getServicio_cita() {
+<span class="nc" id="L65">        return servicio_cita;</span>
+    }
+
+    public void setServicio_cita(String servicio_cita) {
+<span class="nc" id="L69">        this.servicio_cita = servicio_cita;</span>
+<span class="nc" id="L70">    }</span>
+
+    public String getNum_recibo_cita() {
+<span class="nc" id="L73">        return num_recibo_cita;</span>
+    }
+
+    public void setNum_recibo_cita(String num_recibo_cita) {
+<span class="nc" id="L77">        this.num_recibo_cita = num_recibo_cita;</span>
+<span class="nc" id="L78">    }</span>
+
+    public String getFecha_cita() {
+<span class="nc" id="L81">        return fecha_cita;</span>
+    }
+
+    public void setFecha_cita(String fecha_cita) {
+<span class="nc" id="L85">        this.fecha_cita = fecha_cita;</span>
+<span class="nc" id="L86">    }</span>
+
+    public String getHora_cita() {
+<span class="nc" id="L89">        return hora_cita;</span>
+    }
+
+    public void setHora_cita(String hora_cita) {
+<span class="nc" id="L93">        this.hora_cita = hora_cita;</span>
+<span class="nc" id="L94">    }</span>
+
+    public String getId_usuario() {
+<span class="nc" id="L97">        return id_usuario;</span>
+    }
+
+    public void setId_usuario(String id_usuario) {
+<span class="nc" id="L101">        this.id_usuario = id_usuario;</span>
+<span class="nc" id="L102">    }</span>
+
+    public String getNombre_usuario() {
+<span class="nc" id="L105">        return nombre_usuario;</span>
+    }
+
+    public void setNombre_usuario(String nombre_usuario) {
+<span class="nc" id="L109">        this.nombre_usuario = nombre_usuario;</span>
+<span class="nc" id="L110">    }</span>
+
+    public String getNombre_medico() {
+<span class="nc" id="L113">        return nombre_medico;</span>
+    }
+
+    public void setNombre_medico(String nombre_medico) {
+<span class="nc" id="L117">        this.nombre_medico = nombre_medico;</span>
+<span class="nc" id="L118">    }    </span>
+
+    public String getId_medico() {
+<span class="nc" id="L121">        return id_medico;</span>
+    }
+
+    public void setId_medico(String id_medico) {
+<span class="nc" id="L125">        this.id_medico = id_medico;</span>
+<span class="nc" id="L126">    }</span>
+
+    public String getEstado() {
+<span class="nc" id="L129">        return estado;</span>
+    }
+
+    public void setEstado(String estado) {
+<span class="nc" id="L133">        this.estado = estado;</span>
+<span class="nc" id="L134">    }</span>
+
+    public String getTipousuario_cita() {
+<span class="nc" id="L137">        return tipousuario_cita;</span>
+    }
+
+    public void setTipousuario_cita(String tipousuario_cita) {
+<span class="nc" id="L141">        this.tipousuario_cita = tipousuario_cita;</span>
+<span class="nc" id="L142">    }</span>
+    
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L147">        return &quot;CitaDTO{&quot; + &quot;id_cita=&quot; + id_cita + &quot;, servicio_cita=&quot; + servicio_cita + &quot;, num_recibo_cita=&quot; + num_recibo_cita + &quot;, fecha_cita=&quot; + fecha_cita + &quot;, hora_cita=&quot; + hora_cita + &quot;, id_usuario=&quot; + id_usuario + &quot;, id_medico=&quot; + id_medico + &quot;, estado=&quot; + estado + &quot;, nombre_usuario=&quot; + nombre_usuario + &quot;, nombre_medico=&quot; + nombre_medico + '}';</span>
+    }
+
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

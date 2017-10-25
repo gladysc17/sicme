@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Hc_planificacionfamiliarDTO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DTO</a> &gt; <span class="el_source">Hc_planificacionfamiliarDTO.java</span></div><h1>Hc_planificacionfamiliarDTO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DTO;
+
+/**
+ *
+ * @author LEGADO
+ */
+public class Hc_planificacionfamiliarDTO {
+    
+    private int idhcplanfam;
+    private String tipo_vinculacion;
+    private String aseguradora;
+    private String nombre_responsable;
+    private String parentesco;
+    private String direccion_responsable;
+    private String telefono_responsable;
+    private String motivo;
+    private String enfermedad_actual;
+    private String menarca;
+    private String ciclos;
+    private String menopausia;
+    private String estados;
+    private String fecha_ultima_menst;
+    private String fecha_ultimo_parto;
+    private String ccv;
+    private String resultado_ccv;
+    private String planificacion;
+    private String metodo;
+    private int id_cita;
+    private String revision_sistemas;
+    private String antecedentes;
+    private int idusuario_hcmed;
+
+<span class="nc" id="L38">    public Hc_planificacionfamiliarDTO(String tipo_vinculacion, String aseguradora, String nombre_responsable, String parentesco, String direccion_responsable, String telefono_responsable, String motivo, String enfermedad_actual, String menarca, String ciclos, String menopausia, String estados, String fecha_ultima_menst, String fecha_ultimo_parto, String ccv, String resultado_ccv, String planificacion, String metodo, int id_cita, String revision_sistemas, String antecedentes, int idusuario_hcmed) {</span>
+<span class="nc" id="L39">        this.tipo_vinculacion = tipo_vinculacion;</span>
+<span class="nc" id="L40">        this.aseguradora = aseguradora;</span>
+<span class="nc" id="L41">        this.nombre_responsable = nombre_responsable;</span>
+<span class="nc" id="L42">        this.parentesco = parentesco;</span>
+<span class="nc" id="L43">        this.direccion_responsable = direccion_responsable;</span>
+<span class="nc" id="L44">        this.telefono_responsable = telefono_responsable;</span>
+<span class="nc" id="L45">        this.motivo = motivo;</span>
+<span class="nc" id="L46">        this.enfermedad_actual = enfermedad_actual;</span>
+<span class="nc" id="L47">        this.menarca = menarca;</span>
+<span class="nc" id="L48">        this.ciclos = ciclos;</span>
+<span class="nc" id="L49">        this.menopausia = menopausia;</span>
+<span class="nc" id="L50">        this.estados = estados;</span>
+<span class="nc" id="L51">        this.fecha_ultima_menst = fecha_ultima_menst;</span>
+<span class="nc" id="L52">        this.fecha_ultimo_parto = fecha_ultimo_parto;</span>
+<span class="nc" id="L53">        this.ccv = ccv;</span>
+<span class="nc" id="L54">        this.resultado_ccv = resultado_ccv;</span>
+<span class="nc" id="L55">        this.planificacion = planificacion;</span>
+<span class="nc" id="L56">        this.metodo = metodo;</span>
+<span class="nc" id="L57">        this.id_cita = id_cita;</span>
+<span class="nc" id="L58">        this.revision_sistemas = revision_sistemas;</span>
+<span class="nc" id="L59">        this.antecedentes = antecedentes;</span>
+<span class="nc" id="L60">        this.idusuario_hcmed = idusuario_hcmed;</span>
+<span class="nc" id="L61">    }</span>
+
+<span class="fc" id="L63">    public Hc_planificacionfamiliarDTO(int idhcplanfam, String tipo_vinculacion, String aseguradora, String nombre_responsable, String parentesco, String direccion_responsable, String telefono_responsable, String motivo, String enfermedad_actual, String menarca, String ciclos, String menopausia, String estados, String fecha_ultima_menst, String fecha_ultimo_parto, String ccv, String resultado_ccv, String planificacion, String metodo, int id_cita, String revision_sistemas, String antecedentes, int idusuario_hcmed) {</span>
+<span class="fc" id="L64">        this.idhcplanfam = idhcplanfam;</span>
+<span class="fc" id="L65">        this.tipo_vinculacion = tipo_vinculacion;</span>
+<span class="fc" id="L66">        this.aseguradora = aseguradora;</span>
+<span class="fc" id="L67">        this.nombre_responsable = nombre_responsable;</span>
+<span class="fc" id="L68">        this.parentesco = parentesco;</span>
+<span class="fc" id="L69">        this.direccion_responsable = direccion_responsable;</span>
+<span class="fc" id="L70">        this.telefono_responsable = telefono_responsable;</span>
+<span class="fc" id="L71">        this.motivo = motivo;</span>
+<span class="fc" id="L72">        this.enfermedad_actual = enfermedad_actual;</span>
+<span class="fc" id="L73">        this.menarca = menarca;</span>
+<span class="fc" id="L74">        this.ciclos = ciclos;</span>
+<span class="fc" id="L75">        this.menopausia = menopausia;</span>
+<span class="fc" id="L76">        this.estados = estados;</span>
+<span class="fc" id="L77">        this.fecha_ultima_menst = fecha_ultima_menst;</span>
+<span class="fc" id="L78">        this.fecha_ultimo_parto = fecha_ultimo_parto;</span>
+<span class="fc" id="L79">        this.ccv = ccv;</span>
+<span class="fc" id="L80">        this.resultado_ccv = resultado_ccv;</span>
+<span class="fc" id="L81">        this.planificacion = planificacion;</span>
+<span class="fc" id="L82">        this.metodo = metodo;</span>
+<span class="fc" id="L83">        this.id_cita = id_cita;</span>
+<span class="fc" id="L84">        this.revision_sistemas = revision_sistemas;</span>
+<span class="fc" id="L85">        this.antecedentes = antecedentes;</span>
+<span class="fc" id="L86">        this.idusuario_hcmed = idusuario_hcmed;</span>
+<span class="fc" id="L87">    }</span>
+
+    public int getIdhcplanfam() {
+<span class="nc" id="L90">        return idhcplanfam;</span>
+    }
+
+    public void setIdhcplanfam(int idhcplanfam) {
+<span class="nc" id="L94">        this.idhcplanfam = idhcplanfam;</span>
+<span class="nc" id="L95">    }</span>
+
+    public String getTipo_vinculacion() {
+<span class="fc" id="L98">        return tipo_vinculacion;</span>
+    }
+
+    public void setTipo_vinculacion(String tipo_vinculacion) {
+<span class="nc" id="L102">        this.tipo_vinculacion = tipo_vinculacion;</span>
+<span class="nc" id="L103">    }</span>
+
+    public String getAseguradora() {
+<span class="fc" id="L106">        return aseguradora;</span>
+    }
+
+    public void setAseguradora(String aseguradora) {
+<span class="nc" id="L110">        this.aseguradora = aseguradora;</span>
+<span class="nc" id="L111">    }</span>
+
+    public String getNombre_responsable() {
+<span class="fc" id="L114">        return nombre_responsable;</span>
+    }
+
+    public void setNombre_responsable(String nombre_responsable) {
+<span class="nc" id="L118">        this.nombre_responsable = nombre_responsable;</span>
+<span class="nc" id="L119">    }</span>
+
+    public String getParentesco() {
+<span class="fc" id="L122">        return parentesco;</span>
+    }
+
+    public void setParentesco(String parentesco) {
+<span class="nc" id="L126">        this.parentesco = parentesco;</span>
+<span class="nc" id="L127">    }</span>
+
+    public String getDireccion_responsable() {
+<span class="fc" id="L130">        return direccion_responsable;</span>
+    }
+
+    public void setDireccion_responsable(String direccion_responsable) {
+<span class="nc" id="L134">        this.direccion_responsable = direccion_responsable;</span>
+<span class="nc" id="L135">    }</span>
+
+    public String getTelefono_responsable() {
+<span class="fc" id="L138">        return telefono_responsable;</span>
+    }
+
+    public void setTelefono_responsable(String telefono_responsable) {
+<span class="nc" id="L142">        this.telefono_responsable = telefono_responsable;</span>
+<span class="nc" id="L143">    }</span>
+
+    public String getMotivo() {
+<span class="fc" id="L146">        return motivo;</span>
+    }
+
+    public void setMotivo(String motivo) {
+<span class="nc" id="L150">        this.motivo = motivo;</span>
+<span class="nc" id="L151">    }</span>
+
+    public String getEnfermedad_actual() {
+<span class="fc" id="L154">        return enfermedad_actual;</span>
+    }
+
+    public void setEnfermedad_actual(String enfermedad_actual) {
+<span class="nc" id="L158">        this.enfermedad_actual = enfermedad_actual;</span>
+<span class="nc" id="L159">    }</span>
+
+    public String getMenarca() {
+<span class="fc" id="L162">        return menarca;</span>
+    }
+
+    public void setMenarca(String menarca) {
+<span class="nc" id="L166">        this.menarca = menarca;</span>
+<span class="nc" id="L167">    }</span>
+
+    public String getCiclos() {
+<span class="fc" id="L170">        return ciclos;</span>
+    }
+
+    public void setCiclos(String ciclos) {
+<span class="nc" id="L174">        this.ciclos = ciclos;</span>
+<span class="nc" id="L175">    }</span>
+
+    public String getMenopausia() {
+<span class="fc" id="L178">        return menopausia;</span>
+    }
+
+    public void setMenopausia(String menopausia) {
+<span class="nc" id="L182">        this.menopausia = menopausia;</span>
+<span class="nc" id="L183">    }</span>
+
+    public String getEstados() {
+<span class="fc" id="L186">        return estados;</span>
+    }
+
+    public void setEstados(String estados) {
+<span class="nc" id="L190">        this.estados = estados;</span>
+<span class="nc" id="L191">    }</span>
+
+    public String getFecha_ultima_menst() {
+<span class="fc" id="L194">        return fecha_ultima_menst;</span>
+    }
+
+    public void setFecha_ultima_menst(String fecha_ultima_menst) {
+<span class="nc" id="L198">        this.fecha_ultima_menst = fecha_ultima_menst;</span>
+<span class="nc" id="L199">    }</span>
+
+    public String getFecha_ultimo_parto() {
+<span class="fc" id="L202">        return fecha_ultimo_parto;</span>
+    }
+
+    public void setFecha_ultimo_parto(String fecha_ultimo_parto) {
+<span class="nc" id="L206">        this.fecha_ultimo_parto = fecha_ultimo_parto;</span>
+<span class="nc" id="L207">    }</span>
+
+    public String getCcv() {
+<span class="fc" id="L210">        return ccv;</span>
+    }
+
+    public void setCcv(String ccv) {
+<span class="nc" id="L214">        this.ccv = ccv;</span>
+<span class="nc" id="L215">    }</span>
+
+    public String getResultado_ccv() {
+<span class="fc" id="L218">        return resultado_ccv;</span>
+    }
+
+    public void setResultado_ccv(String resultado_ccv) {
+<span class="nc" id="L222">        this.resultado_ccv = resultado_ccv;</span>
+<span class="nc" id="L223">    }</span>
+
+    public String getPlanificacion() {
+<span class="fc" id="L226">        return planificacion;</span>
+    }
+
+    public void setPlanificacion(String planificacion) {
+<span class="nc" id="L230">        this.planificacion = planificacion;</span>
+<span class="nc" id="L231">    }</span>
+
+    public String getMetodo() {
+<span class="fc" id="L234">        return metodo;</span>
+    }
+
+    public void setMetodo(String metodo) {
+<span class="nc" id="L238">        this.metodo = metodo;</span>
+<span class="nc" id="L239">    }</span>
+
+    public int getId_cita() {
+<span class="fc" id="L242">        return id_cita;</span>
+    }
+
+    public void setId_cita(int id_cita) {
+<span class="nc" id="L246">        this.id_cita = id_cita;</span>
+<span class="nc" id="L247">    }</span>
+
+    public String getRevision_sistemas() {
+<span class="fc" id="L250">        return revision_sistemas;</span>
+    }
+
+    public void setRevision_sistemas(String revision_sistemas) {
+<span class="nc" id="L254">        this.revision_sistemas = revision_sistemas;</span>
+<span class="nc" id="L255">    }</span>
+
+    public String getAntecedentes() {
+<span class="fc" id="L258">        return antecedentes;</span>
+    }
+
+    public void setAntecedentes(String antecedentes) {
+<span class="nc" id="L262">        this.antecedentes = antecedentes;</span>
+<span class="nc" id="L263">    }</span>
+
+    public int getIdusuario_hcmed() {
+<span class="fc" id="L266">        return idusuario_hcmed;</span>
+    }
+
+    public void setIdusuario_hcmed(int idusuario_hcmed) {
+<span class="nc" id="L270">        this.idusuario_hcmed = idusuario_hcmed;</span>
+<span class="nc" id="L271">    }</span>
+    
+    
+    
+    
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

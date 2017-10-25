@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NegocioCita.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">NEGOCIO</a> &gt; <span class="el_source">NegocioCita.java</span></div><h1>NegocioCita.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package NEGOCIO;
+
+import DAO.CitaDAO;
+import DAO.HorarioDAO;
+import DAO.HorarioMedicoDAO;
+import DTO.CitaDTO;
+import DTO.HorarioDTO;
+import DTO.HorarioMedicoDTO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.ConexionPostgres;
+
+/**
+ *
+ * @author Gladys M
+ */
+<span class="nc" id="L27">public class NegocioCita {</span>
+
+    public boolean registrarCita(CitaDTO cita) {
+<span class="nc" id="L30">        boolean rta = false;</span>
+
+<span class="nc" id="L32">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L33">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L35">        CitaDAO cit = new CitaDAO(co);</span>
+
+        try {
+
+<span class="nc" id="L39">            rta = cit.registrarCita(cita);</span>
+
+<span class="nc" id="L41">        } catch (SQLException ex) {</span>
+<span class="nc" id="L42">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L43">            return false;</span>
+
+        } finally {
+
+<span class="nc bnc" id="L47" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L49">                    co.close();</span>
+<span class="nc" id="L50">                } catch (SQLException ex) {</span>
+<span class="nc" id="L51">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L52">                }</span>
+            }
+        }
+<span class="nc" id="L55">        return rta;</span>
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasEst(int id_est) {
+
+<span class="nc" id="L60">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L61">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L63">        CitaDAO cita = new CitaDAO(co);</span>
+
+<span class="nc" id="L65">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+        try {
+
+<span class="nc" id="L68">            citas = cita.consultarCitasEst(id_est);</span>
+
+<span class="nc" id="L70">        } catch (SQLException ex) {</span>
+<span class="nc" id="L71">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L75" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L77">                    co.close();</span>
+<span class="nc" id="L78">                } catch (SQLException ex) {</span>
+<span class="nc" id="L79">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L80">                }</span>
+            }
+        }
+<span class="nc" id="L83">        return citas;</span>
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasProfesiona(int id_prof, String fecha) {
+
+<span class="nc" id="L88">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L89">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L91">        CitaDAO cita = new CitaDAO(co);</span>
+
+<span class="nc" id="L93">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+        try {
+
+<span class="nc" id="L96">            citas = cita.consultarCitasProfesional(id_prof, fecha);</span>
+
+<span class="nc" id="L98">        } catch (SQLException ex) {</span>
+<span class="nc" id="L99">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L103" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L105">                    co.close();</span>
+<span class="nc" id="L106">                } catch (SQLException ex) {</span>
+<span class="nc" id="L107">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L108">                }</span>
+            }
+        }
+<span class="nc" id="L111">        return citas;</span>
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasUsuario(String id_usuario) {
+
+<span class="nc" id="L116">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L117">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L119">        CitaDAO cita = new CitaDAO(co);</span>
+
+<span class="nc" id="L121">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+        try {
+
+<span class="nc" id="L124">            citas = cita.consultarCitasUsuario(id_usuario);</span>
+
+<span class="nc" id="L126">        } catch (SQLException ex) {</span>
+<span class="nc" id="L127">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);            </span>
+
+        } finally {
+
+<span class="nc bnc" id="L131" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L133">                    co.close();</span>
+<span class="nc" id="L134">                } catch (SQLException ex) {</span>
+<span class="nc" id="L135">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L136">                }</span>
+            }
+        }
+<span class="nc" id="L139">        return citas;</span>
+    }
+
+    public ArrayList&lt;CitaDTO&gt; consultarCitasMedicoDia(String id_medico, String fecha_cita) {
+
+<span class="nc" id="L144">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L145">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L147">        CitaDAO cita = new CitaDAO(co);</span>
+
+<span class="nc" id="L149">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+        try {
+
+<span class="nc" id="L152">            citas = cita.consultarCitasMedicoDia(id_medico, fecha_cita);</span>
+
+<span class="nc" id="L154">        } catch (SQLException ex) {</span>
+<span class="nc" id="L155">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L159" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L161">                    co.close();</span>
+<span class="nc" id="L162">                } catch (SQLException ex) {</span>
+<span class="nc" id="L163">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L164">                }</span>
+            }
+        }
+<span class="nc" id="L167">        return citas;</span>
+    }
+
+    public boolean modificarCita(int id_cita, String fecha, int hora_cita, String id_medico) throws SQLException {
+
+<span class="nc" id="L172">        boolean rta = false;</span>
+<span class="nc" id="L173">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L174">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L176">        CitaDAO cita = new CitaDAO(co);</span>
+
+        try {
+<span class="nc" id="L179">            HorarioMedicoDAO hmd = new HorarioMedicoDAO(co);</span>
+<span class="nc" id="L180">            HorarioMedicoDTO hm = hmd.consultarHorarioMedico(hora_cita);</span>
+            
+<span class="nc" id="L182">            HorarioDAO hd = new HorarioDAO(co);</span>
+<span class="nc" id="L183">            HorarioDTO ho = hd.consultarHorarioId(hm.getId_horario_horariomedico());</span>
+            
+            
+<span class="nc" id="L186">            rta = cita.modificarCita(id_cita, fecha, ho.getHora_inicio(), id_medico);</span>
+
+<span class="nc" id="L188">        } catch (SQLException ex) {</span>
+<span class="nc" id="L189">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L193" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L195">                    co.close();</span>
+<span class="nc" id="L196">                } catch (SQLException ex) {</span>
+<span class="nc" id="L197">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L198">                }</span>
+            }
+        }
+
+<span class="nc" id="L202">        return rta;</span>
+    }
+    
+    public CitaDTO consultarCitasId(int id_cita) {
+
+<span class="nc" id="L207">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L208">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L210">        CitaDAO cita = new CitaDAO(co);</span>
+<span class="nc" id="L211">        CitaDTO citas = new CitaDTO();</span>
+        
+        try {
+            
+<span class="nc" id="L215">            citas = cita.consultarCitasId(id_cita);</span>
+
+<span class="nc" id="L217">        } catch (SQLException ex) {</span>
+<span class="nc" id="L218">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L222" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L224">                    co.close();</span>
+<span class="nc" id="L225">                } catch (SQLException ex) {</span>
+<span class="nc" id="L226">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L227">                }</span>
+            }
+        }
+<span class="nc" id="L230">        return citas;</span>
+    }
+    
+    public ArrayList&lt;CitaDTO&gt; consultarCitasRango(String id_medico, String fecha, String fechaF) {
+
+<span class="nc" id="L235">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L236">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L238">        CitaDAO cita = new CitaDAO(co);</span>
+
+<span class="nc" id="L240">        ArrayList&lt;CitaDTO&gt; citas = new ArrayList&lt;CitaDTO&gt;();</span>
+        try {
+
+<span class="nc" id="L243">            citas = cita.consultarCitasPorRango(id_medico, fecha, fechaF);</span>
+
+<span class="nc" id="L245">        } catch (SQLException ex) {</span>
+<span class="nc" id="L246">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L250" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L252">                    co.close();</span>
+<span class="nc" id="L253">                } catch (SQLException ex) {</span>
+<span class="nc" id="L254">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L255">                }</span>
+            }
+        }
+<span class="nc" id="L258">        return citas;</span>
+    }
+    
+    public boolean actualizarEstadoAtendida(int id_cita) throws SQLException {
+
+<span class="nc" id="L263">        boolean rta = false;</span>
+<span class="nc" id="L264">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L265">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L267">        CitaDAO cita = new CitaDAO(co);</span>
+
+        try {          
+                     
+            
+<span class="nc" id="L272">            rta = cita.actualizarEstadoAtendida(id_cita);</span>
+
+<span class="nc" id="L274">        } catch (SQLException ex) {</span>
+<span class="nc" id="L275">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L279" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L281">                    co.close();</span>
+<span class="nc" id="L282">                } catch (SQLException ex) {</span>
+<span class="nc" id="L283">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L284">                }</span>
+            }
+        }
+
+<span class="nc" id="L288">        return rta;</span>
+    }
+    
+    public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
+
+<span class="nc" id="L293">        boolean rta = false;</span>
+<span class="nc" id="L294">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L295">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L297">        CitaDAO cita = new CitaDAO(co);</span>
+
+        try {          
+                     
+            
+<span class="nc" id="L302">            rta = cita.actualizarEstadoNoAsistida(id_cita);</span>
+
+<span class="nc" id="L304">        } catch (SQLException ex) {</span>
+<span class="nc" id="L305">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L309" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L311">                    co.close();</span>
+<span class="nc" id="L312">                } catch (SQLException ex) {</span>
+<span class="nc" id="L313">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L314">                }</span>
+            }
+        }
+
+<span class="nc" id="L318">        return rta;</span>
+    }
+    
+    public int cantidadCitas(String fechaI, String fechaF) {
+<span class="nc" id="L322">        int cant = 0;</span>
+<span class="nc" id="L323">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L324">        Connection co = con.getconexion();</span>
+<span class="nc" id="L325">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L328">            cant = cit.cantidadCitas(fechaI, fechaF);</span>
+<span class="nc" id="L329">        } catch (SQLException ex) {</span>
+<span class="nc" id="L330">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L334" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L336">                    co.close();</span>
+<span class="nc" id="L337">                } catch (SQLException ex) {</span>
+<span class="nc" id="L338">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L339">                }</span>
+            }
+        }
+        
+<span class="nc" id="L343">        return cant;</span>
+    }
+    
+    public int cantidadCitasAsistidas(String fechaI, String fechaF) {
+<span class="nc" id="L347">        int cant = 0;</span>
+<span class="nc" id="L348">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L349">        Connection co = con.getconexion();</span>
+<span class="nc" id="L350">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L353">            cant = cit.cantidadCitasAsistidas(fechaI, fechaF);</span>
+<span class="nc" id="L354">        } catch (SQLException ex) {</span>
+<span class="nc" id="L355">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L359" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L361">                    co.close();</span>
+<span class="nc" id="L362">                } catch (SQLException ex) {</span>
+<span class="nc" id="L363">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L364">                }</span>
+            }
+        }
+<span class="nc" id="L367">        return cant;</span>
+    }
+    
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF) {
+<span class="nc" id="L371">        int cant = 0;</span>
+<span class="nc" id="L372">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L373">        Connection co = con.getconexion();</span>
+<span class="nc" id="L374">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L377">            cant = cit.cantidadCitasNoAsistidas(fechaI, fechaF);</span>
+<span class="nc" id="L378">        } catch (SQLException ex) {</span>
+<span class="nc" id="L379">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L383" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L385">                    co.close();</span>
+<span class="nc" id="L386">                } catch (SQLException ex) {</span>
+<span class="nc" id="L387">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L388">                }</span>
+            }
+        }
+<span class="nc" id="L391">        return cant;</span>
+    }
+    
+    public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF){
+<span class="nc" id="L395">        int cant = 0;</span>
+<span class="nc" id="L396">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L397">        Connection co = con.getconexion();</span>
+<span class="nc" id="L398">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L401">            cant = cit.cantidadCitasEstudiante(id_usuario, fechaI, fechaF);</span>
+<span class="nc" id="L402">        } catch (SQLException ex) {</span>
+<span class="nc" id="L403">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L407" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L409">                    co.close();</span>
+<span class="nc" id="L410">                } catch (SQLException ex) {</span>
+<span class="nc" id="L411">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L412">                }</span>
+            }
+        }
+<span class="nc" id="L415">        return cant;</span>
+    }
+    
+    public int cantidadCitasPendientes(String fechaI, String fechaF) {
+<span class="nc" id="L419">        int cant = 0;</span>
+<span class="nc" id="L420">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L421">        Connection co = con.getconexion();</span>
+<span class="nc" id="L422">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L425">            cant = cit.cantidadCitasPendientes(fechaI, fechaF);</span>
+<span class="nc" id="L426">        } catch (SQLException ex) {</span>
+<span class="nc" id="L427">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L431" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L433">                    co.close();</span>
+<span class="nc" id="L434">                } catch (SQLException ex) {</span>
+<span class="nc" id="L435">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L436">                }</span>
+            }
+        }
+<span class="nc" id="L439">        return cant;</span>
+    }
+    
+    public int cantidadCitasUsuario(String id_usuario){
+<span class="nc" id="L443">        int cant = 0;</span>
+<span class="nc" id="L444">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L445">        Connection co = con.getconexion();</span>
+<span class="nc" id="L446">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L449">            cant = cit.cantidadCitasUsuario(id_usuario);</span>
+<span class="nc" id="L450">        } catch (SQLException ex) {</span>
+<span class="nc" id="L451">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L455" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L457">                    co.close();</span>
+<span class="nc" id="L458">                } catch (SQLException ex) {</span>
+<span class="nc" id="L459">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L460">                }</span>
+            }
+        }
+<span class="nc" id="L463">        return cant;</span>
+    }
+    
+    public int cantidadCitasServicio(String servicio, String fechaI, String fechaF){
+<span class="nc" id="L467">        int cant = 0;</span>
+<span class="nc" id="L468">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L469">        Connection co = con.getconexion();</span>
+<span class="nc" id="L470">        CitaDAO cit = new CitaDAO(co);</span>
+        
+        try {
+<span class="nc" id="L473">            cant = cit.cantidadCitasServicio(servicio, fechaI, fechaF);</span>
+<span class="nc" id="L474">        }catch (SQLException ex) {</span>
+<span class="nc" id="L475">            Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L479" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L481">                    co.close();</span>
+<span class="nc" id="L482">                } catch (SQLException ex) {</span>
+<span class="nc" id="L483">                    Logger.getLogger(NegocioCita.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L484">                }</span>
+            }
+        }
+<span class="nc" id="L487">        return cant;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
