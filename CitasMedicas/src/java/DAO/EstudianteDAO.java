@@ -37,20 +37,21 @@ public class EstudianteDAO {
      */
     public boolean registrarEstudiante(EstudianteDTO est) throws SQLException {
 
-        String sql = "INSERT INTO estudiante (identificacion_usuario, programa_academico )"
-                + " VALUES (?, ?)";
+        String sql = "INSERT INTO estudiante (identificacion_usuario, programa_academico, estado_estudiante )"
+                + " VALUES (?, ?, ?)";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
         ps.setString(1, est.getIdentificacion_usuario());
         ps.setInt(2, est.getPrograma_academico());
+        ps.setString(3, est.getEstado_estudiante());        
 
         int resultado = ps.executeUpdate();
 
         return resultado == 1;
 
     }
-
+    
     public List<String> consultarProgramaAcademico() throws SQLException {
         List<String> list = new ArrayList<>();
 
@@ -68,6 +69,31 @@ public class EstudianteDAO {
         return list;
     }
 
+    public EstudianteDTO consultarEstudiante(String id) throws SQLException {                
+
+        String sql = "select * from estudiante where identificacion_usuario = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, id);
+
+        ResultSet rs = ps.executeQuery();
+        
+        EstudianteDTO est = null;
+
+        if (rs.next()) {
+            
+            est = new EstudianteDTO();
+                        
+            est.setId(rs.getInt(1));
+            est.setIdentificacion_usuario(rs.getString(2));
+            est.setPrograma_academico(rs.getInt(3));
+            est.setEstado_estudiante(rs.getString(4));
+        }
+
+        return est;
+    }
+
     public List<EstudianteDTO> consultarEstudiantePrograma(int programa) throws SQLException {
         List<EstudianteDTO> list = new ArrayList<>();
 
@@ -83,6 +109,7 @@ public class EstudianteDAO {
             est.setId(rs.getInt(1));
             est.setIdentificacion_usuario(rs.getString(2));
             est.setPrograma_academico(rs.getInt(3));
+            est.setEstado_estudiante(rs.getString(4));
             list.add(est);
         }
 

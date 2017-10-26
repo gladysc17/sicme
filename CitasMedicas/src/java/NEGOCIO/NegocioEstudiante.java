@@ -175,4 +175,29 @@ public class NegocioEstudiante {
         }
         return cant;
     }
+     public EstudianteDTO listarEstudiante(String id) throws SQLException {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        EstudianteDTO otros = new EstudianteDTO();
+        EstudianteDAO otro = new EstudianteDAO(co);
+
+        try {
+            otros = otro.consultarEstudiante(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }        
+        return (otros);
+    }
 }

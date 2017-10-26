@@ -46,7 +46,7 @@ public class listaRegistradosEv extends HttpServlet {
             throws ServletException, IOException {ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();                     
                
-        String ide = request.getParameter("id"); 
+        String ide = request.getParameter("idEvento"); 
         int id = Integer.parseInt(ide);
         
         System.out.println("id " +id);

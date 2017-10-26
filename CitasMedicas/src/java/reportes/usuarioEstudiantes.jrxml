@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="03d87d99-d53c-4649-9303-a45a68e53f0c">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipou" class="java.lang.String"/>
+	<parameter name="fechaI" class="java.util.Date"/>
+	<parameter name="fechaF" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select *, 
+	(select count(*)  
+	from cita 
+	where id_usuario = u.identificacion)  AS "cantidad citas", 
+	( select count(*) from cita where id_usuario = u.identificacion 
+	  and estado = 'atendido' and fecha_cita between $P{fechaI} and $P{fechaF}
+	) AS "atendido",
+	( select count(*) from cita where id_usuario = u.identificacion 
+	  and estado = 'inasistido' and fecha_cita between $P{fechaI} and $P{fechaF}
+	) AS "inasistido",
+	( select count(*) from cita where id_usuario = u.identificacion 
+	  and estado = 'pendiente' and fecha_cita between $P{fechaI} and $P{fechaF}
+	) AS "pendiente",
+	current_date AS "fechactual"
+from usuario u, estudiante e, programa_academico p 
+where tipo_usuario = $P{tipou}
+AND u.identificacion = e.identificacion_usuario 
+AND e.programa_academico = p.id
+AND u.fecharegistro between  $P{fechaI} and $P{fechaF}
+ORDER BY e.estado_estudiante]]>
+	</queryString>
+	<field name="identificacion" class="java.lang.String"/>
+	<field name="tipo_identificacion" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="genero" class="java.lang.String"/>
+	<field name="estado_civil" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="tipo_usuario" class="java.lang.String"/>
+	<field name="fecharegistro" class="java.sql.Date"/>
+	<field name="contrasena" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="identificacion_usuario" class="java.lang.String"/>
+	<field name="programa_academico" class="java.lang.Integer"/>
+	<field name="estado_estudiante" class="java.lang.String"/>
+	<field name="nombre_programa" class="java.lang.String"/>
+	<field name="codigo_programa" class="java.lang.String"/>
+	<field name="cantidad citas" class="java.lang.Long"/>
+	<field name="atendido" class="java.lang.Long"/>
+	<field name="inasistido" class="java.lang.Long"/>
+	<field name="pendiente" class="java.lang.Long"/>
+	<field name="fechactual" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="241" y="10" width="291" height="20" uuid="db75d2b2-0672-4b7e-b09d-3042968f334b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="412" y="69" width="100" height="20" uuid="f04de913-178a-414d-9352-66995bb15f11"/>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="537" y="69" width="100" height="20" uuid="06cffc9f-25e4-47a8-b2fb-f8bd8c527da9"/>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="709" y="29" width="50" height="40" uuid="3e68438a-521c-4bfd-82e2-76f4b876657f"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="519" y="69" width="13" height="20" uuid="983d9b94-8d07-4ae8-89b1-57c8cc107e6f"/>
+				<text><![CDATA[y]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="30" width="50" height="50" uuid="c0b20730-b73e-4178-9957-472fbd86a739"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="162" y="69" width="247" height="20" uuid="c88849ad-6f72-41a0-969c-17f29bf908cd"/>
+				<text><![CDATA[Lista de Estudiantes  registrados en el sistema entre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="241" y="29" width="291" height="20" uuid="2f50229d-5874-41ce-adfb-61226fe6b36d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="2" width="23" height="20" uuid="718574e5-e1b7-4915-bd45-3b091cd9e452"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="2" width="72" height="20" uuid="3b664c71-7633-4d01-870f-277e17ebea8d"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Identificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="2" width="112" height="20" uuid="a1ee4cd3-bb0d-41db-b385-4e2f7986b491"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres y Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="241" y="2" width="48" height="20" uuid="8e51ab62-be3a-4e2c-9469-cf500f78854a"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="2" width="48" height="20" uuid="6e8d89d0-5231-40ac-902a-d5af16719c8d"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="2" width="55" height="20" uuid="8c9fdf07-2907-4766-9052-fe44c7351215"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="2" width="115" height="20" uuid="f3e750e0-85ad-4811-a82a-378a50ae07d8"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa Academico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="681" y="2" width="28" height="20" uuid="76668cdb-a5ff-4fbd-b48a-4890929f492d"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="709" y="2" width="31" height="20" uuid="ef68a382-99a3-4550-a965-43aa34d65757"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="740" y="2" width="29" height="20" uuid="0d219116-20da-423f-8dac-25f951963ae9"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="770" y="2" width="32" height="20" uuid="167404a8-79b5-4766-8595-7aa25fd40b29"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="800" height="1" uuid="11bc8ace-cff2-42b9-b553-d97e36644dbd"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="2" width="23" height="20" uuid="ac5940a0-ca4f-4e23-824b-8471f5d6f043"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="27" y="2" width="72" height="20" uuid="11315ab6-c9ac-402d-bb97-a3ca455ba1b8"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{identificacion_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="2" width="142" height="20" uuid="519a9551-6d7f-4ab5-84e8-b56e6657b7df"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="241" y="2" width="156" height="20" uuid="8b731fd5-0d66-483d-a32e-661d4a419753"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="2" width="48" height="20" uuid="0f99639a-5734-4da2-9873-176772cba676"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="2" width="55" height="20" uuid="6e163fda-8a78-44e7-8b5c-1bca45a0c2e6"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_estudiante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="2" width="181" height="20" uuid="f5d0158c-6039-47de-9fd0-1d42e04292fc"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_programa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="681" y="2" width="28" height="20" uuid="b2b626ee-9ffa-4bb2-97c9-c7a2d4d63216"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atendido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="709" y="2" width="31" height="20" uuid="61e49b54-d30b-42c1-a1b6-10eabfcc738d"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inasistido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="2" width="29" height="20" uuid="8e6eebac-6ec2-4da5-8c3d-a20b8de8a2d3"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pendiente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="770" y="2" width="32" height="20" uuid="794e649b-052e-47c0-a0f1-58428b6ee658"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad citas}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="22" width="800" height="1" uuid="ef52765c-e3e0-4cbc-8bbe-5014fcce6362"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="46" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="0" width="66" height="20" uuid="027afb44-2022-4deb-bd77-d6d905441009"/>
+				<text><![CDATA[Consultado:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="91" y="0" width="100" height="20" uuid="5067f1b7-df57-475b-acab-eb65b4c8ebb1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

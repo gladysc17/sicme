@@ -57,4 +57,7 @@ public class FacadeEstudiante {
     public int cantCitasPendientes(String fechaI, String fechaF, String id_usuario) throws SQLException {
         return new NegocioEstudiante().cantidadCitasPendientes(fechaI, fechaF, id_usuario);
     }
+    public EstudianteDTO consultarEstudiantes(String id) throws SQLException{
+      return new NegocioEstudiante().listarEstudiante(id);
+    }
 }
