@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import util.ConexionPostgres;
@@ -77,13 +78,13 @@ public class HorarioDAO {
         return ls;
     }
 
-    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado ) throws SQLException {
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado) throws SQLException {
 
         String sql = "UPDATE horariomedico SET estado = ? "
                 + "WHERE id_medico = ? AND fecha = ? AND id_horario = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1,estado);
+        ps.setString(1, estado);
         ps.setString(2, id_medico_horariomedico);
         ps.setDate(3, Date.valueOf(fecha));
         ps.setInt(4, id_horario_horariomedico);
@@ -97,7 +98,7 @@ public class HorarioDAO {
         }
 
     }
-    
+
     public List<HorarioDTO> consultarHorasPorServicio(int id_medico, String fecha, String hora) throws SQLException {
 
         List<HorarioDTO> lista = new ArrayList<HorarioDTO>();
@@ -106,7 +107,7 @@ public class HorarioDAO {
                 + "AND id_medico_horariomedico = ? AND fecha = ? AND estado_horariomedico = 'disponible' ORDER BY hora_inicio";
 
         PreparedStatement ps = con.prepareStatement(cons);
-        
+
         ps.setInt(1, id_medico);
         ps.setDate(2, Date.valueOf(fecha));
         ps.setString(3, hora);
@@ -123,29 +124,46 @@ public class HorarioDAO {
         }
         return lista;
     }
-    
-     public HorarioDTO consultarHorarioId(int id_horario) throws SQLException{
-        
-        String sql ="SELECT * FROM horario WHERE id = ?";
-        
-        PreparedStatement ps = con.prepareStatement(sql);          
-        
-        ps.setInt(1, id_horario);        
-                      
-        ResultSet rs = ps.executeQuery();        
-        
+
+    public HorarioDTO consultarHorarioId(int id_horario) throws SQLException {
+
+        String sql = "SELECT * FROM horario WHERE id = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, id_horario);
+
+        ResultSet rs = ps.executeQuery();
+
         HorarioDTO horario = null;
-        
-        if(rs.next()){
-            
+
+        if (rs.next()) {
+
             horario = new HorarioDTO();
-            
+
             horario.setId_horario(rs.getInt("id"));
-            horario.setHora_inicio(rs.getTime("hora_inicio"));            
+            horario.setHora_inicio(rs.getTime("hora_inicio"));
             horario.setHora_final(rs.getTime("hora_final"));
         }
 
         return horario;
     }
 
+    public HorarioDTO consultaHora(String fecha) throws SQLException {
+
+        String sql = "select * from horario where hora_inicio = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setTime(1, Time.valueOf(fecha));
+        ResultSet rs = ps.executeQuery();
+
+        HorarioDTO horario = null;
+
+        if (rs.next()) {
+            horario = new HorarioDTO();
+            horario.setId_horario(rs.getInt("id"));
+            horario.setHora_inicio(rs.getTime("hora_inicio"));
+            horario.setHora_final(rs.getTime("hora_final"));
+        }
+        return horario;
+    }
 }

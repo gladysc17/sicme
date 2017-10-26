@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.HorarioDTO"%>
 <%@page import="FACADE.FacadeHorario"%>
 <%@page import="DTO.CitaDTO"%>
 <%@page import="FACADE.FacadeCita"%>
@@ -25,6 +26,12 @@
             int horaMedico = Integer.parseInt(request.getParameter("horaMedico"));                                                                 
             
             FacadeCita facCita = new FacadeCita();
+            FacadeHorario fh = new FacadeHorario();
+            CitaDTO cit = facCita.consultarCitasId(id_cita);
+            System.out.println("cita "+ cit.getId_cita());
+            HorarioDTO h = fh.consultarHora(cit.getHora_cita());
+            System.out.println("cita "+ h.getId_horario());
+            boolean e = fh.cambiarEstadoHora(id_medico, fecha, h.getId_horario(), "disponible");
             boolean rta = facCita.modificarCita(id_cita, fecha, horaMedico, id_medico);
            
             if (rta == true) {

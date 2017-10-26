@@ -4,6 +4,9 @@
     Author     : LEGADO
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.ServicioDTO"%>
 <%@page import="FACADE.FacadeServicio"%>
 <%@page import="DTO.Programa_academicoDTO"%>
@@ -263,10 +266,10 @@
                                                     <%
                                                         FacadePrograma_academico fpa = new FacadePrograma_academico();
                                                         List<Programa_academicoDTO> lispro = fpa.consultarPrograma_academico();
-                                                        
-                                                        for(Programa_academicoDTO x: lispro){
+
+                                                        for (Programa_academicoDTO x : lispro) {
                                                     %>
-                                                    <option value="<%=x.getId() %>"> <%=x.getNombre_programa() %> </option>
+                                                    <option value="<%=x.getId()%>"> <%=x.getNombre_programa()%> </option>
                                                     <%
                                                         }
                                                     %>
@@ -504,30 +507,30 @@
                                 <div class="container">
                                     <ul class="row block-grid-v2">
                                         <%
-                                        FacadeServicio fs = new FacadeServicio();
-                                        List<ServicioDTO> ser = fs.consultarServicio();
-                                        
-                                        for(ServicioDTO x: ser){
+                                            FacadeServicio fs = new FacadeServicio();
+                                            List<ServicioDTO> ser = fs.consultarServicio();
+
+                                            for (ServicioDTO x : ser) {
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
                                             <div class="easy-block-v1">
                                                 <img src="imagenes/medicina.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    <%=x.getNombre() %>
+                                                    <%=x.getNombre()%>
                                                 </div>
                                             </div>
                                             <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
 
                                                 <p style="font-size: 14px;">
-                                                    <%=x.getInformacion() %>
+                                                    <%=x.getInformacion()%>
                                                 </p>
 
                                             </div>
 
                                         </li>
                                         <%
-                                        }
+                                            }
                                         %>
                                     </ul>
                                 </div>
@@ -555,12 +558,20 @@
                                     <ul class="row block-grid-v2">
                                         <%
                                             FacadeEvento fe = new FacadeEvento();
-
+                                            FacadeHorarioMedico fhm = new FacadeHorarioMedico();
+                                            String fechaActual = fhm.fechaActual();
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                             List<EventoDTO> ls = new ArrayList<EventoDTO>();
 
                                             ls = fe.obtenerEventosMes();
 
                                             for (EventoDTO e : ls) {
+                                                boolean mod = false;
+                                                Date f1 = sdf.parse(e.getFechaEvento());
+                                                Date f2 = sdf.parse(fechaActual);
+                                                if (f1.before(f2)) {
+                                                    mod = true;
+                                                }
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
@@ -578,7 +589,7 @@
                                                     <b>Lugar: </b><%= e.getLugarEvento()%>                                       
                                                 </p>
                                                 <p>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')" disabled="<%=mod %>" />
                                                 </p>
                                             </div>
 

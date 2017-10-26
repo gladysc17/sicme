@@ -14,19 +14,25 @@ import java.util.List;
  * @author Gladys M
  */
 public class FacadeHorario {
-    public List<HorarioDTO> consultarHorasDisponibles(String id_medico, String fecha) throws Exception{
+
+    public List<HorarioDTO> consultarHorasDisponibles(String id_medico, String fecha) throws Exception {
         return new NegocioHorario().consultarHorasDisponibles(id_medico, fecha);
     }
-    
-    public List<HorarioDTO> consultarHoras() throws Exception{
+
+    public List<HorarioDTO> consultarHoras() throws Exception {
         return new NegocioHorario().listadoHoras();
     }
-    
-     public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado) {
+
+    public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado) {
         return new NegocioHorario().cambiarEstadoHora(id_medico_horariomedico, fecha, id_horario_horariomedico, estado);
     }
-    
-     public HorarioDTO listadoMedicosHora(int id) throws Exception {
-         return new NegocioHorario().listadoHorasMedico(id);
-     }
+
+    public HorarioDTO listadoMedicosHora(int id) throws Exception {
+        return new NegocioHorario().listadoHorasMedico(id);
+    }
+
+    public HorarioDTO consultarHora(String fecha) throws Exception {
+        return new NegocioHorario().consultaHora(fecha);
+    }
+
 }
