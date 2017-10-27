@@ -430,6 +430,14 @@
                             return;
                         }
 
+                        var expr = /^([a-zA-Z0-9_\.\-])+\@((ufps.edu)+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                        if (!expr.test(correoElm.value)) {
+                            alert('Correo incorrecto, debe ser un correo institucional');
+                            correoElm.focus();
+                            return;
+                        }
+
                         if (password1.value != password2.value) {
                             alert("No se ha validado correctamente la contraseña");
                             return;
@@ -589,7 +597,7 @@
                                                     <b>Lugar: </b><%= e.getLugarEvento()%>                                       
                                                 </p>
                                                 <p>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')" disabled="<%=mod %>" />
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')" disabled="<%=mod%>" />
                                                 </p>
                                             </div>
 

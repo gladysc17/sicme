@@ -6,6 +6,7 @@
 
 
 
+<%@page import="util.Seguridad"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="FACADE.FacadeMedico"%>
@@ -24,6 +25,8 @@
             FacadeUsuario fac = new FacadeUsuario();
             String id = request.getParameter("usuario");
             String contrasena = request.getParameter("pw");
+            Seguridad seg = new Seguridad();
+            String psencri = seg.Encriptar(contrasena);
 
             UsuarioDTO us = fac.consultarUsuarioPorId(id);
 
@@ -31,7 +34,7 @@
                 
                 String clave = us.getContrasena();
                 System.out.println("claveee -> "+clave);
-                if (clave.equals(contrasena)){
+                if (clave.equals(psencri)){
                     
                     String tipo = us.getTipo_usuario();
                     
@@ -83,8 +86,5 @@
         </script>
         <%
             }
-
-
         %>
-
     </body>

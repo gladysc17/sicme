@@ -168,13 +168,13 @@
                             <div class="form-control"style="border-box: box-sizing;">
                                 <select id="servicio" name="servicio">
                                     <%
-                                    FacadeServicio fs = new FacadeServicio();
-                                    List<ServicioDTO> li = fs.consultarServicio();
-                                    for(ServicioDTO x: li){
+                                        FacadeServicio fs = new FacadeServicio();
+                                        List<ServicioDTO> li = fs.consultarServicio();
+                                        for (ServicioDTO x : li) {
                                     %>
-                                    <option value="<%=x.getId() %>"> <%=x.getNombre() %> </option>
+                                    <option value="<%=x.getId()%>"> <%=x.getNombre()%> </option>
                                     <%
-                                    }
+                                        }
                                     %>
                                 </select>
                             </div>
@@ -270,7 +270,15 @@
             if (!validateFieldNull(password2)) {
                 return;
             }
+            
+            var expr = /^([a-zA-Z0-9_\.\-])+\@((ufps.edu)+\.)+([a-zA-Z0-9]{2,4})+$/;
 
+            if (!expr.test(correoElm.value)) {
+                alert('Correo incorrecto, debe ser un correo institucional');
+                correoElm.focus();
+                return;
+            }
+            
             if (password1.value != password2.value) {
                 alert("No se ha validado correctamente la contraseña");
                 return;
@@ -312,4 +320,3 @@
     </script>
 
 </div>
-

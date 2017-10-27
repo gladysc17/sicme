@@ -19,15 +19,10 @@
                  String id = request.getParameter("id");
                  String tipo = request.getParameter("tipo");
                  System.out.println("id rec "+id + "tipo " + tipo);
-                 
                 %>
                 <div class="form-group" id="contrasena"> 
                     <input type="hidden" id="id" name="id" value="<%=id%>">
                     <input type="hidden" id="tipo" name="tipo" value="<%=tipo%>">
-                    <div class="col-sm-4">
-                        <label class="control-label">Contraseña Actual: </label>
-                        <input type="password" class="form-control" id="contra" name="contra" required onkeyup="validatePassword();" alt="Contraseña Actual">
-                    </div> 
                     <div class="col-sm-4">
                         <label class="control-label">Nueva Contraseña: </label>
                         <input type="password" class="form-control" id="contrasena1" name="contrasena1" required onkeyup="validatePassword();" alt="Nueva Contraseña">
@@ -50,13 +45,10 @@
 
     <script>
         function validate() {
-            var contraActual = document.getElementById("contra");
             var password1 = document.getElementById("contrasena1");
             var password2 = document.getElementById("contrasena2");
 
-            if (!validateFieldNull(contraActual)) {
-                return;
-            }
+            
             if (!validateFieldNull(password1)) {
                 return;
             }

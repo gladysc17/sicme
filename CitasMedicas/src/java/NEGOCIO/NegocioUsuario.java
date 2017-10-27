@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ConexionPostgres;
+import util.Seguridad;
 import util.ServicioEmail;
 
 /**
@@ -327,19 +328,21 @@ public class NegocioUsuario {
         return edad;
     }
 
-    public boolean recuperarContrasena(String id) throws SQLException {
+    public boolean recuperarContrasena(String id) throws SQLException, Exception {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         UsuarioDAO u = new UsuarioDAO(co);
+        Seguridad seg = new Seguridad();
         UsuarioDTO usuario = u.consultarUsuarioPorId(id);
         String contrasena = usuario.getContrasena();
+        String conDesencrip = seg.Desencriptar(contrasena);
 
         ServicioEmail servicioEmail = new ServicioEmail("sicgme@gmail.com", "oovnjylswrgytpty");
 
         String correo = usuario.getCorreo();
         String asunto = "SIGME - RECUPERAR CONTRASEÑA";
-        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + contrasena +  "\n" +
+        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + conDesencrip +  "\n" +
                 "RECUERDE CAMBIARLA UNA VEZ INGRESE AL SISTEMA";
 
         String cont = servicioEmail.getClaveEmailUsuarioEmisor();
