@@ -57,7 +57,7 @@ public class FacadeUsuario {
         return new NegocioUsuario().calcularEdad(fecha);
     }
 
-    public boolean recueperarContrasena(String id) throws SQLException {
+    public boolean recueperarContrasena(String id) throws SQLException, Exception {
         return new NegocioUsuario().recuperarContrasena(id);
     }
 

@@ -4,6 +4,13 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.Hc_planificacionfamiliarDTO"%>
+<%@page import="FACADE.FacadeHcPlanificacionFamiliar"%>
+<%@page import="DTO.SesionDTO"%>
+<%@page import="DTO.SesionDTO"%>
+<%@page import="DTO.SesionDTO"%>
+<%@page import="FACADE.FacadeSesion"%>
+<%@page import="FACADE.FacadeSesion"%>
 <%@page import="DTO.MedicoDTO"%>
 <%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.UsuarioDTO"%>
@@ -34,7 +41,7 @@
                 FacadeMedico facM = new FacadeMedico();
                 
                 MedicoDTO medic = facM.consultarMedicoPorId(idMed);
-                String servicio = medic.getServicio();                                
+                int servicio = medic.getServicio();                                
 
                 FacadeUsuario faca = new FacadeUsuario();
                 UsuarioDTO u = faca.consultarUsuarioPorId(ide);
@@ -48,7 +55,7 @@
             <form  action="/CitasMedicas/historia" method="post" target="_blank">
                 
 
-                <%        } else if (servicio.equals("1")) {
+                <%        } else if (servicio == 1) {
 
                     FacadeHcMedicinaGeneral fac = new FacadeHcMedicinaGeneral();
                     List<HcMedicinaGeneralDTO> hc = fac.consultarHCMedicinaGeneral(id);
@@ -102,8 +109,8 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                <%        } else if (servicio.equals("4")) {
-
+                <%        } else if (servicio==2) {
+                //agregar oodontologia
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
                     if (hc.isEmpty()) {
@@ -156,10 +163,10 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("2")) {
+                            <%        } else if (servicio==3) {
 
-                    FacadeHcPsicologia fac = new FacadeHcPsicologia();
-                    List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
+                    FacadeHcPlanificacionFamiliar fac = new FacadeHcPlanificacionFamiliar();
+                    List<Hc_planificacionfamiliarDTO> hc = fac.consultarHcPlanificacion(id);
                     if (hc.isEmpty()) {
 
                 %>
@@ -184,7 +191,7 @@
                                 for (int i = 0; i < hc.size(); i++) {
 
                                     FacadeCita fc = new FacadeCita();
-                                    int idcita = hc.get(i).getIdcita_hcpsico();
+                                    int idcita = hc.get(i).getId_cita();
                                     CitaDTO ci = fc.consultarCitasId(idcita);
 
                                     String nombre = ci.getNombre_usuario();
@@ -210,7 +217,7 @@
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("3")) {
+                            <%        } else if (servicio==4) {
 
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
@@ -254,8 +261,23 @@
                                 <td><%=fecha%></td>
                                 <td><%=hora%></td>  
                                 <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
+                            
+                                <%
+
+                                    int hisP = hc.get(i).getId_hcpsicologia();
+                                    FacadeSesion facSe = new FacadeSesion();
+                                    List<SesionDTO> listaSes = facSe.consultarSesionesPorHcPsicologia(hisP);
+                                    for (int j = 0; j < listaSes.size(); j++) {
+                                        int idSesion = listaSes.get(j).getId();
+                                        int num = listaSes.get(j).getNumSesion();                                        
+                                        System.out.println("num " +num);
+                                %>
+
+
+                                <td> <a href="/CitasMedicas/sesionPsicologia?idsesion=<%=idSesion%>"> Ver  N°: <%=num%></a> </td> 
+
                             </tr> 
-                            <%
+                            <%                                    }
                                         }
                                     }
                                 }

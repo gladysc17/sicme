@@ -90,6 +90,7 @@ public class HcPsicologiaDAO {
         hcps.setTipofamilia(rs.getString("miembrosfamilia"));
         hcps.setTipofamilia(rs.getString("relacionesfamilia"));
         hcps.setGenograma(rs.getString("genograma"));
+        hcps.setId_hcpsicologia(rs.getInt("id_hcpsicologia"));
         
                
         listaHisC.add(hcps);

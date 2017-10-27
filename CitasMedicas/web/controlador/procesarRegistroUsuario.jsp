@@ -68,7 +68,7 @@
 
             if (tipousuario.equals("estudiante")) {
                 FacadeEstudiante facEst = new FacadeEstudiante();
-                EstudianteDTO est = new EstudianteDTO(identificacion, Integer.parseInt(programa));
+                EstudianteDTO est = new EstudianteDTO(identificacion, Integer.parseInt(programa), "");
                 registro2 = facEst.registrarEstudiante(est);
 
             } else if (tipousuario.equals("medico")) {
