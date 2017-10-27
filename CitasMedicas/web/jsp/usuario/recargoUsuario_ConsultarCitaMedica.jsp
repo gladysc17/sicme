@@ -20,16 +20,16 @@
     <%
         UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuario");
         if (usuario == null) {
-
+            
             response.sendRedirect("../index.jsp");
             return;
         }
-
+        
         String id = usuario.getIdentificacion();
-
+        
         FacadeCita cita = new FacadeCita();
         List<CitaDTO> lista = cita.consultarCitasUsuario(id);
-
+        
         if (!lista.isEmpty()) {
 
     %>
@@ -54,10 +54,11 @@
                                 <th>Hora</th>
                                 <th>Estado</th>                             
                                 <th>Certificado</th>
+                                <th>Formula Medica</th>
                             </tr>
                         </thead>
                         <%                                for (int i = 0; i < lista.size(); i++) {
-
+                                
                                 String nombre = lista.get(i).getNombre_usuario();
                                 String servicio = lista.get(i).getServicio_cita();
                                 String fecha = lista.get(i).getFecha_cita();
@@ -79,7 +80,7 @@
 
                                 <%
                                     if (estado.equals("atendido")) {
-                                       
+                                        
                                 %>
                                 <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button> </td> 
 
@@ -89,8 +90,18 @@
                                 %>
                                 <td> --- </td> 
 
-                                <%
-                                        }
+                                <%                                        }
+                                        if (servicio.equals("medicina_general") && estado.equals("atendido")) {
+                                           %>
+                                           <td> <a name="post" href="/CitasMedicas/FormulaMedica?idcita=<%=idcita%>"  > Ver</a> </td> 
+
+                                <%  
+                                        } else{
+  %>
+                                <td> --- </td> 
+
+                                <%                                        
+}
                                     }
                                 %>
 
@@ -110,7 +121,7 @@
             </div>
 
 
-            <%
+            <%        
                 }
 
             %>     

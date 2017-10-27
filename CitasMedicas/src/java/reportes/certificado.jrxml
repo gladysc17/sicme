@@ -66,7 +66,7 @@
 		<band height="76" splitType="Stretch">
 			<staticText>
 				<reportElement x="19" y="14" width="284" height="20" uuid="75288edd-e538-405c-b5fc-34368bec6285"/>
-				<text><![CDATA[La División de Servicios Asistenciales y de Salud certifique que:]]></text>
+				<text><![CDATA[La División de Servicios Asistenciales y de Salud certifica que]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="303" y="14" width="239" height="20" uuid="6048272a-d99b-4764-bdc1-91197ecca7b9"/>
