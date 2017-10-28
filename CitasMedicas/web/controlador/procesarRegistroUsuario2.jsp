@@ -51,6 +51,7 @@
             String programa = request.getParameter("programa");
 
             String servicio = request.getParameter("servicio");
+            String estado = request.getParameter("estado_estudiante");
             String contrasena = request.getParameter("contrasena");
 
             Calendar fechaGeneral = new GregorianCalendar();
@@ -68,7 +69,7 @@
 
             if (tipousuario.equals("estudiante")) {
                 FacadeEstudiante facEst = new FacadeEstudiante();
-                EstudianteDTO est = new EstudianteDTO(identificacion, Integer.parseInt(programa));
+                EstudianteDTO est = new EstudianteDTO(identificacion, Integer.parseInt(programa), estado);
                 registro2 = facEst.registrarEstudiante(est);
 
             }

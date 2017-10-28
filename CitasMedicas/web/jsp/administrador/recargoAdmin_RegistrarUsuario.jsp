@@ -143,9 +143,21 @@
                     </script>
 
                     <div class="form-group" id="estudiante">
+
+                        <div class="col-sm-6">
+                            <label class="control-label">Estado del estuidante: </label>
+                            <div class="">
+                                <select name="estado_estudiante" id="estado_estudiante" onchange="mostrarDatos()" required alt="Estado:">
+                                    <option> </option>
+                                    <option value="activo"> Activo </option>
+                                    <option value="egresado"> Egresado </option>                                                                                          
+                                    <option value="graduado"> Graduado </option>                                                                                    
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-sm-12">
                             <label class="control-label">Programa </label>
-                            <div class="form-control"style="border-box: box-sizing;">
+                            <div class="">
                                 <select id="programa" name="programa">                                        
                                     <option></option>
                                     <%
@@ -270,7 +282,7 @@
             if (!validateFieldNull(password2)) {
                 return;
             }
-            
+
             var expr = /^([a-zA-Z0-9_\.\-])+\@((ufps.edu)+\.)+([a-zA-Z0-9]{2,4})+$/;
 
             if (!expr.test(correoElm.value)) {
@@ -278,7 +290,7 @@
                 correoElm.focus();
                 return;
             }
-            
+
             if (password1.value != password2.value) {
                 alert("No se ha validado correctamente la contraseña");
                 return;

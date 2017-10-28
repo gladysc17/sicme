@@ -93,7 +93,7 @@
                                 <%                                        }
                                         if (servicio.equals("medicina_general") && estado.equals("atendido")) {
                                            %>
-                                           <td> <a name="post" href="/CitasMedicas/FormulaMedica?idcita=<%=idcita%>"  > Ver</a> </td> 
+                                           <td> <a name="post" href="/CitasMedicas/FormulaMedica?idcita=<%=idcita%>" target="_blank" > Ver</a> </td> 
 
                                 <%  
                                         } else{

@@ -262,7 +262,7 @@
                                 %>
 
 
-                                <td> <a href="/CitasMedicas/sesionPsicologia?idsesion=<%=idSesion%>"> Ver  N°: <%=num%></a> </td> 
+                                <td> <a href="/CitasMedicas/sesionPsicologia?idsesion=<%=idSesion%>" target="_blank"> Ver  N°: <%=num%></a> </td> 
 
                             </tr> 
                             <%                                    }

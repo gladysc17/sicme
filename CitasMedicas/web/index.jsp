@@ -247,17 +247,27 @@
                                             var selec = tipo.options[tipo.selectedIndex].value;
 
                                             if (selec == "estudiante") {
-                                                document.getElementById("estudiante").style.display = 'inline';
+                                                document.getElementById("estudiante").style.display = 'inline';                                                
                                             } else {
-                                                document.getElementById("estudiante").style.display = 'none'
+                                                document.getElementById("estudiante").style.display = 'none'                                                
                                             }
 
                                         }
 
-
                                     </script>
-
+                                    
                                     <div class="form-group" id="estudiante">
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Estado del estudiante: </label>
+                                            <div class="">
+                                                <select name="estado_estudiante" id="estado_estudiante" onchange="mostrarDatos()" required alt="Estado">
+                                                    <option> </option>
+                                                    <option value="activo"> Activo </option>
+                                                    <option value="egresado"> Egresado </option>                                                                                          
+                                                    <option value="graduado"> Graduado </option>                                                                                    
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-12">
                                             <label class="control-label">Programa: </label>
                                             <div class="">
