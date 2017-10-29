@@ -26,6 +26,11 @@ import util.ConexionPostgres;
  */
 public class NegocioCita {
 
+    /**
+     * Metodo que registra la cita medica
+     *
+     * @see DAO.CitaDAO registrarCita
+     */
     public boolean registrarCita(CitaDTO cita) {
         boolean rta = false;
 
@@ -54,6 +59,11 @@ public class NegocioCita {
         return rta;
     }
 
+    /**
+     * Metodo que lista las citas medicas del estudiante
+     *
+     * @see DAO.CitaDAO consultarCitasEst
+     */
     public ArrayList<CitaDTO> consultarCitasEst(int id_est) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -82,6 +92,11 @@ public class NegocioCita {
         return citas;
     }
 
+    /**
+     * Metodo que lista las citas medicas del profesional de la salud
+     *
+     * @see DAO.CitaDAO consultarCitasProfesional
+     */
     public ArrayList<CitaDTO> consultarCitasProfesiona(int id_prof, String fecha) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -110,6 +125,11 @@ public class NegocioCita {
         return citas;
     }
 
+    /**
+     * Metodo que lista las citas medicas del usuario
+     *
+     * @see DAO.CitaDAO consultarCitasUsuario
+     */
     public ArrayList<CitaDTO> consultarCitasUsuario(String id_usuario) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -138,6 +158,11 @@ public class NegocioCita {
         return citas;
     }
 
+    /**
+     * Metodo que lista las citas medicas del día del profesional de la salud
+     *
+     * @see DAO.CitaDAO consultarCitasMedicoDia
+     */
     public ArrayList<CitaDTO> consultarCitasMedicoDia(String id_medico, String fecha_cita) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -166,6 +191,11 @@ public class NegocioCita {
         return citas;
     }
 
+    /**
+     * Metodo que modifica los datos de la cita
+     *
+     * @see DAO.CitaDAO, HorarioMedicoDTO, HorarioDAO consultarHorarioMedico, consultarHorarioId, modificarCita
+     */
     public boolean modificarCita(int id_cita, String fecha, int hora_cita, String id_medico) throws SQLException {
 
         boolean rta = false;
@@ -201,6 +231,11 @@ public class NegocioCita {
         return rta;
     }
     
+    /**
+     * Metodo que consulta los datos de la cita por su id
+     *
+     * @see DAO.CitaDAO consultarCitasId
+     */
     public CitaDTO consultarCitasId(int id_cita) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -229,6 +264,11 @@ public class NegocioCita {
         return citas;
     }
     
+    /**
+     * Metodo que lista los datos de la cita en un rango de fechas
+     *
+     * @see DAO.CitaDAO consultarCitasPorRango
+     */
     public ArrayList<CitaDTO> consultarCitasRango(String id_medico, String fecha, String fechaF) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -257,6 +297,11 @@ public class NegocioCita {
         return citas;
     }
     
+    /**
+     * Metodo que actualizar el estado de la cita a atendida
+     *
+     * @see DAO.CitaDAO actualizarEstadoAtendida
+     */
     public boolean actualizarEstadoAtendida(int id_cita) throws SQLException {
 
         boolean rta = false;
@@ -287,6 +332,11 @@ public class NegocioCita {
         return rta;
     }
     
+    /**
+     * Metodo que actualizar el estado de la cita a no atendida
+     *
+     * @see DAO.CitaDAO actualizarEstadoNoAtendida
+     */
     public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
 
         boolean rta = false;
@@ -317,6 +367,11 @@ public class NegocioCita {
         return rta;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas en un rango de fechas
+     *
+     * @see DAO.CitaDAO cantidadCitas
+     */
     public int cantidadCitas(String fechaI, String fechaF) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -342,6 +397,11 @@ public class NegocioCita {
         return cant;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas asistidas en un rango de fechas
+     *
+     * @see DAO.CitaDAO cantidadCitasAsistidas
+     */
     public int cantidadCitasAsistidas(String fechaI, String fechaF) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -366,6 +426,11 @@ public class NegocioCita {
         return cant;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas no asistidas en un rango de fechas
+     *
+     * @see DAO.CitaDAO cantidadCitasNoAsistidas
+     */
     public int cantidadCitasNoAsistidas(String fechaI, String fechaF) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -390,6 +455,11 @@ public class NegocioCita {
         return cant;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas asistidas en un rango de fechas por un estudiante
+     *
+     * @see DAO.CitaDAO cantidadCitasEstudiante
+     */
     public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF){
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -414,6 +484,11 @@ public class NegocioCita {
         return cant;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas pendientes en un rango de fechas 
+     *
+     * @see DAO.CitaDAO cantidadCitasPendientes
+     */
     public int cantidadCitasPendientes(String fechaI, String fechaF) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -438,6 +513,11 @@ public class NegocioCita {
         return cant;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas de acuerdo a un usuario
+     *
+     * @see DAO.CitaDAO cantidadCitasUsuario
+     */
     public int cantidadCitasUsuario(String id_usuario){
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -462,6 +542,11 @@ public class NegocioCita {
         return cant;
     }
     
+    /**
+     * Metodo que obtiene la cantidad de citas por servicio
+     *
+     * @see DAO.CitaDAO cantidadCitasServicio
+     */
     public int cantidadCitasServicio(String servicio, String fechaI, String fechaF){
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -486,6 +571,11 @@ public class NegocioCita {
         return cant;
     }   
     
+    /**
+     * Metodo que obtiene la cantidad de citas por servicio con programa academico
+     *
+     * @see DAO.CitaDAO cantidadCitasPro_Ser
+     */
     public int cantidadCitasProSer(String servicio, String fechaI, String fechaF, int pro){
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();

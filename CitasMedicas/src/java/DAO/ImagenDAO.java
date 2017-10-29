@@ -27,6 +27,13 @@ public class ImagenDAO {
         this.con = con;
     }
     
+    /**
+     * metodo que me permite registrar el nombre de una imagen 
+     * @param ima Objeto de tipo ImagenDTO con la información suministrada
+     * @return Valor booleano que confirma el registro en la base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean registrarImagen(ImagenDTO ima) throws SQLException {
         
         String sql = "insert into imagen (nombre, estado) values (?,?)";
@@ -44,6 +51,12 @@ public class ImagenDAO {
         }
     }
     
+    /**
+     * Metodo que lista todas las nombres de las imagenes ordenado por el id
+     * @return Listado de ImagenDTO con la información registrada con anterioridad
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<ImagenDTO> listaImagenes() throws SQLException {
         
         String sql = "select * from imagen order by id";
@@ -68,6 +81,14 @@ public class ImagenDAO {
         return lis;
     }
     
+    /**
+     * metodo que permite actualizar el estado de las imagenes
+     * @param estado Valor con el que quedara en la base de datos
+     * @param id Identificador de la imagen en la base de datos
+     * @return Valor booleano que confirma el cambio del estado
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean actualizarEstadoBanner(String estado, int id) throws SQLException {
         
         String sql = "UPDATE imagen SET estado = ? where id = ?";
@@ -86,6 +107,13 @@ public class ImagenDAO {
         }
     }
     
+    /**
+     * metodo que permite eliminar el registro de la base de datos de una imagen
+     * @param id Identificador de la base de datos
+     * @return Valor booleano que confirma el resultado de la operación
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean eliminarImagen(int id) throws SQLException {
         
         String sql = "DELETE FROM imagen where id = ?";
@@ -101,6 +129,12 @@ public class ImagenDAO {
         return false;
     }
     
+    /**
+     * metodo que obtiene las imagenes que tienen el estado activo para mostrarla en el banner de la pagina principal
+     * @return Listado de ImagenDTO con la respectiva información registrada.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<ImagenDTO> obtenerImagenesActivas() throws SQLException {
         
         String sql = "select * from imagen where estado = 'Activo'";

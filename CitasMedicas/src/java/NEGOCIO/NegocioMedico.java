@@ -20,12 +20,16 @@ import util.ConexionPostgres;
  * @author Gladys M
  */
 public class NegocioMedico {
-    
-    
+
+    /**
+     * Metodo que valida la sesion del médico
+     *
+     * @see DAO.MedicoDAO consultarMedicoPorId
+     */
     public boolean validarSesionMedico(String id, String clave) {
-         
+
         boolean resultado = false;
-         
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         MedicoDAO med = new MedicoDAO(co);
@@ -38,7 +42,7 @@ public class NegocioMedico {
                 if (medi.getContrasena().equals(clave)) {
                     return true;
                 }
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +59,12 @@ public class NegocioMedico {
 
         return resultado;
     }
-    
+
+    /**
+     * Metodo que registra la informacion del médico
+     *
+     * @see DAO.MedicoDAO registrarMedico
+     */
     public boolean registrarMedico(MedicoDTO med) {
 
         boolean resultado = false;
@@ -66,9 +75,9 @@ public class NegocioMedico {
         MedicoDAO medi = new MedicoDAO(co);
 
         try {
-           
-                return resultado = medi.registrarMedico(med);
-            
+
+            return resultado = medi.registrarMedico(med);
+
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -85,15 +94,20 @@ public class NegocioMedico {
         return resultado;
 
     }
-    
-     public MedicoDTO consultarMedicoPorId(String id) {
+
+    /**
+     * Metodo que consulta la informacion del médico por su identificacion
+     *
+     * @see DAO.MedicoDAO consultarMedicoPorId
+     */
+    public MedicoDTO consultarMedicoPorId(String id) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         MedicoDAO med = new MedicoDAO(co);
 
         try {
-             return med.consultarMedicoPorId(id);
+            return med.consultarMedicoPorId(id);
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -108,19 +122,24 @@ public class NegocioMedico {
         }
         return null;
     }
-     
-       public boolean consultarMedicoPorIdBoolean(String id) {
-           
-           boolean rta = false;
+
+    /**
+     * Metodo booleano que consulta la informacion del médico por su identificacion
+     *
+     * @see DAO.MedicoDAO consultarMedicoPorId
+     */
+    public boolean consultarMedicoPorIdBoolean(String id) {
+
+        boolean rta = false;
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         MedicoDAO med = new MedicoDAO(co);
 
         try {
-             MedicoDTO medico = med.consultarMedicoPorId(id);
-             
-               return medico != null;
+            MedicoDTO medico = med.consultarMedicoPorId(id);
+
+            return medico != null;
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -135,15 +154,20 @@ public class NegocioMedico {
         }
         return rta;
     }
-     
-    public MedicoDTO consultarMedicoPorIdCodigo (int id, int codigo) {
+
+    /**
+     * Metodo que consulta la informacion del médico por su identificacion o codigo
+     *
+     * @see DAO.MedicoDAO consultarMedicoPorIdCodigo
+     */
+    public MedicoDTO consultarMedicoPorIdCodigo(int id, int codigo) {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         MedicoDAO doc = new MedicoDAO(co);
 
         try {
-             return doc.consultarMedicoPorIdCodigo(id, codigo);
+            return doc.consultarMedicoPorIdCodigo(id, codigo);
         } catch (SQLException ex) {
             Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -158,35 +182,43 @@ public class NegocioMedico {
         }
         return null;
     }
-    
-     
-     public List<MedicoDTO> listarMedicos() throws SQLException{
-      
-           
+
+    /**
+     * Metodo que lista los médicos
+     *
+     * @see DAO.MedicoDAO consultarMedico
+     */
+    public List<MedicoDTO> listarMedicos() throws SQLException {
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        
+
         List<MedicoDTO> prof = new ArrayList<MedicoDTO>();
         MedicoDAO doc = new MedicoDAO(co);
-        
-        try{
+
+        try {
             prof = doc.consultarMedico();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             co.close();
-        }        
+        }
         return (prof);
     }
-     
-      public ArrayList<MedicoDTO> consultarMedicoPorServicio(int servicio) throws SQLException{
-      
-      ConexionPostgres con = new ConexionPostgres();
+
+    /**
+     * Metodo que lista los médicos por su servicio
+     *
+     * @see DAO.MedicoDAO consultarMedicoPorServicio
+     */
+    public ArrayList<MedicoDTO> consultarMedicoPorServicio(int servicio) throws SQLException {
+
+        ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
         MedicoDAO med = new MedicoDAO(co);
         ArrayList<MedicoDTO> medicos = new ArrayList<MedicoDTO>();
-        
+
         try {
             medicos = med.consultarMedicoPorServicio(servicio);
 
@@ -204,40 +236,16 @@ public class NegocioMedico {
             }
         }
         return medicos;
-      
-  }
-      
-    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException{
 
-        boolean rta = false;
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-
-        MedicoDAO med = new MedicoDAO(co);
-
-        try {
-            
-            rta = med.modificarMedico(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, contrasena);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
-        return rta;
     }
 
+    /**
+     * Metodo que verifica el médico por su identificacion y clave
+     *
+     * @see DAO.MedicoDAO consultarMedicoPorId
+     */    
     public boolean verificarMedico(String id, String clave) throws SQLException {
-      
+
         boolean rta = false;
 
         ConexionPostgres con = new ConexionPostgres();
@@ -258,13 +266,18 @@ public class NegocioMedico {
 
         return rta;
     }
-    
-    public ArrayList<String[]> listadoMedico() throws SQLException{
+
+    /**
+     * Metodo que lista los médicos
+     *
+     * @see DAO.MedicoDAO listadoMedico
+     */ 
+    public ArrayList<String[]> listadoMedico() throws SQLException {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        
+
         ArrayList<String[]> lis = new ArrayList<>();
-        try{
+        try {
             MedicoDAO med = new MedicoDAO(co);
             lis = med.listadoMedico();
         } catch (SQLException ex) {
@@ -280,17 +293,22 @@ public class NegocioMedico {
                 }
             }
         }
-        
+
         return lis;
     }
-    
+
+    /**
+     * Metodo que lista los servicios
+     *
+     * @see DAO.MedicoDAO consultaServicios
+     */
     public List<String> consultaServicios() {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        
+
         List<String> ls = new ArrayList<>();
-        
-        try{
+
+        try {
             MedicoDAO med = new MedicoDAO(co);
             ls = med.consultaServicios();
         } catch (SQLException ex) {

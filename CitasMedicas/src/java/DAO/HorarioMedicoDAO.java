@@ -27,6 +27,13 @@ public class HorarioMedicoDAO {
         this.con = con;
     }
     
+    /**
+     * Metodo que registra el horario del profesional de la salud
+     * @param hm Objeto de tipo HorarioMedicoDTO con la infomación suministrada
+     * @return Valor booleano que confirma si el registro fue exitoso.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean registrarHorarioMedico(HorarioMedicoDTO hm) throws SQLException{
         
         String sql = "insert into horariomedico(fecha, id_horario, id_medico, estado)"
@@ -48,6 +55,13 @@ public class HorarioMedicoDAO {
         }
     }
     
+    /**
+     * metodo que permite consultar el horario del profesional de la salud.
+     * @param id_horariomedico Identificador del profesional de la salud
+     * @return Objeto tipo HorarioMedicoDTO con la información suministrada.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public HorarioMedicoDTO consultarHorarioMedico(int id_horariomedico) throws SQLException{
         
         String sql ="SELECT * FROM horariomedico WHERE id_horario = ?";
@@ -74,6 +88,13 @@ public class HorarioMedicoDAO {
         return horam;
     }
     
+    /**
+     * metodo que obtiene el horario de un profesional de la salud ordenados por la fecha
+     * @param idmedico Identificador del profesional de la salud
+     * @return Listado de objetos con la información registrada en la base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<HorarioMedicoDTO> listarHorasMedico(String idmedico) throws SQLException {
         
         String sql = "select * from horariomedico where id_medico = ? order by fecha";
@@ -97,6 +118,13 @@ public class HorarioMedicoDAO {
         return lis;
     }
     
+    /**
+     * metodo que permite eliminar una hora del profesional de la salud.
+     * @param id Identificador de la base de datos.
+     * @return valor booleano que confirma la accion
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean eliminarHora(int id) throws SQLException {
         
         String sql = "delete from horariomedico where id = ? ";
@@ -109,6 +137,12 @@ public class HorarioMedicoDAO {
         return rta > 0;
     }
     
+    /**
+     * Metodo que obtiene la fecha del sistema
+     * @return Cadena de caracteres con la fecha del sistema.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public String fechaActual() throws SQLException{
         String sql = "select current_date";
         PreparedStatement ps = con.prepareStatement(sql);

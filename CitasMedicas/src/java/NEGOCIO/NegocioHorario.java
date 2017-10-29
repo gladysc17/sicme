@@ -21,6 +21,11 @@ import util.ConexionPostgres;
  */
 public class NegocioHorario {
 
+    /**
+     * Metodo que lista las horas disponibles
+     *
+     * @see DAO.HorarioDAO consultarHorasDisponibles
+     */
     public List<HorarioDTO> consultarHorasDisponibles(String id_medico, String fecha) throws Exception {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -40,6 +45,11 @@ public class NegocioHorario {
         return (horasDisp);
     }
 
+    /**
+     * Metodo que lista las horas 
+     *
+     * @see DAO.HorarioDAO listadoHoras
+     */
     public List<HorarioDTO> listadoHoras() {
 
         List<HorarioDTO> ho = new ArrayList<HorarioDTO>();
@@ -65,6 +75,11 @@ public class NegocioHorario {
         return ho;
     }
 
+    /**
+     * Metodo que cambia el estado de la hora
+     *
+     * @see DAO.HorarioDAO cambiarEstadoHora
+     */
     public boolean cambiarEstadoHora(String id_medico_horariomedico, String fecha, int id_horario_horariomedico, String estado) {
 
         boolean rta = false;
@@ -91,6 +106,11 @@ public class NegocioHorario {
         return rta;
     }
 
+    /**
+     * Metodo que consulta las horas del medico de acuerdo al id
+     *
+     * @see DAO.HorarioDAO consultarHorarioId
+     */
     public HorarioDTO listadoHorasMedico(int id) {
 
         HorarioDTO ho = new HorarioDTO();
@@ -116,6 +136,11 @@ public class NegocioHorario {
         return ho;
     }
 
+    /**
+     * Metodo que consulta las horas del medico de acuerdo a la fecha
+     *
+     * @see DAO.HorarioDAO consultaHora
+     */
     public HorarioDTO consultaHora(String fecha) {
         HorarioDTO ho = new HorarioDTO();
 

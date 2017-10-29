@@ -23,6 +23,11 @@ import util.ConexionPostgres;
  */
 public class NegocioServicio {
     
+    /**
+     * Metodo que registra un servicio
+     *
+     * @see DAO.ServicioDAO registrarServicio
+     */
     public boolean registrarServicio(ServicioDTO ser) {
         boolean rta = false;
 
@@ -51,6 +56,11 @@ public class NegocioServicio {
         return rta;
     }
     
+    /**
+     * Metodo que consulta un servicio por su identificación
+     *
+     * @see DAO.ServicioDAO consultarServicio
+     */
     public ServicioDTO consultarServicioId(int id) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -79,6 +89,11 @@ public class NegocioServicio {
         return ser;
     }
     
+    /**
+     * Metodo que consulta un servicio por su identificación
+     *
+     * @see DAO.ServicioDAO consultarServicio
+     */
     public List<ServicioDTO> consultarServicios() {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -107,6 +122,11 @@ public class NegocioServicio {
         return servicios;
     }
     
+    /**
+     * Metodo que actualiza datos del servicio
+     *
+     * @see DAO.ServicioDAO actualizarServicio
+     */
     public boolean actualizarServicio(int id, String ser, String info) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -131,6 +151,11 @@ public class NegocioServicio {
         return rta;
     }
     
+    /**
+     * Metodo que elimina el servicio
+     *
+     * @see DAO.ServicioDAO eliminarServicio
+     */
     public boolean eliminarServicio(int id) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -155,6 +180,11 @@ public class NegocioServicio {
         return rta;
     }
     
+    /**
+     * Metodo que calcula la cantidad de citas asistidas por servicio
+     *
+     * @see DAO.ServicioDAO cantidadCitasAsistidas
+     */
     public int cantidadCitasAsistidas(String fechaI, String fechaF, String servicio) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -179,6 +209,11 @@ public class NegocioServicio {
         return cant;
     }
     
+    /**
+     * Metodo que calcula la cantidad de citas no asistidas por servicio
+     *
+     * @see DAO.ServicioDAO cantidadCitasNoAsistidas
+     */
     public int cantidadCitasNoAsistidas(String fechaI, String fechaF, String servicio) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
@@ -202,7 +237,12 @@ public class NegocioServicio {
         }
         return cant;
     }
-        
+    
+    /**
+     * Metodo que consulta el servicio por el nombre
+     *
+     * @see DAO.ServicioDAO consultarServicio
+     */
     public ServicioDTO consultarServicio(String nombre) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -232,6 +272,12 @@ public class NegocioServicio {
         return ser;
 
     }
+    
+    /**
+     * Metodo que calcula la cantidad de citas pendientes por servicio
+     *
+     * @see DAO.ServicioDAO cantidadCitasPendientes
+     */
     public int cantidadCitasPendientes(String fechaI, String fechaF, String servicio) {
         int cant = 0;
         ConexionPostgres con = new ConexionPostgres();

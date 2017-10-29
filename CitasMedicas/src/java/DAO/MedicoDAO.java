@@ -25,6 +25,13 @@ public class MedicoDAO {
         this.con = con;
     }
 
+    /**
+     * metodo que permite registrar al profesional de la salud con información adicional
+     * @param med Objeto de tipo MedicoDTO con la informacion suministrada.
+     * @return Valor booleano que confirma la operacion.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean registrarMedico(MedicoDTO med) throws SQLException {
 
         String sql = "INSERT INTO medico (identificacion, servicio)"
@@ -41,6 +48,13 @@ public class MedicoDAO {
 
     }
 
+    /**
+     * metodo que permite obtener el medico de acuerdo a su identificador.
+     * @param id Identificador en la base de datos
+     * @return Objeto MedicoDTO con la informacion registrada en la base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public MedicoDTO consultarMedicoPorId(String id) throws SQLException {
 
         String sql = "SELECT * FROM medico WHERE identificacion = ?";
@@ -62,6 +76,12 @@ public class MedicoDAO {
         return med;
     }
 
+    /**
+     * metodo que obtiene un listado de los profesionales de la salud ordenado por el nombre
+     * @return Listado de los profesionales de la salud registrados hasta el momento
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<MedicoDTO> consultarMedico() throws SQLException {
 
         List<MedicoDTO> listaMed = new ArrayList<MedicoDTO>();
@@ -87,6 +107,14 @@ public class MedicoDAO {
 
     }
 
+    /**
+     * metodo que permite consultar los profesionales, bien sea por su identificación o su codigo.
+     * @param id Identificador del profesional de la salud en la base de datos
+     * @param codigo Identificador del profesional de la salud en la base de datos
+     * @return Objeto MedicoDTO con la información registrada
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public MedicoDTO consultarMedicoPorIdCodigo(int id, int codigo) throws SQLException {
 
         String sql = "SELECT * FROM medico WHERE identificacion = ? OR codigo = ? ";
@@ -111,6 +139,13 @@ public class MedicoDAO {
 
     }
 
+    /**
+     * Metodo que permite consultar a los profesionales de la salud por su servicio.
+     * @param servicio Identificador del servicio en la base de datos
+     * @return Listado de los profesionales de la salud de acuerdo al servicio solicitado
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public ArrayList<MedicoDTO> consultarMedicoPorServicio(int servicio) throws SQLException {
 
         ArrayList<MedicoDTO> medicos = new ArrayList<MedicoDTO>();
@@ -136,28 +171,12 @@ public class MedicoDAO {
         return medicos;
     }
 
-    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException {
-
-        String sql = "UPDATE medico SET correo = ? , fechanacimiento = ?, genero = ?, estadocivil = ? , direccion =?, telefono = ?, contrasena = ?"
-                + "WHERE  identificacion = ?";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setString(1, correo);
-        ps.setString(2, fechanacimiento);
-        ps.setString(3, genero);
-        ps.setString(4, estadocivil);
-        ps.setString(5, direccion);
-        ps.setString(6, telefono);
-        ps.setString(7, contrasena);
-        ps.setInt(8, identificacion);
-
-        int rta = ps.executeUpdate();
-
-        return rta > 0;
-
-    }
-
+    /**
+     * metodo que obtiene todos los profesionales de la salud con relación al servicio.
+     * @return Listado de los profesionales de la salud con a información registrada
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public ArrayList<String[]> listadoMedico() throws SQLException {
 
         String sql = "select u.nombre, u.identificacion, u.codigo, m.servicio from usuario u inner join medico m ON u.identificacion = m.identificacion";
@@ -177,6 +196,12 @@ public class MedicoDAO {
         return lista;
     }
 
+    /**
+     * metodo que obtiene los datos de los servicios
+     * @return Listado que obtiene el nombre de los servicios registrados.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<String> consultaServicios() throws SQLException {
         List<String> ls = new ArrayList<>();
         String sql = "select * from servicio";

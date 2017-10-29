@@ -21,6 +21,11 @@ import util.ConexionPostgres;
  */
 public class NegocioHorarioMedico {
 
+    /**
+     * Metodo que registra el horario del medico
+     *
+     * @see DAO.HorarioMedicoDAO registrarHorarioMedico
+     */
     public boolean registrarHorario(HorarioMedicoDTO hm) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -45,6 +50,11 @@ public class NegocioHorarioMedico {
         return rta;
     }
 
+    /**
+     * Metodo que consulta el horario del medico por la identificacion de la hora.
+     *
+     * @see DAO.HorarioMedicoDAO consultarHorarioMedico
+     */
     public HorarioMedicoDTO consultarHorarioMedico(int id_horariomedico) throws SQLException {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -70,6 +80,11 @@ public class NegocioHorarioMedico {
         return a;
     }
 
+    /**
+     * Metodo que lista el horario del medico por la identificacion del medico
+     *
+     * @see DAO.HorarioMedicoDAO listarHorasMedico
+     */
     public List<HorarioMedicoDTO> listarHoraMedico(String idMedico) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -92,6 +107,11 @@ public class NegocioHorarioMedico {
         return lis;
     }
 
+    /**
+     * Metodo que elimina un registro de hora por la identificacion de la hora 
+     *
+     * @see DAO.HorarioMedicoDAO eliminarHora
+     */
     public boolean eliminarHora(int id) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -114,6 +134,11 @@ public class NegocioHorarioMedico {
         return rta;
     }
     
+    /**
+     * Metodo que obtiene la fecha actual del sistema
+     *
+     * @see DAO.HorarioMedicoDAO fechaActual
+     */
     public String fechaActual() {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

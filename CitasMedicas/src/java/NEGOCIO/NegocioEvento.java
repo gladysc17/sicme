@@ -23,6 +23,11 @@ import util.ConexionPostgres;
  */
 public class NegocioEvento {
     
+    /**
+     * Metodo que crea el evento
+     *
+     * @see DAO.EventoDAO registrarEvento
+     */
     public boolean crearEvento(EventoDTO evento){
         
         boolean rta=false;
@@ -49,6 +54,11 @@ public class NegocioEvento {
         return rta;
     }
     
+    /**
+     * Metodo que obtiene los eventos del mes
+     *
+     * @see DAO.EventoDAO diasMes, obtenerMes, obtenerAño, eventoPorMes
+     */
     public List<EventoDTO> obtenerEventoMes(){
         
         List<EventoDTO> ls = new ArrayList<EventoDTO>();
@@ -86,7 +96,12 @@ public class NegocioEvento {
         
         return ls;        
     }
-    
+   
+    /**
+     * Metodo que lista los eventos del medico o administrador
+     *
+     * @see DAO.EventoDAO listarEvento
+     */
     public List<EventoDTO> listarMedicoAdm(String ident) {
         
         ConexionPostgres con = new ConexionPostgres();
@@ -112,6 +127,11 @@ public class NegocioEvento {
         return ls;
     }
     
+    /**
+     * Metodo que modifica los eventos 
+     *
+     * @see DAO.EventoDAO modificarEvento
+     */
     public boolean modificarEvento(int idEvento, String fecha, String hora, String lugar){
         
         ConexionPostgres con = new ConexionPostgres();
@@ -135,6 +155,11 @@ public class NegocioEvento {
         return rta;
     }
     
+    /**
+     * Metodo que consulta los eventos por su identificador
+     *
+     * @see DAO.EventoDAO consultaPorId
+     */
     public EventoDTO consultaPorId(String id){
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -156,6 +181,11 @@ public class NegocioEvento {
         return ls;
     }
     
+    /**
+     * Metodo que registra la participación a eventos
+     *
+     * @see DAO.RegistroeventoDAO inscripcionEvento
+     */
     public boolean registroEvento(RegistroeventoDTO re) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -179,6 +209,11 @@ public class NegocioEvento {
         return rta;
     }
     
+    /**
+     * Metodo que lista los eventos en un rango de fechas
+     *
+     * @see DAO.EventoDAO listarEventos
+     */
     public List<EventoDTO> listarEventos(String fechaI, String fechaF) {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -203,6 +238,11 @@ public class NegocioEvento {
         return ls;
     }
     
+    /**
+     * Metodo que muestra la cantidad de asistentes a un evento
+     *
+     * @see DAO.RegistroeventoDAO cantidadPorEvento
+     */
     public int cantidadPorEvento(int idEvent){
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -224,6 +264,11 @@ public class NegocioEvento {
         return cant;
     }
     
+    /**
+     * Metodo que lista los asistentes a un evento
+     *
+     * @see DAO.RegistroeventoDAO listaRegistrados
+     */
     public List<RegistroeventoDTO> listarRegistrados(int id_evento) throws SQLException{
       
            
@@ -243,6 +288,11 @@ public class NegocioEvento {
         return (Reev);
     }
     
+    /**
+     * Metodo que lista los eventos
+     *
+     * @see DAO.EventoDAO consultarEventos
+     */
      public List<EventoDTO> consultarEventos() {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

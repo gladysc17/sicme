@@ -26,6 +26,14 @@ public class UsuarioDAO {
         this.con = con;
     }
 
+    /**
+     * metodo que permite registrar un usuario
+     *
+     * @param otro Objeto de tipo UsuarioDTO con la información suministrada
+     * @return valor booleano que confirma si la operación se realizo con éxito
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean registrarUsuario(UsuarioDTO otro) throws SQLException {
 
         String sql = "INSERT INTO usuario (identificacion, tipo_identificacion, codigo, nombre, correo, "
@@ -55,6 +63,15 @@ public class UsuarioDAO {
 
     }
 
+    /**
+     * metodo que consultar un usuario por su identificación
+     *
+     * @param id Identificador del usuario en la base de datos
+     * @return Objeto de tipo UsuarioDTO con la información registrada en la
+     * base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public UsuarioDTO consultarUsuarioPorId(String id) throws SQLException {
 
         String sql = "SELECT * FROM usuario WHERE identificacion = ?";
@@ -88,6 +105,15 @@ public class UsuarioDAO {
         return otro;
     }
 
+    /**
+     * metodo que permite obtener todos los usuarios que estan registrados en la
+     * base de datos
+     *
+     * @return Listado de los usuarios con la información que se encuentra en la
+     * base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<UsuarioDTO> consultarUsuarios() throws SQLException {
 
         List<UsuarioDTO> listaOtro = new ArrayList<UsuarioDTO>();
@@ -126,6 +152,16 @@ public class UsuarioDAO {
 
     }
 
+    /**
+     * metodo que permite consultar un usuario, bien sea por su identificación o
+     * codigo
+     *
+     * @param id Identificación del usuario
+     * @param codigo Codigo dentro de la universidad
+     * @return Usuario que corresponde a la identificación o codigo
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public UsuarioDTO consultarUsuarioPorIdCodigo(String id, String codigo) throws SQLException {
 
         String sql = "SELECT * FROM usuario WHERE identificacion = ? OR codigo = ? ";
@@ -163,6 +199,21 @@ public class UsuarioDAO {
 
     }
 
+    /**
+     * metodo que permite modificar los datos de un usuario
+     *
+     * @param identificacion Identificación del usuario
+     * @param correo Correo del usuario
+     * @param fechanacimiento Fecha de nacimiento del usuario
+     * @param genero Genero del usuario
+     * @param estadocivil Estado civil del usuario
+     * @param direccion Dirección de la residencia del usuario
+     * @param telefono Telefono del usuario
+     * @param edad Edad del usuario
+     * @return Valor booleano con la respuesta de la modificación
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException {
 
         String sql = "UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ? "
@@ -176,46 +227,24 @@ public class UsuarioDAO {
         ps.setString(4, estadocivil);
         ps.setString(5, direccion);
         ps.setString(6, telefono);
-        ps.setInt(7, edad);        
+        ps.setInt(7, edad);
         ps.setString(8, identificacion);
-        
 
         int rta = ps.executeUpdate();
 
         return rta > 0;
 
     }
-    
-    public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException {
 
-        String sql = "UPDATE administrador SET contrasena = ? "
-                + "WHERE  identificacion_usuario = ?";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setString(1, contrasena);
-        ps.setString(2, identificacion);
-
-        int rta = ps.executeUpdate();
-
-        return rta > 0;
-
-    }
-    public boolean modificarVice(String identificacion, String contrasena) throws SQLException {
-
-        String sql = "UPDATE vicerrector SET contrasena = ? "
-                + "WHERE  identificacion_usuario = ?";
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.setString(1, contrasena);
-        ps.setString(2, identificacion);
-
-        int rta = ps.executeUpdate();
-
-        return rta > 0;
-
-    }
+    /**
+     * metodo que permite modificar la contraseña del profesional de la salud
+     *
+     * @param identificacion Identificación del profesional de la salud
+     * @param contrasena nueva contraseña del profesional de la salud
+     * @return valor booleano con la respuesta de la actualización
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean modificarMedico(String identificacion, String contrasena) throws SQLException {
 
         String sql = "UPDATE medico SET contrasena = ? "
@@ -232,26 +261,44 @@ public class UsuarioDAO {
 
     }
 
+    /**
+     * Metodo que permite calcular la edad.
+     *
+     * @param fecha Fecha de nacimiento
+     * @return Valor entero con la edad de la persona
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int calcularedad(Date fecha) throws SQLException {
-        
-        int edad =0;
+
+        int edad = 0;
 
         String sql = "select (current_date - ? )/365 AS edad";
 
         PreparedStatement ps = con.prepareStatement(sql);
-        
+
         ps.setDate(1, fecha);
-        
+
         ResultSet rs = ps.executeQuery();
-        
-        if(rs.next()){
+
+        if (rs.next()) {
             edad = rs.getInt("edad");
-            return edad;                        
+            return edad;
         }
         return edad;
-       
+
     }
-    
+
+    /**
+     * metodo que permite consultar los medicos por el servicio
+     *
+     * @param tipo_usuario Valor del tipo de usuario
+     * @param servicio Valor del servicio
+     * @return Listado de los usuarios que cumplen las condiciones en la
+     * consulta.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public ArrayList<UsuarioDTO> consultarMedicosPorServicio(String tipo_usuario, int servicio) throws SQLException {
 
         ArrayList<UsuarioDTO> medicos = new ArrayList<UsuarioDTO>();
@@ -289,7 +336,18 @@ public class UsuarioDAO {
         }
         return medicos;
     }
-    
+
+    /**
+     * metodo que permite consultar a los usuarios por su tipo de usuario
+     *
+     * @param tipo Tipo de usuario
+     * @param fecha1 Fecha inicial
+     * @param fecha2 Fecha final
+     * @return Listado de los usuarios de acuerdo al tipo de usuario que se
+     * desea consultar.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<UsuarioDTO> consultarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
 
         List<UsuarioDTO> listaOtro = new ArrayList<UsuarioDTO>();
@@ -332,15 +390,23 @@ public class UsuarioDAO {
         return listaOtro;
 
     }
-    
-     public List<UsuarioDTO> consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
+
+    /**
+     * metodo que permite consultar a los usuarios registrados dentro un rango de fechas
+     * @param fecha1 Fecha inicial
+     * @param fecha2 Fecha final
+     * @return Listado de los usuarios registrados ordenado por el nombre.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
+    public List<UsuarioDTO> consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
 
         List<UsuarioDTO> listaOtro = new ArrayList<UsuarioDTO>();
 
         String sql = "SELECT * FROM usuario WHERE  fecharegistro between ? and  ? ORDER BY nombre";
 
         PreparedStatement ps = con.prepareStatement(sql);
-        
+
         ps.setDate(1, Date.valueOf(fecha1));
         ps.setDate(2, Date.valueOf(fecha2));
 
@@ -373,22 +439,28 @@ public class UsuarioDAO {
         return listaOtro;
 
     }
-     
-     public boolean modificarContrasena(String identificacion, String contrasena) throws SQLException {
+
+    /**
+     * metodo que permite modificar la contraseña del usuario
+     * @param identificacion Identificador del usuario
+     * @param contrasena nueva contraseña del usuario
+     * @return Valor booleano que confirma la actualización 
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
+    public boolean modificarContrasena(String identificacion, String contrasena) throws SQLException {
 
         String sql = "UPDATE usuario SET contrasena = ? "
                 + "WHERE  identificacion = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
-        ps.setString(1, contrasena);      
+        ps.setString(1, contrasena);
         ps.setString(2, identificacion);
-        
 
         int rta = ps.executeUpdate();
 
         return rta > 0;
 
     }
-
 }
