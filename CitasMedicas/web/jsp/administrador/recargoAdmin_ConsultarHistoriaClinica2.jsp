@@ -248,8 +248,7 @@
                                 <td><%=fecha%></td>
                                 <td><%=hora%></td>  
                                 <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
-
-
+                                <td> 
                                 <%
 
                                     int hisP = hc.get(i).getId_hcpsicologia();
@@ -260,12 +259,14 @@
                                         int num = listaSes.get(j).getNumSesion();                                        
                                         System.out.println("num " +num);
                                 %>
-
-
-                                <td> <a href="/CitasMedicas/sesionPsicologia?idsesion=<%=idSesion%>" target="_blank"> Ver  N°: <%=num%></a> </td> 
-
-                            </tr> 
-                            <%                                    }
+                                 <a href="/CitasMedicas/sesionPsicologia?idsesion=<%=idSesion%>" target="_blank"> Ver N°:<%=num%></a>  --
+                                 
+                             
+                            <%  }
+                            %>
+                                </td>
+                            </tr>
+                                 <%
                                         }
                                     }
                                 }
