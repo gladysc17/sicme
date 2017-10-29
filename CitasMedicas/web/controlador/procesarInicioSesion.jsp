@@ -16,9 +16,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/sweetalert.min.js" type="text/javascript"></script>
-        <title>JSP Page</title>
     </head>
     <body>
         <%
@@ -60,14 +57,12 @@
                     }
                     else{
                        %>
-        <script>
+                       <script>
             alert("DATOS INCORRECTOS");            
             location.href = "../index.jsp";
         </script>
         <%
                     }
-                    
-                    
                 }
                 else{
                    %>
@@ -88,3 +83,5 @@
             }
         %>
     </body>
+</html>
+
