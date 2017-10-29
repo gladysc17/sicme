@@ -28,13 +28,11 @@ public class HcMedicinaGeneralDAO {
     }
 
     /**
-     * Metodo que registra una cita en la Base de Datos
+     * Metodo que registra una Historia clinica de Medicina General en la Base de Datos
      *
-     * @param hcmed
-     * @return boolean con valor verdadero si hubo registro exitoso, falso si
-     * existe error dentro del procedimiento.
-     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
-     * algun campo de la base de datos por llenar.
+     * @param hcmed, Objeto de tipo HcMedicinaGeneralDTO 
+     * @return boolean con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
      */
     public boolean registrarHCMedicinaGeneral(HcMedicinaGeneralDTO hcmed) throws SQLException {
 
@@ -89,7 +87,16 @@ public class HcMedicinaGeneralDAO {
 
         return resultado == 1;
     }
-
+    
+    /**
+     * Método que consulta todas las Historias clinicas de Medicina General de un Usuario
+     * 
+     * @param id_usuario, Identificación del usuario
+     * @return list, lista de Objetos tipo HcMedicinaGeneralDTO, con los datos de las historias clinicas del ususario, si no exite retorna la lista vacia.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     * 
+    **/
+    
     public List<HcMedicinaGeneralDTO> consultarHcMedicinaGeneral(int id_usuario) throws SQLException {
 
         List<HcMedicinaGeneralDTO> listaHisC = new ArrayList<HcMedicinaGeneralDTO>();
@@ -151,6 +158,15 @@ public class HcMedicinaGeneralDAO {
         return listaHisC;
 
     }
+    
+    /**
+     * Metodo que consulta todos los datos de una Historia clinica de Medicina general 
+     *
+     * @param id_usuario: identificacion de usuario
+     * @param id_cita: identificacion de la cita
+     * @return HcMedicinaGeneralDTO, Objeto con los datos de la Historia clinica del Usuario, si no exite, retorna null.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
     
     public HcMedicinaGeneralDTO consultarHcMedicinaGeneralCita(int id_usuario, int id_cita) throws SQLException {       
         

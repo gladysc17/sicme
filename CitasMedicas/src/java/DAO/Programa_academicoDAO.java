@@ -25,6 +25,14 @@ public class Programa_academicoDAO {
         this.con = con;
     }
 
+    
+     /**
+     * Metodo que registra los datos de un programa academico en la Base de datos
+     *
+     * @param pro, objeto tipo Programa_academicoDTO con nombre y codigo del programa.
+     * @return boolean, con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
     public boolean registrarPrograma(Programa_academicoDTO pro) throws SQLException {
 
         String sql = "INSERT INTO programa_academico ( nombre_programa, codigo_programa ) VALUES (? , ?)";
@@ -39,6 +47,14 @@ public class Programa_academicoDAO {
         return resultado == 1;
 
     }
+    
+    /**
+     * Metodo que consulta todos los datos de un programa academico
+     *
+     * @param id, identificacion del programa academico
+     * @return Programa_academicoDTO, Objeto con los datos del programa academico, si no exite, retorna null.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
 
     public Programa_academicoDTO consultarPrograma(int id) throws SQLException {
 
@@ -64,6 +80,13 @@ public class Programa_academicoDAO {
         return pro;
 
     }
+    
+     /**
+     * Metodo que consulta todos Programas academicos registrados en la Base de Datos 
+     *     
+     * @return list, Lista de Objetos tipo Programa_academicoDTO con los datos de los programas academicos, si no exiten registros retorna la lista vacia.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
     
      public List<Programa_academicoDTO> consultarProgramas() throws SQLException {
 

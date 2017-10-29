@@ -26,6 +26,14 @@ public class SesionDAO {
     public SesionDAO(Connection con) {
         this.con = con;
     }
+    
+    /**
+     * Metodo que registra los datos de una Sesion de Psicologia en la Base de datos
+     *
+     * @param sesion, objeto tipo SesionDTO con los datos de la Sesion
+     * @return boolean, con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
 
     public boolean registrarSesion(SesionDTO sesion) throws SQLException {
 
@@ -47,6 +55,14 @@ public class SesionDAO {
         return resultado == 1;
 
     } 
+    
+    /**
+     * Metodo que consulta todos los datos de las sesiones de la historia clinica de psicologia de un usuario 
+     *
+     * @param idHcPsicologia, identificacion de la Historia clinica de Psicologia
+     * @return list, Lista de Objetos tipo SesionDTO con las sesiones de la historia clinica de psicologia, si no exite retorna la lista vacia.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
     
     public List<SesionDTO> consultarSesionesPorHcPsicologia(int idHcPsicologia) throws SQLException{
         

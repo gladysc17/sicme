@@ -23,6 +23,13 @@ public class RegistroeventoDAO {
     public RegistroeventoDAO(Connection con) {
         this.con = con;
     }
+    /**
+     * Metodo que registra los datos de las personas que se inscriben a un evento
+     *
+     * @param re, objeto tipo RegistroeventoDTO con los datos de la inscripción
+     * @return boolean, con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
     
     public boolean inscripcionEvento(RegistroeventoDTO re) throws SQLException {
         
@@ -45,9 +52,20 @@ public class RegistroeventoDAO {
         return false;
     }
     
+    /**
+     * Metodo que retorna la cantidad de personas registradas a un evento
+     *
+     * @param idEvento, identificación del evento
+     * @return int, Cantidad de personas registradas en el evento
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
+    
     public int cantidadPorEvento(int idEvento) throws SQLException {
+        
         String sql = "select count(*) from registroevento where id_evento = ? ";
+        
         PreparedStatement ps = con.prepareStatement(sql);
+        
         ps.setInt(1, idEvento);
         
         ResultSet rs = ps.executeQuery();
@@ -58,6 +76,14 @@ public class RegistroeventoDAO {
         }
         return cant;
     }
+    
+    /**
+     * Metodo que consulta todas las personas registradas a un evento
+     *
+     * @param idEvento, identificacion del evento
+     * @return list, Lista de Objetos tipo RegistroeventoDTO con los datos de las personas registradas al evento, si no exiten registros retorna la lista vacia.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
     
      public List<RegistroeventoDTO> listaRegistrados (int idEvento) throws SQLException {
         

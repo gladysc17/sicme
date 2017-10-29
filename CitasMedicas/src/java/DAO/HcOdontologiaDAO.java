@@ -24,7 +24,15 @@ public class HcOdontologiaDAO {
     public HcOdontologiaDAO(Connection con) {
         this.con = con;
     }
-
+    
+    /**
+     * Metodo que registra una Historia clinica de Odontologia en la Base de Datos
+     *
+     * @param od, Objeto de tipo HcOdontologiaDTO 
+     * @return boolean con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
+    
     public boolean registrarHcOdontologia(HcOdontologiaDTO od) throws SQLException {
 
         String sql = "INSERT into hc_odontologia ( id_cita, id_usuario, "
@@ -87,7 +95,16 @@ public class HcOdontologiaDAO {
         return res == 1;
 
     }
-
+    
+    /**
+     * Método que consulta todas las Historias clinicas de Odontologia de un Usuario
+     * 
+     * @param id_usuario, Identificación del usuario
+     * @return list, lista de Objetos tipo HcOdontologiaDTO, con los datos de las historias clinicas del ususario, si no exite retorna la lista vacia.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     * 
+    **/
+    
     public List<HcOdontologiaDTO> consultarHcOdontologia(int id_usuario) throws SQLException {
 
         List<HcOdontologiaDTO> listaHisC = new ArrayList<HcOdontologiaDTO>();
