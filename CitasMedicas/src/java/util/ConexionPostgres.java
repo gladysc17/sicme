@@ -24,7 +24,7 @@ public class ConexionPostgres {
     //private static  String login = "ufps_26";
     //private static  String password = "ufps_29";
     //private static  String url = "jdbc:postgresql://sandbox2.ufps.edu.co/"+bd;
-    
+//    
     private static  String bd = "DSAS";
     private static  String login = "postgres";
     private static  String password = "root";    
