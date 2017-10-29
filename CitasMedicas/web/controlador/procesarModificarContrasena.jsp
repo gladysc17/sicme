@@ -47,7 +47,7 @@
                     </script>
                 <%                       
                 }
-                else if(tipo.equals("estudiante") || tipo.equals("docente") || tipo.equals("servicios_generales")){
+                else if(tipo.equals("estudiante") || tipo.equals("docente") || tipo.equals("servicios_generales") || tipo.equals("administrativo")){
                 %>        
                     <script type="text/javascript">
                     alert('CONTRASEÑA MODIFICADA');

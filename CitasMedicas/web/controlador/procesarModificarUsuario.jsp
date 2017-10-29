@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.UsuarioDTO"%>
 <%@page import="java.sql.Date"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,24 +26,55 @@
             String telefono_otro = request.getParameter("telefono");            
 
             FacadeUsuario fac = new FacadeUsuario();
-            int edad = fac.calcularEdad(fecha);            
+            UsuarioDTO u = fac.consultarUsuarioPorId(identificacion_otro);
+            int edad = fac.calcularEdad(fecha); 
+            String tipo = u.getTipo_usuario();
             
             boolean rta = fac.modificarUsuario(identificacion_otro, correo_otro, fecha, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);                                                    
 
             if (rta == true) {
 
+         if (tipo.equals("medico")){                    
+                %>        
+                    <script type="text/javascript">
+                    alert('DATOS MODIFICADOS');
+                    location.href = "../jsp/PrincipalMedico.jsp"
+                    </script>
+                <%                       
+                }
+                
+                else if(tipo.equals("vicerrector")){
+                %>        
+                    <script type="text/javascript">
+                    alert('DATOS MODIFICADOS');
+                    location.href = "../jsp/PrincipalVicerrector.jsp";     
+                    </script>
+                <%                       
+                }
+                
+                else if(tipo.equals("administrador")){
+                %>        
+                    <script type="text/javascript">
+                    alert('DATOS MODIFICADOS');
+                    location.href ="../jsp/PrincipalAdministrador.jsp";
+                    </script>
+                <%                       
+                }
+                else if(tipo.equals("estudiante") || tipo.equals("docente") || tipo.equals("servicios_generales") || tipo.equals("administrativo")){
+                %>        
+                    <script type="text/javascript">
+                    alert('DATOS MODIFICADOS');
+                    location.href ="../jsp/PrincipalUsuario.jsp"; 
+                    </script>
+                <%                       
+                }
+            } else {
         %>
-        <script>
-            alert(" MODIFICADO");
-            location.href = "../jsp/PrincipalAdministrador.jsp";
+        <script type="text/javascript">
+            alert('Datos erroneos');
+            location.href ="../index.jsp";
         </script>
-        <%        } else {
-        %>
-        <script>
-            alert("ERROR, NO SE MODIFICO");
-            location.href = "../jsp/PrincipalAdministrador.jsp";
-        </script>
-        <%
+        <%                                      
             }
         %>
     </body>

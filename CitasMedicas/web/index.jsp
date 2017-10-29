@@ -229,7 +229,6 @@
                                                     <option value="docente"> Docente </option>                                                                                          
                                                     <option value="administrativo"> Administrativo </option>                                
                                                     <option value="servicios_generales"> Servicios Generales </option>
-                                                    <option value="graduado">Graduado</option>
                                                 </select>
                                             </div>
                                         </div>
