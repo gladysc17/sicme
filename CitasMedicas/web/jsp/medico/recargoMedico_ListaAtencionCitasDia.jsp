@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.ServicioDTO"%>
+<%@page import="FACADE.FacadeServicio"%>
 <%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -44,9 +46,12 @@
                             FacadeHorarioMedico fhm = new FacadeHorarioMedico();
                             String fec = fhm.fechaActual();
                             List<CitaDTO> doc = facCita.consultarCitasMedicoDia(idico, fec);
-
+                            FacadeServicio ser = new FacadeServicio();
+                            List<ServicioDTO> lis = ser.consultarServicio();
+                            String serv = "";
+                            
                             for (int i = 0; i < doc.size(); i++) {
-
+                                
                                 String nombre = doc.get(i).getNombre_usuario();
                                 String identf = doc.get(i).getId_usuario();
                                 String hora = doc.get(i).getHora_cita();
@@ -83,7 +88,7 @@
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaPlanificacion.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" <%=disabled%>> </td>
                                 <%
-                                } else if (servicio.equals("odontologia")) {
+                                } else if (servicio.equals("Odontologia")) {
                                 %>
                             <td><input type="submit" class="btn btn-default" value="atender" onclick="cargarForm('medico/recargoMedico_historiaOdontologia.jsp?id=<%=identf%>&idcita=<%=idcita%>&tipo=<%=tipoUsuario%>')" <%=disabled%> /></td>
                                 <%

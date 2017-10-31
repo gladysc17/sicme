@@ -583,11 +583,11 @@
                                             ls = fe.obtenerEventosMes();
 
                                             for (EventoDTO e : ls) {
-                                                boolean mod = false;
+                                                boolean mod = true;
                                                 Date f1 = sdf.parse(e.getFechaEvento());
                                                 Date f2 = sdf.parse(fechaActual);
-                                                if (f1.before(f2)) {
-                                                    mod = true;
+                                                if (f1.after(f2)) {
+                                                    mod = false;
                                                 }
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">

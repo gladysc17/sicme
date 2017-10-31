@@ -66,7 +66,7 @@
             </div>                                                   
         </div>
     </div>
-    <div class="col-md-12 panel">
+    <div class="row panel">
         <div class="panel panel-default">
             <%
                 FacadeHorarioMedico fhm = new FacadeHorarioMedico();
