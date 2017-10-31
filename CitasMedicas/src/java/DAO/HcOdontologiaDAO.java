@@ -34,8 +34,9 @@ public class HcOdontologiaDAO {
                 + "c_labios, c_lengua, c_carrillos, c_pisodeboca, c_paladar, c_frenillos, c_observacion_examenes, "
                 + "d_protesis, d_descripcion_protesis, d_higiene_oral, d_fr_cepillado, d_seda_dental, "
                 + "e_dolor_muscular, e_dolor_articular, e_ruido_articular, e_limit_movimiento, e_obser_atm, "
-                + "f_control_placa, g_odontograma, h_lectura_rx, i_diagnostico, k_plan_tratamiento,) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )";
+                + "f_control_placa, g_odontograma, h_lectura_rx, i_diagnostico, k_operatoria, k_cirugia_oral, k_higiene_oral, "
+                + "k_endodoncia, k_md_oral, k_rehab_oral, k_periodoncia, k_ciru_maxi_facial, k_ortodoncia) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -80,7 +81,15 @@ public class HcOdontologiaDAO {
         ps.setString(39, od.getG_odontograma());
         ps.setString(40, od.getH_lectura_rx());
         ps.setString(41, od.getI_diagnostico());
-        ps.setString(42, od.getK_plan_tratamiento());
+        ps.setString(42, od.getK_operatoria());
+        ps.setString(43, od.getK_cirugia_oral());
+        ps.setString(44, od.getK_higiene_oral());
+        ps.setString(45, od.getK_endodoncia());
+        ps.setString(46, od.getK_md_oral());
+        ps.setString(47, od.getK_rehab_oral());
+        ps.setString(48, od.getK_periodoncia());
+        ps.setString(49, od.getK_ciru_maxi_facial());
+        ps.setString(50, od.getK_ortodoncia());
 
         int res = ps.executeUpdate();
 
@@ -105,48 +114,57 @@ public class HcOdontologiaDAO {
         while (rs.next()) {
             hcOd = new HcOdontologiaDTO();
 
+            hcOd.setId_hcodontologia(rs.getInt("id_hcodontologia"));
             hcOd.setId_cita(rs.getInt("id_cita"));
             hcOd.setId_usuario(rs.getInt("id_usuario"));
             hcOd.setB_motivo(rs.getString("b_motivo"));
-            hcOd.setB_motivo(rs.getString("b_alergias"));
-            hcOd.setB_motivo(rs.getString("b_hemorragia"));
-            hcOd.setB_motivo(rs.getString("b_radioterapia"));
-            hcOd.setB_motivo(rs.getString("b_hipertension"));
-            hcOd.setB_motivo(rs.getString("b_diabetes"));
-            hcOd.setB_motivo(rs.getString("b_tratamiento_medico_actual"));
-            hcOd.setB_motivo(rs.getString("b_toma_medicamentos"));
-            hcOd.setB_motivo(rs.getString("b_embarazo"));
-            hcOd.setB_motivo(rs.getString("b_hiv"));
-            hcOd.setB_motivo(rs.getString("b_cirugias"));
-            hcOd.setB_motivo(rs.getString("b_exodoncia"));
-            hcOd.setB_motivo(rs.getString("b_hepatitis"));
-            hcOd.setB_motivo(rs.getString("b_patologia_respiratoria"));
-            hcOd.setB_motivo(rs.getString("b_convulsion"));
-            hcOd.setB_motivo(rs.getString("b_enfermedades_orales"));
-            hcOd.setB_motivo(rs.getString("b_enfermedades_gastricas"));
-            hcOd.setB_motivo(rs.getString("b_observacion_anamnesis"));
-            hcOd.setB_motivo(rs.getString("c_labios"));
-            hcOd.setB_motivo(rs.getString("c_lengua"));
-            hcOd.setB_motivo(rs.getString("c_carrillos"));
-            hcOd.setB_motivo(rs.getString("c_pisodeboca"));
-            hcOd.setB_motivo(rs.getString("c_paladar"));
-            hcOd.setB_motivo(rs.getString("c_frenillos"));
-            hcOd.setB_motivo(rs.getString("c_observacion_examenes"));
-            hcOd.setB_motivo(rs.getString("d_protesis"));
-            hcOd.setB_motivo(rs.getString("d_descripcion_protesis"));
-            hcOd.setB_motivo(rs.getString("d_higiene_oral"));
-            hcOd.setB_motivo(rs.getString("d_fr_cepillado"));
-            hcOd.setB_motivo(rs.getString("d_seda_dental"));
-            hcOd.setB_motivo(rs.getString("e_dolor_muscular"));
-            hcOd.setB_motivo(rs.getString("e_dolor_articular"));
-            hcOd.setB_motivo(rs.getString("e_ruido_articular"));
-            hcOd.setB_motivo(rs.getString("e_limit_movimiento"));
-            hcOd.setB_motivo(rs.getString("e_obser_atm"));
-            hcOd.setB_motivo(rs.getString("f_control_placa"));
-            hcOd.setB_motivo(rs.getString("g_odontograma"));
-            hcOd.setB_motivo(rs.getString("h_lectura_rx"));
-            hcOd.setB_motivo(rs.getString("i_diagnostico"));
-            hcOd.setB_motivo(rs.getString("k_plan_tratamiento"));
+            hcOd.setB_alergias(rs.getString("b_alergias"));
+            hcOd.setB_hemorragia(rs.getString("b_hemorragia"));
+            hcOd.setB_radioterapia(rs.getString("b_radioterapia"));
+            hcOd.setB_hipertension(rs.getString("b_hipertension"));
+            hcOd.setB_diabetes(rs.getString("b_diabetes"));
+            hcOd.setB_tratamiento_medico_actual(rs.getString("b_tratamiento_medico_actual"));
+            hcOd.setB_toma_medicamentos(rs.getString("b_toma_medicamentos"));
+            hcOd.setB_embarazo(rs.getString("b_embarazo"));
+            hcOd.setB_hiv(rs.getString("b_hiv"));
+            hcOd.setB_cirugias(rs.getString("b_cirugias"));
+            hcOd.setB_exodoncia(rs.getString("b_exodoncia"));
+            hcOd.setB_hepatitis(rs.getString("b_hepatitis"));
+            hcOd.setB_patologia_respiratoria(rs.getString("b_patologia_respiratoria"));
+            hcOd.setB_convulsion(rs.getString("b_convulsion"));
+            hcOd.setB_enfermedades_orales(rs.getString("b_enfermedades_orales"));
+            hcOd.setB_enfermedades_gastricas(rs.getString("b_enfermedades_gastricas"));
+            hcOd.setB_observacion_anamnesis(rs.getString("b_observacion_anamnesis"));
+            hcOd.setC_labios(rs.getString("c_labios"));
+            hcOd.setC_lengua(rs.getString("c_lengua"));
+            hcOd.setC_carrillos(rs.getString("c_carrillos"));
+            hcOd.setC_pisodeboca(rs.getString("c_pisodeboca"));
+            hcOd.setC_paladar(rs.getString("c_paladar"));
+            hcOd.setC_frenillos(rs.getString("c_frenillos"));
+            hcOd.setC_observacion_examenes(rs.getString("c_observacion_examenes"));
+            hcOd.setD_protesis(rs.getString("d_protesis"));
+            hcOd.setD_descripcion_protesis(rs.getString("d_descripcion_protesis"));
+            hcOd.setD_higiene_oral(rs.getString("d_higiene_oral"));
+            hcOd.setD_fr_cepillado(rs.getString("d_fr_cepillado"));
+            hcOd.setD_seda_dental(rs.getString("d_seda_dental"));
+            hcOd.setE_dolor_muscular(rs.getString("e_dolor_muscular"));
+            hcOd.setE_dolor_articular(rs.getString("e_dolor_articular"));
+            hcOd.setE_ruido_articular(rs.getString("e_ruido_articular"));
+            hcOd.setE_limit_movimiento(rs.getString("e_limit_movimiento"));
+            hcOd.setE_obser_atm(rs.getString("e_obser_atm"));
+            hcOd.setF_control_placa(rs.getString("f_control_placa"));
+            hcOd.setG_odontograma(rs.getString("g_odontograma"));
+            hcOd.setH_lectura_rx(rs.getString("h_lectura_rx"));
+            hcOd.setI_diagnostico(rs.getString("i_diagnostico"));
+            hcOd.setK_operatoria(rs.getString("k_operatoria"));
+            hcOd.setK_cirugia_oral(rs.getString("k_cirugia_oral"));
+            hcOd.setK_higiene_oral(rs.getString("k_higiene_oral"));
+            hcOd.setK_endodoncia(rs.getString("k_endodoncia"));
+            hcOd.setK_md_oral(rs.getString("k_md_oral"));
+            hcOd.setK_rehab_oral(rs.getString("k_rehab_oral"));
+            hcOd.setK_periodoncia(rs.getString("k_periodoncia"));
+            hcOd.setK_ciru_maxi_facial(rs.getString("k_ciru_maxi_facial"));
+            hcOd.setK_ortodoncia(rs.getString("k_ortodoncia"));
             
             listaHisC.add(hcOd);
         }
@@ -154,5 +172,24 @@ public class HcOdontologiaDAO {
         return listaHisC;
 
         }
+    
+    public boolean actualizarControlPlacaOdontograma(int idHcOdontologia, String controlPlaca, String odontograma) throws SQLException {
+        
+        String sql = "UPDATE hc_odontologia SET control_placa = ?, odontograma = ? WHERE  id_hcodontologia = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, controlPlaca);
+        ps.setString(2, odontograma);
+        ps.setInt(3, idHcOdontologia);
+
+        int rta = ps.executeUpdate();
+
+        if (rta > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     }

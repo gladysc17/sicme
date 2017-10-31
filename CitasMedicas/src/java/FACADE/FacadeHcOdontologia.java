@@ -23,4 +23,8 @@ public class FacadeHcOdontologia {
         return new NegocioHcOdontologia().consultarHcOdontologia(id_usuario);
     }
     
+    public boolean actualizarControlPlacaOdontograma(int id_hcodontologia, String controlPlaca, String odontograma) throws SQLException {
+        return new NegocioHcOdontologia().actualizarControlPlacaOdontograma(id_hcodontologia, controlPlaca, odontograma);
+    }
+    
 }

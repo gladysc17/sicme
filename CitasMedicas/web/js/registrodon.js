@@ -66,9 +66,11 @@ function registrar(){
         alert("Ya casi..");
         html2canvas($("placa1"),{
             onrendered: function(canvas){
-                theCanvas = canvas;
-                document.body.appendChild(canvas);
-                Canvas2Image.saveAsPNG(canvas); 
+                var img = canvas.toDataURL("image/png")
+                window.open(img);
+                //theCanvas = canvas;
+                //document.body.appendChild(canvas);
+                //Canvas2Image.saveAsPNG(canvas); 
             }
         });
         html2canvas($("placa2"),{

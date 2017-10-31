@@ -4,6 +4,11 @@
     Author     : LEGADO
 --%>
 
+<%@page import="org.json.JSONArray"%>
+<%@page import="org.json.JSONObject"%>
+<%@page import="DTO.HcOdontologiaDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="FACADE.FacadeHcOdontologia"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -280,7 +285,35 @@
                 cursor: pointer;
             }
 
-        </style>       
+        </style>    
+        
+        <%
+            String idusuario_hcmed = request.getParameter("id");
+            int idcita = Integer.parseInt(request.getParameter("idcita"));
+            String tipo = request.getParameter("tipo");
+
+            FacadeUsuario fu = new FacadeUsuario();
+            UsuarioDTO u = fu.consultarUsuarioPorId(idusuario_hcmed);
+            
+            FacadeHcOdontologia f_odontologia = new FacadeHcOdontologia();
+            List<HcOdontologiaDTO> list_hcOdontologia = f_odontologia.consultarHcOdontologia(Integer.parseInt(u.getIdentificacion()));
+            
+            //ESte es la clave
+            HcOdontologiaDTO hcOdontologia = null;
+            if (list_hcOdontologia.size() > 0) {
+                hcOdontologia = list_hcOdontologia.get(0);
+            }
+            String primeraVez = "SI";
+            JSONObject jsonObj = null;
+            if (hcOdontologia != null) {
+                primeraVez = "NO";
+                jsonObj = new JSONObject(hcOdontologia.getF_control_placa());
+                JSONObject obj = jsonObj.getJSONArray("pla").getJSONObject(0);
+                String x = String.valueOf(obj.getJSONArray("ubicaciones").getJSONObject(4).get("valor"));
+                System.out.println("Lo q traigo del JSON -> "+x);
+            }
+
+        %>
 
         <div class="ibox float-e-margins">  
             <div class="row">
@@ -303,26 +336,30 @@
                             </tr>                                
                         </table> <br>
                         <div class="panel panel-default">
-                            <ul class="nav nav-pills panel panel-heading">
-                                <li class="active"><a href="#datosIdentificacion" data-toggle="tab">DATOS DE IDENTIFICACION|</a></li>
-                                <li><a href="#anamnesis" data-toggle="tab">ANAMNESIS |</a></li>
-                                <li><a href="#examenes" data-toggle="tab">EXAMENES: ESTOMATOLOGICO-TEJIDOS BALNDOS-HALLAZGOS |</a></li>
-                                <li><a href="#protesiss" data-toggle="tab">PROTESIS |</a></li>
-                                <li><a href="#atm" data-toggle="tab">ANALISIS A.T.M. |</a></li>
-                                <li><a href="#placa" data-toggle="tab">CONTROL PLACA |</a></li>
-                                <li><a href="#odontograma" data-toggle="tab">ODONTOGRAMA |</a></li>
-                                <li><a href="#final" data-toggle="tab">LECTURA RX - DIAGNOSTICO - PLAN DE TRATAMIENTO |</a></li>
-                            </ul>
+                            <%if (hcOdontologia == null) {%>
+                                <ul class="nav nav-pills panel panel-heading">
+                                    <li class="active"><a href="#datosIdentificacion" data-toggle="tab">DATOS DE IDENTIFICACION|</a></li>
+                                    <li><a href="#anamnesis" data-toggle="tab">ANAMNESIS |</a></li>
+                                    <li><a href="#examenes" data-toggle="tab">EXAMENES: ESTOMATOLOGICO-TEJIDOS BALNDOS-HALLAZGOS |</a></li>
+                                    <li><a href="#protesiss" data-toggle="tab">PROTESIS |</a></li>
+                                    <li><a href="#atm" data-toggle="tab">ANALISIS A.T.M. |</a></li>
+                                    <li><a href="#placa" data-toggle="tab">CONTROL PLACA |</a></li>
+                                    <li><a href="#odontograma" data-toggle="tab">ODONTOGRAMA |</a></li>
+                                    <li><a href="#final" data-toggle="tab">LECTURA RX - DIAGNOSTICO - PLAN DE TRATAMIENTO |</a></li>
+                                </ul>
+                            <%} else {%>
+                                <ul class="nav nav-pills panel panel-heading">
+                                    <li class="active"><a href="#datosIdentificacion" data-toggle="tab">DATOS DE IDENTIFICACION|</a></li>
+                                    <li><a href="#consulta" data-toggle="tab">CONSULTA |</a></li>
+                                    <li><a href="#placa" data-toggle="tab">CONTROL PLACA |</a></li>
+                                    <li><a href="#odontograma" data-toggle="tab">ODONTOGRAMA |</a></li>
+                                    <li><a href="#historia" data-toggle="tab">HISTORIA CLINICA |</a></li>
+                                </ul>
+                            <%}%>
                             <form id="regodont" method="POST" action="../controlador/procesarRegistroHistoriaOdontologia.jsp">
-                                <%
-                                    String idusuario_hcmed = request.getParameter("id");
-                                    int idcita = Integer.parseInt(request.getParameter("idcita"));
-                                    String tipo = request.getParameter("tipo");
-                                    
-                                    FacadeUsuario fu = new FacadeUsuario();
-                                    UsuarioDTO u = fu.consultarUsuarioPorId(idusuario_hcmed);
-
-                                %>
+                                
+                                <input type="hidden" id="primeraVez" name="primeraVez" value="<%=primeraVez%>"/>
+                                
                                 <div id="myTabContent" class="tab-content">
                                     <div class="tab-pane active" id="datosIdentificacion">
                                         <div class="panel-body">
@@ -348,6 +385,8 @@
                                             </table>
                                         </div>
                                     </div>
+                                                    
+                                <%if (hcOdontologia == null) {%>
                                     <div class="tab-pane" id="anamnesis">
                                         <div class="panel-body">
                                             <table class="table table-responsive">
@@ -434,6 +473,9 @@
                                             </table>
                                         </div>
                                     </div>
+                                <%}%>
+                                    
+                                <%if (hcOdontologia == null) {%>
                                     <div class="tab-pane" id="examenes">
                                         <div class="panel-body">
                                             <table class="table table-responsive">
@@ -462,6 +504,8 @@
                                             </table>
                                         </div>
                                     </div>
+                                <%}%>
+                                <%if (hcOdontologia == null) {%>
                                     <div class="tab-pane" id="protesiss">
                                         <div class="panel-body">
                                             <table class="table table-responsive">
@@ -504,6 +548,8 @@
                                             </table>
                                         </div>
                                     </div>
+                                <%}%>
+                                <%if (hcOdontologia == null) {%>
                                     <div class="tab-pane" id="atm">
                                         <div class="panel-body">
                                             <table class="table table-responsive">
@@ -542,6 +588,532 @@
                                             </table>
                                         </div>
                                     </div>
+                                <%}%>
+                                <%if (hcOdontologia != null) {%>
+                                    <div class="tab-pane" id="placa">
+                                        <div class="panel-body">
+                                            <div class="row" id="placa1">
+                                                <div class="row">
+                                                    <div class="diente"><!--diente 18-->
+                                                        <%
+                                                            JSONObject obj_18 = jsonObj.getJSONArray("pla").getJSONObject(0);
+                                                            String centro_18 = String.valueOf(obj_18.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_18 = String.valueOf(obj_18.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_18 = String.valueOf(obj_18.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_18 = String.valueOf(obj_18.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_18 = String.valueOf(obj_18.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                            
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">18</span>
+                                                        <div class="cuadro click <%=arriba_18%>" onclick="meterEnOdontograma('18', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_18%>" onclick="meterEnOdontograma('18', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_18%>" onclick="meterEnOdontograma('18', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_18%>" onclick="meterEnOdontograma('18', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_18%>" onclick="meterEnOdontograma('18', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 17-->
+                                                        <%
+                                                            JSONObject obj_17 = jsonObj.getJSONArray("pla").getJSONObject(1);
+                                                            String centro_17 = String.valueOf(obj_17.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_17 = String.valueOf(obj_17.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_17 = String.valueOf(obj_17.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_17 = String.valueOf(obj_17.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_17 = String.valueOf(obj_17.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">17</span>
+                                                        <div class="cuadro click <%=arriba_17%>" onclick="meterEnOdontograma('17', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_17%>" onclick="meterEnOdontograma('17', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_17%>" onclick="meterEnOdontograma('17', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_17%>" onclick="meterEnOdontograma('17', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_17%>" onclick="meterEnOdontograma('17', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 16-->
+                                                        <%
+                                                            JSONObject obj_16 = jsonObj.getJSONArray("pla").getJSONObject(2);
+                                                            String centro_16 = String.valueOf(obj_16.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_16 = String.valueOf(obj_16.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_16 = String.valueOf(obj_16.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_16 = String.valueOf(obj_16.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_16 = String.valueOf(obj_16.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">16</span>
+                                                        <div class="cuadro click <%=arriba_16%>" onclick="meterEnOdontograma('16', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_16%>" onclick="meterEnOdontograma('16', 'azquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_16%>" onclick="meterEnOdontograma('16', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_16%>" onclick="meterEnOdontograma('16', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_16%>" onclick="meterEnOdontograma('16', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 15-->
+                                                        <%
+                                                            JSONObject obj_15_55 = jsonObj.getJSONArray("pla").getJSONObject(3);
+                                                            String centro_15_55 = String.valueOf(obj_15_55.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_15_55 = String.valueOf(obj_15_55.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_15_55 = String.valueOf(obj_15_55.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_15_55 = String.valueOf(obj_15_55.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_15_55 = String.valueOf(obj_15_55.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">15/55</span>
+                                                        <div class="cuadro click <%=arriba_15_55%>" onclick="meterEnOdontograma('15/55', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_15_55%>" onclick="meterEnOdontograma('15/55', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_15_55%>" onclick="meterEnOdontograma('15/55', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_15_55%>" onclick="meterEnOdontograma('15/55', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_15_55%>" onclick="meterEnOdontograma('15/55', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 14-->
+                                                        <%
+                                                            JSONObject obj_14_54 = jsonObj.getJSONArray("pla").getJSONObject(4);
+                                                            String centro_14_54 = String.valueOf(obj_14_54.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_14_54 = String.valueOf(obj_14_54.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_14_54 = String.valueOf(obj_14_54.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_14_54 = String.valueOf(obj_14_54.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_14_54 = String.valueOf(obj_14_54.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">14/54</span>
+                                                        <div class="cuadro click <%=arriba_14_54%>" onclick="meterEnOdontograma('14/54', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_14_54%>" onclick="meterEnOdontograma('14/54', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_14_54%>" onclick="meterEnOdontograma('14/54', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_14_54%>" onclick="meterEnOdontograma('14/54', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_14_54%>" onclick="meterEnOdontograma('14/54', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 13-->
+                                                        <%
+                                                            JSONObject obj_13_53 = jsonObj.getJSONArray("pla").getJSONObject(5);
+                                                            String centro_13_53 = String.valueOf(obj_13_53.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_13_53 = String.valueOf(obj_13_53.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_13_53 = String.valueOf(obj_13_53.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_13_53 = String.valueOf(obj_13_53.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_13_53 = String.valueOf(obj_13_53.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">13/53</span>
+                                                        <div class="cuadro click <%=arriba_13_53%>" onclick="meterEnOdontograma('13/53', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_13_53%>" onclick="meterEnOdontograma('13/53', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_13_53%>" onclick="meterEnOdontograma('13/53', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_13_53%>" onclick="meterEnOdontograma('13/53', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_13_53%>" onclick="meterEnOdontograma('13/53', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 12-->
+                                                        <%
+                                                            JSONObject obj_12_52 = jsonObj.getJSONArray("pla").getJSONObject(6);
+                                                            String centro_12_52 = String.valueOf(obj_12_52.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_12_52 = String.valueOf(obj_12_52.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_12_52 = String.valueOf(obj_12_52.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_12_52 = String.valueOf(obj_12_52.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_12_52 = String.valueOf(obj_12_52.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">12/52</span>
+                                                        <div class="cuadro click <%=arriba_12_52%>" onclick="meterEnOdontograma('12/52', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_12_52%>" onclick="meterEnOdontograma('12/52', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_12_52%>" onclick="meterEnOdontograma('12/52', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_12_52%>" onclick="meterEnOdontograma('12/52', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_12_52%>" onclick="meterEnOdontograma('12/52', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 11-->
+                                                        <%
+                                                            JSONObject obj_11_51 = jsonObj.getJSONArray("pla").getJSONObject(7);
+                                                            String centro_11_51 = String.valueOf(obj_11_51.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_11_51 = String.valueOf(obj_11_51.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_11_51 = String.valueOf(obj_11_51.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_11_51 = String.valueOf(obj_11_51.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_11_51 = String.valueOf(obj_11_51.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">11/51</span>
+                                                        <div class="cuadro click <%=arriba_11_51%>" onclick="meterEnOdontograma('11/51', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_11_51%>" onclick="meterEnOdontograma('11/51', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_11_51%>" onclick="meterEnOdontograma('11/51', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_11_51%>" onclick="meterEnOdontograma('11/51', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_11_51%>" onclick="meterEnOdontograma('11/51', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 21-->
+                                                        <%
+                                                            JSONObject obj_21_61 = jsonObj.getJSONArray("pla").getJSONObject(8);
+                                                            String centro_21_61 = String.valueOf(obj_21_61.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_21_61 = String.valueOf(obj_21_61.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_21_61 = String.valueOf(obj_21_61.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_21_61 = String.valueOf(obj_21_61.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_21_61 = String.valueOf(obj_21_61.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">21/61</span>
+                                                        <div class="cuadro click <%=arriba_21_61%>" onclick="meterEnOdontograma('21/61', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_21_61%>" onclick="meterEnOdontograma('21/61', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_21_61%>" onclick="meterEnOdontograma('21/61', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_21_61%>" onclick="meterEnOdontograma('21/61', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_21_61%>" onclick="meterEnOdontograma('21/61', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 22-->
+                                                        <%
+                                                            JSONObject obj_22_62 = jsonObj.getJSONArray("pla").getJSONObject(9);
+                                                            String centro_22_62 = String.valueOf(obj_22_62.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_22_62 = String.valueOf(obj_22_62.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_22_62 = String.valueOf(obj_22_62.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_22_62 = String.valueOf(obj_22_62.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_22_62 = String.valueOf(obj_22_62.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">22/62</span>
+                                                        <div class="cuadro click <%=arriba_22_62%>" onclick="meterEnOdontograma('22/62', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_22_62%>" onclick="meterEnOdontograma('22/62', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_22_62%>" onclick="meterEnOdontograma('22/62', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_22_62%>" onclick="meterEnOdontograma('22/62', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_22_62%>" onclick="meterEnOdontograma('22/62', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 23-->
+                                                        <%
+                                                            JSONObject obj_23_63 = jsonObj.getJSONArray("pla").getJSONObject(10);
+                                                            String centro_23_63 = String.valueOf(obj_23_63.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_23_63 = String.valueOf(obj_23_63.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_23_63 = String.valueOf(obj_23_63.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_23_63 = String.valueOf(obj_23_63.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_23_63 = String.valueOf(obj_23_63.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">23/63</span>
+                                                        <div class="cuadro click <%=arriba_23_63%>" onclick="meterEnOdontograma('23/63', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_23_63%>" onclick="meterEnOdontograma('23/63', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_23_63%>" onclick="meterEnOdontograma('23/63', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_23_63%>" onclick="meterEnOdontograma('23/63', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_23_63%>" onclick="meterEnOdontograma('23/63', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 24-->
+                                                        <%
+                                                            JSONObject obj_24_64 = jsonObj.getJSONArray("pla").getJSONObject(11);
+                                                            String centro_24_64 = String.valueOf(obj_24_64.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_24_64 = String.valueOf(obj_24_64.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_24_64 = String.valueOf(obj_24_64.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_24_64 = String.valueOf(obj_24_64.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_24_64 = String.valueOf(obj_24_64.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">24/64</span>
+                                                        <div class="cuadro click <%=arriba_24_64%>" onclick="meterEnOdontograma('24/64', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_24_64%>" onclick="meterEnOdontograma('24/64', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_24_64%>" onclick="meterEnOdontograma('24/64', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_24_64%>" onclick="meterEnOdontograma('24/64', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_24_64%>" onclick="meterEnOdontograma('24/64', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 25-->
+                                                        <%
+                                                            JSONObject obj_25_65 = jsonObj.getJSONArray("pla").getJSONObject(12);
+                                                            String centro_25_65 = String.valueOf(obj_25_65.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_25_65 = String.valueOf(obj_25_65.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_25_65 = String.valueOf(obj_25_65.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_25_65 = String.valueOf(obj_25_65.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_25_65 = String.valueOf(obj_25_65.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">25/65</span>
+                                                        <div class="cuadro click <%=arriba_25_65%>" onclick="meterEnOdontograma('25/65', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_25_65%>" onclick="meterEnOdontograma('25/65', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_25_65%>" onclick="meterEnOdontograma('25/65', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_25_65%>" onclick="meterEnOdontograma('25/65', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_25_65%>" onclick="meterEnOdontograma('25/65', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 26-->
+                                                        <%
+                                                            JSONObject obj_26 = jsonObj.getJSONArray("pla").getJSONObject(13);
+                                                            String centro_26 = String.valueOf(obj_26.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_26 = String.valueOf(obj_26.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_26 = String.valueOf(obj_26.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_26 = String.valueOf(obj_26.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_26 = String.valueOf(obj_26.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">26</span>
+                                                        <div class="cuadro click <%=arriba_26%>" onclick="meterEnOdontograma('26', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_26%>" onclick="meterEnOdontograma('26', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_26%>" onclick="meterEnOdontograma('26', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_26%>" onclick="meterEnOdontograma('26', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_26%>" onclick="meterEnOdontograma('26', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 27-->
+                                                        <%
+                                                            JSONObject obj_27 = jsonObj.getJSONArray("pla").getJSONObject(14);
+                                                            String centro_27 = String.valueOf(obj_27.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_27 = String.valueOf(obj_27.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_27 = String.valueOf(obj_27.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_27 = String.valueOf(obj_27.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_27 = String.valueOf(obj_27.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">27</span>
+                                                        <div class="cuadro click <%=arriba_27%>" onclick="meterEnOdontograma('27', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_27%>" onclick="meterEnOdontograma('27', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_27%>" onclick="meterEnOdontograma('27', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_27%>" onclick="meterEnOdontograma('27', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_27%>" onclick="meterEnOdontograma('27', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 28-->
+                                                        <%
+                                                            JSONObject obj_28 = jsonObj.getJSONArray("pla").getJSONObject(15);
+                                                            String centro_28 = String.valueOf(obj_28.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_28 = String.valueOf(obj_28.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_28 = String.valueOf(obj_28.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_28 = String.valueOf(obj_28.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_28 = String.valueOf(obj_28.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">28</span>
+                                                        <div class="cuadro click <%=arriba_28%>" onclick="meterEnOdontograma('28', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_28%>" onclick="meterEnOdontograma('28', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_28%>" onclick="meterEnOdontograma('28', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_28%>" onclick="meterEnOdontograma('28', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_28%>" onclick="meterEnOdontograma('28', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="diente"><!--diente 48-->
+                                                        <%
+                                                            JSONObject obj_48 = jsonObj.getJSONArray("pla").getJSONObject(16);
+                                                            String centro_48 = String.valueOf(obj_48.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_48 = String.valueOf(obj_48.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_48 = String.valueOf(obj_48.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_48 = String.valueOf(obj_48.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_48 = String.valueOf(obj_48.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">48</span>
+                                                        <div class="cuadro click <%=arriba_48%>" onclick="meterEnOdontograma('48', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_48%>" onclick="meterEnOdontograma('48', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_48%>" onclick="meterEnOdontograma('48', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_48%>" onclick="meterEnOdontograma('48', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_48%>" onclick="meterEnOdontograma('48', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 47--><span style="margin-left: -15px">47</span>
+                                                        <%
+                                                            JSONObject obj_47 = jsonObj.getJSONArray("pla").getJSONObject(17);
+                                                            String centro_47 = String.valueOf(obj_47.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_47 = String.valueOf(obj_47.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_47 = String.valueOf(obj_47.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_47 = String.valueOf(obj_47.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_47 = String.valueOf(obj_47.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1">
+                                                        <div class="cuadro click <%=arriba_47%>" onclick="meterEnOdontograma('47', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_47%>" onclick="meterEnOdontograma('47', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_47%>" onclick="meterEnOdontograma('47', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_47%>" onclick="meterEnOdontograma('47', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_47%>" onclick="meterEnOdontograma('47', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 46-->
+                                                        <%
+                                                            JSONObject obj_46 = jsonObj.getJSONArray("pla").getJSONObject(18);
+                                                            String centro_46 = String.valueOf(obj_46.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_46 = String.valueOf(obj_46.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_46 = String.valueOf(obj_46.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_46 = String.valueOf(obj_46.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_46 = String.valueOf(obj_46.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">46</span>
+                                                        <div class="cuadro click <%=arriba_46%>" onclick="meterEnOdontograma('46', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_46%>" onclick="meterEnOdontograma('46', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_46%>" onclick="meterEnOdontograma('46', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_46%>" onclick="meterEnOdontograma('46', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_46%>" onclick="meterEnOdontograma('46', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 45-->
+                                                        <%
+                                                            JSONObject obj_45_85 = jsonObj.getJSONArray("pla").getJSONObject(19);
+                                                            String centro_45_85 = String.valueOf(obj_45_85.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_45_85 = String.valueOf(obj_45_85.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_45_85 = String.valueOf(obj_45_85.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_45_85 = String.valueOf(obj_45_85.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_45_85 = String.valueOf(obj_45_85.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">45/85</span>
+                                                        <div class="cuadro click <%=arriba_45_85%>" onclick="meterEnOdontograma('45/85', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_45_85%>" onclick="meterEnOdontograma('45/85', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_45_85%>" onclick="meterEnOdontograma('45/85', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_45_85%>" onclick="meterEnOdontograma('45/85', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_45_85%>" onclick="meterEnOdontograma('45/85', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 44-->
+                                                        <%
+                                                            JSONObject obj_44_84 = jsonObj.getJSONArray("pla").getJSONObject(20);
+                                                            String centro_44_84 = String.valueOf(obj_44_84.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_44_84 = String.valueOf(obj_44_84.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_44_84 = String.valueOf(obj_44_84.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_44_84 = String.valueOf(obj_44_84.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_44_84 = String.valueOf(obj_44_84.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">44/84</span>
+                                                        <div class="cuadro click <%=arriba_44_84%>" onclick="meterEnOdontograma('44/84', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_44_84%>" onclick="meterEnOdontograma('44/84', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_44_84%>" onclick="meterEnOdontograma('44/84', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_44_84%>" onclick="meterEnOdontograma('44/84', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_44_84%>" onclick="meterEnOdontograma('44/84', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 43-->
+                                                        <%
+                                                            JSONObject obj_43_83 = jsonObj.getJSONArray("pla").getJSONObject(21);
+                                                            String centro_43_83 = String.valueOf(obj_43_83.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_43_83 = String.valueOf(obj_43_83.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_43_83 = String.valueOf(obj_43_83.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_43_83 = String.valueOf(obj_43_83.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_43_83 = String.valueOf(obj_43_83.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">43/83</span>
+                                                        <div class="cuadro click <%=arriba_43_83%>" onclick="meterEnOdontograma('43/83', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_43_83%>" onclick="meterEnOdontograma('43/83', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_43_83%>" onclick="meterEnOdontograma('43/83', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_43_83%>" onclick="meterEnOdontograma('43/83', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_43_83%>" onclick="meterEnOdontograma('43/83', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 42-->
+                                                        <%
+                                                            JSONObject obj_42_82 = jsonObj.getJSONArray("pla").getJSONObject(22);
+                                                            String centro_42_82 = String.valueOf(obj_42_82.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_42_82 = String.valueOf(obj_42_82.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_42_82 = String.valueOf(obj_42_82.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_42_82 = String.valueOf(obj_42_82.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_42_82 = String.valueOf(obj_42_82.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">42/82</span>
+                                                        <div class="cuadro click <%=arriba_42_82%>" onclick="meterEnOdontograma('42/82', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_42_82%>" onclick="meterEnOdontograma('42/82', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_42_82%>" onclick="meterEnOdontograma('42/82', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_42_82%>" onclick="meterEnOdontograma('42/82', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_42_82%>" onclick="meterEnOdontograma('42/82', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 41-->
+                                                        <%
+                                                            JSONObject obj_41_81 = jsonObj.getJSONArray("pla").getJSONObject(23);
+                                                            String centro_41_81 = String.valueOf(obj_41_81.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_41_81 = String.valueOf(obj_41_81.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_41_81 = String.valueOf(obj_41_81.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_41_81 = String.valueOf(obj_41_81.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_41_81 = String.valueOf(obj_41_81.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">41/81</span>
+                                                        <div class="cuadro click <%=arriba_41_81%>" onclick="meterEnOdontograma('41/81', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_41_81%>" onclick="meterEnOdontograma('41/81', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_41_81%>" onclick="meterEnOdontograma('41/81', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_41_81%>" onclick="meterEnOdontograma('41/81', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_41_81%>" onclick="meterEnOdontograma('41/81', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 31-->
+                                                        <%
+                                                            JSONObject obj_31_71 = jsonObj.getJSONArray("pla").getJSONObject(24);
+                                                            String centro_31_71 = String.valueOf(obj_31_71.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_31_71 = String.valueOf(obj_31_71.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_31_71 = String.valueOf(obj_31_71.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_31_71 = String.valueOf(obj_31_71.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_31_71 = String.valueOf(obj_31_71.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"/><span style="margin-left: -25px">31/71</span>
+                                                        <div class="cuadro click <%=arriba_31_71%>" onclick="meterEnOdontograma('31/71', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_31_71%>" onclick="meterEnOdontograma('31/71', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_31_71%>" onclick="meterEnOdontograma('31/71', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_31_71%>" onclick="meterEnOdontograma('31/71', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_31_71%>" onclick="meterEnOdontograma('31/71', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 32-->
+                                                        <%
+                                                            JSONObject obj_32_72 = jsonObj.getJSONArray("pla").getJSONObject(25);
+                                                            String centro_32_72 = String.valueOf(obj_32_72.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_32_72 = String.valueOf(obj_32_72.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_32_72 = String.valueOf(obj_32_72.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_32_72 = String.valueOf(obj_32_72.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_32_72 = String.valueOf(obj_32_72.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">32/72</span>
+                                                        <div class="cuadro click <%=arriba_32_72%>" onclick="meterEnOdontograma('32/72', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_32_72%>" onclick="meterEnOdontograma('32/72', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_32_72%>" onclick="meterEnOdontograma('32/72', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_32_72%>" onclick="meterEnOdontograma('32/72', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_32_72%>" onclick="meterEnOdontograma('32/72', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 33-->
+                                                        <%
+                                                            JSONObject obj_33_73 = jsonObj.getJSONArray("pla").getJSONObject(26);
+                                                            String centro_33_73 = String.valueOf(obj_33_73.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_33_73 = String.valueOf(obj_33_73.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_33_73 = String.valueOf(obj_33_73.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_33_73 = String.valueOf(obj_33_73.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_33_73 = String.valueOf(obj_33_73.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">33/73</span>
+                                                        <div class="cuadro click <%=arriba_33_73%>" onclick="meterEnOdontograma('33/73', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_33_73%>" onclick="meterEnOdontograma('33/73', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_33_73%>" onclick="meterEnOdontograma('33/73', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_33_73%>" onclick="meterEnOdontograma('33/73', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_33_73%>" onclick="meterEnOdontograma('33/73', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 34-->
+                                                        <%
+                                                            JSONObject obj_34_74 = jsonObj.getJSONArray("pla").getJSONObject(27);
+                                                            String centro_34_74 = String.valueOf(obj_34_74.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_34_74 = String.valueOf(obj_34_74.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_34_74 = String.valueOf(obj_34_74.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_34_74 = String.valueOf(obj_34_74.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_34_74 = String.valueOf(obj_34_74.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">34/74</span>
+                                                        <div class="cuadro click <%=arriba_34_74%>" onclick="meterEnOdontograma('34/74', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_34_74%>" onclick="meterEnOdontograma('34/74', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_34_74%>" onclick="meterEnOdontograma('34/74', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('34/74', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_34_74%>" onclick="meterEnOdontograma('34/74', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 35-->
+                                                        <%
+                                                            JSONObject obj_35_75 = jsonObj.getJSONArray("pla").getJSONObject(28);
+                                                            String centro_35_75 = String.valueOf(obj_35_75.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_35_75 = String.valueOf(obj_35_75.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_35_75 = String.valueOf(obj_35_75.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_35_75 = String.valueOf(obj_35_75.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_35_75 = String.valueOf(obj_35_75.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">35/75</span>
+                                                        <div class="cuadro click <%=arriba_35_75%>" onclick="meterEnOdontograma('35/75', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_35_75%>" onclick="meterEnOdontograma('35/75', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_35_75%>" onclick="meterEnOdontograma('35/75', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_35_75%>" onclick="meterEnOdontograma('35/75', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_35_75%>" onclick="meterEnOdontograma('35/75', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 36-->
+                                                        <%
+                                                            JSONObject obj_36 = jsonObj.getJSONArray("pla").getJSONObject(29);
+                                                            String centro_36 = String.valueOf(obj_36.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_36 = String.valueOf(obj_36.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_36 = String.valueOf(obj_36.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_36 = String.valueOf(obj_36.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_36 = String.valueOf(obj_36.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">36</span>
+                                                        <div class="cuadro click <%=arriba_36%>" onclick="meterEnOdontograma('36', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_36%>" onclick="meterEnOdontograma('36', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_36%>" onclick="meterEnOdontograma('36', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_36%>" onclick="meterEnOdontograma('36', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_36%>" onclick="meterEnOdontograma('36', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 37-->
+                                                        <%
+                                                            JSONObject obj_37 = jsonObj.getJSONArray("pla").getJSONObject(30);
+                                                            String centro_37 = String.valueOf(obj_37.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_37 = String.valueOf(obj_37.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_37 = String.valueOf(obj_37.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_37 = String.valueOf(obj_37.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_37 = String.valueOf(obj_37.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">37</span>
+                                                        <div class="cuadro click <%=arriba_37%>" onclick="meterEnOdontograma('37', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_37%>" onclick="meterEnOdontograma('37', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_37%>" onclick="meterEnOdontograma('37', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_37%>" onclick="meterEnOdontograma('37', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_37%>" onclick="meterEnOdontograma('37', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                    <div class="diente"><!--diente 38-->
+                                                        <%
+                                                            JSONObject obj_38 = jsonObj.getJSONArray("pla").getJSONObject(31);
+                                                            String centro_38 = String.valueOf(obj_38.getJSONArray("ubicaciones").getJSONObject(4).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String arriba_38 = String.valueOf(obj_38.getJSONArray("ubicaciones").getJSONObject(0).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String abajo_38 = String.valueOf(obj_38.getJSONArray("ubicaciones").getJSONObject(1).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String derecha_38 = String.valueOf(obj_38.getJSONArray("ubicaciones").getJSONObject(3).get("valor")).equals("SI") ? "click-green" : "";
+                                                            String izquierda_38 = String.valueOf(obj_38.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
+                                                        %>
+                                                        <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">38</span>
+                                                        <div class="cuadro click <%=arriba_38%>" onclick="meterEnOdontograma('38', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo click <%=izquierda_38%>" onclick="meterEnOdontograma('38', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo click <%=abajo_38%>" onclick="meterEnOdontograma('38', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha click <%=derecha_38%>" onclick="meterEnOdontograma('38', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro click <%=centro_38%>" onclick="meterEnOdontograma('38', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%} else {%>
                                     <div class="tab-pane" id="placa">
                                         <div class="panel-body">
                                             <div class="row" id="placa1">
@@ -808,6 +1380,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                <%}%>
+                                
+                                <%if (hcOdontologia == null) {%>
                                     <div class="tab-pane" id="odontograma">
                                         <div class="panel-body">
                                             <div class="row" id="placa2">
@@ -910,6 +1485,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                <%} else {%>
+                                <div class="tab-pane" id="odontograma">
+                                    NO HAY ODONTOGRAMA MODIFICAR POR AHORA
+                                </div>
+                                <%}%>
+                                
+                                <%if (hcOdontologia == null) {%>
                                     <div class="tab-pane" id="final">
                                         <div class="panel-body">
                                             <table class="table table-responsive">
@@ -944,14 +1526,158 @@
                                                     <td>Ortodoncia <input type="text" class="form-control" name="ortodoncia" id="ortodoncia" /> </td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="3"> <input  type="submit" class="btn btn-success" value="Registrar" onclick="registrarss();" /> </td>
+                                                   
                                                 </tr>
                                                 
-                                                <input type="text" id="controlPlaca" name="controlPlaca" value=""/>
+                                                <input type="hidden" id="controlPlaca" name="controlPlaca" value=""/>
+                                                <input type="hidden" id="idCita" name="idCita" value="<%=idcita%>"/>
+                                                <input type="hidden" id="tipo" name="tipo" value="<%=tipo%>"/>
+                                                <input type="hidden" id="identificacionU" name="identificacionU" value="<%=u.getIdentificacion()%>"/>
                                             </table>
                                         </div>
                                     </div>
+                                <%}%>
+                                
+                                <%if (hcOdontologia != null) {%>
+                                    <div class="tab-pane" id="consulta">
+                                        <div class="panel-body">
+                                            <table class="table table-responsive">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Motivo de Consulta</td>
+                                                        <td colspan="7"> <textarea id="motivo" class="form-control" name="motivo"></textarea> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Diagnostico</td>
+                                                        <td colspan="3">
+                                                            <textarea class="form-control" name="diagnostico" id="diagnostico"></textarea>
+                                                            <input type="hidden" id="id_hc_odontograma" name="id_hc_odontograma" value="<%=hcOdontologia.getId_hcodontologia()%>"/>
+                                                        </td>
+                                                    </tr>                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                <%}%>
+                                
+                                <%if (hcOdontologia != null) {%>
+                                    <div class="tab-pane" id="historia">
+                                        <div class="panel-body">
+                                            <table class="table table-responsive">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="4"><strong>1. ANAMNESIS</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Alergias: <%=hcOdontologia.getB_alergias()%> </td>
+                                                        <td>Cirugias: <%=hcOdontologia.getB_cirugias()%></td>
+                                                        <td>Convulsiones: <%=hcOdontologia.getB_convulsion()%></td>
+                                                        <td>Diabetes: <%=hcOdontologia.getB_diabetes()%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Embarazo: <%=hcOdontologia.getB_embarazo()%> </td>
+                                                        <td>Enfermedades gástricas: <%=hcOdontologia.getB_enfermedades_gastricas()%></td>
+                                                        <td>Enfermedades orales: <%=hcOdontologia.getB_enfermedades_orales()%></td>
+                                                        <td>Exodoncia: <%=hcOdontologia.getB_exodoncia()%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hemorragias: <%=hcOdontologia.getB_hemorragia()%> </td>
+                                                        <td>Hepatitis: <%=hcOdontologia.getB_hepatitis()%></td>
+                                                        <td>Hipertensión: <%=hcOdontologia.getB_hipertension()%></td>
+                                                        <td>HIV: <%=hcOdontologia.getB_hiv()%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tratamiento médico actual: <%=hcOdontologia.getB_tratamiento_medico_actual()%></td>
+                                                        <td>Toma medicamentos: <%=hcOdontologia.getB_toma_medicamentos()%> </td>
+                                                        <td>Patología respiratoria: <%=hcOdontologia.getB_patologia_respiratoria()%></td>
+                                                        <td>Readioterapia: <%=hcOdontologia.getB_radioterapia()%></td>
+                                                    </tr>
+                                                    <tr>                                                        
+                                                        <td colspan="2">Motivo: <%=hcOdontologia.getB_motivo()%> </td>
+                                                        <td colspan="2">Observación: <%=hcOdontologia.getB_observacion_anamnesis()%></td>                                                        
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td colspan="4"><strong>2. EXAMENES: ESTOMATOLOGICO-TEJIDOS BALNDOS-HALLAZGOS</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">Labios: <%=hcOdontologia.getC_labios()%> </td>
+                                                        <td colspan="2">Lengua: <%=hcOdontologia.getC_lengua()%></td>                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">Carrillos: <%=hcOdontologia.getC_carrillos()%> </td>
+                                                        <td colspan="2">Piso de boca: <%=hcOdontologia.getC_pisodeboca()%></td>                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">Paladar: <%=hcOdontologia.getC_paladar()%> </td>
+                                                        <td colspan="2">Frenillos: <%=hcOdontologia.getC_frenillos()%></td>                                                        
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td colspan="4"><strong>3. PROTESIS</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Presencia de prótesis: <%=hcOdontologia.getD_protesis()%></td>
+                                                        <td colspan="3">Descripción: <%=hcOdontologia.getD_descripcion_protesis()%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Higiene oral: <%=hcOdontologia.getD_higiene_oral()%></td>
+                                                        <td>Frecuencia cepillado: <%=hcOdontologia.getD_fr_cepillado()%></td>
+                                                        <td>Seda dental: <%=hcOdontologia.getD_seda_dental()%></td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td colspan="4"><strong>4. ANALISIS A.T.M.</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dolor muscular: <%=hcOdontologia.getE_dolor_muscular()%></td>
+                                                        <td>Dolor articular: <%=hcOdontologia.getE_dolor_articular()%></td>
+                                                        <td>Ruido articular: <%=hcOdontologia.getE_ruido_articular()%></td>
+                                                        <td>Limitaciones de movimiento: <%=hcOdontologia.getE_limit_movimiento()%></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">Observaciones: <%=hcOdontologia.getE_obser_atm()%></td>                                                        
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td colspan="4"><strong>5. LECTURA RX - DIAGNOSTICO - PLAN DE TRATAMIENTO</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">Lectur RX: <%=hcOdontologia.getH_lectura_rx()%></td>                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4">Diagnóstico: <%=hcOdontologia.getI_diagnostico()%></td>          
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Operatoria: <%=hcOdontologia.getK_operatoria()%></td>          
+                                                        <td>Cirugía oral: <%=hcOdontologia.getK_cirugia_oral()%></td>
+                                                        <td>Higiene oral: <%=hcOdontologia.getK_higiene_oral()%></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Endodoncia: <%=hcOdontologia.getK_endodoncia()%></td>          
+                                                        <td>MD oral: <%=hcOdontologia.getK_md_oral()%></td>
+                                                        <td>Rehabilitacion oral: <%=hcOdontologia.getK_rehab_oral()%></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Periodoncia: <%=hcOdontologia.getK_periodoncia()%></td>          
+                                                        <td>Cirugía Maxilo facial: <%=hcOdontologia.getK_ciru_maxi_facial()%></td>
+                                                        <td>Ortodoncia: <%=hcOdontologia.getK_ortodoncia()%></td>
+                                                        <td></td>
+                                                    </tr>                                                  
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                <%}%>
+                                             
                                 </div>
+                                                                
+                                &nbsp;&nbsp;&nbsp;&nbsp;<input  type="button" class="btn btn-success" value="Registrar" onclick="registrarss();" />
+                                <a id="test"></a>
+                                <br>
                             </form>
                         </div>
                     </div>
@@ -1398,7 +2124,8 @@
                                                             });
         </script>
         <script>
-                                                                                                            
+                                   
+    <%if (hcOdontologia == null) {%>
         // Inicialización control placa  
         var placa = { "pla" : [
                     {
@@ -1754,7 +2481,13 @@
                         ]
                     }
         ]};
-            alert("inicializa -> "+placa.pla[0].ubicaciones[0].valor);
+    <%} else {%>
+        var placa = <%=jsonObj%>
+        //alert("json -> " + JSON.stringify(placa));
+    <%}%>
+    
+    
+            //alert("inicializa -> "+placa.pla[0].ubicaciones[0].valor);
             function meterEnOdontograma(diente, posicion){
                 //alert("meteré en odontograma array "+ diente + " posic " + posicion);
                 
@@ -1771,19 +2504,37 @@
                     }
                     return false;
                 });
-                alert("dientePosicion" + placa.pla[indiceDiente].numero + " posicion " + indicePosicion);
+                alert("dientePosicion" + placa.pla[indiceDiente].numero + " posicion " + indicePosicion + "valor "+ placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
                 if (placa.pla[indiceDiente].ubicaciones[indicePosicion].valor === "NO") {
                     placa.pla[indiceDiente].ubicaciones[indicePosicion].valor = "SI";
+                    alert("Lo pasaré a SI");
                 }else {
                     placa.pla[indiceDiente].ubicaciones[indicePosicion].valor = "NO";
                 }
                 
-                alert("-> " + placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
+                //alert("-> " + placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
                 //placa[indice].posicion = "SI";
-                
+                //alert("J "+JSON.stringify(placa));
+                return;
             }
             
             function registrarss(){
+                
+                //Para capture de la imagen
+                /*
+                var divIma = document.getElementById("placa1");
+                html2canvas(divIma,{
+                    onrendered: function(canvas){
+                        //BASED64 ENCODED DATA
+                        console.log(canvas.toDataURL('image/png'));
+                        
+                        $('#test').attr('href', canvas.toDataURL('image/png'));
+                        $('#test').attr('download', 'prueba_test.png');
+                        $('#test')[0].click();
+                    }
+                });
+                */
+                
                 alert("voy a registrar");
                 var getFormulario = document.getElementById("regodont");
                 var controlPlaca = document.getElementById("controlPlaca");
@@ -1791,6 +2542,9 @@
                 alert("valor placa -> " + JSON.stringify(placa));
                 alert("voy a enviar");
                 getFormulario.submit();
+                
+                
+                
                 /*var formData = new FormData(getFormulario);
                 formData.append("controlPlaca", placa);
                 
@@ -1798,7 +2552,6 @@
                 request.open("POST", "../controlador/procesarRegistroHistoriaOdontologia.jsp");
                 request.send(formData);*/
                 
-                alert("nada");
                 /*$("#regodont").on("submit", function(e){
         alert("enviaré..");
         e.preventDefault();
@@ -1856,7 +2609,7 @@
         var periodoncia = new FormData(document.getElementById("periodoncia"));
         var ciru_maxi_facial = new FormData(document.getElementById("ciru_maxi_facial"));
         var ortodoncia = new FormData(document.getElementById("ortodoncia"));*/
-        alert("Ya casi..");
+
         /*html2canvas($("placa1"),{
             onrendered: function(canvas){
                 theCanvas = canvas;
@@ -1886,4 +2639,3 @@
     // });
             }
         </script>
-

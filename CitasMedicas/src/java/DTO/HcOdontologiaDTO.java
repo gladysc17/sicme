@@ -53,12 +53,22 @@ public class HcOdontologiaDTO {
     public String g_odontograma;
     public String h_lectura_rx;
     public String i_diagnostico;
-    public String k_plan_tratamiento;
+    private String k_operatoria;
+    private String k_cirugia_oral;
+    private String k_higiene_oral;
+    private String k_endodoncia;
+    private String k_md_oral;
+    private String k_rehab_oral;
+    private String k_periodoncia;
+    private String k_ciru_maxi_facial;
+    private String k_ortodoncia;
+    
 
     public HcOdontologiaDTO() {
     }
+    
+    public HcOdontologiaDTO(int id_cita, int id_usuario, String b_motivo, String b_alergias, String b_hemorragia, String b_radioterapia, String b_hipertension, String b_diabetes, String b_tratamiento_medico_actual, String b_toma_medicamentos, String b_embarazo, String b_hiv, String b_cirugias, String b_exodoncia, String b_hepatitis, String b_patologia_respiratoria, String b_convulsion, String b_enfermedades_orales, String b_enfermedades_gastricas, String b_observacion_anamnesis, String c_labios, String c_lengua, String c_carrillos, String c_pisodeboca, String c_paladar, String c_frenillos, String c_observacion_examenes, String d_protesis, String d_descripcion_protesis, String d_higiene_oral, String d_fr_cepillado, String d_seda_dental, String e_dolor_muscular, String e_dolor_articular, String e_ruido_articular, String e_limit_movimiento, String e_obser_atm, String f_control_placa, String g_odontograma, String h_lectura_rx, String i_diagnostico, String k_operatoria, String k_cirugia_oral, String k_higiene_oral, String k_endodoncia, String k_md_oral, String k_rehab_oral, String k_periodoncia, String k_ciru_maxi_facial, String k_ortodoncia) {
 
-    public HcOdontologiaDTO(int id_cita, int id_usuario, String b_motivo, String b_alergias, String b_hemorragia, String b_radioterapia, String b_hipertension, String b_diabetes, String b_tratamiento_medico_actual, String b_toma_medicamentos, String b_embarazo, String b_hiv, String b_cirugias, String b_exodoncia, String b_hepatitis, String b_patologia_respiratoria, String b_convulsion, String b_enfermedades_orales, String b_enfermedades_gastricas, String b_observacion_anamnesis, String c_labios, String c_lengua, String c_carrillos, String c_pisodeboca, String c_paladar, String c_frenillos, String c_observacion_examenes, String d_protesis, String d_descripcion_protesis, String d_higiene_oral, String d_fr_cepillado, String d_seda_dental, String e_dolor_muscular, String e_dolor_articular, String e_ruido_articular, String e_limit_movimiento, String e_obser_atm, String f_control_placa, String g_odontograma, String h_lectura_rx, String i_diagnostico, String k_plan_tratamiento) {
         this.id_cita = id_cita;
         this.id_usuario = id_usuario;
         this.b_motivo = b_motivo;
@@ -100,7 +110,69 @@ public class HcOdontologiaDTO {
         this.g_odontograma = g_odontograma;
         this.h_lectura_rx = h_lectura_rx;
         this.i_diagnostico = i_diagnostico;
-        this.k_plan_tratamiento = k_plan_tratamiento;
+        this.k_operatoria = k_operatoria;
+        this.k_cirugia_oral = k_cirugia_oral;
+        this.k_higiene_oral = k_higiene_oral;
+        this.k_endodoncia = k_endodoncia;
+        this.k_md_oral = k_md_oral;
+        this.k_rehab_oral = k_rehab_oral;
+        this.k_periodoncia = k_periodoncia;
+        this.k_ciru_maxi_facial = k_ciru_maxi_facial;
+        this.k_ortodoncia = k_ortodoncia;
+    }
+
+    public HcOdontologiaDTO(int id_hcodontologia, int id_cita, int id_usuario, String b_motivo, String b_alergias, String b_hemorragia, String b_radioterapia, String b_hipertension, String b_diabetes, String b_tratamiento_medico_actual, String b_toma_medicamentos, String b_embarazo, String b_hiv, String b_cirugias, String b_exodoncia, String b_hepatitis, String b_patologia_respiratoria, String b_convulsion, String b_enfermedades_orales, String b_enfermedades_gastricas, String b_observacion_anamnesis, String c_labios, String c_lengua, String c_carrillos, String c_pisodeboca, String c_paladar, String c_frenillos, String c_observacion_examenes, String d_protesis, String d_descripcion_protesis, String d_higiene_oral, String d_fr_cepillado, String d_seda_dental, String e_dolor_muscular, String e_dolor_articular, String e_ruido_articular, String e_limit_movimiento, String e_obser_atm, String f_control_placa, String g_odontograma, String h_lectura_rx, String i_diagnostico, String k_operatoria, String k_cirugia_oral, String k_higiene_oral, String k_endodoncia, String k_md_oral, String k_rehab_oral, String k_periodoncia, String k_ciru_maxi_facial, String k_ortodoncia) {
+        this.id_hcodontologia = id_hcodontologia;
+        this.id_cita = id_cita;
+        this.id_usuario = id_usuario;
+        this.b_motivo = b_motivo;
+        this.b_alergias = b_alergias;
+        this.b_hemorragia = b_hemorragia;
+        this.b_radioterapia = b_radioterapia;
+        this.b_hipertension = b_hipertension;
+        this.b_diabetes = b_diabetes;
+        this.b_tratamiento_medico_actual = b_tratamiento_medico_actual;
+        this.b_toma_medicamentos = b_toma_medicamentos;
+        this.b_embarazo = b_embarazo;
+        this.b_hiv = b_hiv;
+        this.b_cirugias = b_cirugias;
+        this.b_exodoncia = b_exodoncia;
+        this.b_hepatitis = b_hepatitis;
+        this.b_patologia_respiratoria = b_patologia_respiratoria;
+        this.b_convulsion = b_convulsion;
+        this.b_enfermedades_orales = b_enfermedades_orales;
+        this.b_enfermedades_gastricas = b_enfermedades_gastricas;
+        this.b_observacion_anamnesis = b_observacion_anamnesis;
+        this.c_labios = c_labios;
+        this.c_lengua = c_lengua;
+        this.c_carrillos = c_carrillos;
+        this.c_pisodeboca = c_pisodeboca;
+        this.c_paladar = c_paladar;
+        this.c_frenillos = c_frenillos;
+        this.c_observacion_examenes = c_observacion_examenes;
+        this.d_protesis = d_protesis;
+        this.d_descripcion_protesis = d_descripcion_protesis;
+        this.d_higiene_oral = d_higiene_oral;
+        this.d_fr_cepillado = d_fr_cepillado;
+        this.d_seda_dental = d_seda_dental;
+        this.e_dolor_muscular = e_dolor_muscular;
+        this.e_dolor_articular = e_dolor_articular;
+        this.e_ruido_articular = e_ruido_articular;
+        this.e_limit_movimiento = e_limit_movimiento;
+        this.e_obser_atm = e_obser_atm;
+        this.f_control_placa = f_control_placa;
+        this.g_odontograma = g_odontograma;
+        this.h_lectura_rx = h_lectura_rx;
+        this.i_diagnostico = i_diagnostico;
+        this.k_operatoria = k_operatoria;
+        this.k_cirugia_oral = k_cirugia_oral;
+        this.k_higiene_oral = k_higiene_oral;
+        this.k_endodoncia = k_endodoncia;
+        this.k_md_oral = k_md_oral;
+        this.k_rehab_oral = k_rehab_oral;
+        this.k_periodoncia = k_periodoncia;
+        this.k_ciru_maxi_facial = k_ciru_maxi_facial;
+        this.k_ortodoncia = k_ortodoncia;
     }
 
     public int getId_hcodontologia() {
@@ -438,20 +510,138 @@ public class HcOdontologiaDTO {
     public void setI_diagnostico(String i_diagnostico) {
         this.i_diagnostico = i_diagnostico;
     }
-
-    public String getK_plan_tratamiento() {
-        return k_plan_tratamiento;
-    }
-
-    public void setK_plan_tratamiento(String k_plan_tratamiento) {
-        this.k_plan_tratamiento = k_plan_tratamiento;
-    }
+    
+    
 
     @Override
     public String toString() {
-        return "HcOdontologiaDTO{" + "id_hcodontologia=" + id_hcodontologia + ", id_cita=" + id_cita + ", id_usuario=" + id_usuario + ", b_motivo=" + b_motivo + ", b_alergias=" + b_alergias + ", b_hemorragia=" + b_hemorragia + ", b_radioterapia=" + b_radioterapia + ", b_hipertension=" + b_hipertension + ", b_diabetes=" + b_diabetes + ", b_tratamiento_medico_actual=" + b_tratamiento_medico_actual + ", b_toma_medicamentos=" + b_toma_medicamentos + ", b_embarazo=" + b_embarazo + ", b_hiv=" + b_hiv + ", b_cirugias=" + b_cirugias + ", b_exodoncia=" + b_exodoncia + ", b_hepatitis=" + b_hepatitis + ", b_patologia_respiratoria=" + b_patologia_respiratoria + ", b_convulsion=" + b_convulsion + ", b_enfermedades_orales=" + b_enfermedades_orales + ", b_enfermedades_gastricas=" + b_enfermedades_gastricas + ", b_observacion_anamnesis=" + b_observacion_anamnesis + ", c_labios=" + c_labios + ", c_lengua=" + c_lengua + ", c_carrillos=" + c_carrillos + ", c_pisodeboca=" + c_pisodeboca + ", c_paladar=" + c_paladar + ", c_frenillos=" + c_frenillos + ", c_observacion_examenes=" + c_observacion_examenes + ", d_protesis=" + d_protesis + ", d_descripcion_protesis=" + d_descripcion_protesis + ", d_higiene_oral=" + d_higiene_oral + ", d_fr_cepillado=" + d_fr_cepillado + ", d_seda_dental=" + d_seda_dental + ", e_dolor_muscular=" + e_dolor_muscular + ", e_dolor_articular=" + e_dolor_articular + ", e_ruido_articular=" + e_ruido_articular + ", e_limit_movimiento=" + e_limit_movimiento + ", e_obser_atm=" + e_obser_atm + ", f_control_placa=" + f_control_placa + ", g_odontograma=" + g_odontograma + ", h_lectura_rx=" + h_lectura_rx + ", i_diagnostico=" + i_diagnostico + ", k_plan_tratamiento=" + k_plan_tratamiento + '}';
+        return "HcOdontologiaDTO{" + "id_hcodontologia=" + id_hcodontologia + ", id_cita=" + id_cita + ", id_usuario=" + id_usuario + ", b_motivo=" + b_motivo + ", b_alergias=" + b_alergias + ", b_hemorragia=" + b_hemorragia + ", b_radioterapia=" + b_radioterapia + ", b_hipertension=" + b_hipertension + ", b_diabetes=" + b_diabetes + ", b_tratamiento_medico_actual=" + b_tratamiento_medico_actual + ", b_toma_medicamentos=" + b_toma_medicamentos + ", b_embarazo=" + b_embarazo + ", b_hiv=" + b_hiv + ", b_cirugias=" + b_cirugias + ", b_exodoncia=" + b_exodoncia + ", b_hepatitis=" + b_hepatitis + ", b_patologia_respiratoria=" + b_patologia_respiratoria + ", b_convulsion=" + b_convulsion + ", b_enfermedades_orales=" + b_enfermedades_orales + ", b_enfermedades_gastricas=" + b_enfermedades_gastricas + ", b_observacion_anamnesis=" + b_observacion_anamnesis + ", c_labios=" + c_labios + ", c_lengua=" + c_lengua + ", c_carrillos=" + c_carrillos + ", c_pisodeboca=" + c_pisodeboca + ", c_paladar=" + c_paladar + ", c_frenillos=" + c_frenillos + ", c_observacion_examenes=" + c_observacion_examenes + ", d_protesis=" + d_protesis + ", d_descripcion_protesis=" + d_descripcion_protesis + ", d_higiene_oral=" + d_higiene_oral + ", d_fr_cepillado=" + d_fr_cepillado + ", d_seda_dental=" + d_seda_dental + ", e_dolor_muscular=" + e_dolor_muscular + ", e_dolor_articular=" + e_dolor_articular + ", e_ruido_articular=" + e_ruido_articular + ", e_limit_movimiento=" + e_limit_movimiento + ", e_obser_atm=" + e_obser_atm + ", f_control_placa=" + f_control_placa + ", g_odontograma=" + g_odontograma + ", h_lectura_rx=" + h_lectura_rx + ", i_diagnostico=" + i_diagnostico + ", k_operatoria=" + getK_operatoria() + ", k_cirugia_oral=" + getK_cirugia_oral() + ", k_higiene_oral=" + getK_higiene_oral() + ", k_endodoncia=" + getK_endodoncia() + ", k_md_oral=" + getK_md_oral() + ", k_rehab_oral=" + getK_rehab_oral() + ", k_periodoncia=" + getK_periodoncia() + ", k_ciru_maxi_facial=" + getK_ciru_maxi_facial() + ", k_ortodoncia=" + getK_ortodoncia() + '}';
     }
 
-    
+    /**
+     * @return the k_operatoria
+     */
+    public String getK_operatoria() {
+        return k_operatoria;
+    }
+
+    /**
+     * @param k_operatoria the k_operatoria to set
+     */
+    public void setK_operatoria(String k_operatoria) {
+        this.k_operatoria = k_operatoria;
+    }
+
+    /**
+     * @return the k_cirugia_oral
+     */
+    public String getK_cirugia_oral() {
+        return k_cirugia_oral;
+    }
+
+    /**
+     * @param k_cirugia_oral the k_cirugia_oral to set
+     */
+    public void setK_cirugia_oral(String k_cirugia_oral) {
+        this.k_cirugia_oral = k_cirugia_oral;
+    }
+
+    /**
+     * @return the k_higiene_oral
+     */
+    public String getK_higiene_oral() {
+        return k_higiene_oral;
+    }
+
+    /**
+     * @param k_higiene_oral the k_higiene_oral to set
+     */
+    public void setK_higiene_oral(String k_higiene_oral) {
+        this.k_higiene_oral = k_higiene_oral;
+    }
+
+    /**
+     * @return the k_endodoncia
+     */
+    public String getK_endodoncia() {
+        return k_endodoncia;
+    }
+
+    /**
+     * @param k_endodoncia the k_endodoncia to set
+     */
+    public void setK_endodoncia(String k_endodoncia) {
+        this.k_endodoncia = k_endodoncia;
+    }
+
+    /**
+     * @return the k_md_oral
+     */
+    public String getK_md_oral() {
+        return k_md_oral;
+    }
+
+    /**
+     * @param k_md_oral the k_md_oral to set
+     */
+    public void setK_md_oral(String k_md_oral) {
+        this.k_md_oral = k_md_oral;
+    }
+
+    /**
+     * @return the k_rehab_oral
+     */
+    public String getK_rehab_oral() {
+        return k_rehab_oral;
+    }
+
+    /**
+     * @param k_rehab_oral the k_rehab_oral to set
+     */
+    public void setK_rehab_oral(String k_rehab_oral) {
+        this.k_rehab_oral = k_rehab_oral;
+    }
+
+    /**
+     * @return the k_periodoncia
+     */
+    public String getK_periodoncia() {
+        return k_periodoncia;
+    }
+
+    /**
+     * @param k_periodoncia the k_periodoncia to set
+     */
+    public void setK_periodoncia(String k_periodoncia) {
+        this.k_periodoncia = k_periodoncia;
+    }
+
+    /**
+     * @return the k_ciru_maxi_facial
+     */
+    public String getK_ciru_maxi_facial() {
+        return k_ciru_maxi_facial;
+    }
+
+    /**
+     * @param k_ciru_maxi_facial the k_ciru_maxi_facial to set
+     */
+    public void setK_ciru_maxi_facial(String k_ciru_maxi_facial) {
+        this.k_ciru_maxi_facial = k_ciru_maxi_facial;
+    }
+
+    /**
+     * @return the k_ortodoncia
+     */
+    public String getK_ortodoncia() {
+        return k_ortodoncia;
+    }
+
+    /**
+     * @param k_ortodoncia the k_ortodoncia to set
+     */
+    public void setK_ortodoncia(String k_ortodoncia) {
+        this.k_ortodoncia = k_ortodoncia;
+    }    
     
 }

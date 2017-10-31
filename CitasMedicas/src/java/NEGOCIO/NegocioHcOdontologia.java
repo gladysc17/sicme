@@ -76,5 +76,33 @@ public class NegocioHcOdontologia {
         }
         return listaHisC;
     }
+     
+    public boolean actualizarControlPlacaOdontograma(int id_hcodontologia, String controlPlaca, String odontograma) throws SQLException {
+        boolean rta = false;
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        HcOdontologiaDAO od = new HcOdontologiaDAO(co);
+
+        try {
+
+            rta = od.actualizarControlPlacaOdontograma(id_hcodontologia, controlPlaca, odontograma);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioHcOdontologia.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioHcOdontologia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return rta;
+    } 
     
 }
