@@ -69,11 +69,11 @@
                             String id_medico = lista.get(i).getId_medico();
                             int idcita = lista.get(i).getId_cita();
                             int numero = i + 1;
-                            boolean mod = false;
+                            String mod = "";
                             Date f1 = sdf.parse(fecha);
                             Date f2 = sdf.parse(fechaActual);
-                            if(f1.before(f2)){
-                                mod = true;
+                            if(f1.after(f2)){
+                                mod = "disabled";
                             }
                     %>
                     <tbody>                                       
@@ -87,7 +87,7 @@
                             <%
                                 if (estado.equals("pendiente")) {
                             %>
-                            <td><input type="submit" class="btn btn-default" disabled="<%=mod %>" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarCita.jsp?id=<%=idcita%>')"> </td>
+                            <td><input type="submit" class="btn btn-default" <%=mod %> value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarCita.jsp?id=<%=idcita%>')"> </td>
                                 <%
                                 } else {
                                 %>

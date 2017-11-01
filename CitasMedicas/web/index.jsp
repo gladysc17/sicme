@@ -583,11 +583,11 @@
                                             ls = fe.obtenerEventosMes();
 
                                             for (EventoDTO e : ls) {
-                                                boolean mod = true;
+                                                String disabled = "";
                                                 Date f1 = sdf.parse(e.getFechaEvento());
                                                 Date f2 = sdf.parse(fechaActual);
-                                                if (f1.after(f2)) {
-                                                    mod = false;
+                                                if (f1.before(f2)) {
+                                                    disabled = "disabled";
                                                 }
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
@@ -606,7 +606,7 @@
                                                     <b>Lugar: </b><%= e.getLugarEvento()%>                                       
                                                 </p>
                                                 <p>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')" disabled="<%=mod%>" />
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')" <%=disabled %> />
                                                 </p>
                                             </div>
 

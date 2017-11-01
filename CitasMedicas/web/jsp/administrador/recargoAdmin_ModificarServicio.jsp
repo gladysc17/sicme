@@ -28,7 +28,7 @@
                     <form action="../controlador/procesarModificarServicio.jsp" method="post">
                         <input type="hidden" name="id" value="<%=idServ %>" /> 
                         <label>Nombre del Servicio: </label>
-                        <input type="text" class="form-inline" name="nuevo_nombre" value="<%=ser.getNombre() %>" required /> <br>
+                        <input type="text" class="form-inline" name="nuevo_nombre" value="<%=ser.getNombre() %>" disabled /> <br>
                         <label>Información</label>
                         <textarea class="form-control" rows="3" name="nueva_info" required></textarea> <br>
                         <input type="submit" class="btn btn-info" value="Modificar" />

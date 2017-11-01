@@ -45,7 +45,6 @@
                                     <td><%=x.getInformacion()%></td>
                                     <td>
                                         <input type="submit" class="btn btn-info" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarServicio.jsp?idServ=<%=x.getId()%>')" />
-                                        <a href="../../controlador/procesarEliminarServicio.jsp?idSe=<%=x.getId() %>" class="btn btn-warning" >Eliminar</a>
                                     </td>
                                 </tr>
                                 <%
