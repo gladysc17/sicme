@@ -52,7 +52,7 @@
 
             String servicio = request.getParameter("servicio");
             String contrasena = request.getParameter("contrasena");           
-            String estado = request.getParameter("estado_estudiate"); 
+            String estado = request.getParameter("estado_estudiante"); 
             
             Calendar fechaGeneral = new GregorianCalendar();
             int año = fechaGeneral.get(Calendar.YEAR);

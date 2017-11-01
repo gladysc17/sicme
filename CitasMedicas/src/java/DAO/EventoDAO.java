@@ -35,7 +35,7 @@ public class EventoDAO {
      */
     public boolean registrarEvento(EventoDTO evento)throws SQLException{
         
-        String sql="INSERT INTO evento(nombre, fecha, hora, lugar, descripcion, director, creado, estado)"
+        String sql="INSERT INTO evento(nombre_evento, fecha, hora, lugar, descripcion, director, creado, estado)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         PreparedStatement ps = con.prepareStatement(sql);
