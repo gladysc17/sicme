@@ -4,6 +4,7 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.EventoDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -12,7 +13,7 @@
 <!DOCTYPE html>
 <div class="ibox float-e-margins">    
     <%
-        String idMedico = request.getParameter("iddMedico");        
+        String idMedico = request.getParameter("iddMedico");
     %>
 
     <div class="panel panel-default">
@@ -38,7 +39,7 @@
                     </thead>
                     <tbody>
                         <%
-                            FacadeEvento fe = new FacadeEvento();                            
+                            FacadeEvento fe = new FacadeEvento();
                             List<EventoDTO> ls = fe.listadoEventosAdm(idMedico);
                             int i = 0;
                             for (EventoDTO e : ls) {

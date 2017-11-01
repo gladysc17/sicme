@@ -4,6 +4,8 @@
     Author     : Gladys M
 --%>
 
+<%@page import="DTO.SesionDTO"%>
+<%@page import="FACADE.FacadeSesion"%>
 <%@page import="DTO.Hc_planificacionfamiliarDTO"%>
 <%@page import="FACADE.FacadeHcPlanificacionFamiliar"%>
 <%@page import="DTO.HcOdontologiaDTO"%>
@@ -77,7 +79,7 @@
                                     String nombre = ci.getNombre_usuario();
                                     String fecha = ci.getFecha_cita();
                                     String hora = ci.getHora_cita();
-                                    
+
                             %>
 
                             <tr  role="row" class="odd">                                     
@@ -97,7 +99,6 @@
                     </table>                                                        
                 </div> 
                 <%        } else if (servicio.equals("2")) {
-
                     FacadeHcOdontologia fac = new FacadeHcOdontologia();
                     List<HcOdontologiaDTO> hc = fac.consultarHcOdontologia(id);
                     if (hc.isEmpty()) {
@@ -142,15 +143,15 @@
                                 <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
                             </tr> 
                             <%
-                                        }
                                     }
-                                
+                                }
+
                             %>
 
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("3")) {
+                <%        } else if (servicio.equals("3")) {
 
                     FacadeHcPlanificacionFamiliar fac = new FacadeHcPlanificacionFamiliar();
                     List<Hc_planificacionfamiliarDTO> hc = fac.consultarHcPlanificacion(id);
@@ -169,7 +170,7 @@
                                 <th>Servicio</th>
                                 <th>Fecha</th>
                                 <th>Hora</th>
-                                <th>Ver Historia Clinca</th> 
+                                <th>Ver Historia Clinca</th>                                 
                             </tr>
                         </thead> 
 
@@ -183,7 +184,7 @@
 
                                     String nombre = ci.getNombre_usuario();
                                     String fecha = ci.getFecha_cita();
-                                    String hora = ci.getHora_cita();                                    
+                                    String hora = ci.getHora_cita();
                             %>
 
                             <tr  role="row" class="odd">                                     
@@ -194,15 +195,15 @@
                                 <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
                             </tr> 
                             <%
-                                        }
                                     }
-                                
+                                }
+
                             %>
 
                         </tbody>    
                     </table>                                                        
                 </div> 
-                            <%        } else if (servicio.equals("4")) {
+                <%        } else if (servicio.equals("4")) {
 
                     FacadeHcPsicologia fac = new FacadeHcPsicologia();
                     List<HcPsicologiaDTO> hc = fac.consultarHCPsicologia(id);
@@ -222,6 +223,7 @@
                                 <th>Fecha</th>
                                 <th>Hora</th>
                                 <th>Ver Historia Clinca</th> 
+                                <th>Ver Sesion</th> 
                             </tr>
                         </thead> 
 
@@ -237,7 +239,7 @@
                                     String fecha = ci.getFecha_cita();
                                     String hora = ci.getHora_cita();
 
-                                    System.out.println("idcitaderecargo: " + idcita);
+
                             %>
 
                             <tr  role="row" class="odd">                                     
@@ -246,13 +248,30 @@
                                 <td><%=fecha%></td>
                                 <td><%=hora%></td>  
                                 <td> <button type="submit" name="idcita" id="idcita" value="<%=idcita%>" target="_blank"> Ver</button>  </td> 
-                            </tr> 
-                            <%
+                                <td> 
+                                <%
+
+                                    int hisP = hc.get(i).getId_hcpsicologia();
+                                    FacadeSesion facSe = new FacadeSesion();
+                                    List<SesionDTO> listaSes = facSe.consultarSesionesPorHcPsicologia(hisP);
+                                    for (int j = 0; j < listaSes.size(); j++) {
+                                        int idSesion = listaSes.get(j).getId();
+                                        int num = listaSes.get(j).getNumSesion();                                        
+                                        System.out.println("num " +num);
+                                %>
+                                 <a href="/CitasMedicas/sesionPsicologia?idsesion=<%=idSesion%>" target="_blank"> Ver N°:<%=num%></a>  --
+                                 
+                             
+                            <%  }
+                            %>
+                                </td>
+                            </tr>
+                                 <%
                                         }
                                     }
                                 }
                             %>
-
+                            
                         </tbody>    
                     </table>                                                        
                 </div> 

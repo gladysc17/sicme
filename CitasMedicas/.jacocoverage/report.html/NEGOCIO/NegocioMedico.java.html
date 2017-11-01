@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NegocioMedico.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">NEGOCIO</a> &gt; <span class="el_source">NegocioMedico.java</span></div><h1>NegocioMedico.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package NEGOCIO;
+
+import DAO.MedicoDAO;
+import DTO.MedicoDTO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.ConexionPostgres;
+
+/**
+ *
+ * @author Gladys M
+ */
+<span class="nc" id="L22">public class NegocioMedico {</span>
+    
+    
+    public boolean validarSesionMedico(String id, String clave) {
+         
+<span class="nc" id="L27">        boolean resultado = false;</span>
+         
+<span class="nc" id="L29">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L30">        Connection co = con.getconexion();</span>
+<span class="nc" id="L31">        MedicoDAO med = new MedicoDAO(co);</span>
+        try {
+<span class="nc" id="L33">            MedicoDTO medi = med.consultarMedicoPorId(id);</span>
+
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (medi == null) {</span>
+<span class="nc" id="L36">                return false;</span>
+            } else {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                if (medi.getContrasena().equals(clave)) {</span>
+<span class="nc" id="L39">                    return true;</span>
+                }
+                
+            }
+<span class="nc" id="L43">        } catch (SQLException ex) {</span>
+<span class="nc" id="L44">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+        } finally {
+
+<span class="nc bnc" id="L47" title="All 10 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L49">                    co.close();</span>
+<span class="nc" id="L50">                } catch (SQLException ex) {</span>
+<span class="nc" id="L51">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L52">                }</span>
+            }
+        }
+
+<span class="nc" id="L56">        return resultado;</span>
+    }
+    
+    public boolean registrarMedico(MedicoDTO med) {
+
+<span class="nc" id="L61">        boolean resultado = false;</span>
+
+<span class="nc" id="L63">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L64">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L66">        MedicoDAO medi = new MedicoDAO(co);</span>
+
+        try {
+           
+<span class="nc" id="L70">                return resultado = medi.registrarMedico(med);</span>
+            
+<span class="nc" id="L72">        } catch (SQLException ex) {</span>
+<span class="nc" id="L73">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+<span class="nc bnc" id="L76" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L78">                    co.close();</span>
+<span class="nc" id="L79">                } catch (SQLException ex) {</span>
+<span class="nc" id="L80">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+<span class="nc" id="L82">                }</span>
+            }
+        }
+<span class="nc" id="L85">        return resultado;</span>
+
+    }
+    
+     public MedicoDTO consultarMedicoPorId(String id) {
+
+<span class="nc" id="L91">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L92">        Connection co = con.getconexion();</span>
+<span class="nc" id="L93">        MedicoDAO med = new MedicoDAO(co);</span>
+
+        try {
+<span class="nc" id="L96">             return med.consultarMedicoPorId(id);</span>
+<span class="nc" id="L97">        } catch (SQLException ex) {</span>
+<span class="nc" id="L98">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+        } finally {
+
+<span class="nc bnc" id="L101" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L103">                    co.close();</span>
+<span class="nc" id="L104">                } catch (SQLException ex) {</span>
+<span class="nc" id="L105">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L106">                }</span>
+            }
+        }
+<span class="nc" id="L109">        return null;</span>
+    }
+     
+       public boolean consultarMedicoPorIdBoolean(String id) {
+           
+<span class="nc" id="L114">           boolean rta = false;</span>
+
+<span class="nc" id="L116">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L117">        Connection co = con.getconexion();</span>
+<span class="nc" id="L118">        MedicoDAO med = new MedicoDAO(co);</span>
+
+        try {
+<span class="nc" id="L121">             MedicoDTO medico = med.consultarMedicoPorId(id);</span>
+             
+<span class="nc bnc" id="L123" title="All 2 branches missed.">               return medico != null;</span>
+<span class="nc" id="L124">        } catch (SQLException ex) {</span>
+<span class="nc" id="L125">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+        } finally {
+
+<span class="nc bnc" id="L128" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L130">                    co.close();</span>
+<span class="nc" id="L131">                } catch (SQLException ex) {</span>
+<span class="nc" id="L132">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L133">                }</span>
+            }
+        }
+<span class="nc" id="L136">        return rta;</span>
+    }
+     
+    public MedicoDTO consultarMedicoPorIdCodigo (int id, int codigo) {
+
+<span class="nc" id="L141">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L142">        Connection co = con.getconexion();</span>
+<span class="nc" id="L143">        MedicoDAO doc = new MedicoDAO(co);</span>
+
+        try {
+<span class="nc" id="L146">             return doc.consultarMedicoPorIdCodigo(id, codigo);</span>
+<span class="nc" id="L147">        } catch (SQLException ex) {</span>
+<span class="nc" id="L148">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+        } finally {
+
+<span class="nc bnc" id="L151" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L153">                    co.close();</span>
+<span class="nc" id="L154">                } catch (SQLException ex) {</span>
+<span class="nc" id="L155">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L156">                }</span>
+            }
+        }
+<span class="nc" id="L159">        return null;</span>
+    }
+    
+     
+     public List&lt;MedicoDTO&gt; listarMedicos() throws SQLException{
+      
+           
+<span class="nc" id="L166">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L167">        Connection co = con.getconexion();</span>
+        
+<span class="nc" id="L169">        List&lt;MedicoDTO&gt; prof = new ArrayList&lt;MedicoDTO&gt;();</span>
+<span class="nc" id="L170">        MedicoDAO doc = new MedicoDAO(co);</span>
+        
+        try{
+<span class="nc" id="L173">            prof = doc.consultarMedico();</span>
+<span class="nc" id="L174">        } catch(Exception e){</span>
+<span class="nc" id="L175">            e.printStackTrace();</span>
+        } finally {
+<span class="nc" id="L177">            co.close();</span>
+<span class="nc" id="L178">        }        </span>
+<span class="nc" id="L179">        return (prof);</span>
+    }
+     
+      public ArrayList&lt;MedicoDTO&gt; consultarMedicoPorServicio(String servicio) throws SQLException{
+      
+<span class="nc" id="L184">      ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L185">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L187">        MedicoDAO med = new MedicoDAO(co);</span>
+<span class="nc" id="L188">        ArrayList&lt;MedicoDTO&gt; medicos = new ArrayList&lt;MedicoDTO&gt;();</span>
+        
+        try {
+<span class="nc" id="L191">            medicos = med.consultarMedicoPorServicio(servicio);</span>
+
+<span class="nc" id="L193">        } catch (SQLException ex) {</span>
+<span class="nc" id="L194">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L198" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L200">                    co.close();</span>
+<span class="nc" id="L201">                } catch (SQLException ex) {</span>
+<span class="nc" id="L202">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L203">                }</span>
+            }
+        }
+<span class="nc" id="L206">        return medicos;</span>
+      
+  }
+      
+    public boolean modificarMedico(int identificacion, String correo, String fechanacimiento, String genero, String estadocivil, String direccion, String telefono, String contrasena) throws SQLException{
+
+<span class="nc" id="L212">        boolean rta = false;</span>
+<span class="nc" id="L213">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L214">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L216">        MedicoDAO med = new MedicoDAO(co);</span>
+
+        try {
+            
+<span class="nc" id="L220">            rta = med.modificarMedico(identificacion, correo, fechanacimiento, genero, estadocivil, direccion, telefono, contrasena);</span>
+
+<span class="nc" id="L222">        } catch (SQLException ex) {</span>
+<span class="nc" id="L223">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L227" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L229">                    co.close();</span>
+<span class="nc" id="L230">                } catch (SQLException ex) {</span>
+<span class="nc" id="L231">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L232">                }</span>
+            }
+        }
+
+<span class="nc" id="L236">        return rta;</span>
+    }
+
+    public boolean verificarMedico(String id, String clave) throws SQLException {
+      
+<span class="nc" id="L241">        boolean rta = false;</span>
+
+<span class="nc" id="L243">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L244">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L246">        MedicoDAO medico = new MedicoDAO(co);</span>
+
+<span class="nc" id="L248">        MedicoDTO md = medico.consultarMedicoPorId(id);</span>
+
+<span class="nc bnc" id="L250" title="All 2 branches missed.">        if (md == null) {</span>
+<span class="nc" id="L251">            return false;</span>
+        } else {
+<span class="nc bnc" id="L253" title="All 2 branches missed.">            if (md.getContrasena().equals(clave)) {</span>
+<span class="nc" id="L254">                return true;</span>
+            }
+
+        }
+
+<span class="nc" id="L259">        return rta;</span>
+    }
+    
+    public ArrayList&lt;String[]&gt; listadoMedico() throws SQLException{
+<span class="nc" id="L263">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L264">        Connection co = con.getconexion();</span>
+        
+<span class="nc" id="L266">        ArrayList&lt;String[]&gt; lis = new ArrayList&lt;&gt;();</span>
+        try{
+<span class="nc" id="L268">            MedicoDAO med = new MedicoDAO(co);</span>
+<span class="nc" id="L269">            lis = med.listadoMedico();</span>
+<span class="nc" id="L270">        } catch (SQLException ex) {</span>
+<span class="nc" id="L271">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+
+        } finally {
+
+<span class="nc bnc" id="L275" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L277">                    co.close();</span>
+<span class="nc" id="L278">                } catch (SQLException ex) {</span>
+<span class="nc" id="L279">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L280">                }</span>
+            }
+        }
+        
+<span class="nc" id="L284">        return lis;</span>
+    }
+    
+    public List&lt;String&gt; consultaServicios() {
+<span class="nc" id="L288">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L289">        Connection co = con.getconexion();</span>
+        
+<span class="nc" id="L291">        List&lt;String&gt; ls = new ArrayList&lt;&gt;();</span>
+        
+        try{
+<span class="nc" id="L294">            MedicoDAO med = new MedicoDAO(co);</span>
+<span class="nc" id="L295">            ls = med.consultaServicios();</span>
+<span class="nc" id="L296">        } catch (SQLException ex) {</span>
+<span class="nc" id="L297">            Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+        } finally {
+<span class="nc bnc" id="L299" title="All 6 branches missed.">            if (co != null) {</span>
+                try {
+<span class="nc" id="L301">                    co.close();</span>
+<span class="nc" id="L302">                } catch (SQLException ex) {</span>
+<span class="nc" id="L303">                    Logger.getLogger(NegocioMedico.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L304">                }</span>
+            }
+        }
+<span class="nc" id="L307">        return ls;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

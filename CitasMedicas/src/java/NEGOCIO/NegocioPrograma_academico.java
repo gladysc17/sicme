@@ -21,10 +21,16 @@ import util.ConexionPostgres;
 
 /**
  *
- * @author usuario
+ * @author Gladys M
+ * @version 1.0
  */
 public class NegocioPrograma_academico {
     
+    /**
+     * Metodo que verifica el registro de un Programa Academico
+     *
+     * @see DAO.Programa_academicoDAO registrarPrograma
+     */
     public boolean registrarPrograma(Programa_academicoDTO pro) {
         boolean rta = false;
 
@@ -52,6 +58,12 @@ public class NegocioPrograma_academico {
         }
         return rta;
     }
+    
+    /**
+     * Metodo que verifica la existencia de un Programa Academico
+     *
+     * @see DAO.Programa_academicoDAO consultarPrograma
+     */
     
     public Programa_academicoDTO consultarProgramaId(int id) {
 
@@ -81,6 +93,11 @@ public class NegocioPrograma_academico {
         return prog;
     }
     
+    /**
+     * Metodo que verifica la existencia de Programas Academicos
+     *
+     * @see DAO.Programa_academicoDAO consultarProgramas
+     */
     public List<Programa_academicoDTO> consultarProgramas() {
 
         ConexionPostgres con = new ConexionPostgres();

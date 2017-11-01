@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a5fbf8b-e4e9-4750-9d8f-324a61f1a4fc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idcita" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from hc_medicinageneral hc, cita c 
+where idcita_hcmed =$P{idcita}
+and hc.idcita_hcmed = c.id_cita]]>
+	</queryString>
+	<field name="id_hcmed" class="java.lang.Integer"/>
+	<field name="idusuario_hcmed" class="java.lang.Integer"/>
+	<field name="idcita_hcmed" class="java.lang.Integer"/>
+	<field name="motivoconsulta_hcmed" class="java.lang.String"/>
+	<field name="enfermedadgeneral_hcmed" class="java.lang.String"/>
+	<field name="revisionporsistemas_hcmed" class="java.lang.String"/>
+	<field name="antpatologicos_hcmed" class="java.lang.String"/>
+	<field name="antquirurgicos_hcmed" class="java.lang.String"/>
+	<field name="anttraumaticos_hcmed" class="java.lang.String"/>
+	<field name="anttoxicoalergicos_hcmed" class="java.lang.String"/>
+	<field name="antfarmacologicos_hcmed" class="java.lang.String"/>
+	<field name="antvenereos_hcmed" class="java.lang.String"/>
+	<field name="antfamiliares_hcmed" class="java.lang.String"/>
+	<field name="antginecologicos_hcmed" class="java.lang.String"/>
+	<field name="antotros_hcmed" class="java.lang.String"/>
+	<field name="efestadogeneral_hcmed" class="java.lang.String"/>
+	<field name="efcabezacuello_hcmed" class="java.lang.String"/>
+	<field name="efcardiopulmonar_hcmed" class="java.lang.String"/>
+	<field name="efabdomen_hcmed" class="java.lang.String"/>
+	<field name="efgenitourinario_hcmed" class="java.lang.String"/>
+	<field name="efextremidades_hcmed" class="java.lang.String"/>
+	<field name="efpielfuneras_hcmed" class="java.lang.String"/>
+	<field name="efsistemanervioso_hcmed" class="java.lang.String"/>
+	<field name="diagnostico1_hcmed" class="java.lang.String"/>
+	<field name="tipodiagnostico1_hcmed" class="java.lang.String"/>
+	<field name="diagnostico2_hcmed" class="java.lang.String"/>
+	<field name="tipodiagnostico2_hcmed" class="java.lang.String"/>
+	<field name="diagnostico3_hcmed" class="java.lang.String"/>
+	<field name="tipodiagnostico3_hcmed" class="java.lang.String"/>
+	<field name="tratamiento_hcmed" class="java.lang.String"/>
+	<field name="recomendaciones_hcmed" class="java.lang.String"/>
+	<field name="formulamedica_hcmed" class="java.lang.String"/>
+	<field name="frecardiaca_hcmed" class="java.lang.String"/>
+	<field name="frerespiratoria_hcmed" class="java.lang.String"/>
+	<field name="tensionarterial_hcmed" class="java.lang.String"/>
+	<field name="temperatura_hcmed" class="java.lang.String"/>
+	<field name="peso_hcmed" class="java.lang.String"/>
+	<field name="talla_hcmed" class="java.lang.String"/>
+	<field name="id_cita" class="java.lang.Integer"/>
+	<field name="servicio_cita" class="java.lang.String"/>
+	<field name="num_recibo_cita" class="java.lang.String"/>
+	<field name="fecha_cita" class="java.sql.Date"/>
+	<field name="hora_cita" class="java.sql.Time"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="nombre_medico" class="java.lang.String"/>
+	<field name="tipousuario_cita" class="java.lang.String"/>
+	<field name="id_usuario" class="java.lang.String"/>
+	<field name="id_medico" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="239" y="61" width="100" height="20" uuid="7887c1bd-9978-4546-bf4f-a32e68ef739b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMULA MEDICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="30" width="255" height="20" uuid="b5d70a62-25c6-45a0-8e9b-90bb61e49373"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="10" width="273" height="20" uuid="38776dbe-da0b-47f9-968f-f0b19e974dd1"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
+			</staticText>
+			<image>
+				<reportElement x="10" y="11" width="50" height="50" uuid="9e8114ec-8528-4ba8-a5c3-cd01f79655a2"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="455" y="10" width="50" height="50" uuid="147c34e1-067b-4577-ad9c-6aa3b8e657d3"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="213" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="104" width="519" height="86" uuid="392aeea3-b739-4709-a3cf-2e2347bef28e"/>
+				<textFieldExpression><![CDATA[$F{formulamedica_hcmed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="12" width="180" height="20" uuid="7c22f49f-ebe3-4c76-ad6c-1e5f35dfd303"/>
+				<textFieldExpression><![CDATA[$F{nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="32" width="100" height="20" uuid="8d1ffbc5-6592-4654-9cbf-81fe3c61ef0e"/>
+				<textFieldExpression><![CDATA[$F{id_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="339" y="13" width="100" height="20" uuid="75e82d90-dce0-4104-b5be-56618e7ef868"/>
+				<textFieldExpression><![CDATA[$F{servicio_cita}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="339" y="34" width="100" height="20" uuid="fe8ebe07-f2d4-4528-82bb-2f41e4696cdd"/>
+				<textFieldExpression><![CDATA[$F{fecha_cita}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="339" y="54" width="100" height="20" uuid="89dcb29e-76da-429d-b07e-09b553191b0d"/>
+				<textFieldExpression><![CDATA[$F{hora_cita}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="9" y="74" width="100" height="20" uuid="6ae32728-3492-44c4-aea1-9631bcd62a17"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Formula Médica:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="14" width="73" height="20" uuid="9d5d9768-bd97-4dd0-9881-36f77384fa4f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Servicio Cita:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="13" width="51" height="20" uuid="a28d18c4-87a1-4e94-9225-b00039884423"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="32" width="77" height="20" uuid="674f638f-de68-4e0d-ae7e-69bce6b0006f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="34" width="73" height="20" uuid="0679cc80-b795-43e6-827f-4a777e9fc4c8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Cita:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="54" width="73" height="20" uuid="53fae7dc-cc4c-4e00-9137-f694572b68da"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Cita:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="5" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="98" y="5" width="100" height="20" uuid="120965b4-874f-41dd-9433-b416118e01ae"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="5" width="83" height="20" uuid="42901c78-3c2a-48cc-b989-a09ceb2ee795"/>
+				<text><![CDATA[Fecha Consulta:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

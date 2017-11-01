@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>usuarios.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">reportes</a> &gt; <span class="el_source">usuarios.java</span></div><h1>usuarios.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package reportes;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import util.ConexionPostgres;
+
+/**
+ *
+ * @author Gladys M
+ */
+@WebServlet(name = &quot;usuarios&quot;, urlPatterns = {&quot;/usuarios&quot;})
+<span class="nc" id="L37">public class usuarios extends HttpServlet {</span>
+
+    /**
+     * Processes requests for both HTTP &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;POST&lt;/code&gt;
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+                
+<span class="nc" id="L51">        ConexionPostgres con = new ConexionPostgres();</span>
+<span class="nc" id="L52">        Connection co = con.getconexion();</span>
+
+<span class="nc" id="L54">        java.util.Date utilDate = new java.util.Date(); </span>
+<span class="nc" id="L55">        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());</span>
+        
+<span class="nc" id="L57">        System.out.println(&quot; DIA HOY : &quot; + sqlDate);</span>
+        
+<span class="nc" id="L59">        String tipou = request.getParameter(&quot;tipous&quot;);</span>
+<span class="nc" id="L60">        String fechaI = request.getParameter(&quot;fechaIC&quot;);</span>
+<span class="nc" id="L61">        String fechaF = request.getParameter(&quot;fechaIC2&quot;);                   </span>
+                
+<span class="nc" id="L63">        System.out.println(&quot; tipou &quot; + tipou + &quot; fechaI &quot; + fechaI + &quot; fechaF &quot; + fechaF);        </span>
+        
+<span class="nc" id="L65">        Date fec = Date.valueOf(fechaI);</span>
+<span class="nc" id="L66">        Date fec2 = Date.valueOf(fechaF);</span>
+<span class="nc" id="L67">        System.out.println(&quot; fec &quot; + fec + &quot; fec2 &quot; + fec2 );</span>
+        try {             
+            
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if(tipou.equals(&quot;todos&quot;)){</span>
+<span class="nc" id="L71">            Map m = new HashMap();</span>
+            
+<span class="nc" id="L73">            m.put(&quot;fechaI&quot;, fec);</span>
+<span class="nc" id="L74">            m.put(&quot;fechaF&quot;, fec2);</span>
+                    
+<span class="nc" id="L76">                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream(&quot;usuarioTodos.jasper&quot;));</span>
+<span class="nc" id="L77">                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);</span>
+<span class="nc" id="L78">                    JasperViewer viewer = new JasperViewer(jasperPrint, false);</span>
+<span class="nc" id="L79">                    viewer.setTitle(&quot;Mi Reporte&quot;);</span>
+<span class="nc" id="L80">                    viewer.setVisible(true);</span>
+                                                               
+<span class="nc" id="L82">            }</span>
+            
+<span class="nc bnc" id="L84" title="All 8 branches missed.">            else if(tipou.equals(&quot;estudiante&quot;) || tipou.equals(&quot;docente&quot;) || tipou.equals(&quot;administrativo&quot;) || tipou.equals(&quot;servicios_generales&quot;)){</span>
+            
+<span class="nc" id="L86">            Map m = new HashMap();            </span>
+                
+<span class="nc" id="L88">            m.put(&quot;tipou&quot;, tipou);</span>
+<span class="nc" id="L89">            m.put(&quot;fechaI&quot;, fec);</span>
+<span class="nc" id="L90">            m.put(&quot;fechaF&quot;, fec2);</span>
+            
+<span class="nc" id="L92">            System.out.println(&quot; tipou llega a jasper &quot; + tipou + &quot; fechaI &quot; + fechaI + &quot; fechaF &quot; + fechaF);   </span>
+                    
+<span class="nc" id="L94">                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream(&quot;usuarioTipo.jasper&quot;));</span>
+<span class="nc" id="L95">                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);</span>
+<span class="nc" id="L96">                    JasperViewer viewer = new JasperViewer(jasperPrint, false);</span>
+<span class="nc" id="L97">                    viewer.setTitle(&quot;Mi Reporte&quot;);</span>
+<span class="nc" id="L98">                    viewer.setVisible(true);</span>
+                                                               
+            }
+
+<span class="nc" id="L102">        } catch (JRException ex) {</span>
+<span class="nc" id="L103">            Logger.getLogger(historia.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L104">        }</span>
+
+        
+<span class="nc" id="L107">    }</span>
+
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
+    /**
+     * Handles the HTTP &lt;code&gt;GET&lt;/code&gt; method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+<span class="nc" id="L121">        processRequest(request, response);</span>
+<span class="nc" id="L122">    }</span>
+
+    /**
+     * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+<span class="nc" id="L135">        processRequest(request, response);</span>
+<span class="nc" id="L136">    }</span>
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+<span class="nc" id="L145">        return &quot;Short description&quot;;</span>
+    }// &lt;/editor-fold&gt;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

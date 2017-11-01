@@ -26,6 +26,13 @@ public class EventoDAO {
         this.con = con;
     }
     
+    /**
+     * Método que me permite registrar un evento.
+     * @param evento Objeto de tipo EventoDTO que contiene la información necesaria.
+     * @return Valor booleano que informara si se registro o no el evento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean registrarEvento(EventoDTO evento)throws SQLException{
         
         String sql="INSERT INTO evento(nombre, fecha, hora, lugar, descripcion, director, creado, estado)"
@@ -51,7 +58,13 @@ public class EventoDAO {
         }
     }
     
-    
+    /**
+     * Metodo que me permite obtener el primer y último día del mes actual
+     * @return Vector de dos posiciones tipo double que contiene en la primera casilla el primer dia
+     * y en la segunda casilla el último día.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public double[] diasMes() throws SQLException{
         
         String sql = "select extract (day from (select date_trunc('month',current_date))), extract (day from (select date_trunc('month',current_date) +'1month' ::interval -'1sec' ::interval))";
@@ -68,6 +81,12 @@ public class EventoDAO {
         return vec;
     } 
     
+    /**
+     * Método que me permite obtener el mes actual
+     * @return Valor double con el número del mes en que se encuentra actualmente.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public double obtenerMes() throws SQLException{
         
         String sql="select date_part('month',current_date)";
@@ -83,6 +102,12 @@ public class EventoDAO {
         return mes;
     }
     
+    /**
+     * Método que permite obtener el año en el que esta transcurriendo
+     * @return Valor double con el año en el que se esta.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public double obtenerAño() throws SQLException{
         
         String sql="select date_part('year',current_date)";
@@ -99,6 +124,15 @@ public class EventoDAO {
         return año;
     }
     
+    /**
+     * Método que obtienes los eventos que están programados en un mes
+     * @param fechaInicio Fecha inicial
+     * @param fechaFinal Fecha Final
+     * @param activo Valor con la que se verifica si el evento esta activo
+     * @return Listado de objetos de EventoDTO que cumplen la condiciones dadas.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<EventoDTO> eventoPorMes(String fechaInicio, String fechaFinal, String activo) throws SQLException{
         
         String sql = "select * from evento where fecha between ? and ? and  estado = ? ";
@@ -137,6 +171,13 @@ public class EventoDAO {
         return ls;
     }
     
+    /**
+     * Método que permite obtener los eventos que un administrador o profesional de la salud haya creado
+     * @param identificacion Identificador del usuario
+     * @return Listado de objetos de EventoDTO de de acuerdo a quien creo el evento
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<EventoDTO> listarEvento(String identificacion) throws SQLException{
         
         List<EventoDTO> ls = new ArrayList<EventoDTO>();
@@ -168,6 +209,16 @@ public class EventoDAO {
         return ls;
     }
     
+    /**
+     * Metodo que permite modificar datos del evento ya creado
+     * @param idEvento Identificador del evento en la base de datos
+     * @param fecha nueva fecha
+     * @param hora nueva hora
+     * @param lugar nuevo lugar
+     * @return Valor booleano que nos da la información si se modifico con eficiencia el evento
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean modificarEvento(int idEvento, String fecha, String hora, String lugar) throws SQLException {
        
         String sql = "UPDATE evento set fecha = ?, hora = ?, lugar = ? where id_evento = ?";
@@ -184,6 +235,13 @@ public class EventoDAO {
         return false;
     }
     
+    /**
+     * metodo que permite consultar un evento por su identificador
+     * @param id Identificador en la base de datos
+     * @return Objeto de tipo EventoDTO con la información que se obtuvo de la base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public EventoDTO consultaPorId(int id) throws SQLException {
         String sql = "select * from evento where id_evento = ?";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -207,6 +265,14 @@ public class EventoDAO {
         return eve;        
     }
     
+    /**
+     * metodo que permite obtener los eventos en un rango de fechas.
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha final
+     * @return Listado de objetos de EventoDTO, con la información de cada evento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<EventoDTO> listarEventos(String fechaI, String fechaF) throws SQLException {
         List<EventoDTO> ls = new ArrayList<EventoDTO>();
         String sql = "select * from evento where fecha between ? and ? ";
@@ -237,6 +303,12 @@ public class EventoDAO {
         return ls;
     }
     
+    /**
+     * metodo que permite consultar todos los eventos que se han creado hasta el momento
+     * @return Listado de objetos de EventoDTO con la información de cada evento hasta el momento
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public List<EventoDTO> consultarEventos() throws SQLException {
         List<EventoDTO> ls = new ArrayList<EventoDTO>();
         String sql = "select * from evento" ;

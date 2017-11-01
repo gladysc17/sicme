@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>UsuarioDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">UsuarioDAO.java</span></div><h1>UsuarioDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.UsuarioDTO;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class UsuarioDAO {
+
+    private Connection con;
+
+<span class="fc" id="L25">    public UsuarioDAO(Connection con) {</span>
+<span class="fc" id="L26">        this.con = con;</span>
+<span class="fc" id="L27">    }</span>
+
+//    public boolean registrarUsuario(UsuarioDTO otro) throws SQLException {
+//
+//        String sql = &quot;INSERT INTO usuario (identificacion, tipo_identificacion, codigo, nombre, correo, &quot;
+//                + &quot;fecha_nacimiento, genero, edad, estado_civil, direccion, telefono, tipo_usuario, fecharegistro, contrasena)&quot;
+//                + &quot; VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, otro.getIdentificacion());
+//        ps.setString(2, otro.getTipo_identificacion());
+//        ps.setString(3, otro.getCodigo());
+//        ps.setString(4, otro.getNombre());
+//        ps.setString(5, otro.getCorreo());
+//        ps.setDate(6, Date.valueOf(otro.getFecha_nacimiento()));
+//        ps.setString(7, otro.getGenero());
+//        ps.setInt(8, otro.getEdad());
+//        ps.setString(9, otro.getEstado_civil());
+//        ps.setString(10, otro.getDireccion());
+//        ps.setString(11, otro.getTelefono());
+//        ps.setString(12, otro.getTipo_usuario());
+//        ps.setDate(13, Date.valueOf(otro.getFecharegistro()));
+//        ps.setString(14, otro.getContrasena());
+//
+//        int resultado = ps.executeUpdate();
+//
+//        return resultado == 1;
+//
+//    }
+
+    public UsuarioDTO consultarUsuarioPorId(String id) throws SQLException {
+
+<span class="fc" id="L60">        String sql = &quot;SELECT * FROM usuario WHERE identificacion = ?&quot;;</span>
+
+<span class="fc" id="L62">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="fc" id="L64">        ps.setString(1, id);</span>
+
+<span class="fc" id="L66">        ResultSet rs = ps.executeQuery();</span>
+
+<span class="fc" id="L68">        UsuarioDTO otro = null;</span>
+
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (rs.next()) {</span>
+<span class="fc" id="L71">            otro = new UsuarioDTO();</span>
+<span class="fc" id="L72">            otro.setIdentificacion(rs.getString(&quot;identificacion&quot;));</span>
+<span class="fc" id="L73">            otro.setTipo_identificacion(rs.getString(&quot;tipo_identificacion&quot;));</span>
+<span class="fc" id="L74">            otro.setCodigo(rs.getString(&quot;codigo&quot;));</span>
+<span class="fc" id="L75">            otro.setNombre(rs.getString(&quot;nombre&quot;));</span>
+<span class="fc" id="L76">            otro.setCorreo(rs.getString(&quot;correo&quot;));</span>
+<span class="fc" id="L77">            otro.setFecha_nacimiento(rs.getString(&quot;fecha_nacimiento&quot;));</span>
+<span class="fc" id="L78">            otro.setGenero(rs.getString(&quot;genero&quot;));</span>
+<span class="fc" id="L79">            otro.setEdad(rs.getInt(&quot;edad&quot;));</span>
+<span class="fc" id="L80">            otro.setEstado_civil(rs.getString(&quot;estado_civil&quot;));</span>
+<span class="fc" id="L81">            otro.setDireccion(rs.getString(&quot;direccion&quot;));</span>
+<span class="fc" id="L82">            otro.setTelefono(rs.getString(&quot;telefono&quot;));</span>
+<span class="fc" id="L83">            otro.setTipo_usuario(rs.getString(&quot;tipo_usuario&quot;));</span>
+<span class="fc" id="L84">            otro.setFecharegistro(rs.getString(&quot;fecharegistro&quot;));</span>
+<span class="fc" id="L85">            otro.setContrasena(rs.getString(&quot;contrasena&quot;));</span>
+
+        }
+<span class="fc" id="L88">        return otro;</span>
+    }
+
+//    public List&lt;UsuarioDTO&gt; consultarUsuarios() throws SQLException {
+//
+//        List&lt;UsuarioDTO&gt; listaOtro = new ArrayList&lt;UsuarioDTO&gt;();
+//
+//        String sql = &quot;SELECT * FROM usuario ORDER BY nombre&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ResultSet rs = ps.executeQuery();
+//
+//        UsuarioDTO otro = null;
+//
+//        while (rs.next()) {
+//            otro = new UsuarioDTO();
+//
+//            otro = new UsuarioDTO();
+//            otro.setIdentificacion(rs.getString(&quot;identificacion&quot;));
+//            otro.setTipo_identificacion(rs.getString(&quot;tipo_identificacion&quot;));
+//            otro.setCodigo(rs.getString(&quot;codigo&quot;));
+//            otro.setNombre(rs.getString(&quot;nombre&quot;));
+//            otro.setCorreo(rs.getString(&quot;correo&quot;));
+//            otro.setFecha_nacimiento(rs.getString(&quot;fecha_nacimiento&quot;));
+//            otro.setGenero(rs.getString(&quot;genero&quot;));
+//            otro.setEdad(rs.getInt(&quot;edad&quot;));
+//            otro.setEstado_civil(rs.getString(&quot;estado_civil&quot;));
+//            otro.setDireccion(rs.getString(&quot;direccion&quot;));
+//            otro.setTelefono(rs.getString(&quot;telefono&quot;));
+//            otro.setTipo_usuario(rs.getString(&quot;tipo_usuario&quot;));
+//            otro.setFecharegistro(rs.getString(&quot;fecharegistro&quot;));
+//            otro.setContrasena(rs.getString(&quot;contrasena&quot;));
+//
+//            listaOtro.add(otro);
+//        }
+//
+//        return listaOtro;
+//
+//    }
+//
+//    public UsuarioDTO consultarUsuarioPorIdCodigo(String id, String codigo) throws SQLException {
+//
+//        String sql = &quot;SELECT * FROM usuario WHERE identificacion = ? OR codigo = ? &quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, id);
+//        ps.setString(2, codigo);
+//
+//        ResultSet rs = ps.executeQuery();
+//
+//        UsuarioDTO otro = null;
+//
+//        if (rs.next()) {
+//            otro = new UsuarioDTO();
+//
+//            otro = new UsuarioDTO();
+//            otro.setIdentificacion(rs.getString(&quot;identificacion&quot;));
+//            otro.setTipo_identificacion(rs.getString(&quot;tipo_identificacion&quot;));
+//            otro.setCodigo(rs.getString(&quot;codigo&quot;));
+//            otro.setNombre(rs.getString(&quot;nombre&quot;));
+//            otro.setCorreo(rs.getString(&quot;correo&quot;));
+//            otro.setFecha_nacimiento(rs.getString(&quot;fecha_nacimiento&quot;));
+//            otro.setGenero(rs.getString(&quot;genero&quot;));
+//            otro.setEdad(rs.getInt(&quot;edad&quot;));
+//            otro.setEstado_civil(rs.getString(&quot;estado_civil&quot;));
+//            otro.setDireccion(rs.getString(&quot;direccion&quot;));
+//            otro.setTelefono(rs.getString(&quot;telefono&quot;));
+//            otro.setTipo_usuario(rs.getString(&quot;tipo_usuario&quot;));
+//            otro.setFecharegistro(rs.getString(&quot;fecharegistro&quot;));
+//            otro.setContrasena(rs.getString(&quot;contrasena&quot;));
+//        }
+//
+//        return otro;
+//
+//    }
+//
+//    public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad, String contrasena) throws SQLException {
+//
+//        String sql = &quot;UPDATE usuario SET correo = ? , fecha_nacimiento = ?, genero = ?, estado_civil = ? , direccion =?, telefono = ?, edad = ?, contrasena = ? &quot;
+//                + &quot;WHERE  identificacion = ?&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, correo);
+//        ps.setDate(2, fechanacimiento);
+//        ps.setString(3, genero);
+//        ps.setString(4, estadocivil);
+//        ps.setString(5, direccion);
+//        ps.setString(6, telefono);
+//        ps.setInt(7, edad);
+//        ps.setString(8, contrasena);
+//        ps.setString(9, identificacion);
+//        
+//
+//        int rta = ps.executeUpdate();
+//
+//        return rta &gt; 0;
+//
+//    }
+//    
+//    public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException {
+//
+//        String sql = &quot;UPDATE administrador SET contrasena = ? &quot;
+//                + &quot;WHERE  identificacion_usuario = ?&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, contrasena);
+//        ps.setString(2, identificacion);
+//
+//        int rta = ps.executeUpdate();
+//
+//        return rta &gt; 0;
+//
+//    }
+//    public boolean modificarVice(String identificacion, String contrasena) throws SQLException {
+//
+//        String sql = &quot;UPDATE vicerrector SET contrasena = ? &quot;
+//                + &quot;WHERE  identificacion_usuario = ?&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, contrasena);
+//        ps.setString(2, identificacion);
+//
+//        int rta = ps.executeUpdate();
+//
+//        return rta &gt; 0;
+//
+//    }
+//    public boolean modificarMedico(String identificacion, String contrasena) throws SQLException {
+//
+//        String sql = &quot;UPDATE medico SET contrasena = ? &quot;
+//                + &quot;WHERE  identificacion = ?&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, contrasena);
+//        ps.setString(2, identificacion);
+//
+//        int rta = ps.executeUpdate();
+//
+//        return rta &gt; 0;
+//
+//    }
+//
+//    public int calcularedad(Date fecha) throws SQLException {
+//        
+//        int edad =0;
+//
+//        String sql = &quot;select (current_date - ? )/365 AS edad&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//        
+//        ps.setDate(1, fecha);
+//        
+//        ResultSet rs = ps.executeQuery();
+//        
+//        if(rs.next()){
+//            edad = rs.getInt(&quot;edad&quot;);
+//            return edad;                        
+//        }
+//        return edad;
+//       
+//    }
+//    
+//    public ArrayList&lt;UsuarioDTO&gt; consultarMedicosPorServicio(String tipo_usuario, String servicio) throws SQLException {
+//
+//        ArrayList&lt;UsuarioDTO&gt; medicos = new ArrayList&lt;UsuarioDTO&gt;();
+//
+//        String sql = &quot;SELECT * FROM usuario u INNER JOIN medico m ON u.identificacion = m.identificacion WHERE tipo_usuario = ? AND m.servicio = ?&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//        ps.setString(1, tipo_usuario);
+//        ps.setString(2, servicio);
+//
+//        ResultSet rs = ps.executeQuery();
+//
+//        UsuarioDTO med = null;
+//
+//        while (rs.next()) {
+//
+//            med = new UsuarioDTO();
+//
+//            med.setIdentificacion(rs.getString(&quot;identificacion&quot;));
+//            med.setTipo_identificacion(rs.getString(&quot;tipo_identificacion&quot;));
+//            med.setCodigo(rs.getString(&quot;codigo&quot;));
+//            med.setNombre(rs.getString(&quot;nombre&quot;));
+//            med.setCorreo(rs.getString(&quot;correo&quot;));
+//            med.setFecha_nacimiento(rs.getString(&quot;fecha_nacimiento&quot;));
+//            med.setGenero(rs.getString(&quot;genero&quot;));
+//            med.setEdad(rs.getInt(&quot;edad&quot;));
+//            med.setEstado_civil(rs.getString(&quot;estado_civil&quot;));
+//            med.setDireccion(rs.getString(&quot;direccion&quot;));
+//            med.setTelefono(rs.getString(&quot;telefono&quot;));
+//            med.setTipo_usuario(rs.getString(&quot;tipo_usuario&quot;));
+//            med.setFecharegistro(rs.getString(&quot;fecharegistro&quot;));
+//            med.setContrasena(rs.getString(&quot;contrasena&quot;));
+//
+//            medicos.add(med);
+//        }
+//        return medicos;
+//    }
+//    
+//    public List&lt;UsuarioDTO&gt; consultarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
+//
+//        List&lt;UsuarioDTO&gt; listaOtro = new ArrayList&lt;UsuarioDTO&gt;();
+//
+//        String sql = &quot;SELECT * FROM usuario WHERE   tipo_usuario = ? &quot;
+//                + &quot;AND fecharegistro between ? and  ? ORDER BY identificacion&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//
+//        ps.setString(1, tipo);
+//        ps.setDate(2, Date.valueOf(fecha1));
+//        ps.setDate(3, Date.valueOf(fecha2));
+//
+//        ResultSet rs = ps.executeQuery();
+//
+//        UsuarioDTO otro = null;
+//
+//        while (rs.next()) {
+//            otro = new UsuarioDTO();
+//
+//            otro = new UsuarioDTO();
+//            otro.setIdentificacion(rs.getString(&quot;identificacion&quot;));
+//            otro.setTipo_identificacion(rs.getString(&quot;tipo_identificacion&quot;));
+//            otro.setCodigo(rs.getString(&quot;codigo&quot;));
+//            otro.setNombre(rs.getString(&quot;nombre&quot;));
+//            otro.setCorreo(rs.getString(&quot;correo&quot;));
+//            otro.setFecha_nacimiento(rs.getString(&quot;fecha_nacimiento&quot;));
+//            otro.setGenero(rs.getString(&quot;genero&quot;));
+//            otro.setEdad(rs.getInt(&quot;edad&quot;));
+//            otro.setEstado_civil(rs.getString(&quot;estado_civil&quot;));
+//            otro.setDireccion(rs.getString(&quot;direccion&quot;));
+//            otro.setTelefono(rs.getString(&quot;telefono&quot;));
+//            otro.setTipo_usuario(rs.getString(&quot;tipo_usuario&quot;));
+//            otro.setFecharegistro(rs.getString(&quot;fecharegistro&quot;));
+//            otro.setContrasena(rs.getString(&quot;contrasena&quot;));
+//
+//            listaOtro.add(otro);
+//        }
+//
+//        return listaOtro;
+//
+//    }
+//    
+//     public List&lt;UsuarioDTO&gt; consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
+//
+//        List&lt;UsuarioDTO&gt; listaOtro = new ArrayList&lt;UsuarioDTO&gt;();
+//
+//        String sql = &quot;SELECT * FROM usuario WHERE  fecharegistro between ? and  ? ORDER BY nombre&quot;;
+//
+//        PreparedStatement ps = con.prepareStatement(sql);
+//        
+//        ps.setDate(1, Date.valueOf(fecha1));
+//        ps.setDate(2, Date.valueOf(fecha2));
+//
+//        ResultSet rs = ps.executeQuery();
+//
+//        UsuarioDTO otro = null;
+//
+//        while (rs.next()) {
+//            otro = new UsuarioDTO();
+//
+//            otro = new UsuarioDTO();
+//            otro.setIdentificacion(rs.getString(&quot;identificacion&quot;));
+//            otro.setTipo_identificacion(rs.getString(&quot;tipo_identificacion&quot;));
+//            otro.setCodigo(rs.getString(&quot;codigo&quot;));
+//            otro.setNombre(rs.getString(&quot;nombre&quot;));
+//            otro.setCorreo(rs.getString(&quot;correo&quot;));
+//            otro.setFecha_nacimiento(rs.getString(&quot;fecha_nacimiento&quot;));
+//            otro.setGenero(rs.getString(&quot;genero&quot;));
+//            otro.setEdad(rs.getInt(&quot;edad&quot;));
+//            otro.setEstado_civil(rs.getString(&quot;estado_civil&quot;));
+//            otro.setDireccion(rs.getString(&quot;direccion&quot;));
+//            otro.setTelefono(rs.getString(&quot;telefono&quot;));
+//            otro.setTipo_usuario(rs.getString(&quot;tipo_usuario&quot;));
+//            otro.setFecharegistro(rs.getString(&quot;fecharegistro&quot;));
+//            otro.setContrasena(rs.getString(&quot;contrasena&quot;));
+//
+//            listaOtro.add(otro);
+//        }
+//
+//        return listaOtro;
+//
+//    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -4,6 +4,8 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.EventoDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="FACADE.FacadeEvento"%>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f03e333b-e68e-43ca-929d-2128e03cc841">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="38"/>
+	<property name="ireport.y" value="48"/>
 	<parameter name="tipou" class="java.lang.String"/>
 	<parameter name="fechaI" class="java.util.Date"/>
 	<parameter name="fechaF" class="java.util.Date"/>
@@ -14,6 +14,9 @@
 	( select count(*) from cita where id_usuario = u.identificacion 
 	  and estado = 'atendido' and fecha_cita between $P{fechaI} and $P{fechaF}  
 	) AS "atendido",
+	( select count(*) from cita where id_usuario = u.identificacion 
+	  and estado = 'pendiente' and fecha_cita between $P{fechaI} and $P{fechaF}  
+	) AS "pendiente",
 	( select count(*) from cita where id_usuario = u.identificacion 
 	  and estado = 'inasistido' and fecha_cita between $P{fechaI} and  $P{fechaF}
 	) AS "inasistido",
@@ -37,6 +40,7 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 	<field name="contrasena" class="java.lang.String"/>
 	<field name="cantidad citas" class="java.lang.Long"/>
 	<field name="atendido" class="java.lang.Long"/>
+	<field name="pendiente" class="java.lang.Long"/>
 	<field name="inasistido" class="java.lang.Long"/>
 	<field name="fechactual" class="java.sql.Date"/>
 	<background>
@@ -45,14 +49,14 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="133" y="0" width="291" height="20" uuid="d2907020-8b1d-48b1-9b5b-8ef68e7fa752"/>
+				<reportElement x="270" y="0" width="291" height="20" uuid="d2907020-8b1d-48b1-9b5b-8ef68e7fa752"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="133" y="20" width="291" height="20" uuid="3da0e99f-a3cc-4591-bab0-0548fa454eeb"/>
+				<reportElement x="270" y="19" width="291" height="20" uuid="3da0e99f-a3cc-4591-bab0-0548fa454eeb"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
@@ -67,99 +71,145 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 				<textFieldExpression><![CDATA[$F{tipo_usuario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="259" y="59" width="152" height="20" uuid="240846d7-dbe2-411d-916a-a2ddee182d8f"/>
-				<text><![CDATA[(s/es)  registrados en el sistema:]]></text>
+				<reportElement x="259" y="59" width="179" height="20" uuid="240846d7-dbe2-411d-916a-a2ddee182d8f"/>
+				<text><![CDATA[(s/es)  registrados en el sistema entre]]></text>
 			</staticText>
 			<image>
 				<reportElement x="39" y="20" width="50" height="50" uuid="ccb2245f-56ab-4532-a924-77a2529f573b"/>
 				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="560" y="20" width="50" height="40" uuid="e67ba3dc-47bd-41bd-9e7d-033bb78feda0"/>
+				<reportElement x="738" y="19" width="50" height="40" uuid="e67ba3dc-47bd-41bd-9e7d-033bb78feda0"/>
 				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
 			</image>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="441" y="59" width="100" height="20" uuid="c97e281f-4620-419e-9b07-226e0190c153"/>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="566" y="59" width="100" height="20" uuid="a9d5324c-cb14-40ab-911b-98f4fee0ddf7"/>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="548" y="59" width="13" height="20" uuid="84d7d636-db10-4be7-a23d-b1bfecdcb2c2"/>
+				<text><![CDATA[y]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="6" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="21" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="51" height="20" uuid="14cce25a-a050-4df6-a44c-8a2c3cb68ae1"/>
+				<reportElement x="0" y="0" width="24" height="20" uuid="14cce25a-a050-4df6-a44c-8a2c3cb68ae1"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tipo Doc:]]></text>
+				<text><![CDATA[Tipo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="51" y="0" width="82" height="20" uuid="d4579ef7-f890-4f55-97b5-892c0f720d66"/>
+				<reportElement x="24" y="0" width="82" height="20" uuid="d4579ef7-f890-4f55-97b5-892c0f720d66"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[identificacion]]></text>
+				<text><![CDATA[N° Identificacion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="133" y="0" width="126" height="20" uuid="8a10608b-d909-49bd-98f2-698d4d5e162e"/>
+				<reportElement x="106" y="0" width="126" height="20" uuid="8a10608b-d909-49bd-98f2-698d4d5e162e"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre(s) y Apellidos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="354" y="0" width="153" height="20" uuid="23f94827-352a-4af1-aa44-b41b925b65f2"/>
+				<reportElement x="327" y="1" width="153" height="20" uuid="23f94827-352a-4af1-aa44-b41b925b65f2"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[correo]]></text>
+				<text><![CDATA[Correo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="534" y="1" width="65" height="20" uuid="545d66d0-4f76-44de-b5f6-93b753964ba9"/>
+				<reportElement x="528" y="1" width="65" height="20" uuid="545d66d0-4f76-44de-b5f6-93b753964ba9"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[telefono]]></text>
+				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="599" y="0" width="100" height="20" uuid="e8550c0d-dcc2-4f6d-b2cf-becddce7808c"/>
-				<text><![CDATA[cantidad citas]]></text>
+				<reportElement x="702" y="0" width="71" height="20" uuid="e8550c0d-dcc2-4f6d-b2cf-becddce7808c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Citas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="703" y="1" width="100" height="20" uuid="036ec562-a62e-4475-9f81-397a4b3e6c6e"/>
-				<text><![CDATA[atendido]]></text>
+				<reportElement x="593" y="0" width="39" height="20" uuid="036ec562-a62e-4475-9f81-397a4b3e6c6e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.A]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="632" y="1" width="37" height="20" uuid="a834fd82-15c4-43b4-b16d-dcf92cfbadc3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="669" y="1" width="30" height="20" uuid="dcdb10db-24e1-46fa-adc7-a8a3acc2453c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.P]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="21" width="800" height="1" uuid="2cc1fd06-3ca0-4803-8395-30ad7cfaba65"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="51" height="20" uuid="1c4deb17-60a6-4c89-9164-a7b61db37a74"/>
+				<reportElement x="0" y="0" width="24" height="20" uuid="1c4deb17-60a6-4c89-9164-a7b61db37a74"/>
 				<textFieldExpression><![CDATA[$F{tipo_identificacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="354" y="0" width="180" height="20" uuid="da67bd9f-4927-4d05-9216-47f4204ae175"/>
+				<reportElement x="327" y="0" width="188" height="20" uuid="da67bd9f-4927-4d05-9216-47f4204ae175"/>
 				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="534" y="1" width="65" height="20" uuid="c1778828-6552-4a65-baf7-ce726636844a"/>
+				<reportElement x="528" y="1" width="65" height="20" uuid="c1778828-6552-4a65-baf7-ce726636844a"/>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="51" y="0" width="82" height="20" uuid="19a29dae-ccc4-4c26-96a5-27d2316677d5"/>
+				<reportElement x="24" y="0" width="82" height="20" uuid="19a29dae-ccc4-4c26-96a5-27d2316677d5"/>
 				<textFieldExpression><![CDATA[$F{identificacion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="599" y="0" width="100" height="20" uuid="452e63ba-e68b-4da6-9138-cd973c1242c4"/>
+				<reportElement x="702" y="0" width="71" height="20" uuid="452e63ba-e68b-4da6-9138-cd973c1242c4"/>
 				<textFieldExpression><![CDATA[$F{cantidad citas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="133" y="1" width="202" height="20" uuid="1dd5e66b-bf0a-4831-bb17-d45d23365936"/>
+				<reportElement x="106" y="1" width="202" height="20" uuid="1dd5e66b-bf0a-4831-bb17-d45d23365936"/>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="703" y="1" width="100" height="20" uuid="a8f75a07-5928-4760-b7b4-e2462b9f7a9e"/>
+				<reportElement x="593" y="0" width="39" height="20" uuid="a8f75a07-5928-4760-b7b4-e2462b9f7a9e"/>
 				<textFieldExpression><![CDATA[$F{atendido}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="632" y="0" width="37" height="20" uuid="410c4e5b-e25c-4e15-b264-f98a836934e1"/>
+				<textFieldExpression><![CDATA[$F{inasistido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="669" y="0" width="30" height="20" uuid="a81c1a3c-a8a8-4380-81b6-2e0c148973ad"/>
+				<textFieldExpression><![CDATA[$F{pendiente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="22" width="800" height="1" uuid="1a56d3fe-b198-43ef-9208-3fa4e4735f5b"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -172,7 +222,7 @@ where tipo_usuario = $P{tipou} AND u.fecharegistro between $P{fechaI} and  $P{fe
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="39" y="20" width="50" height="20" uuid="7f8bac81-46ce-455f-9bcf-8aa12a4462aa"/>
+				<reportElement x="56" y="20" width="50" height="20" uuid="7f8bac81-46ce-455f-9bcf-8aa12a4462aa"/>
 				<textFieldExpression><![CDATA[$F{fechactual}]]></textFieldExpression>
 			</textField>
 		</band>

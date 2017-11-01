@@ -63,7 +63,7 @@
         </div>
         
         <form action="/CitasMedicas/listaRegistradosEv" target="_blank" method="post">
-            <input type="hidden" value="<%=id%>" name="fechaIC" id="fechaIC">                       
+            <input type="hidden" value="<%=id%>" name="idEvento" id="idEvento">                       
             <button type="submit" class="btn btn-success">IMPRIMIR </button>                                               
         </form>
     </div>

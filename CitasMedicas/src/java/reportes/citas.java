@@ -63,13 +63,13 @@ public class citas extends HttpServlet {
         System.out.println(" fec " + fec + " fec2 " + fec2);
         try {
 
-            if (consulta.equals("realizadas")) {
+            if (consulta.equals("pro_ser")) {
                 Map m = new HashMap();
                 
                 m.put("fechaI", fec);
                 m.put("fechaF", fec2);
 
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasRealizadas.jasper"));
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasProgramaServicio.jasper"));
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                 JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 viewer.setTitle("Mi Reporte");
@@ -97,7 +97,7 @@ public class citas extends HttpServlet {
                 m.put("fechaI", fec);
                 m.put("fechaF", fec2);
 
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasServicio.jasper"));
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("citasServicio2.jasper"));
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                 JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 viewer.setTitle("Mi Reporte");

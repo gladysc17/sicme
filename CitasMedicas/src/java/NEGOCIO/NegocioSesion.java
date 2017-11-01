@@ -17,22 +17,28 @@ import util.ConexionPostgres;
 
 /**
  *
- * @author Mauricio U
+ * @author Gladys M
+ * @version 1.0
  */
 public class NegocioSesion {
 
     public NegocioSesion() {
     }
-    
-    public boolean registrarSesion(SesionDTO sesion){
-        
+
+    /**
+     * Metodo que verifica el registro de una Sesion del servicio de Psicologia
+     *
+     * @see DAO.SesionDAO registrarSesion
+     */
+    public boolean registrarSesion(SesionDTO sesion) {
+
         boolean rta = false;
-        
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
         SesionDAO sesionDAO = new SesionDAO(co);
-        
+
         try {
 
             rta = sesionDAO.registrarSesion(sesion);
@@ -52,9 +58,16 @@ public class NegocioSesion {
         }
         return rta;
     }
-    
-    public List<SesionDTO> consultarSesionesPorHcPsicologia(int idHcPsicologia){
-               
+
+    /**
+     * Metodo que verifica la existencia Sesiones de una Historia clinica de
+     * Psicologia para un usuario
+     *
+     * @see DAO.SesionDAO consultarSesionesPorHcPsicologia
+     */
+
+    public List<SesionDTO> consultarSesionesPorHcPsicologia(int idHcPsicologia) {
+
         List<SesionDTO> listaSesiones = new ArrayList();
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -80,5 +93,5 @@ public class NegocioSesion {
         }
         return listaSesiones;
     }
-    
+
 }

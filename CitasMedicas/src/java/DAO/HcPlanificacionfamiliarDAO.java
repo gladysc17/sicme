@@ -26,7 +26,15 @@ public class HcPlanificacionfamiliarDAO {
     public HcPlanificacionfamiliarDAO(Connection con) {
         this.con = con;
     }
-
+    
+    /**
+     * Metodo que registra una Historia clinica de Planificación Familiar en la Base de Datos
+     *
+     * @param planif, Objeto de tipo Hc_planificacionfamiliarDTO 
+     * @return boolean con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
+    
     public boolean registrarHCplanifamiliar(Hc_planificacionfamiliarDTO planif) throws SQLException {
 
         String sql = "insert into hc_planificacionfamiliar (tipo_vinculacion, aseguradora, nombre_responsable,"
@@ -69,7 +77,16 @@ public class HcPlanificacionfamiliarDAO {
         return false;
 
     }
-
+    
+    /**
+     * Método que consulta todas las Historias clinicas de Planificacion familiar de un Usuario
+     * 
+     * @param id_usuario, Identificación del usuario
+     * @return List lista de Objetos tipo Hc_planificacionfamiliarDTO, con los datos de las historias clinicas del ususario, si no exite retorna la lista vacia.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     * 
+    **/
+    
     public List<Hc_planificacionfamiliarDTO> consultarHcPlanificacion(int id_usuario) throws SQLException {
 
         List<Hc_planificacionfamiliarDTO> listaHisC = new ArrayList<Hc_planificacionfamiliarDTO>();

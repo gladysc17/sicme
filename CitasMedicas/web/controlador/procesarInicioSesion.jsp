@@ -6,6 +6,7 @@
 
 
 
+<%@page import="util.Seguridad"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="FACADE.FacadeMedico"%>
@@ -15,15 +16,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/sweetalert.min.js" type="text/javascript"></script>
-        <title>JSP Page</title>
     </head>
     <body>
         <%
             FacadeUsuario fac = new FacadeUsuario();
             String id = request.getParameter("usuario");
             String contrasena = request.getParameter("pw");
+            Seguridad seg = new Seguridad();
+            String psencri = seg.Encriptar(contrasena);
 
             UsuarioDTO us = fac.consultarUsuarioPorId(id);
 
@@ -31,7 +31,7 @@
                 
                 String clave = us.getContrasena();
                 System.out.println("claveee -> "+clave);
-                if (clave.equals(contrasena)){
+                if (clave.equals(psencri)){
                     
                     String tipo = us.getTipo_usuario();
                     
@@ -57,14 +57,12 @@
                     }
                     else{
                        %>
-        <script>
+                       <script>
             alert("DATOS INCORRECTOS");            
             location.href = "../index.jsp";
         </script>
         <%
                     }
-                    
-                    
                 }
                 else{
                    %>
@@ -83,8 +81,7 @@
         </script>
         <%
             }
-
-
         %>
-
     </body>
+</html>
+

@@ -81,7 +81,7 @@ public class usuarios extends HttpServlet {
                                                                
             }
             
-            else if(tipou.equals("estudiante") || tipou.equals("docente") || tipou.equals("administrativo") || tipou.equals("servicios_generales")){
+            else if(tipou.equals("docente") || tipou.equals("administrativo") || tipou.equals("servicios_generales") || tipou.equals("medico")){
             
             Map m = new HashMap();            
                 
@@ -92,6 +92,23 @@ public class usuarios extends HttpServlet {
             System.out.println(" tipou llega a jasper " + tipou + " fechaI " + fechaI + " fechaF " + fechaF);   
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioTipo.jasper"));
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
+                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    viewer.setTitle("Mi Reporte");
+                    viewer.setVisible(true);
+                                                               
+            }
+            else if(tipou.equals("estudiante") ){
+            
+            Map m = new HashMap();            
+                
+            m.put("tipou", tipou);
+            m.put("fechaI", fec);
+            m.put("fechaF", fec2);
+            
+            System.out.println(" tipou llega a jasper " + tipou + " fechaI " + fechaI + " fechaF " + fechaF);   
+                    
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioEstudiantes.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                     JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     viewer.setTitle("Mi Reporte");

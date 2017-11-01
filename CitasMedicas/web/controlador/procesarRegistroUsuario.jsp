@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="util.Seguridad"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Date"%>
@@ -51,25 +52,29 @@
 
             String servicio = request.getParameter("servicio");
             String contrasena = request.getParameter("contrasena");           
+            String estado = request.getParameter("estado_estudiate"); 
             
             Calendar fechaGeneral = new GregorianCalendar();
             int año = fechaGeneral.get(Calendar.YEAR);
             int mes = fechaGeneral.get(Calendar.MONTH);
             int dia = fechaGeneral.get(Calendar.DAY_OF_MONTH);
             
-            String fecha =(año+"-"+mes+"-"+dia);            
+            String fecha =(año+"-"+mes+"-"+dia);
+            Seguridad seg = new Seguridad();
+            String psencri = seg.Encriptar(contrasena);
+            System.out.println("encrp = "+ psencri);
 
-            UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha, contrasena);
+            UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha, psencri);
             registro = fac.registrarUsuarios(usuario);
 
             if (tipousuario.equals("estudiante")) {
                 FacadeEstudiante facEst = new FacadeEstudiante();
-                EstudianteDTO est = new EstudianteDTO(identificacion, programa);
+                EstudianteDTO est = new EstudianteDTO(identificacion, Integer.parseInt(programa), estado);
                 registro2 = facEst.registrarEstudiante(est);
 
             } else if (tipousuario.equals("medico")) {
                 FacadeMedico facMed = new FacadeMedico();              
-                MedicoDTO med = new MedicoDTO(identificacion, servicio, contrasena);                
+                MedicoDTO med = new MedicoDTO(identificacion, Integer.parseInt(servicio), contrasena);                
                 registro2 = facMed.registrarMedico(med);
                 
             } 
@@ -92,10 +97,5 @@
 
 
         %>
-
-
-
-
-
     </body>
 </html>

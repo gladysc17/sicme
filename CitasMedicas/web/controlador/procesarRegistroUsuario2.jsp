@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="util.Seguridad"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Date"%>
@@ -47,9 +48,10 @@
             String telefono = request.getParameter("telefono");
             String tipousuario = request.getParameter("tipousuario");
 
-            String programa = request.getParameter("programa").toString();
+            String programa = request.getParameter("programa");
 
             String servicio = request.getParameter("servicio");
+            String estado = request.getParameter("estado_estudiante");
             String contrasena = request.getParameter("contrasena");
 
             Calendar fechaGeneral = new GregorianCalendar();
@@ -58,13 +60,16 @@
             int dia = fechaGeneral.get(Calendar.DAY_OF_MONTH);
 
             String fecha = (año + "-" + mes + "-" + dia);
+            Seguridad seg = new Seguridad();
+            String psencri = seg.Encriptar(contrasena);
+            System.out.println("encrp = "+ psencri);
 
-            UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha, contrasena);
+            UsuarioDTO usuario = new UsuarioDTO(identificacion, tipo_identificacion, codigo, nombre, correo, fechanacimiento, edad, genero, estadocivil, direccion, telefono, tipousuario, fecha, psencri);
             registro = fac.registrarUsuarios(usuario);
 
             if (tipousuario.equals("estudiante")) {
                 FacadeEstudiante facEst = new FacadeEstudiante();
-                EstudianteDTO est = new EstudianteDTO(identificacion, programa);
+                EstudianteDTO est = new EstudianteDTO(identificacion, Integer.parseInt(programa), estado);
                 registro2 = facEst.registrarEstudiante(est);
 
             }

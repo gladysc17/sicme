@@ -46,7 +46,7 @@ public class listaRegistradosEv extends HttpServlet {
             throws ServletException, IOException {ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();                     
                
-        String ide = request.getParameter("id"); 
+        String ide = request.getParameter("idEvento"); 
         int id = Integer.parseInt(ide);
         
         System.out.println("id " +id);
@@ -57,7 +57,7 @@ public class listaRegistradosEv extends HttpServlet {
                 Map m = new HashMap();                
                 m.put("id", id);                                                             
                 
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("listado.jasper"));
+                JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("listaRegistradosEv.jasper"));
                 JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
                 JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 viewer.setTitle("Mi Reporte");

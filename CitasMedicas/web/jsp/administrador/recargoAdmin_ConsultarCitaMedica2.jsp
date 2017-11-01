@@ -4,6 +4,9 @@
     Author     : Gladys M
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="jdk.nashorn.internal.runtime.ListAdapter"%>
@@ -22,7 +25,11 @@
 
         FacadeUsuario fac = new FacadeUsuario();
         UsuarioDTO u = fac.consultarUsuarioPorId(ide);
-
+        
+        FacadeHorarioMedico fhm = new FacadeHorarioMedico();
+        String fechaActual = fhm.fechaActual();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
         if (u != null) {
 
             FacadeCita cita = new FacadeCita();
@@ -62,6 +69,12 @@
                             String id_medico = lista.get(i).getId_medico();
                             int idcita = lista.get(i).getId_cita();
                             int numero = i + 1;
+                            boolean mod = false;
+                            Date f1 = sdf.parse(fecha);
+                            Date f2 = sdf.parse(fechaActual);
+                            if(f1.before(f2)){
+                                mod = true;
+                            }
                     %>
                     <tbody>                                       
                         <tr  role="row" class="odd">                                    
@@ -74,7 +87,7 @@
                             <%
                                 if (estado.equals("pendiente")) {
                             %>
-                            <td><input type="submit" class="btn btn-default" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarCita.jsp?id=<%=idcita%>')"> </td>
+                            <td><input type="submit" class="btn btn-default" disabled="<%=mod %>" value="Modificar" onclick="cargarForm('administrador/recargoAdmin_ModificarCita.jsp?id=<%=idcita%>')"> </td>
                                 <%
                                 } else {
                                 %>

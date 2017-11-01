@@ -29,7 +29,7 @@ public class CitaDAO {
     /**
      * Metodo que registra una cita en la Base de Datos
      *
-     * @param cita
+     * @param cita De tipo CitaDTO que contiene la información de lo digitado en el formulario.
      * @return boolean con valor verdadero si hubo registro exitoso, falso si
      * existe error dentro del procedimiento.
      * @throws SQLException Error de ejecución de sql, ocurre si hace falta
@@ -71,7 +71,7 @@ public class CitaDAO {
      * Metodo que se encarga de consultar en la base de datos las citas segun el
      * id del estudiante
      *
-     * @param id_est
+     * @param id_est Número entero que me permitirá buscar en la base de datos para obtener el listado 
      * @return Listado de tipo CitaDTO con los datos de la cita que pertenece al
      * id del estudiante
      * @throws SQLException Error de ejecución de sql, ocurre si hace falta
@@ -120,6 +120,15 @@ public class CitaDAO {
 
     }
 
+    /**
+     * Método que permitira obtener las citas que tiene un profesional de la salud de 
+     * acuerdo a una fecha dada
+     * @param id_prof Número entero que contendra la identificación del profesional de la salud
+     * @param fecha Dato String que contendra la fecha con la que se podra comparar en la base de datos
+     * @return Listado de las citas que tiene el profesional de la salud para dicha fecha solicitada.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public ArrayList<CitaDTO> consultarCitasProfesional(int id_prof, String fecha) throws SQLException {
 
         ArrayList<CitaDTO> citas = new ArrayList<CitaDTO>();
@@ -164,6 +173,13 @@ public class CitaDAO {
 
     }
 
+    /**
+     * Método que permitira obtener las citas que tiene un usuario de acuerdo a una fecha dada
+     * @param id_usuario Dato principal que identifica al usuario del sistema.
+     * @return Listado de Citas del usuario que ha realizado.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public ArrayList<CitaDTO> consultarCitasUsuario(String id_usuario) throws SQLException {
 
         ArrayList<CitaDTO> citas = new ArrayList<CitaDTO>();
@@ -201,6 +217,15 @@ public class CitaDAO {
 
     }
 
+    /**
+     * Mpetodo que me permite obtener las citas médicas que tiene un profesional de la salud
+     * de acuerdo a la fecha, que para este caso es el día que este de servicio.
+     * @param id_medico Dato que identifica al médico en la base de datos
+     * @param fecha_cita Dato que usaremos para poder comparar en la base de datos
+     * @return Listado de las cita que tiene el médico asignado para el dia actual ordenado por la hora.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar. 
+     */
     public ArrayList<CitaDTO> consultarCitasMedicoDia(String id_medico, String fecha_cita) throws SQLException {
 
         ArrayList<CitaDTO> citas = new ArrayList<CitaDTO>();
@@ -239,6 +264,16 @@ public class CitaDAO {
 
     }
 
+    /**
+     * Método que permite modificar datos de la cita
+     * @param id_cita Identificador de la cita
+     * @param fecha Nueva fecha a la que se desea cambiar
+     * @param hora_cita Nueva hora a la que se desea cambiar
+     * @param id_medico Identificación del médico 
+     * @return Valor booleano para conocer si los cambios fueron realizados en la base de datos
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean modificarCita(int id_cita, String fecha, Time hora_cita, String id_medico) throws SQLException {
 
         String sql = "UPDATE cita SET fecha_cita = ? , hora_cita = ?, id_medico = ? "
@@ -261,6 +296,13 @@ public class CitaDAO {
 
     }
 
+    /**
+     * Método que me permite consultar una cita por su identificador
+     * @param id_cita Identificador de la cita en la base de datos
+     * @return Objeto de tipo CitaDTO con toda la información que se encuentre en este registro
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public CitaDTO consultarCitasId(int id_cita) throws SQLException {
 
         String sql = "SELECT * FROM cita WHERE id_cita = ?";
@@ -294,6 +336,15 @@ public class CitaDAO {
         return cita;
     }
 
+    /**
+     * Método que me permite consultar las citas que hay registradas dado un rango de fechas.
+     * @param id_medico Identificación del médico
+     * @param fecha Fecha inicial
+     * @param fechaF Fecha Final
+     * @return Listado de las citas médicas que se realizaron entre una fecha inicial y final.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public ArrayList<CitaDTO> consultarCitasPorRango(String id_medico, String fecha, String fechaF) throws SQLException {
 
         ArrayList<CitaDTO> lis = new ArrayList<>();
@@ -329,6 +380,13 @@ public class CitaDAO {
         return lis;
     }
     
+    /**
+     * Método que permite actualizar el estado de la cita a atendida
+     * @param id_cita Identificador de la cita médica
+     * @return Valor booleano que indica si se realizo el cambio del estado de la cita
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean actualizarEstadoAtendida(int id_cita) throws SQLException {
 
         String sql = "UPDATE cita SET estado = 'atendido' WHERE  id_cita = ?";
@@ -346,6 +404,14 @@ public class CitaDAO {
         }
 
     }
+    
+    /**
+     * Método que me actualiza el estado de la cita a inasistida
+     * @param id_cita Identificador de la cita
+     * @return Valor booleano que indica si se realizo el cambio de estado de la cita
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public boolean actualizarEstadoNoAsistida(int id_cita) throws SQLException {
 
         String sql = "UPDATE cita SET estado = 'inasistido' WHERE  id_cita = ?";
@@ -364,6 +430,14 @@ public class CitaDAO {
 
     }
 
+    /**
+     * Método que devuelve la cantidad de citas en un rango de fechas
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha Final
+     * @return Valor entero con la cantidad de citas en dichas fechas. 
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar. 
+     */
     public int cantidadCitas(String fechaI, String fechaF) throws SQLException{
         int cant = 0;
         String sql = "select count(*) from cita where fecha_cita between ? and ?";
@@ -381,6 +455,14 @@ public class CitaDAO {
         return cant;
     }
     
+    /**
+     * Método que devuelve la cantidad de citas con estado asistidas en un rango de fechas
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha final
+     * @return Valor entero con la cantidad de citas en dichas fechas. 
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int cantidadCitasAsistidas(String fechaI, String fechaF)throws SQLException {
         int cant = 0;
         String sql = "select count(*) from cita where estado = 'atendido' and fecha_cita between ? and ?";
@@ -398,6 +480,14 @@ public class CitaDAO {
         return cant;
     }
     
+    /**
+     * Método que devuelve la cantidad de citas con estado no asistidas en un rango de fechas
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha final
+     * @return Valor entero con la cantidad de citas en dichas fechas. 
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int cantidadCitasNoAsistidas(String fechaI, String fechaF)throws SQLException {
         int cant = 0;
         String sql = "select count(*) from cita where estado = 'inasistido' and fecha_cita between ? and ?";
@@ -415,6 +505,15 @@ public class CitaDAO {
         return cant;
     }
     
+    /**
+     * Método que devuelve la cantidad de citas de un estudiante en un rango de fechas
+     * @param id_usuario identificador del usuario en la base de datos
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha final
+     * @return Valor entero con la cantidad de citas en dichas fechas
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int cantidadCitasEstudiante(String id_usuario, String fechaI, String fechaF) throws SQLException {
         int cant = 0;
         String sql = "select count(*) from cita where id_usuario = ? and fecha_cita between ? and ?";
@@ -427,11 +526,19 @@ public class CitaDAO {
         ResultSet rs = ps.executeQuery();
         
         if(rs.next()){
-            cant = rs.getInt(1);
+            cant = rs.getInt(1);            
         }
         return cant;
     }
     
+    /**
+     * Método que devuelve la cantidad de citas pendientes en un rango de fechas.
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha final
+     * @return Valor entero con la cantidad de citas pendientes en dichas fechas.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int cantidadCitasPendientes(String fechaI, String fechaF) throws SQLException {
         int cant = 0;
         String sql = "select count(*) from cita where estado = 'pendiente' and fecha_cita between ? and ?";
@@ -449,6 +556,13 @@ public class CitaDAO {
         return cant;
     }
     
+    /**
+     * Método que devuelve la cantidad de citas de un usuario
+     * @param id_usuario identificador del usuario en la base de datos
+     * @return Valor entero con la cantidad de citas del usuario
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int cantidadCitasUsuario(String id_usuario) throws SQLException {
         int cant = 0;
         String sql = "select count(*) from cita where id_usuario = ? ";
@@ -464,6 +578,15 @@ public class CitaDAO {
         return cant;
     }
     
+    /**
+     * Metodo que devuelve la cantidad de citas de dicho servicio en un rango de fechas
+     * @param servicio Identificador del servicio en la base de datos
+     * @param fechaI fecha inicial
+     * @param fechaF fecha final
+     * @return Valor entero que devuelve la cantidad de citas
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
     public int cantidadCitasServicio(String servicio, String fechaI, String fechaF) throws SQLException {
         int cant = 0;
         String sql = "select count(*) from cita where servicio_cita = ? and fecha_cita between ? and ?";
@@ -480,4 +603,37 @@ public class CitaDAO {
         }
         return cant;
     }   
+    
+    /**
+     * Método que devuelve la cantidad de citas realizadas por los estudiantes de un programa academico
+     * con relación a un servicio prestado en un rango de fechas
+     * @param servicio Identificador del servicio
+     * @param fechaI Fecha inicial
+     * @param fechaF Fecha final
+     * @param programa Identificador del programa academico
+     * @return Valor entero con la cantidad de citas solicitadas.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
+    public int cantidadCitasPro_Ser(String servicio, String fechaI, String fechaF, int programa) throws SQLException {
+        int cant = 0;
+        String sql = "select count(*) from cita c, estudiante e where servicio_cita = ? "
+                + "and fecha_cita between ? and ? "
+                + "and c.id_usuario = e.identificacion_usuario "
+                + "and e.programa_academico = ?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, servicio);
+        ps.setDate(2, Date.valueOf(fechaI));
+        ps.setDate(3, Date.valueOf(fechaF));
+        ps.setInt(4, programa);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        if(rs.next()){
+            cant = rs.getInt(1);
+        }
+        return cant;
+    }  
+    
 }

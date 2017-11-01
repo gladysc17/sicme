@@ -21,6 +21,11 @@ import util.ConexionPostgres;
  */
 public class NegocioImagen {
     
+    /**
+     * Metodo que registra una imagen en la base de datos
+     *
+     * @see DAO.ImagenDAO registrarImagen
+     */
     public boolean registrarImagen(ImagenDTO ima){
         boolean rta = false;
 
@@ -46,6 +51,11 @@ public class NegocioImagen {
         return rta;
     }
     
+    /**
+     * Metodo que lista las imagenes
+     *
+     * @see DAO.ImagenDAO listaImagenes
+     */
     public List<ImagenDTO> listarImagenes() {
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -70,6 +80,11 @@ public class NegocioImagen {
         return lis;
     }
     
+    /**
+     * Metodo que actualiza el estado de las imagenes
+     *
+     * @see DAO.ImagenDAO actualizarEstadoBanner
+     */
     public boolean actualizarEstadoBanner(String estado, int id){
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -93,6 +108,11 @@ public class NegocioImagen {
         return est;
     }
     
+    /**
+     * Metodo que elimina las imagenes
+     *
+     * @see DAO.ImagenDAO eliminarImagen
+     */
     public boolean eliminarImagen(int id){
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
@@ -116,6 +136,11 @@ public class NegocioImagen {
         return est;
     }
     
+    /**
+     * Metodo que lista las imagenes activas
+     *
+     * @see DAO.ImagenDAO obtenerImagenesActivas
+     */
     public List<ImagenDTO> obtenerImagenesActivas(){
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();

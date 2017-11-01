@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FacadeMedico.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">FACADE</a> &gt; <span class="el_source">FacadeMedico.java</span></div><h1>FacadeMedico.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package FACADE;
+
+import DTO.MedicoDTO;
+import NEGOCIO.NegocioMedico;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Gladys M
+ */
+<span class="nc" id="L18">public class FacadeMedico {</span>
+    
+    public boolean registrarMedico(MedicoDTO med) throws SQLException {
+<span class="nc" id="L21">        return new NegocioMedico().registrarMedico(med);</span>
+    }
+    
+    public MedicoDTO consultarMedicoPorId(String id){
+<span class="nc" id="L25">        return new NegocioMedico().consultarMedicoPorId(id);</span>
+    }
+    
+    public List&lt;MedicoDTO&gt; consultarMedicos() throws SQLException{
+<span class="nc" id="L29">        return new NegocioMedico().listarMedicos();</span>
+    }
+    
+    public ArrayList&lt;MedicoDTO&gt; consultarMedicosPorServicio(String servicio) throws SQLException{
+<span class="nc" id="L33">        return new NegocioMedico().consultarMedicoPorServicio(servicio);</span>
+    }
+    
+    public boolean modificarMedico(int identificacion_med, String correo_med, String fechanacimiento_med, String genero_med, String estadocivil_med, String direccion_med, String telefono_med, String contrasena_med) throws SQLException{
+<span class="nc" id="L37">        return new NegocioMedico().modificarMedico(identificacion_med, correo_med, fechanacimiento_med, genero_med, estadocivil_med, direccion_med, telefono_med, contrasena_med);</span>
+    }
+    
+     public boolean verificarMedico(String id, String clave) throws SQLException {
+<span class="nc" id="L41">        return new NegocioMedico().verificarMedico(id, clave);</span>
+    }
+     
+     public ArrayList&lt;String[]&gt; listadoMedico() throws SQLException{
+<span class="nc" id="L45">         return new NegocioMedico().listadoMedico();</span>
+     }
+     
+     public List&lt;String&gt; consultaServicios() throws SQLException {
+<span class="nc" id="L49">         return new NegocioMedico().consultaServicios();</span>
+     }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

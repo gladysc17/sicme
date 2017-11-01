@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,8 @@
     <body>
         <%
             int idM = Integer.parseInt(request.getParameter("idenadmin"));
+            FacadeHorarioMedico fc = new FacadeHorarioMedico();
+            String fec = fc.fechaActual();
         %>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
@@ -27,7 +30,7 @@
                         </div>
                         <div>
                             <label>Fecha:&nbsp;</label>
-                            <input class="form-page" type="date" id="fechaEvento"  name="fechaEvento" size="12" required /> <br><br>
+                            <input class="form-page" type="date" id="fechaEvento"  name="fechaEvento" size="12" required step="1" min="<%=fec%>" /> <br><br>
                         </div>
                         <div>
                             <label>Hora:&nbsp;&nbsp; </label>

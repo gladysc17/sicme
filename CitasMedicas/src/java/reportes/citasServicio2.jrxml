@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="569b5ffa-991f-4df6-a3c1-37baa866b050">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaI" class="java.util.Date"/>
+	<parameter name="fechaF" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[select distinct sr.nombre,
+
+(select count(c.estado) from cita c, medico m
+where c.id_medico = m.identificacion
+and m.servicio = sr.id
+and c.estado = 'pendiente') "PENDIENTE",
+
+(select count(c.estado) from cita c, medico m
+where c.id_medico = m.identificacion
+and m.servicio = sr.id
+and c.estado = 'inasistido') "INASITIDAS",
+
+(select count(c.estado) from cita c, medico m
+where c.id_medico = m.identificacion
+and m.servicio = sr.id
+and c.estado = 'atendido') "ASISTIDAS",
+
+(select count(c.estado) from cita c, medico m
+where c.id_medico = m.identificacion
+and m.servicio = sr.id
+) "TOTAL"
+
+from servicio sr, cita c
+where c.fecha_cita BETWEEN $P{fechaI} and $P{fechaF}]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="PENDIENTE" class="java.lang.Long"/>
+	<field name="INASITIDAS" class="java.lang.Long"/>
+	<field name="ASISTIDAS" class="java.lang.Long"/>
+	<field name="TOTAL" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="96" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="204" y="70" width="56" height="15" uuid="3fb29f8e-6f4b-4200-87f7-7a3b7660fc7d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="270" y="70" width="17" height="15" uuid="32cfdfec-7c63-431f-b1ff-ccc3238694e0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[y]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="49" width="218" height="20" uuid="482e7044-358f-456a-ac92-48c72068225b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE CITAS POR SERVICIO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="455" y="30" width="50" height="50" uuid="ac0dd86c-3cf3-4920-8478-908a757b80fc"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="10" y="31" width="50" height="50" uuid="1f301b22-f8b7-43e6-baf1-001228216ea3"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="153" y="10" width="255" height="20" uuid="347a24d2-a99b-4e84-bed7-41bbbe3723d2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="70" width="30" height="15" uuid="ed63b505-8923-456b-a07f-37542c0b479a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="30" width="273" height="20" uuid="012d0c9e-016b-4367-9fdf-54391a06fc67"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="313" y="70" width="61" height="15" uuid="995dc147-e833-495f-9299-0cf94a823a74"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="2" width="100" height="20" uuid="d633d8d5-ce88-4ab9-80a5-165b5947b9c3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERVICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="2" width="100" height="20" uuid="2a88ff75-9aab-48d5-9fde-6d5b14eed60d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENDIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="2" width="100" height="20" uuid="b032879c-fd37-4eab-8ba6-437217d8d057"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INASITIDAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="2" width="100" height="20" uuid="4529ff39-17fe-4dcc-a403-9cc769e6c54e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASISTIDAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="2" width="85" height="20" uuid="932aa3b4-4c48-4dfe-be9b-bec1d61a04a2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="22" width="534" height="1" uuid="f451e2a6-ed33-486c-b21e-7e6ae120d15e"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="3" width="100" height="20" uuid="eb8be5ef-be7c-4ad1-8ae9-099b917c1331"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="3" width="100" height="20" uuid="fe315746-c759-4ab8-ac46-6a9d84746da3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{PENDIENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="3" width="100" height="20" uuid="de5aaf24-e8ee-45ca-83d3-9ecf11f0145a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{INASITIDAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="3" width="100" height="20" uuid="194cca55-943c-4dcc-8c50-0f6eb5611c20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ASISTIDAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="3" width="85" height="20" uuid="fa27cb01-e82e-418e-ab83-fa9de27ef7f4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="25" width="534" height="1" uuid="743679ae-90e8-4519-b79b-e65e28a98649"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="110" y="20" width="100" height="20" uuid="05224b0b-9b33-46b8-ae94-8b49919aff9d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="45" y="20" width="59" height="20" uuid="ab35939f-857b-45ca-adbe-aabd29eab7ff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consultado:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

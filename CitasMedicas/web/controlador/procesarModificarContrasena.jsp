@@ -4,6 +4,7 @@
     Author     : usuario
 --%>
 
+<%@page import="util.Seguridad"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,9 +13,11 @@
             String tipo = request.getParameter("tipo");
             String contra = request.getParameter("contrasena1");
             System.out.println("id "+id +"contra "+contra + "tipo " +tipo);
+            Seguridad seg = new Seguridad();
+            String psencri = seg.Encriptar(contra);
             FacadeUsuario fac = new FacadeUsuario();            
             
-            boolean rta = fac.modificarContrasena(id, contra);
+            boolean rta = fac.modificarContrasena(id, psencri);
 
             if (rta == true) {
                 
@@ -44,7 +47,7 @@
                     </script>
                 <%                       
                 }
-                else if(tipo.equals("estudiante") || tipo.equals("docente") || tipo.equals("servicios_generales")){
+                else if(tipo.equals("estudiante") || tipo.equals("docente") || tipo.equals("servicios_generales") || tipo.equals("administrativo")){
                 %>        
                     <script type="text/javascript">
                     alert('CONTRASEÑA MODIFICADA');
@@ -60,5 +63,4 @@
         </script>
         <%                                      
             }
-            
         %>

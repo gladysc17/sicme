@@ -23,7 +23,7 @@
                     <p>Vicerrector de Bienestar Universitario</p>                               
                 </div>                    
                 <div class="panel-body">  
-                    <form action="../controlador/procesarModificarVicerrector.jsp" method="post">
+                    <form action="../controlador/procesarModificarUsuario.jsp" method="post">
                         <%
                             UsuarioDTO vice = (UsuarioDTO) session.getAttribute("vicerrector");
                             if (vice == null) {

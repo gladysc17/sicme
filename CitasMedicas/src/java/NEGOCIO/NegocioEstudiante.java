@@ -24,9 +24,9 @@ import util.ConexionPostgres;
 public class NegocioEstudiante {
 
     /**
+     * Metodo que verifica el registro de un Estudiante
      *
-     * @param est
-     * @return
+     * @see DAO.EstudianteDAO registrarEstudiante
      */
     public boolean registrarEstudiante(EstudianteDTO est) {
 
@@ -37,9 +37,9 @@ public class NegocioEstudiante {
 
         EstudianteDAO estudiante = new EstudianteDAO(co);
 
-        try {                        
+        try {
             return resultado = estudiante.registrarEstudiante(est);
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -56,15 +56,20 @@ public class NegocioEstudiante {
         return resultado;
 
     }
-    
-    public List<String> consultarProgramaAcademico() {
-        List<String> list = new ArrayList<>();
+
+    /**
+     * Metodo que verifica la consulta de un estudiante por programa
+     *
+     * @see DAO.EstudianteDAO consultarEstudiantePrograma
+     */
+    public List<EstudianteDTO> consultarEstudiantePrograma(int programa) {
+        List<EstudianteDTO> list = new ArrayList<>();
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         EstudianteDAO est = new EstudianteDAO(co);
-        
+
         try {
-            list = est.consultarProgramaAcademico();
+            list = est.consultarEstudiantePrograma(programa);
         } catch (SQLException ex) {
             Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -81,27 +86,121 @@ public class NegocioEstudiante {
         return list;
     }
 
-    public List<EstudianteDTO> consultarEstudiantePrograma(String programa){
-        List<EstudianteDTO> list = new ArrayList<>();
+    /**
+     * Metodo que verifica cantidad de citas asistidas de un usuario
+     *
+     * @see DAO.EstudianteDAO cantidadCitasAsistidas
+     */
+    public int cantidadCitasAsistidas(String fechaI, String fechaF, String id_usuario) {
+        int cant = 0;
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
-        EstudianteDAO est = new EstudianteDAO(co);
-        
+        EstudianteDAO cit = new EstudianteDAO(co);
+
         try {
-            list = est.consultarEstudiantePrograma(programa);
-        }catch (SQLException ex) {
+            cant = cit.cantidadCitasAsistidas(fechaI, fechaF, id_usuario);
+        } catch (SQLException ex) {
             Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
+
             if (co != null) {
                 try {
                     co.close();
                 } catch (SQLException ex) {
                     Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
-
                 }
             }
         }
-        return list;
+        return cant;
+    }
+
+    /**
+     * Metodo que verifica cantidad de citas No asistidas de un usuario
+     *
+     * @see DAO.EstudianteDAO cantidadCitasNoAsistidas
+     */
+    public int cantidadCitasNoAsistidas(String fechaI, String fechaF, String id_usuario) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO cit = new EstudianteDAO(co);
+
+        try {
+            cant = cit.cantidadCitasNoAsistidas(fechaI, fechaF, id_usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+
+    /**
+     * Metodo que verifica cantidad de citas Pendientes de un usuario
+     *
+     * @see DAO.EstudianteDAO cantidadCitasPendientes
+     */
+    public int cantidadCitasPendientes(String fechaI, String fechaF, String id_usuario) {
+        int cant = 0;
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+        EstudianteDAO cit = new EstudianteDAO(co);
+
+        try {
+            cant = cit.cantidadCitasPendientes(fechaI, fechaF, id_usuario);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return cant;
+    }
+
+    /**
+     * Metodo que verifica la lista de Estudiantes registrados
+     *
+     * @see DAO.EstudianteDAO consultarEstudiante
+     */
+    public EstudianteDTO listarEstudiante(String id) throws SQLException {
+
+        ConexionPostgres con = new ConexionPostgres();
+        Connection co = con.getconexion();
+
+        EstudianteDTO otros = new EstudianteDTO();
+        EstudianteDAO otro = new EstudianteDAO(co);
+
+        try {
+            otros = otro.consultarEstudiante(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+
+            if (co != null) {
+                try {
+                    co.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NegocioEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return (otros);
     }
 }

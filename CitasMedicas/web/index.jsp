@@ -4,6 +4,9 @@
     Author     : LEGADO
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DTO.ServicioDTO"%>
 <%@page import="FACADE.FacadeServicio"%>
 <%@page import="DTO.Programa_academicoDTO"%>
@@ -226,7 +229,6 @@
                                                     <option value="docente"> Docente </option>                                                                                          
                                                     <option value="administrativo"> Administrativo </option>                                
                                                     <option value="servicios_generales"> Servicios Generales </option>
-                                                    <option value="graduado">Graduado</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -244,17 +246,27 @@
                                             var selec = tipo.options[tipo.selectedIndex].value;
 
                                             if (selec == "estudiante") {
-                                                document.getElementById("estudiante").style.display = 'inline';
+                                                document.getElementById("estudiante").style.display = 'inline';                                                
                                             } else {
-                                                document.getElementById("estudiante").style.display = 'none'
+                                                document.getElementById("estudiante").style.display = 'none'                                                
                                             }
 
                                         }
 
-
                                     </script>
-
+                                    
                                     <div class="form-group" id="estudiante">
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Estado del estudiante: </label>
+                                            <div class="">
+                                                <select name="estado_estudiante" id="estado_estudiante" onchange="mostrarDatos()" required alt="Estado">
+                                                    <option> </option>
+                                                    <option value="activo"> Activo </option>
+                                                    <option value="egresado"> Egresado </option>                                                                                          
+                                                    <option value="graduado"> Graduado </option>                                                                                    
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-12">
                                             <label class="control-label">Programa: </label>
                                             <div class="">
@@ -263,10 +275,10 @@
                                                     <%
                                                         FacadePrograma_academico fpa = new FacadePrograma_academico();
                                                         List<Programa_academicoDTO> lispro = fpa.consultarPrograma_academico();
-                                                        
-                                                        for(Programa_academicoDTO x: lispro){
+
+                                                        for (Programa_academicoDTO x : lispro) {
                                                     %>
-                                                    <option value="<%=x.getId() %>"> <%=x.getNombre_programa() %> </option>
+                                                    <option value="<%=x.getId()%>"> <%=x.getNombre_programa()%> </option>
                                                     <%
                                                         }
                                                     %>
@@ -427,6 +439,14 @@
                             return;
                         }
 
+                        var expr = /^([a-zA-Z0-9_\.\-])+\@((ufps.edu)+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+                        if (!expr.test(correoElm.value)) {
+                            alert('Correo incorrecto, debe ser un correo institucional');
+                            correoElm.focus();
+                            return;
+                        }
+
                         if (password1.value != password2.value) {
                             alert("No se ha validado correctamente la contraseña");
                             return;
@@ -504,30 +524,30 @@
                                 <div class="container">
                                     <ul class="row block-grid-v2">
                                         <%
-                                        FacadeServicio fs = new FacadeServicio();
-                                        List<ServicioDTO> ser = fs.consultarServicio();
-                                        
-                                        for(ServicioDTO x: ser){
+                                            FacadeServicio fs = new FacadeServicio();
+                                            List<ServicioDTO> ser = fs.consultarServicio();
+
+                                            for (ServicioDTO x : ser) {
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
                                             <div class="easy-block-v1">
                                                 <img src="imagenes/medicina.jpg" alt="">
                                                 <div class="easy-block-v1-badge rgba-red">
-                                                    <%=x.getNombre() %>
+                                                    <%=x.getNombre()%>
                                                 </div>
                                             </div>
                                             <div class="block-grid-v2-info rounded-bottom  bloques_eventos">
 
                                                 <p style="font-size: 14px;">
-                                                    <%=x.getInformacion() %>
+                                                    <%=x.getInformacion()%>
                                                 </p>
 
                                             </div>
 
                                         </li>
                                         <%
-                                        }
+                                            }
                                         %>
                                     </ul>
                                 </div>
@@ -555,12 +575,20 @@
                                     <ul class="row block-grid-v2">
                                         <%
                                             FacadeEvento fe = new FacadeEvento();
-
+                                            FacadeHorarioMedico fhm = new FacadeHorarioMedico();
+                                            String fechaActual = fhm.fechaActual();
+                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                             List<EventoDTO> ls = new ArrayList<EventoDTO>();
 
                                             ls = fe.obtenerEventosMes();
 
                                             for (EventoDTO e : ls) {
+                                                boolean mod = true;
+                                                Date f1 = sdf.parse(e.getFechaEvento());
+                                                Date f2 = sdf.parse(fechaActual);
+                                                if (f1.after(f2)) {
+                                                    mod = false;
+                                                }
                                         %>
                                         <li class="col-md-3 col-sm-6 md-margin-bottom-30" style="padding-left: 14px;">
 
@@ -578,7 +606,7 @@
                                                     <b>Lugar: </b><%= e.getLugarEvento()%>                                       
                                                 </p>
                                                 <p>
-                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')"/>
+                                                    <input style="font-size:15px; text-align:center" type="button" class="btn btn-sm btn-u-default" value="REGISTRAR" onclick="cargarForm('form.jsp?dsas=<%=e.getIdEvento()%>')" disabled="<%=mod%>" />
                                                 </p>
                                             </div>
 

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HcMedicinaGeneralDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">HcMedicinaGeneralDAO.java</span></div><h1>HcMedicinaGeneralDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.HcMedicinaGeneralDTO;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Gladys M
+ */
+public class HcMedicinaGeneralDAO {
+
+    private Connection con;
+
+<span class="fc" id="L26">    public HcMedicinaGeneralDAO(Connection con) {</span>
+<span class="fc" id="L27">        this.con = con;</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Metodo que registra una cita en la Base de Datos
+     *
+     * @param hcmed
+     * @return boolean con valor verdadero si hubo registro exitoso, falso si
+     * existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta
+     * algun campo de la base de datos por llenar.
+     */
+    public boolean registrarHCMedicinaGeneral(HcMedicinaGeneralDTO hcmed) throws SQLException {
+
+<span class="fc" id="L41">        String sql = &quot;INSERT INTO hc_medicinageneral (idusuario_hcmed, idcita_hcmed, motivoconsulta_hcmed, enfermedadgeneral_hcmed, revisionporsistemas_hcmed, &quot;</span>
+                + &quot; antpatologicos_hcmed, antquirurgicos_hcmed, anttraumaticos_hcmed, anttoxicoalergicos_hcmed, antfarmacologicos_hcmed, antvenereos_hcmed, antfamiliares_hcmed, antginecologicos_hcmed, antotros_hcmed,&quot;
+                + &quot; frecardiaca_hcmed, frerespiratoria_hcmed, tensionarterial_hcmed, temperatura_hcmed, peso_hcmed, talla_hcmed,&quot;
+                + &quot; efestadogeneral_hcmed, efcabezacuello_hcmed, efcardiopulmonar_hcmed, efabdomen_hcmed, efgenitourinario_hcmed, efextremidades_hcmed, efpielfuneras_hcmed, efsistemanervioso_hcmed, &quot;
+                + &quot; diagnostico1_hcmed, tipodiagnostico1_hcmed, diagnostico2_hcmed, tipodiagnostico2_hcmed, diagnostico3_hcmed, tipodiagnostico3_hcmed, tratamiento_hcmed, recomendaciones_hcmed, formulamedica_hcmed )&quot;
+                + &quot; VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;
+
+<span class="fc" id="L48">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="fc" id="L50">        ps.setInt(1, hcmed.getIdusuario_hcmed());</span>
+<span class="fc" id="L51">        ps.setInt(2, hcmed.getIdcita_hcmed());</span>
+<span class="fc" id="L52">        ps.setString(3, hcmed.getMotivoconsulta_hcmed());</span>
+<span class="fc" id="L53">        ps.setString(4, hcmed.getEnfermedadgeneral_hcmed());</span>
+<span class="fc" id="L54">        ps.setString(5, hcmed.getRevisionporsistemas_hcmed());</span>
+<span class="fc" id="L55">        ps.setString(6, hcmed.getAntpatologicos_hcmed());</span>
+<span class="fc" id="L56">        ps.setString(7, hcmed.getAntquirurgicos_hcmed());</span>
+<span class="fc" id="L57">        ps.setString(8, hcmed.getAnttraumaticos_hcmed());</span>
+<span class="fc" id="L58">        ps.setString(9, hcmed.getAnttoxicoAlergicos_hcmed());</span>
+<span class="fc" id="L59">        ps.setString(10, hcmed.getAntfarmacologicos_hcmed());</span>
+<span class="fc" id="L60">        ps.setString(11, hcmed.getAntvenereos_hcmed());</span>
+<span class="fc" id="L61">        ps.setString(12, hcmed.getAntfamiliares_hcmed());</span>
+<span class="fc" id="L62">        ps.setString(13, hcmed.getAntginecologicos_hcmed());</span>
+<span class="fc" id="L63">        ps.setString(14, hcmed.getAntotros_hcmed());</span>
+<span class="fc" id="L64">        ps.setInt(15, hcmed.getFrecardiaca_hcmed());</span>
+<span class="fc" id="L65">        ps.setInt(16, hcmed.getFrerespiratoria_hcmed());</span>
+<span class="fc" id="L66">        ps.setInt(17, hcmed.getTensionarterial_hcmed());</span>
+<span class="fc" id="L67">        ps.setInt(18, hcmed.getTemperatura_hcmed());</span>
+<span class="fc" id="L68">        ps.setInt(19, hcmed.getPeso_hcmed());</span>
+<span class="fc" id="L69">        ps.setInt(20, hcmed.getTalla_hcmed());</span>
+<span class="fc" id="L70">        ps.setString(21, hcmed.getEfestadogeneral_hcmed());</span>
+<span class="fc" id="L71">        ps.setString(22, hcmed.getEfcabezacuello_hcmed());</span>
+<span class="fc" id="L72">        ps.setString(23, hcmed.getEfcardiopulmonar_hcmed());</span>
+<span class="fc" id="L73">        ps.setString(24, hcmed.getEfabdomen_hcmed());</span>
+<span class="fc" id="L74">        ps.setString(25, hcmed.getEfgenitourinario_hcmed());</span>
+<span class="fc" id="L75">        ps.setString(26, hcmed.getEfextremidades_hcmed());</span>
+<span class="fc" id="L76">        ps.setString(27, hcmed.getEfpielfuneras_hcmed());</span>
+<span class="fc" id="L77">        ps.setString(28, hcmed.getEfsistemanervioso_hcmed());</span>
+<span class="fc" id="L78">        ps.setString(29, hcmed.getDiagnostico1_hcmed());</span>
+<span class="fc" id="L79">        ps.setString(30, hcmed.getTipodiagnostico1_hcmed());</span>
+<span class="fc" id="L80">        ps.setString(31, hcmed.getDiagnostico2_hcmed());</span>
+<span class="fc" id="L81">        ps.setString(32, hcmed.getTipodiagnostico2_hcmed());</span>
+<span class="fc" id="L82">        ps.setString(33, hcmed.getDiagnostico3_hcmed());</span>
+<span class="fc" id="L83">        ps.setString(34, hcmed.getTipodiagnostico3_hcmed());</span>
+<span class="fc" id="L84">        ps.setString(35, hcmed.getTratamiento_hcmed());</span>
+<span class="fc" id="L85">        ps.setString(36, hcmed.getRecomendaciones_hcmed());</span>
+<span class="fc" id="L86">        ps.setString(37, hcmed.getFormulamedica_hcmed());</span>
+
+<span class="nc" id="L88">        int resultado = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        return resultado == 1;</span>
+    }
+
+    public List&lt;HcMedicinaGeneralDTO&gt; consultarHcMedicinaGeneral(int id_usuario) throws SQLException {
+
+<span class="nc" id="L95">        List&lt;HcMedicinaGeneralDTO&gt; listaHisC = new ArrayList&lt;HcMedicinaGeneralDTO&gt;();</span>
+        
+<span class="nc" id="L97">        String sql = &quot;SELECT * FROM hc_medicinageneral WHERE idusuario_hcmed = ?&quot;;</span>
+
+<span class="nc" id="L99">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L101">        ps.setInt(1, id_usuario);</span>
+
+<span class="nc" id="L103">        ResultSet rs = ps.executeQuery();</span>
+                
+<span class="nc" id="L105">        HcMedicinaGeneralDTO hcmed = null;</span>
+
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        while (rs.next()) {</span>
+<span class="nc" id="L108">            hcmed = new HcMedicinaGeneralDTO();</span>
+
+<span class="nc" id="L110">            hcmed.setIdusuario_hcmed(rs.getInt(&quot;idusuario_hcmed&quot;));</span>
+<span class="nc" id="L111">            hcmed.setIdcita_hcmed(rs.getInt(&quot;idcita_hcmed&quot;));</span>
+<span class="nc" id="L112">            hcmed.setMotivoconsulta_hcmed(rs.getString(&quot;motivoconsulta_hcmed&quot;));            </span>
+<span class="nc" id="L113">            hcmed.setEnfermedadgeneral_hcmed(rs.getString(&quot;enfermedadgeneral_hcmed&quot;));</span>
+<span class="nc" id="L114">            hcmed.setRevisionporsistemas_hcmed(rs.getString(&quot;revisionporsistemas_hcmed&quot;));</span>
+<span class="nc" id="L115">            hcmed.setAntpatologicos_hcmed(rs.getString(&quot;antpatologicos_hcmed&quot;));</span>
+<span class="nc" id="L116">            hcmed.setAntquirurgicos_hcmed(rs.getString(&quot;antquirurgicos_hcmed&quot;));</span>
+<span class="nc" id="L117">            hcmed.setAnttraumaticos_hcmed(rs.getString(&quot;anttraumaticos_hcmed&quot;));</span>
+<span class="nc" id="L118">            hcmed.setAnttoxicoAlergicos_hcmed(rs.getString(&quot;anttoxicoAlergicos_hcmed&quot;));</span>
+<span class="nc" id="L119">            hcmed.setAntfarmacologicos_hcmed(rs.getString(&quot;antfarmacologicos_hcmed&quot;));</span>
+<span class="nc" id="L120">            hcmed.setAntvenereos_hcmed(rs.getString(&quot;antvenereos_hcmed&quot;));</span>
+<span class="nc" id="L121">            hcmed.setAntfamiliares_hcmed(rs.getString(&quot;antfamiliares_hcmed&quot;));</span>
+<span class="nc" id="L122">            hcmed.setAntginecologicos_hcmed(rs.getString(&quot;antginecologicos_hcmed&quot;));</span>
+<span class="nc" id="L123">            hcmed.setAntotros_hcmed(rs.getString(&quot;antotros_hcmed&quot;));            </span>
+<span class="nc" id="L124">            hcmed.setFrecardiaca_hcmed(rs.getInt(&quot;frecardiaca_hcmed&quot;));</span>
+<span class="nc" id="L125">            hcmed.setFrerespiratoria_hcmed(rs.getInt(&quot;frerespiratoria_hcmed&quot;));</span>
+<span class="nc" id="L126">            hcmed.setTensionarterial_hcmed(rs.getInt(&quot;tensionarterial_hcmed&quot;));</span>
+<span class="nc" id="L127">            hcmed.setTemperatura_hcmed(rs.getInt(&quot;temperatura_hcmed&quot;));</span>
+<span class="nc" id="L128">            hcmed.setPeso_hcmed(rs.getInt(&quot;peso_hcmed&quot;));</span>
+<span class="nc" id="L129">            hcmed.setTalla_hcmed(rs.getInt(&quot;talla_hcmed&quot;));            </span>
+<span class="nc" id="L130">            hcmed.setEfestadogeneral_hcmed(rs.getString(&quot;efestadogeneral_hcmed&quot;));</span>
+<span class="nc" id="L131">            hcmed.setEfcabezacuello_hcmed(rs.getString(&quot;efcabezacuello_hcmed&quot;));</span>
+<span class="nc" id="L132">            hcmed.setEfcardiopulmonar_hcmed(rs.getString(&quot;efcardiopulmonar_hcmed&quot;));</span>
+<span class="nc" id="L133">            hcmed.setEfabdomen_hcmed(rs.getString(&quot;efabdomen_hcmed&quot;));</span>
+<span class="nc" id="L134">            hcmed.setEfgenitourinario_hcmed(rs.getString(&quot;efgenitourinario_hcmed&quot;));</span>
+<span class="nc" id="L135">            hcmed.setEfextremidades_hcmed(rs.getString(&quot;efextremidades_hcmed&quot;));</span>
+<span class="nc" id="L136">            hcmed.setEfpielfuneras_hcmed(rs.getString(&quot;efpielfuneras_hcmed&quot;));</span>
+<span class="nc" id="L137">            hcmed.setEfsistemanervioso_hcmed(rs.getString(&quot;efsistemanervioso_hcmed&quot;));</span>
+<span class="nc" id="L138">            hcmed.setDiagnostico1_hcmed(rs.getString(&quot;diagnostico1_hcmed&quot;));</span>
+<span class="nc" id="L139">            hcmed.setTipodiagnostico1_hcmed(rs.getString(&quot;tipodiagnostico1_hcmed&quot;));</span>
+<span class="nc" id="L140">            hcmed.setDiagnostico2_hcmed(rs.getString(&quot;diagnostico2_hcmed&quot;));</span>
+<span class="nc" id="L141">            hcmed.setTipodiagnostico2_hcmed(rs.getString(&quot;tipodiagnostico2_hcmed&quot;));</span>
+<span class="nc" id="L142">            hcmed.setDiagnostico3_hcmed(rs.getString(&quot;diagnostico3_hcmed&quot;));</span>
+<span class="nc" id="L143">            hcmed.setTipodiagnostico3_hcmed(rs.getString(&quot;tipodiagnostico3_hcmed&quot;));</span>
+<span class="nc" id="L144">            hcmed.setTratamiento_hcmed(rs.getString(&quot;tratamiento_hcmed&quot;));</span>
+<span class="nc" id="L145">            hcmed.setRecomendaciones_hcmed(rs.getString(&quot;recomendaciones_hcmed&quot;));                                                                                                                </span>
+<span class="nc" id="L146">            hcmed.setFormulamedica_hcmed(rs.getString(&quot;formulamedica_hcmed&quot;));   </span>
+            
+<span class="nc" id="L148">            listaHisC.add(hcmed);</span>
+        }
+
+<span class="nc" id="L151">        return listaHisC;</span>
+
+    }
+    
+    public HcMedicinaGeneralDTO consultarHcMedicinaGeneralCita(int id_usuario, int id_cita) throws SQLException {       
+        
+<span class="nc" id="L157">        String sql = &quot;SELECT * FROM hc_medicinageneral WHERE idusuario_hcmed = ? AND idcita_hcmed = ?&quot;;</span>
+
+<span class="nc" id="L159">        PreparedStatement ps = con.prepareStatement(sql);</span>
+
+<span class="nc" id="L161">        ps.setInt(1, id_usuario);</span>
+<span class="nc" id="L162">        ps.setInt(2, id_cita);</span>
+
+<span class="nc" id="L164">        ResultSet rs = ps.executeQuery();</span>
+<span class="nc" id="L165">        HcMedicinaGeneralDTO hcmed = null;</span>
+
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (rs.next()) {</span>
+<span class="nc" id="L168">            hcmed = new HcMedicinaGeneralDTO();</span>
+
+<span class="nc" id="L170">            hcmed.setIdusuario_hcmed(rs.getInt(&quot;idusuario_hcmed&quot;));</span>
+<span class="nc" id="L171">            hcmed.setIdcita_hcmed(rs.getInt(&quot;idcita_hcmed&quot;));</span>
+<span class="nc" id="L172">            hcmed.setMotivoconsulta_hcmed(rs.getString(&quot;motivoconsulta_hcmed&quot;));            </span>
+<span class="nc" id="L173">            hcmed.setEnfermedadgeneral_hcmed(rs.getString(&quot;enfermedadgeneral_hcmed&quot;));</span>
+<span class="nc" id="L174">            hcmed.setRevisionporsistemas_hcmed(rs.getString(&quot;revisionporsistemas_hcmed&quot;));</span>
+<span class="nc" id="L175">            hcmed.setAntpatologicos_hcmed(rs.getString(&quot;antpatologicos_hcmed&quot;));</span>
+<span class="nc" id="L176">            hcmed.setAntquirurgicos_hcmed(rs.getString(&quot;antquirurgicos_hcmed&quot;));</span>
+<span class="nc" id="L177">            hcmed.setAnttraumaticos_hcmed(rs.getString(&quot;anttraumaticos_hcmed&quot;));</span>
+<span class="nc" id="L178">            hcmed.setAnttoxicoAlergicos_hcmed(rs.getString(&quot;anttoxicoAlergicos_hcmed&quot;));</span>
+<span class="nc" id="L179">            hcmed.setAntfarmacologicos_hcmed(rs.getString(&quot;antfarmacologicos_hcmed&quot;));</span>
+<span class="nc" id="L180">            hcmed.setAntvenereos_hcmed(rs.getString(&quot;antvenereos_hcmed&quot;));</span>
+<span class="nc" id="L181">            hcmed.setAntfamiliares_hcmed(rs.getString(&quot;antfamiliares_hcmed&quot;));</span>
+<span class="nc" id="L182">            hcmed.setAntginecologicos_hcmed(rs.getString(&quot;antginecologicos_hcmed&quot;));</span>
+<span class="nc" id="L183">            hcmed.setAntotros_hcmed(rs.getString(&quot;antotros_hcmed&quot;));            </span>
+<span class="nc" id="L184">            hcmed.setFrecardiaca_hcmed(rs.getInt(&quot;frecardiaca_hcmed&quot;));</span>
+<span class="nc" id="L185">            hcmed.setFrerespiratoria_hcmed(rs.getInt(&quot;frerespiratoria_hcmed&quot;));</span>
+<span class="nc" id="L186">            hcmed.setTensionarterial_hcmed(rs.getInt(&quot;tensionarterial_hcmed&quot;));</span>
+<span class="nc" id="L187">            hcmed.setTemperatura_hcmed(rs.getInt(&quot;temperatura_hcmed&quot;));</span>
+<span class="nc" id="L188">            hcmed.setPeso_hcmed(rs.getInt(&quot;peso_hcmed&quot;));</span>
+<span class="nc" id="L189">            hcmed.setTalla_hcmed(rs.getInt(&quot;talla_hcmed&quot;));            </span>
+<span class="nc" id="L190">            hcmed.setEfestadogeneral_hcmed(rs.getString(&quot;efestadogeneral_hcmed&quot;));</span>
+<span class="nc" id="L191">            hcmed.setEfcabezacuello_hcmed(rs.getString(&quot;efcabezacuello_hcmed&quot;));</span>
+<span class="nc" id="L192">            hcmed.setEfcardiopulmonar_hcmed(rs.getString(&quot;efcardiopulmonar_hcmed&quot;));</span>
+<span class="nc" id="L193">            hcmed.setEfabdomen_hcmed(rs.getString(&quot;efabdomen_hcmed&quot;));</span>
+<span class="nc" id="L194">            hcmed.setEfgenitourinario_hcmed(rs.getString(&quot;efgenitourinario_hcmed&quot;));</span>
+<span class="nc" id="L195">            hcmed.setEfextremidades_hcmed(rs.getString(&quot;efextremidades_hcmed&quot;));</span>
+<span class="nc" id="L196">            hcmed.setEfpielfuneras_hcmed(rs.getString(&quot;efpielfuneras_hcmed&quot;));</span>
+<span class="nc" id="L197">            hcmed.setEfsistemanervioso_hcmed(rs.getString(&quot;efsistemanervioso_hcmed&quot;));</span>
+<span class="nc" id="L198">            hcmed.setDiagnostico1_hcmed(rs.getString(&quot;diagnostico1_hcmed&quot;));</span>
+<span class="nc" id="L199">            hcmed.setTipodiagnostico1_hcmed(rs.getString(&quot;tipodiagnostico1_hcmed&quot;));</span>
+<span class="nc" id="L200">            hcmed.setDiagnostico2_hcmed(rs.getString(&quot;diagnostico2_hcmed&quot;));</span>
+<span class="nc" id="L201">            hcmed.setTipodiagnostico2_hcmed(rs.getString(&quot;tipodiagnostico2_hcmed&quot;));</span>
+<span class="nc" id="L202">            hcmed.setDiagnostico3_hcmed(rs.getString(&quot;diagnostico3_hcmed&quot;));</span>
+<span class="nc" id="L203">            hcmed.setTipodiagnostico3_hcmed(rs.getString(&quot;tipodiagnostico3_hcmed&quot;));</span>
+<span class="nc" id="L204">            hcmed.setTratamiento_hcmed(rs.getString(&quot;tratamiento_hcmed&quot;));</span>
+<span class="nc" id="L205">            hcmed.setRecomendaciones_hcmed(rs.getString(&quot;recomendaciones_hcmed&quot;));</span>
+<span class="nc" id="L206">            hcmed.setFormulamedica_hcmed(rs.getString(&quot;formulamedica_hcmed&quot;));  </span>
+                        
+        }
+
+<span class="nc" id="L210">        return hcmed;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -130,10 +130,10 @@
                             function ver() {
                                 var x = document.getElementById("servicio").value;
 
-                                if (x == "odontologia") {
+                                if (x == "1") {
                                     document.getElementById("verrecibo").style.display = 'inline';
 
-                                } else if (x == "medicinageneral") {
+                                } else if (x == "2") {
                                     document.getElementById("verrecibo").style.display = 'inline';
                                 } else {
                                     document.getElementById("verrecibo").style.display = 'none';
@@ -146,7 +146,7 @@
                         <div id="verrecibo">
                             <label for="inputEmail3" class="col-sm-2 control-label"> Recibo </label>
                             <div class="col-sm-2">
-                                <input type="datetime" class="form-control" name="recibo" id="recibo" required="">
+                                <input type="datetime" class="form-control" name="recibo" id="recibo" >
                             </div>                  
                         </div>                       
 

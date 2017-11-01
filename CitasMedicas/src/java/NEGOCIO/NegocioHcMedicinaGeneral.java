@@ -18,10 +18,17 @@ import util.ConexionPostgres;
 /**
  *
  * @author Gladys M
+ * @version 1.0
  */
 public class NegocioHcMedicinaGeneral {
-    
-     public boolean registrarHCMedicinaGeneral(HcMedicinaGeneralDTO hcmed) throws SQLException {
+
+    /**
+     * Metodo que verifica el registro de la Historia Clinica de Medicina
+     * General
+     *
+     * @see DAO.HcMedicinaGeneralDAO registrarHCMedicinaGeneral
+     */
+    public boolean registrarHCMedicinaGeneral(HcMedicinaGeneralDTO hcmed) throws SQLException {
         boolean rta = false;
 
         ConexionPostgres con = new ConexionPostgres();
@@ -48,15 +55,21 @@ public class NegocioHcMedicinaGeneral {
         }
         return rta;
     }
-     
-     public List<HcMedicinaGeneralDTO> consultarHCMedicinaGeneral(int id_usuario) throws SQLException {
-        
+
+    /**
+     * Metodo que verifica la lista de Historias Clinicas de Medicina
+     * General de un usuario
+     *
+     * @see DAO.HcMedicinaGeneralDAO consultarHcMedicinaGeneral
+     */
+    public List<HcMedicinaGeneralDTO> consultarHCMedicinaGeneral(int id_usuario) throws SQLException {
+
         List<HcMedicinaGeneralDTO> listaHisC = new ArrayList<HcMedicinaGeneralDTO>();
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
-        HcMedicinaGeneralDAO med = new HcMedicinaGeneralDAO(co);        
-        
+        HcMedicinaGeneralDAO med = new HcMedicinaGeneralDAO(co);
+
         try {
 
             listaHisC = med.consultarHcMedicinaGeneral(id_usuario);
@@ -76,14 +89,22 @@ public class NegocioHcMedicinaGeneral {
         }
         return listaHisC;
     }
-     public HcMedicinaGeneralDTO consultarHCMedicinaGeneralCita(int id_usuario, int id_cita) throws SQLException {
-                
+    
+    /**
+     * Metodo que verifica la Historia Clinica de Medicina
+     * General de acuerdo a una cita Medica
+     *
+     * @see DAO.HcMedicinaGeneralDAO consultarHcMedicinaGeneralCita
+     */
+
+    public HcMedicinaGeneralDTO consultarHCMedicinaGeneralCita(int id_usuario, int id_cita) throws SQLException {
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
-        HcMedicinaGeneralDAO med = new HcMedicinaGeneralDAO(co);        
-        HcMedicinaGeneralDTO mg= new HcMedicinaGeneralDTO();        
-        
+        HcMedicinaGeneralDAO med = new HcMedicinaGeneralDAO(co);
+        HcMedicinaGeneralDTO mg = new HcMedicinaGeneralDTO();
+
         try {
 
             mg = med.consultarHcMedicinaGeneralCita(id_usuario, id_cita);

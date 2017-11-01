@@ -28,14 +28,14 @@
     <body>
         <%
 
-            UsuarioDTO admin = (UsuarioDTO) session.getAttribute("administrador");
-            if (admin == null) {
+         //   UsuarioDTO admin = (UsuarioDTO) session.getAttribute("administrador");
+         //   if (admin == null) {
 
-                response.sendRedirect("../index.jsp");
-                return;
-            }
+         //       response.sendRedirect("../index.jsp");
+         //       return;
+         //   }
 
-            String id = admin.getIdentificacion();
+            String id = "12345";
             FacadeUsuario fac = new FacadeUsuario();
             UsuarioDTO usuario = fac.consultarUsuarioPorId(id);
             String nombre = usuario.getNombre();

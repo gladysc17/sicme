@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EstudianteDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;CitasMedicas&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAO</a> &gt; <span class="el_source">EstudianteDAO.java</span></div><h1>EstudianteDAO.java</h1><pre class="source lang-java linenums">    /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAO;
+
+import DTO.EstudianteDTO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Gladys M
+ * @version 1.0
+ */
+public class EstudianteDAO {
+
+    private Connection con;
+
+<span class="nc" id="L24">    public EstudianteDAO(Connection con) {</span>
+<span class="nc" id="L25">        this.con = con;</span>
+<span class="nc" id="L26">    }</span>
+
+    /**
+     * Metodo que registra los datos del estudiante en la Base de datos     
+     * @param est
+     * @return boolean, con valor verdadero si hubo registro exitoso, falso si existe error dentro del procedimiento.
+     * @throws SQLException Error de ejecución de sql, ocurre si hace falta algun campo de la base de datos por llenar.
+     */
+    public boolean registrarEstudiante(EstudianteDTO est) throws SQLException {
+                       
+<span class="nc" id="L36">        String sql = &quot;INSERT INTO estudiante (identificacion_usuario, programa_academico )&quot;</span>
+                + &quot; VALUES (?, ?)&quot;;
+
+<span class="nc" id="L39">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L41">        ps.setString(1, est.getIdentificacion_usuario());                </span>
+<span class="nc" id="L42">        ps.setString(2, est.getPrograma_academico());               </span>
+
+<span class="nc" id="L44">        int resultado = ps.executeUpdate();</span>
+
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        return resultado == 1;</span>
+
+    }
+    
+    public List&lt;String&gt; consultarProgramaAcademico () throws SQLException {
+<span class="nc" id="L51">        List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+        
+<span class="nc" id="L53">        String sql = &quot;select distinct(programa_academico) from estudiante&quot;;</span>
+        
+<span class="nc" id="L55">        PreparedStatement ps = con.prepareStatement(sql);</span>
+        
+<span class="nc" id="L57">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        while(rs.next()){</span>
+<span class="nc" id="L60">            String res = rs.getString(&quot;programa_academico&quot;);</span>
+<span class="nc" id="L61">            list.add(res);</span>
+<span class="nc" id="L62">        }</span>
+        
+<span class="nc" id="L64">        return list;</span>
+    }
+    
+    public List&lt;EstudianteDTO&gt; consultarEstudiantePrograma(String programa) throws SQLException {
+<span class="nc" id="L68">        List&lt;EstudianteDTO&gt; list = new ArrayList&lt;&gt;();</span>
+        
+<span class="nc" id="L70">        String sql = &quot;select * from estudiante where programa_academico = ?&quot;;</span>
+        
+<span class="nc" id="L72">        PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="nc" id="L73">        ps.setString(1, programa);</span>
+        
+<span class="nc" id="L75">        ResultSet rs = ps.executeQuery();</span>
+        
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        while(rs.next()){</span>
+<span class="nc" id="L78">            EstudianteDTO est = new EstudianteDTO();</span>
+<span class="nc" id="L79">            est.setId(rs.getInt(1));</span>
+<span class="nc" id="L80">            est.setIdentificacion_usuario(rs.getString(2));</span>
+<span class="nc" id="L81">            est.setPrograma_academico(rs.getString(3));</span>
+<span class="nc" id="L82">            list.add(est);</span>
+<span class="nc" id="L83">        }</span>
+        
+<span class="nc" id="L85">        return list;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

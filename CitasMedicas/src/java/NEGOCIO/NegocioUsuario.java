@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ConexionPostgres;
+import util.Seguridad;
 import util.ServicioEmail;
 
 /**
@@ -25,6 +26,11 @@ import util.ServicioEmail;
  */
 public class NegocioUsuario {
 
+    /**
+     * Metodo que verifica si el usuario existe en la base de datos
+     *
+     * @see DAO.UsuarioDAO consultarUsuarioPorId
+     */
     public boolean verficarUsuario(String identificacion, String clave) {
         boolean rta = false;
 
@@ -63,6 +69,11 @@ public class NegocioUsuario {
         
     }
 
+    /**
+     * Metodo que registra el usuario
+     * 
+     * @see DAO.UsuarioDAO registrarUsuario
+     */
     public boolean registrarUsuario(UsuarioDTO usuario) {
 
         boolean resultado = false;
@@ -96,6 +107,11 @@ public class NegocioUsuario {
 
     }
 
+    /**
+     * Metodo que consulta el usuario por su identificación
+     * 
+     * @see DAO.UsuarioDAO consultarUsuarioPorId
+     */
     public UsuarioDTO consultarUsuarioId(String id) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -120,6 +136,11 @@ public class NegocioUsuario {
         return null;
     }
 
+    /**
+     * Metodo que consulta el usuario por su identificación
+     * 
+     * @see DAO.UsuarioDAO consultarUsuarioPorId
+     */
     public boolean consultarOtroUsuarioIdBoolean(String id) {
 
         boolean rta = false;
@@ -146,6 +167,11 @@ public class NegocioUsuario {
         return rta;
     }
 
+    /**
+     * Metodo que consulta el usuario por su identificación o codigo
+     * 
+     * @see DAO.UsuarioDAO consultarUsuarioPorIdCodigo
+     */
     public UsuarioDTO consultarUsuarioIdCodigo(String id, String codigo) {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -169,6 +195,11 @@ public class NegocioUsuario {
         return null;
     }
 
+    /**
+     * Metodo que lista los usuarios
+     * 
+     * @see DAO.UsuarioDAO consultarUsuarios
+     */
     public List<UsuarioDTO> listarOtrosUsuarios() throws SQLException {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -187,6 +218,11 @@ public class NegocioUsuario {
         return (otros);
     }
 
+    /**
+     * Metodo que modifica datos del usuario
+     * 
+     * @see DAO.UsuarioDAO modificarUsuario
+     */
     public boolean modificarUsuario(String identificacion, String correo, Date fechanacimiento, String genero, String estadocivil, String direccion, String telefono, int edad) throws SQLException {
 
         boolean rta = false;
@@ -215,65 +251,12 @@ public class NegocioUsuario {
 
         return rta;
     }
-
-    public boolean modificarAdmin(String identificacion, String contrasena) throws SQLException {
-
-        boolean rta = false;
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-
-        UsuarioDAO est = new UsuarioDAO(co);
-
-        try {
-
-            rta = est.modificarAdmin(identificacion, contrasena);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
-        return rta;
-    }
-
-    public boolean modificarVice(String identificacion, String contrasena) throws SQLException {
-
-        boolean rta = false;
-        ConexionPostgres con = new ConexionPostgres();
-        Connection co = con.getconexion();
-
-        UsuarioDAO est = new UsuarioDAO(co);
-
-        try {
-
-            rta = est.modificarVice(identificacion, contrasena);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-
-            if (co != null) {
-                try {
-                    co.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(NegocioUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
-        return rta;
-    }
-
+      
+    /**
+     * Metodo que modifica datos del medico
+     * 
+     * @see DAO.UsuarioDAO modificarMedico
+     */
     public boolean modificarMedico(String identificacion, String contrasena) throws SQLException {
 
         boolean rta = false;
@@ -303,6 +286,11 @@ public class NegocioUsuario {
         return rta;
     }
 
+    /**
+     * Metodo que calcula la edad
+     * 
+     * @see DAO.UsuarioDAO calcularedad
+     */
     public int calcularEdad(Date fecha) {
 
         int edad = 0;
@@ -327,19 +315,26 @@ public class NegocioUsuario {
         return edad;
     }
 
-    public boolean recuperarContrasena(String id) throws SQLException {
+    /**
+     * Metodo que permite recuperar la contraseña
+     * 
+     * @see DAO.UsuarioDAO consultarUsuarioPorId
+     */
+    public boolean recuperarContrasena(String id) throws SQLException, Exception {
 
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         UsuarioDAO u = new UsuarioDAO(co);
+        Seguridad seg = new Seguridad();
         UsuarioDTO usuario = u.consultarUsuarioPorId(id);
         String contrasena = usuario.getContrasena();
+        String conDesencrip = seg.Desencriptar(contrasena);
 
         ServicioEmail servicioEmail = new ServicioEmail("sicgme@gmail.com", "oovnjylswrgytpty");
 
         String correo = usuario.getCorreo();
         String asunto = "SIGME - RECUPERAR CONTRASEÑA";
-        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + contrasena +  "\n" +
+        String clave = "SU CONTRASEÑA PARA ACCEDER ES: " + conDesencrip +  "\n" +
                 "RECUERDE CAMBIARLA UNA VEZ INGRESE AL SISTEMA";
 
         String cont = servicioEmail.getClaveEmailUsuarioEmisor();
@@ -352,6 +347,11 @@ public class NegocioUsuario {
 
     }
 
+    /**
+     * Metodo que lista los medicos por su servicio
+     * 
+     * @see DAO.UsuarioDAO consultarMedicosPorServicio
+     */
     public ArrayList<UsuarioDTO> consultarMedicoPorServicio(String tipo_usuario, int servicio) throws SQLException {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -380,6 +380,11 @@ public class NegocioUsuario {
 
     }
 
+    /**
+     * Metodo que lista los usuarios por su tipo
+     * 
+     * @see DAO.UsuarioDAO consultarUsuarioPorTipo
+     */
     public List<UsuarioDTO> listarUsuarioPorTipo(String tipo, String fecha1, String fecha2) throws SQLException {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -398,6 +403,11 @@ public class NegocioUsuario {
         return (otros);
     }
 
+    /**
+     * Metodo que lista los usuarios en un rango de fechas
+     * 
+     * @see DAO.UsuarioDAO consultarUsuariosPorFecha
+     */
     public List<UsuarioDTO> consultarUsuariosPorFecha(String fecha1, String fecha2) throws SQLException {
 
         ConexionPostgres con = new ConexionPostgres();
@@ -416,6 +426,11 @@ public class NegocioUsuario {
         return (otros);
     }
     
+    /**
+     * Metodo que modifica la contraseña 
+     * 
+     * @see DAO.UsuarioDAO modificarContrasena
+     */
     public boolean modificarContrasena(String identificacion, String contrasena) throws SQLException {
 
         boolean rta = false;

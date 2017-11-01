@@ -7,6 +7,7 @@ package FACADE;
 
 import DTO.ServicioDTO;
 import NEGOCIO.NegocioServicio;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -38,5 +39,19 @@ public class FacadeServicio {
     public boolean eliminarServicio(int id){
         return new NegocioServicio().eliminarServicio(id);
     }
+    
+    public int cantCitasAsistidas(String fechaI, String fechaF, String servicio) throws SQLException {
+        return new NegocioServicio().cantidadCitasAsistidas(fechaI, fechaF, servicio);
+    }
 
+    public int cantCitasNoAsistidas(String fechaI, String fechaF, String servicio) throws SQLException {
+        return new NegocioServicio().cantidadCitasNoAsistidas(fechaI, fechaF, servicio);
+    }
+    public int cantCitasPendientes(String fechaI, String fechaF, String servicio) throws SQLException {
+        return new NegocioServicio().cantidadCitasPendientes(fechaI, fechaF, servicio);
+    }
+
+    public ServicioDTO consultarServicio(String nombre){
+        return new NegocioServicio().consultarServicio(nombre);
+    }
 }

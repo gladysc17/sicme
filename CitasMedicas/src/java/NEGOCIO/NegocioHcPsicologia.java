@@ -18,9 +18,15 @@ import util.ConexionPostgres;
 /**
  *
  * @author Gladys M
+ * @version 1.0
  */
 public class NegocioHcPsicologia {
 
+    /**
+     * Metodo que verifica el registro de la Historia de Psicologia
+     *
+     * @see DAO.HcPsicologiaDAO registrarHcPsicologia
+     */
     public boolean registrarHcPsicologia(HcPsicologiaDTO hcpsico) throws SQLException {
         boolean rta = false;
 
@@ -49,6 +55,12 @@ public class NegocioHcPsicologia {
         return rta;
     }
 
+    /**
+     * Metodo que verifica la lista de Historias Clinicas de Psicologia de un
+     * usuario
+     *
+     * @see DAO.HcPsicologiaDAO consultarHcPsicologia
+     */
     public List<HcPsicologiaDTO> consultarHCPsicologia(int id_usuario) throws SQLException {
 
         List<HcPsicologiaDTO> listaHisC = new ArrayList<HcPsicologiaDTO>();
@@ -77,8 +89,14 @@ public class NegocioHcPsicologia {
         return listaHisC;
     }
 
+    /**
+     * Metodo que verifica la existencia de una Historia Clinica de Psicologia
+     * de un usuario
+     *
+     * @see DAO.HcPsicologiaDAO consultarHcPsicologia
+     */
     public HcPsicologiaDTO consultarHcPsicologia(String id_usuario, int id_cita) throws SQLException {
-        
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         HcPsicologiaDAO med = new HcPsicologiaDAO(co);
@@ -99,9 +117,16 @@ public class NegocioHcPsicologia {
         }
         return null;
     }
-    
+
+    /**
+     * Metodo que verifica la existencia de una Historia Clinica de Psicologia
+     * con proximas sesiones para un usuario
+     *
+     * @see DAO.HcPsicologiaDAO consultarHcPsicologiaAbierta
+     */
+
     public HcPsicologiaDTO consultarHcPsicologiaAbierta(String idUsuario) throws SQLException {
-        
+
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
         HcPsicologiaDAO med = new HcPsicologiaDAO(co);
@@ -122,7 +147,13 @@ public class NegocioHcPsicologia {
         }
         return null;
     }
-    
+    /**
+     * Metodo que verifica la actualiazacion de una Historia Clinica de Psicologia
+     * con proximas sesiones para un usuario
+     *
+     * @see DAO.HcPsicologiaDAO consultarHcPsicologiaAbierta
+     */
+
     public boolean actualizarEstadoSesionAdicional(int idHcPsicologia, String sesionAdicional) throws SQLException {
         boolean rta = false;
 

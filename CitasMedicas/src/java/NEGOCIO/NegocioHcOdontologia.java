@@ -18,9 +18,15 @@ import util.ConexionPostgres;
 /**
  *
  * @author Gladys M
+ * @version 1.0
  */
 public class NegocioHcOdontologia {
-    
+
+    /**
+     * Metodo que verifica el registro de la Historia de Odontologia
+     *
+     * @see DAO.HcOdontologiaDAO registrarHcOdontologia
+     */
     public boolean registrarHcOdontologia(HcOdontologiaDTO hcod) throws SQLException {
         boolean rta = false;
 
@@ -48,15 +54,21 @@ public class NegocioHcOdontologia {
         }
         return rta;
     }
-     
-     public List<HcOdontologiaDTO> consultarHcOdontologia(int id_usuario) throws SQLException {
-        
+
+    /**
+     * Metodo que verifica la lista de Historias Clinicas de Odontologia de un
+     * usuario
+     *
+     * @see DAO.HcOdontologiaDAO consultarHcOdontologia
+     */
+    public List<HcOdontologiaDTO> consultarHcOdontologia(int id_usuario) throws SQLException {
+
         List<HcOdontologiaDTO> listaHisC = new ArrayList<HcOdontologiaDTO>();
         ConexionPostgres con = new ConexionPostgres();
         Connection co = con.getconexion();
 
-        HcOdontologiaDAO od = new HcOdontologiaDAO(co);        
-        
+        HcOdontologiaDAO od = new HcOdontologiaDAO(co);
+
         try {
 
             listaHisC = od.consultarHcOdontologia(id_usuario);
@@ -76,6 +88,7 @@ public class NegocioHcOdontologia {
         }
         return listaHisC;
     }
+<<<<<<< HEAD
      
     public boolean actualizarControlPlacaOdontograma(int id_hcodontologia, String controlPlaca, String odontograma) throws SQLException {
         boolean rta = false;
@@ -105,4 +118,7 @@ public class NegocioHcOdontologia {
         return rta;
     } 
     
+=======
+
+>>>>>>> d6aaa5ef569b14e7bcae366a326f96fee891af5d
 }

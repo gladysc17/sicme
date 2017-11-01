@@ -4,6 +4,7 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,14 +14,16 @@
     </head>
     <body>
         <%
-        int idEvento = Integer.parseInt(request.getParameter("idEvento"));
-        String lugar = request.getParameter("lugar");
-        String fecha = request.getParameter("fecha");
-        String hora =  request.getParameter("hora");
-        String nombre =  request.getParameter("nombre");
+            int idEvento = Integer.parseInt(request.getParameter("idEvento"));
+            String lugar = request.getParameter("lugar");
+            String fecha = request.getParameter("fecha");
+            String hora = request.getParameter("hora");
+            String nombre = request.getParameter("nombre");
+            FacadeHorarioMedico fc = new FacadeHorarioMedico();
+            String fec = fc.fechaActual();
         %>
         <div class="col-md-2"></div>
-        
+
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -28,12 +31,12 @@
                 </div>
                 <div class="panel-body">
                     <form action="../controlador/procesarModificarEvento.jsp" method="post">
-                        <input type="hidden" name="idEvento" value="<%=idEvento %>" />
+                        <input type="hidden" name="idEvento" value="<%=idEvento%>" />
                         <div>
                             <label>Nombre: "<%=nombre%>"</label>
-                            
+
                         </div>
-                        
+
                         <div>
                             <label>Fecha: &nbsp;</label>
                             <input class="form-page" type="date" name="nueFechaEvento" size="12" required value="<%=fecha%>" /> <br> <br>
@@ -53,7 +56,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-2"></div>
     </body>
 </html>

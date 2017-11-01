@@ -43,13 +43,8 @@ public class FacadeUsuario {
         return new NegocioUsuario().modificarUsuario(identificacion_otro, correo_otro, fechanacimiento_otro, genero_otro, estadocivil_otro, direccion_otro, telefono_otro, edad);
 
     }
-     public boolean modificarAdmin(String identificacion, String contrasena ) throws SQLException {
-        return new NegocioUsuario().modificarAdmin(identificacion, contrasena);
-    }
-      public boolean modificarVice(String identificacion, String contrasena ) throws SQLException {
-        return new NegocioUsuario().modificarVice(identificacion, contrasena);
-    }
-       public boolean modificarMedico(String identificacion, String contrasena ) throws SQLException {
+    
+    public boolean modificarMedico(String identificacion, String contrasena ) throws SQLException {
         return new NegocioUsuario().modificarMedico(identificacion, contrasena);
     }            
 
@@ -57,7 +52,7 @@ public class FacadeUsuario {
         return new NegocioUsuario().calcularEdad(fecha);
     }
 
-    public boolean recueperarContrasena(String id) throws SQLException {
+    public boolean recueperarContrasena(String id) throws SQLException, Exception {
         return new NegocioUsuario().recuperarContrasena(id);
     }
 
