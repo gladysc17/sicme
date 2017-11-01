@@ -88,7 +88,7 @@ public class NegocioHcOdontologia {
         }
         return listaHisC;
     }
-<<<<<<< HEAD
+
      
     public boolean actualizarControlPlacaOdontograma(int id_hcodontologia, String controlPlaca, String odontograma) throws SQLException {
         boolean rta = false;
@@ -118,7 +118,4 @@ public class NegocioHcOdontologia {
         return rta;
     } 
     
-=======
-
->>>>>>> d6aaa5ef569b14e7bcae366a326f96fee891af5d
 }
