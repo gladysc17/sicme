@@ -1529,10 +1529,7 @@
                                                    
                                                 </tr>
                                                 
-                                                <input type="hidden" id="controlPlaca" name="controlPlaca" value=""/>
-                                                <input type="hidden" id="idCita" name="idCita" value="<%=idcita%>"/>
-                                                <input type="hidden" id="tipo" name="tipo" value="<%=tipo%>"/>
-                                                <input type="hidden" id="identificacionU" name="identificacionU" value="<%=u.getIdentificacion()%>"/>
+                                                
                                             </table>
                                         </div>
                                     </div>
@@ -1674,6 +1671,14 @@
                                 <%}%>
                                              
                                 </div>
+                                
+                                <input type="hidden" id="controlPlaca" name="controlPlaca" value=""/>
+                                <input type="hidden" id="idCita" name="idCita" value="<%=idcita%>"/>
+                                <input type="hidden" id="tipo" name="tipo" value="<%=tipo%>"/>
+                                <input type="hidden" id="identificacionU" name="identificacionU" value="<%=u.getIdentificacion()%>"/>
+                                <%if (hcOdontologia != null) {%>
+                                <input type="hidden" id="id_hc_odontologia" name="id_hc_odontologia" value="<%=hcOdontologia.getId_hcodontologia()%>"/>
+                                <%}%>
                                                                 
                                 &nbsp;&nbsp;&nbsp;&nbsp;<input  type="button" class="btn btn-success" value="Registrar" onclick="registrarss();" />
                                 <a id="test"></a>
