@@ -41,22 +41,22 @@
                     </div>
                     <div class="col-sm-4">
                         <label class="control-label">Número de documento</label>
-                        <input type="number" class="form-control" id="identificacion" name="identificacion" required="">
+                        <input type="number" class="form-control" id="identificacion" name="identificacion" required alt="Numero de documento">
                     </div>
                     <div class="col-sm-4">
                         <label class="control-label">Código</label>
-                        <input type="number" class="form-control" id="codigo" name="codigo" required="">
+                        <input type="number" class="form-control" id="codigo" name="codigo" required alt="Codigo">
                     </div>                            
                 </div>
 
                 <div class="form-group">                              
                     <div class="col-sm-6">
                         <label class="control-label">Nombres y Apellidos:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required="">
+                        <input type="text" class="form-control" id="nombre" name="nombre" required alt="Nombres y Apellidos">
                     </div>
                     <div class="col-sm-6">
                         <label class="control-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" id="correo" name="correo" required="">
+                        <input type="email" class="form-control" id="correo" name="correo" required alt="Correo electronico">
                     </div>
 
                 </div>
@@ -64,7 +64,7 @@
                 <div class="form-group">  
                     <div class="col-sm-4">
                         <label class="control-label">Fecha de Nacimiento: </label>
-                        <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required="">
+                        <input type="date" class="form-control" id="fechanacimiento" name="fechanacimiento" required alt="Fecha de Nacimiento">
                     </div>                    
                     <div class="col-sm-4">
                         <label class="control-label">Género: </label>
@@ -93,16 +93,16 @@
 
                     <div class="col-sm-4">
                         <label class="control-label">Dirección: </label>
-                        <input type="text" class="form-control" id="direccion" name="direccion" required="">
+                        <input type="text" class="form-control" id="direccion" name="direccion" required alt="Direccion">
                     </div>
                     <div class="col-sm-4">
                         <label class="control-label">Teléfono: </label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" required="">
+                        <input type="text" class="form-control" id="telefono" name="telefono" required alt="Telefono">
                     </div>  
                     <div class="col-sm-4">
                         <label class="control-label">Tipo de Usuario</label>
                         <div class="form-control"style="border-box: box-sizing;">
-                            <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()">
+                            <select name="tipousuario" id="tipousuario" onchange="mostrarDatos()" alt="tipo de Usuario">
                                 <option> </option>
                                 <option value="estudiante"> Estudiante </option>
                                 <option value="docente"> Docente </option>     
@@ -243,9 +243,7 @@
             if (!validateFieldNull(identificacionElm)) {
                 return;
             }
-            if (!validateFieldNull(tipoUsuarioElm)) {
-                return;
-            }
+            
             if (!validateFieldNull(codigoElm)) {
                 return;
             }
@@ -273,6 +271,9 @@
                 return;
             }
             if (!validateFieldNull(telefonoElm)) {
+                return;
+            }
+            if (!validateFieldNull(tipoUsuarioElm)) {
                 return;
             }
             if (!validateFieldNull(password1)) {
