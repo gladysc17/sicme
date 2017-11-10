@@ -192,7 +192,7 @@ public class HcOdontologiaDAO {
     
     public boolean actualizarControlPlacaOdontograma(int idHcOdontologia, String controlPlaca, String odontograma) throws SQLException {
         
-        String sql = "UPDATE hc_odontologia SET control_placa = ?, odontograma = ? WHERE  id_hcodontologia = ?";
+        String sql = "UPDATE hc_odontologia SET f_control_placa = ?, g_odontograma = ? WHERE  id_hcodontologia = ?";
 
         PreparedStatement ps = con.prepareStatement(sql);
 
