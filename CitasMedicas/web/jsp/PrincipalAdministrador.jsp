@@ -28,14 +28,14 @@
     <body>
         <%
 
-         //   UsuarioDTO admin = (UsuarioDTO) session.getAttribute("administrador");
-         //   if (admin == null) {
+            UsuarioDTO admin = (UsuarioDTO) session.getAttribute("administrador");
+            if (admin == null) {
 
-         //       response.sendRedirect("../index.jsp");
-         //       return;
-         //   }
+                response.sendRedirect("../index.jsp");
+                return;
+            }
 
-            String id = "12345";
+            String id = admin.getIdentificacion();
             FacadeUsuario fac = new FacadeUsuario();
             UsuarioDTO usuario = fac.consultarUsuarioPorId(id);
             String nombre = usuario.getNombre();
@@ -377,9 +377,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <p>
-                        2016 © All Rights Reserved.
-                        Desarrollado por: <a href="#">VAVM - División de Sistemas</a>
+                    <p style="text-align: center">
+                        2017 © All Rights Reserved.
+                        Desarrollado por: Gladys Mercedes Carrillo Mora - Andres Silvestre Ariza Torrado.
                     </p>
                 </div>
 

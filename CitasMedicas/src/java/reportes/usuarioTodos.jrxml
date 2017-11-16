@@ -31,7 +31,7 @@
 	<parameter name="fechaF" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[select *, 
-	(select count(*)  
+	(select count(*) total  
 	from usuario 
 	where fecharegistro between $P{fechaI} and  $P{fechaF}
 	)
@@ -52,15 +52,13 @@ ORDER BY nombre]]>
 	<field name="telefono" class="java.lang.String"/>
 	<field name="tipo_usuario" class="java.lang.String"/>
 	<field name="fecharegistro" class="java.sql.Date"/>
-	<field name="?column?" class="java.lang.Long"/>
+	<field name="contrasena" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="0" width="781" height="79" uuid="dc11b012-3839-4914-b91c-1332d9577aae"/>
-			</rectangle>
 			<staticText>
 				<reportElement x="251" y="64" width="314" height="15" uuid="2a50bea5-4571-443f-bf46-4bad2bb4ea2b"/>
 				<textElement textAlignment="Center"/>
@@ -80,14 +78,6 @@ ORDER BY nombre]]>
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="665" y="14" width="50" height="50" uuid="374935c6-8c19-4e02-a745-ea4cef6f547b"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\build\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="27" y="14" width="50" height="50" uuid="c0b324e6-086f-453a-91c5-b0df0a868eb2"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -180,10 +170,6 @@ ORDER BY nombre]]>
 	</detail>
 	<columnFooter>
 		<band height="96" splitType="Stretch">
-			<textField>
-				<reportElement x="127" y="0" width="100" height="20" uuid="75603a27-e53c-4808-bc73-19a26d95e648"/>
-				<textFieldExpression><![CDATA[$F{?column?}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="127" height="20" uuid="a19ad152-743f-499d-a94c-7acb2f855261"/>
 				<textElement>
@@ -201,6 +187,10 @@ ORDER BY nombre]]>
 			<textField pattern="dd MMMMM yyyy">
 				<reportElement x="80" y="20" width="100" height="20" uuid="8b53e7ac-9208-41e7-aba0-d097e738509c"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="0" width="100" height="20" uuid="83565e9d-1280-4517-8c8b-1e23c7847705"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
