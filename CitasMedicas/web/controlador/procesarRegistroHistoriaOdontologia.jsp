@@ -61,7 +61,7 @@
                 String e_limit_movimiento = request.getParameter("limit_mov");
                 String e_obser_atm = request.getParameter("obser_atm");
                 String f_control_placa = request.getParameter("controlPlaca");
-                String g_odontograma = request.getParameter("odontog");
+                String g_odontograma = request.getParameter("odon");
                 String h_lectura_rx = request.getParameter("lectura_rx");
                 String i_diagnostico = request.getParameter("diagnostico");
                 String k_operatoria = request.getParameter("operatoria");
@@ -73,7 +73,10 @@
                 String k_periodoncia = request.getParameter("periodoncia");
                 String k_ciru_maxi_facial = request.getParameter("ciru_maxi_facial");
                 String k_ortodoncia = request.getParameter("ortodoncia");
-                                
+                
+                System.out.println("lenght -> "+g_odontograma.length());
+                System.out.println("Odon -> "+g_odontograma);
+                
                 HcOdontologiaDTO hc = new HcOdontologiaDTO(id_cita, id_usuario, b_motivo, b_alergias, b_hemorragia,
                         b_radioterapia, b_hipertension, b_diabetes, b_tratamiento_medico_actual, b_toma_medicamentos,
                         b_embarazo, b_hiv, b_cirugias, b_exodoncia, b_hepatitis, b_patologia_respiratoria, b_convulsion,
@@ -114,7 +117,7 @@
                 String motivo = request.getParameter("motivo");
                 String diagnostico = request.getParameter("diagnostico");
                 String controlPlaca = request.getParameter("controlPlaca");
-                String odontograma = request.getParameter("odontog"); //Por ahora se comenta
+                String odontograma = request.getParameter("odon"); //Por ahora se comenta
                 int idCita = Integer.parseInt(request.getParameter("idCita"));
                 int idHcOdontologia = Integer.parseInt(request.getParameter("id_hc_odontologia"));
 

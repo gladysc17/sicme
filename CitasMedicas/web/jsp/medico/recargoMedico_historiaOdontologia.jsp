@@ -126,9 +126,24 @@
             .click-red {
                 background-color: red !important;
             }
+            
+            .click-red-border {
+                border-color : red !important;
+            }
+            
+            .click-marron-border {
+                border-color : #3E2723 !important;
+            }
 
             .click-blue {
                 background-color: blue !important;
+            }
+            
+            .click-blue-border {
+                border-top-color : blue !important;
+                border-bottom-color: blue !important;
+                border-left-color: blue !important;
+                border-right-color: blue !important;
             }
 
             .click-green {
@@ -216,6 +231,7 @@
             }
 
             .cuadro-leche {
+                background-color: #FFFFFF;
                 border: 1px solid #7F7F7F;
                 position: relative;
                 width: 13px;
@@ -305,12 +321,16 @@
             }
             String primeraVez = "SI";
             JSONObject jsonObj = null;
+            JSONObject jsonObjOdontograma = null;
             if (hcOdontologia != null) {
                 primeraVez = "NO";
                 jsonObj = new JSONObject(hcOdontologia.getF_control_placa());
-                JSONObject obj = jsonObj.getJSONArray("pla").getJSONObject(0);
+                jsonObjOdontograma = new JSONObject(hcOdontologia.getG_odontograma());
+                /*JSONObject obj = jsonObj.getJSONArray("pla").getJSONObject(0);
                 String x = String.valueOf(obj.getJSONArray("ubicaciones").getJSONObject(4).get("valor"));
-                System.out.println("Lo q traigo del JSON -> "+x);
+                System.out.println("Lo q traigo del JSON -> "+x);*/
+                
+                
             }
 
         %>
@@ -605,11 +625,11 @@
                                                             
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">18</span>
-                                                        <div class="cuadro click <%=arriba_18%>" onclick="meterEnOdontograma('18', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_18%>" onclick="meterEnOdontograma('18', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_18%>" onclick="meterEnOdontograma('18', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_18%>" onclick="meterEnOdontograma('18', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_18%>" onclick="meterEnOdontograma('18', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_18%>" onclick="meterEnControlPlaca('18', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_18%>" onclick="meterEnControlPlaca('18', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_18%>" onclick="meterEnControlPlaca('18', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_18%>" onclick="meterEnControlPlaca('18', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_18%>" onclick="meterEnControlPlaca('18', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 17-->
                                                         <%
@@ -621,11 +641,11 @@
                                                             String izquierda_17 = String.valueOf(obj_17.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">17</span>
-                                                        <div class="cuadro click <%=arriba_17%>" onclick="meterEnOdontograma('17', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_17%>" onclick="meterEnOdontograma('17', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_17%>" onclick="meterEnOdontograma('17', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_17%>" onclick="meterEnOdontograma('17', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_17%>" onclick="meterEnOdontograma('17', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_17%>" onclick="meterEnControlPlaca('17', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_17%>" onclick="meterEnControlPlaca('17', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_17%>" onclick="meterEnControlPlaca('17', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_17%>" onclick="meterEnControlPlaca('17', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_17%>" onclick="meterEnControlPlaca('17', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 16-->
                                                         <%
@@ -637,11 +657,11 @@
                                                             String izquierda_16 = String.valueOf(obj_16.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">16</span>
-                                                        <div class="cuadro click <%=arriba_16%>" onclick="meterEnOdontograma('16', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_16%>" onclick="meterEnOdontograma('16', 'azquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_16%>" onclick="meterEnOdontograma('16', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_16%>" onclick="meterEnOdontograma('16', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_16%>" onclick="meterEnOdontograma('16', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_16%>" onclick="meterEnControlPlaca('16', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_16%>" onclick="meterEnControlPlaca('16', 'azquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_16%>" onclick="meterEnControlPlaca('16', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_16%>" onclick="meterEnControlPlaca('16', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_16%>" onclick="meterEnControlPlaca('16', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 15-->
                                                         <%
@@ -653,11 +673,11 @@
                                                             String izquierda_15_55 = String.valueOf(obj_15_55.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">15/55</span>
-                                                        <div class="cuadro click <%=arriba_15_55%>" onclick="meterEnOdontograma('15/55', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_15_55%>" onclick="meterEnOdontograma('15/55', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_15_55%>" onclick="meterEnOdontograma('15/55', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_15_55%>" onclick="meterEnOdontograma('15/55', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_15_55%>" onclick="meterEnOdontograma('15/55', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_15_55%>" onclick="meterEnControlPlaca('15/55', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_15_55%>" onclick="meterEnControlPlaca('15/55', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_15_55%>" onclick="meterEnControlPlaca('15/55', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_15_55%>" onclick="meterEnControlPlaca('15/55', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_15_55%>" onclick="meterEnControlPlaca('15/55', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 14-->
                                                         <%
@@ -669,11 +689,11 @@
                                                             String izquierda_14_54 = String.valueOf(obj_14_54.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">14/54</span>
-                                                        <div class="cuadro click <%=arriba_14_54%>" onclick="meterEnOdontograma('14/54', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_14_54%>" onclick="meterEnOdontograma('14/54', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_14_54%>" onclick="meterEnOdontograma('14/54', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_14_54%>" onclick="meterEnOdontograma('14/54', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_14_54%>" onclick="meterEnOdontograma('14/54', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_14_54%>" onclick="meterEnControlPlaca('14/54', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_14_54%>" onclick="meterEnControlPlaca('14/54', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_14_54%>" onclick="meterEnControlPlaca('14/54', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_14_54%>" onclick="meterEnControlPlaca('14/54', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_14_54%>" onclick="meterEnControlPlaca('14/54', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 13-->
                                                         <%
@@ -685,11 +705,11 @@
                                                             String izquierda_13_53 = String.valueOf(obj_13_53.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">13/53</span>
-                                                        <div class="cuadro click <%=arriba_13_53%>" onclick="meterEnOdontograma('13/53', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_13_53%>" onclick="meterEnOdontograma('13/53', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_13_53%>" onclick="meterEnOdontograma('13/53', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_13_53%>" onclick="meterEnOdontograma('13/53', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_13_53%>" onclick="meterEnOdontograma('13/53', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_13_53%>" onclick="meterEnControlPlaca('13/53', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_13_53%>" onclick="meterEnControlPlaca('13/53', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_13_53%>" onclick="meterEnControlPlaca('13/53', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_13_53%>" onclick="meterEnControlPlaca('13/53', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_13_53%>" onclick="meterEnControlPlaca('13/53', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 12-->
                                                         <%
@@ -701,11 +721,11 @@
                                                             String izquierda_12_52 = String.valueOf(obj_12_52.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">12/52</span>
-                                                        <div class="cuadro click <%=arriba_12_52%>" onclick="meterEnOdontograma('12/52', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_12_52%>" onclick="meterEnOdontograma('12/52', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_12_52%>" onclick="meterEnOdontograma('12/52', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_12_52%>" onclick="meterEnOdontograma('12/52', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_12_52%>" onclick="meterEnOdontograma('12/52', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_12_52%>" onclick="meterEnControlPlaca('12/52', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_12_52%>" onclick="meterEnControlPlaca('12/52', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_12_52%>" onclick="meterEnControlPlaca('12/52', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_12_52%>" onclick="meterEnControlPlaca('12/52', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_12_52%>" onclick="meterEnControlPlaca('12/52', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 11-->
                                                         <%
@@ -717,11 +737,11 @@
                                                             String izquierda_11_51 = String.valueOf(obj_11_51.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">11/51</span>
-                                                        <div class="cuadro click <%=arriba_11_51%>" onclick="meterEnOdontograma('11/51', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_11_51%>" onclick="meterEnOdontograma('11/51', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_11_51%>" onclick="meterEnOdontograma('11/51', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_11_51%>" onclick="meterEnOdontograma('11/51', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_11_51%>" onclick="meterEnOdontograma('11/51', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_11_51%>" onclick="meterEnControlPlaca('11/51', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_11_51%>" onclick="meterEnControlPlaca('11/51', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_11_51%>" onclick="meterEnControlPlaca('11/51', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_11_51%>" onclick="meterEnControlPlaca('11/51', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_11_51%>" onclick="meterEnControlPlaca('11/51', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 21-->
                                                         <%
@@ -733,11 +753,11 @@
                                                             String izquierda_21_61 = String.valueOf(obj_21_61.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">21/61</span>
-                                                        <div class="cuadro click <%=arriba_21_61%>" onclick="meterEnOdontograma('21/61', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_21_61%>" onclick="meterEnOdontograma('21/61', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_21_61%>" onclick="meterEnOdontograma('21/61', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_21_61%>" onclick="meterEnOdontograma('21/61', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_21_61%>" onclick="meterEnOdontograma('21/61', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_21_61%>" onclick="meterEnControlPlaca('21/61', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_21_61%>" onclick="meterEnControlPlaca('21/61', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_21_61%>" onclick="meterEnControlPlaca('21/61', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_21_61%>" onclick="meterEnControlPlaca('21/61', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_21_61%>" onclick="meterEnControlPlaca('21/61', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 22-->
                                                         <%
@@ -749,11 +769,11 @@
                                                             String izquierda_22_62 = String.valueOf(obj_22_62.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">22/62</span>
-                                                        <div class="cuadro click <%=arriba_22_62%>" onclick="meterEnOdontograma('22/62', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_22_62%>" onclick="meterEnOdontograma('22/62', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_22_62%>" onclick="meterEnOdontograma('22/62', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_22_62%>" onclick="meterEnOdontograma('22/62', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_22_62%>" onclick="meterEnOdontograma('22/62', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_22_62%>" onclick="meterEnControlPlaca('22/62', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_22_62%>" onclick="meterEnControlPlaca('22/62', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_22_62%>" onclick="meterEnControlPlaca('22/62', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_22_62%>" onclick="meterEnControlPlaca('22/62', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_22_62%>" onclick="meterEnControlPlaca('22/62', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 23-->
                                                         <%
@@ -765,11 +785,11 @@
                                                             String izquierda_23_63 = String.valueOf(obj_23_63.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">23/63</span>
-                                                        <div class="cuadro click <%=arriba_23_63%>" onclick="meterEnOdontograma('23/63', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_23_63%>" onclick="meterEnOdontograma('23/63', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_23_63%>" onclick="meterEnOdontograma('23/63', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_23_63%>" onclick="meterEnOdontograma('23/63', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_23_63%>" onclick="meterEnOdontograma('23/63', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_23_63%>" onclick="meterEnControlPlaca('23/63', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_23_63%>" onclick="meterEnControlPlaca('23/63', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_23_63%>" onclick="meterEnControlPlaca('23/63', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_23_63%>" onclick="meterEnControlPlaca('23/63', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_23_63%>" onclick="meterEnControlPlaca('23/63', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 24-->
                                                         <%
@@ -781,11 +801,11 @@
                                                             String izquierda_24_64 = String.valueOf(obj_24_64.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">24/64</span>
-                                                        <div class="cuadro click <%=arriba_24_64%>" onclick="meterEnOdontograma('24/64', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_24_64%>" onclick="meterEnOdontograma('24/64', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_24_64%>" onclick="meterEnOdontograma('24/64', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_24_64%>" onclick="meterEnOdontograma('24/64', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_24_64%>" onclick="meterEnOdontograma('24/64', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_24_64%>" onclick="meterEnControlPlaca('24/64', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_24_64%>" onclick="meterEnControlPlaca('24/64', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_24_64%>" onclick="meterEnControlPlaca('24/64', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_24_64%>" onclick="meterEnControlPlaca('24/64', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_24_64%>" onclick="meterEnControlPlaca('24/64', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 25-->
                                                         <%
@@ -797,11 +817,11 @@
                                                             String izquierda_25_65 = String.valueOf(obj_25_65.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">25/65</span>
-                                                        <div class="cuadro click <%=arriba_25_65%>" onclick="meterEnOdontograma('25/65', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_25_65%>" onclick="meterEnOdontograma('25/65', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_25_65%>" onclick="meterEnOdontograma('25/65', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_25_65%>" onclick="meterEnOdontograma('25/65', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_25_65%>" onclick="meterEnOdontograma('25/65', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_25_65%>" onclick="meterEnControlPlaca('25/65', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_25_65%>" onclick="meterEnControlPlaca('25/65', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_25_65%>" onclick="meterEnControlPlaca('25/65', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_25_65%>" onclick="meterEnControlPlaca('25/65', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_25_65%>" onclick="meterEnControlPlaca('25/65', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 26-->
                                                         <%
@@ -813,11 +833,11 @@
                                                             String izquierda_26 = String.valueOf(obj_26.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">26</span>
-                                                        <div class="cuadro click <%=arriba_26%>" onclick="meterEnOdontograma('26', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_26%>" onclick="meterEnOdontograma('26', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_26%>" onclick="meterEnOdontograma('26', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_26%>" onclick="meterEnOdontograma('26', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_26%>" onclick="meterEnOdontograma('26', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_26%>" onclick="meterEnControlPlaca('26', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_26%>" onclick="meterEnControlPlaca('26', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_26%>" onclick="meterEnControlPlaca('26', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_26%>" onclick="meterEnControlPlaca('26', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_26%>" onclick="meterEnControlPlaca('26', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 27-->
                                                         <%
@@ -829,11 +849,11 @@
                                                             String izquierda_27 = String.valueOf(obj_27.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">27</span>
-                                                        <div class="cuadro click <%=arriba_27%>" onclick="meterEnOdontograma('27', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_27%>" onclick="meterEnOdontograma('27', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_27%>" onclick="meterEnOdontograma('27', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_27%>" onclick="meterEnOdontograma('27', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_27%>" onclick="meterEnOdontograma('27', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_27%>" onclick="meterEnControlPlaca('27', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_27%>" onclick="meterEnControlPlaca('27', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_27%>" onclick="meterEnControlPlaca('27', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_27%>" onclick="meterEnControlPlaca('27', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_27%>" onclick="meterEnControlPlaca('27', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 28-->
                                                         <%
@@ -845,11 +865,11 @@
                                                             String izquierda_28 = String.valueOf(obj_28.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">28</span>
-                                                        <div class="cuadro click <%=arriba_28%>" onclick="meterEnOdontograma('28', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_28%>" onclick="meterEnOdontograma('28', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_28%>" onclick="meterEnOdontograma('28', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_28%>" onclick="meterEnOdontograma('28', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_28%>" onclick="meterEnOdontograma('28', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_28%>" onclick="meterEnControlPlaca('28', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_28%>" onclick="meterEnControlPlaca('28', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_28%>" onclick="meterEnControlPlaca('28', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_28%>" onclick="meterEnControlPlaca('28', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_28%>" onclick="meterEnControlPlaca('28', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -863,11 +883,11 @@
                                                             String izquierda_48 = String.valueOf(obj_48.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">48</span>
-                                                        <div class="cuadro click <%=arriba_48%>" onclick="meterEnOdontograma('48', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_48%>" onclick="meterEnOdontograma('48', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_48%>" onclick="meterEnOdontograma('48', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_48%>" onclick="meterEnOdontograma('48', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_48%>" onclick="meterEnOdontograma('48', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_48%>" onclick="meterEnControlPlaca('48', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_48%>" onclick="meterEnControlPlaca('48', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_48%>" onclick="meterEnControlPlaca('48', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_48%>" onclick="meterEnControlPlaca('48', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_48%>" onclick="meterEnControlPlaca('48', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 47--><span style="margin-left: -15px">47</span>
                                                         <%
@@ -879,11 +899,11 @@
                                                             String izquierda_47 = String.valueOf(obj_47.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1">
-                                                        <div class="cuadro click <%=arriba_47%>" onclick="meterEnOdontograma('47', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_47%>" onclick="meterEnOdontograma('47', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_47%>" onclick="meterEnOdontograma('47', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_47%>" onclick="meterEnOdontograma('47', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_47%>" onclick="meterEnOdontograma('47', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_47%>" onclick="meterEnControlPlaca('47', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_47%>" onclick="meterEnControlPlaca('47', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_47%>" onclick="meterEnControlPlaca('47', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_47%>" onclick="meterEnControlPlaca('47', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_47%>" onclick="meterEnControlPlaca('47', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 46-->
                                                         <%
@@ -895,11 +915,11 @@
                                                             String izquierda_46 = String.valueOf(obj_46.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">46</span>
-                                                        <div class="cuadro click <%=arriba_46%>" onclick="meterEnOdontograma('46', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_46%>" onclick="meterEnOdontograma('46', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_46%>" onclick="meterEnOdontograma('46', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_46%>" onclick="meterEnOdontograma('46', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_46%>" onclick="meterEnOdontograma('46', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_46%>" onclick="meterEnControlPlaca('46', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_46%>" onclick="meterEnControlPlaca('46', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_46%>" onclick="meterEnControlPlaca('46', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_46%>" onclick="meterEnControlPlaca('46', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_46%>" onclick="meterEnControlPlaca('46', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 45-->
                                                         <%
@@ -911,11 +931,11 @@
                                                             String izquierda_45_85 = String.valueOf(obj_45_85.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">45/85</span>
-                                                        <div class="cuadro click <%=arriba_45_85%>" onclick="meterEnOdontograma('45/85', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_45_85%>" onclick="meterEnOdontograma('45/85', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_45_85%>" onclick="meterEnOdontograma('45/85', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_45_85%>" onclick="meterEnOdontograma('45/85', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_45_85%>" onclick="meterEnOdontograma('45/85', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_45_85%>" onclick="meterEnControlPlaca('45/85', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_45_85%>" onclick="meterEnControlPlaca('45/85', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_45_85%>" onclick="meterEnControlPlaca('45/85', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_45_85%>" onclick="meterEnControlPlaca('45/85', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_45_85%>" onclick="meterEnControlPlaca('45/85', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 44-->
                                                         <%
@@ -927,11 +947,11 @@
                                                             String izquierda_44_84 = String.valueOf(obj_44_84.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">44/84</span>
-                                                        <div class="cuadro click <%=arriba_44_84%>" onclick="meterEnOdontograma('44/84', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_44_84%>" onclick="meterEnOdontograma('44/84', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_44_84%>" onclick="meterEnOdontograma('44/84', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_44_84%>" onclick="meterEnOdontograma('44/84', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_44_84%>" onclick="meterEnOdontograma('44/84', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_44_84%>" onclick="meterEnControlPlaca('44/84', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_44_84%>" onclick="meterEnControlPlaca('44/84', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_44_84%>" onclick="meterEnControlPlaca('44/84', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_44_84%>" onclick="meterEnControlPlaca('44/84', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_44_84%>" onclick="meterEnControlPlaca('44/84', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 43-->
                                                         <%
@@ -943,11 +963,11 @@
                                                             String izquierda_43_83 = String.valueOf(obj_43_83.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">43/83</span>
-                                                        <div class="cuadro click <%=arriba_43_83%>" onclick="meterEnOdontograma('43/83', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_43_83%>" onclick="meterEnOdontograma('43/83', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_43_83%>" onclick="meterEnOdontograma('43/83', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_43_83%>" onclick="meterEnOdontograma('43/83', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_43_83%>" onclick="meterEnOdontograma('43/83', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_43_83%>" onclick="meterEnControlPlaca('43/83', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_43_83%>" onclick="meterEnControlPlaca('43/83', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_43_83%>" onclick="meterEnControlPlaca('43/83', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_43_83%>" onclick="meterEnControlPlaca('43/83', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_43_83%>" onclick="meterEnControlPlaca('43/83', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 42-->
                                                         <%
@@ -959,11 +979,11 @@
                                                             String izquierda_42_82 = String.valueOf(obj_42_82.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">42/82</span>
-                                                        <div class="cuadro click <%=arriba_42_82%>" onclick="meterEnOdontograma('42/82', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_42_82%>" onclick="meterEnOdontograma('42/82', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_42_82%>" onclick="meterEnOdontograma('42/82', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_42_82%>" onclick="meterEnOdontograma('42/82', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_42_82%>" onclick="meterEnOdontograma('42/82', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_42_82%>" onclick="meterEnControlPlaca('42/82', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_42_82%>" onclick="meterEnControlPlaca('42/82', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_42_82%>" onclick="meterEnControlPlaca('42/82', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_42_82%>" onclick="meterEnControlPlaca('42/82', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_42_82%>" onclick="meterEnControlPlaca('42/82', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 41-->
                                                         <%
@@ -975,11 +995,11 @@
                                                             String izquierda_41_81 = String.valueOf(obj_41_81.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">41/81</span>
-                                                        <div class="cuadro click <%=arriba_41_81%>" onclick="meterEnOdontograma('41/81', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_41_81%>" onclick="meterEnOdontograma('41/81', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_41_81%>" onclick="meterEnOdontograma('41/81', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_41_81%>" onclick="meterEnOdontograma('41/81', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_41_81%>" onclick="meterEnOdontograma('41/81', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_41_81%>" onclick="meterEnControlPlaca('41/81', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_41_81%>" onclick="meterEnControlPlaca('41/81', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_41_81%>" onclick="meterEnControlPlaca('41/81', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_41_81%>" onclick="meterEnControlPlaca('41/81', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_41_81%>" onclick="meterEnControlPlaca('41/81', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 31-->
                                                         <%
@@ -991,11 +1011,11 @@
                                                             String izquierda_31_71 = String.valueOf(obj_31_71.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"/><span style="margin-left: -25px">31/71</span>
-                                                        <div class="cuadro click <%=arriba_31_71%>" onclick="meterEnOdontograma('31/71', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_31_71%>" onclick="meterEnOdontograma('31/71', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_31_71%>" onclick="meterEnOdontograma('31/71', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_31_71%>" onclick="meterEnOdontograma('31/71', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_31_71%>" onclick="meterEnOdontograma('31/71', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_31_71%>" onclick="meterEnControlPlaca('31/71', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_31_71%>" onclick="meterEnControlPlaca('31/71', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_31_71%>" onclick="meterEnControlPlaca('31/71', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_31_71%>" onclick="meterEnControlPlaca('31/71', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_31_71%>" onclick="meterEnControlPlaca('31/71', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 32-->
                                                         <%
@@ -1007,11 +1027,11 @@
                                                             String izquierda_32_72 = String.valueOf(obj_32_72.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">32/72</span>
-                                                        <div class="cuadro click <%=arriba_32_72%>" onclick="meterEnOdontograma('32/72', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_32_72%>" onclick="meterEnOdontograma('32/72', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_32_72%>" onclick="meterEnOdontograma('32/72', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_32_72%>" onclick="meterEnOdontograma('32/72', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_32_72%>" onclick="meterEnOdontograma('32/72', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_32_72%>" onclick="meterEnControlPlaca('32/72', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_32_72%>" onclick="meterEnControlPlaca('32/72', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_32_72%>" onclick="meterEnControlPlaca('32/72', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_32_72%>" onclick="meterEnControlPlaca('32/72', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_32_72%>" onclick="meterEnControlPlaca('32/72', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 33-->
                                                         <%
@@ -1023,11 +1043,11 @@
                                                             String izquierda_33_73 = String.valueOf(obj_33_73.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">33/73</span>
-                                                        <div class="cuadro click <%=arriba_33_73%>" onclick="meterEnOdontograma('33/73', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_33_73%>" onclick="meterEnOdontograma('33/73', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_33_73%>" onclick="meterEnOdontograma('33/73', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_33_73%>" onclick="meterEnOdontograma('33/73', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_33_73%>" onclick="meterEnOdontograma('33/73', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_33_73%>" onclick="meterEnControlPlaca('33/73', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_33_73%>" onclick="meterEnControlPlaca('33/73', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_33_73%>" onclick="meterEnControlPlaca('33/73', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_33_73%>" onclick="meterEnControlPlaca('33/73', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_33_73%>" onclick="meterEnControlPlaca('33/73', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 34-->
                                                         <%
@@ -1039,11 +1059,11 @@
                                                             String izquierda_34_74 = String.valueOf(obj_34_74.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">34/74</span>
-                                                        <div class="cuadro click <%=arriba_34_74%>" onclick="meterEnOdontograma('34/74', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_34_74%>" onclick="meterEnOdontograma('34/74', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_34_74%>" onclick="meterEnOdontograma('34/74', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('34/74', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_34_74%>" onclick="meterEnOdontograma('34/74', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_34_74%>" onclick="meterEnControlPlaca('34/74', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_34_74%>" onclick="meterEnControlPlaca('34/74', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_34_74%>" onclick="meterEnControlPlaca('34/74', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('34/74', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_34_74%>" onclick="meterEnControlPlaca('34/74', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 35-->
                                                         <%
@@ -1055,11 +1075,11 @@
                                                             String izquierda_35_75 = String.valueOf(obj_35_75.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">35/75</span>
-                                                        <div class="cuadro click <%=arriba_35_75%>" onclick="meterEnOdontograma('35/75', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_35_75%>" onclick="meterEnOdontograma('35/75', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_35_75%>" onclick="meterEnOdontograma('35/75', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_35_75%>" onclick="meterEnOdontograma('35/75', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_35_75%>" onclick="meterEnOdontograma('35/75', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_35_75%>" onclick="meterEnControlPlaca('35/75', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_35_75%>" onclick="meterEnControlPlaca('35/75', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_35_75%>" onclick="meterEnControlPlaca('35/75', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_35_75%>" onclick="meterEnControlPlaca('35/75', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_35_75%>" onclick="meterEnControlPlaca('35/75', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 36-->
                                                         <%
@@ -1071,11 +1091,11 @@
                                                             String izquierda_36 = String.valueOf(obj_36.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">36</span>
-                                                        <div class="cuadro click <%=arriba_36%>" onclick="meterEnOdontograma('36', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_36%>" onclick="meterEnOdontograma('36', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_36%>" onclick="meterEnOdontograma('36', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_36%>" onclick="meterEnOdontograma('36', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_36%>" onclick="meterEnOdontograma('36', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_36%>" onclick="meterEnControlPlaca('36', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_36%>" onclick="meterEnControlPlaca('36', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_36%>" onclick="meterEnControlPlaca('36', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_36%>" onclick="meterEnControlPlaca('36', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_36%>" onclick="meterEnControlPlaca('36', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 37-->
                                                         <%
@@ -1087,11 +1107,11 @@
                                                             String izquierda_37 = String.valueOf(obj_37.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">37</span>
-                                                        <div class="cuadro click <%=arriba_37%>" onclick="meterEnOdontograma('37', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_37%>" onclick="meterEnOdontograma('37', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_37%>" onclick="meterEnOdontograma('37', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_37%>" onclick="meterEnOdontograma('37', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_37%>" onclick="meterEnOdontograma('37', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_37%>" onclick="meterEnControlPlaca('37', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_37%>" onclick="meterEnControlPlaca('37', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_37%>" onclick="meterEnControlPlaca('37', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_37%>" onclick="meterEnControlPlaca('37', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_37%>" onclick="meterEnControlPlaca('37', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 38-->
                                                         <%
@@ -1103,11 +1123,11 @@
                                                             String izquierda_38 = String.valueOf(obj_38.getJSONArray("ubicaciones").getJSONObject(2).get("valor")).equals("SI") ? "click-green" : "";
                                                         %>
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">38</span>
-                                                        <div class="cuadro click <%=arriba_38%>" onclick="meterEnOdontograma('38', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click <%=izquierda_38%>" onclick="meterEnOdontograma('38', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click <%=abajo_38%>" onclick="meterEnOdontograma('38', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click <%=derecha_38%>" onclick="meterEnOdontograma('38', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click <%=centro_38%>" onclick="meterEnOdontograma('38', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca <%=arriba_38%>" onclick="meterEnControlPlaca('38', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca <%=izquierda_38%>" onclick="meterEnControlPlaca('38', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca <%=abajo_38%>" onclick="meterEnControlPlaca('38', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca <%=derecha_38%>" onclick="meterEnControlPlaca('38', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca <%=centro_38%>" onclick="meterEnControlPlaca('38', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1120,261 +1140,261 @@
                                                 <div class="row">
                                                     <div class="diente"><!--diente 18-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">18</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('18', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('18', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('18', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('18', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('18', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('18', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('18', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('18', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('18', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('18', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 17-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">17</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('17', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('17', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('17', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('17', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('17', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('17', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('17', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('17', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('17', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('17', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 16-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">16</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('16', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('16', 'azquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('16', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('16', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('16', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('16', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('16', 'azquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('16', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('16', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('16', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 15-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">15/55</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('15/55', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('15/55', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('15/55', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('15/55', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('15/55', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('15/55', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('15/55', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('15/55', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('15/55', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('15/55', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 14-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">14/54</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('14/54', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('14/54', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('14/54', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('14/54', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('14/54', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('14/54', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('14/54', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('14/54', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('14/54', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('14/54', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 13-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">13/53</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('13/53', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('13/53', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('13/53', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('13/53', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('13/53', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('13/53', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('13/53', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('13/53', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('13/53', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('13/53', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 12-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">12/52</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('12/52', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('12/52', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('12/52', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('12/52', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('12/52', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('12/52', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('12/52', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('12/52', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('12/52', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('12/52', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 11-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">11/51</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('11/51', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('11/51', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('11/51', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('11/51', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('11/51', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('11/51', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('11/51', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('11/51', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('11/51', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('11/51', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 21-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">21/61</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('21/61', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('21/61', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('21/61', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('21/61', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('21/61', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('21/61', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('21/61', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('21/61', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('21/61', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('21/61', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 22-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">22/62</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('22/62', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('22/62', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('22/62', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('22/62', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('22/62', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('22/62', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('22/62', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('22/62', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('22/62', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('22/62', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 23-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">23/63</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('23/63', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('23/63', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('23/63', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('23/63', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('23/63', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('23/63', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('23/63', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('23/63', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('23/63', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('23/63', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 24-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">24/64</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('24/64', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('24/64', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('24/64', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('24/64', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('24/64', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('24/64', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('24/64', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('24/64', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('24/64', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('24/64', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 25-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">25/65</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('25/65', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('25/65', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('25/65', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('25/65', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('25/65', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('25/65', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('25/65', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('25/65', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('25/65', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('25/65', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 26-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">26</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('26', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('26', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('26', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('26', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('26', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('26', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('26', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('26', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('26', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('26', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 27-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">27</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('27', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('27', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('27', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('27', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('27', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('27', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('27', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('27', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('27', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('27', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 28-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">28</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('28', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('28', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('28', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('28', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('28', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('28', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('28', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('28', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('28', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('28', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="diente"><!--diente 48-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">48</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('48', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('48', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('48', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('48', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('48', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('48', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('48', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('48', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('48', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('48', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 47--><span style="margin-left: -15px">47</span>
                                                         <input name="valor" type="hidden" value="1">
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('47', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('47', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('47', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('47', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('47', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('47', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('47', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('47', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('47', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('47', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 46-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">46</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('46', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('46', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('46', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('46', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('46', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('46', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('46', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('46', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('46', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('46', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 45-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">45/85</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('45/85', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('45/85', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('45/85', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('45/85', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('45/85', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('45/85', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('45/85', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('45/85', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('45/85', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('45/85', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 44-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">44/84</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('44/84', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('44/84', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('44/84', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('44/84', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('44/84', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('44/84', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('44/84', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('44/84', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('44/84', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('44/84', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 43-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">43/83</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('43/83', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('43/83', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('43/83', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('43/83', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('43/83', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('43/83', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('43/83', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('43/83', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('43/83', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('43/83', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 42-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">42/82</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('42/82', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('42/82', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('42/82', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('42/82', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('42/82', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('42/82', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('42/82', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('42/82', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('42/82', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('42/82', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 41-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">41/81</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('41/81', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('41/81', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('41/81', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('41/81', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('41/81', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('41/81', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('41/81', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('41/81', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('41/81', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('41/81', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 31-->
                                                         <input name="valor" type="hidden" value="1"/><span style="margin-left: -25px">31/71</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('31/71', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('31/71', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('31/71', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('31/71', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('31/71', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('31/71', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('31/71', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('31/71', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('31/71', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('31/71', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 32-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">32/72</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('32/72', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('32/72', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('32/72', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('32/72', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('32/72', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('32/72', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('32/72', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('32/72', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('32/72', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('32/72', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 33-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">33/73</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('33/73', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('33/73', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('33/73', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('33/73', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('33/73', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('33/73', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('33/73', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('33/73', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('33/73', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('33/73', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 34-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">34/74</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('34/74', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('34/74', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('34/74', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('34/74', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('34/74', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('34/74', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('34/74', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('34/74', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('34/74', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('34/74', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 35-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -25px">35/75</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('35/75', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('35/75', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('35/75', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('35/75', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('35/75', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('35/75', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('35/75', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('35/75', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('35/75', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('35/75', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 36-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">36</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('36', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('36', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('36', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('36', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('36', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('36', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('36', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('36', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('36', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('36', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 37-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">37</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('37', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('37', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('37', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('37', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('37', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('37', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('37', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('37', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('37', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('37', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                     <div class="diente"><!--diente 38-->
                                                         <input name="valor" type="hidden" value="1"><span style="margin-left: -15px">38</span>
-                                                        <div class="cuadro click" onclick="meterEnOdontograma('38', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
-                                                        <div class="cuadro izquierdo click" onclick="meterEnOdontograma('38', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
-                                                        <div class="cuadro debajo click" onclick="meterEnOdontograma('38', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
-                                                        <div class="cuadro derecha click" onclick="meterEnOdontograma('38', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
-                                                        <div class="centro click" onclick="meterEnOdontograma('38', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
+                                                        <div class="cuadro clickPlaca" onclick="meterEnControlPlaca('38', 'arriba');"><input name="cuadro" type="hidden" value="1"></div>
+                                                        <div class="cuadro izquierdo clickPlaca" onclick="meterEnControlPlaca('38', 'izquierda');"><input name="cuadro" type="hidden" value="2"></div>
+                                                        <div class="cuadro debajo clickPlaca" onclick="meterEnControlPlaca('38', 'abajo');"><input name="cuadro" type="hidden" value="3"></div>
+                                                        <div class="cuadro derecha clickPlaca" onclick="meterEnControlPlaca('38', 'derecha');"><input name="cuadro" type="hidden" value="hola"></div>
+                                                        <div class="centro clickPlaca" onclick="meterEnControlPlaca('38', 'centro');"><input name="cuadro" type="hidden" value="5"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1487,7 +1507,108 @@
                                     </div>
                                 <%} else {%>
                                 <div class="tab-pane" id="odontograma">
-                                    NO HAY ODONTOGRAMA MODIFICAR POR AHORA
+                                    <div class="tab-pane" id="odontograma">
+                                        <div class="panel-body">
+                                            <div class="row" id="placa2">
+                                                <div class="row">
+
+                                                    <div id="controls" class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <div class="btn-group" data-toggle="buttons">
+                                                                <label id="cariado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option1" autocomplete="off" checked>Cariado</label>
+                                                                <label id="obturado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option2" autocomplete="off"> Obturado
+                                                                </label>
+                                                                <label id="exodonciarealizada" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option3" autocomplete="off"> Exodoncia realizada
+                                                                </label>
+                                                                <label id="exodonciasimpleindicada" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option4" autocomplete="off"> Exodoncia simple indicada
+                                                                </label>
+                                                                <label id="exodonciaquirrugicaindicada" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option5" autocomplete="off"> Exodoncia quirrugica indicada
+                                                                </label>
+                                                                <label id="sinerupcionar" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option6" autocomplete="off"> Sin erupcionar
+                                                                </label>
+                                                                <label id="endodonciarealizada" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option7" autocomplete="off"> Endodoncia realizada
+                                                                </label>
+                                                                <label id="endodonciaindicada" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option8" autocomplete="off"> Endodoncia indicada
+                                                                </label>
+                                                                <label id="sellantepresente" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option9" autocomplete="off"> Sellante presente
+                                                                </label>
+                                                                <label id="sellanteindicado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option10" autocomplete="off"> Sellante indicado
+                                                                </label>
+                                                                <label id="erosion" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option11" autocomplete="off"> Erosion
+                                                                </label>
+                                                                <label id="procedimientorealizado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option12" autocomplete="off"> Procedimiento realizado
+                                                                </label>
+                                                                <label id="coronabuenestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option13" autocomplete="off"> Corona buen estado
+                                                                </label>
+                                                                <label id="coronamalestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option14" autocomplete="off"> Corona mal estado
+                                                                </label>
+                                                                <label id="provisionalbuenestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option15" autocomplete="off"> Provisional buen estado
+                                                                </label>
+                                                                <label id="provisionalmalestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option16" autocomplete="off"> Provisional mal estado
+                                                                </label>
+                                                                <label id="nucleobuenestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option17" autocomplete="off"> Nucleo buen estado
+                                                                </label>
+                                                                <label id="nucleomalestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option18" autocomplete="off"> Nucleo mal estado
+                                                                </label>
+                                                                <label id="removiblebuenestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option19" autocomplete="off"> Removible buen estado
+                                                                </label>
+                                                                <label id="removiblemalestado" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option20" autocomplete="off"> Removible mal estado
+                                                                </label>
+                                                                <label id="implante" class="btn btn-rounded">
+                                                                    <input type="radio" name="options" id="option21" autocomplete="off"> Implante
+                                                                </label>
+                                                                <label id="placa" class="btn btn-rounded active">
+                                                                    <input type="hidden" name="option" id="option22" autocomplete="off" value="Placa" /> Placa
+                                                                </label>
+                                                                <label id="limpiar" class="btn btn-rounded">
+                                                                    <input type="radio" name="option" id="option23" autocomplete="off" value="Limpiar" /> Limpiar
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="tr" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    </div>
+                                                    <div id="tl" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    </div>
+                                                    <div id="tlr" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                                                    </div>
+                                                    <div id="tll" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div id="blr" class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                                                    </div>
+                                                    <div id="bll" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    </div>
+                                                    <div id="br" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    </div>
+                                                    <div id="bl" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <%}%>
                                 
@@ -1673,6 +1794,7 @@
                                 </div>
                                 
                                 <input type="hidden" id="controlPlaca" name="controlPlaca" value=""/>
+                                <input type="hidden" id="odon" name="odon" value=""/>
                                 <input type="hidden" id="idCita" name="idCita" value="<%=idcita%>"/>
                                 <input type="hidden" id="tipo" name="tipo" value="<%=tipo%>"/>
                                 <input type="hidden" id="identificacionU" name="identificacionU" value="<%=u.getIdentificacion()%>"/>
@@ -1697,106 +1819,227 @@
                                                             function replaceAll(find, replace, str) {
                                                                 return str.replace(new RegExp(find, 'g'), replace);
                                                             }
+                                                            
+                                                            //Lapiz verde del control de placa
+                                                            $(document).ready(function () {
+                                                                $(".clickPlaca").click(function (event) {
+                                                                    //var dientePosition = $(this).position();
+                                                                                if ($(this).hasClass("click-green")) {
+                                                                                    $(this).removeClass('click-green');
+                                                                                } else {                                                                                
+                                                                                    $(this).addClass('click-green');
+                                                                                }                                                                            
+                                                                });
+
+                                                            });
 
                                                             function createOdontogram() {
                                                                 var htmlLecheLeft = "",
+                                                                        htmlLecheLeft2 = "",
                                                                         htmlLecheRight = "",
+                                                                        htmlLecheRight2 = "",
                                                                         htmlLeft = "",
+                                                                        htmlLeft2 = "",
                                                                         htmlRight = "",
+                                                                        htmlRight2 = "",
                                                                         a = 1;
                                                                 for (var i = 9 - 1; i >= 1; i--) {
-                                                                    //Dientes Definitivos Cuandrante Derecho (Superior/Inferior)
-                                                                    htmlRight += '<div data-name="value" id="dienteindex' + i + '" class="diente">' +
-                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">index' + i + '</span>' +
-                                                                            '<div id="tindex' + i + '" class="cuadro click">' +
+                                                                    //Dientes Definitivos Cuandrante Derecho (Superior)
+                                                                    htmlRight += '<div data-name="value" id="diente1' + i + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">1' + i + '</span>' +
+                                                                            '<div id="t1' + i + '" class="cuadro click">' +
+                                                                                '<input type="hidden" id="arriba" value="1'+i+'"/>' +
                                                                             '</div>' +
-                                                                            '<div id="lindex' + i + '" class="cuadro izquierdo click">' +
+                                                                            '<div id="l1' + i + '" class="cuadro izquierdo click">' +
+                                                                                '<input type="hidden" id="izquierda" value="1'+i+'"/>' +
                                                                             '</div>' +
-                                                                            '<div id="bindex' + i + '" class="cuadro debajo click">' +
+                                                                            '<div id="b1' + i + '" class="cuadro debajo click">' +
+                                                                                '<input type="hidden" id="abajo" value="1'+i+'"/>' +
                                                                             '</div>' +
-                                                                            '<div id="rindex' + i + '" class="cuadro derecha click click">' +
+                                                                            '<div id="r1' + i + '" class="cuadro derecha click click">' +
+                                                                                '<input type="hidden" id="derecha" value="1'+i+'"/>' +
                                                                             '</div>' +
-                                                                            '<div id="cindex' + i + '" class="centro click">' +
-                                                                            '</div>' +
-                                                                            '</div>';
-                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior/Inferior)
-                                                                    htmlLeft += '<div id="dienteindex' + a + '" class="diente">' +
-                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">index' + a + '</span>' +
-                                                                            '<div id="tindex' + a + '" class="cuadro click">' +
-                                                                            '</div>' +
-                                                                            '<div id="lindex' + a + '" class="cuadro izquierdo click">' +
-                                                                            '</div>' +
-                                                                            '<div id="bindex' + a + '" class="cuadro debajo click">' +
-                                                                            '</div>' +
-                                                                            '<div id="rindex' + a + '" class="cuadro derecha click click">' +
-                                                                            '</div>' +
-                                                                            '<div id="cindex' + a + '" class="centro click">' +
+                                                                            '<div id="c1' + i + '" class="centro click">' +
+                                                                                '<input type="hidden" id="centro" value="1'+i+'"/>' +
                                                                             '</div>' +
                                                                             '</div>';
+                                                                    
+                                                                    //Dientes Definitivos Cuandrante Derecho (Inferior)
+                                                                    htmlRight2 += '<div data-name="value" id="diente4' + i + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">4' + i + '</span>' +
+                                                                            '<div id="t4' + i + '" class="cuadro click">' +
+                                                                                '<input type="hidden" id="arriba" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="l4' + i + '" class="cuadro izquierdo click">' +
+                                                                                '<input type="hidden" id="izquierda" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="b4' + i + '" class="cuadro debajo click">' +
+                                                                                '<input type="hidden" id="abajo" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="r4' + i + '" class="cuadro derecha click click">' +
+                                                                                '<input type="hidden" id="derecha" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="c4' + i + '" class="centro click">' +
+                                                                                '<input type="hidden" id="centro" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '</div>';
+                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior)
+                                                                    htmlLeft += '<div id="diente2' + a + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">2' + a + '</span>' +
+                                                                            '<div id="t2' + a + '" class="cuadro click">' +
+                                                                                '<input type="hidden" id="arriba" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="l2' + a + '" class="cuadro izquierdo click">' +
+                                                                                '<input type="hidden" id="izquierda" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="b2' + a + '" class="cuadro debajo click">' +
+                                                                                '<input type="hidden" id="abajo" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="r2' + a + '" class="cuadro derecha click click">' +
+                                                                                '<input type="hidden" id="derecha" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="c2' + a + '" class="centro click">' +
+                                                                                '<input type="hidden" id="centro" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '</div>';
+                                                                    
+                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior)
+                                                                    htmlLeft2 += '<div id="diente3' + a + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">3' + a + '</span>' +
+                                                                            '<div id="t3' + a + '" class="cuadro click">' +
+                                                                                '<input type="hidden" id="arriba" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="l3' + a + '" class="cuadro izquierdo click">' +
+                                                                                '<input type="hidden" id="izquierda" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="b3' + a + '" class="cuadro debajo click">' +
+                                                                                '<input type="hidden" id="abajo" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="r3' + a + '" class="cuadro derecha click click">' +
+                                                                                '<input type="hidden" id="derecha" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="c3' + a + '" class="centro click">' +
+                                                                                '<input type="hidden" id="centro" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '</div>';
+                                                                    
                                                                     if (i <= 5) {
                                                                         //Dientes Temporales Cuandrante Derecho (Superior/Inferior)
-                                                                        htmlLecheRight += '<div id="dienteLindex' + i + '" style="left: -25%;" class="diente-leche">' +
-                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">index' + i + '</span>' +
-                                                                                '<div id="tlecheindex' + i + '" class="cuadro-leche top-leche click">' +
+                                                                        htmlLecheRight += '<div id="dienteL5' + i + '" style="left: -25%;" class="diente-leche">' +
+                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">5' + i + '</span>' +
+                                                                                '<div id="tleche5' + i + '" class="cuadro-leche top-leche click">' +
+                                                                                    '<input type="hidden" id="arriba" value="5'+i+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="llecheindex' + i + '" class="cuadro-leche izquierdo-leche click">' +
+                                                                                '<div id="lleche5' + i + '" class="cuadro-leche izquierdo-leche click">' +
+                                                                                    '<input type="hidden" id="izquierda" value="5'+i+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="blecheindex' + i + '" class="cuadro-leche debajo-leche click">' +
+                                                                                '<div id="bleche5' + i + '" class="cuadro-leche debajo-leche click">' +
+                                                                                    '<input type="hidden" id="abajo" value="5'+i+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="rlecheindex' + i + '" class="cuadro-leche derecha-leche click click">' +
+                                                                                '<div id="rleche5' + i + '" class="cuadro-leche derecha-leche click click">' +
+                                                                                    '<input type="hidden" id="derecha" value="5'+i+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="clecheindex' + i + '" class="centro-leche click">' +
+                                                                                '<div id="cleche5' + i + '" class="centro-leche click">' +
+                                                                                    '<input type="hidden" id="centro" value="5'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';
+                                                                        
+                                                                        htmlLecheRight2 += '<div id="dienteL8' + i + '" style="left: -25%;" class="diente-leche">' +
+                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">8' + i + '</span>' +
+                                                                                '<div id="tleche8' + i + '" class="cuadro-leche top-leche click">' +
+                                                                                    '<input type="hidden" id="arriba" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="lleche8' + i + '" class="cuadro-leche izquierdo-leche click">' +
+                                                                                    '<input type="hidden" id="izquierda" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="bleche8' + i + '" class="cuadro-leche debajo-leche click">' +
+                                                                                    '<input type="hidden" id="abajo" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="rleche8' + i + '" class="cuadro-leche derecha-leche click click">' +
+                                                                                    '<input type="hidden" id="derecha" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="cleche8' + i + '" class="centro-leche click">' +
+                                                                                    '<input type="hidden" id="centro" value="8'+i+'"/>' +
                                                                                 '</div>' +
                                                                                 '</div>';
                                                                     }
                                                                     if (a < 6) {
                                                                         //Dientes Temporales Cuandrante Izquierdo (Superior/Inferior)
-                                                                        htmlLecheLeft += '<div id="dienteLindex' + a + '" class="diente-leche">' +
-                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">index' + a + '</span>' +
-                                                                                '<div id="tlecheindex' + a + '" class="cuadro-leche top-leche click">' +
+                                                                        htmlLecheLeft += '<div id="dienteL6' + a + '" class="diente-leche">' +
+                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">6' + a + '</span>' +
+                                                                                '<div id="tleche6' + a + '" class="cuadro-leche top-leche click">' +
+                                                                                    '<input type="hidden" id="arriba" value="6'+a+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="llecheindex' + a + '" class="cuadro-leche izquierdo-leche click">' +
+                                                                                '<div id="lleche6' + a + '" class="cuadro-leche izquierdo-leche click">' +
+                                                                                    '<input type="hidden" id="izquierda" value="6'+a+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="blecheindex' + a + '" class="cuadro-leche debajo-leche click">' +
+                                                                                '<div id="bleche6' + a + '" class="cuadro-leche debajo-leche click">' +
+                                                                                    '<input type="hidden" id="abajo" value="6'+a+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="rlecheindex' + a + '" class="cuadro-leche derecha-leche click click">' +
+                                                                                '<div id="rleche6' + a + '" class="cuadro-leche derecha-leche click click">' +
+                                                                                    '<input type="hidden" id="derecha" value="6'+a+'"/>' +
                                                                                 '</div>' +
-                                                                                '<div id="clecheindex' + a + '" class="centro-leche click">' +
+                                                                                '<div id="cleche6' + a + '" class="centro-leche click">' +
+                                                                                    '<input type="hidden" id="centro" value="6'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';
+                                                                        
+                                                                        htmlLecheLeft2 += '<div id="dienteL7' + a + '" class="diente-leche">' +
+                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">7' + a + '</span>' +
+                                                                                '<div id="tleche7' + a + '" class="cuadro-leche top-leche click">' +
+                                                                                    '<input type="hidden" id="arriba" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="lleche7' + a + '" class="cuadro-leche izquierdo-leche click">' +
+                                                                                    '<input type="hidden" id="izquierda" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="bleche7' + a + '" class="cuadro-leche debajo-leche click">' +
+                                                                                    '<input type="hidden" id="abajo" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="rleche7' + a + '" class="cuadro-leche derecha-leche click click">' +
+                                                                                    '<input type="hidden" id="derecha" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="cleche7' + a + '" class="centro-leche click">' +
+                                                                                    '<input type="hidden" id="centro" value="7'+a+'"/>' +
                                                                                 '</div>' +
                                                                                 '</div>';
                                                                     }
                                                                     a++;
                                                                 }
-                                                                $("#tr").append(replaceAll('index', '1', htmlRight));
-                                                                $("#tl").append(replaceAll('index', '2', htmlLeft));
-                                                                $("#tlr").append(replaceAll('index', '5', htmlLecheRight));
-                                                                $("#tll").append(replaceAll('index', '6', htmlLecheLeft));
+                                                                
+                                                                $("#tr").append(htmlRight);
+                                                                $("#tl").append(htmlLeft);
+                                                                $("#tlr").append(htmlLecheRight);
+                                                                $("#tll").append(htmlLecheLeft);
 
 
-                                                                $("#bl").append(replaceAll('index', '3', htmlLeft));
-                                                                $("#br").append(replaceAll('index', '4', htmlRight));
-                                                                $("#bll").append(replaceAll('index', '7', htmlLecheLeft));
-                                                                $("#blr").append(replaceAll('index', '8', htmlLecheRight));
+                                                                $("#bl").append(htmlLeft2);
+                                                                $("#br").append(htmlRight2);
+                                                                $("#bll").append(htmlLecheLeft2);
+                                                                $("#blr").append(htmlLecheRight2);
                                                             }
-                                                            var arrayPuente = [];
+                                                            //var arrayPuente = [];
                                                             $(document).ready(function () {
                                                                 createOdontogram();
                                                                 $(".click").click(function (event) {
                                                                     var control = $("#controls").children().find('.active').attr('id');
                                                                     var cuadro = $(this).find("input[name=cuadro]:hidden").val();
-                                                                    console.log($(this).attr('id'))
+                                                                    var ubicacion = $(this).children().attr('id');
+                                                                    var diente = $(this).children().val();
+                                                                    console.log("ubicación -> "+ubicacion + " val -> " + diente);
+                                                                    console.log($(this).attr('id'));
                                                                     switch (control) {
                                                                         case "cariado":
                                                                             if ($(this).hasClass("click-white")) {
                                                                                 $(this).removeClass('click-white');
-                                                                                $(this).addClass('click-red');
+                                                                                $(this).addClass('click-red');                                                                                
                                                                             } else {
                                                                                 if ($(this).hasClass("click-red")) {
-                                                                                    $(this).removeClass("click-red");
+                                                                                    $(this).removeClass("click-red");                                                                                    
                                                                                 } else {
-                                                                                    $(this).addClass('click-red');
+                                                                                    $(this).addClass('click-red');                                                                                    
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "obturado":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1809,69 +2052,94 @@
                                                                                     $(this).addClass('click-blue');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "exodonciarealizada":
                                                                             var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
+                                                                            console.log($(this));
+                                                                            console.log(dientePosition);
                                                                             $(this).parent().children().each(function (index, el) {
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-gray');
+                                                                                    if ($(el).hasClass("click-gray")) {
+                                                                                        $(el).removeClass('click-gray');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-gray");
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "exodonciasimpleindicada":
                                                                             var dientePosition = $(this).position();
                                                                             console.log(dientePosition);
-                                                                            $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    $(this).parent().children('.cuadro').css('border-color', 'blue');
-                                                                                    $(this).parent().children('.cuadro-leche').css('border-color', 'blue');
-                                                                                    console.log($(this));
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click-blue-border")) {
+                                                                                    $(el).removeClass('click-blue-border');
+                                                                                }else {
+                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
+                                                                                        $(el).addClass("click-blue-border");
+                                                                                    }                                                                                    
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "exodonciaquirrugicaindicada":
                                                                             var dientePosition = $(this).position();
                                                                             console.log(dientePosition);
                                                                             $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    $(this).parent().children('.cuadro').css('border-color', 'red');
-                                                                                    $(this).parent().children('.cuadro-leche').css('border-color', 'red');
-                                                                                    console.log($(this));
+                                                                                if ($(el).hasClass("click-red-border")) {
+                                                                                    $(el).removeClass('click-red-border');
+                                                                                }else {
+                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
+                                                                                        $(el).addClass("click-red-border");
+                                                                                    }                                                                                    
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "sinerupcionar":
                                                                             var dientePosition = $(this).position();
-                                                                            console.log($(this))
+                                                                            console.log($(this));
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) { 
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-erupcionar');
+                                                                                    if ($(el).hasClass("click-erupcionar")) {
+                                                                                        $(el).removeClass('click-erupcionar');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-erupcionar");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "endodonciarealizada":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) {   
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-endo');
+                                                                                    if ($(el).hasClass("click-endo")) {
+                                                                                        $(el).removeClass('click-endo');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-endo");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "endodonciaindicada":
                                                                             var dientePosition = $(this).position();
                                                                             console.log(dientePosition);
                                                                             $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    $(this).parent().children('.cuadro').css('border-color', '#3E2723');
-                                                                                    $(this).parent().children('.cuadro-leche').css('border-color', '#3E2723');
-                                                                                    console.log($(this));
+                                                                                if ($(el).hasClass("click-marron-border")) {
+                                                                                    $(el).removeClass('click-marron-border');
+                                                                                }else {
+                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
+                                                                                        $(el).addClass("click-marron-border");
+                                                                                    }                                                                                    
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "sellantepresente":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1884,6 +2152,7 @@
                                                                                     $(this).addClass('click-sellantep');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "sellanteindicado":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1896,6 +2165,7 @@
                                                                                     $(this).addClass('click-sellantei');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "erosion":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1908,16 +2178,20 @@
                                                                                     $(this).addClass('click-erosion');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "procedimientorealizado":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-proce');
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                                                                                              
+                                                                                if ($(el).hasClass("click-proce")) {
+                                                                                    $(el).removeClass('click-proce');
+                                                                                }else {                                                                                    
+                                                                                    $(el).addClass("click-proce");                                                                                    
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "coronabuenestado":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1930,6 +2204,7 @@
                                                                                     $(this).addClass('click-corobuen');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "coronamalestado":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1942,26 +2217,37 @@
                                                                                     $(this).addClass('click-coromal');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "provisionalbuenestado":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-probuen');
+                                                                                    if ($(el).hasClass("click-probuen")) {
+                                                                                        $(el).removeClass('click-probuen');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-probuen");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "provisionalmalestado":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-promal');
+                                                                                    if ($(el).hasClass("click-promal")) {
+                                                                                        $(el).removeClass('click-promal');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-promal");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "nucleobuenestado":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1974,6 +2260,7 @@
                                                                                     $(this).addClass('click-nuclebuen');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "nucleomalestado":
                                                                             if ($(this).hasClass("click-white")) {
@@ -1986,36 +2273,52 @@
                                                                                     $(this).addClass('click-nuclemal');
                                                                                 }
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "removiblebuenestado":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-remobuen');
+                                                                                    if ($(el).hasClass("click-remobuen")) {
+                                                                                        $(el).removeClass('click-remobuen');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-remobuen");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "removiblemalestado":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-remomal');
+                                                                                    if ($(el).hasClass("click-remomal")) {
+                                                                                        $(el).removeClass('click-remomal');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-remomal");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "implante":
                                                                             var dientePosition = $(this).position();
                                                                             console.log($(this))
                                                                             console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
                                                                                 if ($(el).hasClass("click")) {
-                                                                                    $(el).addClass('click-implante');
+                                                                                    if ($(el).hasClass("click-implante")) {
+                                                                                        $(el).removeClass('click-implante');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-implante");                                                                                    
+                                                                                    }
                                                                                 }
                                                                             });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
                                                                             break;
                                                                         case "placa":
                                                                             var dientePosition = $(this).position();
@@ -2024,6 +2327,7 @@
                                                                             } else {
                                                                                 $(this).addClass('click-green');
                                                                             }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
                                                                             break;
                                                                         case "limpiar":
                                                                             if ($(this).hasClass("click-red")) {
@@ -2486,41 +2790,428 @@
                         ]
                     }
         ]};
+    
+    function getArrayTipoMarca(){
+            var tipoMarca = [
+                                    {
+                                        "nombre" : "cariado",                                        
+                                        "valor" : "NO"                                        
+                                    },
+                                    {
+                                        "nombre" : "obturado",                                       
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "exodonciarealizada",                                        
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "exodonciasimpleindicada",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "exodonciaquirrugicaindicada",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "sinerupcionar",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "endodonciarealizada",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "endodonciaindicada",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "sellantepresente",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "sellanteindicado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "erosion",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "procedimientorealizado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "coronabuenestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "coronamalestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "provisionalbuenestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "provisionalmalestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "nucleobuenestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "nucleomalestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "removiblebuenestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "removiblemalestado",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "implante",
+                                        "valor" : "NO"
+                                    },
+                                    {
+                                        "nombre" : "placa",
+                                        "valor" : "NO"
+                                    }
+                                ];
+                                
+            return tipoMarca;
+        }
+    
+    function getArrayUbicaciones(){
+    var arrayUbicaciones = [
+                            {
+                                "posicion" : "arriba",                                 
+                                "tipoMarca" : getArrayTipoMarca()                            
+                            },
+                            {
+                                "posicion" : "abajo",                                 
+                                "tipoMarca" : getArrayTipoMarca()
+                            },
+                            {
+                                "posicion" : "izquierda",                                 
+                                "tipoMarca" : getArrayTipoMarca()
+                            },
+                            {
+                                "posicion" : "derecha",                                 
+                                "tipoMarca" : getArrayTipoMarca()
+                            },
+                            {
+                                "posicion" : "centro",                                 
+                                "tipoMarca" : getArrayTipoMarca()
+                            }
+                        ];
+        return arrayUbicaciones;
+    }
+    
+    var odontograma = { "pla" : [
+                        {
+                            "numero": "18", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "17", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "16", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "15", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "14", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "13", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "12", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "11", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "21", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "22", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "23", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "24", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "25", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "26", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "27", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "28", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "48", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "47", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "46", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "45", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "44", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "43", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "42", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "41", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "31", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "32", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "33", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "34", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "35", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "36", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "37", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "38", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "55", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "54", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "53", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "52", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "51", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "61", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "62", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "63", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "64", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "65", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "85", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "84", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "83", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "82", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "81", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "71", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "72", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "73", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "74", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        },
+                        {
+                            "numero": "75", 
+                            "ubicaciones" : getArrayUbicaciones()
+                        }
+                    ]};
+                    
+            
+           
     <%} else {%>
         var placa = <%=jsonObj%>
+        var odontograma = <%=jsonObjOdontograma%>
+        
         //alert("json -> " + JSON.stringify(placa));
     <%}%>
+                    
+            function obtenerIndiceTipoMarca(tipoMarca, indiceDiente, indicePosicion, objJson) {
+                var indiceMarca = objJson.pla[indiceDiente].ubicaciones[indicePosicion].tipoMarca.findIndex(elem => {
+                    if (elem.nombre === tipoMarca) {
+                        return true;
+                    }
+                    return false;
+                });                
+                return indiceMarca;
+            }
     
-    
-            //alert("inicializa -> "+placa.pla[0].ubicaciones[0].valor);
-            function meterEnOdontograma(diente, posicion){
-                //alert("meteré en odontograma array "+ diente + " posic " + posicion);
+            function obtenerUbicacion(posicion, indiceDiente, objJson) {
+                var indicePosicion = objJson.pla[indiceDiente].ubicaciones.findIndex(elem => {
+                    if (elem.posicion === posicion) {
+                        return true;
+                    }
+                    return false;
+                });
                 
-                var indiceDiente = placa.pla.findIndex(elem => {
+                return indicePosicion;
+            }
+            function obtenerIndiceDiente(diente, objJson) {
+                var indiceDiente = objJson.pla.findIndex(elem => {
                         if(elem.numero === diente){
                             return true;
                         } 
                         return false;
                 });
                 
-                var indicePosicion = placa.pla[indiceDiente].ubicaciones.findIndex(elem => {
-                    if (elem.posicion === posicion) {
-                        return true;
-                    }
-                    return false;
-                });
-                alert("dientePosicion" + placa.pla[indiceDiente].numero + " posicion " + indicePosicion + "valor "+ placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
+                return indiceDiente;
+            }
+            //alert("inicializa -> "+placa.pla[0].ubicaciones[0].valor);
+            function meterEnControlPlaca(diente, posicion){
+                                
+                var indiceDiente = obtenerIndiceDiente(diente, placa);
+                
+                var indicePosicion = obtenerUbicacion(posicion, indiceDiente, placa);
+                
+                //alert("dientePosicion" + placa.pla[indiceDiente].numero + " posicion " + indicePosicion + "valor "+ placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
                 if (placa.pla[indiceDiente].ubicaciones[indicePosicion].valor === "NO") {
                     placa.pla[indiceDiente].ubicaciones[indicePosicion].valor = "SI";
                     alert("Lo pasaré a SI");
                 }else {
                     placa.pla[indiceDiente].ubicaciones[indicePosicion].valor = "NO";
+                }                
+                return;
+            }
+            
+            function meterEnOdontograma(diente, ubicacion, tipoMarca, esCompleto) {
+                
+                var indiceDiente = obtenerIndiceDiente(diente, odontograma);
+                
+                var indicePosicion = obtenerUbicacion(ubicacion, indiceDiente, odontograma);
+                
+                var indiceTipoMarca = obtenerIndiceTipoMarca(tipoMarca, indiceDiente, indicePosicion, odontograma);
+                
+                if(esCompleto === "NO"){
+                    if(odontograma.pla[indiceDiente].ubicaciones[indicePosicion].tipoMarca[indiceTipoMarca].valor === "SI") {
+                        odontograma.pla[indiceDiente].ubicaciones[indicePosicion].tipoMarca[indiceTipoMarca].valor = "NO";
+                    } else {
+                        odontograma.pla[indiceDiente].ubicaciones[indicePosicion].tipoMarca[indiceTipoMarca].valor = "SI";
+                    }
+                } else {
+                    if(odontograma.pla[indiceDiente].ubicaciones[indicePosicion].tipoMarca[indiceTipoMarca].valor === "SI") {
+                        odontograma.pla[indiceDiente].ubicaciones[0].tipoMarca[indiceTipoMarca].valor = "NO";
+                        odontograma.pla[indiceDiente].ubicaciones[1].tipoMarca[indiceTipoMarca].valor = "NO";
+                        odontograma.pla[indiceDiente].ubicaciones[2].tipoMarca[indiceTipoMarca].valor = "NO";
+                        odontograma.pla[indiceDiente].ubicaciones[3].tipoMarca[indiceTipoMarca].valor = "NO";
+                        odontograma.pla[indiceDiente].ubicaciones[4].tipoMarca[indiceTipoMarca].valor = "NO";
+                    } else {
+                        console.log("Entra por acá");
+                        odontograma.pla[indiceDiente].ubicaciones[0].tipoMarca[indiceTipoMarca].valor = "SI";
+                        odontograma.pla[indiceDiente].ubicaciones[1].tipoMarca[indiceTipoMarca].valor = "SI";
+                        odontograma.pla[indiceDiente].ubicaciones[2].tipoMarca[indiceTipoMarca].valor = "SI";
+                        odontograma.pla[indiceDiente].ubicaciones[3].tipoMarca[indiceTipoMarca].valor = "SI";
+                        odontograma.pla[indiceDiente].ubicaciones[4].tipoMarca[indiceTipoMarca].valor = "SI";
+                    }
                 }
                 
-                //alert("-> " + placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
-                //placa[indice].posicion = "SI";
-                //alert("J "+JSON.stringify(placa));
-                return;
+                alert("J "+JSON.stringify(odontograma));
+                
             }
             
             function registrarss(){
@@ -2544,6 +3235,11 @@
                 var getFormulario = document.getElementById("regodont");
                 var controlPlaca = document.getElementById("controlPlaca");
                 controlPlaca.value = JSON.stringify(placa);
+                
+                var odontogra = document.getElementById("odon");
+                console.log("odo -> " + JSON.stringify(odontograma));
+                odontogra.value = JSON.stringify(odontograma);
+                
                 alert("valor placa -> " + JSON.stringify(placa));
                 alert("voy a enviar");
                 getFormulario.submit();
