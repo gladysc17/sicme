@@ -1815,979 +1815,150 @@
         <script type="text/javascript" src="../../js/registrodon.js"></script>
         <script src="https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.js"></script>
         <script type="text/javascript" src="../js/modal.js"></script>
-        <script type="text/javascript">
-                                                            function replaceAll(find, replace, str) {
-                                                                return str.replace(new RegExp(find, 'g'), replace);
-                                                            }
-                                                            
-                                                            //Lapiz verde del control de placa
-                                                            $(document).ready(function () {
-                                                                $(".clickPlaca").click(function (event) {
-                                                                    //var dientePosition = $(this).position();
-                                                                                if ($(this).hasClass("click-green")) {
-                                                                                    $(this).removeClass('click-green');
-                                                                                } else {                                                                                
-                                                                                    $(this).addClass('click-green');
-                                                                                }                                                                            
-                                                                });
-
-                                                            });
-
-                                                            function createOdontogram() {
-                                                                var htmlLecheLeft = "",
-                                                                        htmlLecheLeft2 = "",
-                                                                        htmlLecheRight = "",
-                                                                        htmlLecheRight2 = "",
-                                                                        htmlLeft = "",
-                                                                        htmlLeft2 = "",
-                                                                        htmlRight = "",
-                                                                        htmlRight2 = "",
-                                                                        a = 1;
-                                                                for (var i = 9 - 1; i >= 1; i--) {
-                                                                    //Dientes Definitivos Cuandrante Derecho (Superior)
-                                                                    htmlRight += '<div data-name="value" id="diente1' + i + '" class="diente">' +
-                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">1' + i + '</span>' +
-                                                                            '<div id="t1' + i + '" class="cuadro click">' +
-                                                                                '<input type="hidden" id="arriba" value="1'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="l1' + i + '" class="cuadro izquierdo click">' +
-                                                                                '<input type="hidden" id="izquierda" value="1'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="b1' + i + '" class="cuadro debajo click">' +
-                                                                                '<input type="hidden" id="abajo" value="1'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="r1' + i + '" class="cuadro derecha click click">' +
-                                                                                '<input type="hidden" id="derecha" value="1'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="c1' + i + '" class="centro click">' +
-                                                                                '<input type="hidden" id="centro" value="1'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '</div>';
-                                                                    
-                                                                    //Dientes Definitivos Cuandrante Derecho (Inferior)
-                                                                    htmlRight2 += '<div data-name="value" id="diente4' + i + '" class="diente">' +
-                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">4' + i + '</span>' +
-                                                                            '<div id="t4' + i + '" class="cuadro click">' +
-                                                                                '<input type="hidden" id="arriba" value="4'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="l4' + i + '" class="cuadro izquierdo click">' +
-                                                                                '<input type="hidden" id="izquierda" value="4'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="b4' + i + '" class="cuadro debajo click">' +
-                                                                                '<input type="hidden" id="abajo" value="4'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="r4' + i + '" class="cuadro derecha click click">' +
-                                                                                '<input type="hidden" id="derecha" value="4'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="c4' + i + '" class="centro click">' +
-                                                                                '<input type="hidden" id="centro" value="4'+i+'"/>' +
-                                                                            '</div>' +
-                                                                            '</div>';
-                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior)
-                                                                    htmlLeft += '<div id="diente2' + a + '" class="diente">' +
-                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">2' + a + '</span>' +
-                                                                            '<div id="t2' + a + '" class="cuadro click">' +
-                                                                                '<input type="hidden" id="arriba" value="2'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="l2' + a + '" class="cuadro izquierdo click">' +
-                                                                                '<input type="hidden" id="izquierda" value="2'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="b2' + a + '" class="cuadro debajo click">' +
-                                                                                '<input type="hidden" id="abajo" value="2'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="r2' + a + '" class="cuadro derecha click click">' +
-                                                                                '<input type="hidden" id="derecha" value="2'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="c2' + a + '" class="centro click">' +
-                                                                                '<input type="hidden" id="centro" value="2'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '</div>';
-                                                                    
-                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior)
-                                                                    htmlLeft2 += '<div id="diente3' + a + '" class="diente">' +
-                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">3' + a + '</span>' +
-                                                                            '<div id="t3' + a + '" class="cuadro click">' +
-                                                                                '<input type="hidden" id="arriba" value="3'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="l3' + a + '" class="cuadro izquierdo click">' +
-                                                                                '<input type="hidden" id="izquierda" value="3'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="b3' + a + '" class="cuadro debajo click">' +
-                                                                                '<input type="hidden" id="abajo" value="3'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="r3' + a + '" class="cuadro derecha click click">' +
-                                                                                '<input type="hidden" id="derecha" value="3'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '<div id="c3' + a + '" class="centro click">' +
-                                                                                '<input type="hidden" id="centro" value="3'+a+'"/>' +
-                                                                            '</div>' +
-                                                                            '</div>';
-                                                                    
-                                                                    if (i <= 5) {
-                                                                        //Dientes Temporales Cuandrante Derecho (Superior/Inferior)
-                                                                        htmlLecheRight += '<div id="dienteL5' + i + '" style="left: -25%;" class="diente-leche">' +
-                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">5' + i + '</span>' +
-                                                                                '<div id="tleche5' + i + '" class="cuadro-leche top-leche click">' +
-                                                                                    '<input type="hidden" id="arriba" value="5'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="lleche5' + i + '" class="cuadro-leche izquierdo-leche click">' +
-                                                                                    '<input type="hidden" id="izquierda" value="5'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="bleche5' + i + '" class="cuadro-leche debajo-leche click">' +
-                                                                                    '<input type="hidden" id="abajo" value="5'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="rleche5' + i + '" class="cuadro-leche derecha-leche click click">' +
-                                                                                    '<input type="hidden" id="derecha" value="5'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="cleche5' + i + '" class="centro-leche click">' +
-                                                                                    '<input type="hidden" id="centro" value="5'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '</div>';
-                                                                        
-                                                                        htmlLecheRight2 += '<div id="dienteL8' + i + '" style="left: -25%;" class="diente-leche">' +
-                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">8' + i + '</span>' +
-                                                                                '<div id="tleche8' + i + '" class="cuadro-leche top-leche click">' +
-                                                                                    '<input type="hidden" id="arriba" value="8'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="lleche8' + i + '" class="cuadro-leche izquierdo-leche click">' +
-                                                                                    '<input type="hidden" id="izquierda" value="8'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="bleche8' + i + '" class="cuadro-leche debajo-leche click">' +
-                                                                                    '<input type="hidden" id="abajo" value="8'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="rleche8' + i + '" class="cuadro-leche derecha-leche click click">' +
-                                                                                    '<input type="hidden" id="derecha" value="8'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="cleche8' + i + '" class="centro-leche click">' +
-                                                                                    '<input type="hidden" id="centro" value="8'+i+'"/>' +
-                                                                                '</div>' +
-                                                                                '</div>';
-                                                                    }
-                                                                    if (a < 6) {
-                                                                        //Dientes Temporales Cuandrante Izquierdo (Superior/Inferior)
-                                                                        htmlLecheLeft += '<div id="dienteL6' + a + '" class="diente-leche">' +
-                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">6' + a + '</span>' +
-                                                                                '<div id="tleche6' + a + '" class="cuadro-leche top-leche click">' +
-                                                                                    '<input type="hidden" id="arriba" value="6'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="lleche6' + a + '" class="cuadro-leche izquierdo-leche click">' +
-                                                                                    '<input type="hidden" id="izquierda" value="6'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="bleche6' + a + '" class="cuadro-leche debajo-leche click">' +
-                                                                                    '<input type="hidden" id="abajo" value="6'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="rleche6' + a + '" class="cuadro-leche derecha-leche click click">' +
-                                                                                    '<input type="hidden" id="derecha" value="6'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="cleche6' + a + '" class="centro-leche click">' +
-                                                                                    '<input type="hidden" id="centro" value="6'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '</div>';
-                                                                        
-                                                                        htmlLecheLeft2 += '<div id="dienteL7' + a + '" class="diente-leche">' +
-                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">7' + a + '</span>' +
-                                                                                '<div id="tleche7' + a + '" class="cuadro-leche top-leche click">' +
-                                                                                    '<input type="hidden" id="arriba" value="7'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="lleche7' + a + '" class="cuadro-leche izquierdo-leche click">' +
-                                                                                    '<input type="hidden" id="izquierda" value="7'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="bleche7' + a + '" class="cuadro-leche debajo-leche click">' +
-                                                                                    '<input type="hidden" id="abajo" value="7'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="rleche7' + a + '" class="cuadro-leche derecha-leche click click">' +
-                                                                                    '<input type="hidden" id="derecha" value="7'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '<div id="cleche7' + a + '" class="centro-leche click">' +
-                                                                                    '<input type="hidden" id="centro" value="7'+a+'"/>' +
-                                                                                '</div>' +
-                                                                                '</div>';
-                                                                    }
-                                                                    a++;
-                                                                }
-                                                                
-                                                                $("#tr").append(htmlRight);
-                                                                $("#tl").append(htmlLeft);
-                                                                $("#tlr").append(htmlLecheRight);
-                                                                $("#tll").append(htmlLecheLeft);
-
-
-                                                                $("#bl").append(htmlLeft2);
-                                                                $("#br").append(htmlRight2);
-                                                                $("#bll").append(htmlLecheLeft2);
-                                                                $("#blr").append(htmlLecheRight2);
-                                                            }
-                                                            //var arrayPuente = [];
-                                                            $(document).ready(function () {
-                                                                createOdontogram();
-                                                                $(".click").click(function (event) {
-                                                                    var control = $("#controls").children().find('.active').attr('id');
-                                                                    var cuadro = $(this).find("input[name=cuadro]:hidden").val();
-                                                                    var ubicacion = $(this).children().attr('id');
-                                                                    var diente = $(this).children().val();
-                                                                    console.log("ubicación -> "+ubicacion + " val -> " + diente);
-                                                                    console.log($(this).attr('id'));
-                                                                    switch (control) {
-                                                                        case "cariado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass('click-white');
-                                                                                $(this).addClass('click-red');                                                                                
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-red")) {
-                                                                                    $(this).removeClass("click-red");                                                                                    
-                                                                                } else {
-                                                                                    $(this).addClass('click-red');                                                                                    
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "obturado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass('click-white');
-                                                                                $(this).addClass('click-blue');
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-blue")) {
-                                                                                    $(this).removeClass("click-blue");
-                                                                                } else {
-                                                                                    $(this).addClass('click-blue');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "exodonciarealizada":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this));
-                                                                            console.log(dientePosition);
-                                                                            $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-gray")) {
-                                                                                        $(el).removeClass('click-gray');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-gray");
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "exodonciasimpleindicada":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log(dientePosition);
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                
-                                                                                if ($(el).hasClass("click-blue-border")) {
-                                                                                    $(el).removeClass('click-blue-border');
-                                                                                }else {
-                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
-                                                                                        $(el).addClass("click-blue-border");
-                                                                                    }                                                                                    
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "exodonciaquirrugicaindicada":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log(dientePosition);
-                                                                            $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click-red-border")) {
-                                                                                    $(el).removeClass('click-red-border');
-                                                                                }else {
-                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
-                                                                                        $(el).addClass("click-red-border");
-                                                                                    }                                                                                    
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "sinerupcionar":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this));
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) { 
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-erupcionar")) {
-                                                                                        $(el).removeClass('click-erupcionar');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-erupcionar");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "endodonciarealizada":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {   
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-endo")) {
-                                                                                        $(el).removeClass('click-endo');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-endo");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "endodonciaindicada":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log(dientePosition);
-                                                                            $(this).parent().children().each(function (index, el) {
-                                                                                if ($(el).hasClass("click-marron-border")) {
-                                                                                    $(el).removeClass('click-marron-border');
-                                                                                }else {
-                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
-                                                                                        $(el).addClass("click-marron-border");
-                                                                                    }                                                                                    
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "sellantepresente":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-sellantep");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-sellantep")) {
-                                                                                    $(this).removeClass("click-sellantep");
-                                                                                } else {
-                                                                                    $(this).addClass('click-sellantep');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "sellanteindicado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-sellantei");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-sellantei")) {
-                                                                                    $(this).removeClass("click-sellantei");
-                                                                                } else {
-                                                                                    $(this).addClass('click-sellantei');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "erosion":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-erosion");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-erosion")) {
-                                                                                    $(this).removeClass("click-erosion");
-                                                                                } else {
-                                                                                    $(this).addClass('click-erosion');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "procedimientorealizado":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                                                                                              
-                                                                                if ($(el).hasClass("click-proce")) {
-                                                                                    $(el).removeClass('click-proce');
-                                                                                }else {                                                                                    
-                                                                                    $(el).addClass("click-proce");                                                                                    
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "coronabuenestado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-corobuen");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-corobuen")) {
-                                                                                    $(this).removeClass("click-corobuen");
-                                                                                } else {
-                                                                                    $(this).addClass('click-corobuen');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "coronamalestado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-coromal");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-coromal")) {
-                                                                                    $(this).removeClass("click-coromal");
-                                                                                } else {
-                                                                                    $(this).addClass('click-coromal');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "provisionalbuenestado":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-probuen")) {
-                                                                                        $(el).removeClass('click-probuen');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-probuen");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "provisionalmalestado":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-promal")) {
-                                                                                        $(el).removeClass('click-promal');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-promal");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "nucleobuenestado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-nuclebuen");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-nuclebuen")) {
-                                                                                    $(this).removeClass("click-nuclebuen");
-                                                                                } else {
-                                                                                    $(this).addClass('click-nuclebuen');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "nucleomalestado":
-                                                                            if ($(this).hasClass("click-white")) {
-                                                                                $(this).removeClass("click-white");
-                                                                                $(this).addClass("click-nuclemal");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-nuclemal")) {
-                                                                                    $(this).removeClass("click-nuclemal");
-                                                                                } else {
-                                                                                    $(this).addClass('click-nuclemal');
-                                                                                }
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "removiblebuenestado":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-remobuen")) {
-                                                                                        $(el).removeClass('click-remobuen');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-remobuen");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "removiblemalestado":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-remomal")) {
-                                                                                        $(el).removeClass('click-remomal');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-remomal");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "implante":
-                                                                            var dientePosition = $(this).position();
-                                                                            console.log($(this))
-                                                                            console.log(dientePosition)
-                                                                            $(this).parent().children().each(function (index, el) {                                                                                
-                                                                                if ($(el).hasClass("click")) {
-                                                                                    if ($(el).hasClass("click-implante")) {
-                                                                                        $(el).removeClass('click-implante');
-                                                                                    }else {                                                                                    
-                                                                                        $(el).addClass("click-implante");                                                                                    
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
-                                                                            break;
-                                                                        case "placa":
-                                                                            var dientePosition = $(this).position();
-                                                                            if ($(this).hasClass("click-green")) {
-                                                                                $(this).removeClass('click-green');
-                                                                            } else {
-                                                                                $(this).addClass('click-green');
-                                                                            }
-                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
-                                                                            break;
-                                                                        case "limpiar":
-                                                                            if ($(this).hasClass("click-red")) {
-                                                                                $(this).removeClass("click-red");
-                                                                                $(this).addClass("click-white");
-                                                                            } else {
-                                                                                if ($(this).hasClass("click-blue")) {
-                                                                                    $(this).removeClass("click-blue");
-                                                                                    $(this).addClass("click-white");
-                                                                                } else {
-                                                                                    if ($(this).hasClass("click-green")) {
-                                                                                        $(this).removeClass("click-green");
-                                                                                        $(this).addClass("click-white");
-                                                                                    } else {
-                                                                                        if ($(this).hasClass("click-gray")) {
-                                                                                            $(this).removeClass("click-gray");
-                                                                                            $(this).addClass("click-white");
-                                                                                        } else {
-                                                                                            if ($(this).hasClass("click-erupcionar")) {
-                                                                                                $(this).removeClass("click-erupcionar");
-                                                                                                $(this).addClass("click-white");
-                                                                                            } else {
-                                                                                                if ($(this).hasClass("click-endo")) {
-                                                                                                    $(this).removeClass("click-endo");
-                                                                                                    $(this).addClass("click-white");
-                                                                                                } else {
-                                                                                                    if ($(this).hasClass("click-proce")) {
-                                                                                                        $(this).removeClass("click-proce");
-                                                                                                        $(this).addClass("click-white");
-                                                                                                    } else {
-                                                                                                        if ($(this).hasClass("click-probuen")) {
-                                                                                                            $(this).removeClass("click-probuen");
-                                                                                                            $(this).addClass("click-white");
-                                                                                                        } else {
-                                                                                                            if ($(this).hasClass("click-promal")) {
-                                                                                                                $(this).removeClass("click-promal");
-                                                                                                                $(this).addClass("click-white");
-                                                                                                            } else {
-                                                                                                                if ($(this).hasClass("click-implante")) {
-                                                                                                                    $(this).removeClass("click-implante");
-                                                                                                                    $(this).addClass("click-white");
-                                                                                                                } else {
-                                                                                                                    if ($(this).hasClass("click-remobuen")) {
-                                                                                                                        $(this).removeClass("click-remobuen");
-                                                                                                                        $(this).addClass("click-white");
-                                                                                                                    } else {
-                                                                                                                        if ($(this).hasClass("click-remomal")) {
-                                                                                                                            $(this).removeClass("click-remomal");
-                                                                                                                            $(this).addClass("click-white");
-                                                                                                                        } else {
-                                                                                                                            if ($(this).hasClass("click-sellantep")) {
-                                                                                                                                $(this).removeClass("click-sellantep");
-                                                                                                                                $(this).addClass("click-white");
-                                                                                                                            } else {
-                                                                                                                                if ($(this).hasClass("click-sellantei")) {
-                                                                                                                                    $(this).removeClass("click-sellantei");
-                                                                                                                                    $(this).addClass("click-white");
-                                                                                                                                } else {
-                                                                                                                                    if ($(this).hasClass("click-erosion")) {
-                                                                                                                                        $(this).removeClass("click-erosion");
-                                                                                                                                        $(this).addClass("click-white");
-                                                                                                                                    } else {
-                                                                                                                                        if ($(this).hasClass("click-corobuen")) {
-                                                                                                                                            $(this).removeClass("click-corobuen");
-                                                                                                                                            $(this).addClass("click-white");
-                                                                                                                                        } else {
-                                                                                                                                            if ($(this).hasClass("click-coromal")) {
-                                                                                                                                                $(this).removeClass("click-coromal");
-                                                                                                                                                $(this).addClass("click-white");
-                                                                                                                                            } else {
-                                                                                                                                                if ($(this).hasClass("click-nuclebuen")) {
-                                                                                                                                                    $(this).removeClass("click-nuclebuen");
-                                                                                                                                                    $(this).addClass("click-white");
-                                                                                                                                                } else {
-                                                                                                                                                    if ($(this).hasClass("click-nuclemal")) {
-                                                                                                                                                        $(this).removeClass("click-nuclemal");
-                                                                                                                                                        $(this).addClass("click-white");
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        default:
-                                                                            console.log("borrar case");
-                                                                    }
-                                                                    return false;
-                                                                });
-                                                                return false;
-                                                            });
-        </script>
+        
         <script>
                                    
     <%if (hcOdontologia == null) {%>
         // Inicialización control placa  
+        function getArrayUbicacionesPlaca() {
+            var arrayUbi = [
+                            {"posicion" : "arriba", "valor" : "NO"},
+                            {"posicion" : "abajo", "valor" : "NO"},
+                            {"posicion" : "izquierda", "valor" : "NO"},
+                            {"posicion" : "derecha", "valor" : "NO"},
+                            {"posicion" : "centro", "valor" : "NO"}
+                        ];
+            return arrayUbi;
+        }
+        
         var placa = { "pla" : [
                     {
                         "numero": "18", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()                        
                     },
                     {
                         "numero": "17", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "16", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "15/55", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "14/54", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "13/53", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "12/52", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "11/51", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "21/61", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "22/62", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "23/63", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "24/64", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "25/65", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "26", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "27", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "28", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "48", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "47", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "46", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "45/85", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "44/84", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "43/83", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "42/82", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "41/81", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "31/71", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "32/72", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "33/73", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "34/74", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "35/75", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "36", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "37", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     },
                     {
                         "numero": "38", 
-                        "ubicaciones" : 
-                        [
-                            {"posicion" : "arriba", "valor" : "NO"},
-                            {"posicion" : "abajo", "valor" : "NO"},
-                            {"posicion" : "izquierda", "valor" : "NO"},
-                            {"posicion" : "derecha", "valor" : "NO"},
-                            {"posicion" : "centro", "valor" : "NO"}
-                        ]
+                        "ubicaciones" : getArrayUbicacionesPlaca()
                     }
         ]};
     
@@ -3339,4 +2510,1815 @@
         });*/
     // });
             }
+        </script>
+        
+        <script type="text/javascript">
+                                                            function replaceAll(find, replace, str) {
+                                                                return str.replace(new RegExp(find, 'g'), replace);
+                                                            }
+                                                            
+                                                            function calcularIndiceNumero(prefijo, indice) {
+                                                                var indiceNumero = odontograma.pla.findIndex(el => {
+                                                                    if (el.numero === prefijo + indice) {
+                                                                        return true;
+                                                                    }
+                                                                    return false;
+                                                                });
+                                                                return indiceNumero;
+                                                            }
+                                                            
+                                                            //Lapiz verde del control de placa
+                                                            $(document).ready(function () {
+                                                                $(".clickPlaca").click(function (event) {
+                                                                    //var dientePosition = $(this).position();
+                                                                                if ($(this).hasClass("click-green")) {
+                                                                                    $(this).removeClass('click-green');
+                                                                                } else {                                                                                
+                                                                                    $(this).addClass('click-green');
+                                                                                }                                                                            
+                                                                });
+
+                                                            });
+
+                                                            function createOdontogram() {
+                                                                var htmlLecheLeft = "",
+                                                                        htmlLecheLeft2 = "",
+                                                                        htmlLecheRight = "",
+                                                                        htmlLecheRight2 = "",
+                                                                        htmlLeft = "",
+                                                                        htmlLeft2 = "",
+                                                                        htmlRight = "",
+                                                                        htmlRight2 = "",
+                                                                        a = 1;
+                                                                
+                                                                //arriba
+                                                                var arribaCariado = "", arribaObturado = "", arribaExoRealizada = "", arribaExoSimple = "", arribaExoQuirurgica = "",
+                                                                        arribaSinErupcionar = "", arribaEndoRealizada = "", arribaEndoIndicada = "", arribaSellantePresente = "",
+                                                                        arribaSellanteIndicado = "", arribaErosion = "", arribaProceRealizado = "", arribaCoronaBE = "",
+                                                                        arribaCoronaME = "", arribaProvBE = "", arribaProvME = "", arribaNucleoBE = "", arribaNucleoME = "",
+                                                                        arribaRemovibleBE = "", arribaRemovibleME = "", arribaImplante = "", arribaPlaca = "";
+                                                                
+                                                                //abajo
+                                                                var abajoCariado = "", abajoObturado = "", abajoExoRealizada = "", abajoExoSimple = "", abajoExoQuirurgica = "",
+                                                                        abajoSinErupcionar = "", abajoEndoRealizada = "", abajoEndoIndicada = "", abajoSellantePresente = "",
+                                                                        abajoSellanteIndicado = "", abajoErosion = "", abajoProceRealizado = "", abajoCoronaBE = "",
+                                                                        abajoCoronaME = "", abajoProvBE = "", abajoProvME = "", abajoNucleoBE = "", abajoNucleoME = "",
+                                                                        abajoRemovibleBE = "", abajoRemovibleME = "", abajoImplante = "", abajoPlaca = "";
+                                                                
+                                                                //izquierda                                                                
+                                                                var izquierdaCariado = "", izquierdaObturado = "", izquierdaExoRealizada = "", izquierdaExoSimple = "", izquierdaExoQuirurgica = "",
+                                                                        izquierdaSinErupcionar = "", izquierdaEndoRealizada = "", izquierdaEndoIndicada = "", izquierdaSellantePresente = "",
+                                                                        izquierdaSellanteIndicado = "", izquierdaErosion = "", izquierdaProceRealizado = "", izquierdaCoronaBE = "",
+                                                                        izquierdaCoronaME = "", izquierdaProvBE = "", izquierdaProvME = "", izquierdaNucleoBE = "", izquierdaNucleoME = "",
+                                                                        izquierdaRemovibleBE = "", izquierdaRemovibleME = "", izquierdaImplante = "", izquierdaPlaca = "";
+                                                                
+                                                                //derecha                                                                
+                                                                var derechaCariado = "", derechaObturado = "", derechaExoRealizada = "", derechaExoSimple = "", derechaExoQuirurgica = "",
+                                                                        derechaSinErupcionar = "", derechaEndoRealizada = "", derechaEndoIndicada = "", derechaSellantePresente = "",
+                                                                        derechaSellanteIndicado = "", derechaErosion = "", derechaProceRealizado = "", derechaCoronaBE = "",
+                                                                        derechaCoronaME = "", derechaProvBE = "", derechaProvME = "", derechaNucleoBE = "", derechaNucleoME = "",
+                                                                        derechaRemovibleBE = "", derechaRemovibleME = "", derechaImplante = "", derechaPlaca = "";
+                                                                
+                                                                //centro                                                                
+                                                                var centroCariado = "", centroObturado = "", centroExoRealizada = "", centroExoSimple = "", centroExoQuirurgica = "",
+                                                                        centroSinErupcionar = "", centroEndoRealizada = "", centroEndoIndicada = "", centroSellantePresente = "",
+                                                                        centroSellanteIndicado = "", centroErosion = "", centroProceRealizado = "", centroCoronaBE = "",
+                                                                        centroCoronaME = "", centroProvBE = "", centroProvME = "", centroNucleoBE = "", centroNucleoME = "",
+                                                                        centroRemovibleBE = "", centroRemovibleME = "", centroImplante = "", centroPlaca = "";
+                                                                
+                                                                var indiceNumero = 0;
+                                                                
+                                                                for (var i = 9 - 1; i >= 1; i--) {                                                              
+                                                                    
+                                                                    <%if (hcOdontologia != null) {%>
+                                                                                                                                              
+                                                                        indiceNumero = calcularIndiceNumero("1", i);      
+                                                                        //arriba
+                                                                        arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //abajo
+                                                                        abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //izquierda
+                                                                        izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //derecha
+                                                                        derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //centro
+                                                                        centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                    <%}%>
+                                                                        //Dientes Definitivos Cuandrante Derecho (Superior)
+                                                                        htmlRight += '<div data-name="value" id="diente1' + i + '" class="diente">' +
+                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">1' + i + '</span>' +
+                                                                                '<div id="t1' + i + '" class="cuadro click ' + arribaCariado + ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="arriba" value="1'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="l1' + i + '" class="cuadro izquierdo click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="izquierda" value="1'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="b1' + i + '" class="cuadro debajo click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="abajo" value="1'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="r1' + i + '" class="cuadro derecha click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="derecha" value="1'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="c1' + i + '" class="centro click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="centro" value="1'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';                                                            
+                                                                    
+                                                                    <%if (hcOdontologia != null) {%>
+                                                                                                                                                
+                                                                        indiceNumero = calcularIndiceNumero("4", i);                                                                                                                                                
+                                                                        arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                        
+                                                                        arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                            
+                                                                        //abajo
+                                                                        abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //izquierda
+                                                                        izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //derecha
+                                                                        derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //centro
+                                                                        centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                    <%}%>
+                                                                    
+                                                                    //Dientes Definitivos Cuandrante Derecho (Inferior)
+                                                                    htmlRight2 += '<div data-name="value" id="diente4' + i + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">4' + i + '</span>' +
+                                                                            '<div id="t4' + i + '" class="cuadro click ' + arribaCariado + ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="arriba" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="l4' + i + '" class="cuadro izquierdo click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="izquierda" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="b4' + i + '" class="cuadro debajo click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="abajo" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="r4' + i + '" class="cuadro derecha click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="derecha" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="c4' + i + '" class="centro click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="centro" value="4'+i+'"/>' +
+                                                                            '</div>' +
+                                                                            '</div>';
+                                                                    
+                                                                    <%if (hcOdontologia != null) {%>
+                                                                        
+                                                                        indiceNumero = calcularIndiceNumero("2", a);                                                                                                                                             
+                                                                        arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";
+                                                                        arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //abajo
+                                                                        abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //izquierda
+                                                                        izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //derecha
+                                                                        derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //centro
+                                                                        centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                    <%}%>
+                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior)
+                                                                    htmlLeft += '<div id="diente2' + a + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">2' + a + '</span>' +
+                                                                            '<div id="t2' + a + '" class="cuadro click ' +arribaCariado+ ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="arriba" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="l2' + a + '" class="cuadro izquierdo click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="izquierda" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="b2' + a + '" class="cuadro debajo click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="abajo" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="r2' + a + '" class="cuadro derecha click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="derecha" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="c2' + a + '" class="centro click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="centro" value="2'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '</div>';
+                                                                    
+                                                                    <%if (hcOdontologia != null) {%>
+                                                                        
+                                                                        indiceNumero = calcularIndiceNumero("3", a);                                                                                                                                                
+                                                                        arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";
+                                                                        arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //abajo
+                                                                        abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //izquierda
+                                                                        izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //derecha
+                                                                        derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        
+                                                                        //centro
+                                                                        centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                        centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                        centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                        centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                        centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                        centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                        centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                        centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                        centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                        centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                        centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                        centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                        centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                        centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                        centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                        centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                        centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                        centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                        centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                        centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                        centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                        centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                    <%}%>
+                                                                    //Dientes Definitivos Cuandrante Izquierdo (Superior)
+                                                                    htmlLeft2 += '<div id="diente3' + a + '" class="diente">' +
+                                                                            '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-info">3' + a + '</span>' +
+                                                                            '<div id="t3' + a + '" class="cuadro click ' +arribaCariado+ ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="arriba" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="l3' + a + '" class="cuadro izquierdo click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="izquierda" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="b3' + a + '" class="cuadro debajo click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="abajo" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="r3' + a + '" class="cuadro derecha click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="derecha" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '<div id="c3' + a + '" class="centro click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                '<input type="hidden" id="centro" value="3'+a+'"/>' +
+                                                                            '</div>' +
+                                                                            '</div>';
+                                                                    
+                                                                    if (i <= 5) {
+                                                                        
+                                                                        <%if (hcOdontologia != null) {%>
+                                                                            
+                                                                            indiceNumero = calcularIndiceNumero("5", i);
+                                                                            arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";
+                                                                            arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                            
+                                                                            //abajo
+                                                                            abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //izquierda
+                                                                            izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //derecha
+                                                                            derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //centro
+                                                                            centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        <%}%>
+                                                                        //Dientes Temporales Cuandrante Derecho (Superior/Inferior)
+                                                                        htmlLecheRight += '<div id="dienteL5' + i + '" style="left: -25%;" class="diente-leche">' +
+                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">5' + i + '</span>' +
+                                                                                '<div id="tleche5' + i + '" class="cuadro-leche top-leche click ' +arribaCariado+ ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="arriba" value="5'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="lleche5' + i + '" class="cuadro-leche izquierdo-leche click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="izquierda" value="5'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="bleche5' + i + '" class="cuadro-leche debajo-leche click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="abajo" value="5'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="rleche5' + i + '" class="cuadro-leche derecha-leche click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="derecha" value="5'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="cleche5' + i + '" class="centro-leche click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="centro" value="5'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';
+                                                                        
+                                                                        <%if (hcOdontologia != null) {%>
+                                                                                                                                                  
+                                                                            indiceNumero = calcularIndiceNumero("8", i);
+                                                                            arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";
+                                                                            arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                            
+                                                                            //abajo
+                                                                            abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //izquierda
+                                                                            izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //derecha
+                                                                            derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //centro
+                                                                            centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        <%}%>
+                                                                            
+                                                                        htmlLecheRight2 += '<div id="dienteL8' + i + '" style="left: -25%;" class="diente-leche">' +
+                                                                                '<span style="margin-left: -19px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">8' + i + '</span>' +
+                                                                                '<div id="tleche8' + i + '" class="cuadro-leche top-leche click ' + arribaCariado + ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="arriba" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="lleche8' + i + '" class="cuadro-leche izquierdo-leche click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="izquierda" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="bleche8' + i + '" class="cuadro-leche debajo-leche click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="abajo" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="rleche8' + i + '" class="cuadro-leche derecha-leche click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="derecha" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="cleche8' + i + '" class="centro-leche click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="centro" value="8'+i+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';
+                                                                    }
+                                                                    if (a < 6) {
+                                                                        
+                                                                        <%if (hcOdontologia != null) {%>
+                                                                                                                                              
+                                                                            indiceNumero = calcularIndiceNumero("6", a);
+                                                                            arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";
+                                                                            arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                            
+                                                                            //abajo
+                                                                            abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //izquierda
+                                                                            izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //derecha
+                                                                            derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //centro
+                                                                            centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        <%}%>
+                                                                        //Dientes Temporales Cuandrante Izquierdo (Superior/Inferior)
+                                                                        htmlLecheLeft += '<div id="dienteL6' + a + '" class="diente-leche">' +
+                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">6' + a + '</span>' +
+                                                                                '<div id="tleche6' + a + '" class="cuadro-leche top-leche click ' +arribaCariado+ ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="arriba" value="6'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="lleche6' + a + '" class="cuadro-leche izquierdo-leche click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="izquierda" value="6'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="bleche6' + a + '" class="cuadro-leche debajo-leche click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="abajo" value="6'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="rleche6' + a + '" class="cuadro-leche derecha-leche click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="derecha" value="6'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="cleche6' + a + '" class="centro-leche click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="centro" value="6'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';
+                                                                        
+                                                                        <%if (hcOdontologia != null) {%>
+                                                                                                                                              
+                                                                            indiceNumero = calcularIndiceNumero("7", a);
+                                                                            arribaCariado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[0].valor === "SI" ? "click-red" : "";
+                                                                            arribaObturado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            arribaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            arribaExoSimple = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            arribaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            arribaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            arribaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            arribaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            arribaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            arribaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            arribaErosion = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            arribaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            arribaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            arribaCoronaME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            arribaProvBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            arribaProvME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            arribaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            arribaNucleoME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            arribaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            arribaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            arribaImplante = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            arribaPlaca = odontograma.pla[indiceNumero].ubicaciones[0].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                            
+                                                                            //abajo
+                                                                            abajoCariado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            abajoObturado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            abajoExoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            abajoExoSimple = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            abajoExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            abajoSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            abajoEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            abajoEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            abajoSellantePresente = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            abajoSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            abajoErosion = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            abajoProceRealizado = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            abajoCoronaBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            abajoCoronaME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            abajoProvBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            abajoProvME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            abajoNucleoBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            abajoNucleoME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            abajoRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            abajoRemovibleME = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            abajoImplante = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            abajoPlaca = odontograma.pla[indiceNumero].ubicaciones[1].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //izquierda
+                                                                            izquierdaCariado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            izquierdaObturado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            izquierdaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            izquierdaExoSimple = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            izquierdaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            izquierdaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            izquierdaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            izquierdaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            izquierdaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            izquierdaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            izquierdaErosion = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            izquierdaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            izquierdaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            izquierdaCoronaME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            izquierdaProvBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            izquierdaProvME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            izquierdaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            izquierdaNucleoME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            izquierdaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            izquierdaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            izquierdaImplante = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            izquierdaPlaca = odontograma.pla[indiceNumero].ubicaciones[2].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //derecha
+                                                                            derechaCariado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            derechaObturado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            derechaExoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            derechaExoSimple = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            derechaExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            derechaSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            derechaEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            derechaEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            derechaSellantePresente = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            derechaSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            derechaErosion = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            derechaProceRealizado = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            derechaCoronaBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            derechaCoronaME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            derechaProvBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            derechaProvME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            derechaNucleoBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            derechaNucleoME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            derechaRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            derechaRemovibleME = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            derechaImplante = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            derechaPlaca = odontograma.pla[indiceNumero].ubicaciones[3].tipoMarca[21].valor === "SI" ? "click-green" : "";
+
+                                                                            //centro
+                                                                            centroCariado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[0].valor === "SI" ? "click-red" : "";                                                                       
+                                                                            centroObturado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[1].valor === "SI" ? "click-blue" : "";
+                                                                            centroExoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[2].valor === "SI" ? "click-gray" : "";
+                                                                            centroExoSimple = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[3].valor === "SI" ? "click-blue-border" : "";
+                                                                            centroExoQuirurgica = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[4].valor === "SI" ? "click-red-border" : "";
+                                                                            centroSinErupcionar = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[5].valor === "SI" ? "click-erupcionar" : "";
+                                                                            centroEndoRealizada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[6].valor === "SI" ? "click-endo" : "";
+                                                                            centroEndoIndicada = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[7].valor === "SI" ? "click-marron-border" : "";
+                                                                            centroSellantePresente = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[8].valor === "SI" ? "click-sellantep" : "";
+                                                                            centroSellanteIndicado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[9].valor === "SI" ? "click-sellantei" : "";
+                                                                            centroErosion = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[10].valor === "SI" ? "click-erosion" : "";
+                                                                            centroProceRealizado = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[11].valor === "SI" ? "click-proce" : "";
+                                                                            centroCoronaBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[12].valor === "SI" ? "click-corobuen" : "";
+                                                                            centroCoronaME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[13].valor === "SI" ? "click-coromal" : "";
+                                                                            centroProvBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[14].valor === "SI" ? "click-probuen" : "";
+                                                                            centroProvME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-promal" : "";
+                                                                            centroNucleoBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[16].valor === "SI" ? "click-nuclebuen" : "";
+                                                                            centroNucleoME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[17].valor === "SI" ? "click-nuclemal" : "";
+                                                                            centroRemovibleBE = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[18].valor === "SI" ? "click-remobuen" : "";
+                                                                            centroRemovibleME = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[19].valor === "SI" ? "click-remomal" : "";
+                                                                            centroImplante = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[20].valor === "SI" ? "click-implante" : "";
+                                                                            centroPlaca = odontograma.pla[indiceNumero].ubicaciones[4].tipoMarca[21].valor === "SI" ? "click-green" : "";
+                                                                        <%}%>
+                                                                        
+                                                                        htmlLecheLeft2 += '<div id="dienteL7' + a + '" class="diente-leche">' +
+                                                                                '<span style="margin-left: -25px; margin-bottom:5px; display: inline-block !important; border-radius: 10px !important;" class="label label-primary">7' + a + '</span>' +
+                                                                                '<div id="tleche7' + a + '" class="cuadro-leche top-leche click ' +arribaCariado+ ' '+arribaObturado+' '+arribaExoRealizada+' '+arribaExoSimple+' '+arribaExoQuirurgica +
+                                                                                        ' '+arribaSinErupcionar+' '+arribaEndoRealizada+' '+arribaEndoIndicada+' '+arribaSellantePresente+' '+arribaSellanteIndicado+' '+arribaErosion+
+                                                                                        ' '+arribaProceRealizado+' '+arribaCoronaBE+' '+arribaCoronaME+' '+arribaProvBE+' '+arribaProvME+' '+arribaNucleoBE+' '+
+                                                                                        ' '+arribaNucleoME+' '+arribaRemovibleBE+' '+arribaRemovibleME+' '+arribaImplante+' '+ arribaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="arriba" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="lleche7' + a + '" class="cuadro-leche izquierdo-leche click ' + izquierdaCariado + ' '+izquierdaObturado+' '+izquierdaExoRealizada+' '+izquierdaExoSimple+' '+izquierdaExoQuirurgica +
+                                                                                        ' '+izquierdaSinErupcionar+' '+izquierdaEndoRealizada+' '+izquierdaEndoIndicada+' '+izquierdaSellantePresente+' '+izquierdaSellanteIndicado+' '+izquierdaErosion+
+                                                                                        ' '+izquierdaProceRealizado+' '+izquierdaCoronaBE+' '+izquierdaCoronaME+' '+izquierdaProvBE+' '+izquierdaProvME+' '+izquierdaNucleoBE+' '+
+                                                                                        ' '+izquierdaNucleoME+' '+izquierdaRemovibleBE+' '+izquierdaRemovibleME+' '+izquierdaImplante+' '+ izquierdaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="izquierda" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="bleche7' + a + '" class="cuadro-leche debajo-leche click ' + abajoCariado + ' '+abajoObturado+' '+abajoExoRealizada+' '+abajoExoSimple+' '+abajoExoQuirurgica +
+                                                                                        ' '+abajoSinErupcionar+' '+abajoEndoRealizada+' '+abajoEndoIndicada+' '+abajoSellantePresente+' '+abajoSellanteIndicado+' '+abajoErosion+
+                                                                                        ' '+abajoProceRealizado+' '+abajoCoronaBE+' '+abajoCoronaME+' '+abajoProvBE+' '+izquierdaProvME+' '+abajoNucleoBE+' '+
+                                                                                        ' '+abajoNucleoME+' '+abajoRemovibleBE+' '+abajoRemovibleME+' '+abajoImplante+' '+ abajoPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="abajo" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="rleche7' + a + '" class="cuadro-leche derecha-leche click click ' + derechaCariado + ' '+derechaObturado+' '+derechaExoRealizada+' '+derechaExoSimple+' '+derechaExoQuirurgica +
+                                                                                        ' '+derechaSinErupcionar+' '+derechaEndoRealizada+' '+derechaEndoIndicada+' '+derechaSellantePresente+' '+derechaSellanteIndicado+' '+derechaErosion+
+                                                                                        ' '+derechaProceRealizado+' '+derechaCoronaBE+' '+derechaCoronaME+' '+derechaProvBE+' '+derechaProvME+' '+derechaNucleoBE+' '+
+                                                                                        ' '+derechaNucleoME+' '+derechaRemovibleBE+' '+derechaRemovibleME+' '+derechaImplante+' '+ derechaPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="derecha" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '<div id="cleche7' + a + '" class="centro-leche click ' + centroCariado + ' '+centroObturado+' '+centroExoRealizada+' '+centroExoSimple+' '+centroExoQuirurgica +
+                                                                                        ' '+centroSinErupcionar+' '+centroEndoRealizada+' '+centroEndoIndicada+' '+centroSellantePresente+' '+centroSellanteIndicado+' '+centroErosion+
+                                                                                        ' '+centroProceRealizado+' '+centroCoronaBE+' '+centroCoronaME+' '+centroProvBE+' '+centroProvME+' '+centroNucleoBE+' '+
+                                                                                        ' '+centroNucleoME+' '+centroRemovibleBE+' '+centroRemovibleME+' '+centroImplante+' '+ centroPlaca +
+                                                                                        ' ">' +
+                                                                                    '<input type="hidden" id="centro" value="7'+a+'"/>' +
+                                                                                '</div>' +
+                                                                                '</div>';
+                                                                    }
+                                                                    a++;
+                                                                }
+                                                                
+                                                                $("#tr").append(htmlRight);
+                                                                $("#tl").append(htmlLeft);
+                                                                $("#tlr").append(htmlLecheRight);
+                                                                $("#tll").append(htmlLecheLeft);
+
+
+                                                                $("#bl").append(htmlLeft2);
+                                                                $("#br").append(htmlRight2);
+                                                                $("#bll").append(htmlLecheLeft2);
+                                                                $("#blr").append(htmlLecheRight2);
+                                                            }
+                                                            //var arrayPuente = [];
+                                                            $(document).ready(function () {
+                                                                createOdontogram();
+                                                                $(".click").click(function (event) {
+                                                                    var control = $("#controls").children().find('.active').attr('id');
+                                                                    var cuadro = $(this).find("input[name=cuadro]:hidden").val();
+                                                                    var ubicacion = $(this).children().attr('id');
+                                                                    var diente = $(this).children().val();
+                                                                    console.log("ubicación -> "+ubicacion + " val -> " + diente);
+                                                                    console.log($(this).attr('id'));
+                                                                    switch (control) {
+                                                                        case "cariado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass('click-white');
+                                                                                $(this).addClass('click-red');                                                                                
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-red")) {
+                                                                                    $(this).removeClass("click-red");                                                                                    
+                                                                                } else {
+                                                                                    $(this).addClass('click-red');                                                                                    
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "obturado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass('click-white');
+                                                                                $(this).addClass('click-blue');
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-blue")) {
+                                                                                    $(this).removeClass("click-blue");
+                                                                                } else {
+                                                                                    $(this).addClass('click-blue');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "exodonciarealizada":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this));
+                                                                            console.log(dientePosition);
+                                                                            $(this).parent().children().each(function (index, el) {
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-gray")) {
+                                                                                        $(el).removeClass('click-gray');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-gray");
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "exodonciasimpleindicada":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log(dientePosition);
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click-blue-border")) {
+                                                                                    $(el).removeClass('click-blue-border');
+                                                                                }else {
+                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
+                                                                                        $(el).addClass("click-blue-border");
+                                                                                    }                                                                                    
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "exodonciaquirrugicaindicada":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log(dientePosition);
+                                                                            $(this).parent().children().each(function (index, el) {
+                                                                                if ($(el).hasClass("click-red-border")) {
+                                                                                    $(el).removeClass('click-red-border');
+                                                                                }else {
+                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
+                                                                                        $(el).addClass("click-red-border");
+                                                                                    }                                                                                    
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "sinerupcionar":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this));
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) { 
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-erupcionar")) {
+                                                                                        $(el).removeClass('click-erupcionar');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-erupcionar");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "endodonciarealizada":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {   
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-endo")) {
+                                                                                        $(el).removeClass('click-endo');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-endo");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "endodonciaindicada":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log(dientePosition);
+                                                                            $(this).parent().children().each(function (index, el) {
+                                                                                if ($(el).hasClass("click-marron-border")) {
+                                                                                    $(el).removeClass('click-marron-border');
+                                                                                }else {
+                                                                                    if ($(el).hasClass("cuadro") || $(el).hasClass("cuadro-leche")) {
+                                                                                        $(el).addClass("click-marron-border");
+                                                                                    }                                                                                    
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "sellantepresente":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-sellantep");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-sellantep")) {
+                                                                                    $(this).removeClass("click-sellantep");
+                                                                                } else {
+                                                                                    $(this).addClass('click-sellantep');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "sellanteindicado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-sellantei");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                    $(this).removeClass("click-sellantei");
+                                                                                } else {
+                                                                                    $(this).addClass('click-sellantei');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "erosion":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-erosion");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-erosion")) {
+                                                                                    $(this).removeClass("click-erosion");
+                                                                                } else {
+                                                                                    $(this).addClass('click-erosion');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "procedimientorealizado":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                                                                                              
+                                                                                if ($(el).hasClass("click-proce")) {
+                                                                                    $(el).removeClass('click-proce');
+                                                                                }else {                                                                                    
+                                                                                    $(el).addClass("click-proce");                                                                                    
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "coronabuenestado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-corobuen");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-corobuen")) {
+                                                                                    $(this).removeClass("click-corobuen");
+                                                                                } else {
+                                                                                    $(this).addClass('click-corobuen');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "coronamalestado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-coromal");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-coromal")) {
+                                                                                    $(this).removeClass("click-coromal");
+                                                                                } else {
+                                                                                    $(this).addClass('click-coromal');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "provisionalbuenestado":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-probuen")) {
+                                                                                        $(el).removeClass('click-probuen');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-probuen");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "provisionalmalestado":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-promal")) {
+                                                                                        $(el).removeClass('click-promal');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-promal");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "nucleobuenestado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-nuclebuen");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-nuclebuen")) {
+                                                                                    $(this).removeClass("click-nuclebuen");
+                                                                                } else {
+                                                                                    $(this).addClass('click-nuclebuen');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "nucleomalestado":
+                                                                            if ($(this).hasClass("click-white")) {
+                                                                                $(this).removeClass("click-white");
+                                                                                $(this).addClass("click-nuclemal");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-nuclemal")) {
+                                                                                    $(this).removeClass("click-nuclemal");
+                                                                                } else {
+                                                                                    $(this).addClass('click-nuclemal');
+                                                                                }
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "removiblebuenestado":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-remobuen")) {
+                                                                                        $(el).removeClass('click-remobuen');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-remobuen");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "removiblemalestado":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-remomal")) {
+                                                                                        $(el).removeClass('click-remomal');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-remomal");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "implante":
+                                                                            var dientePosition = $(this).position();
+                                                                            console.log($(this))
+                                                                            console.log(dientePosition)
+                                                                            $(this).parent().children().each(function (index, el) {                                                                                
+                                                                                if ($(el).hasClass("click")) {
+                                                                                    if ($(el).hasClass("click-implante")) {
+                                                                                        $(el).removeClass('click-implante');
+                                                                                    }else {                                                                                    
+                                                                                        $(el).addClass("click-implante");                                                                                    
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'SI');
+                                                                            break;
+                                                                        case "placa":
+                                                                            var dientePosition = $(this).position();
+                                                                            if ($(this).hasClass("click-green")) {
+                                                                                $(this).removeClass('click-green');
+                                                                            } else {
+                                                                                $(this).addClass('click-green');
+                                                                            }
+                                                                            meterEnOdontograma(diente, ubicacion, control, 'NO');
+                                                                            break;
+                                                                        case "limpiar":
+                                                                            if ($(this).hasClass("click-red")) {
+                                                                                $(this).removeClass("click-red");
+                                                                                $(this).addClass("click-white");
+                                                                            } else {
+                                                                                if ($(this).hasClass("click-blue")) {
+                                                                                    $(this).removeClass("click-blue");
+                                                                                    $(this).addClass("click-white");
+                                                                                } else {
+                                                                                    if ($(this).hasClass("click-green")) {
+                                                                                        $(this).removeClass("click-green");
+                                                                                        $(this).addClass("click-white");
+                                                                                    } else {
+                                                                                        if ($(this).hasClass("click-gray")) {
+                                                                                            $(this).removeClass("click-gray");
+                                                                                            $(this).addClass("click-white");
+                                                                                        } else {
+                                                                                            if ($(this).hasClass("click-erupcionar")) {
+                                                                                                $(this).removeClass("click-erupcionar");
+                                                                                                $(this).addClass("click-white");
+                                                                                            } else {
+                                                                                                if ($(this).hasClass("click-endo")) {
+                                                                                                    $(this).removeClass("click-endo");
+                                                                                                    $(this).addClass("click-white");
+                                                                                                } else {
+                                                                                                    if ($(this).hasClass("click-proce")) {
+                                                                                                        $(this).removeClass("click-proce");
+                                                                                                        $(this).addClass("click-white");
+                                                                                                    } else {
+                                                                                                        if ($(this).hasClass("click-probuen")) {
+                                                                                                            $(this).removeClass("click-probuen");
+                                                                                                            $(this).addClass("click-white");
+                                                                                                        } else {
+                                                                                                            if ($(this).hasClass("click-promal")) {
+                                                                                                                $(this).removeClass("click-promal");
+                                                                                                                $(this).addClass("click-white");
+                                                                                                            } else {
+                                                                                                                if ($(this).hasClass("click-implante")) {
+                                                                                                                    $(this).removeClass("click-implante");
+                                                                                                                    $(this).addClass("click-white");
+                                                                                                                } else {
+                                                                                                                    if ($(this).hasClass("click-remobuen")) {
+                                                                                                                        $(this).removeClass("click-remobuen");
+                                                                                                                        $(this).addClass("click-white");
+                                                                                                                    } else {
+                                                                                                                        if ($(this).hasClass("click-remomal")) {
+                                                                                                                            $(this).removeClass("click-remomal");
+                                                                                                                            $(this).addClass("click-white");
+                                                                                                                        } else {
+                                                                                                                            if ($(this).hasClass("click-sellantep")) {
+                                                                                                                                $(this).removeClass("click-sellantep");
+                                                                                                                                $(this).addClass("click-white");
+                                                                                                                            } else {
+                                                                                                                                if ($(this).hasClass("click-sellantei")) {
+                                                                                                                                    $(this).removeClass("click-sellantei");
+                                                                                                                                    $(this).addClass("click-white");
+                                                                                                                                } else {
+                                                                                                                                    if ($(this).hasClass("click-erosion")) {
+                                                                                                                                        $(this).removeClass("click-erosion");
+                                                                                                                                        $(this).addClass("click-white");
+                                                                                                                                    } else {
+                                                                                                                                        if ($(this).hasClass("click-corobuen")) {
+                                                                                                                                            $(this).removeClass("click-corobuen");
+                                                                                                                                            $(this).addClass("click-white");
+                                                                                                                                        } else {
+                                                                                                                                            if ($(this).hasClass("click-coromal")) {
+                                                                                                                                                $(this).removeClass("click-coromal");
+                                                                                                                                                $(this).addClass("click-white");
+                                                                                                                                            } else {
+                                                                                                                                                if ($(this).hasClass("click-nuclebuen")) {
+                                                                                                                                                    $(this).removeClass("click-nuclebuen");
+                                                                                                                                                    $(this).addClass("click-white");
+                                                                                                                                                } else {
+                                                                                                                                                    if ($(this).hasClass("click-nuclemal")) {
+                                                                                                                                                        $(this).removeClass("click-nuclemal");
+                                                                                                                                                        $(this).addClass("click-white");
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        default:
+                                                                            console.log("borrar case");
+                                                                    }
+                                                                    return false;
+                                                                });
+                                                                return false;
+                                                            });
         </script>
