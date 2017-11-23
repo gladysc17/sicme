@@ -83,7 +83,7 @@
                         </div>
                         <div style="float: left">
                             <%
-                                for (int i = con; i < 36; i++) {
+                                for (int i = con; i < 30; i++) {
                                     HorarioDTO h = ho.get(i);
                                     con++;
                             %>

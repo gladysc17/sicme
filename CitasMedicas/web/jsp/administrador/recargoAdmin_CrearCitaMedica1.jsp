@@ -4,6 +4,7 @@
     Author     : Gladys M
 --%>
 
+<%@page import="java.util.Calendar"%>
 <%@page import="FACADE.FacadeHorarioMedico"%>
 <%@page import="DAO.HorarioMedicoDAO"%>
 <%@page import="DTO.ServicioDTO"%>
@@ -51,9 +52,6 @@
 
             %>
 
-            
-            <h2 align="center">Nueva Cita Medica</h2>
-            <br>
             <input type="hidden" name="identf" id="identf" value="<%=identf%>">
             <h3>Nombre: <%=nombre%></h3>
             <h3>Identificación <%=identf%></h3>
@@ -104,7 +102,7 @@
                 <div class="col-sm-3 control-label">                    
                     <%
                         FacadeHorarioMedico fc = new FacadeHorarioMedico();
-                        String fec = fc.fechaActual();
+                        String fec = fc.fechaActual();                    
                     %>
                     <input type="date" id="fecha" name="fecha" class="form-control" alt="Fecha" required step="1" min="<%=fec%>">
                 </div>       
