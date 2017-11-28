@@ -5,6 +5,7 @@
  */
 package reportes;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -21,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletOutputStream;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -28,6 +30,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import util.ConexionPostgres;
+import net.sf.jasperreports.engine.JasperExportManager;
 
 /**
  *
@@ -66,19 +69,26 @@ public class usuarios extends HttpServlet {
         Date fec2 = Date.valueOf(fechaF);
         System.out.println(" fec " + fec + " fec2 " + fec2 );
         try {             
-            
+            System.out.println("Iniciando");
             if(tipou.equals("todos")){
+                System.out.println("entra if");
             Map m = new HashMap();
+            System.out.println("Crea map");
             
             m.put("fechaI", fec);
             m.put("fechaF", fec2);
+            System.out.println("Agrega variables");
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioTodos.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Mi Reporte");
-                    viewer.setVisible(true);
-                                                               
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //viewer.setTitle("Mi Reporte");
+                    //viewer.setVisible(true);
+                    System.out.println("Reporte creado asda " +f.getAbsolutePath());
+                    generarDescargaPDF(str, request, response);
             }
             
             else if(tipou.equals("docente") || tipou.equals("administrativo") || tipou.equals("servicios_generales") || tipou.equals("medico")){
@@ -116,8 +126,10 @@ public class usuarios extends HttpServlet {
                                                                
             }
 
-        } catch (JRException ex) {
-            Logger.getLogger(historia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            System.out.println("error " + ex);
+            ex.printStackTrace();
+            Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         
@@ -162,4 +174,32 @@ public class usuarios extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+       
+    protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+        try {
+            String originalFileName = "descarga.pdf";
+            java.io.File f = new java.io.File(ruta);
+            int length = 0;
+            String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());
+            ServletOutputStream myOut = response.getOutputStream();
+
+            response.setContentType((mimetype != null) ? mimetype : "application/octet-stream");
+            response.setContentLength((int) f.length());
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFileName + "\"");
+
+            byte[] bbuf = new byte[1024];
+            java.io.DataInputStream in = new java.io.DataInputStream(new java.io.FileInputStream(f));
+
+            while ((in != null) && ((length = in.read(bbuf)) != -1)) {
+                myOut.write(bbuf, 0, length);
+            }
+
+            in.close();
+            myOut.flush();
+            myOut.close();
+        } catch (Exception e) {
+            System.err.println("Error");
+        }
+    }
 }
