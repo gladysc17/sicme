@@ -81,10 +81,6 @@ ORDER BY e.estado_estudiante]]>
 				<reportElement x="519" y="69" width="13" height="20" uuid="983d9b94-8d07-4ae8-89b1-57c8cc107e6f"/>
 				<text><![CDATA[y]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="30" width="50" height="50" uuid="c0b20730-b73e-4178-9957-472fbd86a739"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="162" y="69" width="247" height="20" uuid="c88849ad-6f72-41a0-969c-17f29bf908cd"/>
 				<text><![CDATA[Lista de Estudiantes  registrados en el sistema entre]]></text>
