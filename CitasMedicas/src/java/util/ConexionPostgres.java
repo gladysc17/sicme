@@ -27,7 +27,7 @@ public class ConexionPostgres {
 //    
     private static  String bd = "DSAS";
     private static  String login = "postgres";
-    private static  String password = "root";    
+    private static  String password = "1234";    
     private static  String url = "jdbc:postgresql://localhost:5432/"+bd;
     private static  String controlador="org.postgresql.Driver";
     private static   JDBCMiddler jdbc;

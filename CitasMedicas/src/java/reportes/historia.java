@@ -5,6 +5,7 @@
  */
 package reportes;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,9 +66,12 @@ public class historia extends HttpServlet {
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcmedicina.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Historia Medicina General");
-                    viewer.setVisible(true);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    //viewer.setTitle("Historia Medicina General");
+                    //viewer.setVisible(true);
                     //JasperExportManager.exportReportToPdfFile( jasperPrint, "C:/repor/reporte"+id+".pdf");                   
                                                                
             }
@@ -82,9 +87,12 @@ public class historia extends HttpServlet {
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcodontologia.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Historia Odontologia");
-                    viewer.setVisible(true);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    //viewer.setTitle("Historia Odontologia");
+                    //viewer.setVisible(true);
                                                                
             }
             
@@ -99,9 +107,12 @@ public class historia extends HttpServlet {
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcplanificacion.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Historia Planificación Familiar");
-                    viewer.setVisible(true);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    //viewer.setTitle("Historia Planificación Familiar");
+                    //viewer.setVisible(true);
                                                                
             }
             
@@ -116,9 +127,12 @@ public class historia extends HttpServlet {
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("hcpsicologia.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Historia Psicologia");
-                    viewer.setVisible(true);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    //viewer.setTitle("Historia Psicologia");
+                    //viewer.setVisible(true);
                                                                
             }
 
@@ -168,4 +182,30 @@ public class historia extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String originalFileName = "historia.pdf";
+            java.io.File f = new java.io.File(ruta);
+            int length = 0;
+            String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());
+            ServletOutputStream myOut = response.getOutputStream();
+
+            response.setContentType((mimetype != null) ? mimetype : "application/octet-stream");
+            response.setContentLength((int) f.length());
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFileName + "\"");
+
+            byte[] bbuf = new byte[1024];
+            java.io.DataInputStream in = new java.io.DataInputStream(new java.io.FileInputStream(f));
+
+            while ((in != null) && ((length = in.read(bbuf)) != -1)) {
+                myOut.write(bbuf, 0, length);
+            }
+
+            in.close();
+            myOut.flush();
+            myOut.close();
+        } catch (Exception e) {
+            System.err.println("Error");
+        }
+    }
 }

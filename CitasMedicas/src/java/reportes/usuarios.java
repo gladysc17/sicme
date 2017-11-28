@@ -103,9 +103,12 @@ public class usuarios extends HttpServlet {
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioTipo.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Mi Reporte");
-                    viewer.setVisible(true);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    //viewer.setTitle("Mi Reporte");
+                    //viewer.setVisible(true);
                                                                
             }
             else if(tipou.equals("estudiante") ){
@@ -120,9 +123,12 @@ public class usuarios extends HttpServlet {
                     
                     JasperReport reporte = (JasperReport) JRLoader.loadObject(this.getClass().getResourceAsStream("usuarioEstudiantes.jasper"));
                     JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, m, co);
-                    JasperViewer viewer = new JasperViewer(jasperPrint, false);
-                    viewer.setTitle("Mi Reporte");
-                    viewer.setVisible(true);
+                    String str = File.createTempFile("sadq", "as").getParent()+"\\" + System.currentTimeMillis() + ".pdf";
+                    File f = new File(str); 
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, str);
+                    //JasperViewer viewer = new JasperViewer(jasperPrint, false);
+                    //viewer.setTitle("Mi Reporte");
+                    //viewer.setVisible(true);
                                                                
             }
 
