@@ -84,14 +84,6 @@ and hc.idcita_hcmed = c.id_cita]]>
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="11" width="50" height="50" uuid="9e8114ec-8528-4ba8-a5c3-cd01f79655a2"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="455" y="10" width="50" height="50" uuid="147c34e1-067b-4577-ad9c-6aa3b8e657d3"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

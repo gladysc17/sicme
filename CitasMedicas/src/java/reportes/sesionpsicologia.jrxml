@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="942d4131-a562-47ab-a43f-4a112a01c9ab">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="29"/>
+	<property name="ireport.y" value="15"/>
 	<parameter name="idsesion" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[select * from sesion s, usuario u, cita c where s.id = $P{idsesion} and u.identificacion = s.id_usuario and c.id_cita = s.id_cita]]>
@@ -50,10 +50,6 @@
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="455" y="10" width="50" height="50" uuid="efbed142-8d3a-450d-a6d2-af88018a3630"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="158" y="30" width="255" height="20" uuid="a94eab86-fbea-4829-baee-6a8f6776e524"/>
 				<textElement textAlignment="Center">
@@ -68,10 +64,6 @@
 				</textElement>
 				<text><![CDATA[SESION PSICOLOGÍA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="11" width="50" height="50" uuid="e4b0b850-5a92-4cc4-928f-2e81bb036d9f"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

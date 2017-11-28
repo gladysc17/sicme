@@ -73,7 +73,7 @@ public class historia extends HttpServlet {
                     //viewer.setTitle("Historia Medicina General");
                     //viewer.setVisible(true);
                     //JasperExportManager.exportReportToPdfFile( jasperPrint, "C:/repor/reporte"+id+".pdf");                   
-                                                               
+                     generarDescargaPDF(str, request, response);                                          
             }
             
             else if(servicio.equals("2")){
@@ -93,6 +93,7 @@ public class historia extends HttpServlet {
                     //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     //viewer.setTitle("Historia Odontologia");
                     //viewer.setVisible(true);
+                    generarDescargaPDF(str, request, response);
                                                                
             }
             
@@ -113,6 +114,7 @@ public class historia extends HttpServlet {
                     //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     //viewer.setTitle("Historia Planificación Familiar");
                     //viewer.setVisible(true);
+                    generarDescargaPDF(str, request, response);
                                                                
             }
             
@@ -133,6 +135,7 @@ public class historia extends HttpServlet {
                     //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     //viewer.setTitle("Historia Psicologia");
                     //viewer.setVisible(true);
+                    generarDescargaPDF(str, request, response);
                                                                
             }
 
@@ -184,7 +187,7 @@ public class historia extends HttpServlet {
 
     protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String originalFileName = "historia.pdf";
+            String originalFileName = "historiaClinica.pdf";
             java.io.File f = new java.io.File(ruta);
             int length = 0;
             String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());

@@ -29,10 +29,6 @@
 	</background>
 	<title>
 		<band height="73" splitType="Stretch">
-			<image>
-				<reportElement x="456" y="2" width="69" height="58" uuid="705c2e57-61f8-446c-9b36-7b0e43da406d"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="141" y="28" width="273" height="20" uuid="50b6347e-2321-459d-971c-39dbcb7a1116"/>
 				<textElement textAlignment="Center">
@@ -54,10 +50,6 @@
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="35" y="8" width="50" height="50" uuid="713c2577-0a43-4490-afb7-addc28acfe61"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="293" y="53" width="100" height="20" uuid="aea430b0-03c0-4a6f-8e6e-3fbef840d391"/>
 				<textFieldExpression><![CDATA[$F{nombre_evento}]]></textFieldExpression>

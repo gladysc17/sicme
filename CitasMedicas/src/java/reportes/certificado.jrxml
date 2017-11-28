@@ -52,14 +52,6 @@
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[CERTIFICADO DE ASISTENCIA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="33" y="6" width="50" height="50" uuid="cd71d972-8c02-421a-8e21-a8f6b430a556"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="465" y="6" width="50" height="50" uuid="bde0b792-ec55-4be5-b62c-6582443749df"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

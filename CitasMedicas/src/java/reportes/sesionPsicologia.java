@@ -67,7 +67,7 @@ public class sesionPsicologia extends HttpServlet {
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
-
+                generarDescargaPDF(str, request, response);
             
             
             

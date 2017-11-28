@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="641ed272-2ec8-4bff-b67b-c4aae196939f">
 	<property name="ireport.zoom" value="1.1269722013523664"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="486"/>
+	<property name="ireport.y" value="1206"/>
 	<subDataset name="Table Dataset 1" uuid="e05bca69-42cd-49b4-bcba-48604c0276c1"/>
 	<parameter name="idcita" class="java.lang.Integer"/>
 	<queryString>
@@ -96,10 +96,6 @@ WHERE     HC.idcita_hcmed =$P{idcita}]]>
 				</textElement>
 				<text><![CDATA[DIVISION DE SERVICIOS ASISTENCIALES Y DE LA SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="30" y="15" width="50" height="42" uuid="24b91c9a-ab02-49a7-8902-79a5926db52c"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -658,10 +654,6 @@ WHERE     HC.idcita_hcmed =$P{idcita}]]>
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="20" width="50" height="42" uuid="06107764-42a0-468d-8212-0500ce70fbb8"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="102" y="55" width="294" height="15" uuid="69e5c01b-f5ae-4882-9972-49cacb5d2beb"/>
 				<textElement textAlignment="Center">

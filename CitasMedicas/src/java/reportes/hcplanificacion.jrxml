@@ -64,10 +64,6 @@ WHERE     HC.id_cita = $P{idcita}]]>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
-				<reportElement x="10" y="20" width="50" height="42" uuid="4ade2e55-e078-47e3-afdd-5bd6f96eed76"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="102" y="55" width="294" height="15" uuid="79401203-45ec-4ce5-8c15-fc7cbdbc7f38"/>
 				<textElement textAlignment="Center">

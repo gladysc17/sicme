@@ -61,14 +61,6 @@
 				</textElement>
 				<text><![CDATA[y]]></text>
 			</staticText>
-			<image>
-				<reportElement x="442" y="10" width="69" height="58" uuid="e0678cef-2359-4bae-82c7-c94fc4a119c2"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="33" y="18" width="50" height="50" uuid="b9ef6217-b574-4d1e-a1ca-8d241291d31d"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

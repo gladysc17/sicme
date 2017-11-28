@@ -109,6 +109,7 @@ public class usuarios extends HttpServlet {
                     //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     //viewer.setTitle("Mi Reporte");
                     //viewer.setVisible(true);
+                    generarDescargaPDF(str, request, response);
                                                                
             }
             else if(tipou.equals("estudiante") ){
@@ -129,6 +130,7 @@ public class usuarios extends HttpServlet {
                     //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                     //viewer.setTitle("Mi Reporte");
                     //viewer.setVisible(true);
+                    generarDescargaPDF(str, request, response);
                                                                
             }
 
@@ -184,7 +186,7 @@ public class usuarios extends HttpServlet {
        
     protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
         try {
-            String originalFileName = "descarga.pdf";
+            String originalFileName = "usuarios.pdf";
             java.io.File f = new java.io.File(ruta);
             int length = 0;
             String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());

@@ -80,6 +80,7 @@ public class citas extends HttpServlet {
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
+                generarDescargaPDF(str, request, response);
 
             } else if (consulta.equals("programa")) {
 
@@ -96,6 +97,7 @@ public class citas extends HttpServlet {
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
+                generarDescargaPDF(str, request, response);
 
             }
             
@@ -114,6 +116,7 @@ public class citas extends HttpServlet {
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
+                generarDescargaPDF(str, request, response);
 
             }
 
@@ -164,7 +167,7 @@ public class citas extends HttpServlet {
 
     protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String originalFileName = "cita.pdf";
+            String originalFileName = "citas.pdf";
             java.io.File f = new java.io.File(ruta);
             int length = 0;
             String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());

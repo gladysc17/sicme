@@ -67,7 +67,8 @@ public class listaRegistradosEv extends HttpServlet {
                 JasperExportManager.exportReportToPdfFile(jasperPrint, str);
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
-                //viewer.setVisible(true);                                   
+                //viewer.setVisible(true);    
+                generarDescargaPDF(str, request, response);
 
         } catch (JRException ex) {
             Logger.getLogger(historia.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,7 +117,7 @@ public class listaRegistradosEv extends HttpServlet {
 
     protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String originalFileName = "registrados.pdf";
+            String originalFileName = "registradosEvento.pdf";
             java.io.File f = new java.io.File(ruta);
             int length = 0;
             String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());

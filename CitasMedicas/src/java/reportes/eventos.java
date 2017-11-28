@@ -75,6 +75,7 @@ public class eventos extends HttpServlet {
             //JasperViewer viewer = new JasperViewer(jasperPrint, false);
             //viewer.setTitle("Mi Reporte");
             //viewer.setVisible(true);
+            generarDescargaPDF(str, request, response);
 
         } catch (JRException ex) {
             Logger.getLogger(historia.class.getName()).log(Level.SEVERE, null, ex);

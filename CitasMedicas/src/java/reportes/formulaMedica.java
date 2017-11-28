@@ -68,7 +68,7 @@ public class formulaMedica extends HttpServlet {
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
 
-            
+                generarDescargaPDF(str, request, response);
             
             
 
@@ -118,7 +118,7 @@ public class formulaMedica extends HttpServlet {
 
     protected void generarDescargaPDF(String ruta, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String originalFileName = "evento.pdf";
+            String originalFileName = "formulaMedica.pdf";
             java.io.File f = new java.io.File(ruta);
             int length = 0;
             String mimetype = getServletConfig().getServletContext().getMimeType(f.getAbsolutePath());

@@ -73,6 +73,7 @@ public class citasMedico extends HttpServlet {
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
+                generarDescargaPDF(str, request, response);
 
             } else {
                 Date fec2 = Date.valueOf(fechaF);
@@ -90,6 +91,7 @@ public class citasMedico extends HttpServlet {
                 //JasperViewer viewer = new JasperViewer(jasperPrint, false);
                 //viewer.setTitle("Mi Reporte");
                 //viewer.setVisible(true);
+                generarDescargaPDF(str, request, response);
 
             }
                         

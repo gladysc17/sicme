@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0df8d7a0-d84c-4053-adf6-19a533191d3f">
 	<property name="ireport.zoom" value="1.0263162364614136"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="816"/>
 	<parameter name="idcita" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -89,10 +89,6 @@ WHERE     HC.id_cita =$P{idcita}]]>
 				</textElement>
 				<text><![CDATA[HISTORIA CLINICA ODONTOLOGÍA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="10" y="20" width="50" height="42" uuid="f57b9398-f102-4399-bb66-4c38d547d973"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="113" y="40" width="264" height="15" uuid="52c6f4ed-da7c-4bfc-814d-e740d8decfb9"/>
 				<textElement textAlignment="Center">
@@ -566,10 +562,6 @@ WHERE     HC.id_cita =$P{idcita}]]>
 	</pageFooter>
 	<summary>
 		<band height="789" splitType="Stretch">
-			<image>
-				<reportElement x="20" y="30" width="50" height="42" uuid="a01d378b-9baa-4b7f-b278-374192f659fd"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="156" y="20" width="199" height="15" forecolor="#000000" uuid="9de16eb3-6a3d-4b1c-a44c-bd84d534d47b"/>
 				<textElement textAlignment="Center">
@@ -672,6 +664,14 @@ WHERE     HC.id_cita =$P{idcita}]]>
 				</textElement>
 				<text><![CDATA[Fecha consulta:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="24" y="300" width="468" height="224" uuid="4ff8a990-8a4c-4989-9162-d2c38fe056eb"/>
+				<textFieldExpression><![CDATA[$F{g_odontograma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="130" width="460" height="105" uuid="6c11eea8-4293-421b-8bfa-c2f6efcce6ad"/>
+				<textFieldExpression><![CDATA[$F{f_control_placa}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

@@ -62,14 +62,6 @@ where c.fecha_cita BETWEEN $P{fechaI} and $P{fechaF}]]>
 				</textElement>
 				<text><![CDATA[CANTIDAD DE CITAS POR SERVICIO]]></text>
 			</staticText>
-			<image>
-				<reportElement x="455" y="30" width="50" height="50" uuid="ac0dd86c-3cf3-4920-8478-908a757b80fc"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="10" y="31" width="50" height="50" uuid="1f301b22-f8b7-43e6-baf1-001228216ea3"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="153" y="10" width="255" height="20" uuid="347a24d2-a99b-4e84-bed7-41bbbe3723d2"/>
 				<textElement textAlignment="Center">

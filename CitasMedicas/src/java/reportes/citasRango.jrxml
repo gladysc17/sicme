@@ -65,10 +65,6 @@ order by fecha_cita, hora_cita]]>
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="466" y="29" width="50" height="50" uuid="ba9133e8-a707-495a-abcc-bcc1ba72a16f"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="150" y="40" width="273" height="20" uuid="842c433f-c7cb-4187-bc2c-5e95d2a1af37"/>
 				<textElement textAlignment="Center">
@@ -76,10 +72,6 @@ order by fecha_cita, hora_cita]]>
 				</textElement>
 				<text><![CDATA[UNIDAD DE SERVICIOS ASISTENCIALES Y DE SALUD]]></text>
 			</staticText>
-			<image>
-				<reportElement x="45" y="29" width="50" height="50" uuid="a472db25-06d3-4a6b-a610-9d612e2e7dc4"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="57" y="90" width="69" height="20" uuid="106e0e01-caab-4eec-a8d8-d3102eb30233"/>
 				<textElement>

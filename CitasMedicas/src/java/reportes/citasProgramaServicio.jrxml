@@ -75,14 +75,6 @@ ORDER BY pr.nombre_programa]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="467" y="26" width="50" height="50" uuid="b50ac92f-5ddd-44ce-aa30-f9b85b042c28"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="22" y="27" width="50" height="50" uuid="4acf77bd-cb01-4a63-9dd1-6c09f609d641"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="216" y="66" width="56" height="15" uuid="7748845e-9376-4b39-93c4-1f76d5ad97dc"/>
 				<textElement>

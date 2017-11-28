@@ -91,14 +91,6 @@ ORDER BY nombre_programa]]>
 				</textElement>
 				<text><![CDATA[y]]></text>
 			</staticText>
-			<image>
-				<reportElement x="17" y="0" width="50" height="50" uuid="10baacf7-f889-43bf-bcdb-85e40c3c0418"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="462" y="-1" width="50" height="50" uuid="74edc71d-462c-43e4-911b-a94c709af3e4"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="162" y="39" width="255" height="20" uuid="382a5932-61ff-4bb1-88bc-f9d82e82ffd8"/>
 				<textElement textAlignment="Center">

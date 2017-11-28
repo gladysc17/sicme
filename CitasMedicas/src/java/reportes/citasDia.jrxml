@@ -33,10 +33,6 @@
 				</textElement>
 				<text><![CDATA[LISTA DE CITAS PARA LA FECHA SELECCIONADA]]></text>
 			</staticText>
-			<image>
-				<reportElement x="35" y="19" width="50" height="50" uuid="75486f1d-cc79-42ad-a7e8-60026137c086"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\logo-vertical-ufps.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="153" y="10" width="255" height="20" uuid="440732d9-c97b-4bab-ad05-a3bb8d37bc9d"/>
 				<textElement textAlignment="Center">
@@ -44,10 +40,6 @@
 				</textElement>
 				<text><![CDATA[UNIVERSIDAD FRANCISCO DE PAULA SANTANDER]]></text>
 			</staticText>
-			<image>
-				<reportElement x="456" y="19" width="50" height="50" uuid="d6d4dae2-7bfc-4861-ad6a-8a4b7a05bdd1"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\sicme\\CitasMedicas\\web\\imagenes\\vbu.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="140" y="30" width="273" height="20" uuid="a0fedbb0-a95b-4168-ae32-6745285ff154"/>
 				<textElement textAlignment="Center">
