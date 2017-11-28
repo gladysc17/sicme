@@ -37,62 +37,51 @@
                     %>
                     Fecha: <input type="date" class="inline-group" id="fechaHM" name="fecha" size="12" alt="Fecha" required step="1" min="<%=fec%>">
                     </div>
+                    
+
                     <div>
                         <div>
                             <label> Hora(s): </label>
                         </div>
-
-                        <div style="float: left" >
-                            <%
-                                FacadeHorario fh = new FacadeHorario();
-                                List<HorarioDTO> ho = fh.consultarHoras();
-                                int con = 0;
-                                for (int i = 0; i < 9; i++) {
-                                    HorarioDTO h = ho.get(i);
-                                    con++;
-                            %>
-
-                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br> 
-                            <%
-                                }
-                            %>
-                        </div>
-                        <div style="float: left">
-                            <%
-                                for (int i = con; i < 18; i++) {
-                                    HorarioDTO h = ho.get(i);
-                                    con++;
-                            %>
-
-                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
-                            <%
-                                }
-                            %>
-                        </div>
-                        <div style="float: left">
-                            <%
-                                for (int i = con; i < 27; i++) {
-                                    HorarioDTO h = ho.get(i);
-                                    con++;
-                            %>
-
-                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
-                            <%
-                                }
-                            %>
-                        </div>
-                        <div style="float: left">
-                            <%
-                                for (int i = con; i < 30; i++) {
-                                    HorarioDTO h = ho.get(i);
-                                    con++;
-                            %>
-
-                            <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br>
-                            <%
-                                }
-                            %>
-                        </div>
+                        <%
+                            FacadeHorario fh2 = new FacadeHorario();
+                            List<HorarioDTO> ho2 = fh2.consultarHoras();
+                            int col = 5;
+                            int tamLista = ho2.size();
+                            double aux1 = ho2.size();
+                            double aux2 = 5;
+                            int pivote = 0;
+                            double cantPorCol =  Math.ceil(aux1/aux2);  
+                            int topeActual = 0;
+                            
+                            for(int i=0; i<col; i++){
+                                System.out.println("hola div");
+                        %>
+                                <div style="float: left" >
+                                    <%
+                                     
+                                    if ((tamLista - topeActual) >= (int)cantPorCol) {
+                                        for (;pivote < (topeActual + (int) cantPorCol); pivote ++) {
+                                            HorarioDTO h = ho2.get(pivote);
+                                        %>
+                                        <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br> 
+                                        <% 
+                                        }
+                                    } else {
+                                        for (;pivote < tamLista; pivote ++) {
+                                            HorarioDTO h = ho2.get(pivote);
+                                        %>
+                                        <input type="checkbox" name="hora" value="<%=h.getId_horario()%>"/> <%=h.getHora_inicio() + " - " + h.getHora_final()%> &nbsp;&nbsp; <br> 
+                                        <% 
+                                        }
+                                    }
+                                    topeActual = (int) cantPorCol * (1+i);
+                                    %>                                    
+                                </div>
+                        <%
+                            }
+                        %>                
+                        
                         <div class="col-sm-12">
                             <br>
                             <input type="button" class="btn btn-success" value="Registrar Horario" onclick="validateForm();"/>
@@ -100,7 +89,7 @@
 
 
                     </div>
-
+                        
                 </div>
             </form>
             <script>
