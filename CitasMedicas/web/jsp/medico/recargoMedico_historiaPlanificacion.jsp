@@ -38,7 +38,7 @@
                                 <li><a href="#revision" data-toggle="tab">REVISION DEL SISTEMA |</a></li>
                                 <li><a href="#antecedente" data-toggle="tab">ANTECEDENTES |</a></li>
                             </ul>
-                            <form action="../../controlador/procesarRegistroPlanificacionFamiliar.jsp" method="post">
+                            <form action="../controlador/procesarRegistroPlanificacionFamiliar.jsp" method="post">
                                 <%
                                     String idusuario_hcmed = request.getParameter("id");
                                     int idcita = Integer.parseInt(request.getParameter("idcita"));

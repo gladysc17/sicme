@@ -4,6 +4,7 @@
     Author     : LEGADO
 --%>
 
+<%@page import="FACADE.FacadeCita"%>
 <%@page import="DTO.Hc_planificacionfamiliarDTO"%>
 <%@page import="FACADE.FacadePlanificacionFamiliar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,9 +41,19 @@
             String estA = request.getParameter("estA").toString();
             String estV = request.getParameter("estV").toString();
             String estM = request.getParameter("estM").toString();
-            String ult_menst = request.getParameter("ult_menst").toString();
-            String ult_parto = request.getParameter("ult_parto").toString();
-            String ccv = request.getParameter("ccv").toString();
+            String ult_menst = request.getParameter("ult_menst");
+            
+            if(ult_menst.isEmpty()){
+                ult_menst = "1900-01-01";
+            }
+            String ult_parto = request.getParameter("ult_parto");
+            if(ult_parto.isEmpty()){
+                ult_parto ="1900-01-01";
+            }
+            String ccv = request.getParameter("ccv");
+            if(ccv==null){
+                ccv = "1900-01-01";
+            }
             String resulccv = request.getParameter("resulccv").toString();
             String planif = request.getParameter("planif").toString();
             String metodo = request.getParameter("metodo").toString();
@@ -68,8 +79,10 @@
             Hc_planificacionfamiliarDTO plan = new Hc_planificacionfamiliarDTO(tipo_vinculacion, aseguradora, nombre_resp, parentesco, direccion_resp, telefono_resp, motivo, enfermedad, menarca, ciclo, menopausia, estados, ult_menst, ult_parto, ccv, resulccv, planif, metodo, id_cita, revision_sistemas, antecedentes, idusuario_hcmed);
 
             boolean rta = fpf.registrarHCplanfamil(plan);
+            FacadeCita facCita = new FacadeCita();            
+            boolean actualizar = facCita.actualizarEstadoAtendida(id_cita);
 
-            if (rta) {
+            if (rta == true && actualizar == true) {
         %>
         <script>
             alert("REGISTRO EXITOSO");
