@@ -6,7 +6,7 @@
 
 <%@page import="FACADE.FacadeCita"%>
 <%@page import="DTO.Hc_planificacionfamiliarDTO"%>
-<%@page import="FACADE.FacadePlanificacionFamiliar"%>
+<%@page import="FACADE.FacadeHcPlanificacionFamiliar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -74,7 +74,7 @@
 
             String antecedentes = ant_pato + "-" + ant_quiru + "-" + ant_hosp + "-" + ant_toxic + "-" + ant_farm + "-" + ant_fami;
 
-            FacadePlanificacionFamiliar fpf = new FacadePlanificacionFamiliar();
+            FacadeHcPlanificacionFamiliar fpf = new FacadeHcPlanificacionFamiliar();
 
             Hc_planificacionfamiliarDTO plan = new Hc_planificacionfamiliarDTO(tipo_vinculacion, aseguradora, nombre_resp, parentesco, direccion_resp, telefono_resp, motivo, enfermedad, menarca, ciclo, menopausia, estados, ult_menst, ult_parto, ccv, resulccv, planif, metodo, id_cita, revision_sistemas, antecedentes, idusuario_hcmed);
 
