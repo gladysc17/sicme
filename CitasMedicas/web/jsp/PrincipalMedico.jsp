@@ -1,3 +1,4 @@
+<%@page import="FACADE.FacadeMedico"%>
 <%@page import="DTO.UsuarioDTO"%>
 <%@page import="FACADE.FacadeUsuario"%>
 <%@page import="DTO.MedicoDTO"%>
@@ -37,6 +38,8 @@
             FacadeUsuario fac = new FacadeUsuario();
             UsuarioDTO usuario = fac.consultarUsuarioPorId(id);
             String nombre = usuario.getNombre();
+            FacadeMedico fm = new FacadeMedico();
+            MedicoDTO m = fm.consultarMedicoPorId(id);
 
         %>
         <div id="menu-principal" class="header-v6 header-white-transparent header-sticky" style="position: relative;">            
@@ -90,6 +93,13 @@
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><input style="font-size: 20px;" type="button" class="btn btn-sm btn-link" value="Perfil" onclick="cargarForm('medico/recargoMedico_DatosPersonales.jsp')"/></li>                                    
                                 <li class="divider"></li>
+                                <%
+                                if(m.getServicio()==2){
+                                %>
+                                <li><a href="medico/recargoMedico_Tabla.jsp" target="_blank"><h3>Tabla de convención</h3></a></li>
+                                <%
+                                }
+                                %>
                                 <li><a href="../controlador/procesarCierreSesion.jsp"><h3>Cerrar Sesion</h3></a></li>
                                 <li><a href="../index.jsp"><h3>Inicio</h3></a></li>
                             </ul>

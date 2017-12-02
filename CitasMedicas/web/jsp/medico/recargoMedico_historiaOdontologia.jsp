@@ -2348,7 +2348,7 @@
                 //alert("dientePosicion" + placa.pla[indiceDiente].numero + " posicion " + indicePosicion + "valor "+ placa.pla[indiceDiente].ubicaciones[indicePosicion].valor);
                 if (placa.pla[indiceDiente].ubicaciones[indicePosicion].valor === "NO") {
                     placa.pla[indiceDiente].ubicaciones[indicePosicion].valor = "SI";
-                    alert("Lo pasaré a SI");
+                    //alert("Lo pasaré a SI");
                 }else {
                     placa.pla[indiceDiente].ubicaciones[indicePosicion].valor = "NO";
                 }                
@@ -2386,7 +2386,7 @@
                     }
                 }
                 
-                alert("J "+JSON.stringify(odontograma));
+                //alert("J "+JSON.stringify(odontograma));
                 
             }
             
@@ -2407,7 +2407,7 @@
                 });
                 */
                 
-                alert("voy a registrar");
+                //alert("voy a registrar");
                 var getFormulario = document.getElementById("regodont");
                 var controlPlaca = document.getElementById("controlPlaca");
                 controlPlaca.value = JSON.stringify(placa);
@@ -2416,8 +2416,8 @@
                 console.log("odo -> " + JSON.stringify(odontograma));
                 odontogra.value = JSON.stringify(odontograma);
                 
-                alert("valor placa -> " + JSON.stringify(placa));
-                alert("voy a enviar");
+                //alert("valor placa -> " + JSON.stringify(placa));
+                //alert("voy a enviar");
                 getFormulario.submit();
                 
                 
@@ -4217,8 +4217,9 @@
                                 break;
                             case "placa":
                                 var dientePosition = $(this).position();
-                                if ($(this).hasClass("click-green")) {
-                                    $(this).removeClass('click-green');
+                                if ($(this).hasClass("click-white")) {
+                                    $(this).removeClass('click-white');
+                                    $(this).addClass('click-green');
                                 } else {
                                     $(this).addClass('click-green');
                                 }
